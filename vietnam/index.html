@@ -18,7 +18,7 @@
 <body class="modern-site country country-vietnam">
   <a class="skip-link" href="#main">К содержанию</a>
   
-<header class="site-header vtr-nav" data-nav>
+<header class="site-header vtr-nav vtr-nav--country vtr-nav--vietnam" data-nav>
   
   <div class="vtr-nav__top">
     <div class="vtr-nav__contacts">
@@ -26,16 +26,14 @@
       <a href="tel:+201029321772">+201029321772</a>
     </div>
     <nav class="vtr-nav__countries" aria-label="Выбор страны">
-      <div class="vtr-nav__countries-inner">
-        <a class="vtr-nav__country" href="/dahab/">Египет</a><a class="vtr-nav__country is-active" href="/vietnam/">Вьетнам</a><a class="vtr-nav__country" href="/russia/">Россия</a>
-      </div>
+      <a class="vtr-nav__country" href="/dahab/">Египет</a><a class="vtr-nav__country is-active" href="/vietnam/">Вьетнам</a><a class="vtr-nav__country" href="/russia/">Россия</a>
     </nav>
     <div class="vtr-nav__right">
       <div class="vtr-nav__socials">
         <a href="/contacts/" aria-label="VK">VK</a><a href="/media/" aria-label="YT">YT</a><a href="/contacts/" aria-label="TA">TA</a>
       </div>
-      <div class="vtr-nav__lang-drop" data-lang>
-        <button type="button" aria-expanded="false" data-lang-toggle>RU <span aria-hidden="true">⌄</span></button>
+      <div class="vtr-nav__lang" data-dropdown>
+        <button class="vtr-nav__lang-button" type="button" aria-expanded="false" data-dropdown-toggle>RU <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
         <div class="vtr-nav__lang-menu">
           <a href="#">EN</a>
           <a href="#">DE</a>
@@ -51,56 +49,31 @@
       <span></span><span></span><span></span>
     </button>
     
-    <nav class="vtr-nav__panel vtr-nav__panel--nested" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
+    <nav class="vtr-nav__panel" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
+      <a class="vtr-nav__link" href="/">Vetratoria</a>
       
-      <div class="vtr-nav__item vtr-nav__item--drop vtr-nav__item--directions">
-        <a href="/#destinations">Направления <span aria-hidden="true">⌄</span></a>
+      <div class="vtr-nav__item vtr-nav__item--drop vtr-nav__item--directions" data-dropdown>
+        <button class="vtr-nav__link" type="button" aria-expanded="false" data-dropdown-toggle>Направления <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
         <div class="vtr-nav__dropdown vtr-nav__dropdown--directions">
-          
-            <div class="vtr-nav__country-menu">
-              <a class="vtr-nav__country-trigger" href="/dahab/">
-                <b>Египет</b>
-                <span>Дахаб</span>
-                <i aria-hidden="true">›</i>
-              </a>
-              <div class="vtr-nav__submenu">
-                <a href="/dahab/"><b>Главная</b><span>Дахаб</span></a><a href="/dahab/wingfoil/"><b>Wingfoil</b><span>Крыло и фойл</span></a><a href="/dahab/windsurf/"><b>Windsurf</b><span>Парус и доска</span></a><a href="/dahab/windsurf-kids/"><b>Windsurf Kids</b><span>Детский формат</span></a><a href="/dahab/price/"><b>Цены</b><span>Форматы и уроки</span></a><a href="/dahab/stations/"><b>Станции</b><span>Раздел направления</span></a><a href="/dahab/safety/"><b>Безопасность</b><span>Раздел направления</span></a><a href="/dahab/team/"><b>Команда</b><span>Раздел направления</span></a><a href="/dahab/how-to-get/"><b>Как добраться</b><span>Раздел направления</span></a><a href="/dahab/blog/"><b>Блог</b><span>Материалы</span></a><a href="/media/dahab/"><b>Медиа</b><span>Фото и видео</span></a>
-              </div>
-            </div>
-            <div class="vtr-nav__country-menu">
-              <a class="vtr-nav__country-trigger" href="/vietnam/">
-                <b>Вьетнам</b>
-                <span>Муйне</span>
-                <i aria-hidden="true">›</i>
-              </a>
-              <div class="vtr-nav__submenu">
-                <a href="/vietnam/"><b>Главная</b><span>Муйне</span></a><a href="/vietnam/windsurf/"><b>Windsurf</b><span>Парус и доска</span></a><a href="/vietnam/wingfoil/"><b>Wingfoil</b><span>Крыло и фойл</span></a><a href="/vietnam/kite/"><b>Kite</b><span>Кайт и ветер</span></a><a href="/vietnam/price/"><b>Цены</b><span>Форматы и уроки</span></a><a href="/vietnam/team/"><b>Команда</b><span>Раздел направления</span></a><a href="/vietnam/blog/"><b>Блог</b><span>Раздел направления</span></a><a href="/media/vietnam/"><b>Медиа</b><span>Фото и видео</span></a>
-              </div>
-            </div>
-            <div class="vtr-nav__country-menu">
-              <a class="vtr-nav__country-trigger" href="/russia/">
-                <b>Россия</b>
-                <span>Должанская</span>
-                <i aria-hidden="true">›</i>
-              </a>
-              <div class="vtr-nav__submenu">
-                <a href="/russia/"><b>Главная</b><span>Должанская</span></a><a href="/russia/windsurf/"><b>Windsurf</b><span>Парус и доска</span></a><a href="/russia/wingfoil/"><b>Wingfoil</b><span>Крыло и фойл</span></a><a href="/russia/kite/"><b>Kite</b><span>Кайт и ветер</span></a><a href="/russia/price/"><b>Цены</b><span>Форматы и уроки</span></a><a href="/russia/team/"><b>Команда</b><span>Раздел направления</span></a><a href="/russia/blog/"><b>Блог</b><span>Раздел направления</span></a><a href="/media/russia/"><b>Медиа</b><span>Фото и видео</span></a>
-              </div>
-            </div>
+          <a href="/dahab/"><b>Египет · Дахаб</b><span>Wingfoil, Windsurf, Kids</span></a><a href="/vietnam/"><b>Вьетнам · Муйне</b><span>Windsurf, Wingfoil, Kite</span></a><a href="/russia/"><b>Россия · Должанская</b><span>Windsurf, Wingfoil, Kite</span></a>
         </div>
       </div>
-      
-      <div class="vtr-nav__item vtr-nav__item--drop">
-        <a href="/dahab/#sport">Спорт <span aria-hidden="true">⌄</span></a>
-        <div class="vtr-nav__dropdown">
-          <a href="/dahab/wingfoil/"><b>Wingfoil</b><span>Крыло и фойл</span></a><a href="/dahab/windsurf/"><b>Windsurf</b><span>Парус и доска</span></a><a href="/dahab/windsurf-kids/"><b>Windsurf Kids</b><span>Детский формат</span></a><a href="/vietnam/kite/"><b>Kite</b><span>Кайт и ветер</span></a>
-        </div>
-      </div>
-      <a href="/blog/">Блог</a>
-      <a href="/media/">Медиа</a>
-      <a href="/contacts/">Контакты</a>
+      <a class="vtr-nav__link" href="/blog/">Блог</a>
+      <a class="vtr-nav__link" href="/media/">Медиа</a>
+      <a class="vtr-nav__link" href="/contacts/">Контакты</a>
     </nav>
   </div>
+  
+  <nav class="vtr-nav__section" aria-label="Навигация Муйне">
+    <a class="vtr-nav__section-link is-active" href="/vietnam/">Обзор</a><a class="vtr-nav__section-link" href="/vietnam/windsurf/">Windsurf</a><a class="vtr-nav__section-link" href="/vietnam/wingfoil/">Wingfoil</a><a class="vtr-nav__section-link" href="/vietnam/kite/">Kite</a><a class="vtr-nav__section-link" href="/vietnam/price/">Цены</a>
+    
+    <div class="vtr-nav__section-item vtr-nav__section-item--drop" data-dropdown>
+      <button class="vtr-nav__section-link" type="button" aria-expanded="false" data-dropdown-toggle>О школе <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
+      <div class="vtr-nav__section-dropdown">
+        <a href="/vietnam/team/">Команда</a><a href="/vietnam/blog/">Блог</a><a href="/media/vietnam/">Медиа</a><a href="/contacts/">Контакты</a>
+      </div>
+    </div>
+  </nav>
 </header>
   <main id="main">
 <section class="hero page-hero">

@@ -14,10 +14,6 @@ const escapeHtml = (value = "") =>
     .replace(/"/g, "&quot;");
 
 const countryList = site.countries;
-const sportList = Object.entries(site.sports).map(([key, value]) => {
-  const country = site.countries.find((item) => item.sports.includes(key)) || site.countries[0];
-  return { key, href: `/${country.key}/${key}/`, ...value };
-});
 
 const pathToFile = (path) => {
   if (path === "/") return join(root, "index.html");
@@ -34,73 +30,33 @@ const sectionHeading = (eyebrow, title, lead) => `
     ${lead ? `<p>${escapeHtml(lead)}</p>` : ""}
   </header>`;
 
-const uniqueLinks = (items) => {
-  const seen = new Set();
-  return items.filter((item) => {
-    if (seen.has(item.href)) return false;
-    seen.add(item.href);
-    return true;
-  });
-};
+const currentCountry = (page) =>
+  countryList.find((country) => page.country === country.key || page.galleryCountry === country.key || page.path.startsWith(`/${country.key}/`));
 
-const countryMenuLinks = (country) => uniqueLinks([
-  { label: "Главная", href: country.href, note: country.city },
-  ...country.sports.map((sportKey) => ({
-    label: site.sports[sportKey].nav,
-    href: `/${country.key}/${sportKey}/`,
-    note: site.sports[sportKey].subtitle
-  })),
-  { label: "Цены", href: `/${country.key}/price/`, note: "Форматы и уроки" },
-  ...country.extras.map((item) => ({ label: item.title, href: item.href, note: "Раздел направления" })),
-  { label: "Блог", href: `/${country.key}/blog/`, note: "Материалы" },
-  { label: "Медиа", href: `/media/${country.key}/`, note: "Фото и видео" }
-]);
+const arrow = '<span class="vtr-nav__chevron" aria-hidden="true">⌄</span>';
+
+const sportLabel = (sportKey) => sportKey === "windsurf-kids" ? "Kids" : site.sports[sportKey].nav;
+
+const countrySportSummary = (country) => country.sports.map(sportLabel).join(", ");
+
+const navButton = (label, className = "vtr-nav__link") =>
+  `<button class="${className}" type="button" aria-expanded="false" data-dropdown-toggle>${label} ${arrow}</button>`;
 
 const directionsMenu = () => `
-      <div class="vtr-nav__item vtr-nav__item--drop vtr-nav__item--directions">
-        <a href="/#destinations">Направления <span aria-hidden="true">⌄</span></a>
+      <div class="vtr-nav__item vtr-nav__item--drop vtr-nav__item--directions" data-dropdown>
+        ${navButton("Направления")}
         <div class="vtr-nav__dropdown vtr-nav__dropdown--directions">
-          ${countryList.map((country) => `
-            <div class="vtr-nav__country-menu">
-              <a class="vtr-nav__country-trigger" href="${country.href}">
-                <b>${country.nav}</b>
-                <span>${country.city}</span>
-                <i aria-hidden="true">›</i>
-              </a>
-              <div class="vtr-nav__submenu">
-                ${countryMenuLinks(country).map((link) => `<a href="${link.href}"><b>${link.label}</b><span>${link.note}</span></a>`).join("")}
-              </div>
-            </div>`).join("")}
+          ${countryList.map((country) => `<a href="${country.href}"><b>${country.nav} · ${country.city}</b><span>${countrySportSummary(country)}</span></a>`).join("")}
         </div>
       </div>`;
 
-const sportMenu = () => `
-      <div class="vtr-nav__item vtr-nav__item--drop">
-        <a href="/dahab/#sport">Спорт <span aria-hidden="true">⌄</span></a>
-        <div class="vtr-nav__dropdown">
-          ${sportList.map((sport) => `<a href="${sport.href}"><b>${sport.nav}</b><span>${sport.subtitle}</span></a>`).join("")}
-        </div>
-      </div>`;
-
-const homeNavPanel = () => `
-    <nav class="vtr-nav__panel vtr-nav__panel--flat" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
-      <a href="/#destinations">Направления</a>
-      ${countryList.map((country) => `<a href="${country.href}">${country.nav}</a>`).join("")}
-      <a href="/dahab/windsurf/">Windsurf</a>
-      <a href="/dahab/wingfoil/">Wingfoil</a>
-      <a href="/dahab/windsurf-kids/">Kids</a>
-      <a href="/blog/">Блог</a>
-      <a href="/media/">Медиа</a>
-      <a href="/contacts/">Контакты</a>
-    </nav>`;
-
-const sectionNavPanel = () => `
-    <nav class="vtr-nav__panel vtr-nav__panel--nested" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
+const mainNavPanel = () => `
+    <nav class="vtr-nav__panel" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
+      <a class="vtr-nav__link" href="/">Vetratoria</a>
       ${directionsMenu()}
-      ${sportMenu()}
-      <a href="/blog/">Блог</a>
-      <a href="/media/">Медиа</a>
-      <a href="/contacts/">Контакты</a>
+      <a class="vtr-nav__link" href="/blog/">Блог</a>
+      <a class="vtr-nav__link" href="/media/">Медиа</a>
+      <a class="vtr-nav__link" href="/contacts/">Контакты</a>
     </nav>`;
 
 const topNav = (page) => `
@@ -110,16 +66,14 @@ const topNav = (page) => `
       <a href="tel:${site.phone.replace(/\s/g, "")}">${site.phone}</a>
     </div>
     <nav class="vtr-nav__countries" aria-label="Выбор страны">
-      <div class="vtr-nav__countries-inner">
-        ${countryList.map((country) => `<a class="vtr-nav__country${page.country === country.key ? " is-active" : ""}" href="${country.href}">${country.nav}</a>`).join("")}
-      </div>
+      ${countryList.map((country) => `<a class="vtr-nav__country${page.country === country.key ? " is-active" : ""}" href="${country.href}">${country.nav}</a>`).join("")}
     </nav>
     <div class="vtr-nav__right">
       <div class="vtr-nav__socials">
         ${site.socials.map((item) => `<a href="${item.href}" aria-label="${item.label}">${item.label}</a>`).join("")}
       </div>
-      <div class="vtr-nav__lang-drop" data-lang>
-        <button type="button" aria-expanded="false" data-lang-toggle>RU <span aria-hidden="true">⌄</span></button>
+      <div class="vtr-nav__lang" data-dropdown>
+        <button class="vtr-nav__lang-button" type="button" aria-expanded="false" data-dropdown-toggle>RU ${arrow}</button>
         <div class="vtr-nav__lang-menu">
           <a href="#">EN</a>
           <a href="#">DE</a>
@@ -128,60 +82,68 @@ const topNav = (page) => `
     </div>
   </div>`;
 
-const dahabSectionActive = (page, keys) => keys.some((key) => page.path === key || page.path.startsWith(key));
+const countrySectionActive = (page, paths) => paths.some((path) => page.path === path || page.path.startsWith(path));
 
 const sectionLinkClass = (active) => `vtr-nav__section-link${active ? " is-active" : ""}`;
 
-const dahabSectionNav = (page) => `
-  <nav class="vtr-nav__section-nav" aria-label="Навигация Дахаба">
-    <a class="${sectionLinkClass(page.path === "/dahab/")}" href="/dahab/">Обзор</a>
-    <a class="${sectionLinkClass(dahabSectionActive(page, ["/dahab/wingfoil/"]))}" href="/dahab/wingfoil/">Wingfoil</a>
-    <a class="${sectionLinkClass(dahabSectionActive(page, ["/dahab/windsurf/"]))}" href="/dahab/windsurf/">Windsurf</a>
-    <div class="vtr-nav__section-item vtr-nav__section-item--drop${dahabSectionActive(page, ["/dahab/price/", "/dahab/wingfoil/price/", "/dahab/windsurf/price/", "/dahab/windsurf-kids/price/"]) ? " is-active" : ""}">
-      <a class="vtr-nav__section-link" href="/dahab/price/">Цены <span aria-hidden="true">⌄</span></a>
+const schoolDropdown = (country) => country.key === "dahab" ? [
+  { label: "Команда", href: "/dahab/team/" },
+  { label: "Безопасность", href: "/dahab/safety/" },
+  { label: "Как добраться", href: "/dahab/how-to-get/" },
+  { label: "Контакты", href: "/dahab/contacts/" }
+] : [
+  { label: "Команда", href: `/${country.key}/team/` },
+  { label: "Блог", href: `/${country.key}/blog/` },
+  { label: "Медиа", href: `/media/${country.key}/` },
+  { label: "Контакты", href: "/contacts/" }
+];
+
+const sectionDropdown = (label, active, items) => `
+    <div class="vtr-nav__section-item vtr-nav__section-item--drop${active ? " is-active" : ""}" data-dropdown>
+      ${navButton(label, "vtr-nav__section-link")}
       <div class="vtr-nav__section-dropdown">
-        <a href="/dahab/price/">Все цены</a>
-        <a href="/dahab/wingfoil/price/">Wingfoil</a>
-        <a href="/dahab/windsurf/price/">Windsurf</a>
-        <a href="/dahab/windsurf-kids/price/">Kids</a>
+        ${items.map((item) => `<a href="${item.href}">${item.label}</a>`).join("")}
       </div>
-    </div>
-    <a class="${sectionLinkClass(dahabSectionActive(page, ["/dahab/stations/"]))}" href="/dahab/stations/">Станции</a>
-    <div class="vtr-nav__section-item vtr-nav__section-item--drop${dahabSectionActive(page, ["/dahab/team/", "/dahab/safety/", "/dahab/how-to-get/", "/dahab/contacts/"]) ? " is-active" : ""}">
-      <a class="vtr-nav__section-link" href="/dahab/team/">О школе <span aria-hidden="true">⌄</span></a>
-      <div class="vtr-nav__section-dropdown">
-        <a href="/dahab/team/">Команда</a>
-        <a href="/dahab/safety/">Безопасность</a>
-        <a href="/dahab/how-to-get/">Как добраться</a>
-        <a href="/dahab/contacts/">Контакты</a>
-      </div>
-    </div>
+    </div>`;
+
+const countrySectionNav = (page, country) => {
+  const pricePaths = [`/${country.key}/price/`, ...country.sports.map((sportKey) => `/${country.key}/${sportKey}/price/`)];
+  const schoolItems = schoolDropdown(country);
+  const schoolPaths = schoolItems.map((item) => item.href).filter((href) => href.startsWith(`/${country.key}/`));
+  const baseLinks = country.key === "dahab"
+    ? [
+        `<a class="${sectionLinkClass(page.path === country.href)}" href="${country.href}">Обзор</a>`,
+        `<a class="${sectionLinkClass(countrySectionActive(page, ["/dahab/wingfoil/"]))}" href="/dahab/wingfoil/">Wingfoil</a>`,
+        `<a class="${sectionLinkClass(countrySectionActive(page, ["/dahab/windsurf/"]))}" href="/dahab/windsurf/">Windsurf</a>`,
+        sectionDropdown("Цены", countrySectionActive(page, pricePaths), [
+          { label: "Все цены", href: "/dahab/price/" },
+          { label: "Wingfoil", href: "/dahab/wingfoil/price/" },
+          { label: "Windsurf", href: "/dahab/windsurf/price/" },
+          { label: "Kids", href: "/dahab/windsurf-kids/price/" }
+        ]),
+        `<a class="${sectionLinkClass(countrySectionActive(page, ["/dahab/stations/"]))}" href="/dahab/stations/">Станции</a>`
+      ]
+    : [
+        `<a class="${sectionLinkClass(page.path === country.href)}" href="${country.href}">Обзор</a>`,
+        `<a class="${sectionLinkClass(countrySectionActive(page, [`/${country.key}/windsurf/`]))}" href="/${country.key}/windsurf/">Windsurf</a>`,
+        `<a class="${sectionLinkClass(countrySectionActive(page, [`/${country.key}/wingfoil/`]))}" href="/${country.key}/wingfoil/">Wingfoil</a>`,
+        `<a class="${sectionLinkClass(countrySectionActive(page, [`/${country.key}/kite/`]))}" href="/${country.key}/kite/">Kite</a>`,
+        `<a class="${sectionLinkClass(countrySectionActive(page, pricePaths))}" href="/${country.key}/price/">Цены</a>`
+      ];
+
+  return `
+  <nav class="vtr-nav__section" aria-label="Навигация ${country.title}">
+    ${baseLinks.join("")}
+    ${sectionDropdown("О школе", countrySectionActive(page, schoolPaths), schoolItems)}
   </nav>`;
+};
 
-const dahabHeader = (page) => `
-<header class="site-header vtr-nav vtr-nav--dahab" data-nav>
-  ${topNav(page)}
-  <div class="vtr-nav__main vtr-nav__main--dahab">
-    <a class="vtr-nav__logo" href="/" aria-label="Vetratoria - главная">
-      <img src="${site.logo}" alt="Vetratoria" width="198" height="97">
-    </a>
-    <button class="vtr-nav__burger" type="button" aria-label="Открыть меню" aria-expanded="false" data-menu-toggle>
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="vtr-nav__panel vtr-nav__panel--nested vtr-nav__panel--brand" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
-      <a href="/">Vetratoria</a>
-      ${directionsMenu()}
-      <a href="/blog/">Блог</a>
-      <a href="/media/">Медиа</a>
-      <a href="/contacts/">Контакты</a>
-    </nav>
-  </div>
-  ${dahabSectionNav(page)}
-</header>`;
-
-const header = (page) => page.country === "dahab" ? dahabHeader(page) : `
-<header class="site-header vtr-nav" data-nav>
-  ${topNav(page)}
+const header = (page) => {
+  const country = currentCountry(page);
+  const headerClass = `site-header vtr-nav${country ? ` vtr-nav--country vtr-nav--${country.key}` : " vtr-nav--home"}`;
+  return `
+<header class="${headerClass}" data-nav>
+  ${topNav(country ? { ...page, country: country.key } : page)}
   <div class="vtr-nav__main">
     <a class="vtr-nav__logo" href="/" aria-label="Vetratoria - главная">
       <img src="${site.logo}" alt="Vetratoria" width="198" height="97">
@@ -189,9 +151,11 @@ const header = (page) => page.country === "dahab" ? dahabHeader(page) : `
     <button class="vtr-nav__burger" type="button" aria-label="Открыть меню" aria-expanded="false" data-menu-toggle>
       <span></span><span></span><span></span>
     </button>
-    ${page.kind === "home" ? homeNavPanel() : sectionNavPanel()}
+    ${mainNavPanel()}
   </div>
+  ${country ? countrySectionNav(page, country) : ""}
 </header>`;
+};
 
 const footer = () => `
 <footer class="site-footer">

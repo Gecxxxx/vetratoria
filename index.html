@@ -18,7 +18,7 @@
 <body class="modern-site home">
   <a class="skip-link" href="#main">К содержанию</a>
   
-<header class="site-header vtr-nav" data-nav>
+<header class="site-header vtr-nav vtr-nav--home" data-nav>
   
   <div class="vtr-nav__top">
     <div class="vtr-nav__contacts">
@@ -26,16 +26,14 @@
       <a href="tel:+201029321772">+201029321772</a>
     </div>
     <nav class="vtr-nav__countries" aria-label="Выбор страны">
-      <div class="vtr-nav__countries-inner">
-        <a class="vtr-nav__country" href="/dahab/">Египет</a><a class="vtr-nav__country" href="/vietnam/">Вьетнам</a><a class="vtr-nav__country" href="/russia/">Россия</a>
-      </div>
+      <a class="vtr-nav__country" href="/dahab/">Египет</a><a class="vtr-nav__country" href="/vietnam/">Вьетнам</a><a class="vtr-nav__country" href="/russia/">Россия</a>
     </nav>
     <div class="vtr-nav__right">
       <div class="vtr-nav__socials">
         <a href="/contacts/" aria-label="VK">VK</a><a href="/media/" aria-label="YT">YT</a><a href="/contacts/" aria-label="TA">TA</a>
       </div>
-      <div class="vtr-nav__lang-drop" data-lang>
-        <button type="button" aria-expanded="false" data-lang-toggle>RU <span aria-hidden="true">⌄</span></button>
+      <div class="vtr-nav__lang" data-dropdown>
+        <button class="vtr-nav__lang-button" type="button" aria-expanded="false" data-dropdown-toggle>RU <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
         <div class="vtr-nav__lang-menu">
           <a href="#">EN</a>
           <a href="#">DE</a>
@@ -51,17 +49,21 @@
       <span></span><span></span><span></span>
     </button>
     
-    <nav class="vtr-nav__panel vtr-nav__panel--flat" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
-      <a href="/#destinations">Направления</a>
-      <a href="/dahab/">Египет</a><a href="/vietnam/">Вьетнам</a><a href="/russia/">Россия</a>
-      <a href="/dahab/windsurf/">Windsurf</a>
-      <a href="/dahab/wingfoil/">Wingfoil</a>
-      <a href="/dahab/windsurf-kids/">Kids</a>
-      <a href="/blog/">Блог</a>
-      <a href="/media/">Медиа</a>
-      <a href="/contacts/">Контакты</a>
+    <nav class="vtr-nav__panel" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
+      <a class="vtr-nav__link" href="/">Vetratoria</a>
+      
+      <div class="vtr-nav__item vtr-nav__item--drop vtr-nav__item--directions" data-dropdown>
+        <button class="vtr-nav__link" type="button" aria-expanded="false" data-dropdown-toggle>Направления <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
+        <div class="vtr-nav__dropdown vtr-nav__dropdown--directions">
+          <a href="/dahab/"><b>Египет · Дахаб</b><span>Wingfoil, Windsurf, Kids</span></a><a href="/vietnam/"><b>Вьетнам · Муйне</b><span>Windsurf, Wingfoil, Kite</span></a><a href="/russia/"><b>Россия · Должанская</b><span>Windsurf, Wingfoil, Kite</span></a>
+        </div>
+      </div>
+      <a class="vtr-nav__link" href="/blog/">Блог</a>
+      <a class="vtr-nav__link" href="/media/">Медиа</a>
+      <a class="vtr-nav__link" href="/contacts/">Контакты</a>
     </nav>
   </div>
+  
 </header>
   <main id="main">
 <section class="hero hero-home">
