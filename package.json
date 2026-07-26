@@ -1,0 +1,13 @@
+{
+  "name": "vetratoria-static",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Clean static rebuild of the Vetratoria website.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "python -m http.server 4175 --bind 127.0.0.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
