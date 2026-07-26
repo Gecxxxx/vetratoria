@@ -34,7 +34,76 @@ const sectionHeading = (eyebrow, title, lead) => `
     ${lead ? `<p>${escapeHtml(lead)}</p>` : ""}
   </header>`;
 
-const header = () => `
+const uniqueLinks = (items) => {
+  const seen = new Set();
+  return items.filter((item) => {
+    if (seen.has(item.href)) return false;
+    seen.add(item.href);
+    return true;
+  });
+};
+
+const countryMenuLinks = (country) => uniqueLinks([
+  { label: "Главная", href: country.href, note: country.city },
+  ...country.sports.map((sportKey) => ({
+    label: site.sports[sportKey].nav,
+    href: `/${country.key}/${sportKey}/`,
+    note: site.sports[sportKey].subtitle
+  })),
+  { label: "Цены", href: `/${country.key}/price/`, note: "Форматы и уроки" },
+  ...country.extras.map((item) => ({ label: item.title, href: item.href, note: "Раздел направления" })),
+  { label: "Блог", href: `/${country.key}/blog/`, note: "Материалы" },
+  { label: "Медиа", href: `/media/${country.key}/`, note: "Фото и видео" }
+]);
+
+const directionsMenu = () => `
+      <div class="vtr-nav__item vtr-nav__item--drop vtr-nav__item--directions">
+        <a href="/#destinations">Направления <span aria-hidden="true">⌄</span></a>
+        <div class="vtr-nav__dropdown vtr-nav__dropdown--directions">
+          ${countryList.map((country) => `
+            <div class="vtr-nav__country-menu">
+              <a class="vtr-nav__country-trigger" href="${country.href}">
+                <b>${country.nav}</b>
+                <span>${country.city}</span>
+                <i aria-hidden="true">›</i>
+              </a>
+              <div class="vtr-nav__submenu">
+                ${countryMenuLinks(country).map((link) => `<a href="${link.href}"><b>${link.label}</b><span>${link.note}</span></a>`).join("")}
+              </div>
+            </div>`).join("")}
+        </div>
+      </div>`;
+
+const sportMenu = () => `
+      <div class="vtr-nav__item vtr-nav__item--drop">
+        <a href="/dahab/#sport">Спорт <span aria-hidden="true">⌄</span></a>
+        <div class="vtr-nav__dropdown">
+          ${sportList.map((sport) => `<a href="${sport.href}"><b>${sport.nav}</b><span>${sport.subtitle}</span></a>`).join("")}
+        </div>
+      </div>`;
+
+const homeNavPanel = () => `
+    <nav class="vtr-nav__panel vtr-nav__panel--flat" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
+      <a href="/#destinations">Направления</a>
+      ${countryList.map((country) => `<a href="${country.href}">${country.nav}</a>`).join("")}
+      <a href="/dahab/windsurf/">Windsurf</a>
+      <a href="/dahab/wingfoil/">Wingfoil</a>
+      <a href="/dahab/windsurf-kids/">Kids</a>
+      <a href="/blog/">Блог</a>
+      <a href="/media/">Медиа</a>
+      <a href="/contacts/">Контакты</a>
+    </nav>`;
+
+const sectionNavPanel = () => `
+    <nav class="vtr-nav__panel vtr-nav__panel--nested" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
+      ${directionsMenu()}
+      ${sportMenu()}
+      <a href="/blog/">Блог</a>
+      <a href="/media/">Медиа</a>
+      <a href="/contacts/">Контакты</a>
+    </nav>`;
+
+const header = (page) => `
 <header class="site-header vtr-nav" data-nav>
   <div class="vtr-nav__top">
     <div class="vtr-nav__contacts">
@@ -66,23 +135,7 @@ const header = () => `
     <button class="vtr-nav__burger" type="button" aria-label="Открыть меню" aria-expanded="false" data-menu-toggle>
       <span></span><span></span><span></span>
     </button>
-    <nav class="vtr-nav__panel" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
-      <div class="vtr-nav__item vtr-nav__item--drop">
-        <a href="/#destinations">Направления <span aria-hidden="true">⌄</span></a>
-        <div class="vtr-nav__dropdown">
-          ${countryList.map((country) => `<a href="${country.href}"><b>${country.nav}</b><span>${country.city}</span></a>`).join("")}
-        </div>
-      </div>
-      <div class="vtr-nav__item vtr-nav__item--drop">
-        <a href="/dahab/#sport">Спорт <span aria-hidden="true">⌄</span></a>
-        <div class="vtr-nav__dropdown">
-          ${sportList.map((sport) => `<a href="${sport.href}"><b>${sport.nav}</b><span>${sport.subtitle}</span></a>`).join("")}
-        </div>
-      </div>
-      <a href="/blog/">Блог</a>
-      <a href="/media/">Медиа</a>
-      <a href="/contacts/">Контакты</a>
-    </nav>
+    ${page.kind === "home" ? homeNavPanel() : sectionNavPanel()}
   </div>
 </header>`;
 
@@ -149,7 +202,7 @@ const layout = (page, main) => `<!doctype html>
 </head>
 <body class="modern-site ${page.kind}${page.country ? ` country-${page.country}` : ""}">
   <a class="skip-link" href="#main">К содержанию</a>
-  ${header()}
+  ${header(page)}
   <main id="main">${main}</main>
   ${footer()}
 </body>

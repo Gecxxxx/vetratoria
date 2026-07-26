@@ -252,6 +252,67 @@ textarea {
   font-size: 12px;
 }
 
+.vtr-nav__dropdown--directions {
+  width: 260px;
+  overflow: visible;
+}
+
+.vtr-nav__country-menu {
+  position: relative;
+}
+
+.vtr-nav__country-trigger {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.vtr-nav__country-trigger b,
+.vtr-nav__country-trigger span {
+  grid-column: 1;
+}
+
+.vtr-nav__country-trigger i {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  color: var(--orange);
+  font-style: normal;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.vtr-nav__submenu {
+  position: absolute;
+  top: -10px;
+  left: calc(100% + 10px);
+  width: 300px;
+  max-height: min(72vh, 560px);
+  overflow: auto;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(9, 9, 8, 0.99);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-8px);
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+}
+
+.vtr-nav__country-menu:hover .vtr-nav__submenu,
+.vtr-nav__country-menu:focus-within .vtr-nav__submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.vtr-nav__submenu a {
+  padding: 9px 10px;
+}
+
+.vtr-nav__panel--flat {
+  gap: clamp(18px, 2.5vw, 30px);
+}
+
 .vtr-nav__burger {
   display: none;
   width: 46px;
@@ -1062,6 +1123,37 @@ textarea {
     background: rgba(255, 255, 255, 0.04);
   }
 
+  .vtr-nav__dropdown--directions {
+    width: auto;
+    overflow: visible;
+  }
+
+  .vtr-nav__country-menu {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .vtr-nav__country-menu:last-child {
+    border-bottom: 0;
+  }
+
+  .vtr-nav__country-trigger i {
+    transform: rotate(90deg);
+  }
+
+  .vtr-nav__submenu {
+    position: static;
+    width: auto;
+    max-height: none;
+    margin: 0 0 8px 12px;
+    padding: 4px;
+    border: 0;
+    background: rgba(0, 0, 0, 0.18);
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
   .destination-grid,
   .sport-grid,
   .article-grid,
@@ -1690,6 +1782,42 @@ textarea {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+}
+
+.country.country-dahab .vtr-nav__dropdown--directions {
+  width: 220px;
+  overflow: visible;
+}
+
+.country.country-dahab .vtr-nav__country-menu {
+  border-bottom: 0;
+}
+
+.country.country-dahab .vtr-nav__country-trigger i {
+  transform: none;
+}
+
+.country.country-dahab .vtr-nav__submenu {
+  position: absolute;
+  top: -10px;
+  left: calc(100% + 8px);
+  width: 272px;
+  max-height: min(72vh, 520px);
+  margin: 0;
+  padding: 10px;
+  border: 1px solid var(--line);
+  background: rgba(9, 9, 8, 0.99);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-8px);
+}
+
+.country.country-dahab .vtr-nav__country-menu:hover .vtr-nav__submenu,
+.country.country-dahab .vtr-nav__country-menu:focus-within .vtr-nav__submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
 }
 
 .country.country-dahab .footer-inner,
@@ -2405,6 +2533,18 @@ textarea {
   .country.country-dahab .vtr-nav__panel > a,
   .country.country-dahab .vtr-nav__item > a {
     min-height: 42px;
+  }
+
+  .country.country-dahab .vtr-nav__item--directions .vtr-nav__submenu {
+    left: auto;
+    right: calc(100% + 8px);
+    width: 252px;
+    transform: translateX(8px);
+  }
+
+  .country.country-dahab .vtr-nav__item--directions .vtr-nav__country-menu:hover .vtr-nav__submenu,
+  .country.country-dahab .vtr-nav__item--directions .vtr-nav__country-menu:focus-within .vtr-nav__submenu {
+    transform: translateX(0);
   }
 
   .dahab-hero {
