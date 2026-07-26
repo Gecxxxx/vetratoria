@@ -112,12 +112,12 @@ export const site = {
     }
   },
   slider: [
-    img("home-slider-1.webp"),
+    img("home-slider-6.webp"),
     img("home-slider-2.webp"),
     img("home-slider-3.webp"),
     img("home-slider-4.webp"),
     img("home-slider-5.webp"),
-    img("home-slider-6.webp")
+    img("home-slider-1.webp")
   ]
 };
 

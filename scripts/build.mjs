@@ -201,7 +201,7 @@ const home = () => `
         <a class="destination-card" href="${country.href}">
           ${cardImage(country.hero, `${country.region} · ${country.city}`)}
           <span>${country.region}</span>
-          <h2>${country.title}</h2>
+          <h2>${country.key === "russia" ? "Должанская Коса" : country.title}</h2>
           <p>${country.lead}</p>
           <em>Открыть направление</em>
         </a>`).join("")}
@@ -209,46 +209,30 @@ const home = () => `
   </div>
 </section>
 
-<section class="home-section" id="sports">
-  <div class="section-inner">
-    ${sectionHeading("Спорт", "Не просто школа, а понятный путь на воду", "Vetratoria показывает не только что есть, а как выбрать спорт, формат, станцию и следующий шаг.")}
-    <div class="sport-grid">
-      ${sportList.map((sport) => `
-        <article class="sport-card">
-          <figure>${cardImage(sport.hero, sport.title)}</figure>
-          <small>${sport.nav}</small>
-          <h3>${sport.subtitle}</h3>
-          <p>${sport.lead}</p>
-        </article>`).join("")}
-    </div>
-  </div>
-</section>
-
 <section class="home-section home-section--brand" id="brand">
   <div class="section-inner brand-split">
-    <figure class="brand-media">${cardImage(img("ABOUTVETRATORIA.jpg"), "Станция Vetratoria")}</figure>
     <div class="brand-copy">
       <p class="eyebrow">О бренде</p>
       <h2>Vetratoria - это система вокруг ветра, воды и обучения</h2>
       <p>Мы соединяем спорт, станции, инструкторов, оборудование, безопасность и маршрут клиента в одну понятную клубную систему.</p>
-      <div class="number-grid">
-        <article><b>01</b><h3>Маршрут</h3><p>Страна, спорт, цена, заявка - без хаоса.</p></article>
-        <article><b>02</b><h3>Станции</h3><p>Точки под ветер, уровень и задачу.</p></article>
-        <article><b>03</b><h3>Безопасность</h3><p>Зоны, rescue, инструктор и правила выхода.</p></article>
-        <article><b>04</b><h3>Команда</h3><p>Люди, которые ведут от берега до прогресса.</p></article>
+      <div class="home-proof-list">
+        <span>Страна, спорт, цена и заявка собраны в понятный маршрут.</span>
+        <span>Станции подбираются под ветер, уровень и задачу.</span>
+        <span>Инструктор, зона катания и rescue обсуждаются до выхода.</span>
+        <span>Команда ведет человека от берега до прогресса.</span>
       </div>
     </div>
+    <figure class="brand-media">${cardImage(img("ABOUTVETRATORIA.jpg"), "Станция Vetratoria")}</figure>
   </div>
 </section>
 
-<section class="home-section home-section--soft" id="media-blog">
+<section class="home-section" id="media-blog">
   <div class="section-inner">
     ${sectionHeading("Блог и медиа", "Материалы, фото и истории со станций", "Блог помогает подготовиться к поездке, а медиа показывает станции, уроки, людей, снаряжение и атмосферу.")}
-    <div class="destination-grid destination-grid--three">
+    <div class="destination-grid media-grid">
       ${[
         { href: "/blog/", image: img("home-blog.webp"), label: "Articles", title: "Блог", lead: "Статьи по странам, спорту, обучению, безопасности и оборудованию." },
-        { href: "/media/", image: img("home-media.webp"), label: "Photo / Video", title: "Медиа", lead: "Фото и видео по Египту, Вьетнаму и России. Альбомы отдельно от статей." },
-        { href: "/contacts/", image: img("ABOUTVETRATORIA.jpg"), label: "Contact", title: "Контакты", lead: "Связаться с командой, выбрать направление и уточнить формат поездки." }
+        { href: "/media/", image: img("home-media.webp"), label: "Photo / Video", title: "Медиа", lead: "Фото и видео по Египту, Вьетнаму и России. Альбомы отдельно от статей." }
       ].map((item) => `
         <a class="destination-card" href="${item.href}">
           ${cardImage(item.image, item.title)}
@@ -270,7 +254,7 @@ const home = () => `
     </div>
     <div class="home-cta__actions">
       <a class="button button-primary" href="/contacts/">Написать нам</a>
-      <a class="button button-ghost" href="/dahab/price/">Цены Дахаба</a>
+      ${countryList.map((country) => `<a class="button button-ghost" href="${country.href}">${country.nav}</a>`).join("")}
     </div>
   </div>
 </section>`;
