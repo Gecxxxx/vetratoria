@@ -18,7 +18,8 @@
 <body class="modern-site article country-dahab">
   <a class="skip-link" href="#main">К содержанию</a>
   
-<header class="site-header vtr-nav" data-nav>
+<header class="site-header vtr-nav vtr-nav--dahab" data-nav>
+  
   <div class="vtr-nav__top">
     <div class="vtr-nav__contacts">
       <a href="mailto:dahab@vetratoria.ru">dahab@vetratoria.ru</a>
@@ -26,7 +27,7 @@
     </div>
     <nav class="vtr-nav__countries" aria-label="Выбор страны">
       <div class="vtr-nav__countries-inner">
-        <a class="vtr-nav__country" href="/dahab/">Египет</a><a class="vtr-nav__country" href="/vietnam/">Вьетнам</a><a class="vtr-nav__country" href="/russia/">Россия</a>
+        <a class="vtr-nav__country is-active" href="/dahab/">Египет</a><a class="vtr-nav__country" href="/vietnam/">Вьетнам</a><a class="vtr-nav__country" href="/russia/">Россия</a>
       </div>
     </nav>
     <div class="vtr-nav__right">
@@ -42,15 +43,15 @@
       </div>
     </div>
   </div>
-  <div class="vtr-nav__main">
+  <div class="vtr-nav__main vtr-nav__main--dahab">
     <a class="vtr-nav__logo" href="/" aria-label="Vetratoria - главная">
       <img src="/assets/img/vetratoria-logo.png" alt="Vetratoria" width="198" height="97">
     </a>
     <button class="vtr-nav__burger" type="button" aria-label="Открыть меню" aria-expanded="false" data-menu-toggle>
       <span></span><span></span><span></span>
     </button>
-    
-    <nav class="vtr-nav__panel vtr-nav__panel--nested" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
+    <nav class="vtr-nav__panel vtr-nav__panel--nested vtr-nav__panel--brand" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
+      <a href="/">Vetratoria</a>
       
       <div class="vtr-nav__item vtr-nav__item--drop vtr-nav__item--directions">
         <a href="/#destinations">Направления <span aria-hidden="true">⌄</span></a>
@@ -88,18 +89,36 @@
             </div>
         </div>
       </div>
-      
-      <div class="vtr-nav__item vtr-nav__item--drop">
-        <a href="/dahab/#sport">Спорт <span aria-hidden="true">⌄</span></a>
-        <div class="vtr-nav__dropdown">
-          <a href="/dahab/wingfoil/"><b>Wingfoil</b><span>Крыло и фойл</span></a><a href="/dahab/windsurf/"><b>Windsurf</b><span>Парус и доска</span></a><a href="/dahab/windsurf-kids/"><b>Windsurf Kids</b><span>Детский формат</span></a><a href="/vietnam/kite/"><b>Kite</b><span>Кайт и ветер</span></a>
-        </div>
-      </div>
       <a href="/blog/">Блог</a>
       <a href="/media/">Медиа</a>
       <a href="/contacts/">Контакты</a>
     </nav>
   </div>
+  
+  <nav class="vtr-nav__section-nav" aria-label="Навигация Дахаба">
+    <a class="vtr-nav__section-link" href="/dahab/">Обзор</a>
+    <a class="vtr-nav__section-link" href="/dahab/wingfoil/">Wingfoil</a>
+    <a class="vtr-nav__section-link" href="/dahab/windsurf/">Windsurf</a>
+    <div class="vtr-nav__section-item vtr-nav__section-item--drop">
+      <a class="vtr-nav__section-link" href="/dahab/price/">Цены <span aria-hidden="true">⌄</span></a>
+      <div class="vtr-nav__section-dropdown">
+        <a href="/dahab/price/">Все цены</a>
+        <a href="/dahab/wingfoil/price/">Wingfoil</a>
+        <a href="/dahab/windsurf/price/">Windsurf</a>
+        <a href="/dahab/windsurf-kids/price/">Kids</a>
+      </div>
+    </div>
+    <a class="vtr-nav__section-link" href="/dahab/stations/">Станции</a>
+    <div class="vtr-nav__section-item vtr-nav__section-item--drop">
+      <a class="vtr-nav__section-link" href="/dahab/team/">О школе <span aria-hidden="true">⌄</span></a>
+      <div class="vtr-nav__section-dropdown">
+        <a href="/dahab/team/">Команда</a>
+        <a href="/dahab/safety/">Безопасность</a>
+        <a href="/dahab/how-to-get/">Как добраться</a>
+        <a href="/dahab/contacts/">Контакты</a>
+      </div>
+    </div>
+  </nav>
 </header>
   <main id="main">
 <section class="hero page-hero">

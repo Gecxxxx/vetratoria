@@ -103,8 +103,7 @@ const sectionNavPanel = () => `
       <a href="/contacts/">Контакты</a>
     </nav>`;
 
-const header = (page) => `
-<header class="site-header vtr-nav" data-nav>
+const topNav = (page) => `
   <div class="vtr-nav__top">
     <div class="vtr-nav__contacts">
       <a href="mailto:${site.email}">${site.email}</a>
@@ -112,7 +111,7 @@ const header = (page) => `
     </div>
     <nav class="vtr-nav__countries" aria-label="Выбор страны">
       <div class="vtr-nav__countries-inner">
-        ${countryList.map((country) => `<a class="vtr-nav__country" href="${country.href}">${country.nav}</a>`).join("")}
+        ${countryList.map((country) => `<a class="vtr-nav__country${page.country === country.key ? " is-active" : ""}" href="${country.href}">${country.nav}</a>`).join("")}
       </div>
     </nav>
     <div class="vtr-nav__right">
@@ -127,7 +126,62 @@ const header = (page) => `
         </div>
       </div>
     </div>
+  </div>`;
+
+const dahabSectionActive = (page, keys) => keys.some((key) => page.path === key || page.path.startsWith(key));
+
+const sectionLinkClass = (active) => `vtr-nav__section-link${active ? " is-active" : ""}`;
+
+const dahabSectionNav = (page) => `
+  <nav class="vtr-nav__section-nav" aria-label="Навигация Дахаба">
+    <a class="${sectionLinkClass(page.path === "/dahab/")}" href="/dahab/">Обзор</a>
+    <a class="${sectionLinkClass(dahabSectionActive(page, ["/dahab/wingfoil/"]))}" href="/dahab/wingfoil/">Wingfoil</a>
+    <a class="${sectionLinkClass(dahabSectionActive(page, ["/dahab/windsurf/"]))}" href="/dahab/windsurf/">Windsurf</a>
+    <div class="vtr-nav__section-item vtr-nav__section-item--drop${dahabSectionActive(page, ["/dahab/price/", "/dahab/wingfoil/price/", "/dahab/windsurf/price/", "/dahab/windsurf-kids/price/"]) ? " is-active" : ""}">
+      <a class="vtr-nav__section-link" href="/dahab/price/">Цены <span aria-hidden="true">⌄</span></a>
+      <div class="vtr-nav__section-dropdown">
+        <a href="/dahab/price/">Все цены</a>
+        <a href="/dahab/wingfoil/price/">Wingfoil</a>
+        <a href="/dahab/windsurf/price/">Windsurf</a>
+        <a href="/dahab/windsurf-kids/price/">Kids</a>
+      </div>
+    </div>
+    <a class="${sectionLinkClass(dahabSectionActive(page, ["/dahab/stations/"]))}" href="/dahab/stations/">Станции</a>
+    <div class="vtr-nav__section-item vtr-nav__section-item--drop${dahabSectionActive(page, ["/dahab/team/", "/dahab/safety/", "/dahab/how-to-get/", "/dahab/contacts/"]) ? " is-active" : ""}">
+      <a class="vtr-nav__section-link" href="/dahab/team/">О школе <span aria-hidden="true">⌄</span></a>
+      <div class="vtr-nav__section-dropdown">
+        <a href="/dahab/team/">Команда</a>
+        <a href="/dahab/safety/">Безопасность</a>
+        <a href="/dahab/how-to-get/">Как добраться</a>
+        <a href="/dahab/contacts/">Контакты</a>
+      </div>
+    </div>
+  </nav>`;
+
+const dahabHeader = (page) => `
+<header class="site-header vtr-nav vtr-nav--dahab" data-nav>
+  ${topNav(page)}
+  <div class="vtr-nav__main vtr-nav__main--dahab">
+    <a class="vtr-nav__logo" href="/" aria-label="Vetratoria - главная">
+      <img src="${site.logo}" alt="Vetratoria" width="198" height="97">
+    </a>
+    <button class="vtr-nav__burger" type="button" aria-label="Открыть меню" aria-expanded="false" data-menu-toggle>
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="vtr-nav__panel vtr-nav__panel--nested vtr-nav__panel--brand" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
+      <a href="/">Vetratoria</a>
+      ${directionsMenu()}
+      <a href="/blog/">Блог</a>
+      <a href="/media/">Медиа</a>
+      <a href="/contacts/">Контакты</a>
+    </nav>
   </div>
+  ${dahabSectionNav(page)}
+</header>`;
+
+const header = (page) => page.country === "dahab" ? dahabHeader(page) : `
+<header class="site-header vtr-nav" data-nav>
+  ${topNav(page)}
   <div class="vtr-nav__main">
     <a class="vtr-nav__logo" href="/" aria-label="Vetratoria - главная">
       <img src="${site.logo}" alt="Vetratoria" width="198" height="97">
