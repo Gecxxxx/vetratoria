@@ -14,7 +14,10 @@ const escapeHtml = (value = "") =>
     .replace(/"/g, "&quot;");
 
 const countryList = site.countries;
-const sportList = Object.entries(site.sports).map(([key, value]) => ({ key, ...value }));
+const sportList = Object.entries(site.sports).map(([key, value]) => {
+  const country = site.countries.find((item) => item.sports.includes(key)) || site.countries[0];
+  return { key, href: `/${country.key}/${key}/`, ...value };
+});
 
 const pathToFile = (path) => {
   if (path === "/") return join(root, "index.html");
@@ -71,9 +74,9 @@ const header = () => `
         </div>
       </div>
       <div class="vtr-nav__item vtr-nav__item--drop">
-        <a href="/#sports">Спорт <span aria-hidden="true">⌄</span></a>
+        <a href="/dahab/#sport">Спорт <span aria-hidden="true">⌄</span></a>
         <div class="vtr-nav__dropdown">
-          ${sportList.map((sport) => `<a href="/dahab/${sport.key}/"><b>${sport.nav}</b><span>${sport.subtitle}</span></a>`).join("")}
+          ${sportList.map((sport) => `<a href="${sport.href}"><b>${sport.nav}</b><span>${sport.subtitle}</span></a>`).join("")}
         </div>
       </div>
       <a href="/blog/">Блог</a>
@@ -144,7 +147,7 @@ const layout = (page, main) => `<!doctype html>
   <link rel="stylesheet" href="/assets/css/styles.css">
   <script defer src="/assets/js/app.js"></script>
 </head>
-<body class="modern-site ${page.kind}">
+<body class="modern-site ${page.kind}${page.country ? ` country-${page.country}` : ""}">
   <a class="skip-link" href="#main">К содержанию</a>
   ${header()}
   <main id="main">${main}</main>
@@ -259,8 +262,156 @@ const home = () => `
   </div>
 </section>`;
 
+const dahabImg = (name) => `/assets/img/dahab/${name}`;
+
+const dahabHomePage = (page) => {
+  const prices = [
+    ["Wingfoil", "Урок", "70$", "Инструктор и комплект под уровень.", dahabImg("wingfoil-lesson-coaching.webp"), "/dahab/wingfoil/price/"],
+    ["Foil boat", "Фойл за лодкой", "60$", "Полёт на фойле без крыла.", dahabImg("wingfoil-hero.webp"), "/dahab/wingfoil/price/"],
+    ["Windsurf", "Урок", "70$", "Парус, доска и инструктор.", dahabImg("windsurf-lesson-water.webp"), "/dahab/windsurf/price/"],
+    ["Kids", "Детский урок", "от 55$", "Лёгкое снаряжение и мягкий темп.", dahabImg("windsurf-kids-03.webp"), "/dahab/windsurf-kids/"]
+  ];
+  const stations = [
+    ["Wing Center", "Wingfoil · уроки · практика", "Крылья, фойлы, уроки, практика и foil boat.", dahabImg("wingfoil-lesson-coaching.webp")],
+    ["Swiss Inn", "Windsurf · lessons · rental", "Учебная вода, уроки, практика и прокат.", dahabImg("windsurf-lesson-water.webp")],
+    ["Ganet Sinai", "Windsurf · progress · practice", "Уроки, скорость и прогресс на воде.", dahabImg("dahab.webp")]
+  ];
+
+  return `
+<section class="dahab-hero">
+  <img class="dahab-hero__image" src="${dahabImg("dahab.webp")}" alt="Дахаб: Wingfoil и Windsurf на Красном море" width="1600" height="1067" fetchpriority="high">
+  <div class="dahab-hero__shade"></div>
+  <div class="dahab-hero__content">
+    <p class="eyebrow">Египет · Дахаб</p>
+    <h1>Дахаб: Wingfoil и Windsurf на Красном море</h1>
+    <p>Уроки и прокат Wingfoil/Windsurf. Станции: Wing Center, Swiss Inn, Ganet Sinai. Формат подбираем по спорту, уровню и ветру.</p>
+    <div class="dahab-hero__facts"><span>С 2006 года</span><span>Идеальная акватория</span><span>10000+ учеников</span></div>
+    <div class="hero-actions">
+      <a class="button button-primary" href="/contacts/">Написать нам</a>
+      <a class="button button-ghost" href="/dahab/wingfoil/">Wingfoil</a>
+      <a class="button button-ghost" href="/dahab/windsurf/">Windsurf</a>
+      <a class="button button-ghost" href="/dahab/price/">Цены</a>
+    </div>
+  </div>
+</section>
+
+<section class="dahab-marquee" aria-label="Vetratoria Dahab">
+  <div class="dahab-marquee__track">
+    ${Array.from({ length: 4 }, () => `<span>DAHAB WIND ALL YEAR / WINGFOIL 70$ / WINDSURF 70$ / KIDS FROM 55$ / RENTAL BY FACT / RESCUE BOAT / SWISS INN / GANET SINAI / WING CENTER / </span>`).join("")}
+  </div>
+</section>
+
+<section class="dahab-section dahab-sports" id="sport">
+  <div class="dahab-inner">
+    <header class="dahab-heading">
+      <p class="eyebrow">Выберите спорт</p>
+      <h2>Wingfoil или Windsurf</h2>
+      <p>Два основных направления Дахаба - крупно, на фото и без шаблонных карточек.</p>
+    </header>
+    <div class="dahab-sport-grid">
+      <a class="dahab-sport-tile" href="/dahab/wingfoil/">
+        <img src="${dahabImg("wingfoil-hero.webp")}" alt="Wingfoil в Дахабе" loading="lazy" decoding="async">
+        <div><h2>Wingfoil</h2><p>Крыло, доска и фойл. Для первого опыта, фойла за лодкой и прогресса.</p><span>Подробнее</span><em>Цены</em></div>
+      </a>
+      <a class="dahab-sport-tile" href="/dahab/windsurf/">
+        <img src="${dahabImg("windsurf-hero.webp")}" alt="Windsurf в Дахабе" loading="lazy" decoding="async">
+        <div><h2>Windsurf</h2><p>Парус, доска, курс для новичков и прокат для самостоятельных райдеров.</p><span>Подробнее</span><em>Цены</em></div>
+      </a>
+    </div>
+    <a class="dahab-kids-strip" href="/dahab/windsurf-kids/">
+      <img src="${dahabImg("windsurf-kids-03.webp")}" alt="Детский windsurf в Дахабе" loading="lazy" decoding="async">
+      <div><small>Windsurf Kids · от 55$</small><h2>Kids windsurf</h2><p>Лёгкие паруса, спокойная вода и инструктор рядом.</p></div>
+      <span>Смотреть Kids</span>
+    </a>
+  </div>
+</section>
+
+<section class="dahab-section dahab-prices" id="prices">
+  <div class="dahab-inner">
+    <header class="dahab-heading dahab-heading--split">
+      <p class="eyebrow">Цены</p>
+      <h2>Цены по формату и времени на воде</h2>
+    </header>
+    <div class="dahab-price-grid">
+      ${prices.map(([label, title, value, text, image, href]) => `
+        <a class="dahab-price-card" href="${href}">
+          <img src="${image}" alt="${label} ${title}" loading="lazy" decoding="async">
+          <small>${label}</small>
+          <h3>${title}</h3>
+          <b>${value}</b>
+          <p>${text}</p>
+          <span>Смотреть формат →</span>
+        </a>`).join("")}
+    </div>
+    <div class="dahab-price-help">
+      <div><b>Не знаете, с чего начать?</b><p>Напишите даты, уровень и спорт - подберём формат, станцию и снаряжение.</p></div>
+      <nav><a href="/contacts/">Оставить заявку</a><a href="/dahab/price/">Смотреть полный прайс</a></nav>
+    </div>
+  </div>
+</section>
+
+<section class="dahab-section dahab-water" id="water-area">
+  <div class="dahab-inner dahab-water__grid">
+    <div class="dahab-water__copy">
+      <p class="eyebrow">Акватория</p>
+      <h2>Где катаем в Дахабе</h2>
+      <p>У Дахаба есть редкая фишка: рядом находятся спокойная вода для первых стартов, длинная зона для прогресса и открытое море для уверенных райдеров.</p>
+      <article><b>01. Лагуна</b><span>Ровная вода и старт рядом с берегом.</span></article>
+      <article><b>02. Скоростная зона</b><span>Длинные галсы, скорость и повороты.</span></article>
+      <article><b>03. Волновая зона</b><span>Открытая вода для уверенной практики.</span></article>
+      <div class="hero-actions"><a class="button button-primary" href="/contacts/">Подобрать зону</a><a class="button button-ghost" href="/dahab/safety/">Безопасность</a></div>
+    </div>
+    <figure class="dahab-map-card" aria-label="Акватория Дахаба">
+      <img src="${dahabImg("dahab.webp")}" alt="Акватория Дахаба для wingfoil и windsurf" loading="lazy" decoding="async">
+      <figcaption><span>Lagoon</span><span>Speed zone</span><span>Open sea</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="dahab-section dahab-media-row">
+  <div class="dahab-inner">
+    <div class="dahab-mini-grid">
+      <a class="dahab-mini-card dahab-mini-card--wide" href="/dahab/wingfoil/"><img src="${dahabImg("wingfoil-hero.webp")}" alt="Wingfoil" loading="lazy" decoding="async"><span>Wingfoil</span><b>Полёты над водой</b></a>
+      <a class="dahab-mini-card" href="/dahab/windsurf/"><img src="${dahabImg("windsurf-lesson-water.webp")}" alt="Windsurf" loading="lazy" decoding="async"><span>Windsurf</span><b>Парус и ветер</b></a>
+      <a class="dahab-mini-panel" href="/media/dahab/"><span>Фото с воды</span><b>Медиа</b><em>Смотреть</em></a>
+    </div>
+  </div>
+</section>
+
+<section class="dahab-section dahab-benefits">
+  <div class="dahab-inner dahab-benefit-grid">
+    ${[
+      ["Оплата по факту", "Катаетесь и платите только за использованное время."],
+      ["Подбор станции", "Подскажем точку под ветер, спорт и уровень."],
+      ["Снаряжение RRD", "Крылья, паруса, доски и фойлы под разные задачи."],
+      ["Rescue рядом", "Правила выхода и помощь на воде обсуждаются заранее."]
+    ].map(([title, text]) => `<article><b>${title}</b><p>${text}</p></article>`).join("")}
+  </div>
+</section>
+
+<section class="dahab-section dahab-stations" id="stations">
+  <div class="dahab-inner">
+    <header class="dahab-heading">
+      <p class="eyebrow">Станции</p>
+      <h2>Три станции в Дахабе</h2>
+    </header>
+    <div class="dahab-station-grid">
+      ${stations.map(([title, meta, text, image]) => `
+        <a class="dahab-station-card" href="/dahab/stations/">
+          <img src="${image}" alt="${title}" loading="lazy" decoding="async">
+          <span>${meta}</span>
+          <h3>${title}</h3>
+          <p>${text}</p>
+        </a>`).join("")}
+    </div>
+    <div class="dahab-center-action"><a class="button button-primary" href="/contacts/">Написать нам</a></div>
+  </div>
+</section>`;
+};
+
 const countryPage = (page) => {
   const country = countriesByKey[page.country];
+  if (country.key === "dahab") return dahabHomePage(page);
   const actions = `<a class="button button-primary" href="/${country.key}/price/">Цены</a><a class="button button-ghost" href="/contacts/">Написать нам</a>`;
   const sports = country.sports.map((key) => site.sports[key]);
   return `${hero(page, actions)}
