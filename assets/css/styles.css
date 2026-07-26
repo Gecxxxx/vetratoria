@@ -645,15 +645,11 @@ main {
 }
 
 .home-section--destinations,
-.dahab-sports,
-.dahab-water,
 .content-section--soft {
   background: #10100f;
 }
 
-.home-section--brand,
-.dahab-prices,
-.dahab-benefits {
+.home-section--brand {
   background: #0d0c0b;
 }
 
@@ -694,17 +690,12 @@ main {
 
 .destination-grid,
 .article-grid,
-.link-grid,
-.dahab-sport-grid,
-.dahab-price-grid,
-.dahab-station-grid,
-.dahab-benefit-grid {
+.link-grid {
   display: grid;
   gap: 18px;
 }
 
-.destination-grid,
-.dahab-station-grid {
+.destination-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
@@ -714,9 +705,7 @@ main {
 
 .destination-card,
 .article-card,
-.link-card,
-.dahab-price-card,
-.dahab-station-card {
+.link-card {
   position: relative;
   overflow: hidden;
   min-height: 340px;
@@ -728,8 +717,7 @@ main {
 }
 
 .destination-card,
-.article-card,
-.dahab-station-card {
+.article-card {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -737,8 +725,7 @@ main {
 }
 
 .destination-card img,
-.article-card img,
-.dahab-station-card img {
+.article-card img {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -749,8 +736,7 @@ main {
 }
 
 .destination-card::after,
-.article-card::after,
-.dahab-station-card::after {
+.article-card::after {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -759,26 +745,24 @@ main {
 }
 
 .destination-card > :not(img),
-.article-card > :not(img),
-.dahab-station-card > :not(img) {
+.article-card > :not(img) {
   position: relative;
   z-index: 2;
 }
 
 .destination-card:hover img,
-.article-card:hover img,
-.dahab-station-card:hover img {
+.article-card:hover img {
   transform: scale(1.045);
 }
 
 .destination-card span,
 .destination-card em,
 .article-card small,
-.dahab-station-card span,
 .link-card small,
-.dahab-price-card small,
-.dahab-mini-card span,
-.dahab-mini-panel span {
+.price-card span,
+.sport-tile span,
+.station-atmosphere__card span,
+.station-atmosphere__panel span {
   color: var(--orange);
   font-size: 12px;
   font-style: normal;
@@ -789,8 +773,7 @@ main {
 
 .destination-card h2,
 .article-card h3,
-.link-card h3,
-.dahab-station-card h3 {
+.link-card h3 {
   margin: 8px 0 0;
   color: var(--white);
   font-size: 25px;
@@ -801,8 +784,7 @@ main {
 .destination-card p,
 .article-card p,
 .link-card p,
-.dahab-station-card p,
-.dahab-price-card p {
+.price-card p {
   margin: 11px 0 0;
   color: #d7d2ce;
   font-size: 14px;
@@ -817,8 +799,7 @@ main {
 .brand-split,
 .home-cta,
 .two-column,
-.contact-layout,
-.dahab-water__grid {
+.contact-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 28px;
@@ -826,8 +807,7 @@ main {
 }
 
 .brand-copy,
-.home-cta,
-.dahab-water__copy {
+.home-cta {
   padding: 34px;
   border: 1px solid var(--line);
   background: #151210;
@@ -877,13 +857,28 @@ main {
   min-height: 620px;
 }
 
+.dahab-hero__image {
+  object-position: center center;
+}
+
+.dahab-hero__shade {
+  background:
+    linear-gradient(90deg, rgba(5, 5, 5, 0.88) 0%, rgba(5, 5, 5, 0.62) 33%, rgba(5, 5, 5, 0.14) 74%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.58) 100%);
+}
+
 .dahab-hero__content {
   padding-top: 116px;
+  padding-bottom: 82px;
 }
 
 .dahab-hero__facts {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   max-width: 650px;
+}
+
+.dahab-hero-actions {
+  margin-top: 24px;
 }
 
 .dahab-marquee {
@@ -914,18 +909,52 @@ main {
   }
 }
 
-.dahab-heading--split {
-  max-width: 760px;
+.sport-split,
+.compact-band,
+.station-advice,
+.trust-block,
+.water-area {
+  background: #10100f;
 }
 
-.dahab-sport-grid {
+.sport-split,
+.station-advice,
+.trust-block,
+.water-area {
+  padding: 72px 0;
+}
+
+.compact-band {
+  padding: 70px 0;
+  background: #15100e;
+}
+
+.sport-split__inner,
+.station-advice__head,
+.station-advice__list,
+.station-advice__note,
+.trust-block__inner,
+.water-area__inner,
+.dahab-footer-pro__inner,
+.dahab-footer-pro__bottom {
+  width: min(100% - 48px, var(--max));
+  margin: 0 auto;
+}
+
+.sport-split__grid {
+  display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
 }
 
-.dahab-sport-tile,
-.dahab-kids-strip,
-.dahab-mini-card,
-.dahab-mini-panel {
+.sport-tile,
+.station-advice__list a,
+.station-atmosphere__card,
+.station-atmosphere__panel,
+.trust-card,
+.price-card,
+.water-area__copy,
+.water-area__visual {
   position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -934,50 +963,57 @@ main {
   color: var(--white);
 }
 
-.dahab-sport-tile {
-  min-height: 390px;
+.sport-tile {
+  display: flex;
+  min-height: 410px;
+  text-decoration: none;
 }
 
-.dahab-sport-tile img,
-.dahab-kids-strip img,
-.dahab-mini-card img {
+.sport-tile img,
+.station-advice__list img,
+.station-atmosphere__card img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.35s ease;
 }
 
-.dahab-sport-tile::after,
-.dahab-kids-strip::after,
-.dahab-mini-card::after {
+.sport-tile::after,
+.station-advice__list a::after,
+.station-atmosphere__card::after {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.85));
   content: "";
 }
 
-.dahab-sport-tile div,
-.dahab-kids-strip div,
-.dahab-kids-strip > span,
-.dahab-mini-card span,
-.dahab-mini-card b {
+.sport-tile:hover img,
+.station-advice__list a:hover img,
+.station-atmosphere__card:hover img {
+  transform: scale(1.045);
+}
+
+.sport-tile__content,
+.station-advice__list a > div,
+.station-atmosphere__card > :not(img) {
   position: relative;
   z-index: 1;
 }
 
-.dahab-sport-tile div {
+.sport-tile__content {
   display: flex;
-  min-height: 390px;
+  width: 100%;
+  min-height: 410px;
   flex-direction: column;
   justify-content: flex-end;
   padding: 28px;
 }
 
-.dahab-sport-tile h2,
-.dahab-kids-strip h2,
-.dahab-mini-card b,
-.dahab-mini-panel b {
+.sport-tile h2,
+.wsk-strip b,
+.station-atmosphere__card strong {
   margin: 0;
   color: var(--white);
   font-size: 32px;
@@ -985,16 +1021,14 @@ main {
   line-height: 0.96;
 }
 
-.dahab-sport-tile p,
-.dahab-kids-strip p {
+.sport-tile p {
   max-width: 470px;
   margin: 12px 0 0;
   color: #ddd8d4;
 }
 
-.dahab-sport-tile span,
-.dahab-sport-tile em,
-.dahab-kids-strip > span {
+.sport-tile span,
+.sport-tile em {
   display: inline-flex;
   width: fit-content;
   margin-top: 18px;
@@ -1005,51 +1039,134 @@ main {
   text-transform: uppercase;
 }
 
-.dahab-sport-tile em {
+.sport-tile em {
   position: absolute;
   right: 22px;
   bottom: 24px;
 }
 
-.dahab-kids-strip {
+.wsk-strip {
   display: grid;
-  grid-template-columns: 1fr auto;
-  min-height: 210px;
+  grid-template-columns: 245px minmax(0, 1fr) auto;
+  gap: 20px;
+  min-height: 164px;
   margin-top: 18px;
-  padding: 28px;
-  align-items: end;
+  overflow: hidden;
+  border: 1px solid #e6e1dc;
+  border-radius: 6px;
+  background: #f2efeb;
+  color: #14100e;
+  text-decoration: none;
+  align-items: center;
 }
 
-.dahab-kids-strip small {
+.wsk-strip__media {
+  display: block;
+  height: 164px;
+  overflow: hidden;
+}
+
+.wsk-strip__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wsk-strip__content {
+  display: grid;
+  gap: 7px;
+  padding: 18px 0;
+}
+
+.wsk-strip small {
   color: var(--orange);
+  font-size: 12px;
   font-weight: 900;
   text-transform: uppercase;
 }
 
-.dahab-price-grid {
+.wsk-strip b {
+  color: #12100f;
+}
+
+.wsk-strip em {
+  max-width: 600px;
+  color: #524842;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.wsk-strip__button {
+  display: inline-flex;
+  min-width: 148px;
+  min-height: 42px;
+  margin-right: 18px;
+  padding: 0 18px;
+  background: var(--orange);
+  color: var(--white);
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.price-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.price-badges span {
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.price-grid {
+  display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
 }
 
-.dahab-price-card {
-  min-height: 390px;
-  padding: 20px;
+.price-card {
+  min-height: 385px;
+  padding: 18px;
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
-.dahab-price-card img {
-  width: calc(100% + 40px);
-  height: 155px;
-  margin: -20px -20px 18px;
+.price-card:hover {
+  border-color: rgba(255, 92, 16, 0.72);
+  transform: translateY(-2px);
+}
+
+.price-photo {
+  height: 162px;
+  margin: -18px -18px 18px;
+  overflow: hidden;
+}
+
+.price-photo img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
-.dahab-price-card h3 {
+.price-card h3 {
   margin: 8px 0 0;
   color: var(--white);
   font-size: 22px;
   line-height: 1;
 }
 
-.dahab-price-card b {
+.price-card b {
   display: block;
   margin-top: 12px;
   color: var(--orange);
@@ -1058,16 +1175,17 @@ main {
   line-height: 0.95;
 }
 
-.dahab-price-card span {
+.price-card em {
   display: inline-block;
-  margin-top: 18px;
-  color: var(--white);
+  margin-top: 16px;
+  color: var(--orange);
   font-size: 12px;
+  font-style: normal;
   font-weight: 900;
   text-transform: uppercase;
 }
 
-.dahab-price-help {
+.price-help-cta {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 20px;
@@ -1077,17 +1195,17 @@ main {
   background: #151210;
 }
 
-.dahab-price-help b {
+.price-help-cta b {
   color: var(--white);
   font-size: 20px;
 }
 
-.dahab-price-help p {
+.price-help-cta p {
   margin: 7px 0 0;
   color: var(--muted);
 }
 
-.dahab-price-help nav {
+.price-help-cta nav {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -1095,7 +1213,7 @@ main {
   justify-content: flex-end;
 }
 
-.dahab-price-help a {
+.price-help-cta a {
   padding: 12px 14px;
   border: 1px solid var(--line);
   color: var(--white);
@@ -1104,115 +1222,499 @@ main {
   text-transform: uppercase;
 }
 
-.dahab-price-help a:first-child {
+.price-help-cta a:first-child {
   background: var(--orange);
   border-color: var(--orange);
 }
 
-.dahab-water__copy article {
-  display: grid;
-  gap: 3px;
-  margin-top: 12px;
-  padding: 14px 0;
-  border-top: 1px solid var(--line);
+.station-advice {
+  background: #10100f;
 }
 
-.dahab-water__copy b {
-  color: var(--white);
+.station-advice__head {
+  max-width: var(--max);
+  margin-bottom: 26px;
 }
 
-.dahab-water__copy span {
-  color: var(--muted);
-}
-
-.dahab-map-card {
-  position: relative;
-  overflow: hidden;
-  min-height: 500px;
+.station-advice__head h2,
+.trust-head h2,
+.water-area__copy h2 {
   margin: 0;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: #171514;
-}
-
-.dahab-map-card img {
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-}
-
-.dahab-map-card figcaption {
-  position: absolute;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.dahab-map-card figcaption span {
-  padding: 8px 10px;
-  background: rgba(0, 0, 0, 0.58);
   color: var(--white);
+  font-size: 46px;
+  font-weight: 900;
+  line-height: 0.98;
+}
+
+.station-advice__head p:not(.eyebrow),
+.trust-head p,
+.water-area__copy > p {
+  max-width: 660px;
+  margin: 13px 0 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.42;
+}
+
+.station-advice__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.station-advice__list a {
+  display: flex;
+  min-height: 276px;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 22px;
+  text-decoration: none;
+}
+
+.station-advice__list b {
+  display: block;
+  color: var(--white);
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.station-advice__list span {
+  display: block;
+  margin-top: 7px;
+  color: var(--orange);
   font-size: 12px;
   font-weight: 900;
   text-transform: uppercase;
 }
 
-.dahab-mini-grid {
-  display: grid;
-  grid-template-columns: 1.45fr 1fr 0.8fr;
-  gap: 18px;
+.station-advice__list em {
+  display: block;
+  margin-top: 10px;
+  color: #ded8d4;
+  font-size: 14px;
+  font-style: normal;
+  line-height: 1.35;
 }
 
-.dahab-mini-card,
-.dahab-mini-panel {
-  display: flex;
-  min-height: 260px;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 22px;
-}
-
-.dahab-mini-panel {
-  background: #17100d;
-}
-
-.dahab-mini-panel em {
+.station-advice__note {
   margin-top: 18px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.station-advice__cta {
+  display: flex;
+  width: fit-content;
+  min-height: 42px;
+  margin: 14px auto 0;
+  padding: 0 18px;
+  background: var(--orange);
+  color: var(--white);
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.trust-block {
+  background: #0d0c0b;
+}
+
+.trust-head {
+  max-width: 740px;
+  margin-bottom: 28px;
+}
+
+.trust-slider {
+  margin-top: 20px;
+}
+
+.trust-slider__top {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.trust-slider__top span,
+.trust-slider__top > a {
   color: var(--orange);
   font-style: normal;
   font-weight: 900;
   text-transform: uppercase;
 }
 
-.dahab-benefit-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+.trust-slider__top h3 {
+  margin: 4px 0 0;
+  color: var(--white);
+  font-size: 26px;
+  line-height: 1;
 }
 
-.dahab-benefit-grid article {
-  min-height: 155px;
-  padding: 22px;
+.trust-slider__top > a {
+  font-size: 12px;
+}
+
+.trust-slider__controls {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.trust-slider__controls button {
+  width: 38px;
+  height: 38px;
   border: 1px solid var(--line);
+  background: #171514;
+  color: var(--white);
+  cursor: pointer;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.trust-slider__controls button:hover,
+.trust-slider__controls button:focus-visible {
+  border-color: var(--orange);
+}
+
+.trust-track {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: var(--orange) rgba(255, 255, 255, 0.08);
+}
+
+.trust-card {
+  flex: 0 0 344px;
+  min-height: 250px;
+  padding: 22px;
+  scroll-snap-align: start;
+}
+
+.trust-card--person {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 18px;
+}
+
+.trust-initial,
+.trust-review__top > span {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  border: 2px solid var(--orange);
+  border-radius: 50%;
+  background: #231510;
+  color: var(--orange);
+  place-items: center;
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.trust-card span {
+  color: var(--orange);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.trust-card h3 {
+  margin: 6px 0 0;
+  color: var(--white);
+  font-size: 25px;
+  line-height: 1;
+}
+
+.trust-card p {
+  margin: 13px 0 0;
+  color: #dcd6d1;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.trust-card em {
+  display: block;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 900;
+}
+
+.station-atmosphere {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr 0.95fr;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.station-atmosphere__card,
+.station-atmosphere__panel {
+  min-height: 282px;
+  padding: 22px;
+  text-decoration: none;
+}
+
+.station-atmosphere__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.station-atmosphere__card--main {
+  grid-row: span 2;
+  min-height: 584px;
+}
+
+.station-atmosphere__card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 28px;
+}
+
+.station-atmosphere__card em {
+  display: block;
+  max-width: 360px;
+  margin-top: 9px;
+  color: #ded8d4;
+  font-size: 14px;
+  font-style: normal;
+}
+
+.station-atmosphere__panel {
+  background: #17100d;
+}
+
+.station-atmosphere__panel h3 {
+  margin: 8px 0 0;
+  color: var(--white);
+  font-size: 26px;
+  line-height: 1;
+}
+
+.station-atmosphere__panel p {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.station-atmosphere__panel div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 16px;
+}
+
+.station-atmosphere__panel small {
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  color: var(--white);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.station-atmosphere__panel a {
+  display: inline-flex;
+  min-height: 39px;
+  margin-top: 18px;
+  padding: 0 14px;
+  background: var(--orange);
+  color: var(--white);
+  align-items: center;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.trust-track--reviews .trust-card {
+  flex-basis: 380px;
+}
+
+.trust-review__top {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.trust-review__top strong {
+  display: block;
+  color: var(--white);
+  font-size: 16px;
+}
+
+.trust-review__top small {
+  display: block;
+  margin-top: 4px;
+  color: var(--orange);
+  font-weight: 900;
+}
+
+.water-area {
+  background: #10100f;
+}
+
+.water-area__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: 28px;
+  align-items: center;
+}
+
+.water-area__copy {
+  padding: 34px;
   background: #151210;
 }
 
-.dahab-benefit-grid b {
-  color: var(--white);
-  font-size: 17px;
+.water-area__cards {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
 }
 
-.dahab-benefit-grid p {
-  margin: 10px 0 0;
+.water-area__cards article {
+  padding: 15px 0;
+  border-top: 1px solid var(--line);
+}
+
+.water-area__cards strong {
+  color: var(--white);
+}
+
+.water-area__cards p {
+  margin: 7px 0 0;
   color: var(--muted);
   font-size: 14px;
+  line-height: 1.4;
 }
 
-.dahab-center-action {
+.water-area__actions {
   display: flex;
-  justify-content: center;
-  margin-top: 26px;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.water-area__actions a {
+  display: inline-flex;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  color: var(--white);
+  align-items: center;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.water-area__actions a:first-child {
+  border-color: var(--orange);
+  background: var(--orange);
+}
+
+.water-area__visual {
+  min-height: 520px;
+  margin: 0;
+}
+
+.water-area__visual img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+}
+
+.dahab-footer-pro {
+  padding: 56px 0 22px;
+  background:
+    radial-gradient(circle at right bottom, rgba(255, 92, 16, 0.12), transparent 32%),
+    #0b0908;
+}
+
+.dahab-footer-pro__inner {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 42px;
+  align-items: start;
+}
+
+.dahab-footer-pro__brand {
+  display: block;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.dahab-footer-pro__brand img {
+  display: block;
+  width: 198px;
+  height: auto;
+}
+
+.dahab-footer-pro__brand p {
+  margin: 18px 0 0;
+}
+
+.dahab-footer-pro__cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.dahab-footer-pro__cards article {
+  min-height: 172px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.dahab-footer-pro__cards h2 {
+  margin: 0;
+  color: var(--white);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.dahab-footer-pro__cards p {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.42;
+}
+
+.dahab-footer-pro__cards nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.dahab-footer-pro__cards a {
+  color: var(--orange);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.dahab-footer-pro__socials a {
+  color: var(--white);
+}
+
+.dahab-footer-pro__bottom {
+  display: flex;
+  gap: 16px;
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  justify-content: space-between;
+  font-size: 12px;
 }
 
 .link-grid {
@@ -1739,15 +2241,17 @@ main {
   .link-grid,
   .link-grid--four,
   .rail-list,
-  .dahab-sport-grid,
-  .dahab-price-grid,
-  .dahab-station-grid,
-  .dahab-benefit-grid,
+  .sport-split__grid,
+  .price-grid,
+  .station-advice__list,
+  .station-atmosphere,
+  .water-area__inner,
+  .dahab-footer-pro__inner,
+  .dahab-footer-pro__cards,
   .brand-split,
   .home-cta,
   .two-column,
   .contact-layout,
-  .dahab-water__grid,
   .footer-inner,
   .footer-nav {
     grid-template-columns: 1fr;
@@ -1755,13 +2259,26 @@ main {
 
   .home-section,
   .content-section,
-  .dahab-section {
+  .dahab-section,
+  .sport-split,
+  .compact-band,
+  .station-advice,
+  .trust-block,
+  .water-area {
     padding: 54px 0;
   }
 
   .section-inner,
   .dahab-inner,
   .article-inner,
+  .sport-split__inner,
+  .station-advice__head,
+  .station-advice__list,
+  .station-advice__note,
+  .trust-block__inner,
+  .water-area__inner,
+  .dahab-footer-pro__inner,
+  .dahab-footer-pro__bottom,
   .footer-inner,
   .footer-bottom {
     width: min(100% - 32px, var(--max));
@@ -1769,22 +2286,55 @@ main {
 
   .brand-copy,
   .home-cta,
-  .dahab-water__copy,
+  .water-area__copy,
   .contact-form {
     padding: 22px;
   }
 
   .home-cta__actions,
-  .dahab-price-help nav {
+  .price-help-cta nav {
     justify-content: flex-start;
   }
 
-  .dahab-price-help {
+  .price-help-cta {
     grid-template-columns: 1fr;
   }
 
-  .dahab-mini-grid {
+  .wsk-strip {
     grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .wsk-strip__media {
+    height: 220px;
+  }
+
+  .wsk-strip__content {
+    padding: 20px;
+  }
+
+  .wsk-strip__button {
+    width: fit-content;
+    margin: 0 20px 20px;
+  }
+
+  .station-atmosphere__card--main {
+    grid-row: auto;
+    min-height: 340px;
+  }
+
+  .trust-card {
+    flex-basis: min(82vw, 344px);
+  }
+
+  .water-area__visual,
+  .water-area__visual img {
+    min-height: 380px;
+    height: 380px;
+  }
+
+  .dahab-footer-pro__bottom {
+    flex-direction: column;
   }
 
   .photo-strip,
@@ -1831,6 +2381,9 @@ main {
   .dahab-hero__content h1,
   .section-heading h2,
   .dahab-heading h2,
+  .station-advice__head h2,
+  .trust-head h2,
+  .water-area__copy h2,
   .brand-copy h2,
   .home-cta h2 {
     font-size: 32px;
@@ -1843,13 +2396,29 @@ main {
 
   .destination-card,
   .article-card,
-  .dahab-sport-tile,
-  .dahab-price-card,
-  .dahab-station-card {
+  .sport-tile,
+  .station-advice__list a {
     min-height: 315px;
   }
 
-  .dahab-kids-strip {
+  .sport-tile__content {
+    min-height: 315px;
+    padding: 22px;
+  }
+
+  .sport-tile em {
+    position: static;
+  }
+
+  .price-card {
+    min-height: 350px;
+  }
+
+  .trust-card--person {
     grid-template-columns: 1fr;
+  }
+
+  .dahab-footer-pro__cards h2 {
+    font-size: 20px;
   }
 }

@@ -124,6 +124,22 @@
     }
   }
 
+  document.querySelectorAll("[data-trust-prev], [data-trust-next]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const trackName = button.dataset.trustPrev || button.dataset.trustNext;
+      const track = document.querySelector(`[data-trust-track="${trackName}"]`);
+      if (!track) return;
+
+      const card = track.querySelector(".trust-card");
+      const cardGap = Number.parseFloat(window.getComputedStyle(track).columnGap || "0") || 0;
+      const step = card ? card.getBoundingClientRect().width + cardGap : track.clientWidth * 0.82;
+      track.scrollBy({
+        left: button.dataset.trustPrev ? -step : step,
+        behavior: "smooth"
+      });
+    });
+  });
+
   document.querySelectorAll("form[data-contact-form]").forEach((form) => {
     const note = form.querySelector("[data-form-note]");
 
