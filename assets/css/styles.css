@@ -12,6 +12,9 @@
   --shadow: 0 22px 70px rgba(0, 0, 0, 0.42);
   --max: 1180px;
   --wide: 1360px;
+  --nav-top-h: 68px;
+  --nav-main-h: 76px;
+  --nav-section-h: 56px;
 }
 
 * {
@@ -149,7 +152,7 @@ main {
   display: grid;
   grid-template-columns: minmax(320px, 1fr) auto minmax(320px, 1fr);
   align-items: center;
-  min-height: 68px;
+  height: var(--nav-top-h);
   padding: 0 42px;
   border-bottom: 1px solid var(--line);
   background: #0a0a0a;
@@ -166,9 +169,9 @@ main {
 }
 
 .vtr-nav__contacts {
-  gap: 10px;
+  gap: 8px;
   min-width: 0;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 900;
   line-height: 1.1;
   white-space: nowrap;
@@ -190,10 +193,10 @@ main {
   align-self: stretch;
   justify-content: center;
   min-width: 112px;
-  padding: 0 24px;
+  padding: 0 16px;
   border-bottom: 2px solid transparent;
   color: #c8c4c0;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 900;
   text-transform: uppercase;
 }
@@ -213,8 +216,8 @@ main {
 }
 
 .vtr-nav__socials {
-  gap: 14px;
-  font-size: 18px;
+  gap: 13px;
+  font-size: 17px;
   font-weight: 900;
   line-height: 1;
 }
@@ -243,7 +246,7 @@ main {
   gap: 4px;
   padding: 0;
   color: var(--white);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 900;
 }
 
@@ -289,7 +292,7 @@ main {
   display: grid;
   grid-template-columns: minmax(360px, 1fr) auto;
   align-items: center;
-  min-height: 76px;
+  height: var(--nav-main-h);
   padding: 0 42px;
   border-bottom: 1px solid var(--line);
   background: #090909;
@@ -297,11 +300,11 @@ main {
 
 .vtr-nav__logo {
   justify-self: start;
-  margin-left: clamp(24px, 8.2vw, 154px);
+  margin-left: clamp(24px, 7.6vw, 143px);
 }
 
 .vtr-nav__logo img {
-  width: 148px;
+  width: 146px;
   height: auto;
 }
 
@@ -327,8 +330,8 @@ main {
 
 .vtr-nav__panel {
   justify-self: end;
-  gap: 32px;
-  margin-right: clamp(16px, 6vw, 128px);
+  gap: 28px;
+  margin-right: clamp(16px, 7vw, 150px);
 }
 
 .vtr-nav__item {
@@ -339,9 +342,9 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  min-height: 76px;
+  min-height: var(--nav-main-h);
   color: #cbc7c3;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 900;
   line-height: 1;
   white-space: nowrap;
@@ -359,6 +362,10 @@ main {
   width: 314px;
   padding: 24px 30px;
   transform: translate(-50%, 8px);
+}
+
+.vtr-nav--country .vtr-nav__dropdown {
+  top: calc(100% + var(--nav-section-h) + 1px);
 }
 
 .vtr-nav__dropdown a {
@@ -417,7 +424,7 @@ main {
   position: relative;
   justify-content: center;
   gap: 0;
-  min-height: 56px;
+  height: var(--nav-section-h);
   padding: 0 24px;
   border-bottom: 1px solid var(--line);
   background: #0b0b0a;
@@ -426,6 +433,7 @@ main {
 .vtr-nav__section > a,
 .vtr-nav__section-item {
   align-self: stretch;
+  min-height: var(--nav-section-h);
 }
 
 .vtr-nav__section-link {
@@ -434,9 +442,9 @@ main {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  height: 100%;
+  min-height: var(--nav-section-h);
   min-width: 103px;
-  padding: 0 22px;
+  padding: 0 20px;
   color: #beb9b5;
   font-size: 16px;
   font-weight: 900;
@@ -1522,6 +1530,7 @@ main {
 @media (max-width: 1180px) {
   .vtr-nav__top {
     grid-template-columns: 1fr auto;
+    height: auto;
     row-gap: 10px;
     min-height: auto;
     padding: 16px 24px 10px;
@@ -1559,7 +1568,7 @@ main {
   .vtr-nav__main {
     display: flex;
     justify-content: space-between;
-    min-height: 72px;
+    height: var(--nav-main-h);
     padding: 0 24px;
   }
 
@@ -1594,7 +1603,9 @@ main {
   }
 
   .vtr-nav__main {
+    height: auto;
     flex-wrap: wrap;
+    min-height: 72px;
     padding: 0 16px;
   }
 
@@ -1660,9 +1671,14 @@ main {
   .vtr-nav__section {
     overflow-x: auto;
     justify-content: flex-start;
-    min-height: 52px;
+    height: 52px;
     padding: 0 12px;
     scrollbar-width: none;
+  }
+
+  .vtr-nav__section > a,
+  .vtr-nav__section-item {
+    min-height: 52px;
   }
 
   .vtr-nav__section::-webkit-scrollbar {
@@ -1670,6 +1686,7 @@ main {
   }
 
   .vtr-nav__section-link {
+    min-height: 52px;
     min-width: 92px;
     padding: 0 16px;
     font-size: 14px;
