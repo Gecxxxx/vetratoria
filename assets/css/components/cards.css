@@ -20,7 +20,7 @@
 .link-card {
   position: relative;
   overflow: hidden;
-  min-height: 340px;
+  min-height: 300px;
   border: 1px solid var(--line);
   border-radius: 6px;
   background: #171514;
@@ -33,7 +33,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 24px;
+  padding: 20px;
 }
 
 .destination-card img,
@@ -84,7 +84,7 @@
 .link-card h3 {
   margin: 8px 0 0;
   color: var(--white);
-  font-size: 25px;
+  font-size: 23px;
   font-weight: 900;
   line-height: 1;
 }
@@ -128,8 +128,8 @@
 
 .link-card {
   display: block;
-  min-height: 250px;
-  padding: 24px;
+  min-height: 216px;
+  padding: 20px;
 }
 
 .link-card--accent {
@@ -154,9 +154,13 @@
 }
 
 .rail-list article {
-  padding: 24px;
+  padding: 20px;
   border-top: 2px solid var(--orange);
   background: #151210;
+}
+
+.media-grid .destination-card {
+  min-height: 255px;
 }
 
 .rail-list b {
@@ -195,6 +199,6 @@
 @media (max-width: 520px) {
   .destination-card,
   .article-card {
-      min-height: 315px;
+      min-height: 280px;
     }
 }

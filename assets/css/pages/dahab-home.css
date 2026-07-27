@@ -104,7 +104,7 @@
 }
 
 .dahab-hero {
-  min-height: 620px;
+  min-height: 540px;
 }
 
 .dahab-hero__image {
@@ -118,8 +118,8 @@
 }
 
 .dahab-hero__content {
-  padding-top: 116px;
-  padding-bottom: 82px;
+  padding-top: 86px;
+  padding-bottom: 58px;
 }
 
 .dahab-hero__facts {
@@ -128,7 +128,7 @@
 }
 
 .dahab-hero-actions {
-  margin-top: 24px;
+  margin-top: 20px;
 }
 
 .dahab-marquee {
@@ -171,11 +171,11 @@
 .station-advice,
 .trust-block,
 .water-area {
-  padding: 72px 0;
+  padding: 58px 0;
 }
 
 .compact-band {
-  padding: 70px 0;
+  padding: 56px 0;
   background: #15100e;
 }
 
@@ -192,7 +192,7 @@
 .sport-split__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  gap: 14px;
 }
 
 .sport-tile,
@@ -213,7 +213,7 @@
 
 .sport-tile {
   display: flex;
-  min-height: 410px;
+  min-height: 330px;
   text-decoration: none;
 }
 
@@ -253,10 +253,10 @@
 .sport-tile__content {
   display: flex;
   width: 100%;
-  min-height: 410px;
+  min-height: 330px;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 28px;
+  padding: 24px;
 }
 
 .sport-tile h2,
@@ -297,8 +297,8 @@
   display: grid;
   grid-template-columns: 245px minmax(0, 1fr) auto;
   gap: 20px;
-  min-height: 164px;
-  margin-top: 18px;
+  min-height: 130px;
+  margin-top: 14px;
   overflow: hidden;
   border: 1px solid #e6e1dc;
   border-radius: 6px;
@@ -310,7 +310,7 @@
 
 .wsk-strip__media {
   display: block;
-  height: 164px;
+  height: 130px;
   overflow: hidden;
 }
 
@@ -380,12 +380,12 @@
 .price-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
+  gap: 14px;
 }
 
 .price-card {
-  min-height: 385px;
-  padding: 18px;
+  min-height: 276px;
+  padding: 14px;
   text-decoration: none;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
@@ -396,8 +396,8 @@
 }
 
 .price-photo {
-  height: 162px;
-  margin: -18px -18px 18px;
+  height: 116px;
+  margin: -14px -14px 14px;
   overflow: hidden;
 }
 
@@ -410,22 +410,22 @@
 .price-card h3 {
   margin: 8px 0 0;
   color: var(--white);
-  font-size: 22px;
+  font-size: 19px;
   line-height: 1;
 }
 
 .price-card b {
   display: block;
-  margin-top: 12px;
+  margin-top: 9px;
   color: var(--orange);
-  font-size: 36px;
+  font-size: 30px;
   font-weight: 900;
   line-height: 0.95;
 }
 
 .price-card em {
   display: inline-block;
-  margin-top: 16px;
+  margin-top: 12px;
   color: var(--orange);
   font-size: 12px;
   font-style: normal;
@@ -437,8 +437,8 @@
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 20px;
-  margin-top: 18px;
-  padding: 22px;
+  margin-top: 14px;
+  padding: 18px;
   border: 1px solid var(--line);
   background: #151210;
 }
@@ -481,7 +481,7 @@
 
 .station-advice__head {
   max-width: var(--max);
-  margin-bottom: 26px;
+  margin-bottom: 20px;
 }
 
 .station-advice__head h2,
@@ -489,7 +489,7 @@
 .water-area__copy h2 {
   margin: 0;
   color: var(--white);
-  font-size: 46px;
+  font-size: 40px;
   font-weight: 900;
   line-height: 0.98;
 }
@@ -507,15 +507,15 @@
 .station-advice__list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  gap: 14px;
 }
 
 .station-advice__list a {
   display: flex;
-  min-height: 276px;
+  min-height: 210px;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 22px;
+  padding: 18px;
   text-decoration: none;
 }
 
@@ -546,7 +546,7 @@
 }
 
 .station-advice__note {
-  margin-top: 18px;
+  margin-top: 14px;
   color: var(--muted);
   font-weight: 800;
 }
@@ -811,19 +811,19 @@
 .water-area__inner {
   display: grid;
   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-  gap: 28px;
+  gap: 18px;
   align-items: center;
 }
 
 .water-area__copy {
-  padding: 34px;
+  padding: 26px;
   background: #151210;
 }
 
 .water-area__cards {
   display: grid;
   gap: 12px;
-  margin-top: 22px;
+  margin-top: 16px;
 }
 
 .water-area__cards article {
@@ -846,7 +846,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 22px;
+  margin-top: 18px;
 }
 
 .water-area__actions a {
@@ -867,24 +867,57 @@
 }
 
 .water-area__visual {
-  min-height: 520px;
+  min-height: 430px;
   margin: 0;
 }
 
 .water-area__visual img {
   width: 100%;
-  height: 520px;
+  height: 430px;
   object-fit: cover;
+}
+
+body.country-dahab main {
+  display: flex;
+  flex-direction: column;
+}
+
+body.country-dahab .dahab-hero {
+  order: 1;
+}
+
+body.country-dahab .dahab-marquee {
+  order: 2;
+}
+
+body.country-dahab .sport-split {
+  order: 3;
+}
+
+body.country-dahab .compact-band {
+  order: 4;
+}
+
+body.country-dahab .water-area {
+  order: 5;
+}
+
+body.country-dahab .station-advice {
+  order: 6;
+}
+
+body.country-dahab .trust-block {
+  display: none;
 }
 
 @media (max-width: 900px) {
   .dahab-hero {
-      min-height: 540px;
+      min-height: 500px;
     }
 
   .dahab-hero__content {
       width: min(100% - 32px, var(--max));
-      padding: 84px 0 54px;
+      padding: 64px 0 42px;
     }
 
   .dahab-hero__content h1 {
@@ -910,7 +943,7 @@
   .station-advice,
   .trust-block,
   .water-area {
-      padding: 54px 0;
+      padding: 44px 0;
     }
 
   .dahab-inner,
@@ -964,8 +997,8 @@
 
   .water-area__visual,
   .water-area__visual img {
-      min-height: 380px;
-      height: 380px;
+      min-height: 320px;
+      height: 320px;
     }
 }
 
@@ -983,11 +1016,11 @@
 
   .sport-tile,
   .station-advice__list a {
-      min-height: 315px;
+      min-height: 280px;
     }
 
   .sport-tile__content {
-      min-height: 315px;
+      min-height: 280px;
       padding: 22px;
     }
 
@@ -996,7 +1029,7 @@
     }
 
   .price-card {
-      min-height: 350px;
+      min-height: 310px;
     }
 
   .trust-card--person {

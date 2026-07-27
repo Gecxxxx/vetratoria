@@ -96,7 +96,7 @@
 
 .site-footer {
   background:
-    radial-gradient(circle at 92% 100%, rgba(255, 90, 31, 0.16), transparent 20rem),
+    radial-gradient(circle at 92% 100%, rgba(255, 90, 31, 0.14), transparent 18rem),
     #090807;
   border-top: 1px solid var(--line);
 }
@@ -104,20 +104,20 @@
 .footer-inner {
   display: grid;
   grid-template-columns: minmax(260px, 0.9fr) 1.7fr;
-  gap: 52px;
+  gap: 42px;
   width: min(100% - 48px, var(--max));
   margin: 0 auto;
-  padding: 48px 0 34px;
+  padding: 36px 0 26px;
 }
 
 .footer-brand img {
-  width: 148px;
+  width: 138px;
   height: auto;
 }
 
 .footer-brand p {
   max-width: 420px;
-  margin: 16px 0 0;
+  margin: 12px 0 0;
   color: var(--muted);
 }
 
@@ -125,7 +125,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 18px;
+  margin-top: 14px;
 }
 
 .footer-stats span {
@@ -169,7 +169,7 @@
   gap: 18px;
   width: min(100% - 48px, var(--max));
   margin: 0 auto;
-  padding: 18px 0 24px;
+  padding: 14px 0 18px;
   border-top: 1px solid var(--line);
   color: var(--soft);
   font-size: 12px;

@@ -1,11 +1,29 @@
 /* Home page */
 
+.home .hero-home {
+  min-height: 560px;
+}
+
+.home .hero-content {
+  padding-top: 76px;
+  padding-bottom: 48px;
+}
+
+.home .hero-content h1 {
+  max-width: 660px;
+  font-size: clamp(36px, 4.8vw, 66px);
+}
+
+.home .hero-content p {
+  max-width: 560px;
+}
+
 .home-advantages {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
   max-width: 740px;
-  margin-top: 26px;
+  margin-top: 20px;
 }
 
 .home-advantage {
@@ -32,7 +50,7 @@
 }
 
 .home-section {
-  padding: 78px 0;
+  padding: 58px 0;
   background: var(--bg);
 }
 
@@ -48,7 +66,7 @@
 .home-cta h2 {
   margin: 0;
   color: var(--white);
-  font-size: clamp(32px, 4.4vw, 54px);
+  font-size: clamp(30px, 4vw, 48px);
   font-weight: 900;
   line-height: 0.96;
 }
@@ -64,13 +82,13 @@
 .home-cta {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 28px;
+  gap: 18px;
   align-items: center;
 }
 
 .brand-copy,
 .home-cta {
-  padding: 34px;
+  padding: 30px;
   border: 1px solid var(--line);
   background: #151210;
 }
@@ -83,14 +101,14 @@
 
 .brand-media img {
   width: 100%;
-  min-height: 420px;
+  min-height: 360px;
   object-fit: cover;
 }
 
 .home-proof-list {
   display: grid;
   gap: 10px;
-  margin-top: 22px;
+  margin-top: 18px;
 }
 
 .home-proof-list span {
@@ -114,6 +132,15 @@
 }
 
 @media (max-width: 900px) {
+  .home .hero-home {
+      min-height: 500px;
+    }
+
+  .home .hero-content {
+      padding-top: 58px;
+      padding-bottom: 40px;
+    }
+
   .home-advantages,
   .brand-split,
   .home-cta {
@@ -121,7 +148,7 @@
     }
 
   .home-section {
-      padding: 54px 0;
+      padding: 44px 0;
     }
 
   .brand-copy,

@@ -9,7 +9,7 @@ main {
 .hero {
   position: relative;
   overflow: hidden;
-  min-height: 560px;
+  min-height: 520px;
   background: #151515;
 }
 
@@ -37,7 +37,7 @@ main {
   z-index: 1;
   width: min(100% - 48px, var(--max));
   margin: 0 auto;
-  padding: 112px 0 76px;
+  padding: 88px 0 58px;
 }
 
 .hero-content {
@@ -48,7 +48,7 @@ main {
   max-width: 720px;
   margin: 0;
   color: var(--white);
-  font-size: clamp(38px, 5.4vw, 76px);
+  font-size: clamp(36px, 5vw, 68px);
   font-weight: 900;
   line-height: 0.93;
 }
@@ -62,11 +62,11 @@ main {
 }
 
 .hero-home {
-  min-height: min(690px, calc(100vh - 144px));
+  min-height: min(560px, calc(100vh - 144px));
 }
 
 .content-section {
-  padding: 78px 0;
+  padding: 58px 0;
   background: var(--bg);
 }
 
@@ -81,13 +81,13 @@ main {
 
 .section-heading {
   max-width: 680px;
-  margin: 0 0 28px;
+  margin: 0 0 22px;
 }
 
 .section-heading h2 {
   margin: 0;
   color: var(--white);
-  font-size: clamp(32px, 4.4vw, 54px);
+  font-size: clamp(30px, 4vw, 48px);
   font-weight: 900;
   line-height: 0.96;
 }
@@ -100,12 +100,12 @@ main {
 
 @media (max-width: 900px) {
   .hero {
-      min-height: 540px;
+      min-height: 500px;
     }
 
   .hero-content {
       width: min(100% - 32px, var(--max));
-      padding: 84px 0 54px;
+      padding: 64px 0 42px;
     }
 
   .hero-content h1 {
@@ -117,7 +117,7 @@ main {
     }
 
   .content-section {
-      padding: 54px 0;
+      padding: 44px 0;
     }
 
   .section-inner {
