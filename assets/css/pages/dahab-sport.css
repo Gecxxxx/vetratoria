@@ -1,0 +1,545 @@
+/* Detailed Dahab sport pages */
+
+.dahab-sport-hero,
+.dahab-sport-section,
+.dahab-sport-cta {
+  background: var(--bg);
+}
+
+.dahab-sport-hero {
+  padding: 54px 0 86px;
+}
+
+.dahab-sport-hero__inner,
+.dahab-sport-inner,
+.dahab-sport-cta__inner {
+  width: min(100% - var(--page-gutter), var(--wide));
+  margin: 0 auto;
+}
+
+.dahab-sport-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(360px, 0.82fr) minmax(0, 1.18fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.dahab-sport-hero__copy {
+  display: flex;
+  min-height: 530px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 44px;
+  border: 1px solid var(--line);
+  background: #171210;
+}
+
+.dahab-sport-hero__copy h1,
+.dahab-sport-section .section-heading h2,
+.dahab-sport-safety__copy h2,
+.dahab-sport-cta h2 {
+  text-transform: uppercase;
+}
+
+.dahab-sport-hero__copy h1 {
+  max-width: 620px;
+  margin: 0;
+  color: var(--white);
+  font-size: clamp(42px, 5vw, 72px);
+  font-weight: 900;
+  line-height: 0.92;
+}
+
+.dahab-sport-hero__copy > p:not(.eyebrow) {
+  max-width: 560px;
+  margin: 18px 0 0;
+  color: #ded8d3;
+  font-size: 18px;
+  line-height: 1.46;
+}
+
+.dahab-sport-hero__actions,
+.dahab-sport-cta__inner > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.dahab-sport-hero__facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.dahab-sport-hero__facts span {
+  min-height: 54px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 90, 31, 0.28);
+  background: rgba(255, 90, 31, 0.08);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.dahab-sport-hero__media {
+  min-height: 530px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #0e0d0c;
+}
+
+.dahab-sport-hero__media img,
+.dahab-sport-panorama img,
+.dahab-sport-process img,
+.dahab-sport-price-card img,
+.dahab-sport-safety__media img,
+.dahab-sport-gallery img,
+.dahab-sport-useful img,
+.dahab-sport-cta > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dahab-sport-hero__media img {
+  object-position: center center;
+}
+
+.dahab-sport-section {
+  padding: 82px 0;
+}
+
+.dahab-sport-section--soft {
+  background: #14110f;
+}
+
+.dahab-sport-section .section-heading {
+  max-width: 880px;
+}
+
+.dahab-sport-section .section-heading h2,
+.dahab-sport-safety__copy h2,
+.dahab-sport-cta h2 {
+  font-size: clamp(34px, 4.4vw, 58px);
+}
+
+.dahab-sport-panorama {
+  height: 390px;
+  margin: 0 0 20px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #0e0d0c;
+}
+
+.dahab-sport-feature-grid,
+.dahab-sport-process,
+.dahab-sport-price-grid,
+.dahab-sport-useful {
+  display: grid;
+  gap: 20px;
+}
+
+.dahab-sport-feature-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.dahab-sport-feature-grid article,
+.dahab-sport-process article,
+.dahab-sport-price-card,
+.dahab-sport-faq details,
+.dahab-sport-useful a {
+  border: 1px solid var(--line);
+  background: #171210;
+}
+
+.dahab-sport-feature-grid article {
+  min-height: 190px;
+  padding: 24px;
+  border-top: 2px solid var(--orange);
+}
+
+.dahab-sport-feature-grid span,
+.dahab-sport-process span,
+.dahab-sport-price-card small,
+.dahab-sport-gallery span,
+.dahab-sport-useful span {
+  color: var(--orange);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.dahab-sport-feature-grid h3,
+.dahab-sport-process h3,
+.dahab-sport-price-card h3,
+.dahab-sport-useful h3 {
+  margin: 12px 0 0;
+  color: var(--white);
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 0.98;
+}
+
+.dahab-sport-feature-grid p,
+.dahab-sport-process p,
+.dahab-sport-price-card p,
+.dahab-sport-safety__copy p,
+.dahab-sport-faq p,
+.dahab-sport-cta p {
+  margin: 13px 0 0;
+  color: #d8d2cd;
+  line-height: 1.42;
+}
+
+.dahab-sport-process {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.dahab-sport-process article {
+  min-height: 380px;
+  overflow: hidden;
+}
+
+.dahab-sport-process img {
+  display: block;
+  height: 180px;
+}
+
+.dahab-sport-process div {
+  padding: 22px;
+}
+
+.dahab-sport-price-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.dahab-sport-price-card {
+  display: flex;
+  min-height: 430px;
+  flex-direction: column;
+  padding: 18px;
+  color: var(--white);
+  text-decoration: none;
+  transition: border-color var(--duration-normal) ease, transform var(--duration-normal) ease, box-shadow var(--duration-normal) ease;
+}
+
+.dahab-sport-price-card:hover,
+.dahab-sport-price-card:focus-visible,
+.dahab-sport-gallery a:hover,
+.dahab-sport-gallery a:focus-visible,
+.dahab-sport-useful a:hover,
+.dahab-sport-useful a:focus-visible {
+  border-color: rgba(255, 90, 31, 0.56);
+  box-shadow: 0 24px 62px rgba(0, 0, 0, 0.42);
+  transform: translateY(-3px);
+}
+
+.dahab-sport-price-card img {
+  height: 175px;
+  margin-bottom: 16px;
+}
+
+.dahab-sport-price-card b {
+  display: block;
+  margin-top: 13px;
+  color: var(--orange);
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 0.95;
+}
+
+.dahab-sport-price-card em,
+.dahab-sport-useful em {
+  display: inline-block;
+  margin-top: auto;
+  padding-top: 18px;
+  color: var(--orange);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.dahab-sport-safety {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.dahab-sport-safety__copy {
+  padding: 42px;
+  border: 1px solid var(--line);
+  background: #171210;
+}
+
+.dahab-sport-safety__copy h2 {
+  max-width: 620px;
+  margin: 0;
+  color: var(--white);
+  font-weight: 900;
+  line-height: 0.96;
+}
+
+.dahab-sport-safety__list {
+  display: grid;
+  gap: 10px;
+  margin: 24px 0;
+}
+
+.dahab-sport-safety__list span {
+  padding: 15px 16px;
+  border-left: 2px solid var(--orange);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--white);
+  font-weight: 800;
+}
+
+.dahab-sport-safety__media {
+  display: grid;
+  grid-template-columns: 1fr 0.72fr;
+  gap: 20px;
+}
+
+.dahab-sport-safety__media img {
+  min-height: 470px;
+  border: 1px solid var(--line);
+}
+
+.dahab-sport-safety__media img + img {
+  min-height: 470px;
+}
+
+.dahab-sport-gallery {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  grid-auto-rows: 215px;
+  gap: 20px;
+}
+
+.dahab-sport-gallery a {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #0e0d0c;
+  color: var(--white);
+  text-decoration: none;
+  transition: border-color var(--duration-normal) ease, transform var(--duration-normal) ease, box-shadow var(--duration-normal) ease;
+}
+
+.dahab-sport-gallery a::after,
+.dahab-sport-cta::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 34%, rgba(0, 0, 0, 0.86));
+  content: "";
+}
+
+.dahab-sport-gallery a.is-large {
+  grid-row: span 2;
+}
+
+.dahab-sport-gallery span,
+.dahab-sport-gallery b {
+  position: absolute;
+  left: 22px;
+  z-index: 1;
+}
+
+.dahab-sport-gallery span {
+  bottom: 56px;
+}
+
+.dahab-sport-gallery b {
+  bottom: 24px;
+  max-width: calc(100% - 44px);
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.dahab-sport-faq {
+  display: grid;
+  gap: 10px;
+  max-width: 900px;
+}
+
+.dahab-sport-faq details {
+  padding: 0;
+}
+
+.dahab-sport-faq summary {
+  min-height: 58px;
+  padding: 18px 22px;
+  color: var(--white);
+  cursor: pointer;
+  font-weight: 900;
+  list-style: none;
+}
+
+.dahab-sport-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.dahab-sport-faq summary::after {
+  float: right;
+  color: var(--orange);
+  content: "+";
+}
+
+.dahab-sport-faq details[open] summary::after {
+  content: "-";
+}
+
+.dahab-sport-faq p {
+  margin: 0;
+  padding: 0 22px 20px;
+}
+
+.dahab-sport-useful {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.dahab-sport-useful a {
+  display: flex;
+  min-height: 350px;
+  flex-direction: column;
+  padding: 18px;
+  color: var(--white);
+  text-decoration: none;
+  transition: border-color var(--duration-normal) ease, transform var(--duration-normal) ease, box-shadow var(--duration-normal) ease;
+}
+
+.dahab-sport-useful img {
+  height: 165px;
+  margin-bottom: 18px;
+}
+
+.dahab-sport-cta {
+  position: relative;
+  overflow: hidden;
+  min-height: 420px;
+}
+
+.dahab-sport-cta > img {
+  position: absolute;
+  inset: 0;
+}
+
+.dahab-sport-cta::after {
+  background:
+    linear-gradient(90deg, rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.62) 42%, rgba(5, 5, 5, 0.2)),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.72));
+}
+
+.dahab-sport-cta__inner {
+  position: relative;
+  z-index: 1;
+  padding: 92px 0;
+}
+
+.dahab-sport-cta h2 {
+  max-width: 760px;
+  margin: 0;
+  color: var(--white);
+  font-weight: 900;
+  line-height: 0.96;
+}
+
+.dahab-sport-cta p:not(.eyebrow) {
+  max-width: 620px;
+  font-size: 18px;
+}
+
+@media (max-width: 1100px) {
+  .dahab-sport-hero__inner,
+  .dahab-sport-safety {
+      grid-template-columns: 1fr;
+    }
+
+  .dahab-sport-feature-grid,
+  .dahab-sport-process,
+  .dahab-sport-price-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+  .dahab-sport-safety__media img,
+  .dahab-sport-safety__media img + img {
+      min-height: 360px;
+    }
+}
+
+@media (max-width: 900px) {
+  .dahab-sport-hero,
+  .dahab-sport-section {
+      padding: 58px 0;
+    }
+
+  .dahab-sport-hero__inner,
+  .dahab-sport-inner,
+  .dahab-sport-cta__inner {
+      width: min(100% - var(--page-gutter-mobile), var(--wide));
+    }
+
+  .dahab-sport-hero__copy,
+  .dahab-sport-safety__copy {
+      padding: 28px;
+    }
+
+  .dahab-sport-hero__copy,
+  .dahab-sport-hero__media {
+      min-height: 430px;
+    }
+
+  .dahab-sport-panorama {
+      height: 330px;
+    }
+
+  .dahab-sport-gallery {
+      grid-template-columns: 1fr;
+      grid-auto-rows: 260px;
+    }
+
+  .dahab-sport-gallery a.is-large {
+      grid-row: span 1;
+    }
+
+  .dahab-sport-useful {
+      grid-template-columns: 1fr;
+    }
+
+  .dahab-sport-cta__inner {
+      padding: 72px 0;
+    }
+}
+
+@media (max-width: 620px) {
+  .dahab-sport-hero__copy h1,
+  .dahab-sport-section .section-heading h2,
+  .dahab-sport-safety__copy h2,
+  .dahab-sport-cta h2 {
+      font-size: 34px;
+    }
+
+  .dahab-sport-feature-grid,
+  .dahab-sport-process,
+  .dahab-sport-price-grid,
+  .dahab-sport-safety__media {
+      grid-template-columns: 1fr;
+    }
+
+  .dahab-sport-hero__facts {
+      grid-template-columns: 1fr;
+    }
+
+  .dahab-sport-process article,
+  .dahab-sport-price-card {
+      min-height: 360px;
+    }
+}

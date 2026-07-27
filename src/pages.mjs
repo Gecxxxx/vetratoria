@@ -1,4 +1,14 @@
 const img = (name) => `/assets/img/home-uploaded/${name}`;
+const dahabImg = (name) => `/assets/img/dahab/${name}`;
+
+const dahabSportOverrides = {
+  wingfoil: {
+    title: "Wingfoil в Дахабе",
+    description:
+      "Первые полеты на фойле, Wing + SUP, Wing + Foil, foil boat и обучение на станции Vetratoria в Дахабе.",
+    image: dahabImg("wingfoil-hero.webp")
+  }
+};
 
 export const site = {
   name: "Vetratoria",
@@ -313,15 +323,16 @@ for (const country of site.countries) {
 
   for (const sportKey of country.sports) {
     const sport = site.sports[sportKey];
+    const sportOverride = country.key === "dahab" ? dahabSportOverrides[sportKey] : null;
     pages.push({
       path: `/${country.key}/${sportKey}/`,
       kind: "sport",
       country: country.key,
       sport: sportKey,
       eyebrow: `${country.title} · ${sport.title}`,
-      title: `${sport.title} в ${country.city}`,
-      description: sport.lead,
-      image: sport.hero
+      title: sportOverride?.title || `${sport.title} в ${country.city}`,
+      description: sportOverride?.description || sport.lead,
+      image: sportOverride?.image || sport.hero
     });
     pages.push({
       path: `/${country.key}/${sportKey}/price/`,

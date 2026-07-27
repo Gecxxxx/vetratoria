@@ -379,6 +379,180 @@ const home = () => `
 const dahabImg = (name) => `/assets/img/dahab/${name}`;
 const dahabRefImg = (name) => `/assets/img/dahab-ref/${name}`;
 
+const dahabWingfoilPage = (page) => {
+  const heroFacts = ["Wing + SUP", "Wing + Foil", "Foil boat", "Rescue"];
+  const reasons = [
+    ["Ровная вода", "Спокойная зона помогает поймать баланс, понять крыло и не бороться с лишней волной."],
+    ["Стабильный ветер", "В Дахабе легко планировать занятия: инструктор подбирает окно под уровень и задачу."],
+    ["Foil boat", "Можно отдельно почувствовать фойл за лодкой, а потом соединить полет с крылом."],
+    ["Станция рядом", "Подбор крыла, доски, шлема, жилета и обратная связь происходят прямо на берегу."]
+  ];
+  const learning = [
+    ["01", "Берег", "Разбираем ветер, безопасность, крыло, стойку и управление тягой до выхода на воду.", dahabRefImg("wing-center.webp")],
+    ["02", "Wing + SUP", "Учимся держать курс, разворачиваться, возвращаться к старту и уверенно работать крылом.", dahabRefImg("choose-wingfoil.webp")],
+    ["03", "Foil boat", "Чувствуем подъем фойла без крыла: скорость, высоту, баланс и мягкие касания воды.", dahabRefImg("price-foil-boat.webp")],
+    ["04", "Wing + Foil", "Соединяем крыло и фойл: первые полеты, контроль высоты и понятный следующий шаг.", dahabImg("wingfoil-lesson-coaching.webp")]
+  ];
+  const prices = [
+    ["Wing + SUP", "Урок с инструктором", "45$", "Крыло, SUP-доска, старт с берега и базовое управление.", dahabRefImg("choose-wingfoil.webp")],
+    ["Foil boat", "Фойл за лодкой", "60$", "Отдельная работа с фойлом до выхода с крылом.", dahabRefImg("price-foil-boat.webp")],
+    ["Wing + Foil", "Урок wingfoil", "70$", "Инструктор, комплект, старт и задачи под уровень.", dahabRefImg("price-wingfoil.webp")],
+    ["Rental", "Прокат комплекта", "по запросу", "Для райдеров, которые уже уверенно контролируют крыло и фойл.", dahabRefImg("block-wingfoil.webp")]
+  ];
+  const gallery = [
+    ["Первые полеты", "Wingfoil lesson", dahabImg("wingfoil-hero.webp")],
+    ["Работа с инструктором", "Coaching", dahabImg("wingfoil-lesson-coaching.webp")],
+    ["Акватория", "Dahab water area", dahabRefImg("aqva-aerial.webp")],
+    ["Wing Center", "Station", dahabRefImg("wing-center.webp")]
+  ];
+  const faqs = [
+    ["Можно ли начать с нуля?", "Да. Обычно начинаем с управления крылом на берегу и Wing + SUP, затем добавляем foil boat или Wing + Foil по готовности."],
+    ["Сколько занятий нужно до первых полетов?", "Зависит от ветра, баланса и прошлого опыта. Часто первые короткие полеты появляются после нескольких последовательных выходов."],
+    ["Что входит в урок?", "Инструктор, подбор комплекта, шлем, жилет, разбор зоны катания, постановка задач и обратная связь после выхода."],
+    ["Нужен ли опыт windsurf или kite?", "Нет, но опыт любых водных видов помогает. Для старта важнее спокойная вода, правильный комплект и понятная последовательность."],
+    ["Когда лучше ехать в Дахаб?", "Дахаб работает круглый год. Конкретные окна по ветру и формату лучше уточнять перед поездкой под ваши даты."]
+  ];
+  const useful = [
+    ["/dahab/blog/wingfoil/", "Статья", "Wingfoil в Дахабе: от крыла до первого полета", dahabImg("wingfoil-hero.webp")],
+    ["/media/dahab/2026-06-10-wingfoil-day/", "Медиа", "Wingfoil day в Дахабе", dahabRefImg("block-wingfoil.webp")],
+    ["/dahab/safety/", "Безопасность", "Правила выхода на воду и rescue", dahabRefImg("aqva-aerial.webp")]
+  ];
+
+  return `
+<section class="dahab-sport-hero dahab-sport-hero--wingfoil">
+  <div class="dahab-sport-hero__inner">
+    <div class="dahab-sport-hero__copy">
+      <p class="eyebrow">${escapeHtml(page.eyebrow)}</p>
+      <h1>${escapeHtml(page.title)}</h1>
+      <p>${escapeHtml(page.description)}</p>
+      <div class="dahab-sport-hero__actions">
+        <a class="button button-primary" href="/contacts/">Записаться</a>
+        <a class="button button-ghost" href="/dahab/wingfoil/price/">Цены</a>
+      </div>
+      <div class="dahab-sport-hero__facts">
+        ${heroFacts.map((item) => `<span>${item}</span>`).join("")}
+      </div>
+    </div>
+    <figure class="dahab-sport-hero__media">
+      <img src="${dahabImg("wingfoil-hero.webp")}" alt="Wingfoil в Дахабе" width="1200" height="820" loading="eager" decoding="async" fetchpriority="high">
+    </figure>
+  </div>
+</section>
+
+<section class="dahab-sport-section">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Локация", "Почему Дахаб подходит для Wingfoil", "Спокойная вода, стабильный ветер, разные форматы старта и станция рядом с зоной выхода помогают идти от первого управления крылом к полету без хаоса.")}
+    <figure class="dahab-sport-panorama">
+      <img src="${dahabRefImg("aqva-aerial.webp")}" alt="Акватория Дахаба для wingfoil" width="1600" height="980" loading="lazy" decoding="async">
+    </figure>
+    <div class="dahab-sport-feature-grid">
+      ${reasons.map(([title, text], index) => `<article><span>0${index + 1}</span><h3>${title}</h3><p>${text}</p></article>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section dahab-sport-section--soft">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Обучение", "Как проходит обучение Wingfoil", "В реальности это не один случайный урок, а понятная лестница: берег, крыло, доска, фойл, первые полеты и самостоятельность.")}
+    <div class="dahab-sport-process">
+      ${learning.map(([number, title, text, image]) => `
+        <article>
+          <img src="${image}" alt="${title}" width="760" height="520" loading="lazy" decoding="async">
+          <div><span>${number}</span><h3>${title}</h3><p>${text}</p></div>
+        </article>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Прайс", "Цены на Wingfoil", "Основные форматы вынесены отдельно. Итоговый план лучше подобрать по уровню, ветру и количеству дней на воде.")}
+    <div class="dahab-sport-price-grid">
+      ${prices.map(([label, title, value, text, image]) => `
+        <a href="/dahab/wingfoil/price/" class="dahab-sport-price-card">
+          <img src="${image}" alt="${title}" width="740" height="520" loading="lazy" decoding="async">
+          <small>${label}</small>
+          <h3>${title}</h3>
+          <b>${value}</b>
+          <p>${text}</p>
+          <em>Смотреть формат</em>
+        </a>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section dahab-sport-section--soft">
+  <div class="dahab-sport-inner dahab-sport-safety">
+    <div class="dahab-sport-safety__copy">
+      <p class="eyebrow">Безопасность</p>
+      <h2>Безопасность на воде</h2>
+      <p>Wingfoil быстро дает ощущение свободы, но первые выходы требуют контроля. Перед стартом разбираем ветер, границы зоны, сигналы, комплект и действия, если нужно вернуться к берегу.</p>
+      <div class="dahab-sport-safety__list">
+        <span>Инструктор рядом на старте и в воде</span>
+        <span>Шлем, жилет и подходящий комплект</span>
+        <span>Понятная зона катания и rescue</span>
+      </div>
+      <a class="button button-primary" href="/dahab/safety/">Подробнее</a>
+    </div>
+    <div class="dahab-sport-safety__media">
+      <img src="${dahabRefImg("price-foil-boat.webp")}" alt="Безопасность и foil boat в Дахабе" width="900" height="640" loading="lazy" decoding="async">
+      <img src="${dahabRefImg("wing-center.webp")}" alt="Инструктор Vetratoria" width="900" height="640" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Медиа", "Как это выглядит на воде", "Крыло, доска, фойл и вода читаются лучше в кадре: здесь визуальный ритм страницы такой же, как в референсе, с крупными карточками и понятными переходами.")}
+    <div class="dahab-sport-gallery">
+      ${gallery.map(([title, label, image], index) => `
+        <a class="${index === 0 ? "is-large" : ""}" href="/media/dahab/">
+          <img src="${image}" alt="${title}" width="900" height="640" loading="lazy" decoding="async">
+          <span>${label}</span>
+          <b>${title}</b>
+        </a>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section dahab-sport-section--soft">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("FAQ", "Частые вопросы", "Короткие ответы перед первым выходом на wingfoil в Дахабе.")}
+    <div class="dahab-sport-faq">
+      ${faqs.map(([question, answer], index) => `<details ${index === 0 ? "open" : ""}><summary>${question}</summary><p>${answer}</p></details>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Материалы", "Полезное о Wingfoil", "Статьи, медиа и правила, которые помогают заранее понять формат и спокойно приехать на станцию.")}
+    <div class="dahab-sport-useful">
+      ${useful.map(([href, label, title, image]) => `
+        <a href="${href}">
+          <img src="${image}" alt="${title}" width="760" height="520" loading="lazy" decoding="async">
+          <span>${label}</span>
+          <h3>${title}</h3>
+          <em>Открыть</em>
+        </a>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-cta">
+  <img src="${dahabRefImg("choose-wingfoil.webp")}" alt="Wingfoil в Дахабе" width="1600" height="900" loading="lazy" decoding="async">
+  <div class="dahab-sport-cta__inner">
+    <p class="eyebrow">Заявка</p>
+    <h2>Хотите попробовать Wingfoil в Дахабе?</h2>
+    <p>Напишите даты, уровень и цель поездки. Подберем формат: Wing + SUP, foil boat, урок Wing + Foil или самостоятельную практику.</p>
+    <div>
+      <a class="button button-primary" href="/contacts/">Написать нам</a>
+      <a class="button button-ghost" href="/dahab/wingfoil/price/">Цены</a>
+    </div>
+  </div>
+</section>`.replace(/^[\t ]+$/gm, "");
+};
+
 const dahabHomePage = () => {
   const priceCards = [
     ["Wingfoil", "Урок", "70$", "Инструктор и комплект под уровень.", dahabRefImg("price-wingfoil.webp"), "/dahab/wingfoil/price/"],
@@ -587,6 +761,8 @@ const countryPage = (page) => {
 };
 
 const sportPage = (page) => {
+  if (page.country === "dahab" && page.sport === "wingfoil") return dahabWingfoilPage(page);
+
   const country = countriesByKey[page.country];
   const sport = site.sports[page.sport];
   return `${hero(page, `<a class="button button-primary" href="${page.path}price/">Цены</a><a class="button button-ghost" href="/contacts/">Записаться</a>`)}
