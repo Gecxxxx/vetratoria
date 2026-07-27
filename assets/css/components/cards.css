@@ -4,7 +4,7 @@
 .article-grid,
 .link-grid {
   display: grid;
-  gap: 18px;
+  gap: 20px;
 }
 
 .destination-grid {
@@ -20,12 +20,13 @@
 .link-card {
   position: relative;
   overflow: hidden;
-  min-height: 300px;
+  min-height: 390px;
   border: 1px solid var(--line);
   border-radius: 6px;
   background: #171514;
   color: var(--white);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  transition: border-color var(--duration-normal) ease, transform var(--duration-normal) ease, box-shadow var(--duration-normal) ease;
 }
 
 .destination-card,
@@ -33,7 +34,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 20px;
+  padding: 28px;
 }
 
 .destination-card img,
@@ -52,7 +53,9 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.86));
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.18) 44%, rgba(0, 0, 0, 0.9) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.48), transparent 62%);
   content: "";
 }
 
@@ -65,6 +68,17 @@
 .destination-card:hover img,
 .article-card:hover img {
   transform: scale(1.045);
+}
+
+.destination-card:hover,
+.destination-card:focus-visible,
+.article-card:hover,
+.article-card:focus-visible,
+.link-card:hover,
+.link-card:focus-visible {
+  border-color: rgba(255, 90, 31, 0.56);
+  box-shadow: 0 24px 62px rgba(0, 0, 0, 0.42);
+  transform: translateY(-3px);
 }
 
 .destination-card span,
@@ -82,9 +96,9 @@
 .destination-card h2,
 .article-card h3,
 .link-card h3 {
-  margin: 8px 0 0;
+  margin: 10px 0 0;
   color: var(--white);
-  font-size: 23px;
+  font-size: 30px;
   font-weight: 900;
   line-height: 1;
 }
@@ -92,15 +106,15 @@
 .destination-card p,
 .article-card p,
 .link-card p {
-  margin: 11px 0 0;
+  margin: 13px 0 0;
   color: #d7d2ce;
-  font-size: 14px;
-  line-height: 1.35;
+  font-size: 15px;
+  line-height: 1.4;
 }
 
 .destination-card em {
   display: inline-block;
-  margin-top: 16px;
+  margin-top: 20px;
 }
 
 .check-list {
@@ -128,8 +142,8 @@
 
 .link-card {
   display: block;
-  min-height: 216px;
-  padding: 20px;
+  min-height: 280px;
+  padding: 28px;
 }
 
 .link-card--accent {
@@ -150,17 +164,17 @@
 .rail-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  gap: 20px;
 }
 
 .rail-list article {
-  padding: 20px;
+  padding: 28px;
   border-top: 2px solid var(--orange);
   background: #151210;
 }
 
 .media-grid .destination-card {
-  min-height: 255px;
+  min-height: 330px;
 }
 
 .rail-list b {
@@ -194,11 +208,24 @@
   .check-list--inline {
       grid-template-columns: 1fr;
     }
+
+  .destination-card,
+  .article-card,
+  .link-card {
+      min-height: 360px;
+    }
 }
 
 @media (max-width: 520px) {
   .destination-card,
   .article-card {
-      min-height: 280px;
+      min-height: 340px;
+      padding: 22px;
+    }
+
+  .destination-card h2,
+  .article-card h3,
+  .link-card h3 {
+      font-size: 26px;
     }
 }

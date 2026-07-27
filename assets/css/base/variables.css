@@ -13,8 +13,8 @@
   --orange-dark: #2b160e;
   --white: #ffffff;
   --shadow: 0 22px 70px rgba(0, 0, 0, 0.42);
-  --max: 1180px;
-  --wide: 1360px;
+  --max: 1320px;
+  --wide: 1480px;
   --nav-top-h: 68px;
   --nav-main-h: 76px;
   --nav-section-h: 56px;
@@ -33,8 +33,8 @@
 
   --container-max: var(--max);
   --container-wide: var(--wide);
-  --page-gutter: 48px;
-  --page-gutter-mobile: 32px;
+  --page-gutter: 32px;
+  --page-gutter-mobile: 20px;
 
   --radius-control: 4px;
   --radius-card: 6px;
