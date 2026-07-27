@@ -220,11 +220,12 @@
 
 .dahab-sport-price-card {
   display: flex;
+  min-width: 0;
   min-height: 430px;
   flex-direction: column;
-  padding: 18px;
+  padding: 28px;
   color: var(--white);
-  text-decoration: none;
+  box-shadow: none;
   transition: border-color var(--duration-normal) ease, transform var(--duration-normal) ease, box-shadow var(--duration-normal) ease;
 }
 
@@ -239,21 +240,34 @@
   transform: translateY(-3px);
 }
 
-.dahab-sport-price-card img {
-  height: 175px;
-  margin-bottom: 16px;
-}
-
 .dahab-sport-price-card b {
   display: block;
-  margin-top: 13px;
+  margin-top: 10px;
   color: var(--orange);
-  font-size: 38px;
+  font-size: clamp(36px, 4.2vw, 58px);
   font-weight: 900;
-  line-height: 0.95;
+  line-height: 0.9;
+  overflow-wrap: anywhere;
+  text-transform: uppercase;
 }
 
-.dahab-sport-price-card em,
+.dahab-sport-price-card p {
+  max-width: 280px;
+  margin-top: 28px;
+}
+
+.dahab-sport-price-card .button {
+  width: fit-content;
+  margin-top: auto;
+}
+
+.dahab-sport-price-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
 .dahab-sport-useful em {
   display: inline-block;
   margin-top: auto;

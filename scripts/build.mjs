@@ -378,9 +378,10 @@ const home = () => `
 
 const dahabImg = (name) => `/assets/img/dahab/${name}`;
 const dahabRefImg = (name) => `/assets/img/dahab-ref/${name}`;
+const finalImg = (name) => `/assets/img/final/${name}`;
 
 const dahabWingfoilPage = (page) => {
-  const heroFacts = ["Wing + SUP", "Wing + Foil", "Foil boat", "Rescue"];
+  const heroFacts = ["С нуля", "Индивидуальные уроки", "Rescue boat", "BB Talkin связь", "RRD / Chubanga"];
   const reasons = [
     ["Ровная вода", "Спокойная зона помогает поймать баланс, понять крыло и не бороться с лишней волной."],
     ["Стабильный ветер", "В Дахабе легко планировать занятия: инструктор подбирает окно под уровень и задачу."],
@@ -388,22 +389,22 @@ const dahabWingfoilPage = (page) => {
     ["Станция рядом", "Подбор крыла, доски, шлема, жилета и обратная связь происходят прямо на берегу."]
   ];
   const learning = [
-    ["01", "Берег", "Разбираем ветер, безопасность, крыло, стойку и управление тягой до выхода на воду.", dahabRefImg("wing-center.webp")],
-    ["02", "Wing + SUP", "Учимся держать курс, разворачиваться, возвращаться к старту и уверенно работать крылом.", dahabRefImg("choose-wingfoil.webp")],
-    ["03", "Foil boat", "Чувствуем подъем фойла без крыла: скорость, высоту, баланс и мягкие касания воды.", dahabRefImg("price-foil-boat.webp")],
-    ["04", "Wing + Foil", "Соединяем крыло и фойл: первые полеты, контроль высоты и понятный следующий шаг.", dahabImg("wingfoil-lesson-coaching.webp")]
+    ["01", "Wing на SUP", "Учимся держать крыло, разворачиваться, идти нужным курсом и понимать, как работает ветер.", finalImg("wingfoil/hero.webp"), "Обучение wingfoil на SUP"],
+    ["02", "Foil за лодкой", "Пробуем фойл без крыла: баланс, подъем, контроль высоты и уверенность на доске.", finalImg("wingfoil/lesson-coaching.webp"), "Foil за лодкой в Дахабе"],
+    ["03", "Wingfoil с инструктором", "Соединяем крыло и фойл. Первые старты, первые метры, контроль скорости и направления.", finalImg("media/cover-wingfoil.webp"), "Первые старты wingfoil с инструктором"],
+    ["04", "Практика и прогресс", "После первых успешных попыток можно кататься самостоятельно под контролем станции и брать уроки точечно.", finalImg("wingfoil/hero.webp"), "Уверенный райдер wingfoil в Дахабе"]
   ];
   const prices = [
-    ["Wing + SUP", "Урок с инструктором", "45$", "Крыло, SUP-доска, старт с берега и базовое управление.", dahabRefImg("choose-wingfoil.webp")],
-    ["Foil boat", "Фойл за лодкой", "60$", "Отдельная работа с фойлом до выхода с крылом.", dahabRefImg("price-foil-boat.webp")],
-    ["Wing + Foil", "Урок wingfoil", "70$", "Инструктор, комплект, старт и задачи под уровень.", dahabRefImg("price-wingfoil.webp")],
-    ["Rental", "Прокат комплекта", "по запросу", "Для райдеров, которые уже уверенно контролируют крыло и фойл.", dahabRefImg("block-wingfoil.webp")]
+    ["Урок", "Wingfoil урок", "70$", "Индивидуальное занятие с инструктором для первых стартов, исправления ошибок и прогресса.", "Записаться"],
+    ["Лодка", "Foil за лодкой", "60$", "Отдельный этап для понимания фойла: баланс, подъем и контроль высоты.", "Записаться"],
+    ["Новичок", "Программа для новичка", "от 270$", "Wing на SUP, фойл за лодкой, первые попытки wingfoil и практика.", "Подобрать программу"],
+    ["Прокат", "Прокат", "от 25$", "Для тех, кто уже катается самостоятельно.", "Оставить заявку"]
   ];
   const gallery = [
-    ["Первые полеты", "Wingfoil lesson", dahabImg("wingfoil-hero.webp")],
-    ["Работа с инструктором", "Coaching", dahabImg("wingfoil-lesson-coaching.webp")],
-    ["Акватория", "Dahab water area", dahabRefImg("aqva-aerial.webp")],
-    ["Wing Center", "Station", dahabRefImg("wing-center.webp")]
+    ["Wingfoil видео и фото с воды", "Медиа", finalImg("media/cover-wingfoil.webp")],
+    ["Wingfoil в Дахабе", "Райдер на воде", finalImg("wingfoil/hero.webp")],
+    ["Инструктор Vetratoria", "Урок wingfoil", finalImg("wingfoil/lesson-coaching.webp")],
+    ["Акватория Дахаба", "Dahab water area", finalImg("dahab.webp")]
   ];
   const faqs = [
     ["Можно ли начать с нуля?", "Да. Обычно начинаем с управления крылом на берегу и Wing + SUP, затем добавляем foil boat или Wing + Foil по готовности."],
@@ -413,9 +414,9 @@ const dahabWingfoilPage = (page) => {
     ["Когда лучше ехать в Дахаб?", "Дахаб работает круглый год. Конкретные окна по ветру и формату лучше уточнять перед поездкой под ваши даты."]
   ];
   const useful = [
-    ["/dahab/blog/wingfoil/", "Статья", "Wingfoil в Дахабе: от крыла до первого полета", dahabImg("wingfoil-hero.webp")],
-    ["/media/dahab/2026-06-10-wingfoil-day/", "Медиа", "Wingfoil day в Дахабе", dahabRefImg("block-wingfoil.webp")],
-    ["/dahab/safety/", "Безопасность", "Правила выхода на воду и rescue", dahabRefImg("aqva-aerial.webp")]
+    ["/dahab/blog/wingfoil/", "Wingfoil", "Как начать Wingfoil с нуля", finalImg("media/cover-wingfoil.webp")],
+    ["/dahab/blog/wingfoil/", "Сравнение", "Wingfoil или Windsurf: что выбрать", finalImg("wingfoil/hero.webp")],
+    ["/dahab/blog/wingfoil/", "Foil boat", "Почему фойл за лодкой помогает быстрее прогрессировать", finalImg("wingfoil/lesson-coaching.webp")]
   ];
 
   return `
@@ -434,7 +435,7 @@ const dahabWingfoilPage = (page) => {
       </div>
     </div>
     <figure class="dahab-sport-hero__media">
-      <img src="${dahabImg("wingfoil-hero.webp")}" alt="Wingfoil в Дахабе" width="1200" height="820" loading="eager" decoding="async" fetchpriority="high">
+      <img src="${finalImg("wingfoil/hero.webp")}" alt="Wingfoil в Дахабе — райдер на фойле" width="1600" height="1067" loading="eager" decoding="async" fetchpriority="high">
     </figure>
   </div>
 </section>
@@ -443,7 +444,7 @@ const dahabWingfoilPage = (page) => {
   <div class="dahab-sport-inner">
     ${sectionHeading("Локация", "Почему Дахаб подходит для Wingfoil", "Спокойная вода, стабильный ветер, разные форматы старта и станция рядом с зоной выхода помогают идти от первого управления крылом к полету без хаоса.")}
     <figure class="dahab-sport-panorama">
-      <img src="${dahabRefImg("aqva-aerial.webp")}" alt="Акватория Дахаба для wingfoil" width="1600" height="980" loading="lazy" decoding="async">
+      <img src="${finalImg("dahab.webp")}" alt="Панорама Дахаба и акватории Vetratoria" width="1600" height="1067" loading="lazy" decoding="async">
     </figure>
     <div class="dahab-sport-feature-grid">
       ${reasons.map(([title, text], index) => `<article><span>0${index + 1}</span><h3>${title}</h3><p>${text}</p></article>`).join("")}
@@ -455,9 +456,9 @@ const dahabWingfoilPage = (page) => {
   <div class="dahab-sport-inner">
     ${sectionHeading("Обучение", "Как проходит обучение Wingfoil", "В реальности это не один случайный урок, а понятная лестница: берег, крыло, доска, фойл, первые полеты и самостоятельность.")}
     <div class="dahab-sport-process">
-      ${learning.map(([number, title, text, image]) => `
+      ${learning.map(([number, title, text, image, alt]) => `
         <article>
-          <img src="${image}" alt="${title}" width="760" height="520" loading="lazy" decoding="async">
+          <img src="${image}" alt="${alt}" width="760" height="520" loading="lazy" decoding="async">
           <div><span>${number}</span><h3>${title}</h3><p>${text}</p></div>
         </article>`).join("")}
     </div>
@@ -466,17 +467,20 @@ const dahabWingfoilPage = (page) => {
 
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Прайс", "Цены на Wingfoil", "Основные форматы вынесены отдельно. Итоговый план лучше подобрать по уровню, ветру и количеству дней на воде.")}
+    ${sectionHeading("Цены", "Цены на Wingfoil", "Можно взять разовый урок, попробовать фойл за лодкой или собрать программу на несколько дней. Если вы не уверены, с чего начать, оставьте заявку — мы подберем вариант под ваш уровень, даты и ветер.")}
     <div class="dahab-sport-price-grid">
-      ${prices.map(([label, title, value, text, image]) => `
-        <a href="/dahab/wingfoil/price/" class="dahab-sport-price-card">
-          <img src="${image}" alt="${title}" width="740" height="520" loading="lazy" decoding="async">
+      ${prices.map(([label, title, value, text, cta]) => `
+        <article class="dahab-sport-price-card">
           <small>${label}</small>
           <h3>${title}</h3>
           <b>${value}</b>
           <p>${text}</p>
-          <em>Смотреть формат</em>
-        </a>`).join("")}
+          <a class="button button-primary" href="/contacts/">${cta}</a>
+        </article>`).join("")}
+    </div>
+    <div class="dahab-sport-price-actions">
+      <a class="button button-ghost" href="/dahab/wingfoil/price/">Все цены Wingfoil</a>
+      <a class="button button-ghost" href="/dahab/price/#wingfoil-prices">Общий прайс Дахаба</a>
     </div>
   </div>
 </section>
@@ -495,8 +499,8 @@ const dahabWingfoilPage = (page) => {
       <a class="button button-primary" href="/dahab/safety/">Подробнее</a>
     </div>
     <div class="dahab-sport-safety__media">
-      <img src="${dahabRefImg("price-foil-boat.webp")}" alt="Безопасность и foil boat в Дахабе" width="900" height="640" loading="lazy" decoding="async">
-      <img src="${dahabRefImg("wing-center.webp")}" alt="Инструктор Vetratoria" width="900" height="640" loading="lazy" decoding="async">
+      <img src="${finalImg("wingfoil/lesson-coaching.webp")}" alt="Инструктор контролирует процесс wingfoil" width="900" height="640" loading="lazy" decoding="async">
+      <img src="${finalImg("media/cover-wingfoil.webp")}" alt="Занятие wingfoil в Дахабе" width="900" height="640" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -540,7 +544,7 @@ const dahabWingfoilPage = (page) => {
 </section>
 
 <section class="dahab-sport-cta">
-  <img src="${dahabRefImg("choose-wingfoil.webp")}" alt="Wingfoil в Дахабе" width="1600" height="900" loading="lazy" decoding="async">
+  <img src="${finalImg("wingfoil/hero.webp")}" alt="Wingfoil в Дахабе на воде" width="1600" height="1067" loading="lazy" decoding="async">
   <div class="dahab-sport-cta__inner">
     <p class="eyebrow">Заявка</p>
     <h2>Хотите попробовать Wingfoil в Дахабе?</h2>
