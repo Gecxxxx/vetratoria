@@ -1,0 +1,49 @@
+/* Contacts page */
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+}
+
+.contact-layout {
+  align-items: start;
+}
+
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.contact-cards a {
+  padding: 18px;
+  border: 1px solid var(--line);
+  background: #151210;
+}
+
+.contact-cards small {
+  display: block;
+  color: var(--orange);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.contact-cards b {
+  display: block;
+  margin-top: 7px;
+  color: var(--white);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .contact-layout {
+      grid-template-columns: 1fr;
+    }
+
+  .contact-cards {
+      grid-template-columns: 1fr;
+    }
+}

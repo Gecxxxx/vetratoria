@@ -1,0 +1,146 @@
+/* Home page */
+
+.home-advantages {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  max-width: 740px;
+  margin-top: 26px;
+}
+
+.home-advantage {
+  min-height: 58px;
+  padding: 11px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(7, 7, 7, 0.5);
+}
+
+.home-advantage b {
+  display: block;
+  color: var(--orange);
+  font-size: 13px;
+  line-height: 1;
+}
+
+.home-advantage span {
+  display: block;
+  margin-top: 6px;
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.home-section {
+  padding: 78px 0;
+  background: var(--bg);
+}
+
+.home-section--destinations {
+  background: #10100f;
+}
+
+.home-section--brand {
+  background: #0d0c0b;
+}
+
+.brand-copy h2,
+.home-cta h2 {
+  margin: 0;
+  color: var(--white);
+  font-size: clamp(32px, 4.4vw, 54px);
+  font-weight: 900;
+  line-height: 0.96;
+}
+
+.brand-copy p,
+.home-cta p {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.brand-split,
+.home-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+}
+
+.brand-copy,
+.home-cta {
+  padding: 34px;
+  border: 1px solid var(--line);
+  background: #151210;
+}
+
+.brand-media {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.brand-media img {
+  width: 100%;
+  min-height: 420px;
+  object-fit: cover;
+}
+
+.home-proof-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.home-proof-list span {
+  display: block;
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text);
+  font-weight: 800;
+}
+
+.home-cta {
+  grid-template-columns: 1fr auto;
+}
+
+.home-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+@media (max-width: 900px) {
+  .home-advantages,
+  .brand-split,
+  .home-cta {
+      grid-template-columns: 1fr;
+    }
+
+  .home-section {
+      padding: 54px 0;
+    }
+
+  .brand-copy,
+  .home-cta {
+      padding: 22px;
+    }
+
+  .home-cta__actions {
+      justify-content: flex-start;
+    }
+}
+
+@media (max-width: 520px) {
+  .brand-copy h2,
+  .home-cta h2 {
+      font-size: 32px;
+    }
+
+  .home-advantages {
+      grid-template-columns: 1fr;
+    }
+}

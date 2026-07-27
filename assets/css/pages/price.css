@@ -1,0 +1,42 @@
+/* Price pages */
+
+.price-table {
+  display: grid;
+  gap: 10px;
+}
+
+.price-table article {
+  display: grid;
+  grid-template-columns: 1.2fr 0.65fr 1fr 0.5fr;
+  gap: 16px;
+  align-items: center;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  background: #151210;
+}
+
+.price-table b {
+  color: var(--white);
+}
+
+.price-table span {
+  color: var(--muted);
+}
+
+.price-table em {
+  color: var(--orange);
+  font-style: normal;
+  font-weight: 900;
+  text-align: right;
+}
+
+@media (max-width: 900px) {
+  .price-table article {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+  .price-table em {
+      text-align: left;
+    }
+}

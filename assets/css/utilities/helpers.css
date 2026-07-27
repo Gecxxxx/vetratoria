@@ -1,0 +1,17 @@
+/* Small helper utilities */
+
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: 16px;
+  z-index: 200;
+  transform: translateY(-140%);
+  padding: 10px 14px;
+  background: var(--orange);
+  color: var(--white);
+  font-weight: 800;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}

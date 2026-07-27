@@ -1,0 +1,10 @@
+/* Site header shell */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #090909;
+  color: var(--text);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.34);
+}

@@ -1,0 +1,48 @@
+/* Media galleries */
+
+.photo-strip {
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.photo-strip figure {
+  position: relative;
+  overflow: hidden;
+  min-height: 270px;
+  margin: 0;
+  border-radius: 6px;
+  background: #171514;
+}
+
+.photo-strip figure.is-wide {
+  grid-column: span 2;
+}
+
+.photo-strip img {
+  width: 100%;
+  height: 100%;
+  min-height: 270px;
+  object-fit: cover;
+}
+
+.photo-strip figcaption {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 7px 9px;
+  background: rgba(0, 0, 0, 0.62);
+  color: var(--white);
+  font-weight: 900;
+}
+
+@media (max-width: 900px) {
+  .photo-strip {
+      grid-template-columns: 1fr;
+    }
+
+  .photo-strip figure.is-wide {
+      grid-column: auto;
+    }
+}

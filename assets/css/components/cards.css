@@ -1,0 +1,200 @@
+/* Reusable cards and lists */
+
+.destination-grid,
+.article-grid,
+.link-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.destination-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.media-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.destination-card,
+.article-card,
+.link-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 340px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #171514;
+  color: var(--white);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.24);
+}
+
+.destination-card,
+.article-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+}
+
+.destination-card img,
+.article-card img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.destination-card::after,
+.article-card::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.86));
+  content: "";
+}
+
+.destination-card > :not(img),
+.article-card > :not(img) {
+  position: relative;
+  z-index: 2;
+}
+
+.destination-card:hover img,
+.article-card:hover img {
+  transform: scale(1.045);
+}
+
+.destination-card span,
+.destination-card em,
+.article-card small,
+.link-card small {
+  color: var(--orange);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.destination-card h2,
+.article-card h3,
+.link-card h3 {
+  margin: 8px 0 0;
+  color: var(--white);
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.destination-card p,
+.article-card p,
+.link-card p {
+  margin: 11px 0 0;
+  color: #d7d2ce;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.destination-card em {
+  display: inline-block;
+  margin-top: 16px;
+}
+
+.check-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.check-list span {
+  display: block;
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text);
+  font-weight: 800;
+}
+
+.link-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.link-grid--four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.link-card {
+  display: block;
+  min-height: 250px;
+  padding: 24px;
+}
+
+.link-card--accent {
+  background: #21120d;
+  border-color: rgba(255, 90, 31, 0.42);
+}
+
+.link-card em {
+  display: inline-block;
+  margin-top: 18px;
+  color: var(--orange);
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.rail-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.rail-list article {
+  padding: 24px;
+  border-top: 2px solid var(--orange);
+  background: #151210;
+}
+
+.rail-list b {
+  color: var(--orange);
+}
+
+.rail-list h3 {
+  margin: 12px 0 0;
+  color: var(--white);
+}
+
+.rail-list p {
+  margin: 9px 0 0;
+  color: var(--muted);
+}
+
+.check-list--inline {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .destination-grid,
+  .media-grid,
+  .article-grid,
+  .link-grid,
+  .link-grid--four,
+  .rail-list {
+      grid-template-columns: 1fr;
+    }
+
+  .check-list--inline {
+      grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+  .destination-card,
+  .article-card {
+      min-height: 315px;
+    }
+}

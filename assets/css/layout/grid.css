@@ -1,0 +1,30 @@
+/* Shared layout grids */
+
+.two-column {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+}
+
+.two-column {
+  align-items: start;
+}
+
+.two-column h2 {
+  margin: 0;
+  color: var(--white);
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.two-column p {
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .two-column {
+      grid-template-columns: 1fr;
+    }
+}

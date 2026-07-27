@@ -1,0 +1,10 @@
+/* Shared typography primitives */
+
+.eyebrow {
+  margin: 0 0 9px;
+  color: var(--orange);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.15;
+  text-transform: uppercase;
+}

@@ -1,0 +1,50 @@
+/* Design tokens */
+
+:root {
+  /* Existing short tokens are kept for compatibility with generated markup. */
+  --bg: #0b0b0a;
+  --bg-2: #11100f;
+  --line: rgba(255, 255, 255, 0.11);
+  --line-strong: rgba(255, 255, 255, 0.2);
+  --text: #f4f0ec;
+  --muted: #bcb7b2;
+  --soft: #8e8883;
+  --orange: #ff5a1f;
+  --orange-dark: #2b160e;
+  --white: #ffffff;
+  --shadow: 0 22px 70px rgba(0, 0, 0, 0.42);
+  --max: 1180px;
+  --wide: 1360px;
+  --nav-top-h: 68px;
+  --nav-main-h: 76px;
+  --nav-section-h: 56px;
+
+  --color-background: var(--bg);
+  --color-background-elevated: var(--bg-2);
+  --color-surface: #151210;
+  --color-surface-card: #171514;
+  --color-text: var(--text);
+  --color-text-muted: var(--muted);
+  --color-text-soft: var(--soft);
+  --color-accent: var(--orange);
+  --color-accent-dark: var(--orange-dark);
+  --color-border: var(--line);
+  --color-border-strong: var(--line-strong);
+
+  --container-max: var(--max);
+  --container-wide: var(--wide);
+  --page-gutter: 48px;
+  --page-gutter-mobile: 32px;
+
+  --radius-control: 4px;
+  --radius-card: 6px;
+  --shadow-elevated: var(--shadow);
+
+  --z-header: 100;
+  --z-skip-link: 200;
+  --z-dropdown: 220;
+
+  --duration-fast: 0.18s;
+  --duration-normal: 0.2s;
+  --duration-slow: 0.35s;
+}

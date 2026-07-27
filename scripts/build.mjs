@@ -258,7 +258,7 @@ const layout = (page, main) => `<!doctype html>
   <meta property="og:image" content="${metaImageForPage(page)}">
   <meta name="theme-color" content="#0d0c0b">
   <link rel="icon" href="${site.logo}">
-  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <script defer src="/assets/js/app.js"></script>
 </head>
 <body class="modern-site ${page.kind}${page.country ? ` country-${page.country}` : ""}">
