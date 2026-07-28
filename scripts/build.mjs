@@ -245,6 +245,9 @@ const metaDescriptionForPage = (page) =>
 const metaImageForPage = (page) =>
   page.path === "/dahab/" ? "/assets/img/dahab-ref/ganet-sinai.webp" : page.image || site.slider[0];
 
+const ASSET_VERSION = "20260728-wingfoil-media";
+const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
+
 const layout = (page, main) => `<!doctype html>
 <html lang="ru">
 <head>
@@ -259,8 +262,8 @@ const layout = (page, main) => `<!doctype html>
   <meta property="og:image" content="${metaImageForPage(page)}">
   <meta name="theme-color" content="#0d0c0b">
   <link rel="icon" href="${site.logo}">
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <script defer src="/assets/js/app.js"></script>
+  <link rel="stylesheet" href="${versionedAsset("/assets/css/main.css")}">
+  <script defer src="${versionedAsset("/assets/js/app.js")}"></script>
 </head>
 <body class="modern-site ${page.kind}${page.country ? ` country-${page.country}` : ""}">
   <a class="skip-link" href="#main">К содержанию</a>

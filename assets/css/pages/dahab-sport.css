@@ -588,22 +588,6 @@
       height: 330px;
     }
 
-  .dahab-sport-water-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-template-rows: auto;
-    }
-
-  .dahab-sport-water-grid a,
-  .dahab-sport-water-grid a.is-large {
-      min-height: 260px;
-      grid-row: auto;
-    }
-
-  .dahab-sport-water-grid a.is-large {
-      grid-column: 1 / -1;
-      min-height: 340px;
-    }
-
   .dahab-sport-reviews__head {
       align-items: flex-start;
       flex-direction: column;
@@ -650,6 +634,7 @@
   .dahab-sport-water-grid a.is-large {
       min-height: 250px;
       grid-column: auto;
+      grid-row: auto;
     }
 
   .dahab-sport-review-card {
