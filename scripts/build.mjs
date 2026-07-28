@@ -50,13 +50,82 @@ const directionsMenu = () => `
         </div>
       </div>`;
 
-const mainNavPanel = () => `
+const mobileRowClass = (active = false) => `vtr-mobile-menu__row${active ? " is-active" : ""}`;
+
+const mobileDropdown = (label, active, items) => `
+        <div class="vtr-mobile-menu__item vtr-mobile-menu__item--drop${active ? " is-active" : ""}" data-dropdown>
+          ${navButton(label, mobileRowClass(active))}
+          <div class="vtr-mobile-menu__submenu">
+            ${items.map((item) => `<a class="${mobileRowClass(false)}" href="${item.href}">${item.label}</a>`).join("")}
+          </div>
+        </div>`;
+
+const mobileDirectionsSection = () => `
+      <section class="vtr-mobile-menu__block vtr-mobile-menu__block--accent" aria-label="Направления">
+        <p class="vtr-mobile-menu__title">Направления:</p>
+        ${countryList.map((country) => `
+        <a class="vtr-mobile-menu__row vtr-mobile-menu__row--split" href="${country.href}">
+          <span>${country.region} · ${country.city}</span>
+          <span>${countrySportSummary(country)}</span>
+        </a>`).join("")}
+      </section>`;
+
+const mobileCountrySection = (page, country) => {
+  const priceSportKeys = country.key === "dahab" ? country.sports.filter((sportKey) => sportKey !== "windsurf-kids") : country.sports;
+  const priceItems = priceSportKeys.map((sportKey) => ({
+    label: site.sports[sportKey].nav,
+    href: `/${country.key}/${sportKey}/price/`
+  }));
+  const pricePaths = priceItems.map((item) => item.href);
+  const schoolItems = schoolDropdown(country);
+  const schoolPaths = schoolItems.map((item) => item.href).filter((href) => href.startsWith(`/${country.key}/`));
+  const sportLinks = country.key === "dahab"
+    ? [
+        { label: "Wingfoil", href: "/dahab/wingfoil/" },
+        { label: "Windsurf", href: "/dahab/windsurf/" }
+      ]
+    : country.sports.map((sportKey) => ({
+        label: site.sports[sportKey].nav,
+        href: `/${country.key}/${sportKey}/`
+      }));
+
+  return `
+      <section class="vtr-mobile-menu__block vtr-mobile-menu__block--accent" aria-label="Навигация ${country.title}">
+        <p class="vtr-mobile-menu__title">${country.title}</p>
+        <a class="${mobileRowClass(page.path === country.href)}" href="${country.href}">Обзор</a>
+        ${sportLinks.map((item) => `<a class="${mobileRowClass(countrySectionActive(page, [item.href]))}" href="${item.href}">${item.label}</a>`).join("")}
+        ${mobileDropdown("Цены", countrySectionActive(page, pricePaths), priceItems)}
+        ${country.key === "dahab" ? `<a class="${mobileRowClass(countrySectionActive(page, ["/dahab/stations/"]))}" href="/dahab/stations/">Станции</a>` : ""}
+        ${mobileDropdown("О школе", countrySectionActive(page, schoolPaths), schoolItems)}
+      </section>`;
+};
+
+const mobileMenu = (page, country) => `
+      <div class="vtr-mobile-menu" aria-label="Мобильная навигация">
+        ${country ? mobileCountrySection(page, country) : mobileDirectionsSection()}
+        <section class="vtr-mobile-menu__block" aria-label="Главное">
+          <p class="vtr-mobile-menu__title">Главное</p>
+          <a class="vtr-mobile-menu__row" href="/">Vetratoria</a>
+          <a class="vtr-mobile-menu__row" href="/blog/">Блог</a>
+          <a class="vtr-mobile-menu__row" href="/media/">Медиа</a>
+          <a class="vtr-mobile-menu__row" href="/contacts/">Контакты</a>
+        </section>
+        <section class="vtr-mobile-menu__block" aria-label="Контакты">
+          <p class="vtr-mobile-menu__title">Контакты</p>
+          <a class="vtr-mobile-menu__row" href="mailto:${site.email}">${site.email}</a>
+          <a class="vtr-mobile-menu__row" href="tel:${site.phone.replace(/\s/g, "")}">${site.phone}</a>
+          <a class="vtr-mobile-menu__row" href="/contacts/">Telegram</a>
+        </section>
+      </div>`;
+
+const mainNavPanel = (page, country) => `
     <nav class="vtr-nav__panel" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
       <a class="vtr-nav__link" href="/">Vetratoria</a>
       ${directionsMenu()}
       <a class="vtr-nav__link" href="/blog/">Блог</a>
       <a class="vtr-nav__link" href="/media/">Медиа</a>
       <a class="vtr-nav__link" href="/contacts/">Контакты</a>
+      ${mobileMenu(page, country)}
     </nav>`;
 
 const topNav = (page) => `
@@ -154,7 +223,7 @@ const header = (page) => {
     <button class="vtr-nav__burger" type="button" aria-label="Открыть меню" aria-expanded="false" data-menu-toggle>
       <span></span><span></span><span></span>
     </button>
-    ${mainNavPanel()}
+    ${mainNavPanel(page, country)}
   </div>
   ${country ? countrySectionNav(page, country) : ""}
 </header>`;

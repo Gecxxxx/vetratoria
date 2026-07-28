@@ -3,7 +3,7 @@
   const nav = document.querySelector("[data-nav]");
   const menuButton = document.querySelector("[data-menu-toggle]");
   const navPanel = document.querySelector("[data-nav-panel]");
-  const mobileMenu = window.matchMedia("(max-width: 900px)");
+  const mobileMenu = window.matchMedia("(max-width: 1180px)");
 
   const dropdowns = [...document.querySelectorAll("[data-dropdown]")];
 
