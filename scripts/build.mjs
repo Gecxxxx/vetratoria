@@ -245,7 +245,7 @@ const metaDescriptionForPage = (page) =>
 const metaImageForPage = (page) =>
   page.path === "/dahab/" ? "/assets/img/dahab-ref/ganet-sinai.webp" : page.image || site.slider[0];
 
-const ASSET_VERSION = "20260728-wingfoil-media";
+const ASSET_VERSION = "20260728-hero-copy";
 const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
 
 const layout = (page, main) => `<!doctype html>
@@ -296,13 +296,13 @@ const home = () => `
   <div class="hero-shade"></div>
   <div class="hero-content">
     <p class="eyebrow">Vetratoria Wind Schools</p>
-    <h1>Windsurf и Wingfoil школы в Египте, Вьетнаме и России</h1>
-    <p class="hero-lead">Один бренд, несколько ветреных направлений и понятная система: страна, спорт, станция, инструктор, снаряжение и выход на воду.</p>
+    <h1>Windsurf, Wingfoil и Kite — от первого старта до уверенного катания</h1>
+    <p class="hero-lead">Обучение и прокат в Египте, Вьетнаме и России. Подберём программу и снаряжение под ваш уровень и условия на воде.</p>
     <div class="home-advantages">
-      <article class="home-advantage"><b>01</b><span>С 2006 года</span></article>
-      <article class="home-advantage"><b>02</b><span>Клубная система скидок</span></article>
-      <article class="home-advantage"><b>03</b><span>Опытные инструкторы</span></article>
-      <article class="home-advantage"><b>04</b><span>365 дней в году</span></article>
+      <article class="home-advantage"><span>С 2006 года</span></article>
+      <article class="home-advantage"><span>Обучение с нуля и прогресс</span></article>
+      <article class="home-advantage"><span>Опытные инструкторы</span></article>
+      <article class="home-advantage"><span>Клубная система скидок</span></article>
     </div>
     <div class="hero-actions">
       <a class="button button-primary" href="/contacts/">Написать нам</a>
@@ -395,7 +395,7 @@ const dahabReviewItems = [
 ];
 
 const dahabWingfoilPage = (page) => {
-  const heroFacts = ["С нуля", "Индивидуальные уроки", "Rescue boat", "BB Talkin связь", "RRD / Chubanga"];
+  const heroFacts = ["Обучение с нуля", "Спасательный катер", "Связь BB Talkin", "Снаряжение RRD"];
   const reasons = [
     ["Ровная вода", "Спокойная зона помогает поймать баланс, понять крыло и не бороться с лишней волной."],
     ["Стабильный ветер", "В Дахабе легко планировать занятия: инструктор подбирает окно под уровень и задачу."],
@@ -444,14 +444,14 @@ const dahabWingfoilPage = (page) => {
       <p>${escapeHtml(page.description)}</p>
       <div class="dahab-sport-hero__actions">
         <a class="button button-primary" href="/contacts/">Записаться</a>
-        <a class="button button-ghost" href="/dahab/wingfoil/price/">Цены</a>
+        <a class="button button-ghost" href="/dahab/wingfoil/price/">Смотреть цены</a>
       </div>
       <div class="dahab-sport-hero__facts">
         ${heroFacts.map((item) => `<span>${item}</span>`).join("")}
       </div>
     </div>
     <figure class="dahab-sport-hero__media">
-      <img src="${wingfoilSectionImg("wingfoil-ride.webp")}" alt="Wingfoil в Дахабе — райдер на фойле" width="1920" height="1080" loading="eager" decoding="async" fetchpriority="high">
+      <img src="${page.image}" alt="Wingfoil в Дахабе — райдеры на фойле" width="1920" height="1080" loading="eager" decoding="async" fetchpriority="high">
     </figure>
   </div>
 </section>
@@ -624,9 +624,9 @@ const dahabHomePage = () => {
   <div class="dahab-hero__shade"></div>
   <div class="dahab-hero__content">
     <p class="eyebrow">Египет · Дахаб</p>
-    <h1>Дахаб: Wingfoil и Windsurf на Красном море</h1>
-    <p class="hero-lead">Vetratoria — водная станция в Дахабе: Wingfoil, Windsurf, Kids, аренда и уроки по фактическому времени на воде.</p>
-    <div class="dahab-hero__facts"><span>С 2006 года</span><span>Идеальная акватория</span><span>10000+ учеников</span></div>
+    <h1>Wingfoil и Windsurf в Дахабе</h1>
+    <p class="hero-lead">Обучение и прокат на Красном море для новичков и опытных райдеров. Подберём программу, инструктора и снаряжение под ваш уровень.</p>
+    <div class="dahab-hero__facts"><span>С 2006 года</span><span>Условия для любого уровня</span><span>10 000+ учеников</span><span>3 спасательных катера</span></div>
     <div class="hero-actions dahab-hero-actions">
       <a class="button button-primary" href="/contacts/">Написать нам</a>
       <a class="button button-ghost" href="/dahab/wingfoil/">Wingfoil</a>
