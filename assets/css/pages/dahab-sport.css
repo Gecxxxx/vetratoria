@@ -97,7 +97,7 @@
 .dahab-sport-process img,
 .dahab-sport-price-card img,
 .dahab-sport-safety__media img,
-.dahab-sport-gallery img,
+.dahab-sport-water-grid img,
 .dahab-sport-useful img,
 .dahab-sport-cta > img {
   width: 100%;
@@ -165,7 +165,6 @@
 .dahab-sport-feature-grid span,
 .dahab-sport-process span,
 .dahab-sport-price-card small,
-.dahab-sport-gallery span,
 .dahab-sport-useful span {
   color: var(--orange);
   font-size: 12px;
@@ -231,8 +230,8 @@
 
 .dahab-sport-price-card:hover,
 .dahab-sport-price-card:focus-visible,
-.dahab-sport-gallery a:hover,
-.dahab-sport-gallery a:focus-visible,
+.dahab-sport-water-grid a:hover,
+.dahab-sport-water-grid a:focus-visible,
 .dahab-sport-useful a:hover,
 .dahab-sport-useful a:focus-visible {
   border-color: rgba(255, 90, 31, 0.56);
@@ -329,25 +328,35 @@
   min-height: 470px;
 }
 
-.dahab-sport-gallery {
+.dahab-sport-water-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-  grid-auto-rows: 215px;
-  gap: 20px;
+  grid-template-columns: minmax(0, 1.25fr) repeat(2, minmax(0, 0.82fr));
+  grid-template-rows: repeat(2, minmax(210px, 1fr));
+  gap: 12px;
 }
 
-.dahab-sport-gallery a {
-  position: relative;
+.dahab-sport-water-grid a {
   display: block;
+  min-height: 210px;
   overflow: hidden;
   border: 1px solid var(--line);
   background: #0e0d0c;
-  color: var(--white);
-  text-decoration: none;
   transition: border-color var(--duration-normal) ease, transform var(--duration-normal) ease, box-shadow var(--duration-normal) ease;
 }
 
-.dahab-sport-gallery a::after,
+.dahab-sport-water-grid a.is-large {
+  grid-row: 1 / span 2;
+}
+
+.dahab-sport-water-grid img {
+  display: block;
+}
+
+.dahab-sport-water-actions {
+  display: flex;
+  margin-top: 22px;
+}
+
 .dahab-sport-cta::after {
   position: absolute;
   inset: 0;
@@ -355,27 +364,91 @@
   content: "";
 }
 
-.dahab-sport-gallery a.is-large {
-  grid-row: span 2;
+.dahab-sport-reviews__head {
+  display: flex;
+  gap: 24px;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 24px;
 }
 
-.dahab-sport-gallery span,
-.dahab-sport-gallery b {
-  position: absolute;
-  left: 22px;
-  z-index: 1;
-}
-
-.dahab-sport-gallery span {
-  bottom: 56px;
-}
-
-.dahab-sport-gallery b {
-  bottom: 24px;
-  max-width: calc(100% - 44px);
-  font-size: 26px;
+.dahab-sport-reviews__head h2 {
+  margin: 0;
+  color: var(--white);
+  font-size: clamp(34px, 4.4vw, 58px);
   font-weight: 900;
-  line-height: 1;
+  line-height: 0.96;
+  text-transform: uppercase;
+}
+
+.dahab-sport-reviews__head a {
+  flex: 0 0 auto;
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 900;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.dahab-sport-review-track {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 14px;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: var(--orange) rgba(255, 255, 255, 0.08);
+}
+
+.dahab-sport-review-card {
+  flex: 0 0 min(410px, calc(100vw - 44px));
+  min-height: 178px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--orange);
+  background: #171210;
+  scroll-snap-align: start;
+}
+
+.dahab-sport-review-card__top {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.dahab-sport-review-card__top > span {
+  display: grid;
+  width: 50px;
+  height: 50px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: #432014;
+  color: var(--orange);
+  font-weight: 900;
+}
+
+.dahab-sport-review-card strong,
+.dahab-sport-review-card small {
+  display: block;
+}
+
+.dahab-sport-review-card strong {
+  color: var(--white);
+  font-weight: 900;
+}
+
+.dahab-sport-review-card small {
+  margin-top: 3px;
+  color: var(--orange);
+  letter-spacing: 0;
+}
+
+.dahab-sport-review-card p {
+  margin: 0;
+  color: #eee8e2;
+  font-size: 15px;
+  line-height: 1.45;
 }
 
 .dahab-sport-faq {
@@ -515,13 +588,25 @@
       height: 330px;
     }
 
-  .dahab-sport-gallery {
-      grid-template-columns: 1fr;
-      grid-auto-rows: 260px;
+  .dahab-sport-water-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: auto;
     }
 
-  .dahab-sport-gallery a.is-large {
-      grid-row: span 1;
+  .dahab-sport-water-grid a,
+  .dahab-sport-water-grid a.is-large {
+      min-height: 260px;
+      grid-row: auto;
+    }
+
+  .dahab-sport-water-grid a.is-large {
+      grid-column: 1 / -1;
+      min-height: 340px;
+    }
+
+  .dahab-sport-reviews__head {
+      align-items: flex-start;
+      flex-direction: column;
     }
 
   .dahab-sport-useful {
@@ -555,5 +640,19 @@
   .dahab-sport-process article,
   .dahab-sport-price-card {
       min-height: 360px;
+    }
+
+  .dahab-sport-water-grid {
+      grid-template-columns: 1fr;
+    }
+
+  .dahab-sport-water-grid a,
+  .dahab-sport-water-grid a.is-large {
+      min-height: 250px;
+      grid-column: auto;
+    }
+
+  .dahab-sport-review-card {
+      flex-basis: min(330px, calc(100vw - 36px));
     }
 }

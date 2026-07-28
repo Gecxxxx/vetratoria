@@ -88,6 +88,7 @@ const sectionLinkClass = (active) => `vtr-nav__section-link${active ? " is-activ
 
 const schoolDropdown = (country) => country.key === "dahab" ? [
   { label: "Команда", href: "/dahab/team/" },
+  { label: "Windsurf Kids", href: "/dahab/windsurf-kids/" },
   { label: "Безопасность", href: "/dahab/safety/" },
   { label: "Как добраться", href: "/dahab/how-to-get/" },
   { label: "Контакты", href: "/dahab/contacts/" }
@@ -107,7 +108,8 @@ const sectionDropdown = (label, active, items) => `
     </div>`;
 
 const countrySectionNav = (page, country) => {
-  const pricePaths = [`/${country.key}/price/`, ...country.sports.map((sportKey) => `/${country.key}/${sportKey}/price/`)];
+  const priceSportKeys = country.key === "dahab" ? country.sports.filter((sportKey) => sportKey !== "windsurf-kids") : country.sports;
+  const pricePaths = [`/${country.key}/price/`, ...priceSportKeys.map((sportKey) => `/${country.key}/${sportKey}/price/`)];
   const schoolItems = schoolDropdown(country);
   const schoolPaths = schoolItems.map((item) => item.href).filter((href) => href.startsWith(`/${country.key}/`));
   const baseLinks = country.key === "dahab"
@@ -118,8 +120,7 @@ const countrySectionNav = (page, country) => {
         sectionDropdown("Цены", countrySectionActive(page, pricePaths), [
           { label: "Все цены", href: "/dahab/price/" },
           { label: "Wingfoil", href: "/dahab/wingfoil/price/" },
-          { label: "Windsurf", href: "/dahab/windsurf/price/" },
-          { label: "Kids", href: "/dahab/windsurf-kids/price/" }
+          { label: "Windsurf", href: "/dahab/windsurf/price/" }
         ]),
         `<a class="${sectionLinkClass(countrySectionActive(page, ["/dahab/stations/"]))}" href="/dahab/stations/">Станции</a>`
       ]
@@ -380,6 +381,15 @@ const dahabImg = (name) => `/assets/img/dahab/${name}`;
 const dahabRefImg = (name) => `/assets/img/dahab-ref/${name}`;
 const finalImg = (name) => `/assets/img/final/${name}`;
 const wingfoilSectionImg = (name) => finalImg(`wingfoil/sections/${name}`);
+const wingfoilWaterImg = (name) => finalImg(`wingfoil/water/${name}`);
+
+const dahabReviewItems = [
+  ["B", "Boris Sizov", "★★★★★", "Очень удобно приезжать без своего снаряжения: есть все размеры крыльев и досок, оборудования хватает. Толик, Ира и Хассан — настоящие профессионалы."],
+  ["D", "Dmitrii Polishchuk", "★★★★★", "Отличная surf-станция, классная локация для выхода в море, дружелюбная команда и сильное оборудование для wingfoil. Очень рекомендую."],
+  ["O", "Olga Krasnova", "★★★★★", "Wing Center Vetratoria — магическое место. Мои первые шаги на wingfoil получились, а снаряжение подходит и новичкам, и продолжающим."],
+  ["E", "Evgeniy Kolosov", "★★★★★", "Vetratoria в Египте оставила только положительные впечатления: высокий уровень инструкторов, идеальные условия и очень дружелюбная атмосфера."],
+  ["Y", "Yuriy Tolchinskiy", "★★★★★", "Приезжал осваивать wingfoil. Довольно быстро получилось лететь на фойле и делать повороты. Спасибо Hassan за продуктивные тренировки."]
+];
 
 const dahabWingfoilPage = (page) => {
   const heroFacts = ["С нуля", "Индивидуальные уроки", "Rescue boat", "BB Talkin связь", "RRD / Chubanga"];
@@ -401,12 +411,14 @@ const dahabWingfoilPage = (page) => {
     ["Новичок", "Программа для новичка", "от 270$", "Wing на SUP, фойл за лодкой, первые попытки wingfoil и практика.", "Подобрать программу"],
     ["Прокат", "Прокат", "от 25$", "Для тех, кто уже катается самостоятельно.", "Оставить заявку"]
   ];
-  const gallery = [
-    ["Wingfoil видео и фото с воды", "Медиа", wingfoilSectionImg("wingfoil-duo.webp")],
-    ["Wingfoil в Дахабе", "Райдер на воде", wingfoilSectionImg("wingfoil-ride.webp")],
-    ["Foil boat", "Тренировка", wingfoilSectionImg("foil-boat-training.webp")],
-    ["Акватория Дахаба", "Dahab water area", wingfoilSectionImg("dahab-panorama.webp")]
+  const waterPhotos = [
+    [wingfoilWaterImg("water-01.webp"), "Wingfoil над бирюзовой водой в Дахабе"],
+    [wingfoilWaterImg("water-02.webp"), "Прыжок на wingfoil в Дахабе"],
+    [wingfoilWaterImg("water-03.webp"), "Wingfoil ride на Красном море"],
+    [wingfoilWaterImg("water-04.webp"), "Два райдера wingfoil в Дахабе"],
+    [wingfoilWaterImg("water-05.webp"), "Wingfoil на открытой воде"]
   ];
+  const reviews = dahabReviewItems;
   const faqs = [
     ["Можно ли начать с нуля?", "Да. Обычно начинаем с управления крылом на берегу и Wing + SUP, затем добавляем foil boat или Wing + Foil по готовности."],
     ["Сколько занятий нужно до первых полетов?", "Зависит от ветра, баланса и прошлого опыта. Часто первые короткие полеты появляются после нескольких последовательных выходов."],
@@ -508,14 +520,37 @@ const dahabWingfoilPage = (page) => {
 
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Медиа", "Как это выглядит на воде", "Крыло, доска, фойл и вода читаются лучше в кадре: здесь визуальный ритм страницы такой же, как в референсе, с крупными карточками и понятными переходами.")}
-    <div class="dahab-sport-gallery">
-      ${gallery.map(([title, label, image], index) => `
-        <a class="${index === 0 ? "is-large" : ""}" href="/media/dahab/">
-          <img src="${image}" alt="${title}" width="900" height="640" loading="lazy" decoding="async">
-          <span>${label}</span>
-          <b>${title}</b>
+    ${sectionHeading("Медиа", "Как это выглядит на воде", "Посмотрите живые кадры с уроков, катания и станции. Так проще понять атмосферу, формат обучения и реальные условия на воде.")}
+    <div class="dahab-sport-water-grid">
+      ${waterPhotos.map(([image, alt], index) => `
+        <a${index === 0 ? ` class="is-large"` : ""} href="/media/dahab/" aria-label="Открыть медиа Дахаба">
+          <img src="${image}" alt="${alt}" width="1920" height="1080" loading="lazy" decoding="async">
         </a>`).join("")}
+    </div>
+    <div class="dahab-sport-water-actions">
+      <a class="button button-primary" href="/media/dahab/">Смотреть медиа</a>
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section dahab-sport-section--soft dahab-sport-reviews" id="reviews">
+  <div class="dahab-sport-inner">
+    <div class="dahab-sport-reviews__head">
+      <div>
+        <p class="eyebrow">Отзывы</p>
+        <h2>Что говорят гости</h2>
+      </div>
+      <a href="https://www.tripadvisor.com/" target="_blank" rel="noopener">144 отзыва →</a>
+    </div>
+    <div class="dahab-sport-review-track" aria-label="Отзывы гостей Vetratoria Dahab">
+      ${reviews.map(([initial, name, stars, text]) => `
+        <article class="dahab-sport-review-card">
+          <div class="dahab-sport-review-card__top">
+            <span>${initial}</span>
+            <div><strong>${name}</strong><small>${stars}</small></div>
+          </div>
+          <p>«${text}»</p>
+        </article>`).join("")}
     </div>
   </div>
 </section>
@@ -578,13 +613,7 @@ const dahabHomePage = () => {
     ["I", "Administrator", "Ira", "Душа станции: отвечает за комфорт, безопасность на воде и хорошее настроение до и после каждой сессии.", "Languages: RU · EN"],
     ["A", "Instructor", "Anya", "Отлично видит технические ошибки и помогает заложить базу, на которой ученик быстрее начинает прогрессировать.", "Languages: RU · EN"]
   ];
-  const reviews = [
-    ["B", "Boris Sizov", "★★★★★", "Очень удобно приезжать без своего снаряжения: есть все размеры крыльев и досок, оборудования хватает. Толик, Ира и Хассан — настоящие профессионалы."],
-    ["D", "Dmitrii Polishchuk", "★★★★★", "Отличная surf-станция, классная локация для выхода в море, дружелюбная команда и сильное оборудование для wingfoil. Очень рекомендую."],
-    ["O", "Olga Krasnova", "★★★★★", "Wing Center Vetratoria — магическое место. Мои первые шаги на wingfoil получились, а снаряжение подходит и новичкам, и продолжающим."],
-    ["E", "Evgeniy Kolosov", "★★★★★", "Vetratoria в Египте оставила только положительные впечатления: высокий уровень инструкторов, идеальные условия и очень дружелюбная атмосфера."],
-    ["Y", "Yuriy Tolchinskiy", "★★★★★", "Приезжал осваивать wingfoil. Довольно быстро получилось лететь на фойле и делать повороты. Спасибо Hassan за продуктивные тренировки."]
-  ];
+  const reviews = dahabReviewItems;
 
   return `
 <section class="dahab-hero">
