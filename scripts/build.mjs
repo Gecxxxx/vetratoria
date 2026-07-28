@@ -596,6 +596,208 @@ const dahabWingfoilPage = (page) => {
 </section>`.replace(/^[\t ]+$/gm, "");
 };
 
+const dahabWindsurfPage = (page) => {
+  const heroFacts = ["Обучение с нуля", "Прокат снаряжения", "Подбор паруса", "Спасательный катер"];
+  const reasons = [
+    ["Понятный старт", "Спокойная вода и инструктор рядом помогают быстро почувствовать доску, парус и направление ветра."],
+    ["Снаряжение под ветер", "Подбираем доску и парус под вес, уровень и фактические условия на воде."],
+    ["Маршрут прогресса", "После первых галсов можно перейти к поворотам, курсам, скорости и самостоятельному прокату."],
+    ["Станции рядом", "Swiss Inn и Ganet Sinai удобны для уроков, проката, хранения и спокойного выхода на воду."]
+  ];
+  const learning = [
+    ["01", "Парус на берегу", "Разбираем ветер, стойку, положение паруса, развороты и правила выхода в акваторию.", dahabRefImg("windsurf-hero.webp"), "Windsurf на Красном море в Дахабе"],
+    ["02", "Первые галсы", "Учимся стартовать, держать курс, разворачиваться и возвращаться к точке старта.", dahabRefImg("price-windsurf.webp"), "Первые галсы на windsurf"],
+    ["03", "Повороты и курс", "Отрабатываем лавировку, повороты, контроль скорости и уверенное движение в выбранную сторону.", dahabRefImg("block-windsurf.webp"), "Windsurf обучение в Дахабе"],
+    ["04", "Прокат и практика", "Когда база понятна, можно брать прокат, кататься самостоятельно и точечно добирать уроки.", dahabRefImg("swiss-inn.webp"), "Станция Swiss Inn для windsurf"]
+  ];
+  const prices = [
+    ["Урок", "Урок Windsurf", "$70", "Индивидуальное занятие с инструктором для новичков и продолжающих.", "Записаться"],
+    ["Kids", "Детский урок Windsurf", "от $55", "Легкий парус, спокойный темп и инструктор рядом.", "Записаться"],
+    ["Программа", "Программа для новичка", "от $95", "Для тех, кто приезжает научиться кататься с понятным планом.", "Подобрать программу"],
+    ["Прокат", "Прокат", "от 25$", "Для самостоятельного катания с подбором доски и паруса.", "Оставить заявку"]
+  ];
+  const waterPhotos = [
+    [dahabRefImg("windsurf-hero.webp"), "Windsurf в Дахабе"],
+    [dahabRefImg("price-windsurf.webp"), "Windsurf урок на воде"],
+    [dahabRefImg("block-windsurf.webp"), "Windsurf катание в Дахабе"],
+    [dahabRefImg("bg-swiss.webp"), "Swiss Inn windsurf station"],
+    [dahabRefImg("bg-ganet.webp"), "Ganet Sinai windsurf station"]
+  ];
+  const reviews = dahabReviewItems;
+  const faqs = [
+    ["Можно ли начать с нуля?", "Да. Начинаем с берега и простых упражнений на воде: стойка, парус, курс и разворот."],
+    ["Что входит в урок?", "Инструктор, подбор доски и паруса, объяснение зоны катания, практика на воде и обратная связь."],
+    ["Когда можно брать прокат?", "Когда вы уверенно стартуете, возвращаетесь к берегу и понимаете правила акватории. Команда подскажет подходящий комплект."],
+    ["Подходит ли windsurf детям?", "Да, для детей есть отдельный формат Windsurf Kids с легким снаряжением и спокойным темпом."],
+    ["Где проходят занятия?", "В зависимости от ветра и уровня занятия проходят на станциях Vetratoria в Дахабе, чаще Swiss Inn или Ganet Sinai."]
+  ];
+  const useful = [
+    ["/dahab/blog/windsurf/", "Windsurf", "Как начать Windsurf с нуля", dahabRefImg("windsurf-hero.webp")],
+    ["/dahab/windsurf/price/", "Цены", "Уроки, прокат и программы Windsurf", dahabRefImg("price-windsurf.webp")],
+    ["/dahab/stations/", "Станции", "Где кататься на windsurf в Дахабе", dahabRefImg("bg-swiss.webp")]
+  ];
+
+  return `
+<section class="dahab-sport-hero dahab-sport-hero--windsurf">
+  <div class="dahab-sport-hero__inner">
+    <div class="dahab-sport-hero__copy">
+      <p class="eyebrow">${escapeHtml(page.eyebrow)}</p>
+      <h1>${escapeHtml(page.title)}</h1>
+      <p>${escapeHtml(page.description)}</p>
+      <div class="dahab-sport-hero__actions">
+        <a class="button button-primary" href="/contacts/">Записаться</a>
+        <a class="button button-ghost" href="/dahab/windsurf/price/">Смотреть цены</a>
+      </div>
+      <div class="dahab-sport-hero__facts">
+        ${heroFacts.map((item) => `<span>${item}</span>`).join("")}
+      </div>
+    </div>
+    <figure class="dahab-sport-hero__media">
+      <img src="${page.image}" alt="Windsurf в Дахабе на Красном море" width="1600" height="1067" loading="eager" decoding="async" fetchpriority="high">
+    </figure>
+  </div>
+</section>
+
+<section class="dahab-sport-section">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Локация", "Почему Дахаб подходит для Windsurf", "В Дахабе удобно начать с нуля и продолжать прогресс: понятная акватория, стабильный ветер, разные станции и подбор комплекта под условия.")}
+    <figure class="dahab-sport-panorama">
+      <img src="${dahabRefImg("ganet-sinai.webp")}" alt="Акватория Дахаба для windsurf" width="1600" height="1067" loading="lazy" decoding="async">
+    </figure>
+    <div class="dahab-sport-feature-grid">
+      ${reasons.map(([title, text], index) => `<article><span>0${index + 1}</span><h3>${title}</h3><p>${text}</p></article>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section dahab-sport-section--soft">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Обучение", "Как проходит обучение Windsurf", "Идем от простого управления парусом к уверенным галсам, поворотам и самостоятельной практике. Без лишней теории, но с понятной последовательностью.")}
+    <div class="dahab-sport-process">
+      ${learning.map(([number, title, text, image, alt]) => `
+        <article>
+          <img src="${image}" alt="${alt}" width="1600" height="1067" loading="lazy" decoding="async">
+          <div><span>${number}</span><h3>${title}</h3><p>${text}</p></div>
+        </article>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Цены", "Цены на Windsurf", "Можно взять разовый урок, детское занятие, прокат или собрать программу на несколько дней под ваши даты и уровень.")}
+    <div class="dahab-sport-price-grid">
+      ${prices.map(([label, title, value, text, cta]) => `
+        <article class="dahab-sport-price-card">
+          <small>${label}</small>
+          <h3>${title}</h3>
+          <b>${value}</b>
+          <p>${text}</p>
+          <a class="button button-primary" href="/contacts/">${cta}</a>
+        </article>`).join("")}
+    </div>
+    <div class="dahab-sport-price-actions">
+      <a class="button button-ghost" href="/dahab/windsurf/price/">Все цены Windsurf</a>
+      <a class="button button-ghost" href="/dahab/price/#windsurf-prices">Общий прайс Дахаба</a>
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section dahab-sport-section--soft">
+  <div class="dahab-sport-inner dahab-sport-safety">
+    <div class="dahab-sport-safety__copy">
+      <p class="eyebrow">Безопасность</p>
+      <h2>Безопасность на воде</h2>
+      <p>Перед выходом разбираем ветер, границы зоны, правила возврата и подходящий комплект. Инструктор следит за стартом, задачами и прогрессом на воде.</p>
+      <div class="dahab-sport-safety__list">
+        <span>Инструктор рядом на уроке</span>
+        <span>Доска и парус под уровень</span>
+        <span>Понятная зона катания и rescue</span>
+      </div>
+      <a class="button button-primary" href="/dahab/safety/">Подробнее</a>
+    </div>
+    <div class="dahab-sport-safety__media">
+      <img src="${wingfoilSectionImg("rescue-boats.webp")}" alt="Rescue boats на берегу станции Vetratoria" width="1920" height="1080" loading="lazy" decoding="async">
+      <img src="${dahabRefImg("swiss-inn.webp")}" alt="Windsurf станция Vetratoria в Дахабе" width="1600" height="1067" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Медиа", "Windsurf на воде", "Кадры с уроков, проката и станций помогают заранее понять формат, воду и атмосферу Дахаба.")}
+    <div class="dahab-sport-water-grid">
+      ${waterPhotos.map(([image, alt], index) => `
+        <a${index === 0 ? ` class="is-large"` : ""} href="/media/dahab/" aria-label="Открыть медиа Дахаба">
+          <img src="${image}" alt="${alt}" width="1600" height="1067" loading="lazy" decoding="async">
+        </a>`).join("")}
+    </div>
+    <div class="dahab-sport-water-actions">
+      <a class="button button-primary" href="/media/dahab/">Смотреть медиа</a>
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section dahab-sport-section--soft dahab-sport-reviews" id="reviews">
+  <div class="dahab-sport-inner">
+    <div class="dahab-sport-reviews__head">
+      <div>
+        <p class="eyebrow">Отзывы</p>
+        <h2>Что говорят гости</h2>
+      </div>
+      <a href="https://www.tripadvisor.com/" target="_blank" rel="noopener">144 отзыва →</a>
+    </div>
+    <div class="dahab-sport-review-track" aria-label="Отзывы гостей Vetratoria Dahab">
+      ${reviews.map(([initial, name, stars, text]) => `
+        <article class="dahab-sport-review-card">
+          <div class="dahab-sport-review-card__top">
+            <span>${initial}</span>
+            <div><strong>${name}</strong><small>${stars}</small></div>
+          </div>
+          <p>«${text}»</p>
+        </article>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section dahab-sport-section--soft">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("FAQ", "Частые вопросы", "Короткие ответы перед первым уроком windsurf в Дахабе.")}
+    <div class="dahab-sport-faq">
+      ${faqs.map(([question, answer], index) => `<details ${index === 0 ? "open" : ""}><summary>${question}</summary><p>${answer}</p></details>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Материалы", "Полезное о Windsurf", "Страницы, которые помогают выбрать формат, станцию и понять стоимость до поездки.")}
+    <div class="dahab-sport-useful">
+      ${useful.map(([href, label, title, image]) => `
+        <a href="${href}">
+          <img src="${image}" alt="${title}" width="760" height="520" loading="lazy" decoding="async">
+          <span>${label}</span>
+          <h3>${title}</h3>
+          <em>Открыть</em>
+        </a>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-cta">
+  <img src="${page.image}" alt="Windsurf в Дахабе на воде" width="1600" height="1067" loading="lazy" decoding="async">
+  <div class="dahab-sport-cta__inner">
+    <p class="eyebrow">Заявка</p>
+    <h2>Хотите попробовать Windsurf в Дахабе?</h2>
+    <p>Напишите даты, уровень и цель поездки. Подберем урок, прокат или программу на несколько дней.</p>
+    <div>
+      <a class="button button-primary" href="/contacts/">Написать нам</a>
+      <a class="button button-ghost" href="/dahab/windsurf/price/">Цены</a>
+    </div>
+  </div>
+</section>`.replace(/^[\t ]+$/gm, "");
+};
+
 const dahabHomePage = () => {
   const priceCards = [
     ["Wingfoil", "Урок", "70$", "Инструктор и комплект под уровень.", dahabRefImg("price-wingfoil.webp"), "/dahab/wingfoil/price/"],
@@ -799,6 +1001,7 @@ const countryPage = (page) => {
 
 const sportPage = (page) => {
   if (page.country === "dahab" && page.sport === "wingfoil") return dahabWingfoilPage(page);
+  if (page.country === "dahab" && page.sport === "windsurf") return dahabWindsurfPage(page);
 
   const country = countriesByKey[page.country];
   const sport = site.sports[page.sport];
