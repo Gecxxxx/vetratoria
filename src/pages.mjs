@@ -6,7 +6,7 @@ const dahabSportOverrides = {
     title: "Wingfoil в Дахабе",
     description:
       "Первые полеты на фойле, Wing + SUP, Wing + Foil, foil boat и обучение на станции Vetratoria в Дахабе.",
-    image: dahabImg("wingfoil-hero.webp")
+    image: "/assets/img/final/wingfoil/sections/wingfoil-ride.webp"
   }
 };
 
