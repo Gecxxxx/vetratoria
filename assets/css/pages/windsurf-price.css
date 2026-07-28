@@ -61,24 +61,6 @@
   line-height: 1.45;
 }
 
-.windsurf-price-quick {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  max-width: 850px;
-  margin-top: 22px;
-}
-
-.windsurf-price-quick span {
-  padding: 12px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(10, 9, 8, 0.72);
-  color: var(--white);
-  font-size: 12px;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
 .windsurf-price-hero__actions,
 .windsurf-price-contact__actions {
   display: flex;
@@ -256,7 +238,4 @@
     font-size: 34px;
   }
 
-  .windsurf-price-quick span {
-    padding: 10px 12px;
-  }
 }
