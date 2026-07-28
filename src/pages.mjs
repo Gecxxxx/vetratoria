@@ -321,6 +321,7 @@ for (const country of site.countries) {
     const sport = site.sports[sportKey];
     const sportOverride = country.key === "dahab" ? dahabSportOverrides[sportKey] : null;
     const isDahabWingfoilPrice = country.key === "dahab" && sportKey === "wingfoil";
+    const isDahabWindsurfPrice = country.key === "dahab" && sportKey === "windsurf";
     pages.push({
       path: `/${country.key}/${sportKey}/`,
       kind: "sport",
@@ -337,11 +338,21 @@ for (const country of site.countries) {
       country: country.key,
       sport: sportKey,
       eyebrow: `${sport.title} · цены`,
-      title: isDahabWingfoilPrice ? "Цены Wingfoil в Дахабе" : `${sport.title}: цены ${country.title}`,
+      title: isDahabWingfoilPrice
+        ? "Цены Wingfoil в Дахабе"
+        : isDahabWindsurfPrice
+          ? "Цены Windsurf в Дахабе"
+          : `${sport.title}: цены ${country.title}`,
       description: isDahabWingfoilPrice
         ? "Аренда комплектов, уроки, отдельные части оборудования и пакеты Wingfoil в Дахабе."
-        : `Форматы занятий, курсы и самостоятельная практика: ${sport.lead.toLowerCase()}`,
-      image: isDahabWingfoilPrice ? "/assets/img/final/wingfoil/hero.webp" : sport.hero
+        : isDahabWindsurfPrice
+          ? "Полный прайс Windsurf в Дахабе: обучение, индивидуальные занятия, прокат, скидки, гидрофойл и хранение."
+          : `Форматы занятий, курсы и самостоятельная практика: ${sport.lead.toLowerCase()}`,
+      image: isDahabWingfoilPrice
+        ? "/assets/img/final/wingfoil/hero.webp"
+        : isDahabWindsurfPrice
+          ? "/assets/img/final/windsurf/hero.webp"
+          : sport.hero
     });
   }
 }

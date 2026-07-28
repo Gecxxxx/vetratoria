@@ -1,0 +1,262 @@
+/* Dahab Windsurf full price page */
+
+.windsurf-price-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 470px;
+  background: #11100f;
+}
+
+.windsurf-price-hero > img,
+.windsurf-price-hero__shade {
+  position: absolute;
+  inset: 0;
+}
+
+.windsurf-price-hero > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 46%;
+}
+
+.windsurf-price-hero__shade {
+  background:
+    linear-gradient(90deg, rgba(6, 6, 6, 0.88), rgba(6, 6, 6, 0.56) 44%, rgba(6, 6, 6, 0.18)),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.66));
+}
+
+.windsurf-price-hero__content,
+.windsurf-price-inner {
+  width: min(100% - var(--page-gutter), 980px);
+  margin: 0 auto;
+}
+
+.windsurf-price-hero__content {
+  position: relative;
+  z-index: 1;
+  padding: 100px 0 72px;
+}
+
+.windsurf-price-hero h1,
+.windsurf-price-heading h2,
+.windsurf-price-contact h2 {
+  margin: 0;
+  color: var(--white);
+  font-weight: 900;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.windsurf-price-hero h1 {
+  max-width: 700px;
+  font-size: clamp(42px, 5.1vw, 76px);
+}
+
+.windsurf-price-hero p:not(.eyebrow) {
+  max-width: 720px;
+  margin: 18px 0 0;
+  color: #e5ded8;
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+.windsurf-price-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 850px;
+  margin-top: 22px;
+}
+
+.windsurf-price-quick span {
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(10, 9, 8, 0.72);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.windsurf-price-hero__actions,
+.windsurf-price-contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.windsurf-price-section {
+  padding: 88px 0;
+  background: var(--bg);
+}
+
+.windsurf-price-section--soft {
+  background: #14110f;
+}
+
+.windsurf-price-section--dark {
+  background: #0b0a09;
+}
+
+.windsurf-price-heading {
+  max-width: 780px;
+  margin-bottom: 26px;
+}
+
+.windsurf-price-heading h2,
+.windsurf-price-contact h2 {
+  font-size: clamp(34px, 4.3vw, 58px);
+}
+
+.windsurf-price-heading p:not(.eyebrow),
+.windsurf-price-contact p:not(.eyebrow),
+.windsurf-price-copy,
+.windsurf-price-notes p,
+.windsurf-price-notes li {
+  color: #d9d2cc;
+  line-height: 1.45;
+}
+
+.windsurf-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: #100f0e;
+}
+
+.windsurf-price-table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+  color: #f2eee9;
+  font-size: 14px;
+}
+
+.windsurf-price-table--wide {
+  min-width: 1080px;
+}
+
+.windsurf-price-table th,
+.windsurf-price-table td {
+  padding: 13px 14px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: left;
+  vertical-align: top;
+}
+
+.windsurf-price-table th {
+  background: #37170f;
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.windsurf-price-table tbody tr:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.windsurf-price-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.windsurf-price-subtitle {
+  margin: 34px 0 12px;
+  color: var(--white);
+  font-size: clamp(22px, 2.2vw, 32px);
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.windsurf-price-copy {
+  margin: 14px 0 18px;
+}
+
+.windsurf-price-notes {
+  margin-top: 14px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  background: #171210;
+}
+
+.windsurf-price-notes p,
+.windsurf-price-notes ul {
+  margin: 0;
+  font-size: 13px;
+}
+
+.windsurf-price-notes p + p,
+.windsurf-price-notes p + ul,
+.windsurf-price-notes ul + p {
+  margin-top: 8px;
+}
+
+.windsurf-price-notes ul {
+  padding-left: 18px;
+}
+
+.windsurf-price-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.windsurf-price-contact {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 0;
+  border: 1px solid var(--line);
+  background: #171210;
+}
+
+.windsurf-price-contact figure {
+  min-height: 280px;
+  margin: 0;
+  overflow: hidden;
+}
+
+.windsurf-price-contact img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.windsurf-price-contact > div {
+  padding: 40px;
+}
+
+@media (max-width: 900px) {
+  .windsurf-price-hero__content,
+  .windsurf-price-inner {
+    width: min(100% - var(--page-gutter-mobile), 980px);
+  }
+
+  .windsurf-price-hero__content {
+    padding: 82px 0 64px;
+  }
+
+  .windsurf-price-section {
+    padding: 58px 0;
+  }
+
+  .windsurf-price-mini-grid,
+  .windsurf-price-contact {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .windsurf-price-hero h1,
+  .windsurf-price-heading h2,
+  .windsurf-price-contact h2 {
+    font-size: 34px;
+  }
+
+  .windsurf-price-quick span {
+    padding: 10px 12px;
+  }
+}
