@@ -64,7 +64,7 @@ export const site = {
       tone: "волна, стабильный бриз, длинная береговая линия и активная станционная жизнь",
       sports: ["windsurf", "wingfoil", "kite"],
       extras: [
-        { title: "Цены", href: "/vietnam/price/" },
+        { title: "Цены Windsurf", href: "/vietnam/windsurf/price/" },
         { title: "Команда", href: "/vietnam/team/" },
         { title: "Блог", href: "/vietnam/blog/" }
       ]
@@ -83,7 +83,7 @@ export const site = {
       tone: "коса, мелкая вода, обучение с берега, семейные поездки и тренировки на несколько дней",
       sports: ["windsurf", "wingfoil", "kite"],
       extras: [
-        { title: "Цены", href: "/russia/price/" },
+        { title: "Цены Windsurf", href: "/russia/windsurf/price/" },
         { title: "Команда", href: "/russia/team/" },
         { title: "Блог", href: "/russia/blog/" }
       ]
@@ -308,16 +308,6 @@ for (const country of site.countries) {
   });
 
   pages.push({
-    path: `/${country.key}/price/`,
-    kind: "price",
-    country: country.key,
-    eyebrow: `${country.region} · цены`,
-    title: `Цены ${country.title}`,
-    description: `Уроки, курсы, прокат, хранение и подбор формата под ${country.tone}.`,
-    image: country.hero
-  });
-
-  pages.push({
     path: `/${country.key}/team/`,
     kind: "team",
     country: country.key,
@@ -330,6 +320,7 @@ for (const country of site.countries) {
   for (const sportKey of country.sports) {
     const sport = site.sports[sportKey];
     const sportOverride = country.key === "dahab" ? dahabSportOverrides[sportKey] : null;
+    const isDahabWingfoilPrice = country.key === "dahab" && sportKey === "wingfoil";
     pages.push({
       path: `/${country.key}/${sportKey}/`,
       kind: "sport",
@@ -346,9 +337,11 @@ for (const country of site.countries) {
       country: country.key,
       sport: sportKey,
       eyebrow: `${sport.title} · цены`,
-      title: `${sport.title}: цены ${country.title}`,
-      description: `Форматы занятий, курсы и самостоятельная практика: ${sport.lead.toLowerCase()}`,
-      image: sport.hero
+      title: isDahabWingfoilPrice ? "Цены Wingfoil в Дахабе" : `${sport.title}: цены ${country.title}`,
+      description: isDahabWingfoilPrice
+        ? "Аренда комплектов, уроки, отдельные части оборудования и пакеты Wingfoil в Дахабе."
+        : `Форматы занятий, курсы и самостоятельная практика: ${sport.lead.toLowerCase()}`,
+      image: isDahabWingfoilPrice ? "/assets/img/final/wingfoil/hero.webp" : sport.hero
     });
   }
 }

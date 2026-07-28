@@ -1,0 +1,228 @@
+/* Dahab Wingfoil full price page */
+
+.wingfoil-price-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 470px;
+  background: #11100f;
+}
+
+.wingfoil-price-hero > img,
+.wingfoil-price-hero__shade {
+  position: absolute;
+  inset: 0;
+}
+
+.wingfoil-price-hero > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.wingfoil-price-hero__shade {
+  background:
+    linear-gradient(90deg, rgba(6, 6, 6, 0.86), rgba(6, 6, 6, 0.58) 38%, rgba(6, 6, 6, 0.18)),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.62));
+}
+
+.wingfoil-price-hero__content,
+.wingfoil-price-inner {
+  width: min(100% - var(--page-gutter), 980px);
+  margin: 0 auto;
+}
+
+.wingfoil-price-hero__content {
+  position: relative;
+  z-index: 1;
+  padding: 118px 0 82px;
+}
+
+.wingfoil-price-hero h1,
+.wingfoil-price-heading h2,
+.wingfoil-price-contact h2 {
+  margin: 0;
+  color: var(--white);
+  font-weight: 900;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.wingfoil-price-hero h1 {
+  max-width: 680px;
+  font-size: clamp(42px, 5.2vw, 76px);
+}
+
+.wingfoil-price-hero p:not(.eyebrow) {
+  max-width: 720px;
+  margin: 18px 0 0;
+  color: #e4ded9;
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+.wingfoil-price-hero__actions,
+.wingfoil-price-contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.wingfoil-price-section {
+  padding: 88px 0;
+  background: var(--bg);
+}
+
+.wingfoil-price-section--soft {
+  background: #14110f;
+}
+
+.wingfoil-price-section--dark {
+  background: #0b0a09;
+}
+
+.wingfoil-price-heading {
+  max-width: 760px;
+  margin-bottom: 26px;
+}
+
+.wingfoil-price-heading h2,
+.wingfoil-price-contact h2 {
+  font-size: clamp(34px, 4.3vw, 58px);
+}
+
+.wingfoil-price-heading p:not(.eyebrow),
+.wingfoil-price-contact p:not(.eyebrow),
+.wingfoil-price-copy,
+.wingfoil-price-notes p {
+  color: #d9d2cc;
+  line-height: 1.45;
+}
+
+.wingfoil-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: #100f0e;
+}
+
+.wingfoil-price-table {
+  width: 100%;
+  min-width: 680px;
+  border-collapse: collapse;
+  color: #f2eee9;
+  font-size: 14px;
+}
+
+.wingfoil-price-table th,
+.wingfoil-price-table td {
+  padding: 13px 14px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: left;
+  vertical-align: top;
+}
+
+.wingfoil-price-table th {
+  background: #37170f;
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.wingfoil-price-table tbody tr:nth-child(odd):not(.table-section) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.wingfoil-price-table tbody tr:nth-child(even):not(.table-section) {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.wingfoil-price-table .table-section td {
+  background: var(--orange);
+  color: var(--white);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.wingfoil-price-subtitle {
+  margin: 34px 0 12px;
+  color: var(--white);
+  font-size: clamp(22px, 2.2vw, 32px);
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.wingfoil-price-copy {
+  margin: 14px 0 0;
+}
+
+.wingfoil-price-notes {
+  margin-top: 14px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  background: #171210;
+}
+
+.wingfoil-price-notes p {
+  margin: 0;
+  font-size: 13px;
+}
+
+.wingfoil-price-notes p + p {
+  margin-top: 8px;
+}
+
+.wingfoil-price-contact {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 0;
+  border: 1px solid var(--line);
+  background: #171210;
+}
+
+.wingfoil-price-contact figure {
+  min-height: 280px;
+  margin: 0;
+  overflow: hidden;
+}
+
+.wingfoil-price-contact img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wingfoil-price-contact > div {
+  padding: 40px;
+}
+
+@media (max-width: 900px) {
+  .wingfoil-price-hero__content,
+  .wingfoil-price-inner {
+    width: min(100% - var(--page-gutter-mobile), 980px);
+  }
+
+  .wingfoil-price-hero__content {
+    padding: 82px 0 64px;
+  }
+
+  .wingfoil-price-section {
+    padding: 58px 0;
+  }
+
+  .wingfoil-price-contact {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .wingfoil-price-hero h1,
+  .wingfoil-price-heading h2,
+  .wingfoil-price-contact h2 {
+    font-size: 34px;
+  }
+}

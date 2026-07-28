@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, rm, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { allPages, articles, countriesByKey, site } from "../src/pages.mjs";
@@ -109,7 +109,7 @@ const sectionDropdown = (label, active, items) => `
 
 const countrySectionNav = (page, country) => {
   const priceSportKeys = country.key === "dahab" ? country.sports.filter((sportKey) => sportKey !== "windsurf-kids") : country.sports;
-  const pricePaths = [`/${country.key}/price/`, ...priceSportKeys.map((sportKey) => `/${country.key}/${sportKey}/price/`)];
+  const pricePaths = priceSportKeys.map((sportKey) => `/${country.key}/${sportKey}/price/`);
   const schoolItems = schoolDropdown(country);
   const schoolPaths = schoolItems.map((item) => item.href).filter((href) => href.startsWith(`/${country.key}/`));
   const baseLinks = country.key === "dahab"
@@ -118,7 +118,6 @@ const countrySectionNav = (page, country) => {
         `<a class="${sectionLinkClass(countrySectionActive(page, ["/dahab/wingfoil/"]))}" href="/dahab/wingfoil/">Wingfoil</a>`,
         `<a class="${sectionLinkClass(countrySectionActive(page, ["/dahab/windsurf/"]))}" href="/dahab/windsurf/">Windsurf</a>`,
         sectionDropdown("Цены", countrySectionActive(page, pricePaths), [
-          { label: "Все цены", href: "/dahab/price/" },
           { label: "Wingfoil", href: "/dahab/wingfoil/price/" },
           { label: "Windsurf", href: "/dahab/windsurf/price/" }
         ]),
@@ -129,7 +128,10 @@ const countrySectionNav = (page, country) => {
         `<a class="${sectionLinkClass(countrySectionActive(page, [`/${country.key}/windsurf/`]))}" href="/${country.key}/windsurf/">Windsurf</a>`,
         `<a class="${sectionLinkClass(countrySectionActive(page, [`/${country.key}/wingfoil/`]))}" href="/${country.key}/wingfoil/">Wingfoil</a>`,
         `<a class="${sectionLinkClass(countrySectionActive(page, [`/${country.key}/kite/`]))}" href="/${country.key}/kite/">Kite</a>`,
-        `<a class="${sectionLinkClass(countrySectionActive(page, pricePaths))}" href="/${country.key}/price/">Цены</a>`
+        sectionDropdown("Цены", countrySectionActive(page, pricePaths), priceSportKeys.map((sportKey) => ({
+          label: site.sports[sportKey].nav,
+          href: `/${country.key}/${sportKey}/price/`
+        })))
       ];
 
   return `
@@ -245,7 +247,7 @@ const metaDescriptionForPage = (page) =>
 const metaImageForPage = (page) =>
   page.path === "/dahab/" ? "/assets/img/dahab-ref/ganet-sinai.webp" : page.image || site.slider[0];
 
-const ASSET_VERSION = "20260728-dahab-facts";
+const ASSET_VERSION = "20260728-wingfoil-price";
 const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
 
 const layout = (page, main) => `<!doctype html>
@@ -495,8 +497,7 @@ const dahabWingfoilPage = (page) => {
         </article>`).join("")}
     </div>
     <div class="dahab-sport-price-actions">
-      <a class="button button-ghost" href="/dahab/wingfoil/price/">Все цены Wingfoil</a>
-      <a class="button button-ghost" href="/dahab/price/#wingfoil-prices">Общий прайс Дахаба</a>
+      <a class="button button-ghost" href="/dahab/wingfoil/price/">Цены Wingfoil</a>
     </div>
   </div>
 </section>
@@ -697,8 +698,7 @@ const dahabWindsurfPage = (page) => {
         </article>`).join("")}
     </div>
     <div class="dahab-sport-price-actions">
-      <a class="button button-ghost" href="/dahab/windsurf/price/">Все цены Windsurf</a>
-      <a class="button button-ghost" href="/dahab/price/#windsurf-prices">Общий прайс Дахаба</a>
+      <a class="button button-ghost" href="/dahab/windsurf/price/">Цены Windsurf</a>
     </div>
   </div>
 </section>
@@ -833,7 +833,7 @@ const dahabHomePage = () => {
       <a class="button button-primary" href="/contacts/">Написать нам</a>
       <a class="button button-ghost" href="/dahab/wingfoil/">Wingfoil</a>
       <a class="button button-ghost" href="/dahab/windsurf/">Windsurf</a>
-      <a class="button button-ghost" href="/dahab/price/">Цены</a>
+      <a class="button button-ghost" href="/dahab/wingfoil/price/">Цены</a>
     </div>
   </div>
 </section>
@@ -897,7 +897,7 @@ const dahabHomePage = () => {
     </div>
     <div class="price-help-cta">
       <div><b>Не знаете, с чего начать?</b><p>Напишите даты, уровень и спорт — подберём формат, станцию и снаряжение.</p></div>
-      <nav><a href="/contacts/">Оставить заявку</a><a href="/dahab/price/">Смотреть полный прайс</a></nav>
+      <nav><a href="/contacts/">Оставить заявку</a><a href="/dahab/wingfoil/price/">Wingfoil цены</a><a href="/dahab/windsurf/price/">Windsurf цены</a></nav>
     </div>
   </div>
 </section>
@@ -937,7 +937,7 @@ const dahabHomePage = () => {
     <section class="station-atmosphere" aria-label="Атмосфера станции Vetratoria Dahab">
       <a class="station-atmosphere__card station-atmosphere__card--main" href="/dahab/wingfoil/"><img src="${dahabRefImg("block-wingfoil.webp")}" alt="Wingfoil" loading="lazy" decoding="async"><span>Wingfoil</span><strong>Полёты над водой</strong><em>Крыло, фойл и быстрый прогресс</em></a>
       <a class="station-atmosphere__card" href="/dahab/windsurf/"><img src="${dahabRefImg("block-windsurf.webp")}" alt="Windsurf" loading="lazy" decoding="async"><span>Windsurf</span><strong>Парус и ветер</strong><em>Уроки, прокат и практика</em></a>
-      <a class="station-atmosphere__card" href="/dahab/price/"><img src="${dahabRefImg("block-station.webp")}" alt="Станция Vetratoria" loading="lazy" decoding="async"><span>Цены</span><strong>Форматы без пакетов</strong><em>Формат и расчёт по фактическому объёму</em></a>
+      <a class="station-atmosphere__card" href="/dahab/wingfoil/price/"><img src="${dahabRefImg("block-station.webp")}" alt="Станция Vetratoria" loading="lazy" decoding="async"><span>Цены</span><strong>Wingfoil прайс</strong><em>Комплекты, уроки, пакеты и хранение</em></a>
       <div class="station-atmosphere__panel"><span>Атмосфера станции</span><h3>Станция живёт между выходами на воду</h3><p>Здесь выбирают комплект, смотрят ветер, обсуждают попытки и возвращаются на воду снова. Не только урок — атмосфера Дахаба и команды рядом.</p><div><small>вода</small><small>берег</small><small>прогресс</small></div><a href="/media/dahab/">Смотреть медиа Дахаба →</a></div>
     </section>
     <section class="trust-slider trust-slider--reviews" aria-label="Отзывы гостей Vetratoria Dahab">
@@ -974,7 +974,8 @@ const dahabHomePage = () => {
 const countryPage = (page) => {
   const country = countriesByKey[page.country];
   if (country.key === "dahab") return dahabHomePage(page);
-  const actions = `<a class="button button-primary" href="/${country.key}/price/">Цены</a><a class="button button-ghost" href="/contacts/">Написать нам</a>`;
+  const primaryPricePath = `/${country.key}/${country.sports[0]}/price/`;
+  const actions = `<a class="button button-primary" href="${primaryPricePath}">Цены</a><a class="button button-ghost" href="/contacts/">Написать нам</a>`;
   const sports = country.sports.map((key) => site.sports[key]);
   return `${hero(page, actions)}
   <section class="content-section">
@@ -985,7 +986,7 @@ const countryPage = (page) => {
           const sport = site.sports[key];
           return `<a class="link-card" href="/${country.key}/${key}/"><small>${sport.nav}</small><h3>${sport.subtitle}</h3><p>${sport.lead}</p><em>Открыть</em></a>`;
         }).join("")}
-        <a class="link-card link-card--accent" href="/${country.key}/price/"><small>Price</small><h3>Цены и форматы</h3><p>Уроки, курсы, прокат, хранение и подбор программы.</p><em>Смотреть цены</em></a>
+        <a class="link-card link-card--accent" href="${primaryPricePath}"><small>Price</small><h3>Цены и форматы</h3><p>Уроки, курсы, прокат, хранение и подбор программы.</p><em>Смотреть цены</em></a>
         ${country.extras.map((item) => `<a class="link-card" href="${item.href}"><small>${country.nav}</small><h3>${item.title}</h3><p>Подробности направления, которые помогают спокойно выйти на воду.</p><em>Перейти</em></a>`).join("")}
       </div>
     </div>
@@ -1039,7 +1040,243 @@ const priceRows = (sportTitle = "Спорт") => [
   ["Хранение", "день / месяц", "станция и доступ к инфраструктуре", "по запросу"]
 ];
 
+const dahabWingfoilPricePage = (page) => `
+<section class="wingfoil-price-hero">
+  <img src="/assets/img/final/wingfoil/hero.webp" alt="Цены Wingfoil в Дахабе" width="1600" height="1067" fetchpriority="high">
+  <div class="wingfoil-price-hero__shade"></div>
+  <div class="wingfoil-price-hero__content">
+    <p class="eyebrow">Египет · Дахаб · Wingfoil</p>
+    <h1>Цены Wingfoil в Дахабе</h1>
+    <p>Полный прайс: аренда комплектов, уроки винга, фойл за лодкой, Wing + SUP, Wing + Foil, отдельная аренда крыла и доски, обучающие пакеты, интенсив-пакеты, страховка и хранение.</p>
+    <div class="wingfoil-price-hero__actions">
+      <a class="button button-primary" href="#rental">Аренда</a>
+      <a class="button button-primary" href="#lessons">Уроки</a>
+      <a class="button button-primary" href="#parts">Отдельные части</a>
+      <a class="button button-primary" href="#packages">Пакеты</a>
+      <a class="button button-ghost" href="#application">Подобрать формат</a>
+    </div>
+  </div>
+</section>
+
+<section class="wingfoil-price-section wingfoil-price-section--soft" id="rental">
+  <div class="wingfoil-price-inner">
+    <header class="wingfoil-price-heading">
+      <p class="eyebrow">Wingfoil · аренда</p>
+      <h2>Аренда комплектов для винг-сёрфинга</h2>
+      <p>Комплект и категория подбираются под уровень, вес, ветер и задачу.</p>
+    </header>
+    <div class="wingfoil-table-wrap">
+      <table class="wingfoil-price-table">
+        <thead>
+          <tr><th rowspan="2">Время аренды</th><th colspan="3">Комплект для винг-сёрфинга</th><th colspan="3">Продвинутый комплект</th></tr>
+          <tr><th>Винг + SUP<br>Аренда ($)</th><th>Винг + Фойл<br>Аренда ($)</th><th>Страховка* ($)</th><th>Золотой винг или карбоновая доска<br>Аренда ($)</th><th>Золотой винг + карбоновая доска<br>Аренда ($)</th><th>Страховка* ($)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1 час</td><td>25</td><td>45</td><td>10</td><td>55</td><td>65</td><td>20</td></tr>
+          <tr class="table-section"><td colspan="7">Аренда по дням</td></tr>
+          <tr><td>1 день</td><td>—</td><td>95</td><td>25</td><td>125</td><td>145</td><td>30</td></tr>
+          <tr><td>2 дня</td><td>—</td><td>175</td><td>30</td><td>220</td><td>255</td><td>45</td></tr>
+          <tr><td>3 дня</td><td>—</td><td>220</td><td>35</td><td>280</td><td>320</td><td>55</td></tr>
+          <tr><td>4 дня</td><td>—</td><td>255</td><td>40</td><td>325</td><td>375</td><td>60</td></tr>
+          <tr><td>5 дней</td><td>—</td><td>290</td><td>45</td><td>370</td><td>425</td><td>65</td></tr>
+          <tr><td>6 дней</td><td>—</td><td>315</td><td>50</td><td>405</td><td>465</td><td>70</td></tr>
+          <tr><td>7 дней</td><td>—</td><td>355</td><td>55</td><td>425</td><td>485</td><td>75</td></tr>
+          <tr><td>Доп. день</td><td>—</td><td>50</td><td>5</td><td>60</td><td>70</td><td>10</td></tr>
+          <tr><td>Смена категории / день</td><td></td><td></td><td></td><td>20</td><td>25</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="wingfoil-price-copy">Лодочная поддержка: $10</p>
+
+    <h3 class="wingfoil-price-subtitle">Хранение wingfoil-оборудования</h3>
+    <div class="wingfoil-table-wrap">
+      <table class="wingfoil-price-table">
+        <thead><tr><th>Период хранения</th><th>Цена ($)</th></tr></thead>
+        <tbody>
+          <tr><td>1 неделя</td><td>180</td></tr>
+          <tr><td>10 дней</td><td>200</td></tr>
+          <tr><td>2 недели</td><td>240</td></tr>
+          <tr><td>1 месяц</td><td>300</td></tr>
+          <tr><td>Следующий месяц</td><td>140</td></tr>
+          <tr><td>1 год</td><td>800</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="wingfoil-price-notes"><p>Цена за один комплект: 1 доска + 3 винга.</p></div>
+
+    <h3 class="wingfoil-price-subtitle">Дополнительно доступно в аренду</h3>
+    <div class="wingfoil-table-wrap">
+      <table class="wingfoil-price-table">
+        <thead><tr><th>Оборудование</th><th>Цена ($)</th></tr></thead>
+        <tbody>
+          <tr><td>Аренда SUP — 1 час / 1 день</td><td>10 / 25</td></tr>
+          <tr><td>Гидрокостюм — 1 день</td><td>5</td></tr>
+          <tr><td>Шлем, защитный жилет* *при наличии</td><td>Входит в аренду</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="wingfoil-price-section" id="lessons">
+  <div class="wingfoil-price-inner">
+    <header class="wingfoil-price-heading">
+      <p class="eyebrow">Wingfoil · уроки</p>
+      <h2>Уроки и часовые форматы</h2>
+      <p>Для старта можно идти через Wing + SUP и фойл за лодкой, дальше — Wing + Foil и самостоятельная практика.</p>
+    </header>
+
+    <h3 class="wingfoil-price-subtitle">Уроки винга (винг + доска + инструктор)</h3>
+    <div class="wingfoil-table-wrap">
+      <table class="wingfoil-price-table">
+        <thead><tr><th>Длительность урока</th><th>Цена ($)</th></tr></thead>
+        <tbody><tr><td>1 час — Индивидуальный</td><td>70</td></tr><tr><td>1 час — Групповой* (за человека)</td><td>55</td></tr></tbody>
+      </table>
+    </div>
+    <div class="wingfoil-price-notes"><p>*2–3 человека в группе</p></div>
+
+    <h3 class="wingfoil-price-subtitle">Уроки фойла за лодкой (фойл + лодка + инструктор)</h3>
+    <div class="wingfoil-table-wrap">
+      <table class="wingfoil-price-table">
+        <thead><tr><th>Длительность урока</th><th>Цена ($)</th></tr></thead>
+        <tbody><tr><td>30 минут — Индивидуально</td><td>60</td></tr></tbody>
+      </table>
+    </div>
+
+    <h3 class="wingfoil-price-subtitle">Аренда винга (винг & доска)</h3>
+    <div class="wingfoil-table-wrap">
+      <table class="wingfoil-price-table">
+        <thead><tr><th>Время аренды</th><th>Цена ($)</th></tr></thead>
+        <tbody><tr><td>1 час — Винг & SUP*</td><td>25</td></tr><tr><td>1 час — Винг & Фойл & Шлем*</td><td>45</td></tr></tbody>
+      </table>
+    </div>
+    <div class="wingfoil-price-notes">
+      <p>*лодка +$10</p>
+      <p>*Страховка — разовый, необязательный и невозвратный платёж. Она покрывает возможный ремонт, но не полную потерю. Не покрывает ущерб при столкновении по вине арендатора и утрату оборудования — будьте аккуратны у берега и рифов!</p>
+      <p>«Семейная аренда» — когда один комплект используют несколько гостей — стоит на 40% дороже.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wingfoil-price-section wingfoil-price-section--soft" id="parts">
+  <div class="wingfoil-price-inner">
+    <header class="wingfoil-price-heading">
+      <p class="eyebrow">Wingfoil · отдельные части</p>
+      <h2>Аренда только винга или только доски</h2>
+      <p>Скидки клуба Vetratoria не распространяются на аренду отдельных частей комплекта wingfoil.</p>
+    </header>
+
+    <h3 class="wingfoil-price-subtitle">Аренда винга (только винг)</h3>
+    <div class="wingfoil-table-wrap">
+      <table class="wingfoil-price-table">
+        <thead><tr><th>Время аренды</th><th>Обычный</th><th>Aluula</th></tr></thead>
+        <tbody>
+          <tr class="table-section"><td colspan="3">Почасовая ставка (USD)</td></tr>
+          <tr><td>1 час</td><td>25</td><td>30</td></tr>
+          <tr><td>2 часа</td><td>40</td><td>45</td></tr>
+          <tr><td>3 часа</td><td>55</td><td>60</td></tr>
+          <tr class="table-section"><td colspan="3">Сутки (USD)</td></tr>
+          <tr><td>1 день</td><td>65</td><td>75</td></tr>
+          <tr><td>2 дня</td><td>120</td><td>130</td></tr>
+          <tr><td>3 дня</td><td>150</td><td>160</td></tr>
+          <tr><td>4 дня</td><td>175</td><td>185</td></tr>
+          <tr><td>5 дней</td><td>200</td><td>220</td></tr>
+          <tr><td>6 дней</td><td>220</td><td>240</td></tr>
+          <tr><td>7 дней</td><td>240</td><td>250</td></tr>
+          <tr><td>Доп. день</td><td>30</td><td>40</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="wingfoil-price-subtitle">Аренда доски (только доска)</h3>
+    <div class="wingfoil-table-wrap">
+      <table class="wingfoil-price-table">
+        <thead><tr><th>Время аренды</th><th>Обычная</th><th>КАРБОН</th></tr></thead>
+        <tbody>
+          <tr class="table-section"><td colspan="3">Почасовая ставка (USD)</td></tr>
+          <tr><td>1 час</td><td>25</td><td>30</td></tr>
+          <tr><td>2 часа</td><td>40</td><td>45</td></tr>
+          <tr><td>3 часа</td><td>55</td><td>60</td></tr>
+          <tr class="table-section"><td colspan="3">Сутки (USD)</td></tr>
+          <tr><td>1 день</td><td>65</td><td>80</td></tr>
+          <tr><td>2 дня</td><td>120</td><td>135</td></tr>
+          <tr><td>3 дня</td><td>150</td><td>165</td></tr>
+          <tr><td>4 дня</td><td>175</td><td>190</td></tr>
+          <tr><td>5 дней</td><td>200</td><td>225</td></tr>
+          <tr><td>6 дней</td><td>220</td><td>240</td></tr>
+          <tr><td>7 дней</td><td>240</td><td>260</td></tr>
+          <tr><td>Доп. день</td><td>30</td><td>45</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="wingfoil-price-notes">
+      <p>Время аренды доски заканчивается только после снятия фойла! Если фойл остаётся на доске, аренда считается как полный день даже без катания. Пожалуйста, будьте внимательны!</p>
+      <p>Скидки клуба Vetratoria не распространяются на аренду отдельных частей комплекта wingfoil. Скидки на аренду отдельных частей действуют только если оборудование было куплено в клубе.</p>
+      <p>Цена и условия страховки на аренду отдельных частей соответствуют общему прайс-листу и правилам страховки.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wingfoil-price-section" id="packages">
+  <div class="wingfoil-price-inner">
+    <header class="wingfoil-price-heading">
+      <p class="eyebrow">Wingfoil · пакеты</p>
+      <h2>Обучающие и интенсив-пакеты</h2>
+      <p>Пакеты рассчитаны на одного человека. Мини-группы не предусмотрены. Дополнительные скидки не действуют — пакеты уже уценены.</p>
+    </header>
+
+    <h3 class="wingfoil-price-subtitle">Обучающие пакеты — только уроки</h3>
+    <div class="wingfoil-table-wrap">
+      <table class="wingfoil-price-table">
+        <thead><tr><th>Длительность</th><th>Цена пакета ($)</th><th>Что включено</th></tr></thead>
+        <tbody>
+          <tr><td>3 дня</td><td>270 (экономия ~ $30)</td><td>3 ч с инструктором • Урок за лодкой на фойле (45 мин) • Оборудование • Страховка</td></tr>
+          <tr><td>4 дня</td><td>360 (экономия ~ $40)</td><td>4 ч с инструктором • Урок за лодкой на фойле (1 ч) • Оборудование • Страховка</td></tr>
+          <tr><td>5 дней</td><td>420 (экономия ~ $50)</td><td>5 ч с инструктором • Урок за лодкой на фойле (1 ч) • Оборудование • Страховка</td></tr>
+          <tr><td>6 дней</td><td>490 (экономия ~ $60)</td><td>6 ч с инструктором • Урок за лодкой на фойле (1 ч) • Оборудование • Страховка</td></tr>
+          <tr><td>7 дней</td><td>540 (экономия ~ $80)</td><td>7 ч с инструктором • Урок за лодкой на фойле (1 ч) • Оборудование • Страховка</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="wingfoil-price-notes"><p>Каждый пакет рассчитан на ОДНОГО человека. Мини-группы не предусмотрены. Дополнительные скидки не действуют — пакеты уже уценены.</p></div>
+
+    <h3 class="wingfoil-price-subtitle">Интенсив-пакеты — уроки + прокат на весь день</h3>
+    <div class="wingfoil-table-wrap">
+      <table class="wingfoil-price-table">
+        <thead><tr><th>Длительность</th><th>Цена пакета ($)</th><th>Что включено</th></tr></thead>
+        <tbody>
+          <tr><td>3 дня</td><td>350 (экономия ~ $205)</td><td>3 ч с инструктором • Урок за лодкой на фойле (45 мин) • Прокат на весь день • Страховка</td></tr>
+          <tr><td>4 дня</td><td>460 (экономия ~ $235)</td><td>4 ч с инструктором • Урок за лодкой на фойле (1 ч) • Прокат на весь день • Страховка</td></tr>
+          <tr><td>5 дней</td><td>570 (экономия ~ $235)</td><td>5 ч с инструктором • Урок за лодкой на фойле (1 ч) • Прокат на весь день • Страховка</td></tr>
+          <tr><td>6 дней</td><td>670 (экономия ~ $235)</td><td>6 ч с инструктором • Урок за лодкой на фойле (1 ч) • Прокат на весь день • Страховка</td></tr>
+          <tr><td>7 дней</td><td>780 (экономия ~ $240)</td><td>7 ч с инструктором • Урок за лодкой на фойле (1 ч) • Прокат на весь день • Страховка</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="wingfoil-price-notes"><p>Каждый пакет рассчитан на ОДНОГО человека. Мини-группы не предусмотрены. Дополнительные скидки не действуют — пакеты уже уценены.</p></div>
+  </div>
+</section>
+
+<section class="wingfoil-price-section wingfoil-price-section--dark" id="application">
+  <div class="wingfoil-price-inner">
+    <div class="wingfoil-price-contact">
+      <figure><img src="/assets/img/final/wingfoil/lesson-coaching.webp" alt="Wingfoil Vetratoria Dahab" width="1600" height="1067" loading="lazy" decoding="async"></figure>
+      <div>
+        <p class="eyebrow">Заявка</p>
+        <h2>Подобрать Wingfoil</h2>
+        <p>Напишите даты, уровень, вес и задачу: первый раз, фойл за лодкой, прокат, пакет или хранение.</p>
+        <div class="wingfoil-price-contact__actions">
+          <a class="button button-primary" href="/contacts/">Оставить заявку</a>
+          <a class="button button-ghost" href="/dahab/wingfoil/">О Wingfoil</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>`.replace(/^[\t ]+$/gm, "");
+
 const pricePage = (page) => {
+  if (page.country === "dahab" && page.sport === "wingfoil") return dahabWingfoilPricePage(page);
+
   const country = countriesByKey[page.country];
   const sport = page.sport ? site.sports[page.sport] : null;
   const title = sport ? sport.title : "Vetratoria";
@@ -1180,7 +1417,6 @@ const render = (page) => {
       return layout(page, countryPage(page));
     case "sport":
       return layout(page, sportPage(page));
-    case "price":
     case "sport-price":
       return layout(page, pricePage(page));
     case "blog-index":
@@ -1197,6 +1433,11 @@ const render = (page) => {
       return layout(page, featurePage(page));
   }
 };
+
+const obsoletePageDirs = ["dahab/price", "vietnam/price", "russia/price"];
+for (const dir of obsoletePageDirs) {
+  await rm(join(root, dir), { recursive: true, force: true });
+}
 
 for (const page of allPages) {
   const file = pathToFile(page.path);
