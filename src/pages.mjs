@@ -390,9 +390,9 @@ pages.push(
     kind: "stations",
     country: "dahab",
     eyebrow: "Дахаб · станции",
-    title: "Станции Vetratoria",
-    description: "Точки под спорт, ветер, уровень, хранение снаряжения и ежедневную практику.",
-    image: img("ABOUTVETRATORIA.jpg")
+    title: "Станции Vetratoria в Дахабе",
+    description: "Vetratoria Ganet Sinai, Wing Center и Swiss Inn: где кататься на wingfoil и windsurf в Дахабе.",
+    image: "/assets/img/final/stations/hero.webp"
   }
 );
 

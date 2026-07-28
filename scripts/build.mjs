@@ -247,7 +247,7 @@ const metaDescriptionForPage = (page) =>
 const metaImageForPage = (page) =>
   page.path === "/dahab/" ? "/assets/img/dahab-ref/ganet-sinai.webp" : page.image || site.slider[0];
 
-const ASSET_VERSION = "20260728-windsurf-price";
+const ASSET_VERSION = "20260728-stations-page";
 const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
 
 const layout = (page, main) => `<!doctype html>
@@ -971,6 +971,145 @@ const dahabHomePage = () => {
 </section>`;
 };
 
+const stationImg = (name) => `/assets/img/final/stations/${name}`;
+
+const stationSlider = ({ title, lead, images }) => `
+  <figure class="dahab-station-slider" data-station-slider aria-label="Фото ${escapeHtml(title)}">
+    <div class="dahab-station-slider__viewport">
+      ${images.map((image, index) => `<img data-station-slide class="${index === 0 ? "is-active" : ""}" src="${stationImg(image.file)}" alt="${escapeHtml(image.alt)}" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" aria-hidden="${index === 0 ? "false" : "true"}">`).join("")}
+    </div>
+    <figcaption class="dahab-station-slider__caption"><b>${escapeHtml(title)}</b><span>${escapeHtml(lead)}</span></figcaption>
+    <div class="dahab-station-slider__nav">
+      <button type="button" data-station-prev aria-label="Предыдущее фото">←</button>
+      <button type="button" data-station-next aria-label="Следующее фото">→</button>
+    </div>
+  </figure>`;
+
+const dahabStationsPage = () => {
+  const stations = [
+    {
+      id: "vetratoria-ganet",
+      eyebrow: "Vetratoria · Ganet Sinai",
+      title: "Vetratoria Ganet Sinai",
+      text: [
+        "База Vetratoria в Дахабе для windsurf, проката, уроков и станционной жизни рядом с водой. Здесь удобно встретиться с командой, подобрать комплект и понять, какая зона подходит под ветер и уровень.",
+        "Ganet хорошо подходит для практики, прогресса и спокойного выбора формата без лишней логистики: пришли на станцию, обсудили условия, вышли на воду."
+      ],
+      tags: ["Windsurf", "Прокат", "Практика", "Команда рядом"],
+      sliderTitle: "Ganet Sinai",
+      sliderLead: "Windsurf-база, прокат, уроки и выбор формата под ветер.",
+      images: [
+        { file: "ganet-01.webp", alt: "Vetratoria Ganet Sinai у воды" },
+        { file: "ganet-02.webp", alt: "Снаряжение на станции Ganet Sinai" },
+        { file: "ganet-03.webp", alt: "Внутри станции Ganet Sinai" },
+        { file: "ganet-04.webp", alt: "Пляж и старт у Ganet Sinai" },
+        { file: "ganet-05.webp", alt: "Оборудование Vetratoria Ganet" },
+        { file: "ganet-06.webp", alt: "Фасад Vetratoria Ganet Sinai" }
+      ]
+    },
+    {
+      id: "wing-center",
+      reverse: true,
+      eyebrow: "Wingfoil · Foil boat",
+      title: "Wing Center",
+      text: [
+        "Главная точка для wingfoil: здесь начинаются уроки, подбор крыла и доски, фойл за лодкой и первые самостоятельные выходы. Формат подходит тем, кто хочет быстро разобраться с фойлом и крылом.",
+        "На Wing Center удобно смотреть ветер, обсуждать попытки с инструктором и возвращаться на воду снова — без сложной системы пакетов и лишних шагов."
+      ],
+      tags: ["Wingfoil", "Foil boat", "Уроки", "Подбор комплекта"],
+      sliderTitle: "Wing Center",
+      sliderLead: "Wingfoil, foil boat, оборудование и выходы на воду.",
+      images: [
+        { file: "wing-center-01.webp", alt: "Wing Center Vetratoria" },
+        { file: "wing-center-02.webp", alt: "Пляж у Wing Center" },
+        { file: "wing-center-03.webp", alt: "Карта акватории Wing Center" },
+        { file: "wing-center-04.webp", alt: "Зона отдыха Wing Center" },
+        { file: "wing-center-05.webp", alt: "Стартовая зона Wing Center" },
+        { file: "wing-center-06.webp", alt: "Wing Center со стороны воды" },
+        { file: "wing-center-07.webp", alt: "Оборудование Wing Center" },
+        { file: "wing-center-08.webp", alt: "Зона ожидания Wing Center" },
+        { file: "wing-center-09.webp", alt: "Фасад Wing Center" },
+        { file: "wing-center-10.webp", alt: "Терраса Wing Center" }
+      ]
+    },
+    {
+      id: "swiss-inn",
+      eyebrow: "Windsurf · Kids",
+      title: "Swiss Inn",
+      text: [
+        "Станция рядом с отелем и понятным стартом на воду. Swiss Inn удобен для windsurf-уроков, детского формата, проката и тех, кто хочет простую логистику между отдыхом и катанием.",
+        "Здесь хорошо начинать спокойно: берег рядом, оборудование под рукой, инструктор видит условия и помогает выбрать парус, доску и задачу на занятие."
+      ],
+      tags: ["Windsurf", "Kids", "Первые уроки", "Отель рядом"],
+      sliderTitle: "Swiss Inn",
+      sliderLead: "Windsurf, kids, первые уроки и комфортный старт рядом с отелем.",
+      images: [
+        { file: "swiss-01.webp", alt: "Оборудование Swiss Inn" },
+        { file: "swiss-02.webp", alt: "Паруса на Swiss Inn" },
+        { file: "swiss-03.webp", alt: "Зона хранения Swiss Inn" },
+        { file: "swiss-04.webp", alt: "Терраса Swiss Inn" },
+        { file: "swiss-05.webp", alt: "Пляж Swiss Inn" },
+        { file: "swiss-06.webp", alt: "Фасад Vetratoria Swiss Inn" },
+        { file: "swiss-07.webp", alt: "Снаряжение Swiss Inn" }
+      ]
+    }
+  ];
+
+  return `
+<section class="dahab-stations-hero" aria-labelledby="stations-title">
+  <img src="${stationImg("hero.webp")}" alt="Станции Vetratoria в Дахабе" width="1920" height="1080" fetchpriority="high">
+  <div class="dahab-stations-hero__shade"></div>
+  <div class="dahab-stations-hero__content">
+    <p class="eyebrow">Дахаб · станции</p>
+    <h1 id="stations-title">Станции Vetratoria в Дахабе</h1>
+    <p>Три точки у воды: Vetratoria Ganet Sinai, Wing Center и Swiss Inn. На этой странице — коротко о каждой станции, фото и понятный выбор, куда ехать под ваш спорт, уровень и даты.</p>
+    <div class="dahab-stations-pills">
+      <a href="#vetratoria-ganet">Ganet Sinai</a>
+      <a href="#wing-center">Wing Center</a>
+      <a href="#swiss-inn">Swiss Inn</a>
+      <a href="/dahab/windsurf/">Windsurf</a>
+      <a href="/dahab/wingfoil/">Wingfoil</a>
+      <a href="/dahab/windsurf-kids/">Kids</a>
+    </div>
+    <div class="dahab-stations-actions">
+      <a class="button button-primary" href="/contacts/">Подобрать станцию</a>
+      <a class="button button-ghost" href="#vetratoria-ganet">Смотреть станции</a>
+    </div>
+  </div>
+</section>
+
+${stations.map((station, index) => `
+<section class="dahab-stations-section${index % 2 ? " dahab-stations-section--soft" : ""}" id="${station.id}">
+  <div class="dahab-stations-inner">
+    <div class="dahab-station-block${station.reverse ? " dahab-station-block--reverse" : ""}">
+      <div class="dahab-station-copy">
+        <p class="eyebrow">${station.eyebrow}</p>
+        <h2>${station.title}</h2>
+        ${station.text.map((paragraph) => `<p>${paragraph}</p>`).join("")}
+        <div class="dahab-station-tags">${station.tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
+      </div>
+      ${stationSlider({ title: station.sliderTitle, lead: station.sliderLead, images: station.images })}
+    </div>
+  </div>
+</section>`).join("")}
+
+<section class="dahab-stations-cta" id="contact">
+  <div class="dahab-stations-inner">
+    <div class="dahab-stations-cta__box">
+      <div>
+        <p class="eyebrow">Подбор станции</p>
+        <h2>Не знаете, куда лучше приехать?</h2>
+        <p>Напишите даты, отель, уровень и спорт. Мы подскажем, какая станция будет удобнее именно для вашего формата: wingfoil, windsurf, kids, прокат или уроки.</p>
+      </div>
+      <div class="dahab-stations-actions">
+        <a class="button button-primary" href="/contacts/">Подобрать станцию</a>
+        <a class="button button-ghost" href="/dahab/wingfoil/price/">Смотреть цены</a>
+      </div>
+    </div>
+  </div>
+</section>`.replace(/^[\t ]+$/gm, "");
+};
+
 const countryPage = (page) => {
   const country = countriesByKey[page.country];
   if (country.key === "dahab") return dahabHomePage(page);
@@ -1626,6 +1765,8 @@ const render = (page) => {
       return layout(page, mediaPage(page));
     case "contacts":
       return layout(page, contactsPage(page));
+    case "stations":
+      return layout(page, page.country === "dahab" ? dahabStationsPage(page) : featurePage(page));
     default:
       return layout(page, featurePage(page));
   }

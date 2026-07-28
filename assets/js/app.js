@@ -140,6 +140,27 @@
     });
   });
 
+  document.querySelectorAll("[data-station-slider]").forEach((stationSlider) => {
+    const slides = [...stationSlider.querySelectorAll("[data-station-slide]")];
+    const prev = stationSlider.querySelector("[data-station-prev]");
+    const next = stationSlider.querySelector("[data-station-next]");
+    let active = Math.max(0, slides.findIndex((slide) => slide.classList.contains("is-active")));
+
+    const activate = (index) => {
+      if (!slides.length) return;
+      active = (index + slides.length) % slides.length;
+      slides.forEach((slide, slideIndex) => {
+        const isActive = slideIndex === active;
+        slide.classList.toggle("is-active", isActive);
+        slide.setAttribute("aria-hidden", String(!isActive));
+      });
+    };
+
+    prev?.addEventListener("click", () => activate(active - 1));
+    next?.addEventListener("click", () => activate(active + 1));
+    activate(active);
+  });
+
   document.querySelectorAll("form[data-contact-form]").forEach((form) => {
     const note = form.querySelector("[data-form-note]");
 
