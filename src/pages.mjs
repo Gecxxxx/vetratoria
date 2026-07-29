@@ -12,7 +12,7 @@ const dahabSportOverrides = {
     title: "Windsurf в Дахабе",
     description:
       "Научим управлять парусом, идти нужным курсом и уверенно кататься на доске. Уроки, прокат и программа под ваш уровень на Красном море.",
-    image: "/assets/img/dahab-ref/windsurf-hero.webp"
+    image: "/assets/img/final/windsurf/hero.webp"
   }
 };
 

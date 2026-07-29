@@ -26,7 +26,11 @@
     linear-gradient(180deg, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.72));
 }
 
-.dahab-stations-hero__content,
+.dahab-stations-hero__content {
+  width: min(100% - var(--page-gutter), var(--max));
+  margin: 0 auto;
+}
+
 .dahab-stations-inner {
   width: min(100% - var(--page-gutter), 1040px);
   margin: 0 auto;
@@ -35,8 +39,14 @@
 .dahab-stations-hero__content {
   position: relative;
   z-index: 1;
-  max-width: 680px;
   padding: 140px 0 92px;
+}
+
+.dahab-stations-hero__content > h1,
+.dahab-stations-hero__content > p:not(.eyebrow),
+.dahab-stations-pills,
+.dahab-stations-actions {
+  max-width: 680px;
 }
 
 .dahab-stations-hero h1,
@@ -251,7 +261,7 @@
 @media (max-width: 900px) {
   .dahab-stations-hero__content,
   .dahab-stations-inner {
-    width: min(100% - var(--page-gutter-mobile), 1040px);
+    width: calc(100% - var(--page-gutter-mobile));
   }
 
   .dahab-stations-hero__content {

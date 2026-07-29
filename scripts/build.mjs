@@ -316,7 +316,7 @@ const metaDescriptionForPage = (page) =>
 const metaImageForPage = (page) =>
   page.path === "/dahab/" ? "/assets/img/dahab-ref/ganet-sinai.webp" : page.image || site.slider[0];
 
-const ASSET_VERSION = "20260729-hero-advantages";
+const ASSET_VERSION = "20260729-hero-layouts";
 const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
 
 const layout = (page, main) => `<!doctype html>
@@ -517,7 +517,7 @@ const dahabWingfoilPage = (page) => {
         <a class="button button-primary" href="/contacts/">Записаться</a>
         <a class="button button-ghost" href="/dahab/wingfoil/price/">Смотреть цены</a>
       </div>
-      <div class="hero-advantages">
+      <div class="hero-advantages hero-advantages--sport">
         ${heroFacts.map((item) => `<span class="hero-advantage">${item}</span>`).join("")}
       </div>
     </div>
@@ -718,7 +718,7 @@ const dahabWindsurfPage = (page) => {
         <a class="button button-primary" href="/contacts/">Записаться</a>
         <a class="button button-ghost" href="/dahab/windsurf/price/">Смотреть цены</a>
       </div>
-      <div class="hero-advantages">
+      <div class="hero-advantages hero-advantages--sport">
         ${heroFacts.map((item) => `<span class="hero-advantage">${item}</span>`).join("")}
       </div>
     </div>
@@ -1058,7 +1058,7 @@ const dahabStationsPage = () => {
   const stations = [
     {
       id: "vetratoria-ganet",
-      eyebrow: "Vetratoria · Ganet Sinai",
+      eyebrow: "Windsurf",
       title: "Vetratoria Ganet Sinai",
       text: [
         "База Vetratoria в Дахабе для windsurf, проката, уроков и станционной жизни рядом с водой. Здесь удобно встретиться с командой, подобрать комплект и понять, какая зона подходит под ветер и уровень.",
@@ -1079,7 +1079,7 @@ const dahabStationsPage = () => {
     {
       id: "wing-center",
       reverse: true,
-      eyebrow: "Wingfoil · Foil boat",
+      eyebrow: "Wingfoil",
       title: "Wing Center",
       text: [
         "Главная точка для wingfoil: здесь начинаются уроки, подбор крыла и доски, фойл за лодкой и первые самостоятельные выходы. Формат подходит тем, кто хочет быстро разобраться с фойлом и крылом.",
@@ -1103,7 +1103,7 @@ const dahabStationsPage = () => {
     },
     {
       id: "swiss-inn",
-      eyebrow: "Windsurf · Kids",
+      eyebrow: "Windsurf",
       title: "Swiss Inn",
       text: [
         "Станция рядом с отелем и понятным стартом на воду. Swiss Inn удобен для windsurf-уроков, детского формата, проката и тех, кто хочет простую логистику между отдыхом и катанием.",

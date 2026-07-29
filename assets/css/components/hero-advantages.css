@@ -8,6 +8,10 @@
   margin-top: 28px;
 }
 
+.hero-advantages--sport {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .hero-advantage {
   display: flex;
   align-items: center;
@@ -24,6 +28,16 @@
 
 @media (max-width: 900px) {
   .hero-advantages {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-advantages--sport {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .hero-advantages--sport {
     grid-template-columns: 1fr;
   }
 }
