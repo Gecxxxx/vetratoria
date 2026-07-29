@@ -166,9 +166,31 @@
 
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-      if (note) {
-        note.textContent = "Заявка подготовлена. Напишите нам в мессенджер или на почту, ответим с деталями по направлению.";
+      const data = new FormData(form);
+      const countrySelect = form.elements.country;
+      const recipient = form.dataset.mailTo || countrySelect?.value;
+      const direction = form.dataset.direction || countrySelect?.selectedOptions?.[0]?.textContent?.trim() || "Vetratoria";
+      const name = String(data.get("name") || "").trim();
+      const contact = String(data.get("contact") || "").trim();
+      const message = String(data.get("message") || "").trim();
+
+      if (!recipient || !name || !contact) {
+        if (note) note.textContent = "Заполните имя и удобный способ связи.";
+        return;
       }
+
+      const subject = `Заявка Vetratoria: ${direction}`;
+      const body = [
+        `Имя: ${name}`,
+        `Способ связи: ${contact}`,
+        `Направление: ${direction}`,
+        message ? `Комментарий: ${message}` : "Комментарий: не указан"
+      ].join("\n");
+
+      if (note) {
+        note.textContent = "Заявка подготовлена. Открываем почтовое приложение.";
+      }
+      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
   });
 

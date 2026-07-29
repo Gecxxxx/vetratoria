@@ -25,9 +25,78 @@ export const site = {
   phone: "+201029321772",
   logo: "/assets/img/vetratoria-logo.png",
   socials: [
-    { label: "VK", href: "/contacts/" },
-    { label: "YT", href: "/media/" },
-    { label: "TA", href: "/contacts/" }
+    {
+      label: "VKontakte",
+      href: "https://vk.ru/club2195523",
+      icon: "/assets/icons/vk.svg"
+    },
+    {
+      label: "Instagram",
+      href: "https://www.instagram.com/vetratoriaofficiale/",
+      icon: "/assets/icons/instagram.svg"
+    },
+    {
+      label: "Tripadvisor",
+      href: "https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html",
+      icon: "/assets/icons/tripadvisor.svg"
+    }
+  ],
+  contacts: {
+    dahab: {
+      title: "Египет · Дахаб",
+      formEmail: "dahab@vetratoria.ru",
+      email: "dahab@vetratoria.ru",
+      phone: "+201029321772",
+      phoneLabel: "+20 102 932 1772",
+      telegram: "https://t.me/dahabvetratoria",
+      pageTitle: "Контакты Vetratoria в Дахабе",
+      pageDescription:
+        "Свяжитесь с windsurf-станциями или Wing Center в Дахабе: WhatsApp, Telegram, email и чаты райдеров."
+    },
+    vietnam: {
+      title: "Вьетнам · Муйне",
+      formEmail: "vietnam@vetratoria.ru",
+      email: "vietnam@vetratoria.ru",
+      phone: "+79884715355",
+      phoneLabel: "+7 988 471 5355",
+      telegram: "https://t.me/+79884715355",
+      pageTitle: "Контакты Vetratoria во Вьетнаме",
+      pageDescription:
+        "Напишите команде Vetratoria в Муйне, чтобы уточнить даты, условия и подходящий формат занятий."
+    },
+    russia: {
+      title: "Россия · Должанская",
+      formEmail: "russia@vetratoria.ru",
+      email: "russia@vetratoria.ru",
+      phone: "+79884715355",
+      phoneLabel: "+7 988 471 5355",
+      telegram: "https://t.me/+79884715355",
+      pageTitle: "Контакты Vetratoria в России",
+      pageDescription:
+        "Свяжитесь с командой Vetratoria на Должанской: подскажем по сезону, обучению, прокату и поездке."
+    }
+  },
+  dahabStations: [
+    {
+      key: "windsurf",
+      eyebrow: "Windsurf · станции",
+      title: "Windsurf в Дахабе",
+      description: "Ganet Sinai и Swiss Inn: обучение, прокат и помощь команды на воде.",
+      email: "dahab@vetratoria.ru",
+      phone: "+201029321772",
+      phoneLabel: "+20 102 932 1772",
+      telegram: "https://t.me/dahabvetratoria"
+    },
+    {
+      key: "wingfoil",
+      eyebrow: "Wingfoil · Wing Center",
+      title: "Wing Center",
+      description: "Wingfoil, foil boat, обучение с нуля и самостоятельная практика.",
+      email: "vetratoria.wingcenter@gmail.com",
+      phone: "+201151015941",
+      phoneLabel: "+20 115 101 5941",
+      telegram: "https://t.me/talking_wingfoil_center_dahab"
+    }
   ],
   countries: [
     {
@@ -317,6 +386,17 @@ for (const country of site.countries) {
     image: img("ABOUTVETRATORIA.jpg")
   });
 
+  const contact = site.contacts[country.key];
+  pages.push({
+    path: `/${country.key}/contacts/`,
+    kind: "contacts",
+    country: country.key,
+    eyebrow: `${country.region} · контакты`,
+    title: contact.pageTitle,
+    description: contact.pageDescription,
+    image: country.key === "dahab" ? "/assets/img/contacts/dahab-hero.webp" : country.hero
+  });
+
   for (const sportKey of country.sports) {
     const sport = site.sports[sportKey];
     const sportOverride = country.key === "dahab" ? dahabSportOverrides[sportKey] : null;
@@ -358,15 +438,6 @@ for (const country of site.countries) {
 }
 
 pages.push(
-  {
-    path: "/dahab/contacts/",
-    kind: "contacts",
-    country: "dahab",
-    eyebrow: "Дахаб · контакты",
-    title: "Связаться с Дахабом",
-    description: "Напишите команде, уточните даты, ветер, уровень и формат обучения.",
-    image: img("home-direction-dahab.webp")
-  },
   {
     path: "/dahab/how-to-get/",
     kind: "route",

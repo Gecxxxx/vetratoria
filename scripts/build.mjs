@@ -35,6 +35,16 @@ const currentCountry = (page) =>
 
 const arrow = '<span class="vtr-nav__chevron" aria-hidden="true">⌄</span>';
 
+const socialIconLinks = (className = "") => `
+  <nav class="social-icon-links${className ? ` ${className}` : ""}" aria-label="Социальные сети Vetratoria">
+    ${site.socials.map((item) => `
+      <a href="${item.href}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(item.label)}" title="${escapeHtml(item.label)}">
+        <img src="${item.icon}" alt="" width="20" height="20">
+      </a>`).join("")}
+  </nav>`;
+
+const contactForPage = (page) => site.contacts[page.country] || site.contacts.dahab;
+
 const sportLabel = (sportKey) => sportKey === "windsurf-kids" ? "Kids" : site.sports[sportKey].nav;
 
 const countrySportSummary = (country) => country.sports.map(sportLabel).join(", ");
@@ -112,9 +122,10 @@ const mobileMenu = (page, country) => `
         </section>
         <section class="vtr-mobile-menu__block" aria-label="Контакты">
           <p class="vtr-mobile-menu__title">Контакты</p>
-          <a class="vtr-mobile-menu__row" href="mailto:${site.email}">${site.email}</a>
-          <a class="vtr-mobile-menu__row" href="tel:${site.phone.replace(/\s/g, "")}">${site.phone}</a>
-          <a class="vtr-mobile-menu__row" href="/contacts/">Telegram</a>
+          <a class="vtr-mobile-menu__row" href="mailto:${contactForPage(page).email}">${contactForPage(page).email}</a>
+          <a class="vtr-mobile-menu__row" href="tel:${contactForPage(page).phone}">${contactForPage(page).phoneLabel}</a>
+          <a class="vtr-mobile-menu__row" href="${contactForPage(page).telegram}" target="_blank" rel="noopener noreferrer">Telegram</a>
+          ${socialIconLinks("vtr-mobile-menu__socials")}
         </section>
       </div>`;
 
@@ -124,23 +135,23 @@ const mainNavPanel = (page, country) => `
       ${directionsMenu()}
       <a class="vtr-nav__link" href="/blog/">Блог</a>
       <a class="vtr-nav__link" href="/media/">Медиа</a>
-      <a class="vtr-nav__link" href="/contacts/">Контакты</a>
+      <a class="vtr-nav__link${page.kind === "contacts" ? " is-active" : ""}" href="/contacts/">Контакты</a>
       ${mobileMenu(page, country)}
     </nav>`;
 
-const topNav = (page) => `
+const topNav = (page) => {
+  const contact = contactForPage(page);
+  return `
   <div class="vtr-nav__top">
     <div class="vtr-nav__contacts">
-      <a href="mailto:${site.email}">${site.email}</a>
-      <a href="tel:${site.phone.replace(/\s/g, "")}">${site.phone}</a>
+      <a href="mailto:${contact.email}">${contact.email}</a>
+      <a href="tel:${contact.phone}">${contact.phoneLabel}</a>
     </div>
     <nav class="vtr-nav__countries" aria-label="Выбор страны">
       ${countryList.map((country) => `<a class="vtr-nav__country${page.country === country.key ? " is-active" : ""}" href="${country.href}">${country.nav}</a>`).join("")}
     </nav>
     <div class="vtr-nav__right">
-      <div class="vtr-nav__socials">
-        ${site.socials.map((item) => `<a href="${item.href}" aria-label="${item.label}">${item.label}</a>`).join("")}
-      </div>
+      ${socialIconLinks("vtr-nav__socials")}
       <div class="vtr-nav__lang" data-dropdown>
         <button class="vtr-nav__lang-button" type="button" aria-expanded="false" data-dropdown-toggle>RU ${arrow}</button>
         <div class="vtr-nav__lang-menu">
@@ -150,6 +161,7 @@ const topNav = (page) => `
       </div>
     </div>
   </div>`;
+};
 
 const countrySectionActive = (page, paths) => paths.some((path) => page.path === path || page.path.startsWith(path));
 
@@ -165,7 +177,7 @@ const schoolDropdown = (country) => country.key === "dahab" ? [
   { label: "Команда", href: `/${country.key}/team/` },
   { label: "Блог", href: `/${country.key}/blog/` },
   { label: "Медиа", href: `/media/${country.key}/` },
-  { label: "Контакты", href: "/contacts/" }
+  { label: "Контакты", href: `/${country.key}/contacts/` }
 ];
 
 const sectionDropdown = (label, active, items) => `
@@ -229,7 +241,10 @@ const header = (page) => {
 </header>`;
 };
 
-const footer = () => `
+const footer = (page) => {
+  const contact = contactForPage(page);
+  const contactsHref = page.country ? `/${page.country}/contacts/` : "/contacts/";
+  return `
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
@@ -257,13 +272,13 @@ const footer = () => `
         <h3>Материалы</h3>
         <a href="/blog/">Блог</a>
         <a href="/media/">Медиа</a>
-        <a href="/contacts/">Контакты</a>
+        <a href="${contactsHref}">Контакты</a>
       </div>
       <div>
         <h3>Связь</h3>
-        <a href="/contacts/">Написать нам</a>
-        <a href="mailto:${site.email}">${site.email}</a>
-        <a href="tel:${site.phone.replace(/\s/g, "")}">${site.phone}</a>
+        <a href="${contactsHref}">Написать нам</a>
+        <a href="mailto:${contact.email}">${contact.email}</a>
+        <a href="tel:${contact.phone}">${contact.phoneLabel}</a>
       </div>
     </nav>
   </div>
@@ -272,6 +287,7 @@ const footer = () => `
     <span>Условия, расписание, цены и доступность форматов уточняются перед поездкой.</span>
   </div>
 </footer>`;
+};
 
 const dahabFooter = () => `
 <footer class="site-footer dahab-footer-pro">
@@ -284,7 +300,7 @@ const dahabFooter = () => `
       <article>
         <h2>Контакты Дахаба</h2>
         <p>Напишите даты, уровень и спорт — подберём станцию.</p>
-        <nav><a href="/contacts/">Оставить заявку</a><a href="/contacts/">Контакты станции</a></nav>
+        <nav><a href="/dahab/contacts/">Оставить заявку</a><a href="/dahab/contacts/">Контакты станции</a></nav>
       </article>
       <article>
         <h2>Карта станций</h2>
@@ -292,7 +308,7 @@ const dahabFooter = () => `
       </article>
       <article>
         <h2>Соцсети</h2>
-        <nav class="dahab-footer-pro__socials"><a href="https://vk.com/" target="_blank" rel="noopener">VK</a><a href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></nav>
+        ${socialIconLinks("dahab-footer-pro__socials")}
         <p>Следите за новостями станции и медиа с воды.</p>
       </article>
     </div>
@@ -303,7 +319,7 @@ const dahabFooter = () => `
   </div>
 </footer>`;
 
-const footerForPage = (page) => page.kind === "country" && page.country === "dahab" ? dahabFooter() : footer();
+const footerForPage = (page) => page.kind === "country" && page.country === "dahab" ? dahabFooter() : footer(page);
 
 const metaTitleForPage = (page) =>
   page.path === "/dahab/" ? "Дахаб — Wingfoil и Windsurf на Красном море | Vetratoria" : page.title || site.title;
@@ -316,7 +332,7 @@ const metaDescriptionForPage = (page) =>
 const metaImageForPage = (page) =>
   page.path === "/dahab/" ? "/assets/img/dahab-ref/ganet-sinai.webp" : page.image || site.slider[0];
 
-const ASSET_VERSION = "20260729-dahab-safety";
+const ASSET_VERSION = "20260729-contact-pages";
 const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
 
 const layout = (page, main) => `<!doctype html>
@@ -1873,26 +1889,133 @@ const mediaPage = (page) => {
   </section>`;
 };
 
-const contactsPage = (page) => `
-${hero(page, `<a class="button button-primary" href="mailto:${site.email}">Email</a><a class="button button-ghost" href="tel:${site.phone.replace(/\s/g, "")}">Позвонить</a>`)}
-<section class="content-section">
+const contactMethod = ({ href, icon, label, value, external = false }) => `
+  <a class="contact-method" href="${href}"${external ? ` target="_blank" rel="noopener noreferrer"` : ""}>
+    ${icon ? `<img src="${icon}" alt="" width="22" height="22">` : ""}
+    <span><small>${escapeHtml(label)}</small><b>${escapeHtml(value)}</b></span>
+  </a>`;
+
+const countryContactCard = (country, showPageLink = true) => {
+  const contact = site.contacts[country.key];
+  const phoneLabel = country.key === "vietnam" ? "Telegram" : "Телефон";
+  return `
+    <article class="contact-country-card">
+      <p class="eyebrow">${escapeHtml(country.region)}</p>
+      <h2>${escapeHtml(country.city)}</h2>
+      <div class="contact-country-card__methods">
+        ${contactMethod({ href: `mailto:${contact.email}`, label: "Email", value: contact.email })}
+        ${contactMethod({
+          href: country.key === "vietnam" ? contact.telegram : `tel:${contact.phone}`,
+          icon: country.key === "vietnam" ? "/assets/icons/telegram.svg" : "",
+          label: phoneLabel,
+          value: contact.phoneLabel,
+          external: country.key === "vietnam"
+        })}
+      </div>
+      ${showPageLink ? `<a class="contact-country-card__link" href="/${country.key}/contacts/">Контакты направления →</a>` : ""}
+    </article>`;
+};
+
+const dahabStationCard = (station) => `
+  <article class="contact-station-card" id="${station.key}">
+    <p class="eyebrow">${escapeHtml(station.eyebrow)}</p>
+    <h2>${escapeHtml(station.title)}</h2>
+    <p>${escapeHtml(station.description)}</p>
+    <div class="contact-station-card__methods">
+      ${contactMethod({ href: `mailto:${station.email}`, label: "Email", value: station.email })}
+      ${contactMethod({
+        href: `https://wa.me/${station.phone.replace(/\D/g, "")}`,
+        icon: "/assets/icons/whatsapp.svg",
+        label: "WhatsApp",
+        value: station.phoneLabel,
+        external: true
+      })}
+      ${contactMethod({
+        href: station.telegram,
+        icon: "/assets/icons/telegram.svg",
+        label: "Telegram · чат станции",
+        value: station.key === "wingfoil" ? "Wing Center Dahab" : "Vetratoria Windsurf",
+        external: true
+      })}
+    </div>
+  </article>`;
+
+const contactForm = (page) => {
+  const isGeneral = !page.country;
+  const contact = contactForPage(page);
+  return `
+    <form class="contact-form" data-contact-form data-mail-to="${isGeneral ? "" : contact.formEmail}" data-direction="${isGeneral ? "" : contact.title}">
+      <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
+      <label>Способ связи<input name="contact" autocomplete="email" placeholder="Телефон, email или @username" required></label>
+      ${isGeneral ? `
+      <label>Страна
+        <select name="country" required>
+          ${countryList.map((country) => `<option value="${site.contacts[country.key].formEmail}">${country.region} · ${country.city}</option>`).join("")}
+        </select>
+      </label>` : ""}
+      <label><span>Комментарий <small>по желанию</small></span><textarea name="message" rows="5" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
+      <button class="button button-primary" type="submit">Подготовить заявку</button>
+      <p class="form-note" data-form-note aria-live="polite"></p>
+    </form>`;
+};
+
+const contactsPage = (page) => {
+  const isGeneral = !page.country;
+  const isDahab = page.country === "dahab";
+  const contact = contactForPage(page);
+  const heroActions = isDahab
+    ? `<a class="button button-primary" href="#windsurf">Windsurf</a><a class="button button-ghost" href="#wingfoil">Wingfoil</a>`
+    : `<a class="button button-primary" href="#contact-form">Написать нам</a><a class="button button-ghost" href="mailto:${contact.email}">Email</a>`;
+  const directory = isGeneral
+    ? countryList.map(countryContactCard).join("")
+    : isDahab
+      ? site.dahabStations.map(dahabStationCard).join("")
+      : countryContactCard(countriesByKey[page.country], false);
+
+  return `
+${hero(page, heroActions)}
+<section class="content-section contacts-directory-section">
+  <div class="section-inner">
+    ${sectionHeading(
+      isGeneral ? "Три направления" : "Прямая связь",
+      isGeneral ? "Выберите нужную страну" : isDahab ? "Контакты станций в Дахабе" : `Команда: ${countriesByKey[page.country].city}`,
+      isGeneral
+        ? "Пишите напрямую команде направления или оставьте общую заявку ниже."
+        : isDahab
+          ? "Для windsurf и wingfoil работают отдельные контакты. Выберите нужную станцию."
+          : "Свяжитесь напрямую или заполните короткую форму ниже."
+    )}
+    <div class="contacts-directory${isDahab ? " contacts-directory--stations" : ""}">
+      ${directory}
+    </div>
+  </div>
+</section>
+<section class="content-section content-section--soft contact-social-section">
+  <div class="section-inner contact-social">
+    <div>
+      <p class="eyebrow">Социальные сети</p>
+      <h2>Vetratoria в сети</h2>
+      <p>Новости станций, свежие фото и отзывы гостей.</p>
+    </div>
+    ${socialIconLinks("contact-social__links")}
+  </div>
+</section>
+<section class="content-section" id="contact-form">
   <div class="section-inner contact-layout">
     <div>
-      ${sectionHeading("Заявка", "Расскажите о поездке", "Страна, даты, спорт, уровень и количество людей - этого достаточно, чтобы команда предложила понятный формат.")}
-      <div class="contact-cards">
-        <a href="mailto:${site.email}"><small>Email</small><b>${site.email}</b></a>
-        <a href="tel:${site.phone.replace(/\s/g, "")}"><small>Phone / WhatsApp</small><b>${site.phone}</b></a>
-      </div>
+      ${sectionHeading(
+        "Заявка",
+        isGeneral ? "Подберём направление" : "Напишите команде",
+        isGeneral
+          ? "Оставьте имя, удобный способ связи, выберите страну и при желании добавьте комментарий."
+          : "Оставьте имя и удобный способ связи. Комментарий можно не заполнять."
+      )}
+      <p class="contact-form-hint">После нажатия откроется ваше почтовое приложение с уже подготовленной заявкой.</p>
     </div>
-    <form class="contact-form" data-contact-form>
-      <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя"></label>
-      <label>Направление<select name="country"><option>Египет · Дахаб</option><option>Вьетнам · Муйне</option><option>Россия · Должанская</option></select></label>
-      <label>Сообщение<textarea name="message" rows="5" placeholder="Даты, уровень, спорт, вопросы"></textarea></label>
-      <button class="button button-primary" type="submit">Подготовить заявку</button>
-      <p class="form-note" data-form-note></p>
-    </form>
+    ${contactForm(page)}
   </div>
 </section>`;
+};
 
 const featurePage = (page) => {
   const country = page.country ? countriesByKey[page.country] : countryList[0];
@@ -1967,10 +2090,12 @@ for (const dir of obsoletePageDirs) {
   await rm(join(root, dir), { recursive: true, force: true });
 }
 
+const cleanGeneratedMarkup = (markup) => markup.replace(/[ \t]+$/gm, "");
+
 for (const page of allPages) {
   const file = pathToFile(page.path);
   await mkdir(dirname(file), { recursive: true });
-  await writeFile(file, render(page), "utf8");
+  await writeFile(file, cleanGeneratedMarkup(render(page)), "utf8");
 }
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
