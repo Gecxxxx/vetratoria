@@ -381,9 +381,9 @@ pages.push(
     kind: "safety",
     country: "dahab",
     eyebrow: "Дахаб · безопасность",
-    title: "Безопасность на воде",
-    description: "Зоны катания, инструктор, rescue, снаряжение и правила выхода на воду.",
-    image: img("home-slider-3.webp")
+    title: "Безопасность в Дахабе — rescue, связь и инструктаж",
+    description: "4 спасательных катера, контроль на воде, связь на волнах, инструктаж и объяснение акватории перед каждым выходом.",
+    image: "/assets/img/final/dahab/safety-boat.webp"
   },
   {
     path: "/dahab/stations/",

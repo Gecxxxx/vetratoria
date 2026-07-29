@@ -316,7 +316,7 @@ const metaDescriptionForPage = (page) =>
 const metaImageForPage = (page) =>
   page.path === "/dahab/" ? "/assets/img/dahab-ref/ganet-sinai.webp" : page.image || site.slider[0];
 
-const ASSET_VERSION = "20260729-square-price-images";
+const ASSET_VERSION = "20260729-dahab-safety";
 const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
 
 const layout = (page, main) => `<!doctype html>
@@ -1041,6 +1041,7 @@ const dahabHomePage = () => {
 };
 
 const stationImg = (name) => `/assets/img/final/stations/${name}`;
+const dahabSafetyImg = (name) => `/assets/img/final/dahab/${name}`;
 
 const stationSlider = ({ title, lead, images }) => `
   <figure class="dahab-station-slider" data-station-slider aria-label="Фото ${escapeHtml(title)}">
@@ -1174,6 +1175,124 @@ ${stations.map((station, index) => `
         <a class="button button-primary" href="/contacts/">Подобрать станцию</a>
         <a class="button button-ghost" href="/dahab/wingfoil/price/">Смотреть цены</a>
       </div>
+    </div>
+  </div>
+</section>`.replace(/^[\t ]+$/gm, "");
+};
+
+const dahabSafetyPage = () => {
+  const safetyFacts = [
+    ["Rescue", "4 спасательных катера", "Катера поддерживают станции и позволяют быстро реагировать, если райдеру нужна помощь на воде."],
+    ["Control", "Контроль акватории", "Команда следит за фактическими условиями, рабочими зонами и райдерами во время выхода."],
+    ["Connection", "Связь на волнах", "Для выходов на волны выдаём телефоны, чтобы райдер мог связаться со станцией."],
+    ["Briefing", "Инструктаж до старта", "До выхода разбираем ветер, маршрут, границы зоны, сигналы и правила возвращения."]
+  ];
+  const briefingSteps = [
+    ["01", "Условия", "Сверяем прогноз с фактическим ветром, его направлением и обстановкой на воде."],
+    ["02", "Зона", "Показываем рабочую акваторию, безопасный маршрут и места, куда не следует уходить."],
+    ["03", "Связь", "Объясняем, как связаться со станцией и какие сигналы использовать в сложной ситуации."],
+    ["04", "Выход", "Райдер выходит на воду с понятным планом катания и заранее оговорёнными правилами возврата."]
+  ];
+
+  return `
+<section class="dahab-hero">
+  <img class="dahab-hero__image" src="${dahabSafetyImg("safety-boat.webp")}" alt="Спасательный катер Vetratoria в Дахабе" width="1600" height="1067" fetchpriority="high">
+  <div class="dahab-hero__shade"></div>
+  <div class="dahab-hero__content">
+    <p class="eyebrow">Дахаб · безопасность</p>
+    <h1>Безопасность на воде — часть каждого выхода</h1>
+    <p class="hero-lead">В Vetratoria безопасность начинается до воды: объясняем акваторию, проводим инструктаж, контролируем райдеров и поддерживаем rescue-готовность на станциях.</p>
+    <div class="hero-advantages">
+      <span class="hero-advantage">4 спасательных катера</span>
+      <span class="hero-advantage">Контроль на воде</span>
+      <span class="hero-advantage">Связь на волнах</span>
+      <span class="hero-advantage">Инструктаж перед выходом</span>
+    </div>
+    <div class="hero-actions dahab-hero-actions">
+      <a class="button button-primary" href="/contacts/">Задать вопрос</a>
+      <a class="button button-ghost" href="#safety-system">Как это работает</a>
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section" id="safety-system">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Главное", "Что Vetratoria делает для безопасности", "Райдер заранее понимает, кто контролирует воду, как устроена связь и что происходит перед первым выходом.")}
+    <div class="dahab-sport-feature-grid">
+      ${safetyFacts.map(([label, title, text]) => `
+        <article>
+          <span>${label}</span>
+          <h3>${title}</h3>
+          <p>${text}</p>
+        </article>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section dahab-sport-section--soft" id="briefing">
+  <div class="dahab-sport-inner dahab-sport-safety">
+    <div class="dahab-sport-safety__copy">
+      <p class="eyebrow">Перед выходом</p>
+      <h2>Инструктаж и объяснение акватории</h2>
+      <p>Перед занятием или самостоятельной практикой разбираем старт, маршрут, границы зоны и действия при изменении ветра.</p>
+      <div class="dahab-sport-safety__list">
+        <span>Проверяем ветер и условия</span>
+        <span>Показываем безопасную зону</span>
+        <span>Объясняем сигналы и связь</span>
+        <span>Согласовываем правила возврата</span>
+      </div>
+      <a class="button button-primary" href="#briefing-steps">Все этапы</a>
+    </div>
+    <div class="dahab-sport-safety__media">
+      <img src="${dahabSafetyImg("safety-briefing-generated.webp")}" alt="Инструктаж перед выходом на воду в Дахабе" width="1600" height="900" loading="lazy" decoding="async">
+      <img src="${wingfoilSectionImg("safety-helmets.webp")}" alt="Шлемы и защитное снаряжение Vetratoria" width="1200" height="1800" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section" id="water-control">
+  <div class="dahab-sport-inner dahab-sport-safety">
+    <div class="dahab-sport-safety__copy">
+      <p class="eyebrow">На воде</p>
+      <h2>Контроль усиливает правила</h2>
+      <p>Rescue и связь нужны для спокойной организации катания. До старта согласовываем маршрут, во время выхода следим за обстановкой и помогаем, когда райдеру нужна поддержка.</p>
+      <div class="dahab-sport-safety__list">
+        <span>Новичкам — понятная зона и инструктор рядом</span>
+        <span>Самостоятельным — согласование условий и маршрута</span>
+        <span>На волнах — телефон и связь со станцией</span>
+      </div>
+      <a class="button button-primary" href="/contacts/">Уточнить формат</a>
+    </div>
+    <div class="dahab-sport-safety__media">
+      <img src="${dahabSafetyImg("cover-safety.webp")}" alt="Контроль райдера спасательным катером Vetratoria" width="1600" height="1067" loading="lazy" decoding="async">
+      <img src="${wingfoilSectionImg("rescue-boats.webp")}" alt="Спасательные катера Vetratoria у станции" width="1920" height="1280" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section dahab-sport-section--soft" id="briefing-steps">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Порядок", "Четыре шага перед выходом", "Короткая последовательность помогает не упустить важное и спокойно начать занятие или самостоятельную практику.")}
+    <div class="dahab-sport-feature-grid">
+      ${briefingSteps.map(([number, title, text]) => `
+        <article>
+          <span>${number}</span>
+          <h3>${title}</h3>
+          <p>${text}</p>
+        </article>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-cta">
+  <img src="${dahabSafetyImg("safety-boat.webp")}" alt="Rescue Vetratoria в Дахабе" width="1600" height="1067" loading="lazy" decoding="async">
+  <div class="dahab-sport-cta__inner">
+    <p class="eyebrow">Подбор формата</p>
+    <h2>Не уверены, какая зона подойдёт?</h2>
+    <p>Напишите спорт, уровень, даты и хотите ли выходить на волны. Команда подскажет станцию, акваторию и безопасный формат.</p>
+    <div>
+      <a class="button button-primary" href="/contacts/">Написать нам</a>
+      <a class="button button-ghost" href="/dahab/">Обзор Дахаба</a>
     </div>
   </div>
 </section>`.replace(/^[\t ]+$/gm, "");
@@ -1836,6 +1955,8 @@ const render = (page) => {
       return layout(page, contactsPage(page));
     case "stations":
       return layout(page, page.country === "dahab" ? dahabStationsPage(page) : featurePage(page));
+    case "safety":
+      return layout(page, page.country === "dahab" ? dahabSafetyPage(page) : featurePage(page));
     default:
       return layout(page, featurePage(page));
   }
