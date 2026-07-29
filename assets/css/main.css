@@ -1,13 +1,13 @@
 /* Vetratoria CSS entrypoint. Keep imports ordered from foundations to page-specific overrides. */
 
-@import url("./base/variables.css");
+@import url("./base/variables.css?v=20260729-compact-nav");
 @import url("./base/reset.css");
 @import url("./base/typography.css");
 @import url("./base/global.css");
 @import url("./layout/sections.css");
 @import url("./layout/grid.css");
 @import url("./layout/header.css");
-@import url("./layout/navigation.css");
+@import url("./layout/navigation.css?v=20260729-compact-nav");
 @import url("./layout/footer.css");
 @import url("./components/buttons.css");
 @import url("./components/hero-advantages.css");

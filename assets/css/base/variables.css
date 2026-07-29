@@ -15,9 +15,9 @@
   --shadow: 0 22px 70px rgba(0, 0, 0, 0.42);
   --max: 1320px;
   --wide: 1480px;
-  --nav-top-h: 68px;
-  --nav-main-h: 76px;
-  --nav-section-h: 56px;
+  --nav-top-h: 54px;
+  --nav-main-h: 64px;
+  --nav-section-h: 48px;
 
   --color-background: var(--bg);
   --color-background-elevated: var(--bg-2);
