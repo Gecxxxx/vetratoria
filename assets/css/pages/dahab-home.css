@@ -851,36 +851,36 @@
   object-fit: cover;
 }
 
-body.country-dahab main {
+body.country.country-dahab main {
   display: flex;
   flex-direction: column;
 }
 
-body.country-dahab .dahab-hero {
+body.country.country-dahab .dahab-hero {
   order: 1;
 }
 
-body.country-dahab .dahab-marquee {
+body.country.country-dahab .dahab-marquee {
   order: 2;
 }
 
-body.country-dahab .sport-split {
+body.country.country-dahab .sport-split {
   order: 3;
 }
 
-body.country-dahab .compact-band {
+body.country.country-dahab .compact-band {
   order: 4;
 }
 
-body.country-dahab .water-area {
+body.country.country-dahab .water-area {
   order: 5;
 }
 
-body.country-dahab .station-advice {
+body.country.country-dahab .station-advice {
   order: 6;
 }
 
-body.country-dahab .trust-block {
+body.country.country-dahab .trust-block {
   display: none;
 }
 
