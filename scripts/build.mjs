@@ -316,7 +316,7 @@ const metaDescriptionForPage = (page) =>
 const metaImageForPage = (page) =>
   page.path === "/dahab/" ? "/assets/img/dahab-ref/ganet-sinai.webp" : page.image || site.slider[0];
 
-const ASSET_VERSION = "20260728-stations-page";
+const ASSET_VERSION = "20260729-hero-advantages";
 const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
 
 const layout = (page, main) => `<!doctype html>
@@ -369,11 +369,11 @@ const home = () => `
     <p class="eyebrow">Vetratoria Wind Schools</p>
     <h1>Windsurf, Wingfoil и Kite — от первого старта до уверенного катания</h1>
     <p class="hero-lead">Обучение и прокат в Египте, Вьетнаме и России. Подберём программу и снаряжение под ваш уровень и условия на воде.</p>
-    <div class="home-advantages">
-      <article class="home-advantage"><span>С 2006 года</span></article>
-      <article class="home-advantage"><span>Обучение с нуля и прогресс</span></article>
-      <article class="home-advantage"><span>Опытные инструкторы</span></article>
-      <article class="home-advantage"><span>Клубная система скидок</span></article>
+    <div class="hero-advantages">
+      <article class="hero-advantage">С 2006 года</article>
+      <article class="hero-advantage">Обучение с нуля и прогресс</article>
+      <article class="hero-advantage">Опытные инструкторы</article>
+      <article class="hero-advantage">Клубная система скидок</article>
     </div>
     <div class="hero-actions">
       <a class="button button-primary" href="/contacts/">Написать нам</a>
@@ -517,8 +517,8 @@ const dahabWingfoilPage = (page) => {
         <a class="button button-primary" href="/contacts/">Записаться</a>
         <a class="button button-ghost" href="/dahab/wingfoil/price/">Смотреть цены</a>
       </div>
-      <div class="dahab-sport-hero__facts">
-        ${heroFacts.map((item) => `<span>${item}</span>`).join("")}
+      <div class="hero-advantages">
+        ${heroFacts.map((item) => `<span class="hero-advantage">${item}</span>`).join("")}
       </div>
     </div>
     <figure class="dahab-sport-hero__media">
@@ -718,8 +718,8 @@ const dahabWindsurfPage = (page) => {
         <a class="button button-primary" href="/contacts/">Записаться</a>
         <a class="button button-ghost" href="/dahab/windsurf/price/">Смотреть цены</a>
       </div>
-      <div class="dahab-sport-hero__facts">
-        ${heroFacts.map((item) => `<span>${item}</span>`).join("")}
+      <div class="hero-advantages">
+        ${heroFacts.map((item) => `<span class="hero-advantage">${item}</span>`).join("")}
       </div>
     </div>
     <figure class="dahab-sport-hero__media">
@@ -897,7 +897,7 @@ const dahabHomePage = () => {
     <p class="eyebrow">Египет · Дахаб</p>
     <h1>Wingfoil и Windsurf в Дахабе</h1>
     <p class="hero-lead">Обучение и прокат на Красном море для новичков и опытных райдеров. Подберём программу, инструктора и снаряжение под ваш уровень.</p>
-    <div class="dahab-hero__facts"><span>С 2006 года</span><span>Условия для любого уровня</span><span>10 000+ учеников</span><span>3 спасательных катера</span></div>
+    <div class="hero-advantages"><span class="hero-advantage">С 2006 года</span><span class="hero-advantage">Условия для любого уровня</span><span class="hero-advantage">10 000+ учеников</span><span class="hero-advantage">3 спасательных катера</span></div>
     <div class="hero-actions dahab-hero-actions">
       <a class="button button-primary" href="/contacts/">Написать нам</a>
       <a class="button button-ghost" href="/dahab/wingfoil/">Wingfoil</a>

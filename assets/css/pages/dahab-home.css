@@ -50,30 +50,6 @@
   line-height: 1.45;
 }
 
-.dahab-hero__facts {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 8px;
-  max-width: 740px;
-  margin-top: 26px;
-}
-
-.dahab-hero__facts span {
-  min-height: 58px;
-  padding: 11px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(7, 7, 7, 0.5);
-}
-
-.dahab-hero__facts span {
-  display: block;
-  margin-top: 6px;
-  color: var(--white);
-  font-size: 13px;
-  font-weight: 800;
-  line-height: 1.15;
-}
-
 .dahab-section {
   padding: 86px 0;
   background: var(--bg);
@@ -120,11 +96,6 @@
 .dahab-hero__content {
   padding-top: 112px;
   padding-bottom: 82px;
-}
-
-.dahab-hero__facts {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  max-width: 860px;
 }
 
 .dahab-hero-actions {
@@ -930,7 +901,6 @@ body.country-dahab .trust-block {
       font-size: 16px;
     }
 
-  .dahab-hero__facts,
   .sport-split__grid,
   .price-grid,
   .station-advice__list,
@@ -1010,10 +980,6 @@ body.country-dahab .trust-block {
   .trust-head h2,
   .water-area__copy h2 {
       font-size: 32px;
-    }
-
-  .dahab-hero__facts {
-      grid-template-columns: 1fr;
     }
 
   .sport-tile,
