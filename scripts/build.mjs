@@ -93,7 +93,7 @@ const mobileCountrySection = (page, country) => {
       <section class="vtr-mobile-menu__block vtr-mobile-menu__block--accent" aria-label="Навигация ${country.title}">
         <p class="vtr-mobile-menu__title">${country.title}</p>
         <a class="${mobileRowClass(page.path === country.href)}" href="${country.href}">Обзор</a>
-        ${sportLinks.map((item) => `<a class="${mobileRowClass(countrySectionActive(page, [item.href]))}" href="${item.href}">${item.label}</a>`).join("")}
+        ${sportLinks.map((item) => `<a class="${mobileRowClass(page.path === item.href)}" href="${item.href}">${item.label}</a>`).join("")}
         ${mobileDropdown("Цены", countrySectionActive(page, pricePaths), priceItems)}
         ${country.key === "dahab" ? `<a class="${mobileRowClass(countrySectionActive(page, ["/dahab/stations/"]))}" href="/dahab/stations/">Станции</a>` : ""}
         ${mobileDropdown("О школе", countrySectionActive(page, schoolPaths), schoolItems)}
@@ -184,8 +184,8 @@ const countrySectionNav = (page, country) => {
   const baseLinks = country.key === "dahab"
     ? [
         `<a class="${sectionLinkClass(page.path === country.href)}" href="${country.href}">Обзор</a>`,
-        `<a class="${sectionLinkClass(countrySectionActive(page, ["/dahab/wingfoil/"]))}" href="/dahab/wingfoil/">Wingfoil</a>`,
-        `<a class="${sectionLinkClass(countrySectionActive(page, ["/dahab/windsurf/"]))}" href="/dahab/windsurf/">Windsurf</a>`,
+        `<a class="${sectionLinkClass(page.path === "/dahab/wingfoil/")}" href="/dahab/wingfoil/">Wingfoil</a>`,
+        `<a class="${sectionLinkClass(page.path === "/dahab/windsurf/")}" href="/dahab/windsurf/">Windsurf</a>`,
         sectionDropdown("Цены", countrySectionActive(page, pricePaths), [
           { label: "Wingfoil", href: "/dahab/wingfoil/price/" },
           { label: "Windsurf", href: "/dahab/windsurf/price/" }
@@ -194,9 +194,9 @@ const countrySectionNav = (page, country) => {
       ]
     : [
         `<a class="${sectionLinkClass(page.path === country.href)}" href="${country.href}">Обзор</a>`,
-        `<a class="${sectionLinkClass(countrySectionActive(page, [`/${country.key}/windsurf/`]))}" href="/${country.key}/windsurf/">Windsurf</a>`,
-        `<a class="${sectionLinkClass(countrySectionActive(page, [`/${country.key}/wingfoil/`]))}" href="/${country.key}/wingfoil/">Wingfoil</a>`,
-        `<a class="${sectionLinkClass(countrySectionActive(page, [`/${country.key}/kite/`]))}" href="/${country.key}/kite/">Kite</a>`,
+        `<a class="${sectionLinkClass(page.path === `/${country.key}/windsurf/`)}" href="/${country.key}/windsurf/">Windsurf</a>`,
+        `<a class="${sectionLinkClass(page.path === `/${country.key}/wingfoil/`)}" href="/${country.key}/wingfoil/">Wingfoil</a>`,
+        `<a class="${sectionLinkClass(page.path === `/${country.key}/kite/`)}" href="/${country.key}/kite/">Kite</a>`,
         sectionDropdown("Цены", countrySectionActive(page, pricePaths), priceSportKeys.map((sportKey) => ({
           label: site.sports[sportKey].nav,
           href: `/${country.key}/${sportKey}/price/`
