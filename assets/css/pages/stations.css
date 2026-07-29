@@ -32,7 +32,7 @@
 }
 
 .dahab-stations-inner {
-  width: min(100% - var(--page-gutter), 1040px);
+  width: min(100% - var(--page-gutter), var(--max));
   margin: 0 auto;
 }
 

@@ -316,7 +316,7 @@ const metaDescriptionForPage = (page) =>
 const metaImageForPage = (page) =>
   page.path === "/dahab/" ? "/assets/img/dahab-ref/ganet-sinai.webp" : page.image || site.slider[0];
 
-const ASSET_VERSION = "20260729-hero-layouts";
+const ASSET_VERSION = "20260729-unified-price-hero";
 const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
 
 const layout = (page, main) => `<!doctype html>
@@ -1249,14 +1249,14 @@ const priceRows = (sportTitle = "Спорт") => [
 ];
 
 const dahabWingfoilPricePage = (page) => `
-<section class="wingfoil-price-hero">
-  <img src="/assets/img/final/wingfoil/hero.webp" alt="Цены Wingfoil в Дахабе" width="1600" height="1067" fetchpriority="high">
-  <div class="wingfoil-price-hero__shade"></div>
-  <div class="wingfoil-price-hero__content">
+<section class="dahab-hero dahab-hero--price">
+  <img class="dahab-hero__image" src="/assets/img/final/wingfoil/hero.webp" alt="Цены Wingfoil в Дахабе" width="1600" height="1067" fetchpriority="high">
+  <div class="dahab-hero__shade"></div>
+  <div class="dahab-hero__content">
     <p class="eyebrow">Египет · Дахаб · Wingfoil</p>
     <h1>Цены Wingfoil в Дахабе</h1>
     <p>Полный прайс: аренда комплектов, уроки винга, фойл за лодкой, Wing + SUP, Wing + Foil, отдельная аренда крыла и доски, обучающие пакеты, интенсив-пакеты, страховка и хранение.</p>
-    <div class="wingfoil-price-hero__actions">
+    <div class="hero-actions dahab-hero-actions">
       <a class="button button-primary" href="#rental">Аренда</a>
       <a class="button button-primary" href="#lessons">Уроки</a>
       <a class="button button-primary" href="#parts">Отдельные части</a>
@@ -1483,14 +1483,14 @@ const dahabWingfoilPricePage = (page) => `
 </section>`.replace(/^[\t ]+$/gm, "");
 
 const dahabWindsurfPricePage = (page) => `
-<section class="windsurf-price-hero">
-  <img src="/assets/img/final/windsurf/hero.webp" alt="Цены Windsurf в Дахабе" width="1600" height="1067" fetchpriority="high">
-  <div class="windsurf-price-hero__shade"></div>
-  <div class="windsurf-price-hero__content">
+<section class="dahab-hero dahab-hero--price">
+  <img class="dahab-hero__image" src="/assets/img/final/windsurf/hero.webp" alt="Цены Windsurf в Дахабе" width="1600" height="1067" fetchpriority="high">
+  <div class="dahab-hero__shade"></div>
+  <div class="dahab-hero__content">
     <p class="eyebrow">Египет · Дахаб · Windsurf</p>
     <h1>Цены Windsurf в Дахабе</h1>
     <p>Полный прайс: обучение виндсерфингу, курсы 1–7 дней, индивидуальные занятия, прокат оборудования, страховка, скидки, аренда гидрофойла и хранение windsurf-оборудования.</p>
-    <div class="windsurf-price-hero__actions">
+    <div class="hero-actions dahab-hero-actions">
       <a class="button button-primary" href="#courses">Курсы</a>
       <a class="button button-primary" href="#lessons">Уроки</a>
       <a class="button button-primary" href="#rental">Прокат</a>
