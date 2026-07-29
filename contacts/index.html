@@ -12,8 +12,8 @@
   <meta property="og:image" content="/assets/img/home-uploaded/ABOUTVETRATORIA.jpg">
   <meta name="theme-color" content="#0d0c0b">
   <link rel="icon" href="/assets/img/vetratoria-logo.png">
-  <link rel="stylesheet" href="/assets/css/main.css?v=20260729-dahab-overview-copy">
-  <script defer src="/assets/js/app.js?v=20260729-dahab-overview-copy"></script>
+  <link rel="stylesheet" href="/assets/css/main.css?v=20260729-contact-modal">
+  <script defer src="/assets/js/app.js?v=20260729-contact-modal"></script>
 </head>
 <body class="modern-site contacts">
   <a class="skip-link" href="#main">К содержанию</a>
@@ -233,13 +233,15 @@
       <p class="contact-form-hint">После нажатия откроется ваше почтовое приложение с уже подготовленной заявкой.</p>
     </div>
 
-    <form class="contact-form" data-contact-form data-mail-to="" data-direction="">
+    <form class="contact-form" data-contact-form data-endpoint="" data-mail-to="" data-direction="">
+      <input type="hidden" name="source" value="/contacts/">
+      <input type="hidden" name="intent" value="Форма страницы контактов">
       <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
       <label>Способ связи<input name="contact" autocomplete="email" placeholder="Телефон, email или @username" required></label>
 
       <label>Страна
-        <select name="country" required>
-          <option value="dahab@vetratoria.ru">Египет · Дахаб</option><option value="vietnam@vetratoria.ru">Вьетнам · Муйне</option><option value="russia@vetratoria.ru">Россия · Должанская</option>
+        <select name="country" data-contact-country-select required>
+          <option value="dahab" data-email="dahab@vetratoria.ru" data-phone="+201029321772" data-telegram="https://t.me/dahabvetratoria">Египет · Дахаб</option><option value="vietnam" data-email="vietnam@vetratoria.ru" data-phone="+79884715355" data-telegram="https://t.me/+79884715355">Вьетнам · Муйне</option><option value="russia" data-email="russia@vetratoria.ru" data-phone="+79884715355" data-telegram="https://t.me/+79884715355">Россия · Должанская</option>
         </select>
       </label>
       <label><span>Комментарий <small>по желанию</small></span><textarea name="message" rows="5" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
@@ -280,7 +282,7 @@
       </div>
       <div>
         <h3>Связь</h3>
-        <a href="/contacts/">Написать нам</a>
+        <a href="/contacts/" data-contact-modal data-contact-intent="Написать нам">Написать нам</a>
         <a href="mailto:dahab@vetratoria.ru">dahab@vetratoria.ru</a>
         <a href="tel:+201029321772">+20 102 932 1772</a>
       </div>
@@ -291,5 +293,49 @@
     <span>Условия, расписание, цены и доступность форматов уточняются перед поездкой.</span>
   </div>
 </footer>
+
+<dialog class="contact-modal" data-contact-dialog aria-labelledby="contact-modal-title">
+  <div class="contact-modal__surface">
+    <button class="contact-modal__close" type="button" data-contact-close aria-label="Закрыть форму">×</button>
+    <div class="contact-modal__head">
+      <p class="eyebrow">Быстрая заявка</p>
+      <h2 id="contact-modal-title" data-contact-modal-title>Написать нам</h2>
+      <p>Оставьте контакты — команда уточнит детали и поможет подобрать формат.</p>
+      <span class="contact-modal__context" data-contact-modal-context>Vetratoria</span>
+    </div>
+    <form class="contact-form contact-modal__form" data-contact-form data-contact-modal-form
+      data-endpoint=""
+      data-mail-to=""
+      data-direction="Vetratoria">
+      <input type="hidden" name="source" value="/contacts/">
+      <input type="hidden" name="intent" value="" data-contact-intent-input>
+      <input type="hidden" name="sport" value="" data-contact-sport-input>
+
+      <label>Направление
+        <select name="country" data-contact-country-select required>
+          <option value="dahab" data-email="dahab@vetratoria.ru" data-phone="+201029321772" data-telegram="https://t.me/dahabvetratoria">Египет · Дахаб</option><option value="vietnam" data-email="vietnam@vetratoria.ru" data-phone="+79884715355" data-telegram="https://t.me/+79884715355">Вьетнам · Муйне</option><option value="russia" data-email="russia@vetratoria.ru" data-phone="+79884715355" data-telegram="https://t.me/+79884715355">Россия · Должанская</option>
+        </select>
+      </label>
+      <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
+      <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, email или @username" required></label>
+      <label><span>Комментарий <small>по желанию</small></span><textarea name="message" rows="4" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
+      <button class="button button-primary contact-modal__submit" type="submit">Подготовить заявку</button>
+      <p class="form-note" data-form-note aria-live="polite"></p>
+    </form>
+    <div class="contact-modal__direct">
+      <span>Или свяжитесь напрямую</span>
+      <div>
+        <a href="tel:+201029321772" data-contact-direct-phone>
+          <img src="/assets/icons/whatsapp.svg" alt="" width="20" height="20">
+          <span data-contact-direct-phone-label>Телефон</span>
+        </a>
+        <a href="https://t.me/dahabvetratoria" data-contact-direct-telegram target="_blank" rel="noopener noreferrer">
+          <img src="/assets/icons/telegram.svg" alt="" width="20" height="20">
+          <span>Telegram</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</dialog>
 </body>
 </html>

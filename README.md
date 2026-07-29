@@ -15,5 +15,18 @@ npm.cmd run dev
 
 - `src/pages.mjs` - данные страниц и навигации.
 - `scripts/build.mjs` - статический генератор HTML.
-- `assets/css/styles.css` - вся визуальная система.
-- `assets/js/app.js` - меню, dropdown и hero-slider.
+- `assets/css/main.css` - точка входа модульной CSS-системы.
+- `assets/js/app.js` - меню, слайдеры и единая логика контактных форм.
+
+## Заявки
+
+Все конверсионные CTA используют общий нативный `dialog`. Без JavaScript ссылка
+ведет на страницу контактов соответствующей страны.
+
+Пока `site.contactEndpoint` в `src/pages.mjs` пустой, форма готовит письмо через
+`mailto:`. Для CRM или Telegram-бота укажите HTTPS endpoint: сайт отправит туда
+JSON с полями `name`, `contact`, `country`, `sport`, `intent`, `direction`,
+`message`, `source` и `pageUrl`.
+
+Перед отправкой также возникает событие `vetratoria:contact-submit` с тем же
+payload в `event.detail`. Его можно использовать для аналитики.

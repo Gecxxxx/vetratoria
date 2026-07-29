@@ -12,8 +12,8 @@
   <meta property="og:image" content="/assets/img/home-uploaded/home-slider-6.webp">
   <meta name="theme-color" content="#0d0c0b">
   <link rel="icon" href="/assets/img/vetratoria-logo.png">
-  <link rel="stylesheet" href="/assets/css/main.css?v=20260729-dahab-overview-copy">
-  <script defer src="/assets/js/app.js?v=20260729-dahab-overview-copy"></script>
+  <link rel="stylesheet" href="/assets/css/main.css?v=20260729-contact-modal">
+  <script defer src="/assets/js/app.js?v=20260729-contact-modal"></script>
 </head>
 <body class="modern-site article country-vietnam">
   <a class="skip-link" href="#main">К содержанию</a>
@@ -70,7 +70,7 @@
       </div>
       <a class="vtr-nav__link" href="/blog/">Блог</a>
       <a class="vtr-nav__link" href="/media/">Медиа</a>
-      <a class="vtr-nav__link" href="/contacts/">Контакты</a>
+      <a class="vtr-nav__link" href="/vietnam/contacts/">Контакты</a>
 
       <div class="vtr-mobile-menu" aria-label="Мобильная навигация">
 
@@ -99,7 +99,7 @@
           <a class="vtr-mobile-menu__row" href="/">Vetratoria</a>
           <a class="vtr-mobile-menu__row" href="/blog/">Блог</a>
           <a class="vtr-mobile-menu__row" href="/media/">Медиа</a>
-          <a class="vtr-mobile-menu__row" href="/contacts/">Контакты</a>
+          <a class="vtr-mobile-menu__row" href="/vietnam/contacts/">Контакты</a>
         </section>
         <section class="vtr-mobile-menu__block" aria-label="Контакты">
           <p class="vtr-mobile-menu__title">Контакты</p>
@@ -151,7 +151,7 @@
     <p class="eyebrow">Муйне · Wingfoil</p>
     <h1>Wingfoil во Вьетнаме</h1>
     <p class="hero-lead">Стабильный бриз, пространство для прогресса и сценарии занятий на несколько дней.</p>
-    <div class="hero-actions"><a class="button button-primary" href="/vietnam/wingfoil/">Открыть спорт</a><a class="button button-ghost" href="/contacts/">Написать нам</a></div>
+    <div class="hero-actions"><a class="button button-primary" href="/vietnam/wingfoil/">Открыть спорт</a><a class="button button-ghost" href="/vietnam/contacts/" data-contact-modal data-contact-intent="Написать нам" data-contact-country="vietnam" data-contact-country-label="Вьетнам · Муйне" data-contact-sport="Wingfoil" data-contact-email="vietnam@vetratoria.ru" data-contact-phone="+79884715355" data-contact-telegram="https://t.me/+79884715355">Написать нам</a></div>
   </div>
 </section>
   <article class="content-section article-body">
@@ -199,7 +199,7 @@
       </div>
       <div>
         <h3>Связь</h3>
-        <a href="/vietnam/contacts/">Написать нам</a>
+        <a href="/vietnam/contacts/" data-contact-modal data-contact-intent="Написать нам" data-contact-country="vietnam" data-contact-country-label="Вьетнам · Муйне" data-contact-sport="Wingfoil" data-contact-email="vietnam@vetratoria.ru" data-contact-phone="+79884715355" data-contact-telegram="https://t.me/+79884715355">Написать нам</a>
         <a href="mailto:vietnam@vetratoria.ru">vietnam@vetratoria.ru</a>
         <a href="tel:+79884715355">+7 988 471 5355</a>
       </div>
@@ -210,5 +210,44 @@
     <span>Условия, расписание, цены и доступность форматов уточняются перед поездкой.</span>
   </div>
 </footer>
+
+<dialog class="contact-modal" data-contact-dialog aria-labelledby="contact-modal-title">
+  <div class="contact-modal__surface">
+    <button class="contact-modal__close" type="button" data-contact-close aria-label="Закрыть форму">×</button>
+    <div class="contact-modal__head">
+      <p class="eyebrow">Быстрая заявка</p>
+      <h2 id="contact-modal-title" data-contact-modal-title>Написать нам</h2>
+      <p>Оставьте контакты — команда уточнит детали и поможет подобрать формат.</p>
+      <span class="contact-modal__context" data-contact-modal-context>Вьетнам · Муйне · Wingfoil</span>
+    </div>
+    <form class="contact-form contact-modal__form" data-contact-form data-contact-modal-form
+      data-endpoint=""
+      data-mail-to="vietnam@vetratoria.ru"
+      data-direction="Вьетнам · Муйне · Wingfoil">
+      <input type="hidden" name="source" value="/vietnam/blog/wingfoil/">
+      <input type="hidden" name="intent" value="" data-contact-intent-input>
+      <input type="hidden" name="sport" value="Wingfoil" data-contact-sport-input>
+      <input type="hidden" name="country" value="vietnam" data-contact-country-input>
+      <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
+      <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, email или @username" required></label>
+      <label><span>Комментарий <small>по желанию</small></span><textarea name="message" rows="4" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
+      <button class="button button-primary contact-modal__submit" type="submit">Подготовить заявку</button>
+      <p class="form-note" data-form-note aria-live="polite"></p>
+    </form>
+    <div class="contact-modal__direct">
+      <span>Или свяжитесь напрямую</span>
+      <div>
+        <a href="tel:+79884715355" data-contact-direct-phone>
+          <img src="/assets/icons/whatsapp.svg" alt="" width="20" height="20">
+          <span data-contact-direct-phone-label>Телефон</span>
+        </a>
+        <a href="https://t.me/+79884715355" data-contact-direct-telegram target="_blank" rel="noopener noreferrer">
+          <img src="/assets/icons/telegram.svg" alt="" width="20" height="20">
+          <span>Telegram</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</dialog>
 </body>
 </html>

@@ -45,6 +45,39 @@ const socialIconLinks = (className = "") => `
 
 const contactForPage = (page) => site.contacts[page.country] || site.contacts.dahab;
 
+const contactCountryForPage = (page) => currentCountry(page);
+
+const contactPagePath = (page) => {
+  const country = contactCountryForPage(page);
+  return country ? `/${country.key}/contacts/` : "/contacts/";
+};
+
+const contactDestination = (page, sportKey = page.sport) => {
+  const country = contactCountryForPage(page);
+  if (country?.key === "dahab" && sportKey === "wingfoil") {
+    return site.dahabStations.find((station) => station.key === "wingfoil");
+  }
+  return country ? site.contacts[country.key] : null;
+};
+
+const contactCta = (page, label, className = "button button-primary", sportKey = page.sport) => {
+  const country = contactCountryForPage(page);
+  const destination = contactDestination(page, sportKey);
+  const attributes = [
+    className ? `class="${className}"` : "",
+    `href="${contactPagePath(page)}"`,
+    "data-contact-modal",
+    `data-contact-intent="${escapeHtml(label)}"`,
+    country ? `data-contact-country="${country.key}"` : "",
+    country ? `data-contact-country-label="${escapeHtml(site.contacts[country.key].title)}"` : "",
+    sportKey ? `data-contact-sport="${escapeHtml(sportLabel(sportKey))}"` : "",
+    destination?.formEmail || destination?.email ? `data-contact-email="${escapeHtml(destination.formEmail || destination.email)}"` : "",
+    destination?.phone ? `data-contact-phone="${escapeHtml(destination.phone)}"` : "",
+    destination?.telegram ? `data-contact-telegram="${escapeHtml(destination.telegram)}"` : ""
+  ].filter(Boolean).join(" ");
+  return `<a ${attributes}>${escapeHtml(label)}</a>`;
+};
+
 const sportLabel = (sportKey) => sportKey === "windsurf-kids" ? "Kids" : site.sports[sportKey].nav;
 
 const countrySportSummary = (country) => country.sports.map(sportLabel).join(", ");
@@ -118,7 +151,7 @@ const mobileMenu = (page, country) => `
           <a class="vtr-mobile-menu__row" href="/">Vetratoria</a>
           <a class="vtr-mobile-menu__row" href="/blog/">Блог</a>
           <a class="vtr-mobile-menu__row" href="/media/">Медиа</a>
-          <a class="vtr-mobile-menu__row" href="/contacts/">Контакты</a>
+          <a class="vtr-mobile-menu__row" href="${country ? `/${country.key}/contacts/` : "/contacts/"}">Контакты</a>
         </section>
         <section class="vtr-mobile-menu__block" aria-label="Контакты">
           <p class="vtr-mobile-menu__title">Контакты</p>
@@ -135,7 +168,7 @@ const mainNavPanel = (page, country) => `
       ${directionsMenu()}
       <a class="vtr-nav__link" href="/blog/">Блог</a>
       <a class="vtr-nav__link" href="/media/">Медиа</a>
-      <a class="vtr-nav__link${page.kind === "contacts" ? " is-active" : ""}" href="/contacts/">Контакты</a>
+      <a class="vtr-nav__link${page.kind === "contacts" ? " is-active" : ""}" href="${country ? `/${country.key}/contacts/` : "/contacts/"}">Контакты</a>
       ${mobileMenu(page, country)}
     </nav>`;
 
@@ -276,7 +309,7 @@ const footer = (page) => {
       </div>
       <div>
         <h3>Связь</h3>
-        <a href="${contactsHref}">Написать нам</a>
+        ${contactCta(page, "Написать нам", "")}
         <a href="mailto:${contact.email}">${contact.email}</a>
         <a href="tel:${contact.phone}">${contact.phoneLabel}</a>
       </div>
@@ -289,7 +322,7 @@ const footer = (page) => {
 </footer>`;
 };
 
-const dahabFooter = () => `
+const dahabFooter = (page) => `
 <footer class="site-footer dahab-footer-pro">
   <div class="dahab-footer-pro__inner">
     <a class="dahab-footer-pro__brand" href="/" aria-label="Vetratoria - главная">
@@ -300,7 +333,7 @@ const dahabFooter = () => `
       <article>
         <h2>Контакты Дахаба</h2>
         <p>Напишите даты, уровень и спорт — подберём станцию.</p>
-        <nav><a href="/dahab/contacts/">Оставить заявку</a><a href="/dahab/contacts/">Контакты станции</a></nav>
+        <nav>${contactCta(page, "Оставить заявку", "")}<a href="/dahab/contacts/">Контакты станции</a></nav>
       </article>
       <article>
         <h2>Карта станций</h2>
@@ -319,7 +352,7 @@ const dahabFooter = () => `
   </div>
 </footer>`;
 
-const footerForPage = (page) => page.kind === "country" && page.country === "dahab" ? dahabFooter() : footer(page);
+const footerForPage = (page) => page.kind === "country" && page.country === "dahab" ? dahabFooter(page) : footer(page);
 
 const metaTitleForPage = (page) =>
   page.path === "/dahab/" ? "Дахаб — Wingfoil и Windsurf на Красном море | Vetratoria" : page.title || site.title;
@@ -332,7 +365,68 @@ const metaDescriptionForPage = (page) =>
 const metaImageForPage = (page) =>
   page.path === "/dahab/" ? "/assets/img/dahab-ref/ganet-sinai.webp" : page.image || site.slider[0];
 
-const ASSET_VERSION = "20260729-dahab-overview-copy";
+const contactCountryOption = (country) => {
+  const contact = site.contacts[country.key];
+  return `<option value="${country.key}" data-email="${escapeHtml(contact.formEmail)}" data-phone="${escapeHtml(contact.phone)}" data-telegram="${escapeHtml(contact.telegram)}">${escapeHtml(contact.title)}</option>`;
+};
+
+const contactDialog = (page) => {
+  const country = contactCountryForPage(page);
+  const destination = contactDestination(page) || site.contacts[countryList[0].key];
+  const direction = country ? site.contacts[country.key].title : "Vetratoria";
+  const sport = page.sport ? sportLabel(page.sport) : "";
+  const context = [direction, sport].filter(Boolean).join(" · ");
+  const phoneHref = country?.key === "dahab"
+    ? `https://wa.me/${destination.phone.replace(/\D/g, "")}`
+    : `tel:${destination.phone}`;
+
+  return `
+<dialog class="contact-modal" data-contact-dialog aria-labelledby="contact-modal-title">
+  <div class="contact-modal__surface">
+    <button class="contact-modal__close" type="button" data-contact-close aria-label="Закрыть форму">×</button>
+    <div class="contact-modal__head">
+      <p class="eyebrow">Быстрая заявка</p>
+      <h2 id="contact-modal-title" data-contact-modal-title>Написать нам</h2>
+      <p>Оставьте контакты — команда уточнит детали и поможет подобрать формат.</p>
+      <span class="contact-modal__context" data-contact-modal-context>${escapeHtml(context || "Выберите направление")}</span>
+    </div>
+    <form class="contact-form contact-modal__form" data-contact-form data-contact-modal-form
+      data-endpoint="${escapeHtml(site.contactEndpoint || "")}"
+      data-mail-to="${country ? escapeHtml(destination.formEmail || destination.email) : ""}"
+      data-direction="${escapeHtml(context)}">
+      <input type="hidden" name="source" value="${escapeHtml(page.path)}">
+      <input type="hidden" name="intent" value="" data-contact-intent-input>
+      <input type="hidden" name="sport" value="${escapeHtml(sport)}" data-contact-sport-input>
+      ${country ? `<input type="hidden" name="country" value="${country.key}" data-contact-country-input>` : `
+      <label>Направление
+        <select name="country" data-contact-country-select required>
+          ${countryList.map(contactCountryOption).join("")}
+        </select>
+      </label>`}
+      <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
+      <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, email или @username" required></label>
+      <label><span>Комментарий <small>по желанию</small></span><textarea name="message" rows="4" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
+      <button class="button button-primary contact-modal__submit" type="submit">${site.contactEndpoint ? "Отправить заявку" : "Подготовить заявку"}</button>
+      <p class="form-note" data-form-note aria-live="polite"></p>
+    </form>
+    <div class="contact-modal__direct">
+      <span>Или свяжитесь напрямую</span>
+      <div>
+        <a href="${phoneHref}" data-contact-direct-phone${country?.key === "dahab" ? ` target="_blank" rel="noopener noreferrer"` : ""}>
+          <img src="/assets/icons/whatsapp.svg" alt="" width="20" height="20">
+          <span data-contact-direct-phone-label>${country?.key === "dahab" ? "WhatsApp" : "Телефон"}</span>
+        </a>
+        <a href="${destination.telegram}" data-contact-direct-telegram target="_blank" rel="noopener noreferrer">
+          <img src="/assets/icons/telegram.svg" alt="" width="20" height="20">
+          <span>Telegram</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</dialog>`;
+};
+
+const ASSET_VERSION = "20260729-contact-modal";
 const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
 
 const layout = (page, main) => `<!doctype html>
@@ -357,6 +451,7 @@ const layout = (page, main) => `<!doctype html>
   ${header(page)}
   <main id="main">${main}</main>
   ${footerForPage(page)}
+  ${contactDialog(page)}
 </body>
 </html>
 `;
@@ -375,7 +470,7 @@ const hero = (page, actions = "") => `
   </div>
 </section>`;
 
-const home = () => `
+const home = (page) => `
 <section class="hero hero-home">
   <div class="home-hero__slider" data-hero-slider aria-label="Фото Vetratoria">
     ${site.slider.map((src, index) => `<img src="${src}" alt="" data-slide ${index === 0 ? `class="is-active"` : ""} aria-hidden="${index === 0 ? "false" : "true"}" loading="${index === 0 ? "eager" : "lazy"}" decoding="async">`).join("")}
@@ -392,7 +487,7 @@ const home = () => `
       <article class="hero-advantage">Клубная система скидок</article>
     </div>
     <div class="hero-actions">
-      <a class="button button-primary" href="/contacts/">Написать нам</a>
+      ${contactCta(page, "Написать нам")}
       ${countryList.map((country) => `<a class="button button-ghost" href="${country.href}">${country.nav}</a>`).join("")}
     </div>
     <div class="slider-dots" aria-label="Слайды">
@@ -461,7 +556,7 @@ const home = () => `
       <p>Укажите страну, даты, уровень и спорт. Подскажем, куда лучше ехать: Египет, Вьетнам или Россия.</p>
     </div>
     <div class="home-cta__actions">
-      <a class="button button-primary" href="/contacts/">Написать нам</a>
+      ${contactCta(page, "Написать нам")}
       ${countryList.map((country) => `<a class="button button-ghost" href="${country.href}">${country.nav}</a>`).join("")}
     </div>
   </div>
@@ -530,7 +625,7 @@ const dahabWingfoilPage = (page) => {
       <h1>${escapeHtml(page.title)}</h1>
       <p>${escapeHtml(page.description)}</p>
       <div class="dahab-sport-hero__actions">
-        <a class="button button-primary" href="/contacts/">Записаться</a>
+        ${contactCta(page, "Записаться", "button button-primary", "wingfoil")}
         <a class="button button-ghost" href="/dahab/wingfoil/price/">Смотреть цены</a>
       </div>
       <div class="hero-advantages hero-advantages--sport">
@@ -578,7 +673,7 @@ const dahabWingfoilPage = (page) => {
           <h3>${title}</h3>
           <b>${value}</b>
           <p>${text}</p>
-          <a class="button button-primary" href="/contacts/">${cta}</a>
+          ${contactCta(page, cta, "button button-primary", "wingfoil")}
         </article>`).join("")}
     </div>
     <div class="dahab-sport-price-actions">
@@ -675,7 +770,7 @@ const dahabWingfoilPage = (page) => {
     <h2>Хотите попробовать Wingfoil в Дахабе?</h2>
     <p>Напишите даты, уровень и цель поездки. Подберем формат: Wing + SUP, foil boat, урок Wing + Foil или самостоятельную практику.</p>
     <div>
-      <a class="button button-primary" href="/contacts/">Написать нам</a>
+      ${contactCta(page, "Написать нам", "button button-primary", "wingfoil")}
       <a class="button button-ghost" href="/dahab/wingfoil/price/">Цены</a>
     </div>
   </div>
@@ -731,7 +826,7 @@ const dahabWindsurfPage = (page) => {
       <h1>${escapeHtml(page.title)}</h1>
       <p>${escapeHtml(page.description)}</p>
       <div class="dahab-sport-hero__actions">
-        <a class="button button-primary" href="/contacts/">Записаться</a>
+        ${contactCta(page, "Записаться", "button button-primary", "windsurf")}
         <a class="button button-ghost" href="/dahab/windsurf/price/">Смотреть цены</a>
       </div>
       <div class="hero-advantages hero-advantages--sport">
@@ -779,7 +874,7 @@ const dahabWindsurfPage = (page) => {
           <h3>${title}</h3>
           <b>${value}</b>
           <p>${text}</p>
-          <a class="button button-primary" href="/contacts/">${cta}</a>
+          ${contactCta(page, cta, "button button-primary", label === "Kids" ? "windsurf-kids" : "windsurf")}
         </article>`).join("")}
     </div>
     <div class="dahab-sport-price-actions">
@@ -876,14 +971,14 @@ const dahabWindsurfPage = (page) => {
     <h2>Хотите попробовать Windsurf в Дахабе?</h2>
     <p>Напишите даты, уровень и цель поездки. Подберем урок, прокат или программу на несколько дней.</p>
     <div>
-      <a class="button button-primary" href="/contacts/">Написать нам</a>
+      ${contactCta(page, "Написать нам", "button button-primary", "windsurf")}
       <a class="button button-ghost" href="/dahab/windsurf/price/">Цены</a>
     </div>
   </div>
 </section>`.replace(/^[\t ]+$/gm, "");
 };
 
-const dahabHomePage = () => {
+const dahabHomePage = (page) => {
   const priceCards = [
     ["Wingfoil", "Урок", "70$", "Инструктор и комплект под уровень.", dahabRefImg("price-wingfoil.webp"), "/dahab/wingfoil/price/"],
     ["Foil boat", "Фойл за лодкой", "60$", "Полёт на фойле без крыла.", dahabRefImg("price-foil-boat.webp"), "/dahab/wingfoil/price/"],
@@ -915,7 +1010,7 @@ const dahabHomePage = () => {
     <p class="hero-lead">Обучение и прокат на Красном море для новичков и опытных райдеров. Подберём программу, инструктора и снаряжение под ваш уровень.</p>
     <div class="hero-advantages"><span class="hero-advantage">С 2006 года</span><span class="hero-advantage">Условия для любого уровня</span><span class="hero-advantage">10 000+ учеников</span><span class="hero-advantage">3 спасательных катера</span></div>
     <div class="hero-actions dahab-hero-actions">
-      <a class="button button-primary" href="/contacts/">Написать нам</a>
+      ${contactCta(page, "Написать нам")}
       <a class="button button-ghost" href="/dahab/wingfoil/">Wingfoil</a>
       <a class="button button-ghost" href="/dahab/windsurf/">Windsurf</a>
       <a class="button button-ghost" href="/dahab/wingfoil/price/">Цены</a>
@@ -944,7 +1039,7 @@ const dahabHomePage = () => {
         </div>
       </a>
       <a class="sport-tile" href="/dahab/windsurf/" aria-label="Открыть страницу Windsurf в Дахабе">
-        <img src="${dahabRefImg("windsurf-hero.webp")}" alt="Windsurf в Дахабе" width="1600" height="1067" loading="lazy" decoding="async">
+        <img src="/assets/img/final/windsurf/hero.webp" alt="Windsurf в Дахабе" width="1920" height="1280" loading="lazy" decoding="async">
         <div class="sport-tile__content">
           <h2>Windsurf</h2>
           <span>Подробнее</span>
@@ -978,7 +1073,7 @@ const dahabHomePage = () => {
     </div>
     <div class="price-help-cta">
       <div><b>Не знаете, с чего начать?</b><p>Напишите даты, уровень и спорт — подберём формат, станцию и снаряжение.</p></div>
-      <nav><a href="/contacts/">Оставить заявку</a><a href="/dahab/wingfoil/price/">Wingfoil цены</a><a href="/dahab/windsurf/price/">Windsurf цены</a></nav>
+      <nav>${contactCta(page, "Оставить заявку", "", null)}<a href="/dahab/wingfoil/price/">Wingfoil цены</a><a href="/dahab/windsurf/price/">Windsurf цены</a></nav>
     </div>
   </div>
 </section>
@@ -994,7 +1089,7 @@ const dahabHomePage = () => {
         <div><b>${title}</b><span>${meta}</span><em>${text}</em></div>
       </a>`).join("")}
   </div>
-  <a class="station-advice__cta" href="/dahab/contacts/">Написать нам</a>
+  ${contactCta(page, "Написать нам", "station-advice__cta")}
 </section>
 
 <section class="trust-block" id="team-reviews">
@@ -1043,7 +1138,7 @@ const dahabHomePage = () => {
         <article><strong>02. Скоростная зона</strong><p>Длинные галсы и стабильный ветер. Здесь удобно отрабатывать скорость, повороты, контроль крыла или паруса.</p></article>
         <article><strong>03. Волновая зона</strong><p>Открытая вода для тех, кто уже уверенно катается. Больше ветра, волна и настоящая дахабская практика.</p></article>
       </div>
-      <div class="water-area__actions"><a href="/contacts/">Подобрать зону</a><a href="/dahab/safety/">Безопасность на воде →</a></div>
+  <div class="water-area__actions">${contactCta(page, "Подобрать зону")}<a href="/dahab/safety/">Безопасность на воде →</a></div>
     </div>
     <figure class="water-area__visual"><img src="${dahabRefImg("aqva-aerial.webp")}" alt="Акватория Дахаба для wingfoil и windsurf" loading="lazy" decoding="async"></figure>
   </div>
@@ -1065,7 +1160,7 @@ const stationSlider = ({ title, lead, images }) => `
     </div>
   </figure>`;
 
-const dahabStationsPage = () => {
+const dahabStationsPage = (page) => {
   const stations = [
     {
       id: "vetratoria-ganet",
@@ -1152,7 +1247,7 @@ const dahabStationsPage = () => {
       <a href="/dahab/windsurf-kids/">Kids</a>
     </div>
     <div class="dahab-stations-actions">
-      <a class="button button-primary" href="/contacts/">Подобрать станцию</a>
+      ${contactCta(page, "Подобрать станцию")}
       <a class="button button-ghost" href="#vetratoria-ganet">Смотреть станции</a>
     </div>
   </div>
@@ -1182,7 +1277,7 @@ ${stations.map((station, index) => `
         <p>Напишите даты, отель, уровень и спорт. Мы подскажем, какая станция будет удобнее именно для вашего формата: wingfoil, windsurf, kids, прокат или уроки.</p>
       </div>
       <div class="dahab-stations-actions">
-        <a class="button button-primary" href="/contacts/">Подобрать станцию</a>
+        ${contactCta(page, "Подобрать станцию")}
         <a class="button button-ghost" href="/dahab/wingfoil/price/">Смотреть цены</a>
       </div>
     </div>
@@ -1190,7 +1285,7 @@ ${stations.map((station, index) => `
 </section>`.replace(/^[\t ]+$/gm, "");
 };
 
-const dahabSafetyPage = () => {
+const dahabSafetyPage = (page) => {
   const safetyFacts = [
     ["Rescue", "4 спасательных катера", "Катера поддерживают станции и позволяют быстро реагировать, если райдеру нужна помощь на воде."],
     ["Control", "Контроль акватории", "Команда следит за фактическими условиями, рабочими зонами и райдерами во время выхода."],
@@ -1219,7 +1314,7 @@ const dahabSafetyPage = () => {
       <span class="hero-advantage">Инструктаж перед выходом</span>
     </div>
     <div class="hero-actions dahab-hero-actions">
-      <a class="button button-primary" href="/contacts/">Задать вопрос</a>
+      ${contactCta(page, "Задать вопрос")}
       <a class="button button-ghost" href="#safety-system">Как это работает</a>
     </div>
   </div>
@@ -1271,7 +1366,7 @@ const dahabSafetyPage = () => {
         <span>Самостоятельным — согласование условий и маршрута</span>
         <span>На волнах — телефон и связь со станцией</span>
       </div>
-      <a class="button button-primary" href="/contacts/">Уточнить формат</a>
+      ${contactCta(page, "Уточнить формат")}
     </div>
     <div class="dahab-sport-safety__media">
       <img src="${dahabSafetyImg("cover-safety.webp")}" alt="Контроль райдера спасательным катером Vetratoria" width="1600" height="1067" loading="lazy" decoding="async">
@@ -1301,7 +1396,7 @@ const dahabSafetyPage = () => {
     <h2>Не уверены, какая зона подойдёт?</h2>
     <p>Напишите спорт, уровень, даты и хотите ли выходить на волны. Команда подскажет станцию, акваторию и безопасный формат.</p>
     <div>
-      <a class="button button-primary" href="/contacts/">Написать нам</a>
+      ${contactCta(page, "Написать нам")}
       <a class="button button-ghost" href="/dahab/">Обзор Дахаба</a>
     </div>
   </div>
@@ -1312,7 +1407,7 @@ const countryPage = (page) => {
   const country = countriesByKey[page.country];
   if (country.key === "dahab") return dahabHomePage(page);
   const primaryPricePath = `/${country.key}/${country.sports[0]}/price/`;
-  const actions = `<a class="button button-primary" href="${primaryPricePath}">Цены</a><a class="button button-ghost" href="/contacts/">Написать нам</a>`;
+  const actions = `<a class="button button-primary" href="${primaryPricePath}">Цены</a>${contactCta(page, "Написать нам", "button button-ghost")}`;
   const sports = country.sports.map((key) => site.sports[key]);
   return `${hero(page, actions)}
   <section class="content-section">
@@ -1343,7 +1438,7 @@ const sportPage = (page) => {
 
   const country = countriesByKey[page.country];
   const sport = site.sports[page.sport];
-  return `${hero(page, `<a class="button button-primary" href="${page.path}price/">Цены</a><a class="button button-ghost" href="/contacts/">Записаться</a>`)}
+  return `${hero(page, `<a class="button button-primary" href="${page.path}price/">Цены</a>${contactCta(page, "Записаться", "button button-ghost")}`)}
   <section class="content-section">
     <div class="section-inner two-column">
       <div>
@@ -1603,7 +1698,7 @@ const dahabWingfoilPricePage = (page) => `
         <h2>Подобрать Wingfoil</h2>
         <p>Напишите даты, уровень, вес и задачу: первый раз, фойл за лодкой, прокат, пакет или хранение.</p>
         <div class="wingfoil-price-contact__actions">
-          <a class="button button-primary" href="/contacts/">Оставить заявку</a>
+          ${contactCta(page, "Оставить заявку", "button button-primary", "wingfoil")}
           <a class="button button-ghost" href="/dahab/wingfoil/">О Wingfoil</a>
         </div>
       </div>
@@ -1799,7 +1894,7 @@ const dahabWindsurfPricePage = (page) => `
         <h2>Подобрать Windsurf</h2>
         <p>Напишите даты, уровень, возраст, интересующий курс и нужен ли прокат или хранение.</p>
         <div class="windsurf-price-contact__actions">
-          <a class="button button-primary" href="/contacts/">Оставить заявку</a>
+          ${contactCta(page, "Оставить заявку", "button button-primary", "windsurf")}
           <a class="button button-ghost" href="/dahab/windsurf/">О Windsurf</a>
         </div>
       </div>
@@ -1814,7 +1909,7 @@ const pricePage = (page) => {
   const country = countriesByKey[page.country];
   const sport = page.sport ? site.sports[page.sport] : null;
   const title = sport ? sport.title : "Vetratoria";
-  return `${hero(page, `<a class="button button-primary" href="/contacts/">Уточнить цену</a><a class="button button-ghost" href="/${country.key}/">К направлению</a>`)}
+  return `${hero(page, `${contactCta(page, "Уточнить цену")}<a class="button button-ghost" href="/${country.key}/">К направлению</a>`)}
   <section class="content-section">
     <div class="section-inner">
       ${sectionHeading("Прайс", "Форматы и стоимость", "Цены зависят от ветра, сезона, инструктора, комплекта и длительности программы. Финальную доступность лучше подтвердить перед поездкой.")}
@@ -1826,7 +1921,7 @@ const pricePage = (page) => {
 };
 
 const blogIndex = (page) => `
-${hero(page, `<a class="button button-primary" href="/contacts/">Задать вопрос</a>`)}
+${hero(page, contactCta(page, "Задать вопрос"))}
 <section class="content-section">
   <div class="section-inner">
     ${sectionHeading(page.eyebrow, page.title, page.description)}
@@ -1845,7 +1940,7 @@ ${hero(page, `<a class="button button-primary" href="/contacts/">Задать в
 const articlePage = (page) => {
   const sport = site.sports[page.sport];
   const country = countriesByKey[page.country];
-  return `${hero(page, `<a class="button button-primary" href="/${country.key}/${page.sport}/">Открыть спорт</a><a class="button button-ghost" href="/contacts/">Написать нам</a>`)}
+  return `${hero(page, `<a class="button button-primary" href="/${country.key}/${page.sport}/">Открыть спорт</a>${contactCta(page, "Написать нам", "button button-ghost")}`)}
   <article class="content-section article-body">
     <div class="article-inner">
       <p class="eyebrow">${country.region} · ${sport.nav}</p>
@@ -1872,7 +1967,7 @@ const mediaPage = (page) => {
     img("home-slider-6.webp"),
     img("home-media.webp")
   ];
-  return `${hero(page, `<a class="button button-primary" href="/contacts/">Запросить поездку</a>`)}
+  return `${hero(page, contactCta(page, "Запросить поездку"))}
   <section class="content-section">
     <div class="section-inner">
       ${sectionHeading(page.eyebrow || "Медиа", page.title, page.description)}
@@ -1938,17 +2033,19 @@ const contactForm = (page) => {
   const isGeneral = !page.country;
   const contact = contactForPage(page);
   return `
-    <form class="contact-form" data-contact-form data-mail-to="${isGeneral ? "" : contact.formEmail}" data-direction="${isGeneral ? "" : contact.title}">
+    <form class="contact-form" data-contact-form data-endpoint="${escapeHtml(site.contactEndpoint || "")}" data-mail-to="${isGeneral ? "" : contact.formEmail}" data-direction="${isGeneral ? "" : contact.title}">
+      <input type="hidden" name="source" value="${escapeHtml(page.path)}">
+      <input type="hidden" name="intent" value="Форма страницы контактов">
       <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
       <label>Способ связи<input name="contact" autocomplete="email" placeholder="Телефон, email или @username" required></label>
       ${isGeneral ? `
       <label>Страна
-        <select name="country" required>
-          ${countryList.map((country) => `<option value="${site.contacts[country.key].formEmail}">${country.region} · ${country.city}</option>`).join("")}
+        <select name="country" data-contact-country-select required>
+          ${countryList.map(contactCountryOption).join("")}
         </select>
       </label>` : ""}
       <label><span>Комментарий <small>по желанию</small></span><textarea name="message" rows="5" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
-      <button class="button button-primary" type="submit">Подготовить заявку</button>
+      <button class="button button-primary" type="submit">${site.contactEndpoint ? "Отправить заявку" : "Подготовить заявку"}</button>
       <p class="form-note" data-form-note aria-live="polite"></p>
     </form>`;
 };
@@ -2039,7 +2136,7 @@ const featurePage = (page) => {
     ["Снаряжение", "Комплект выбирается под ветер и человека."],
     ["Прогресс", "Следующий шаг понятен после первого занятия."]
   ];
-  return `${hero(page, `<a class="button button-primary" href="/contacts/">Написать нам</a><a class="button button-ghost" href="${country.href}">К направлению</a>`)}
+  return `${hero(page, `${contactCta(page, "Написать нам")}<a class="button button-ghost" href="${country.href}">К направлению</a>`)}
   <section class="content-section">
     <div class="section-inner">
       ${sectionHeading(page.eyebrow, page.title, page.description)}
@@ -2053,7 +2150,7 @@ const featurePage = (page) => {
 const render = (page) => {
   switch (page.kind) {
     case "home":
-      return layout(page, home());
+      return layout(page, home(page));
     case "country":
       return layout(page, countryPage(page));
     case "sport":

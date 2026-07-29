@@ -23,6 +23,7 @@ export const site = {
     "Vetratoria - сеть windsurf и wingfoil школ. Египет, Вьетнам и Россия: выберите направление, спорт, станцию и формат обучения.",
   email: "dahab@vetratoria.ru",
   phone: "+201029321772",
+  contactEndpoint: "",
   logo: "/assets/img/vetratoria-logo.png",
   socials: [
     {

@@ -161,37 +161,189 @@
     activate(active);
   });
 
+  const countryOption = (form) => form.querySelector("[data-contact-country-select]")?.selectedOptions?.[0];
+
+  const contactPayload = (form) => {
+    const data = new FormData(form);
+    const option = countryOption(form);
+    const country = String(data.get("country") || option?.value || "").trim();
+    const sport = String(data.get("sport") || "").trim();
+    const intent = String(data.get("intent") || "").trim();
+    const direction = form.dataset.direction || option?.textContent?.trim() || "Vetratoria";
+
+    return {
+      name: String(data.get("name") || "").trim(),
+      contact: String(data.get("contact") || "").trim(),
+      country,
+      sport,
+      intent,
+      direction,
+      message: String(data.get("message") || "").trim(),
+      source: String(data.get("source") || window.location.pathname).trim(),
+      pageUrl: window.location.href
+    };
+  };
+
+  const contactRecipient = (form) => form.dataset.mailTo || countryOption(form)?.dataset.email || "";
+
+  const submitContactForm = async (form, payload, note) => {
+    const endpoint = form.dataset.endpoint;
+    if (endpoint) {
+      const submitButton = form.querySelector("[type='submit']");
+      submitButton?.setAttribute("disabled", "");
+      if (note) note.textContent = "Отправляем заявку...";
+
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) throw new Error(`Contact endpoint returned ${response.status}`);
+        if (note) note.textContent = "Заявка отправлена. Скоро мы свяжемся с вами.";
+        form.reset();
+      } catch (error) {
+        if (note) note.textContent = "Не удалось отправить заявку. Напишите нам в WhatsApp или Telegram.";
+      } finally {
+        submitButton?.removeAttribute("disabled");
+      }
+      return;
+    }
+
+    const recipient = contactRecipient(form);
+    if (!recipient) {
+      if (note) note.textContent = "Выберите направление для заявки.";
+      return;
+    }
+
+    const subject = `Заявка Vetratoria: ${payload.direction}`;
+    const mailBody = [
+      `Имя: ${payload.name}`,
+      `Способ связи: ${payload.contact}`,
+      `Направление: ${payload.direction}`,
+      payload.sport ? `Спорт: ${payload.sport}` : "",
+      payload.intent ? `Запрос: ${payload.intent}` : "",
+      payload.message ? `Комментарий: ${payload.message}` : "Комментарий: не указан",
+      `Страница: ${payload.pageUrl}`
+    ].filter(Boolean).join("\n");
+
+    if (note) note.textContent = "Заявка подготовлена. Открываем почтовое приложение.";
+    window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(mailBody)}`;
+  };
+
   document.querySelectorAll("form[data-contact-form]").forEach((form) => {
     const note = form.querySelector("[data-form-note]");
-
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
-      const data = new FormData(form);
-      const countrySelect = form.elements.country;
-      const recipient = form.dataset.mailTo || countrySelect?.value;
-      const direction = form.dataset.direction || countrySelect?.selectedOptions?.[0]?.textContent?.trim() || "Vetratoria";
-      const name = String(data.get("name") || "").trim();
-      const contact = String(data.get("contact") || "").trim();
-      const message = String(data.get("message") || "").trim();
+      const payload = contactPayload(form);
 
-      if (!recipient || !name || !contact) {
+      if (!payload.name || !payload.contact) {
         if (note) note.textContent = "Заполните имя и удобный способ связи.";
         return;
       }
 
-      const subject = `Заявка Vetratoria: ${direction}`;
-      const body = [
-        `Имя: ${name}`,
-        `Способ связи: ${contact}`,
-        `Направление: ${direction}`,
-        message ? `Комментарий: ${message}` : "Комментарий: не указан"
-      ].join("\n");
-
-      if (note) {
-        note.textContent = "Заявка подготовлена. Открываем почтовое приложение.";
-      }
-      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      document.dispatchEvent(new CustomEvent("vetratoria:contact-submit", { detail: payload }));
+      await submitContactForm(form, payload, note);
     });
+  });
+
+  const contactDialog = document.querySelector("[data-contact-dialog]");
+  const contactModalForm = contactDialog?.querySelector("[data-contact-modal-form]");
+  const contactModalTitle = contactDialog?.querySelector("[data-contact-modal-title]");
+  const contactModalContext = contactDialog?.querySelector("[data-contact-modal-context]");
+  const directPhone = contactDialog?.querySelector("[data-contact-direct-phone]");
+  const directPhoneLabel = contactDialog?.querySelector("[data-contact-direct-phone-label]");
+  const directTelegram = contactDialog?.querySelector("[data-contact-direct-telegram]");
+
+  const updateDirectContacts = ({ country, phone, telegram }) => {
+    if (directPhone && phone) {
+      const digits = phone.replace(/\D/g, "");
+      const isDahab = country === "dahab";
+      directPhone.href = isDahab ? `https://wa.me/${digits}` : `tel:${phone}`;
+      directPhoneLabel.textContent = isDahab ? "WhatsApp" : "Телефон";
+      if (isDahab) {
+        directPhone.target = "_blank";
+        directPhone.rel = "noopener noreferrer";
+      } else {
+        directPhone.removeAttribute("target");
+        directPhone.removeAttribute("rel");
+      }
+    }
+    if (directTelegram && telegram) directTelegram.href = telegram;
+  };
+
+  const syncModalCountry = () => {
+    if (!contactModalForm) return;
+    const option = countryOption(contactModalForm);
+    if (!option) return;
+
+    const sport = contactModalForm.querySelector("[data-contact-sport-input]")?.value || "";
+    contactModalForm.dataset.mailTo = option.dataset.email || "";
+    contactModalForm.dataset.direction = [option.textContent.trim(), sport].filter(Boolean).join(" · ");
+    if (contactModalContext) contactModalContext.textContent = contactModalForm.dataset.direction;
+    updateDirectContacts({
+      country: option.value,
+      phone: option.dataset.phone || "",
+      telegram: option.dataset.telegram || ""
+    });
+  };
+
+  contactModalForm?.querySelector("[data-contact-country-select]")?.addEventListener("change", syncModalCountry);
+
+  document.querySelectorAll("[data-contact-modal]").forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      if (!contactDialog || !contactModalForm || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+
+      contactModalForm.reset();
+      const intent = trigger.dataset.contactIntent || trigger.textContent.trim() || "Написать нам";
+      const sport = trigger.dataset.contactSport || "";
+      const country = trigger.dataset.contactCountry || "";
+      const countryLabel = trigger.dataset.contactCountryLabel || "";
+      const intentInput = contactModalForm.querySelector("[data-contact-intent-input]");
+      const sportInput = contactModalForm.querySelector("[data-contact-sport-input]");
+      const countryInput = contactModalForm.querySelector("[data-contact-country-input]");
+      const countrySelect = contactModalForm.querySelector("[data-contact-country-select]");
+      const note = contactModalForm.querySelector("[data-form-note]");
+
+      if (intentInput) intentInput.value = intent;
+      if (sportInput) sportInput.value = sport;
+      if (countryInput && country) countryInput.value = country;
+      if (countrySelect && country) countrySelect.value = country;
+      if (note) note.textContent = "";
+
+      const option = countryOption(contactModalForm);
+      const selectedCountry = country || option?.value || "";
+      const selectedCountryLabel = countryLabel || option?.textContent?.trim() || "Vetratoria";
+      const direction = [selectedCountryLabel, sport].filter(Boolean).join(" · ");
+      contactModalForm.dataset.direction = direction;
+      contactModalForm.dataset.mailTo = trigger.dataset.contactEmail || option?.dataset.email || contactModalForm.dataset.mailTo;
+
+      if (contactModalTitle) contactModalTitle.textContent = intent;
+      if (contactModalContext) contactModalContext.textContent = direction;
+
+      updateDirectContacts({
+        country: selectedCountry,
+        phone: trigger.dataset.contactPhone || option?.dataset.phone || "",
+        telegram: trigger.dataset.contactTelegram || option?.dataset.telegram || ""
+      });
+
+      contactDialog.showModal();
+      body.classList.add("contact-modal-open");
+      window.setTimeout(() => contactModalForm.elements.name?.focus(), 0);
+    });
+  });
+
+  contactDialog?.querySelectorAll("[data-contact-close]").forEach((button) => {
+    button.addEventListener("click", () => contactDialog.close());
+  });
+
+  contactDialog?.addEventListener("click", (event) => {
+    if (event.target === contactDialog) contactDialog.close();
+  });
+
+  contactDialog?.addEventListener("close", () => {
+    body.classList.remove("contact-modal-open");
   });
 
   window.addEventListener("scroll", () => {
