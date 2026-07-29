@@ -426,7 +426,7 @@ const contactDialog = (page) => {
 </dialog>`;
 };
 
-const ASSET_VERSION = "20260729-contact-modal";
+const ASSET_VERSION = "20260729-responsive-media";
 const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
 
 const layout = (page, main) => `<!doctype html>
@@ -1048,7 +1048,7 @@ const dahabHomePage = (page) => {
     </div>
     <a class="wsk-strip" href="/dahab/windsurf-kids/">
       <span class="wsk-strip__media"><img src="${dahabRefImg("wsk-2.webp")}" alt="Детский windsurf в Дахабе" width="1090" height="600" loading="lazy" decoding="async"></span>
-      <span class="wsk-strip__content"><small>Windsurf Kids · Дахаб</small><b>Kids windsurf</b><em>Детский спортивный лагерь WindSurfKids существует с 2009 года, а с 2012 года базируется в Дахабе. Спорт, друзья, творчество и безопасная акватория.</em></span>
+      <span class="wsk-strip__content"><small>Windsurf Kids · Дахаб</small><b>WINDSURFKIDS</b><em>Детский спортивный лагерь WindSurfKids существует с 2009 года, а с 2012 года базируется в Дахабе. Спорт, друзья, творчество и безопасная акватория.</em></span>
       <span class="wsk-strip__button">Смотреть Kids</span>
     </a>
   </div>
