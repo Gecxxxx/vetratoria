@@ -18,14 +18,6 @@
   max-width: 640px;
 }
 
-.home .hero-actions {
-  margin-top: 24px;
-}
-
-.home .hero-advantages {
-  margin-top: 18px;
-}
-
 .home .section-inner {
   width: min(100% - var(--page-gutter), var(--wide));
 }
@@ -174,12 +166,6 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-  .home .hero-advantage {
-      min-height: 58px;
-      padding: 11px 12px;
-      font-size: 13px;
-    }
-
   .home-section {
       padding: 58px 0;
     }
@@ -202,10 +188,6 @@
 
   .home .hero-content h1 {
       font-size: 36px;
-    }
-
-  .home .hero-actions .button {
-      flex: 1 1 150px;
     }
 
   .home-process li {
