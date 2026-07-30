@@ -439,7 +439,7 @@ const contactDialog = (page) => {
 </dialog>`;
 };
 
-const ASSET_VERSION = "20260730-sport-cards";
+const ASSET_VERSION = "20260730-single-media";
 const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
 
 const layout = (page, main) => `<!doctype html>
@@ -705,7 +705,6 @@ const dahabWingfoilPage = (page) => {
     </div>
     <div class="dahab-sport-safety__media">
       <img src="${wingfoilSectionImg("rescue-boats.webp")}" alt="Rescue boats на берегу станции Vetratoria" width="1920" height="1080" loading="lazy" decoding="async">
-      <img src="${wingfoilSectionImg("safety-helmets.webp")}" alt="Шлемы и защитное снаряжение Vetratoria" width="1200" height="1800" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -901,7 +900,6 @@ const dahabWindsurfPage = (page) => {
     </div>
     <div class="dahab-sport-safety__media">
       <img src="${wingfoilSectionImg("rescue-boats.webp")}" alt="Rescue boats на берегу станции Vetratoria" width="1920" height="1080" loading="lazy" decoding="async">
-      <img src="${dahabRefImg("swiss-inn.webp")}" alt="Windsurf станция Vetratoria в Дахабе" width="1600" height="1067" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -1109,7 +1107,6 @@ const dahabWindsurfKidsPage = (page) => {
       <a class="button button-primary" href="https://windsurfkids.su/team" target="_blank" rel="noopener noreferrer">Познакомиться с командой</a>
     </div>
     <div class="dahab-sport-safety__media">
-      <img src="${wskImg("water-01.jpg")}" alt="Участники WindSurfKids готовятся к выходу на воду" width="900" height="1125" loading="lazy" decoding="async">
       <img src="${wskImg("camp-01.webp")}" alt="Детская группа WindSurfKids с тренерами" width="766" height="766" loading="lazy" decoding="async">
     </div>
   </div>
@@ -1130,7 +1127,6 @@ const dahabWindsurfKidsPage = (page) => {
     </div>
     <div class="dahab-sport-safety__media">
       <img src="${wskImg("hotel-01.jpg")}" alt="Canyon Dahab Hotel — место проживания участников лагеря" width="1024" height="446" loading="lazy" decoding="async">
-      <img src="${wskImg("hotel-02.jpg")}" alt="Номер в Canyon Dahab Hotel" width="1024" height="768" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -1263,7 +1259,6 @@ const dahabHowToGetPage = (page) => {
       ${contactCta(page, "Заказать трансфер")}
     </div>
     <div class="dahab-sport-safety__media">
-      <img src="${dahabRefImg("ganet-sinai.webp")}" alt="Побережье Дахаба рядом со станцией Vetratoria" width="1600" height="1067" loading="lazy" decoding="async">
       <img src="${dahabRefImg("bg-ganet.webp")}" alt="Станция Vetratoria Ganet Sinai в Дахабе" width="1600" height="1067" loading="lazy" decoding="async">
     </div>
   </div>
@@ -1685,7 +1680,6 @@ const dahabSafetyPage = (page) => {
     </div>
     <div class="dahab-sport-safety__media">
       <img src="${dahabSafetyImg("safety-briefing-generated.webp")}" alt="Инструктаж перед выходом на воду в Дахабе" width="1600" height="900" loading="lazy" decoding="async">
-      <img src="${wingfoilSectionImg("safety-helmets.webp")}" alt="Шлемы и защитное снаряжение Vetratoria" width="1200" height="1800" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -1705,7 +1699,6 @@ const dahabSafetyPage = (page) => {
     </div>
     <div class="dahab-sport-safety__media">
       <img src="${dahabSafetyImg("cover-safety.webp")}" alt="Контроль райдера спасательным катером Vetratoria" width="1600" height="1067" loading="lazy" decoding="async">
-      <img src="${wingfoilSectionImg("rescue-boats.webp")}" alt="Спасательные катера Vetratoria у станции" width="1920" height="1280" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
