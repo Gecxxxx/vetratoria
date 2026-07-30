@@ -154,33 +154,146 @@
   <div class="section-inner">
 
   <header class="section-heading">
-    <p class="eyebrow">Направления</p>
-    <h2>Выберите страну</h2>
-    <p>Покажем сезон, условия на воде, программы и стоимость обучения.</p>
+    <p class="eyebrow">Наши станции</p>
+    <h2>Выберите направление на карте</h2>
+    <p>Три страны — разные сезоны и условия на воде. Выберите точку, чтобы познакомиться с направлением.</p>
   </header>
-    <div class="destination-grid">
+    <div class="station-map" data-station-map>
+      <div class="station-map__visual">
+        <div class="station-map__canvas" aria-label="Карта направлений Vetratoria">
+          <svg class="station-map__world" viewBox="0 0 1000 520" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="station-map-ocean" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#151b1e"/>
+                <stop offset="1" stop-color="#090b0c"/>
+              </linearGradient>
+              <filter id="station-map-glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="14"/>
+              </filter>
+            </defs>
+            <rect width="1000" height="520" rx="8" fill="url(#station-map-ocean)"/>
+            <g class="station-map__grid">
+              <path d="M0 104H1000M0 208H1000M0 312H1000M0 416H1000"/>
+              <path d="M167 0V520M334 0V520M501 0V520M668 0V520M835 0V520"/>
+            </g>
+            <g class="station-map__land">
+              <path d="M67 102 116 62l89 5 57 29 26 43-23 38-46 14-19 51-39 11-31-43-54-30-34-44Z"/>
+              <path d="m205 269 54 12 42 55-4 68-30 78-35-17-16-73-35-63Z"/>
+              <path d="m432 115 70-52 116-8 91 27 86-8 117 38 37 54-55 27-72-17-40 32-83-21-48 23-51-17-54 20-42-31-62-15Z"/>
+              <path d="m512 239 83-21 57 34-9 82-44 112-49-24-20-88-47-46Z"/>
+              <path d="m774 364 76-31 81 38-23 70-88 19-51-43Z"/>
+            </g>
+            <ellipse class="station-map__route-glow" cx="666" cy="273" rx="245" ry="158" filter="url(#station-map-glow)"/>
+            <path class="station-map__route" d="M626 200Q604 235 598 278Q692 256 772 325"/>
+          </svg>
 
-        <a class="destination-card" href="/dahab/">
-          <img src="/assets/img/home-uploaded/home-direction-dahab.webp" alt="Египет · Дахаб" loading="lazy" decoding="async">
-          <span>Египет</span>
-          <h2>Дахаб</h2>
-          <p>Главное направление Vetratoria: Wingfoil, Windsurf, Windsurf Kids, станции, цены и безопасность.</p>
-          <em>Открыть направление</em>
-        </a>
-        <a class="destination-card" href="/vietnam/">
-          <img src="/assets/img/home-uploaded/home-direction-vietnam.webp" alt="Вьетнам · Муйне" loading="lazy" decoding="async">
-          <span>Вьетнам</span>
-          <h2>Муйне</h2>
-          <p>Вьетнамское направление Vetratoria: сезон, windsurf, wingfoil, kite, условия поездки и контакты.</p>
-          <em>Открыть направление</em>
-        </a>
-        <a class="destination-card" href="/russia/">
-          <img src="/assets/img/home-uploaded/home-direction-russia.webp" alt="Россия · Должанская" loading="lazy" decoding="async">
-          <span>Россия</span>
-          <h2>Должанская Коса</h2>
-          <p>Российское направление Vetratoria: обучение, прокат, летний сезон и станционная жизнь.</p>
-          <em>Открыть направление</em>
-        </a>
+          <button class="station-map__marker is-active" type="button"
+            style="--marker-x: 59.8%; --marker-y: 53.5%"
+            data-station-marker="dahab" aria-controls="station-panel-dahab"
+            aria-pressed="true">
+            <span class="station-map__pulse" aria-hidden="true"></span>
+            <span class="station-map__pin" aria-hidden="true"></span>
+            <span class="station-map__marker-label">Дахаб, Египет</span>
+          </button>
+          <button class="station-map__marker" type="button"
+            style="--marker-x: 77.2%; --marker-y: 62.5%"
+            data-station-marker="vietnam" aria-controls="station-panel-vietnam"
+            aria-pressed="false">
+            <span class="station-map__pulse" aria-hidden="true"></span>
+            <span class="station-map__pin" aria-hidden="true"></span>
+            <span class="station-map__marker-label">Муйне, Вьетнам</span>
+          </button>
+          <button class="station-map__marker" type="button"
+            style="--marker-x: 62.6%; --marker-y: 38.5%"
+            data-station-marker="russia" aria-controls="station-panel-russia"
+            aria-pressed="false">
+            <span class="station-map__pulse" aria-hidden="true"></span>
+            <span class="station-map__pin" aria-hidden="true"></span>
+            <span class="station-map__marker-label">Должанская, Россия</span>
+          </button>
+        </div>
+        <div class="station-map__tabs" aria-label="Выбрать направление">
+
+            <button type="button" class="is-active"
+              data-station-tab="dahab" aria-controls="station-panel-dahab"
+              aria-pressed="true">
+              <span>Египет</span>
+              Дахаб
+            </button>
+            <button type="button" class=""
+              data-station-tab="vietnam" aria-controls="station-panel-vietnam"
+              aria-pressed="false">
+              <span>Вьетнам</span>
+              Муйне
+            </button>
+            <button type="button" class=""
+              data-station-tab="russia" aria-controls="station-panel-russia"
+              aria-pressed="false">
+              <span>Россия</span>
+              Должанская
+            </button>
+        </div>
+      </div>
+      <div class="station-map__details" aria-live="polite">
+
+          <article class="station-map__panel" id="station-panel-dahab" data-station-panel="dahab">
+            <div class="station-map__photo">
+              <img src="/assets/img/home-uploaded/home-direction-dahab.webp" alt="Египет, Дахаб — направление Vetratoria" loading="lazy" decoding="async">
+              <span>365 дней в году</span>
+            </div>
+            <div class="station-map__copy">
+              <p class="eyebrow">Египет</p>
+              <h3>Дахаб</h3>
+              <p>Главное направление Vetratoria: Wingfoil, Windsurf, Windsurf Kids, станции, цены и безопасность.</p>
+              <dl>
+                <div><dt>Условия</dt><dd>лагуна, фрирайд, foil boat и сильная инструкторская команда</dd></div>
+                <div><dt>Спорт</dt><dd>Wingfoil · Windsurf · Windsurf Kids</dd></div>
+              </dl>
+              <div class="station-map__actions">
+                <a class="button button-primary" href="/dahab/">Открыть направление</a>
+                <a class="button button-ghost" href="/contacts/" data-contact-modal data-contact-country="dahab" data-contact-intent="Подобрать программу">Подобрать программу</a>
+              </div>
+            </div>
+          </article>
+          <article class="station-map__panel" id="station-panel-vietnam" data-station-panel="vietnam" hidden>
+            <div class="station-map__photo">
+              <img src="/assets/img/home-uploaded/home-direction-vietnam.webp" alt="Вьетнам, Муйне — направление Vetratoria" loading="lazy" decoding="async">
+              <span>сильный зимний сезон</span>
+            </div>
+            <div class="station-map__copy">
+              <p class="eyebrow">Вьетнам</p>
+              <h3>Муйне</h3>
+              <p>Вьетнамское направление Vetratoria: сезон, windsurf, wingfoil, kite, условия поездки и контакты.</p>
+              <dl>
+                <div><dt>Условия</dt><dd>волна, стабильный бриз, длинная береговая линия и активная станционная жизнь</dd></div>
+                <div><dt>Спорт</dt><dd>Windsurf · Wingfoil · Kite</dd></div>
+              </dl>
+              <div class="station-map__actions">
+                <a class="button button-primary" href="/vietnam/">Открыть направление</a>
+                <a class="button button-ghost" href="/contacts/" data-contact-modal data-contact-country="vietnam" data-contact-intent="Подобрать программу">Подобрать программу</a>
+              </div>
+            </div>
+          </article>
+          <article class="station-map__panel" id="station-panel-russia" data-station-panel="russia" hidden>
+            <div class="station-map__photo">
+              <img src="/assets/img/home-uploaded/home-direction-russia.webp" alt="Россия, Должанская — направление Vetratoria" loading="lazy" decoding="async">
+              <span>летний сезон</span>
+            </div>
+            <div class="station-map__copy">
+              <p class="eyebrow">Россия</p>
+              <h3>Должанская Коса</h3>
+              <p>Российское направление Vetratoria: обучение, прокат, летний сезон и станционная жизнь.</p>
+              <dl>
+                <div><dt>Условия</dt><dd>коса, мелкая вода, обучение с берега, семейные поездки и тренировки на несколько дней</dd></div>
+                <div><dt>Спорт</dt><dd>Windsurf · Wingfoil · Kite</dd></div>
+              </dl>
+              <div class="station-map__actions">
+                <a class="button button-primary" href="/russia/">Открыть направление</a>
+                <a class="button button-ghost" href="/contacts/" data-contact-modal data-contact-country="russia" data-contact-intent="Подобрать программу">Подобрать программу</a>
+              </div>
+            </div>
+          </article>
+      </div>
     </div>
   </div>
 </section>
