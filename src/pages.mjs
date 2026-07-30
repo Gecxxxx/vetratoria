@@ -388,8 +388,10 @@ for (const country of site.countries) {
     kind: "team",
     country: country.key,
     eyebrow: `${country.region} · команда`,
-    title: `Команда ${country.title}`,
-    description: "Инструкторы, администраторы, менеджеры и поддержка на воде.",
+    title: country.key === "dahab" ? "Люди, которые держат курс" : `Команда ${country.title}`,
+    description: country.key === "dahab"
+      ? "Инструкторы, тренеры, администраторы и спасатели Vetratoria. На берегу и на воде рядом всегда есть человек, которому можно доверять."
+      : "Инструкторы, администраторы, менеджеры и поддержка на воде.",
     image: img("ABOUTVETRATORIA.jpg")
   });
 

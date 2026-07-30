@@ -440,7 +440,9 @@ const contactDialog = (page) => {
 };
 
 const ASSET_VERSION = "20260730-single-media";
-const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
+const assetVersionForPage = (page) =>
+  page.path === "/dahab/team/" ? "20260730-team-sliders" : ASSET_VERSION;
+const versionedAsset = (path, version = ASSET_VERSION) => `${path}?v=${version}`;
 
 const layout = (page, main) => `<!doctype html>
 <html lang="ru">
@@ -456,8 +458,8 @@ const layout = (page, main) => `<!doctype html>
   <meta property="og:image" content="${metaImageForPage(page)}">
   <meta name="theme-color" content="#0d0c0b">
   <link rel="icon" href="${site.logo}">
-  <link rel="stylesheet" href="${versionedAsset("/assets/css/main.css")}">
-  <script defer src="${versionedAsset("/assets/js/app.js")}"></script>
+  <link rel="stylesheet" href="${versionedAsset("/assets/css/main.css", assetVersionForPage(page))}">
+  <script defer src="${versionedAsset("/assets/js/app.js", assetVersionForPage(page))}"></script>
 </head>
 <body class="modern-site ${page.kind}${page.country ? ` country-${page.country}` : ""}">
   <a class="skip-link" href="#main">К содержанию</a>
@@ -2437,6 +2439,184 @@ ${hero(page, heroActions)}
 </section>`;
 };
 
+const dahabTeamGroups = [
+  {
+    id: "team-wingfoil",
+    eyebrow: "Wingfoil Center",
+    title: "Команда вингфойла",
+    lead: "Помогаем пройти путь от первого знакомства с крылом до уверенного полёта на фойле.",
+    members: [
+      {
+        name: "Анатолий",
+        role: "Менеджер · старший инструктор",
+        text: "Более 25 лет в водных видах спорта. Подберёт комплект RRD под ваши навыки, ветер и задачу занятия.",
+        meta: "Русский · English · Deutsch",
+        photo: "/assets/img/team/dahab/anatoly.png",
+        eager: true
+      },
+      {
+        name: "Хасан",
+        role: "Профессиональный инструктор",
+        text: "Узнаваемый райдер спота с десятилетним тренерским опытом. Учит балансу, технике и уверенности на фойле.",
+        meta: "Русский · English",
+        photo: "/assets/img/team/dahab/hassan.png",
+        eager: true
+      },
+      {
+        name: "Егор",
+        role: "Детский спортивный инструктор",
+        text: "Тренирует детей от восьми лет. Превращает сложную технику в понятную игру и закладывает безопасную базу.",
+        meta: "Русский · English",
+        photo: "/assets/img/team/dahab/egor.png"
+      },
+      {
+        name: "Рома",
+        role: "Инструктор",
+        text: "Просто объясняет физику ветра, разбирает ошибки и помогает научиться самостоятельно выбирать направление для катания.",
+        meta: "Русский",
+        photo: "/assets/img/team/dahab/roma.png"
+      },
+      {
+        name: "Ира",
+        role: "Администратор",
+        text: "Душа станции. Отвечает за расписание, комфорт гостей и хорошее настроение до и после каждой сессии.",
+        meta: "Русский · English",
+        photo: "/assets/img/team/dahab/ira.jpg"
+      },
+      {
+        name: "Анна",
+        role: "Инструктор",
+        text: "Видит технические ошибки и помогает заложить прочный фундамент, чтобы прогресс был быстрее и увереннее.",
+        meta: "Русский · English",
+        photo: "/assets/img/team/dahab/anna.png"
+      }
+    ]
+  },
+  {
+    id: "team-kids",
+    eyebrow: "WindSurfKids",
+    title: "Детские тренеры",
+    lead: "Спортивная дисциплина, внимание к ребёнку и насыщенная командная жизнь за пределами тренировок.",
+    members: [
+      {
+        name: "Иван Пупенок",
+        role: "Организатор WindSurfKids",
+        text: "Профессиональный тренер, преподаватель и действующий спортсмен в дисциплине слалом.",
+        meta: "Тренер · спортсмен",
+        photo: "/assets/img/team/dahab/ivan-pupenok.jpg"
+      },
+      {
+        name: "Филипп Андреев",
+        role: "Тренер WindSurfKids",
+        text: "Легко находит общий язык с юными серферами и подбирает индивидуальный подход к каждому ребёнку.",
+        meta: "Windsurf · детские группы",
+        photo: "/assets/img/team/dahab/filipp-andreev.jpg"
+      },
+      {
+        name: "Роман Тарасов",
+        role: "Тренер WindSurfKids",
+        text: "Помогает детям осваивать виндсерфинг последовательно, безопасно и с удовольствием от каждого нового навыка.",
+        meta: "Windsurf · техника",
+        photo: "/assets/img/team/dahab/roman-tarasov.jpg"
+      },
+      {
+        name: "Кристина Тришина",
+        role: "Администратор",
+        text: "С командой с первых сезонов. Помогает детям и родителям решать организационные и повседневные вопросы.",
+        meta: "Забота · организация",
+        photo: "/assets/img/team/dahab/kristina-trishina.jpg"
+      },
+      {
+        name: "Тихон",
+        role: "Тренер WindSurfKids",
+        text: "С детства занимается виндсерфингом, участвовал в соревнованиях и выбрал педагогическое направление.",
+        meta: "Windsurf · педагогика",
+        photo: "/assets/img/team/dahab/tikhon.jpg"
+      }
+    ]
+  },
+  {
+    id: "team-safety",
+    eyebrow: "Безопасность на воде",
+    title: "Спасательная команда",
+    lead: "Следит за акваторией, помогает со снаряжением и выходит на воду, когда нужна поддержка.",
+    members: [
+      {
+        name: "Саид",
+        role: "Главный спасатель",
+        text: "Много лет следит за безопасностью акватории и уверенно управляет спасательным катером даже в сильный ветер.",
+        meta: "Акватория · спасательный катер",
+        photo: "/assets/img/team/dahab/said.jpg"
+      },
+      {
+        name: "Махмуд",
+        role: "Спасатель · оборудование",
+        text: "Опытный спасатель и спортсмен в дисциплине слалом. Помогает подготовить снаряжение перед выходом.",
+        meta: "Спасение · slalom",
+        photo: "/assets/img/team/dahab/mahmoud.jpg"
+      },
+      {
+        name: "Хасан",
+        role: "Спасатель · оборудование",
+        text: "Помогает собрать и настроить комплект, поддерживает детей и взрослых на берегу и во время занятий.",
+        meta: "Помощь на берегу и воде",
+        photo: "/assets/img/team/dahab/hassan-rescue.jpg"
+      },
+      {
+        name: "Мустафа",
+        role: "Спасатель · оборудование",
+        text: "Помогает с подготовкой оборудования и поддерживает гостей станции до выхода на воду и после возвращения.",
+        meta: "Сервис · безопасность",
+        photo: "/assets/img/team/dahab/mustafa.jpg"
+      }
+    ]
+  }
+];
+
+const dahabTeamCard = (member) => `
+          <article class="team-card">
+            <div class="team-card__media" style="--team-photo: url('${member.photo}')">
+              <img src="${member.photo}" alt="${escapeHtml(`${member.name} — ${member.role} Vetratoria`)}" loading="${member.eager ? "eager" : "lazy"}" decoding="async">
+            </div>
+            <div class="team-card__content">
+              <span class="team-card__role">${escapeHtml(member.role)}</span>
+              <h3>${escapeHtml(member.name)}</h3>
+              <p>${escapeHtml(member.text)}</p>
+              <span class="team-card__meta">${escapeHtml(member.meta)}</span>
+            </div>
+          </article>`;
+
+const dahabTeamSlider = (group) => `
+      <section class="card-slider" id="${group.id}" data-card-slider aria-labelledby="${group.id}-title">
+        <div class="card-slider__header">
+          <div class="card-slider__heading">
+            <p class="eyebrow">${escapeHtml(group.eyebrow)}</p>
+            <h2 id="${group.id}-title">${escapeHtml(group.title)}</h2>
+            <p>${escapeHtml(group.lead)}</p>
+          </div>
+          <div class="card-slider__controls">
+            <button type="button" data-card-slider-prev aria-label="Предыдущие сотрудники">‹</button>
+            <button type="button" data-card-slider-next aria-label="Следующие сотрудники">›</button>
+          </div>
+        </div>
+        <div class="card-slider__track" data-card-slider-track tabindex="0">
+          ${group.members.map(dahabTeamCard).join("")}
+        </div>
+      </section>`;
+
+const dahabTeamPage = (page) => `
+${hero(page, `${contactCta(page, "Написать команде")}<a class="button button-ghost" href="#team-wingfoil">Познакомиться</a>`)}
+  <section class="content-section team-page">
+    <div class="section-inner">
+      ${sectionHeading(
+        "Vetratoria · Дахаб",
+        "Одна команда — разные роли",
+        "Мы объединили специалистов по wingfoil и windsurf, детских тренеров и спасателей. Листайте карточки стрелками или проводите по ним пальцем."
+      )}
+      ${dahabTeamGroups.map(dahabTeamSlider).join("")}
+    </div>
+  </section>`;
+
 const featurePage = (page) => {
   const country = page.country ? countriesByKey[page.country] : countryList[0];
   const items = {
@@ -2496,6 +2676,8 @@ const render = (page) => {
       return layout(page, mediaPage(page));
     case "contacts":
       return layout(page, contactsPage(page));
+    case "team":
+      return layout(page, page.country === "dahab" ? dahabTeamPage(page) : featurePage(page));
     case "stations":
       return layout(page, page.country === "dahab" ? dahabStationsPage(page) : featurePage(page));
     case "safety":

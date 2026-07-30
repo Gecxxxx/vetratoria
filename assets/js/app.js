@@ -161,6 +161,43 @@
     activate(active);
   });
 
+  document.querySelectorAll("[data-card-slider]").forEach((cardSlider) => {
+    const track = cardSlider.querySelector("[data-card-slider-track]");
+    const prev = cardSlider.querySelector("[data-card-slider-prev]");
+    const next = cardSlider.querySelector("[data-card-slider-next]");
+    if (!track) return;
+
+    const scrollStep = () => {
+      const card = track.querySelector(".team-card");
+      const gap = Number.parseFloat(window.getComputedStyle(track).columnGap || "0") || 0;
+      return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
+    };
+
+    const updateControls = () => {
+      const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+      if (prev) prev.disabled = track.scrollLeft <= 2;
+      if (next) next.disabled = track.scrollLeft >= maxScroll - 2;
+    };
+
+    const move = (direction) => {
+      track.scrollBy({ left: scrollStep() * direction, behavior: "smooth" });
+    };
+
+    prev?.addEventListener("click", () => move(-1));
+    next?.addEventListener("click", () => move(1));
+    track.addEventListener("scroll", updateControls, { passive: true });
+    track.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+      event.preventDefault();
+      move(event.key === "ArrowLeft" ? -1 : 1);
+    });
+
+    if (typeof ResizeObserver === "function") {
+      new ResizeObserver(updateControls).observe(track);
+    }
+    updateControls();
+  });
+
   const countryOption = (form) => form.querySelector("[data-contact-country-select]")?.selectedOptions?.[0];
 
   const contactPayload = (form) => {
