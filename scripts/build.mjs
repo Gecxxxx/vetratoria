@@ -1352,7 +1352,7 @@ const dahabHomePage = (page) => {
 
 <section class="dahab-marquee" aria-label="Vetratoria Dahab">
   <div class="dahab-marquee__track">
-    ${Array.from({ length: 4 }, () => `<span>DAHAB WIND ALL YEAR / WINGFOIL 70$ / WINDSURF 70$ / KIDS FROM 55$ / RENTAL BY FACT / RESCUE BOAT / SWISS INN / GANET SINAI / WING CENTER / </span>`).join("")}
+    ${Array.from({ length: 4 }, () => `<span>ДАХАБ · ВЕТЕР КРУГЛЫЙ ГОД / УРОК ВИНГФОЙЛА — 70$ / УРОК ВИНДСЁРФИНГА — 70$ / ДЕТСКИЙ УРОК — ОТ 55$ / ПРОКАТ ПО ФАКТУ / СПАСАТЕЛЬНЫЙ КАТЕР / SWISS INN / GANET SINAI / WING CENTER / </span>`).join("")}
   </div>
 </section>
 
