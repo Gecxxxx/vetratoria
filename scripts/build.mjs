@@ -30,6 +30,19 @@ const sectionHeading = (eyebrow, title, lead) => `
     ${lead ? `<p>${escapeHtml(lead)}</p>` : ""}
   </header>`;
 
+const sportFeatureGrid = (items) => `
+    <div class="dahab-sport-feature-grid dahab-sport-feature-grid--media">
+      ${items.map(([title, text, image, alt], index) => `
+        <article>
+          <img src="${image}" alt="${escapeHtml(alt)}" width="1080" height="1080" loading="lazy" decoding="async">
+          <div>
+            <span>0${index + 1}</span>
+            <h3>${escapeHtml(title)}</h3>
+            <p>${escapeHtml(text)}</p>
+          </div>
+        </article>`).join("")}
+    </div>`;
+
 const currentCountry = (page) =>
   countryList.find((country) => page.country === country.key || page.galleryCountry === country.key || page.path.startsWith(`/${country.key}/`));
 
@@ -579,10 +592,10 @@ const dahabReviewItems = [
 const dahabWingfoilPage = (page) => {
   const heroFacts = ["Обучение с нуля", "Спасательный катер", "Связь BB Talkin", "Снаряжение RRD"];
   const reasons = [
-    ["Ровная вода", "Спокойная зона помогает поймать баланс, понять крыло и не бороться с лишней волной."],
-    ["Стабильный ветер", "В Дахабе легко планировать занятия: инструктор подбирает окно под уровень и задачу."],
-    ["Foil boat", "Можно отдельно почувствовать фойл за лодкой, а потом соединить полет с крылом."],
-    ["Станция рядом", "Подбор крыла, доски, шлема, жилета и обратная связь происходят прямо на берегу."]
+    ["Ровная вода", "Спокойная зона помогает поймать баланс, понять крыло и не бороться с лишней волной.", wingfoilWaterImg("water-01.webp"), "Wingfoil над ровной водой в Дахабе"],
+    ["Стабильный ветер", "В Дахабе легко планировать занятия: инструктор подбирает окно под уровень и задачу.", wingfoilSectionImg("wing-start-coaching.webp"), "Старт занятия Wingfoil с инструктором"],
+    ["Foil boat", "Можно отдельно почувствовать фойл за лодкой, а потом соединить полет с крылом.", wingfoilSectionImg("foil-boat-training.webp"), "Тренировка на фойле за лодкой в Дахабе"],
+    ["Станция рядом", "Подбор крыла, доски, шлема, жилета и обратная связь происходят прямо на берегу.", dahabRefImg("bg-wingfoil-station.webp"), "Wingfoil станция Vetratoria в Дахабе"]
   ];
   const learning = [
     ["01", "Wing на SUP", "Учимся держать крыло, разворачиваться, идти нужным курсом и понимать, как работает ветер.", wingfoilSectionImg("wing-start-coaching.webp"), "Инструктор помогает ученику стартовать с крылом у берега"],
@@ -641,12 +654,7 @@ const dahabWingfoilPage = (page) => {
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
     ${sectionHeading("Локация", "Почему Дахаб подходит для Wingfoil", "Спокойная вода, стабильный ветер, разные форматы старта и станция рядом с зоной выхода помогают идти от первого управления крылом к полету без хаоса.")}
-    <figure class="dahab-sport-panorama">
-      <img src="${wingfoilSectionImg("dahab-panorama.webp")}" alt="Панорама Дахаба и акватории Vetratoria" width="2048" height="1024" loading="lazy" decoding="async">
-    </figure>
-    <div class="dahab-sport-feature-grid">
-      ${reasons.map(([title, text], index) => `<article><span>0${index + 1}</span><h3>${title}</h3><p>${text}</p></article>`).join("")}
-    </div>
+    ${sportFeatureGrid(reasons)}
   </div>
 </section>
 
@@ -780,10 +788,10 @@ const dahabWingfoilPage = (page) => {
 const dahabWindsurfPage = (page) => {
   const heroFacts = ["Обучение с нуля", "Прокат снаряжения", "Подбор паруса", "Спасательный катер"];
   const reasons = [
-    ["Понятный старт", "Спокойная вода и инструктор рядом помогают быстро почувствовать доску, парус и направление ветра."],
-    ["Снаряжение под ветер", "Подбираем доску и парус под вес, уровень и фактические условия на воде."],
-    ["Маршрут прогресса", "После первых галсов можно перейти к поворотам, курсам, скорости и самостоятельному прокату."],
-    ["Станции рядом", "Swiss Inn и Ganet Sinai удобны для уроков, проката, хранения и спокойного выхода на воду."]
+    ["Понятный старт", "Спокойная вода и инструктор рядом помогают быстро почувствовать доску, парус и направление ветра.", dahabRefImg("windsurf-hero.webp"), "Первый выход на Windsurf в Дахабе"],
+    ["Снаряжение под ветер", "Подбираем доску и парус под вес, уровень и фактические условия на воде.", dahabRefImg("price-windsurf.webp"), "Подбор доски и паруса для Windsurf"],
+    ["Маршрут прогресса", "После первых галсов можно перейти к поворотам, курсам, скорости и самостоятельному прокату.", dahabRefImg("block-windsurf.webp"), "Windsurf тренировка на Красном море"],
+    ["Станции рядом", "Swiss Inn и Ganet Sinai удобны для уроков, проката, хранения и спокойного выхода на воду.", dahabRefImg("bg-swiss.webp"), "Windsurf станция Swiss Inn в Дахабе"]
   ];
   const learning = [
     ["01", "Парус на берегу", "Разбираем ветер, стойку, положение паруса, развороты и правила выхода в акваторию.", dahabRefImg("windsurf-hero.webp"), "Windsurf на Красном море в Дахабе"],
@@ -842,12 +850,7 @@ const dahabWindsurfPage = (page) => {
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
     ${sectionHeading("Локация", "Почему Дахаб подходит для Windsurf", "В Дахабе удобно начать с нуля и продолжать прогресс: понятная акватория, стабильный ветер, разные станции и подбор комплекта под условия.")}
-    <figure class="dahab-sport-panorama">
-      <img src="${dahabRefImg("ganet-sinai.webp")}" alt="Акватория Дахаба для windsurf" width="1600" height="1067" loading="lazy" decoding="async">
-    </figure>
-    <div class="dahab-sport-feature-grid">
-      ${reasons.map(([title, text], index) => `<article><span>0${index + 1}</span><h3>${title}</h3><p>${text}</p></article>`).join("")}
-    </div>
+    ${sportFeatureGrid(reasons)}
   </div>
 </section>
 
@@ -983,10 +986,10 @@ const dahabWindsurfKidsPage = (page) => {
   const wskImg = (name) => `/assets/img/windsurf-kids/${name}`;
   const heroFacts = ["С 2009 года", "Дети от 6 лет", "500+ воспитанников", "Дахаб · Красное море"];
   const reasons = [
-    ["Спорт с понятного старта", "Новички знакомятся с ветром, доской и парусом в спокойном темпе, а продолжающие развивают технику."],
-    ["Профессиональная команда", "С детьми работают тренеры с опытом в парусном спорте и отдельным вниманием к возрасту каждого участника."],
-    ["Безопасность на воде", "Акваторию контролирует команда спасателей, а оборудование подбирается под рост, вес и уровень ребёнка."],
-    ["Лагерь, а не только уроки", "В программе есть спорт, снорклинг, прогулки по горам, игры, экскурсии и время с новыми друзьями."]
+    ["Спорт с понятного старта", "Новички знакомятся с ветром, доской и парусом в спокойном темпе, а продолжающие развивают технику.", wskImg("water-02.jpg"), "Юный спортсмен WindSurfKids на виндсёрфе"],
+    ["Профессиональная команда", "С детьми работают тренеры с опытом в парусном спорте и отдельным вниманием к возрасту каждого участника.", wskImg("hero.webp"), "Тренер проводит занятие для участников WindSurfKids"],
+    ["Безопасность на воде", "Акваторию контролирует команда спасателей, а оборудование подбирается под рост, вес и уровень ребёнка.", wskImg("water-01.jpg"), "Участники WindSurfKids готовят оборудование на берегу"],
+    ["Лагерь, а не только уроки", "В программе есть спорт, снорклинг, прогулки по горам, игры, экскурсии и время с новыми друзьями.", wskImg("camp-03.webp"), "Поход участников WindSurfKids в Синайских горах"]
   ];
   const program = [
     ["01", "Виндсёрфинг", "Стойка, управление парусом, выбор курса и первые самостоятельные галсы.", wskImg("water-02.jpg"), "Юный спортсмен WindSurfKids катается на виндсёрфе в Дахабе"],
@@ -1051,12 +1054,7 @@ const dahabWindsurfKidsPage = (page) => {
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
     ${sectionHeading("О лагере", "WindSurfKids — лето, которое проходит на воде", "Лагерь работает с 2009 года, а с 2012 года принимает детей в Дахабе. За это время программу прошли более 500 юных виндсёрферов.")}
-    <figure class="dahab-sport-panorama">
-      <img src="${wskImg("water-02.jpg")}" alt="Юный спортсмен WindSurfKids на виндсёрфе в Дахабе" width="1080" height="888" loading="lazy" decoding="async">
-    </figure>
-    <div class="dahab-sport-feature-grid">
-      ${reasons.map(([title, text], index) => `<article><span>0${index + 1}</span><h3>${title}</h3><p>${text}</p></article>`).join("")}
-    </div>
+    ${sportFeatureGrid(reasons)}
   </div>
 </section>
 

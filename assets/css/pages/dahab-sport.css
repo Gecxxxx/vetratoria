@@ -68,7 +68,6 @@
 }
 
 .dahab-sport-hero__media img,
-.dahab-sport-panorama img,
 .dahab-sport-process img,
 .dahab-sport-price-card img,
 .dahab-sport-safety__media img,
@@ -102,14 +101,6 @@
   font-size: clamp(34px, 4.4vw, 58px);
 }
 
-.dahab-sport-panorama {
-  height: 390px;
-  margin: 0 0 20px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  background: #0e0d0c;
-}
-
 .dahab-sport-feature-grid,
 .dahab-sport-process,
 .dahab-sport-price-grid,
@@ -135,6 +126,23 @@
   min-height: 190px;
   padding: 24px;
   border-top: 2px solid var(--orange);
+}
+
+.dahab-sport-feature-grid--media article {
+  min-height: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+.dahab-sport-feature-grid--media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.dahab-sport-feature-grid--media article > div {
+  padding: 22px 24px 26px;
 }
 
 .dahab-sport-feature-grid span,
@@ -181,7 +189,8 @@
 
 .dahab-sport-process img {
   display: block;
-  height: 180px;
+  height: auto;
+  aspect-ratio: 1;
 }
 
 .dahab-sport-process div {
@@ -556,10 +565,6 @@
   .dahab-sport-hero__copy,
   .dahab-sport-hero__media {
       min-height: 430px;
-    }
-
-  .dahab-sport-panorama {
-      height: 330px;
     }
 
   .dahab-sport-reviews__head {
