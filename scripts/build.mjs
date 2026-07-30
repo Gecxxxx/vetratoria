@@ -1188,6 +1188,131 @@ const dahabWindsurfKidsPage = (page) => {
 </section>`.replace(/^[\t ]+$/gm, "");
 };
 
+const dahabHowToGetPage = (page) => {
+  const routeSteps = [
+    ["01", "Выберите рейс", "Ближайший к Дахабу международный аэропорт находится в Шарм-эль-Шейхе. В зависимости от сезона доступны прямые и стыковочные маршруты."],
+    ["02", "Сообщите данные", "Для заказа трансфера понадобятся дата прилёта, номер рейса, время посадки и количество пассажиров."],
+    ["03", "Встреча в аэропорту", "Водитель встретит вас после получения багажа и поможет разместить вещи и спортивное снаряжение."],
+    ["04", "Дорога в Дахаб", "Расстояние составляет около 100 км. Обычно поездка на автомобиле или микроавтобусе занимает 1–1,5 часа."]
+  ];
+  const entryRules = [
+    ["Паспорт", "Срок действия заграничного паспорта должен составлять не менее 6 месяцев на дату въезда."],
+    ["Южный Синай", "Для отдыха только в Шарм-эль-Шейхе, Дахабе, Нувейбе или Табе сроком менее 15 дней обычно можно получить бесплатный разрешительный штамп по прилёте."],
+    ["Туристическая виза", "Если поездка длится дольше 15 дней или маршрут выходит за пределы Южного Синая, потребуется туристическая виза. Однократная электронная виза стоит $30."],
+    ["Проверка перед вылетом", "Правила зависят от гражданства и могут измениться. Перед поездкой проверьте требования авиакомпании и официального визового портала Египта."]
+  ];
+  const preparation = [
+    ["Рейс", "Сохраните номер рейса и актуальное время прибытия."],
+    ["Связь", "Оставьте телефон с WhatsApp или Telegram для контакта с водителем."],
+    ["Багаж", "Предупредите заранее, если везёте доску, парус, крыло или другой негабаритный багаж."],
+    ["Документы", "Возьмите распечатку e-Visa, если оформляли её онлайн, бронь проживания и страховой полис."]
+  ];
+  const faqs = [
+    ["Какой аэропорт выбирать?", "Удобнее всего прилетать в международный аэропорт Шарм-эль-Шейха. От него до Дахаба около 100 км."],
+    ["Сколько занимает трансфер?", "Обычно дорога занимает от одного до полутора часов. Время зависит от трафика, остановок и прохождения контрольных пунктов."],
+    ["Можно ли заказать машину для группы?", "Да. В зависимости от количества пассажиров организуем легковой автомобиль или микроавтобус. Сообщите состав группы и объём багажа заранее."],
+    ["Можно ли перевезти спортивное оборудование?", "Да, но габариты снаряжения нужно указать при заказе, чтобы мы подобрали подходящий автомобиль."],
+    ["Нужна ли виза для поездки в Дахаб?", "Для короткой поездки только по курортам Южного Синая обычно доступен бесплатный штамп. Для более длительного отдыха или поездок по остальному Египту нужна туристическая виза."],
+    ["Где проверять актуальные правила?", "Используйте официальный портал Egypt e-Visa и требования вашей авиакомпании. Окончательное решение о въезде принимает пограничная служба Египта."]
+  ];
+
+  return `
+<section class="dahab-sport-hero dahab-sport-hero--route">
+  <div class="dahab-sport-hero__inner">
+    <div class="dahab-sport-hero__copy">
+      <p class="eyebrow">${escapeHtml(page.eyebrow)}</p>
+      <h1>${escapeHtml(page.title)}</h1>
+      <p>${escapeHtml(page.description)}</p>
+      <div class="dahab-sport-hero__actions">
+        ${contactCta(page, "Заказать трансфер")}
+        <a class="button button-ghost" href="#entry-rules">Правила въезда</a>
+      </div>
+      <div class="hero-advantages hero-advantages--sport">
+        <span class="hero-advantage">Аэропорт SSH</span>
+        <span class="hero-advantage">Около 100 км</span>
+        <span class="hero-advantage">1–1,5 часа в пути</span>
+        <span class="hero-advantage">Трансфер $35</span>
+      </div>
+    </div>
+    <figure class="dahab-sport-hero__media">
+      <img src="${page.image}" alt="Дахаб и побережье Акабского залива" width="1848" height="487" loading="eager" decoding="async" fetchpriority="high">
+    </figure>
+  </div>
+</section>
+
+<section class="dahab-sport-section">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Маршрут", "От Шарм-эль-Шейха до Дахаба", "Дахаб расположен на берегу Акабского залива в Южном Синае. Основной маршрут начинается в международном аэропорту Шарм-эль-Шейха.")}
+    <div class="dahab-sport-feature-grid">
+      ${routeSteps.map(([number, title, text]) => `<article><span>${number}</span><h3>${title}</h3><p>${text}</p></article>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section dahab-sport-section--soft">
+  <div class="dahab-sport-inner dahab-sport-safety">
+    <div class="dahab-sport-safety__copy">
+      <p class="eyebrow">Встреча в аэропорту</p>
+      <h2>Трансфер для гостей станции — $35</h2>
+      <p>Организуем поездку из аэропорта Шарм-эль-Шейха до Дахаба. Для одного или нескольких гостей подберём легковой автомобиль либо микроавтобус.</p>
+      <div class="dahab-sport-safety__list">
+        <span>Встреча по номеру рейса</span>
+        <span>Помощь с багажом и снаряжением</span>
+        <span>Доставка до отеля или станции</span>
+      </div>
+      ${contactCta(page, "Заказать трансфер")}
+    </div>
+    <div class="dahab-sport-safety__media">
+      <img src="${dahabRefImg("ganet-sinai.webp")}" alt="Побережье Дахаба рядом со станцией Vetratoria" width="1600" height="1067" loading="lazy" decoding="async">
+      <img src="${dahabRefImg("bg-ganet.webp")}" alt="Станция Vetratoria Ganet Sinai в Дахабе" width="1600" height="1067" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section" id="entry-rules">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Документы", "Правила въезда и виза", "Краткая памятка для поездки в Дахаб. Информация проверена 30 июля 2026 года; перед вылетом требования стоит проверить ещё раз.")}
+    <div class="dahab-sport-feature-grid">
+      ${entryRules.map(([title, text], index) => `<article><span>0${index + 1}</span><h3>${title}</h3><p>${text}</p></article>`).join("")}
+    </div>
+    <div class="dahab-sport-price-actions">
+      <a class="button button-primary" href="https://www.visa2egypt.gov.eg/eVisa/Home" target="_blank" rel="noopener noreferrer">Официальный портал Egypt e-Visa</a>
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section dahab-sport-section--soft">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Перед вылетом", "Что подготовить для спокойной встречи", "Четыре простых шага помогут быстро найти водителя и без задержек отправиться в Дахаб.")}
+    <div class="dahab-sport-feature-grid">
+      ${preparation.map(([title, text], index) => `<article><span>0${index + 1}</span><h3>${title}</h3><p>${text}</p></article>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("FAQ", "Частые вопросы о дороге", "Коротко о времени в пути, багаже, машине и документах.")}
+    <div class="dahab-sport-faq">
+      ${faqs.map(([question, answer], index) => `<details ${index === 0 ? "open" : ""}><summary>${question}</summary><p>${answer}</p></details>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-cta">
+  <img src="${page.image}" alt="Побережье Дахаба на Красном море" width="1848" height="487" loading="lazy" decoding="async">
+  <div class="dahab-sport-cta__inner">
+    <p class="eyebrow">Трансфер в Дахаб</p>
+    <h2>Встретим в Шарм-эль-Шейхе и доставим до станции</h2>
+    <p>Пришлите дату, номер рейса, время прилёта, количество пассажиров и информацию о спортивном багаже.</p>
+    <div>
+      ${contactCta(page, "Заказать трансфер")}
+      <a class="button button-ghost" href="/dahab/contacts/">Контакты станции</a>
+    </div>
+  </div>
+</section>`.replace(/^[\t ]+$/gm, "");
+};
+
 const dahabHomePage = (page) => {
   const priceCards = [
     ["Wingfoil", "Урок", "70$", "Инструктор и комплект под уровень.", dahabRefImg("price-wingfoil.webp"), "/dahab/wingfoil/price/"],
@@ -2382,6 +2507,8 @@ const render = (page) => {
       return layout(page, page.country === "dahab" ? dahabStationsPage(page) : featurePage(page));
     case "safety":
       return layout(page, page.country === "dahab" ? dahabSafetyPage(page) : featurePage(page));
+    case "route":
+      return layout(page, page.country === "dahab" ? dahabHowToGetPage(page) : featurePage(page));
     default:
       return layout(page, featurePage(page));
   }

@@ -451,8 +451,8 @@ pages.push(
     country: "dahab",
     eyebrow: "Дахаб · дорога",
     title: "Как добраться до Дахаба",
-    description: "Маршрут до станции, прилет, трансфер и что важно знать перед поездкой.",
-    image: img("home-direction-dahab.webp")
+    description: "Перелёт до Шарм-эль-Шейха, трансфер в Дахаб, стоимость поездки и актуальные правила въезда в Египет.",
+    image: "/assets/img/contacts/dahab-hero.webp"
   },
   {
     path: "/dahab/safety/",
