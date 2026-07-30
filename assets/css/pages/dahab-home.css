@@ -103,22 +103,29 @@
 }
 
 .dahab-marquee {
-  overflow: hidden;
+  position: relative;
+  min-height: 42px;
+  overflow-x: clip;
   background: var(--orange);
   color: var(--white);
+  contain: inline-size paint;
   font-weight: 900;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .dahab-marquee__track {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
   display: flex;
   width: max-content;
+  align-items: center;
   animation: marquee 34s linear infinite;
 }
 
 .dahab-marquee span {
-  padding: 9px 18px;
+  padding: 8px 18px;
 }
 
 @keyframes marquee {
@@ -867,6 +874,10 @@ body.country.country-dahab .trust-block {
       font-size: 16px;
     }
 
+  body.country.country-dahab .hero-advantages {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
   .sport-split__grid,
   .price-grid,
   .station-advice__list,
@@ -937,6 +948,13 @@ body.country.country-dahab .trust-block {
       min-height: 420px;
       height: 420px;
     }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dahab-marquee__track {
+    animation: none;
+    transform: none;
+  }
 }
 
 @media (max-width: 520px) {

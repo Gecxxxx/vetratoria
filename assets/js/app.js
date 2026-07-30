@@ -4,6 +4,7 @@
   const menuButton = document.querySelector("[data-menu-toggle]");
   const navPanel = document.querySelector("[data-nav-panel]");
   const mobileMenu = window.matchMedia("(max-width: 1180px)");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   const dropdowns = [...document.querySelectorAll("[data-dropdown]")];
 
@@ -23,6 +24,7 @@
   const setMenuOpen = (open) => {
     body.classList.toggle("nav-open", open);
     menuButton?.setAttribute("aria-expanded", String(open));
+    menuButton?.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
     navPanel?.setAttribute("aria-hidden", String(mobileMenu.matches ? !open : false));
     if (!open) closeDropdowns();
   };
@@ -34,6 +36,7 @@
     }
     body.classList.remove("nav-open");
     menuButton?.setAttribute("aria-expanded", "false");
+    menuButton?.setAttribute("aria-label", "Открыть меню");
     navPanel?.setAttribute("aria-hidden", "false");
   };
 
@@ -93,9 +96,22 @@
     let active = 0;
     let timer = null;
 
+    const loadSlide = (slide) => {
+      const deferredSource = slide?.dataset.src;
+      if (!deferredSource) return;
+      slide.src = deferredSource;
+      slide.removeAttribute("data-src");
+    };
+
+    const preloadFollowingSlide = () => {
+      if (reducedMotion.matches || slides.length < 2) return;
+      window.setTimeout(() => loadSlide(slides[(active + 1) % slides.length]), 600);
+    };
+
     const activate = (index) => {
       if (!slides.length) return;
       active = (index + slides.length) % slides.length;
+      loadSlide(slides[active]);
 
       slides.forEach((slide, slideIndex) => {
         const isActive = slideIndex === active;
@@ -108,6 +124,8 @@
         dot.classList.toggle("is-active", isActive);
         dot.setAttribute("aria-current", String(isActive));
       });
+
+      preloadFollowingSlide();
     };
 
     dots.forEach((dot, index) => {
@@ -119,9 +137,16 @@
 
     activate(0);
 
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && slides.length > 1) {
+    if (!reducedMotion.matches && slides.length > 1) {
       timer = window.setInterval(() => activate(active + 1), 4500);
     }
+
+    reducedMotion.addEventListener?.("change", (event) => {
+      if (event.matches && timer) {
+        window.clearInterval(timer);
+        timer = null;
+      }
+    });
   }
 
   document.querySelectorAll("[data-trust-prev], [data-trust-next]").forEach((button) => {
@@ -135,7 +160,7 @@
       const step = card ? card.getBoundingClientRect().width + cardGap : track.clientWidth * 0.82;
       track.scrollBy({
         left: button.dataset.trustPrev ? -step : step,
-        behavior: "smooth"
+        behavior: reducedMotion.matches ? "auto" : "smooth"
       });
     });
   });
@@ -180,7 +205,7 @@
     };
 
     const move = (direction) => {
-      track.scrollBy({ left: scrollStep() * direction, behavior: "smooth" });
+      track.scrollBy({ left: scrollStep() * direction, behavior: reducedMotion.matches ? "auto" : "smooth" });
     };
 
     prev?.addEventListener("click", () => move(-1));

@@ -127,6 +127,7 @@ body.nav-open {
   text-transform: none;
 }
 
+.vtr-nav__lang-current,
 .vtr-nav__lang-button {
   display: inline-flex;
   align-items: center;
@@ -135,6 +136,10 @@ body.nav-open {
   color: var(--white);
   font-size: 16px;
   font-weight: 900;
+}
+
+.vtr-nav__lang-current {
+  cursor: default;
 }
 
 .vtr-nav__chevron {
@@ -538,7 +543,7 @@ body.nav-open {
       justify-content: space-between;
       gap: 14px;
       width: 100%;
-      min-height: 39px;
+      min-height: 44px;
       padding: 0 12px;
       border: 1px solid #292929;
       background: #151515;
@@ -594,7 +599,7 @@ body.nav-open {
     }
 
   .vtr-mobile-menu__submenu .vtr-mobile-menu__row {
-      min-height: 34px;
+      min-height: 44px;
       background: #101010;
       color: #d8d4d0;
       font-size: 14px;
@@ -637,8 +642,8 @@ body.nav-open {
     }
 
   .vtr-nav__burger {
-      width: 36px;
-      height: 36px;
+      width: 44px;
+      height: 44px;
     }
 
   .vtr-nav__logo img {
@@ -646,7 +651,7 @@ body.nav-open {
     }
 
   .vtr-mobile-menu__row {
-      min-height: 36px;
+      min-height: 44px;
       padding: 0 9px;
       font-size: 13px;
     }

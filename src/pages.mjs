@@ -26,6 +26,8 @@ const dahabSportOverrides = {
 
 export const site = {
   name: "Vetratoria",
+  baseUrl: "https://vetratoria.ru",
+  locale: "ru_RU",
   title: "Vetratoria - windsurf и wingfoil школы в Египте, Вьетнаме и России",
   description:
     "Vetratoria - сеть windsurf и wingfoil школ. Египет, Вьетнам и Россия: выберите направление, спорт, станцию и формат обучения.",

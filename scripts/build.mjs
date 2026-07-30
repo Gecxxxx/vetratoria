@@ -178,7 +178,7 @@ const mobileMenu = (page, country) => `
       </div>`;
 
 const mainNavPanel = (page, country) => `
-    <nav class="vtr-nav__panel" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
+    <nav class="vtr-nav__panel" id="site-navigation" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
       <a class="vtr-nav__link" href="/">Vetratoria</a>
       ${directionsMenu()}
       <a class="vtr-nav__link" href="/blog/">Блог</a>
@@ -200,13 +200,7 @@ const topNav = (page) => {
     </nav>
     <div class="vtr-nav__right">
       ${socialIconLinks("vtr-nav__socials")}
-      <div class="vtr-nav__lang" data-dropdown>
-        <button class="vtr-nav__lang-button" type="button" aria-expanded="false" data-dropdown-toggle>RU ${arrow}</button>
-        <div class="vtr-nav__lang-menu">
-          <a href="#">EN</a>
-          <a href="#">DE</a>
-        </div>
-      </div>
+      <span class="vtr-nav__lang-current" aria-label="Язык сайта: русский">RU</span>
     </div>
   </div>`;
 };
@@ -283,7 +277,7 @@ const header = (page) => {
     <a class="vtr-nav__logo" href="/" aria-label="Vetratoria - главная">
       <img src="${site.logo}" alt="Vetratoria" width="198" height="97">
     </a>
-    <button class="vtr-nav__burger" type="button" aria-label="Открыть меню" aria-expanded="false" data-menu-toggle>
+    <button class="vtr-nav__burger" type="button" aria-label="Открыть меню" aria-controls="site-navigation" aria-expanded="false" data-menu-toggle>
       <span></span><span></span><span></span>
     </button>
     ${mainNavPanel(page, country)}
@@ -375,13 +369,100 @@ const footerForPage = (page) => page.kind === "country" && page.country === "dah
 const metaTitleForPage = (page) =>
   page.path === "/dahab/" ? "Дахаб — Wingfoil и Windsurf на Красном море | Vetratoria" : page.title || site.title;
 
-const metaDescriptionForPage = (page) =>
-  page.path === "/dahab/"
-    ? "Vetratoria Dahab: Wingfoil, Windsurf, Kids, аренда, уроки, станции Wing Center, Swiss Inn и Ganet Sinai."
-    : page.description || site.description;
+const metaDescriptionForPage = (page) => {
+  if (page.path === "/dahab/") {
+    return "Vetratoria Dahab: Wingfoil, Windsurf, Kids, аренда, уроки, станции Wing Center, Swiss Inn и Ganet Sinai.";
+  }
+
+  const description = page.description || site.description;
+
+  if (page.kind === "media-album") {
+    return `${description} Альбом «${page.title}».`;
+  }
+
+  if (page.country && ["sport", "sport-price", "team"].includes(page.kind)) {
+    const country = countriesByKey[page.country];
+    return `${description} Направление: ${country.region} · ${country.city}.`;
+  }
+
+  return description;
+};
 
 const metaImageForPage = (page) =>
   page.path === "/dahab/" ? "/assets/img/dahab-ref/ganet-sinai.webp" : page.image || site.slider[0];
+
+const absoluteUrl = (path) => new URL(path, site.baseUrl).href;
+
+const canonicalForPage = (page) => absoluteUrl(page.path);
+
+const pagesByPath = new Map(allPages.map((page) => [page.path, page]));
+
+const breadcrumbPagesFor = (page) => {
+  if (page.path === "/") return [pagesByPath.get("/")];
+  const paths = ["/"];
+  const segments = page.path.split("/").filter(Boolean);
+  let currentPath = "";
+
+  for (const segment of segments) {
+    currentPath += `/${segment}`;
+    const normalizedPath = `${currentPath}/`;
+    if (pagesByPath.has(normalizedPath)) paths.push(normalizedPath);
+  }
+
+  return paths.map((path) => pagesByPath.get(path)).filter(Boolean);
+};
+
+const structuredDataForPage = (page) => {
+  const organizationId = `${site.baseUrl}/#organization`;
+  const graph = [
+    {
+      "@type": "Organization",
+      "@id": organizationId,
+      name: site.name,
+      url: absoluteUrl("/"),
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl(site.logo)
+      },
+      sameAs: site.socials.map((social) => social.href)
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${canonicalForPage(page)}#breadcrumbs`,
+      itemListElement: breadcrumbPagesFor(page).map((breadcrumbPage, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: breadcrumbPage.path === "/" ? site.name : breadcrumbPage.title,
+        item: canonicalForPage(breadcrumbPage)
+      }))
+    }
+  ];
+
+  if (page.path === "/dahab/") {
+    graph.push({
+      "@type": "SportsActivityLocation",
+      "@id": `${canonicalForPage(page)}#sports-location`,
+      name: "Vetratoria Дахаб",
+      url: canonicalForPage(page),
+      description: metaDescriptionForPage(page),
+      image: absoluteUrl(metaImageForPage(page)),
+      email: site.contacts.dahab.email,
+      telephone: site.contacts.dahab.phone,
+      parentOrganization: {
+        "@id": organizationId
+      },
+      areaServed: {
+        "@type": "City",
+        name: "Дахаб"
+      }
+    });
+  }
+
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": graph
+  }).replace(/</g, "\\u003c");
+};
 
 const contactCountryOption = (country) => {
   const contact = site.contacts[country.key];
@@ -444,14 +525,14 @@ const contactDialog = (page) => {
 </dialog>`;
 };
 
-const ASSET_VERSION = "20260730-single-media";
+const ASSET_VERSION = "20260730-ux-seo";
 const PAGE_ASSET_VERSIONS = new Map([
-  ["/blog/", "20260730-blog-filters"],
-  ["/dahab/team/", "20260730-team-windsurf"],
-  ["/dahab/windsurf-kids/", "20260730-wsk-overview-hero"]
+  ["/blog/", `${ASSET_VERSION}-blog-filters`],
+  ["/dahab/team/", `${ASSET_VERSION}-team-windsurf`],
+  ["/dahab/windsurf-kids/", `${ASSET_VERSION}-wsk-overview-hero`]
 ]);
 const assetVersionForPage = (page) =>
-  page.path.startsWith("/media/") ? "20260730-media-library" : PAGE_ASSET_VERSIONS.get(page.path) || ASSET_VERSION;
+  page.path.startsWith("/media/") ? `${ASSET_VERSION}-media-library` : PAGE_ASSET_VERSIONS.get(page.path) || ASSET_VERSION;
 const versionedAsset = (path, version = ASSET_VERSION) => `${path}?v=${version}`;
 
 const layout = (page, main) => `<!doctype html>
@@ -461,15 +542,24 @@ const layout = (page, main) => `<!doctype html>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${escapeHtml(metaTitleForPage(page))}</title>
   <meta name="description" content="${escapeHtml(metaDescriptionForPage(page))}">
-  <meta property="og:type" content="website">
+  <link rel="canonical" href="${canonicalForPage(page)}">
+  <meta property="og:type" content="${page.kind === "article" ? "article" : "website"}">
   <meta property="og:site_name" content="${site.name}">
+  <meta property="og:locale" content="${site.locale}">
+  <meta property="og:url" content="${canonicalForPage(page)}">
   <meta property="og:title" content="${escapeHtml(metaTitleForPage(page))}">
   <meta property="og:description" content="${escapeHtml(metaDescriptionForPage(page))}">
-  <meta property="og:image" content="${metaImageForPage(page)}">
+  <meta property="og:image" content="${absoluteUrl(metaImageForPage(page))}">
+  <meta property="og:image:alt" content="${escapeHtml(metaTitleForPage(page))}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escapeHtml(metaTitleForPage(page))}">
+  <meta name="twitter:description" content="${escapeHtml(metaDescriptionForPage(page))}">
+  <meta name="twitter:image" content="${absoluteUrl(metaImageForPage(page))}">
   <meta name="theme-color" content="#0d0c0b">
   <link rel="icon" href="${site.logo}">
   <link rel="stylesheet" href="${versionedAsset("/assets/css/main.css", assetVersionForPage(page))}">
   <script defer src="${versionedAsset("/assets/js/app.js", assetVersionForPage(page))}"></script>
+  <script type="application/ld+json">${structuredDataForPage(page)}</script>
 </head>
 <body class="modern-site ${page.kind}${page.country ? ` country-${page.country}` : ""}">
   <a class="skip-link" href="#main">К содержанию</a>
@@ -484,7 +574,7 @@ const layout = (page, main) => `<!doctype html>
 const hero = (page, actions = "") => `
 <section class="hero page-hero">
   <div class="hero-bg">
-    <img src="${page.image}" alt="" loading="eager" decoding="async">
+    <img src="${page.image}" alt="" loading="eager" fetchpriority="high" decoding="async">
   </div>
   <div class="hero-shade"></div>
   <div class="hero-content">
@@ -498,7 +588,7 @@ const hero = (page, actions = "") => `
 const home = (page) => `
 <section class="hero hero-home">
   <div class="home-hero__slider" data-hero-slider aria-label="Фото Vetratoria">
-    ${site.slider.map((src, index) => `<img src="${src}" alt="" data-slide ${index === 0 ? `class="is-active"` : ""} aria-hidden="${index === 0 ? "false" : "true"}" loading="${index === 0 ? "eager" : "lazy"}" decoding="async">`).join("")}
+    ${site.slider.map((src, index) => `<img ${index === 0 ? `src="${src}" fetchpriority="high"` : `data-src="${src}"`} alt="" width="1200" height="780" data-slide ${index === 0 ? `class="is-active"` : ""} aria-hidden="${index === 0 ? "false" : "true"}" loading="${index === 0 ? "eager" : "lazy"}" decoding="async">`).join("")}
   </div>
   <div class="hero-shade"></div>
   <div class="hero-content">
@@ -512,8 +602,8 @@ const home = (page) => `
       <article class="hero-advantage">Клубная система скидок</article>
     </div>
     <div class="hero-actions">
-      ${contactCta(page, "Написать нам")}
-      ${countryList.map((country) => `<a class="button button-ghost" href="${country.href}">${country.nav}</a>`).join("")}
+      ${contactCta(page, "Подобрать программу")}
+      <a class="button button-ghost" href="#destinations">Выбрать направление</a>
     </div>
     <div class="slider-dots" aria-label="Слайды">
       ${site.slider.map((_, index) => `<button type="button" data-slide-dot aria-label="Слайд ${index + 1}"></button>`).join("")}
@@ -523,7 +613,7 @@ const home = (page) => `
 
 <section class="home-section home-section--destinations" id="destinations">
   <div class="section-inner">
-    ${sectionHeading("Направления", "Выберите страну", "Главная Vetratoria - это вход в сеть. Внутри каждой страны свои условия, станции, цены, команда, безопасность, блог и медиа.")}
+    ${sectionHeading("Направления", "Выберите страну", "Покажем сезон, условия на воде, программы и стоимость обучения.")}
     <div class="destination-grid">
       ${countryList.map((country) => `
         <a class="destination-card" href="${country.href}">
@@ -534,6 +624,17 @@ const home = (page) => `
           <em>Открыть направление</em>
         </a>`).join("")}
     </div>
+  </div>
+</section>
+
+<section class="home-section home-section--process" id="how-it-works">
+  <div class="section-inner">
+    ${sectionHeading("Как всё происходит", "От запроса до занятия — три шага", "Коротко расскажите о поездке, а команда поможет собрать подходящую программу.")}
+    <ol class="home-process">
+      <li><span>01</span><div><h3>Оставляете даты и уровень</h3><p>Укажите направление, даты поездки, опыт и интересующий спорт.</p></div></li>
+      <li><span>02</span><div><h3>Мы подбираем формат</h3><p>Команда подбирает спорт, станцию и снаряжение под ваши задачи.</p></div></li>
+      <li><span>03</span><div><h3>Подтверждаете программу</h3><p>Согласовываете детали и приезжаете на занятие в выбранное время.</p></div></li>
+    </ol>
   </div>
 </section>
 
@@ -1349,17 +1450,16 @@ const dahabHomePage = (page) => {
     <p class="hero-lead">Обучение и прокат на Красном море для новичков и опытных райдеров. Подберём программу, инструктора и снаряжение под ваш уровень.</p>
     <div class="hero-advantages"><span class="hero-advantage">С 2006 года</span><span class="hero-advantage">Условия для любого уровня</span><span class="hero-advantage">10 000+ учеников</span><span class="hero-advantage">3 спасательных катера</span></div>
     <div class="hero-actions dahab-hero-actions">
-      ${contactCta(page, "Написать нам")}
-      <a class="button button-ghost" href="/dahab/wingfoil/">Wingfoil</a>
-      <a class="button button-ghost" href="/dahab/windsurf/">Windsurf</a>
-      <a class="button button-ghost" href="/dahab/wingfoil/price/">Цены</a>
+      ${contactCta(page, "Подобрать программу")}
+      <a class="button button-ghost" href="#prices">Посмотреть цены</a>
     </div>
   </div>
 </section>
 
 <section class="dahab-marquee" aria-label="Vetratoria Dahab">
   <div class="dahab-marquee__track">
-    ${Array.from({ length: 4 }, () => `<span>ДАХАБ · ВЕТЕР КРУГЛЫЙ ГОД / УРОК ВИНГФОЙЛА — 70$ / УРОК ВИНДСЁРФИНГА — 70$ / ДЕТСКИЙ УРОК — ОТ 55$ / ПРОКАТ ПО ФАКТУ / СПАСАТЕЛЬНЫЙ КАТЕР / SWISS INN / GANET SINAI / WING CENTER / </span>`).join("")}
+    <span>ДАХАБ · ВЕТЕР КРУГЛЫЙ ГОД / УРОК ВИНГФОЙЛА — 70$ / УРОК ВИНДСЁРФИНГА — 70$ / ДЕТСКИЙ УРОК — ОТ 55$ / ПРОКАТ ПО ФАКТУ / СПАСАТЕЛЬНЫЙ КАТЕР / SWISS INN / GANET SINAI / WING CENTER / </span>
+    <span aria-hidden="true">ДАХАБ · ВЕТЕР КРУГЛЫЙ ГОД / УРОК ВИНГФОЙЛА — 70$ / УРОК ВИНДСЁРФИНГА — 70$ / ДЕТСКИЙ УРОК — ОТ 55$ / ПРОКАТ ПО ФАКТУ / СПАСАТЕЛЬНЫЙ КАТЕР / SWISS INN / GANET SINAI / WING CENTER / </span>
   </div>
 </section>
 
@@ -2930,11 +3030,11 @@ for (const page of allPages) {
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${allPages.map((page) => `  <url><loc>https://vetratoria.ru${page.path}</loc></url>`).join("\n")}
+${allPages.map((page) => `  <url><loc>${canonicalForPage(page)}</loc></url>`).join("\n")}
 </urlset>
 `;
 
 await writeFile(join(root, "sitemap.xml"), sitemap, "utf8");
-await writeFile(join(root, "robots.txt"), "User-agent: *\nAllow: /\nSitemap: /sitemap.xml\n", "utf8");
+await writeFile(join(root, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${absoluteUrl("/sitemap.xml")}\n`, "utf8");
 
 console.log(`Built ${allPages.length} pages.`);
