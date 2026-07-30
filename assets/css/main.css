@@ -15,7 +15,7 @@
 @import url("./components/forms.css");
 @import url("./components/contact-modal.css");
 @import url("./components/slider.css");
-@import url("./components/media-gallery.css");
+@import url("./components/media-gallery.css?v=20260730-media-library");
 @import url("./pages/home.css");
 @import url("./pages/dahab-home.css?v=20260729-responsive-media");
 @import url("./pages/dahab-sport.css?v=20260730-single-media");

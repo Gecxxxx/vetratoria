@@ -1,3 +1,5 @@
+import { mediaAlbums } from "./media.mjs";
+
 const img = (name) => `/assets/img/home-uploaded/${name}`;
 const dahabImg = (name) => `/assets/img/dahab/${name}`;
 
@@ -319,9 +321,9 @@ const pages = [
   {
     path: "/media/",
     kind: "media-index",
-    eyebrow: "Photo / Video",
+    eyebrow: "Медиа Vetratoria",
     title: "Медиа Vetratoria",
-    description: "Фото и видео по Египту, Вьетнаму и России. Альбомы отдельно от статей.",
+    description: "Фотографии Vetratoria по странам, видам спорта, событиям и датам.",
     image: img("home-media.webp")
   },
   {
@@ -332,45 +334,39 @@ const pages = [
     description: "Укажите страну, даты, уровень и спорт. Подскажем, куда лучше ехать и какой формат выбрать.",
     image: img("ABOUTVETRATORIA.jpg")
   },
-  {
-    path: "/media/dahab/",
-    kind: "gallery",
-    eyebrow: "Медиа",
-    title: "Фото и видео Дахаба",
-    description: "Wingfoil, windsurf, станции, команда и вода главного направления.",
-    image: img("home-direction-dahab.webp"),
-    galleryCountry: "dahab"
-  },
-  {
-    path: "/media/dahab/2026-06-10-wingfoil-day/",
-    kind: "story",
-    eyebrow: "10 июня 2026",
-    title: "Wingfoil day в Дахабе",
-    description: "Живой день на воде: крылья, фойлы, первые полеты и спокойный прогресс.",
-    image: img("home-slider-6.webp"),
-    galleryCountry: "dahab"
-  },
-  {
-    path: "/media/russia/",
-    kind: "gallery",
-    eyebrow: "Медиа",
-    title: "Должанская в кадре",
-    description: "Летний сезон, станционная жизнь, windsurf, wingfoil и kite на косе.",
-    image: img("home-direction-russia.webp"),
-    galleryCountry: "russia"
-  },
-  {
-    path: "/media/vietnam/",
-    kind: "gallery",
-    eyebrow: "Медиа",
-    title: "Муйне в кадре",
-    description: "Ветер, волна, тренировки и поездка во Вьетнам с Vetratoria.",
-    image: img("home-direction-vietnam.webp"),
-    galleryCountry: "vietnam"
-  }
 ];
 
 for (const country of site.countries) {
+  const countryAlbums = mediaAlbums
+    .filter((album) => album.country === country.key)
+    .sort((a, b) => b.date.localeCompare(a.date));
+
+  pages.push({
+    path: `/media/${country.key}/`,
+    kind: "media-country",
+    country: country.key,
+    galleryCountry: country.key,
+    eyebrow: `Медиа · ${country.region}`,
+    title: `Альбомы: ${country.city}`,
+    description: `Фотографии ${country.city}: спорт, события, команда и жизнь станции.`,
+    image: country.hero,
+    albums: countryAlbums
+  });
+
+  for (const album of countryAlbums) {
+    pages.push({
+      path: `/media/${country.key}/${album.slug}/`,
+      kind: "media-album",
+      country: country.key,
+      galleryCountry: country.key,
+      eyebrow: `${country.region} · ${album.date}`,
+      title: album.title,
+      description: album.description,
+      image: album.cover,
+      album
+    });
+  }
+
   pages.push({
     path: country.href,
     kind: "country",

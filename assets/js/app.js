@@ -257,6 +257,92 @@
     applyFilters();
   });
 
+  document.querySelectorAll("[data-media-filter-root]").forEach((filterRoot) => {
+    const cards = [...filterRoot.querySelectorAll("[data-media-filter-card]")];
+    const selects = [...filterRoot.querySelectorAll("[data-media-filter]")];
+    const search = filterRoot.querySelector("[data-media-filter-search]");
+    const status = filterRoot.querySelector("[data-media-filter-status]");
+    const empty = filterRoot.querySelector("[data-media-filter-empty]");
+    if (!cards.length) return;
+
+    const normalize = (value) =>
+      String(value || "")
+        .toLocaleLowerCase("ru")
+        .replaceAll("ё", "е")
+        .trim();
+
+    const applyMediaFilters = () => {
+      const selected = Object.fromEntries(selects.map((select) => [select.dataset.mediaFilter, select.value]));
+      const query = normalize(search?.value);
+      let visible = 0;
+
+      cards.forEach((card) => {
+        const matchesYear = !selected.year || selected.year === "all" || card.dataset.mediaYear === selected.year;
+        const matchesSport = !selected.sport || selected.sport === "all" || card.dataset.mediaSport === selected.sport;
+        const matchesEvent = !selected.event || selected.event === "all" || card.dataset.mediaEvent === selected.event;
+        const matchesSearch = !query || normalize(card.dataset.mediaSearch).includes(query);
+        const matches = matchesYear && matchesSport && matchesEvent && matchesSearch;
+        card.hidden = !matches;
+        if (matches) visible += 1;
+      });
+
+      if (status) status.textContent = `Показано альбомов: ${visible} из ${cards.length}`;
+      if (empty) empty.hidden = visible > 0;
+    };
+
+    selects.forEach((select) => select.addEventListener("change", applyMediaFilters));
+    search?.addEventListener("input", applyMediaFilters);
+    search?.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape" || !search.value) return;
+      search.value = "";
+      applyMediaFilters();
+    });
+
+    applyMediaFilters();
+  });
+
+  document.querySelectorAll("[data-media-lightbox]").forEach((dialog) => {
+    const photoButtons = [...document.querySelectorAll("[data-media-photo-open]")];
+    const image = dialog.querySelector("[data-media-lightbox-image]");
+    const count = dialog.querySelector("[data-media-lightbox-count]");
+    const download = dialog.querySelector("[data-media-lightbox-download]");
+    const close = dialog.querySelector("[data-media-lightbox-close]");
+    const prev = dialog.querySelector("[data-media-lightbox-prev]");
+    const next = dialog.querySelector("[data-media-lightbox-next]");
+    if (!photoButtons.length || !image) return;
+
+    let activeIndex = 0;
+
+    const showPhoto = (index) => {
+      activeIndex = (index + photoButtons.length) % photoButtons.length;
+      const button = photoButtons[activeIndex];
+      const src = button.dataset.mediaSrc;
+      image.src = src;
+      image.alt = button.dataset.mediaAlt || "";
+      if (count) count.textContent = `${activeIndex + 1} из ${photoButtons.length}`;
+      if (download) download.href = src;
+    };
+
+    photoButtons.forEach((button, index) => {
+      button.addEventListener("click", () => {
+        showPhoto(index);
+        dialog.showModal();
+      });
+    });
+
+    close?.addEventListener("click", () => dialog.close());
+    prev?.addEventListener("click", () => showPhoto(activeIndex - 1));
+    next?.addEventListener("click", () => showPhoto(activeIndex + 1));
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") showPhoto(activeIndex - 1);
+      if (event.key === "ArrowRight") showPhoto(activeIndex + 1);
+    });
+    dialog.addEventListener("close", () => photoButtons[activeIndex]?.focus());
+  });
+
   const countryOption = (form) => form.querySelector("[data-contact-country-select]")?.selectedOptions?.[0];
 
   const contactPayload = (form) => {

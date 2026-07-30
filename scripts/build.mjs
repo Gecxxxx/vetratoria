@@ -134,7 +134,9 @@ const mobileCountrySection = (page, country) => {
   }));
   const pricePaths = priceItems.map((item) => item.href);
   const schoolItems = schoolDropdown(country);
-  const schoolPaths = schoolItems.map((item) => item.href).filter((href) => href.startsWith(`/${country.key}/`));
+  const schoolPaths = schoolItems
+    .map((item) => item.href)
+    .filter((href) => href.startsWith(`/${country.key}/`) || href.startsWith(`/media/${country.key}/`));
   const sportLinks = country.key === "dahab"
     ? [
         { label: "Wingfoil", href: "/dahab/wingfoil/" },
@@ -218,6 +220,7 @@ const schoolDropdown = (country) => country.key === "dahab" ? [
   { label: "Windsurf Kids", href: "/dahab/windsurf-kids/" },
   { label: "Безопасность", href: "/dahab/safety/" },
   { label: "Как добраться", href: "/dahab/how-to-get/" },
+  { label: "Медиа", href: "/media/dahab/" },
   { label: "Контакты", href: "/dahab/contacts/" }
 ] : [
   { label: "Команда", href: `/${country.key}/team/` },
@@ -238,7 +241,9 @@ const countrySectionNav = (page, country) => {
   const priceSportKeys = country.key === "dahab" ? country.sports.filter((sportKey) => sportKey !== "windsurf-kids") : country.sports;
   const pricePaths = priceSportKeys.map((sportKey) => `/${country.key}/${sportKey}/price/`);
   const schoolItems = schoolDropdown(country);
-  const schoolPaths = schoolItems.map((item) => item.href).filter((href) => href.startsWith(`/${country.key}/`));
+  const schoolPaths = schoolItems
+    .map((item) => item.href)
+    .filter((href) => href.startsWith(`/${country.key}/`) || href.startsWith(`/media/${country.key}/`));
   const baseLinks = country.key === "dahab"
     ? [
         `<a class="${sectionLinkClass(page.path === country.href)}" href="${country.href}">Обзор</a>`,
@@ -445,7 +450,8 @@ const PAGE_ASSET_VERSIONS = new Map([
   ["/dahab/team/", "20260730-team-windsurf"],
   ["/dahab/windsurf-kids/", "20260730-wsk-overview-hero"]
 ]);
-const assetVersionForPage = (page) => PAGE_ASSET_VERSIONS.get(page.path) || ASSET_VERSION;
+const assetVersionForPage = (page) =>
+  page.path.startsWith("/media/") ? "20260730-media-library" : PAGE_ASSET_VERSIONS.get(page.path) || ASSET_VERSION;
 const versionedAsset = (path, version = ASSET_VERSION) => `${path}?v=${version}`;
 
 const layout = (page, main) => `<!doctype html>
@@ -2321,26 +2327,173 @@ const articlePage = (page) => {
   </article>`;
 };
 
-const mediaPage = (page) => {
-  const images = [
-    page.image,
-    img("home-slider-1.webp"),
-    img("home-slider-2.webp"),
-    img("home-slider-3.webp"),
-    img("home-slider-4.webp"),
-    img("home-slider-5.webp"),
-    img("home-slider-6.webp"),
-    img("home-media.webp")
-  ];
-  return `${hero(page, contactCta(page, "Запросить поездку"))}
-  <section class="content-section">
-    <div class="section-inner">
-      ${sectionHeading(page.eyebrow || "Медиа", page.title, page.description)}
-      <div class="photo-strip">
-        ${images.map((src, index) => `<figure class="${index % 3 === 0 ? "is-wide" : ""}">${cardImage(src, page.title)}<figcaption>${index + 1 < 10 ? `0${index + 1}` : index + 1}</figcaption></figure>`).join("")}
-      </div>
+const mediaSportLabels = {
+  wingfoil: "Wingfoil",
+  windsurf: "Windsurf",
+  wsk: "WindSurfKids",
+  kite: "Кайт"
+};
+
+const mediaEventLabels = {
+  training: "Тренировка",
+  camp: "Лагерь",
+  competition: "Соревнование",
+  station: "Жизнь станции",
+  trip: "Поездка"
+};
+
+const formatMediaDate = (value) =>
+  new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "long", year: "numeric" })
+    .format(new Date(`${value}T12:00:00`));
+
+const mediaCountLabel = (count, one, few, many) => {
+  const mod100 = count % 100;
+  const mod10 = count % 10;
+  if (mod100 >= 11 && mod100 <= 19) return `${count} ${many}`;
+  if (mod10 === 1) return `${count} ${one}`;
+  if (mod10 >= 2 && mod10 <= 4) return `${count} ${few}`;
+  return `${count} ${many}`;
+};
+
+const mediaCountryDescriptions = {
+  dahab: "Wingfoil, Windsurf, WindSurfKids, станции и события Дахаба.",
+  vietnam: "Сезон в Муйне, Windsurf, Wingfoil, Kite и жизнь станции.",
+  russia: "Должанская коса, летние тренировки, команда и события."
+};
+
+const mediaLandingPage = (page) => `
+${hero(page, `<a class="button button-primary" href="#media-countries">Выбрать страну</a>`)}
+<section class="content-section media-country-section" id="media-countries">
+  <div class="section-inner">
+    ${sectionHeading("Страны", "Выберите медиатеку", "Сначала выберите направление, затем альбом. Внутри можно открыть фотографию и скачать оригинальный файл.")}
+    <div class="media-country-grid">
+      ${countryList.map((country) => {
+        const countryMedia = allPages.find((candidate) => candidate.kind === "media-country" && candidate.country === country.key);
+        const count = countryMedia?.albums?.length || 0;
+        return `
+        <a class="media-country-card" href="/media/${country.key}/">
+          <img src="${country.hero}" alt="Медиа ${escapeHtml(country.region)}" loading="lazy" decoding="async">
+          <span class="media-country-card__shade"></span>
+          <span class="media-country-card__content">
+            <small>${escapeHtml(`${country.region} · ${country.city}`)}</small>
+            <strong>Медиа ${escapeHtml(country.region)}</strong>
+            <em>${escapeHtml(mediaCountryDescriptions[country.key])}</em>
+            <b>${mediaCountLabel(count, "альбом", "альбома", "альбомов")} · открыть →</b>
+          </span>
+        </a>`;
+      }).join("")}
     </div>
-  </section>`;
+  </div>
+</section>`;
+
+const mediaFilterSelect = (name, label, values, labels, allLabel) => `
+        <label class="media-filter-field">
+          <span>${label}</span>
+          <select data-media-filter="${name}">
+            <option value="all">${allLabel}</option>
+            ${values.map((value) => `<option value="${escapeHtml(value)}">${escapeHtml(labels[value] || value)}</option>`).join("")}
+          </select>
+        </label>`;
+
+const mediaAlbumCard = (country, album) => `
+      <a class="media-album-card" href="/media/${country.key}/${album.slug}/"
+        data-media-filter-card
+        data-media-year="${album.date.slice(0, 4)}"
+        data-media-sport="${album.sport}"
+        data-media-event="${album.event}"
+        data-media-search="${escapeHtml(`${album.title} ${album.description} ${mediaSportLabels[album.sport]} ${mediaEventLabels[album.event]}`)}">
+        <span class="media-album-card__media">
+          <img src="${album.cover}" alt="${escapeHtml(album.title)}" loading="lazy" decoding="async">
+          <time datetime="${album.date}">${escapeHtml(formatMediaDate(album.date))}</time>
+        </span>
+        <span class="media-album-card__content">
+          <small>${escapeHtml(mediaSportLabels[album.sport])} · ${escapeHtml(mediaEventLabels[album.event])}</small>
+          <strong>${escapeHtml(album.title)}</strong>
+          <em>${escapeHtml(album.description)}</em>
+          <span><b>${mediaCountLabel(album.photos.length, "фотография", "фотографии", "фотографий")}</b><i>Открыть альбом →</i></span>
+        </span>
+      </a>`;
+
+const mediaCountryPage = (page) => {
+  const country = countriesByKey[page.country];
+  const albums = page.albums || [];
+  const years = [...new Set(albums.map((album) => album.date.slice(0, 4)))].sort((a, b) => b.localeCompare(a));
+  const sports = [...new Set(albums.map((album) => album.sport))];
+  const events = [...new Set(albums.map((album) => album.event))];
+
+  return `
+${hero(page, `<a class="button button-primary" href="#media-albums">Смотреть альбомы</a><a class="button button-ghost" href="/media/">Все страны</a>`)}
+<section class="content-section" id="media-albums" data-media-filter-root>
+  <div class="section-inner">
+    ${sectionHeading("Альбомы", `Медиа: ${country.city}`, "Выберите год, вид спорта или событие. Поиск работает по названию и описанию альбома.")}
+    <div class="media-filter-panel">
+      ${mediaFilterSelect("year", "Год", years, {}, "Все годы")}
+      ${mediaFilterSelect("sport", "Спорт", sports, mediaSportLabels, "Все виды спорта")}
+      ${mediaFilterSelect("event", "Событие", events, mediaEventLabels, "Все события")}
+      <label class="media-filter-field media-filter-field--search">
+        <span>Поиск</span>
+        <input type="search" data-media-filter-search placeholder="Название альбома" autocomplete="off">
+      </label>
+    </div>
+    <p class="media-filter-status" data-media-filter-status aria-live="polite"></p>
+    <div class="media-album-grid" data-media-filter-list>
+      ${albums.map((album) => mediaAlbumCard(country, album)).join("")}
+      <p class="media-filter-empty" data-media-filter-empty hidden>Альбомов с такими параметрами пока нет. Измените фильтры или поисковый запрос.</p>
+    </div>
+  </div>
+</section>`;
+};
+
+const mediaAlbumPage = (page) => {
+  const country = countriesByKey[page.country];
+  const album = page.album;
+  const photoCount = album.photos.length;
+
+  return `
+${hero(page, `<a class="button button-primary" href="#album-photos">Открыть фотографии</a><a class="button button-ghost" href="/media/${country.key}/">Все альбомы</a>`)}
+<section class="content-section media-album-section" id="album-photos">
+  <div class="section-inner">
+    ${sectionHeading(
+      `${formatMediaDate(album.date)} · ${mediaSportLabels[album.sport]}`,
+      album.title,
+      `${album.description} Нажмите на фотографию для увеличения или скачайте отдельный файл.`
+    )}
+    <div class="media-photo-grid">
+      ${album.photos.map((src, index) => {
+        const alt = `${album.title} — фотография ${index + 1}`;
+        return `
+      <article class="media-photo-card">
+        <button type="button" data-media-photo-open data-media-photo-index="${index}" data-media-src="${src}" data-media-alt="${escapeHtml(alt)}" aria-label="Открыть фотографию ${index + 1} из ${photoCount}">
+          <img src="${src}" alt="${escapeHtml(alt)}" loading="${index < 4 ? "eager" : "lazy"}" decoding="async">
+        </button>
+        <footer>
+          <span>${String(index + 1).padStart(2, "0")}</span>
+          <a href="${src}" download>Скачать</a>
+        </footer>
+      </article>`;
+      }).join("")}
+    </div>
+  </div>
+</section>
+<dialog class="media-lightbox" data-media-lightbox aria-label="Просмотр фотографий">
+  <div class="media-lightbox__surface">
+    <header>
+      <span data-media-lightbox-count></span>
+      <div>
+        <a href="${album.photos[0]}" download data-media-lightbox-download>Скачать</a>
+        <button type="button" data-media-lightbox-close aria-label="Закрыть">×</button>
+      </div>
+    </header>
+    <div class="media-lightbox__stage">
+      <button type="button" data-media-lightbox-prev aria-label="Предыдущая фотография">‹</button>
+      <figure>
+        <img src="${album.photos[0]}" alt="${escapeHtml(`${album.title} — фотография 1`)}" data-media-lightbox-image>
+        <figcaption>${escapeHtml(album.title)}</figcaption>
+      </figure>
+      <button type="button" data-media-lightbox-next aria-label="Следующая фотография">›</button>
+    </div>
+  </div>
+</dialog>`;
 };
 
 const contactMethod = ({ href, icon, label, value, external = false }) => `
@@ -2741,9 +2894,11 @@ const render = (page) => {
     case "article":
       return layout(page, articlePage(page));
     case "media-index":
-    case "gallery":
-    case "story":
-      return layout(page, mediaPage(page));
+      return layout(page, mediaLandingPage(page));
+    case "media-country":
+      return layout(page, mediaCountryPage(page));
+    case "media-album":
+      return layout(page, mediaAlbumPage(page));
     case "contacts":
       return layout(page, contactsPage(page));
     case "team":
