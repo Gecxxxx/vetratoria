@@ -102,44 +102,6 @@
   margin-top: 26px;
 }
 
-@media (min-width: 901px) and (max-height: 820px) {
-  .dahab-hero--overview {
-    min-height: 0;
-  }
-
-  .dahab-hero--overview .dahab-hero__content {
-    padding-top: clamp(48px, 7vh, 64px);
-    padding-bottom: 46px;
-  }
-
-  .dahab-hero--overview .dahab-hero__content > .eyebrow {
-    margin-top: 0;
-  }
-
-  .dahab-hero--overview .dahab-hero__content h1 {
-    max-width: 680px;
-    font-size: clamp(48px, 4.5vw, 64px);
-    line-height: 0.94;
-  }
-
-  .dahab-hero--overview .dahab-hero__content > .hero-lead {
-    margin-top: 14px;
-    font-size: 16px;
-    line-height: 1.4;
-  }
-
-  .dahab-hero--overview .dahab-hero-actions,
-  .dahab-hero--overview .hero-advantages {
-    margin-top: 18px;
-  }
-
-  .dahab-hero--overview .hero-advantage {
-    min-height: 60px;
-    padding: 12px 14px;
-    font-size: 14px;
-  }
-}
-
 .dahab-marquee {
   position: relative;
   min-height: 42px;

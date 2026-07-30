@@ -528,7 +528,6 @@ const contactDialog = (page) => {
 const ASSET_VERSION = "20260730-ux-seo";
 const PAGE_ASSET_VERSIONS = new Map([
   ["/blog/", `${ASSET_VERSION}-blog-filters`],
-  ["/dahab/", `${ASSET_VERSION}-dahab-cta-fit`],
   ["/dahab/team/", `${ASSET_VERSION}-team-windsurf`],
   ["/dahab/windsurf-kids/", `${ASSET_VERSION}-wsk-overview-hero`]
 ]);
@@ -1442,18 +1441,18 @@ const dahabHomePage = (page) => {
   const reviews = dahabReviewItems;
 
   return `
-<section class="dahab-hero dahab-hero--overview">
+<section class="dahab-hero">
   <img class="dahab-hero__image" src="${dahabRefImg("ganet-sinai.webp")}" alt="Дахаб: Wingfoil и Windsurf на Красном море" width="1600" height="1067" fetchpriority="high">
   <div class="dahab-hero__shade"></div>
   <div class="dahab-hero__content">
     <p class="eyebrow">Египет · Дахаб</p>
     <h1>Wingfoil и Windsurf в Дахабе</h1>
     <p class="hero-lead">Обучение и прокат на Красном море для новичков и опытных райдеров. Подберём программу, инструктора и снаряжение под ваш уровень.</p>
+    <div class="hero-advantages"><span class="hero-advantage">С 2006 года</span><span class="hero-advantage">Условия для любого уровня</span><span class="hero-advantage">10 000+ учеников</span><span class="hero-advantage">3 спасательных катера</span></div>
     <div class="hero-actions dahab-hero-actions">
       ${contactCta(page, "Подобрать программу")}
       <a class="button button-ghost" href="#prices">Посмотреть цены</a>
     </div>
-    <div class="hero-advantages"><span class="hero-advantage">С 2006 года</span><span class="hero-advantage">Условия для любого уровня</span><span class="hero-advantage">10 000+ учеников</span><span class="hero-advantage">3 спасательных катера</span></div>
   </div>
 </section>
 
