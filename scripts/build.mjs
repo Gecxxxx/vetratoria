@@ -528,6 +528,7 @@ const contactDialog = (page) => {
 const ASSET_VERSION = "20260730-ux-seo";
 const PAGE_ASSET_VERSIONS = new Map([
   ["/blog/", `${ASSET_VERSION}-blog-filters`],
+  ["/dahab/stations/", `${ASSET_VERSION}-shared-stations-hero`],
   ["/dahab/team/", `${ASSET_VERSION}-team-windsurf`],
   ["/dahab/windsurf-kids/", `${ASSET_VERSION}-wsk-overview-hero`]
 ]);
@@ -1670,27 +1671,32 @@ const dahabStationsPage = (page) => {
   ];
 
   return `
-<section class="dahab-stations-hero" aria-labelledby="stations-title">
-  <img src="${stationImg("hero.webp")}" alt="Станции Vetratoria в Дахабе" width="1920" height="1080" fetchpriority="high">
-  <div class="dahab-stations-hero__shade"></div>
-  <div class="dahab-stations-hero__content">
+<section class="hero page-hero dahab-stations-hero" aria-labelledby="stations-title">
+  <div class="hero-bg">
+    <img src="${stationImg("hero.webp")}" alt="Станции Vetratoria в Дахабе" width="1920" height="1080" fetchpriority="high" decoding="async">
+  </div>
+  <div class="hero-shade"></div>
+  <div class="hero-content">
     <p class="eyebrow">Дахаб · станции</p>
     <h1 id="stations-title">Станции Vetratoria в Дахабе</h1>
     <p>Три точки у воды: Vetratoria Ganet Sinai, Wing Center и Swiss Inn. На этой странице — коротко о каждой станции, фото и понятный выбор, куда ехать под ваш спорт, уровень и даты.</p>
-    <div class="dahab-stations-pills">
-      <a href="#vetratoria-ganet">Ganet Sinai</a>
-      <a href="#wing-center">Wing Center</a>
-      <a href="#swiss-inn">Swiss Inn</a>
-      <a href="/dahab/windsurf/">Windsurf</a>
-      <a href="/dahab/wingfoil/">Wingfoil</a>
-      <a href="/dahab/windsurf-kids/">Kids</a>
-    </div>
-    <div class="dahab-stations-actions">
+    <div class="hero-actions">
       ${contactCta(page, "Подобрать станцию")}
       <a class="button button-ghost" href="#vetratoria-ganet">Смотреть станции</a>
     </div>
   </div>
 </section>
+
+<nav class="dahab-stations-pills-bar" aria-label="Быстрый выбор станции и спорта">
+  <div class="dahab-stations-inner dahab-stations-pills">
+    <a href="#vetratoria-ganet">Ganet Sinai</a>
+    <a href="#wing-center">Wing Center</a>
+    <a href="#swiss-inn">Swiss Inn</a>
+    <a href="/dahab/windsurf/">Windsurf</a>
+    <a href="/dahab/wingfoil/">Wingfoil</a>
+    <a href="/dahab/windsurf-kids/">Kids</a>
+  </div>
+</nav>
 
 ${stations.map((station, index) => `
 <section class="dahab-stations-section${index % 2 ? " dahab-stations-section--soft" : ""}" id="${station.id}">
