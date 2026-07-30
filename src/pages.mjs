@@ -218,6 +218,7 @@ export const articles = [
     href: "/dahab/blog/windsurf/",
     country: "dahab",
     sport: "windsurf",
+    topics: ["windsurf"],
     title: "Как начать заниматься windsurf в Дахабе",
     lead: "Что выбрать на первом уроке, как проходит обучение и почему лагуна помогает быстрее поймать баланс.",
     image: img("home-slider-1.webp")
@@ -226,6 +227,7 @@ export const articles = [
     href: "/dahab/blog/wingfoil/",
     country: "dahab",
     sport: "wingfoil",
+    topics: ["wingfoil"],
     title: "Wingfoil в Дахабе: от крыла до первого полета",
     lead: "Форматы Wing + SUP, Wing + Foil, foil boat и логика перехода от контроля крыла к полету.",
     image: img("home-slider-6.webp")
@@ -234,6 +236,7 @@ export const articles = [
     href: "/dahab/blog/windsurf-kids/",
     country: "dahab",
     sport: "windsurf-kids",
+    topics: ["wsk", "safety"],
     title: "Windsurf Kids: как ребенку выйти на воду спокойно",
     lead: "Легкие паруса, короткие уроки, инструктор рядом и безопасный темп без давления.",
     image: img("home-slider-4.webp")
@@ -242,6 +245,7 @@ export const articles = [
     href: "/vietnam/blog/windsurf/",
     country: "vietnam",
     sport: "windsurf",
+    topics: ["windsurf", "trip"],
     title: "Windsurf в Муйне: ветер, волна и сезон",
     lead: "Как готовиться к поездке, какие условия ждать и кому подойдет вьетнамская акватория.",
     image: img("home-direction-vietnam.webp")
@@ -250,6 +254,7 @@ export const articles = [
     href: "/vietnam/blog/wingfoil/",
     country: "vietnam",
     sport: "wingfoil",
+    topics: ["wingfoil", "trip"],
     title: "Wingfoil во Вьетнаме",
     lead: "Стабильный бриз, пространство для прогресса и сценарии занятий на несколько дней.",
     image: img("home-slider-6.webp")
@@ -258,6 +263,7 @@ export const articles = [
     href: "/vietnam/blog/kite/",
     country: "vietnam",
     sport: "kite",
+    topics: ["kite", "safety", "trip"],
     title: "Кайт в Муйне",
     lead: "Почему направление подходит для кайта, как строится обучение и что учесть перед стартом.",
     image: img("home-slider-5.webp")
@@ -266,6 +272,7 @@ export const articles = [
     href: "/russia/blog/windsurf/",
     country: "russia",
     sport: "windsurf",
+    topics: ["windsurf", "trip"],
     title: "Windsurf на Должанской",
     lead: "Летний формат, мелкая вода, старт с берега и удобный план для первых галсов.",
     image: img("home-direction-russia.webp")
@@ -274,6 +281,7 @@ export const articles = [
     href: "/russia/blog/wingfoil/",
     country: "russia",
     sport: "wingfoil",
+    topics: ["wingfoil", "trip"],
     title: "Wingfoil в России",
     lead: "Как использовать летний сезон для первых полетов и спокойного прогресса на фойле.",
     image: img("home-slider-6.webp")
@@ -282,6 +290,7 @@ export const articles = [
     href: "/russia/blog/kite/",
     country: "russia",
     sport: "kite",
+    topics: ["kite", "safety", "trip"],
     title: "Кайт на Должанской",
     lead: "Кому подойдет российская локация и как безопасно войти в кайт-формат.",
     image: img("home-slider-5.webp")

@@ -441,6 +441,7 @@ const contactDialog = (page) => {
 
 const ASSET_VERSION = "20260730-single-media";
 const PAGE_ASSET_VERSIONS = new Map([
+  ["/blog/", "20260730-blog-filters"],
   ["/dahab/team/", "20260730-team-windsurf"],
   ["/dahab/windsurf-kids/", "20260730-wsk-overview-hero"]
 ]);
@@ -2251,22 +2252,55 @@ const pricePage = (page) => {
   </section>`;
 };
 
-const blogIndex = (page) => `
+const blogFilterButton = (type, value, label, active = false) =>
+  `<button class="blog-filter-button" type="button" data-blog-filter-type="${type}" data-blog-filter-value="${value}" aria-pressed="${active ? "true" : "false"}">${label}</button>`;
+
+const blogFilterPanel = () => `
+    ${sectionHeading("Фильтры", "Выберите тему", "Нажмите нужный фильтр — карточки ниже перестроятся по стране, спорту или теме. Поиск работает по заголовку и описанию.")}
+    <div class="blog-filter-panel" data-blog-filter-panel>
+      <div class="blog-filter-group" role="group" aria-label="Фильтр по стране">
+        ${blogFilterButton("country", "all", "Все страны", true)}
+        ${blogFilterButton("country", "dahab", "Египет")}
+        ${blogFilterButton("country", "vietnam", "Вьетнам")}
+        ${blogFilterButton("country", "russia", "Россия")}
+      </div>
+      <div class="blog-filter-group" role="group" aria-label="Фильтр по теме">
+        ${blogFilterButton("topic", "all", "Все темы", true)}
+        ${blogFilterButton("topic", "wingfoil", "Wingfoil")}
+        ${blogFilterButton("topic", "windsurf", "Windsurf")}
+        ${blogFilterButton("topic", "wsk", "WSK")}
+        ${blogFilterButton("topic", "kite", "Кайт")}
+        ${blogFilterButton("topic", "safety", "Безопасность")}
+        ${blogFilterButton("topic", "trip", "Поездка")}
+      </div>
+      <label class="blog-filter-search">
+        <span>Поиск по блогу</span>
+        <input type="search" data-blog-filter-search placeholder="Поиск по блогу" autocomplete="off">
+      </label>
+    </div>
+    <p class="blog-filter-status" data-blog-filter-status aria-live="polite"></p>`;
+
+const blogIndex = (page) => {
+  const pageArticles = page.articles || articles;
+  const hasFilters = page.path === "/blog/";
+  return `
 ${hero(page, contactCta(page, "Задать вопрос"))}
-<section class="content-section">
+<section class="content-section"${hasFilters ? ` data-blog-filter-root` : ""}>
   <div class="section-inner">
-    ${sectionHeading(page.eyebrow, page.title, page.description)}
-    <div class="article-grid">
-      ${(page.articles || articles).map((article) => `
-        <a class="article-card" href="${article.href}">
+    ${hasFilters ? blogFilterPanel() : sectionHeading(page.eyebrow, page.title, page.description)}
+    <div class="article-grid"${hasFilters ? ` data-blog-filter-list` : ""}>
+      ${pageArticles.map((article) => `
+        <a class="article-card" href="${article.href}"${hasFilters ? ` data-blog-filter-card data-blog-country="${article.country}" data-blog-topics="${(article.topics || [article.sport]).join(" ")}" data-blog-search="${escapeHtml(`${countriesByKey[article.country].title} ${site.sports[article.sport].nav} ${article.title} ${article.lead}`)}"` : ""}>
           ${cardImage(article.image, article.title)}
           <small>${countriesByKey[article.country].title} · ${site.sports[article.sport].nav}</small>
           <h3>${article.title}</h3>
           <p>${article.lead}</p>
-        </a>`).join("")}
+        </a>`).join("")}${hasFilters ? `
+      <p class="blog-filter-empty" data-blog-filter-empty hidden>По вашему запросу материалов пока нет. Измените фильтр или текст поиска.</p>` : ""}
     </div>
   </div>
 </section>`;
+};
 
 const articlePage = (page) => {
   const sport = site.sports[page.sport];

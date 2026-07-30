@@ -12,8 +12,8 @@
   <meta property="og:image" content="/assets/img/home-uploaded/home-blog.webp">
   <meta name="theme-color" content="#0d0c0b">
   <link rel="icon" href="/assets/img/vetratoria-logo.png">
-  <link rel="stylesheet" href="/assets/css/main.css?v=20260730-single-media">
-  <script defer src="/assets/js/app.js?v=20260730-single-media"></script>
+  <link rel="stylesheet" href="/assets/css/main.css?v=20260730-blog-filters">
+  <script defer src="/assets/js/app.js?v=20260730-blog-filters"></script>
 </head>
 <body class="modern-site blog-index">
   <a class="skip-link" href="#main">К содержанию</a>
@@ -135,70 +135,94 @@
     <div class="hero-actions"><a class="button button-primary" href="/contacts/" data-contact-modal data-contact-intent="Задать вопрос">Задать вопрос</a></div>
   </div>
 </section>
-<section class="content-section">
+<section class="content-section" data-blog-filter-root>
   <div class="section-inner">
 
-  <header class="section-heading">
-    <p class="eyebrow">Блог</p>
-    <h2>Материалы со всех стран</h2>
-    <p>Статьи по странам, спорту, обучению, безопасности и оборудованию.</p>
-  </header>
-    <div class="article-grid">
 
-        <a class="article-card" href="/dahab/blog/windsurf/">
+  <header class="section-heading">
+    <p class="eyebrow">Фильтры</p>
+    <h2>Выберите тему</h2>
+    <p>Нажмите нужный фильтр — карточки ниже перестроятся по стране, спорту или теме. Поиск работает по заголовку и описанию.</p>
+  </header>
+    <div class="blog-filter-panel" data-blog-filter-panel>
+      <div class="blog-filter-group" role="group" aria-label="Фильтр по стране">
+        <button class="blog-filter-button" type="button" data-blog-filter-type="country" data-blog-filter-value="all" aria-pressed="true">Все страны</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="country" data-blog-filter-value="dahab" aria-pressed="false">Египет</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="country" data-blog-filter-value="vietnam" aria-pressed="false">Вьетнам</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="country" data-blog-filter-value="russia" aria-pressed="false">Россия</button>
+      </div>
+      <div class="blog-filter-group" role="group" aria-label="Фильтр по теме">
+        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="all" aria-pressed="true">Все темы</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="wingfoil" aria-pressed="false">Wingfoil</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="windsurf" aria-pressed="false">Windsurf</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="wsk" aria-pressed="false">WSK</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="kite" aria-pressed="false">Кайт</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="safety" aria-pressed="false">Безопасность</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="trip" aria-pressed="false">Поездка</button>
+      </div>
+      <label class="blog-filter-search">
+        <span>Поиск по блогу</span>
+        <input type="search" data-blog-filter-search placeholder="Поиск по блогу" autocomplete="off">
+      </label>
+    </div>
+    <p class="blog-filter-status" data-blog-filter-status aria-live="polite"></p>
+    <div class="article-grid" data-blog-filter-list>
+
+        <a class="article-card" href="/dahab/blog/windsurf/" data-blog-filter-card data-blog-country="dahab" data-blog-topics="windsurf" data-blog-search="Дахаб Windsurf Как начать заниматься windsurf в Дахабе Что выбрать на первом уроке, как проходит обучение и почему лагуна помогает быстрее поймать баланс.">
           <img src="/assets/img/home-uploaded/home-slider-1.webp" alt="Как начать заниматься windsurf в Дахабе" loading="lazy" decoding="async">
           <small>Дахаб · Windsurf</small>
           <h3>Как начать заниматься windsurf в Дахабе</h3>
           <p>Что выбрать на первом уроке, как проходит обучение и почему лагуна помогает быстрее поймать баланс.</p>
         </a>
-        <a class="article-card" href="/dahab/blog/wingfoil/">
+        <a class="article-card" href="/dahab/blog/wingfoil/" data-blog-filter-card data-blog-country="dahab" data-blog-topics="wingfoil" data-blog-search="Дахаб Wingfoil Wingfoil в Дахабе: от крыла до первого полета Форматы Wing + SUP, Wing + Foil, foil boat и логика перехода от контроля крыла к полету.">
           <img src="/assets/img/home-uploaded/home-slider-6.webp" alt="Wingfoil в Дахабе: от крыла до первого полета" loading="lazy" decoding="async">
           <small>Дахаб · Wingfoil</small>
           <h3>Wingfoil в Дахабе: от крыла до первого полета</h3>
           <p>Форматы Wing + SUP, Wing + Foil, foil boat и логика перехода от контроля крыла к полету.</p>
         </a>
-        <a class="article-card" href="/dahab/blog/windsurf-kids/">
+        <a class="article-card" href="/dahab/blog/windsurf-kids/" data-blog-filter-card data-blog-country="dahab" data-blog-topics="wsk safety" data-blog-search="Дахаб Windsurf Kids Windsurf Kids: как ребенку выйти на воду спокойно Легкие паруса, короткие уроки, инструктор рядом и безопасный темп без давления.">
           <img src="/assets/img/home-uploaded/home-slider-4.webp" alt="Windsurf Kids: как ребенку выйти на воду спокойно" loading="lazy" decoding="async">
           <small>Дахаб · Windsurf Kids</small>
           <h3>Windsurf Kids: как ребенку выйти на воду спокойно</h3>
           <p>Легкие паруса, короткие уроки, инструктор рядом и безопасный темп без давления.</p>
         </a>
-        <a class="article-card" href="/vietnam/blog/windsurf/">
+        <a class="article-card" href="/vietnam/blog/windsurf/" data-blog-filter-card data-blog-country="vietnam" data-blog-topics="windsurf trip" data-blog-search="Муйне Windsurf Windsurf в Муйне: ветер, волна и сезон Как готовиться к поездке, какие условия ждать и кому подойдет вьетнамская акватория.">
           <img src="/assets/img/home-uploaded/home-direction-vietnam.webp" alt="Windsurf в Муйне: ветер, волна и сезон" loading="lazy" decoding="async">
           <small>Муйне · Windsurf</small>
           <h3>Windsurf в Муйне: ветер, волна и сезон</h3>
           <p>Как готовиться к поездке, какие условия ждать и кому подойдет вьетнамская акватория.</p>
         </a>
-        <a class="article-card" href="/vietnam/blog/wingfoil/">
+        <a class="article-card" href="/vietnam/blog/wingfoil/" data-blog-filter-card data-blog-country="vietnam" data-blog-topics="wingfoil trip" data-blog-search="Муйне Wingfoil Wingfoil во Вьетнаме Стабильный бриз, пространство для прогресса и сценарии занятий на несколько дней.">
           <img src="/assets/img/home-uploaded/home-slider-6.webp" alt="Wingfoil во Вьетнаме" loading="lazy" decoding="async">
           <small>Муйне · Wingfoil</small>
           <h3>Wingfoil во Вьетнаме</h3>
           <p>Стабильный бриз, пространство для прогресса и сценарии занятий на несколько дней.</p>
         </a>
-        <a class="article-card" href="/vietnam/blog/kite/">
+        <a class="article-card" href="/vietnam/blog/kite/" data-blog-filter-card data-blog-country="vietnam" data-blog-topics="kite safety trip" data-blog-search="Муйне Kite Кайт в Муйне Почему направление подходит для кайта, как строится обучение и что учесть перед стартом.">
           <img src="/assets/img/home-uploaded/home-slider-5.webp" alt="Кайт в Муйне" loading="lazy" decoding="async">
           <small>Муйне · Kite</small>
           <h3>Кайт в Муйне</h3>
           <p>Почему направление подходит для кайта, как строится обучение и что учесть перед стартом.</p>
         </a>
-        <a class="article-card" href="/russia/blog/windsurf/">
+        <a class="article-card" href="/russia/blog/windsurf/" data-blog-filter-card data-blog-country="russia" data-blog-topics="windsurf trip" data-blog-search="Должанская Windsurf Windsurf на Должанской Летний формат, мелкая вода, старт с берега и удобный план для первых галсов.">
           <img src="/assets/img/home-uploaded/home-direction-russia.webp" alt="Windsurf на Должанской" loading="lazy" decoding="async">
           <small>Должанская · Windsurf</small>
           <h3>Windsurf на Должанской</h3>
           <p>Летний формат, мелкая вода, старт с берега и удобный план для первых галсов.</p>
         </a>
-        <a class="article-card" href="/russia/blog/wingfoil/">
+        <a class="article-card" href="/russia/blog/wingfoil/" data-blog-filter-card data-blog-country="russia" data-blog-topics="wingfoil trip" data-blog-search="Должанская Wingfoil Wingfoil в России Как использовать летний сезон для первых полетов и спокойного прогресса на фойле.">
           <img src="/assets/img/home-uploaded/home-slider-6.webp" alt="Wingfoil в России" loading="lazy" decoding="async">
           <small>Должанская · Wingfoil</small>
           <h3>Wingfoil в России</h3>
           <p>Как использовать летний сезон для первых полетов и спокойного прогресса на фойле.</p>
         </a>
-        <a class="article-card" href="/russia/blog/kite/">
+        <a class="article-card" href="/russia/blog/kite/" data-blog-filter-card data-blog-country="russia" data-blog-topics="kite safety trip" data-blog-search="Должанская Kite Кайт на Должанской Кому подойдет российская локация и как безопасно войти в кайт-формат.">
           <img src="/assets/img/home-uploaded/home-slider-5.webp" alt="Кайт на Должанской" loading="lazy" decoding="async">
           <small>Должанская · Kite</small>
           <h3>Кайт на Должанской</h3>
           <p>Кому подойдет российская локация и как безопасно войти в кайт-формат.</p>
         </a>
+      <p class="blog-filter-empty" data-blog-filter-empty hidden>По вашему запросу материалов пока нет. Измените фильтр или текст поиска.</p>
     </div>
   </div>
 </section></main>

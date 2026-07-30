@@ -1,0 +1,114 @@
+/* Blog filters */
+
+.blog-filter-panel {
+  margin: 28px 0 14px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  background: #131210;
+}
+
+.blog-filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.blog-filter-group + .blog-filter-group {
+  margin-top: 10px;
+}
+
+.blog-filter-button {
+  min-height: 38px;
+  padding: 9px 14px;
+  border: 1px solid var(--line-strong);
+  background: #201e1c;
+  color: #ddd8d3;
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: border-color var(--duration-fast) ease, background var(--duration-fast) ease, color var(--duration-fast) ease;
+}
+
+.blog-filter-button:hover,
+.blog-filter-button:focus-visible {
+  border-color: var(--orange);
+  color: var(--white);
+}
+
+.blog-filter-button[aria-pressed="true"] {
+  border-color: var(--orange);
+  background: var(--orange);
+  color: var(--white);
+}
+
+.blog-filter-search {
+  display: block;
+  margin-top: 10px;
+}
+
+.blog-filter-search span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.blog-filter-search input {
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 13px;
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  outline: 0;
+  background: #1a1917;
+  color: var(--white);
+  font: inherit;
+  font-size: 14px;
+}
+
+.blog-filter-search input::placeholder {
+  color: var(--soft);
+}
+
+.blog-filter-search input:focus {
+  border-color: var(--orange);
+}
+
+.blog-filter-status {
+  min-height: 20px;
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.article-card[hidden],
+.blog-filter-empty[hidden] {
+  display: none;
+}
+
+.blog-filter-empty {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 32px;
+  border: 1px solid var(--line);
+  background: #171514;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 620px) {
+  .blog-filter-panel {
+    padding: 12px;
+  }
+
+  .blog-filter-button {
+    flex: 1 1 auto;
+    min-height: 42px;
+  }
+}
