@@ -747,41 +747,84 @@
 }
 
 .water-area {
-  background: #10100f;
+  background:
+    radial-gradient(circle at 86% 48%, rgba(255, 78, 31, 0.08), transparent 28rem),
+    #10100f;
 }
 
 .water-area__inner {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-  gap: 20px;
-  align-items: center;
+  grid-template-columns: minmax(0, 1.35fr) minmax(380px, 0.75fr);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  background: #151210;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
 }
 
 .water-area__copy {
-  padding: 42px;
-  background: #151210;
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(38px, 3.8vw, 52px);
+  border: 0;
+  border-radius: 0;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.025), transparent 42%),
+    #151210;
+}
+
+.water-area__copy::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, rgba(255, 92, 16, 0.62), transparent);
+  content: "";
+}
+
+.water-area__copy h2 {
+  max-width: 640px;
+  font-size: clamp(42px, 3.7vw, 56px);
 }
 
 .water-area__cards {
   display: grid;
-  gap: 12px;
   margin-top: 24px;
 }
 
 .water-area__cards article {
-  padding: 15px 0;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 20px;
+  padding: 10px 0;
   border-top: 1px solid var(--line);
 }
 
+.water-area__cards span {
+  padding-top: 2px;
+  color: var(--orange);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
 .water-area__cards strong {
+  display: block;
   color: var(--white);
+  font-size: 16px;
+  line-height: 1.2;
 }
 
 .water-area__cards p {
-  margin: 7px 0 0;
+  max-width: 620px;
+  margin: 8px 0 0;
   color: var(--muted);
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 .water-area__actions {
@@ -793,8 +836,8 @@
 
 .water-area__actions a {
   display: inline-flex;
-  min-height: 42px;
-  padding: 0 16px;
+  min-height: 44px;
+  padding: 0 18px;
   border: 1px solid var(--line);
   color: var(--white);
   align-items: center;
@@ -809,17 +852,31 @@
 }
 
 .water-area__visual {
-  display: grid;
-  min-height: 560px;
+  position: relative;
+  min-width: 0;
   margin: 0;
+  border: 0;
+  border-radius: 0;
   background: #0b1014;
-  place-items: center;
+  aspect-ratio: 3 / 4;
+}
+
+.water-area__visual::after {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(7, 7, 7, 0.16), transparent 22%),
+    linear-gradient(180deg, transparent 74%, rgba(3, 8, 12, 0.18));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  content: "";
+  pointer-events: none;
 }
 
 .water-area__visual img {
+  display: block;
   width: 100%;
-  height: 560px;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
   object-position: center;
 }
 
@@ -908,6 +965,19 @@ body.country.country-dahab .trust-block {
       padding: 28px;
     }
 
+  .water-area__copy::after {
+      top: auto;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 92, 16, 0.62), transparent);
+    }
+
+  .water-area__cards article {
+      grid-template-columns: 42px minmax(0, 1fr);
+      gap: 14px;
+    }
+
   .price-help-cta nav {
       justify-content: flex-start;
     }
@@ -943,10 +1013,9 @@ body.country.country-dahab .trust-block {
       flex-basis: min(82vw, 344px);
     }
 
-  .water-area__visual,
-  .water-area__visual img {
-      min-height: 420px;
-      height: 420px;
+  .water-area__visual {
+      min-height: 0;
+      aspect-ratio: 3 / 4;
     }
 }
 

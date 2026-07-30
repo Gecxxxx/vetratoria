@@ -528,6 +528,7 @@ const contactDialog = (page) => {
 const ASSET_VERSION = "20260730-ux-seo";
 const PAGE_ASSET_VERSIONS = new Map([
   ["/blog/", `${ASSET_VERSION}-blog-filters`],
+  ["/dahab/", `${ASSET_VERSION}-water-area-editorial`],
   ["/dahab/stations/", `${ASSET_VERSION}-shared-stations-hero`],
   ["/dahab/team/", `${ASSET_VERSION}-team-windsurf`],
   ["/dahab/windsurf-kids/", `${ASSET_VERSION}-wsk-overview-hero`]
@@ -1567,20 +1568,20 @@ const dahabHomePage = (page) => {
   </div>
 </section>
 
-<section class="water-area" id="water-area">
+<section class="water-area" id="water-area" aria-labelledby="water-area-title">
   <div class="water-area__inner">
     <div class="water-area__copy">
       <p class="eyebrow">Акватория</p>
-      <h2>Где катаем в Дахабе</h2>
+      <h2 id="water-area-title">Где катаем в Дахабе</h2>
       <p>У Дахаба есть редкая фишка: рядом находятся спокойная вода для первых стартов, длинная зона для прогресса и открытое море для уверенных райдеров.</p>
       <div class="water-area__cards">
-        <article><strong>01. Лагуна</strong><p>Самый спокойный старт: ровная вода, песчаная коса и понятная зона рядом с берегом. Хорошо для первых галсов и первых полётов на фойле.</p></article>
-        <article><strong>02. Скоростная зона</strong><p>Длинные галсы и стабильный ветер. Здесь удобно отрабатывать скорость, повороты, контроль крыла или паруса.</p></article>
-        <article><strong>03. Волновая зона</strong><p>Открытая вода для тех, кто уже уверенно катается. Больше ветра, волна и настоящая дахабская практика.</p></article>
+        <article><span aria-hidden="true">01</span><div><strong>Лагуна</strong><p>Самый спокойный старт: ровная вода, песчаная коса и понятная зона рядом с берегом. Хорошо для первых галсов и первых полётов на фойле.</p></div></article>
+        <article><span aria-hidden="true">02</span><div><strong>Скоростная зона</strong><p>Длинные галсы и стабильный ветер. Здесь удобно отрабатывать скорость, повороты, контроль крыла или паруса.</p></div></article>
+        <article><span aria-hidden="true">03</span><div><strong>Волновая зона</strong><p>Открытая вода для тех, кто уже уверенно катается. Больше ветра, волна и настоящая дахабская практика.</p></div></article>
       </div>
-  <div class="water-area__actions">${contactCta(page, "Подобрать зону")}<a href="/dahab/safety/">Безопасность на воде →</a></div>
+      <div class="water-area__actions">${contactCta(page, "Подобрать зону")}<a href="/dahab/safety/">Безопасность на воде →</a></div>
     </div>
-    <figure class="water-area__visual"><img src="${dahabRefImg("aqva-aerial.webp")}" alt="Акватория Дахаба для wingfoil и windsurf" loading="lazy" decoding="async"></figure>
+    <figure class="water-area__visual"><img src="${dahabRefImg("aqva-aerial.webp")}" alt="Акватория Дахаба для wingfoil и windsurf" width="900" height="1200" loading="lazy" decoding="async"></figure>
   </div>
 </section>`;
 };
