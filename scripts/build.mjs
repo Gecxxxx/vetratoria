@@ -439,7 +439,7 @@ const contactDialog = (page) => {
 </dialog>`;
 };
 
-const ASSET_VERSION = "20260729-compact-nav";
+const ASSET_VERSION = "20260730-sport-cards";
 const versionedAsset = (path) => `${path}?v=${ASSET_VERSION}`;
 
 const layout = (page, main) => `<!doctype html>
