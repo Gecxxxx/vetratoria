@@ -978,6 +978,218 @@ const dahabWindsurfPage = (page) => {
 </section>`.replace(/^[\t ]+$/gm, "");
 };
 
+const dahabWindsurfKidsPage = (page) => {
+  const officialSite = "https://windsurfkids.su/";
+  const wskImg = (name) => `/assets/img/windsurf-kids/${name}`;
+  const heroFacts = ["С 2009 года", "Дети от 6 лет", "500+ воспитанников", "Дахаб · Красное море"];
+  const reasons = [
+    ["Спорт с понятного старта", "Новички знакомятся с ветром, доской и парусом в спокойном темпе, а продолжающие развивают технику."],
+    ["Профессиональная команда", "С детьми работают тренеры с опытом в парусном спорте и отдельным вниманием к возрасту каждого участника."],
+    ["Безопасность на воде", "Акваторию контролирует команда спасателей, а оборудование подбирается под рост, вес и уровень ребёнка."],
+    ["Лагерь, а не только уроки", "В программе есть спорт, снорклинг, прогулки по горам, игры, экскурсии и время с новыми друзьями."]
+  ];
+  const program = [
+    ["01", "Виндсёрфинг", "Стойка, управление парусом, выбор курса и первые самостоятельные галсы.", wskImg("water-02.jpg"), "Юный спортсмен WindSurfKids катается на виндсёрфе в Дахабе"],
+    ["02", "Виндфойл и вингфойл", "Знакомство с современными фойл-дисциплинами для детей, готовых двигаться дальше.", wskImg("water-03.jpg"), "Участник WindSurfKids со снаряжением на станции в Дахабе"],
+    ["03", "Спорт и приключения", "Командные игры, снорклинг на рифах, прогулки по горам и поездки по Дахабу.", wskImg("camp-03.webp"), "Поход участников WindSurfKids в горах рядом с Дахабом"],
+    ["04", "Командная жизнь", "Совместные занятия помогают стать самостоятельнее, увереннее и найти новых друзей.", wskImg("camp-01.webp"), "Участники детского лагеря WindSurfKids на станции Vetratoria"]
+  ];
+  const formats = [
+    ["Короткий формат", "Половина дня", "Утренняя зарядка, теория, тренировка на воде и оборудование."],
+    ["Дневная программа", "Полный день", "Тренировка, питание, игры, спорт и дополнительные активности."],
+    ["Летняя смена", "2 недели", "Половина смены с проживанием и насыщенной лагерной программой."],
+    ["Полная смена", "4 недели", "Большой летний цикл для уверенного прогресса и полноценного отдыха."]
+  ];
+  const schedule = [
+    ["01", "Утро", "Подъём, завтрак чемпионов, пробежка и зарядка на берегу моря."],
+    ["02", "10:00–12:30", "Подготовка снаряжения, объяснение задачи и основная тренировка на воде."],
+    ["03", "День", "Обед, личное время, настольные игры, снорклинг, прогулки или экскурсии."],
+    ["04", "Вечер", "Ужин, футбол, баскетбол или волейбол, общий фильм и отбой в 22:00."]
+  ];
+  const faqs = [
+    ["С какого возраста принимают детей?", "WindSurfKids принимает детей с 6 лет. Конкретный формат подбирается с учётом возраста, физической подготовки и опыта на воде."],
+    ["Можно приехать без родителей?", "Да. Организаторы помогают согласовать сопровождение ребёнка или встречу в аэропорту. Детали необходимо заранее подтвердить с командой WSK."],
+    ["Нужно ли своё оборудование?", "Нет. Оборудование для заявленных тренировочных форматов предоставляется лагерем и подбирается под участника."],
+    ["Где живут дети?", "Участники размещаются по 2–3 человека в Canyon Dahab Hotel. Вместе с ними проживают тренеры, администраторы и аниматоры лагеря."],
+    ["Что нужно взять с собой?", "Понадобятся медицинская страховка, одежда и обувь для спорта и отдыха, головной убор, солнцезащитный крем и личные вещи. Полный список размещён на официальном сайте."],
+    ["Где проверить актуальные цены и даты?", "Все условия, свободные места, стоимость и детали трансфера нужно уточнять напрямую у организаторов WindSurfKids."]
+  ];
+  const useful = [
+    ["https://windsurfkids.su/team", "Команда", "Тренеры и спасатели WindSurfKids", wskImg("hero.webp")],
+    ["https://windsurfkids.su/parrents", "Родителям", "Документы, сопровождение и список вещей", wskImg("camp-02.webp")],
+    ["https://windsurfkids.su/price", "Форматы", "Актуальные программы и стоимость", wskImg("water-01.jpg")]
+  ];
+  const gallery = [
+    [wskImg("water-02.jpg"), "Юный виндсёрфер WindSurfKids на Красном море"],
+    [wskImg("water-01.jpg"), "Дети готовят оборудование к тренировке"],
+    [wskImg("water-04.jpg"), "Инструктор и участник WindSurfKids готовятся к тренировке на закате"],
+    [wskImg("camp-04.webp"), "Участница WindSurfKids готовит снаряжение на берегу"],
+    [wskImg("camp-05.webp"), "Группа WindSurfKids с тренерами на станции Vetratoria"]
+  ];
+
+  return `
+<section class="dahab-sport-hero dahab-sport-hero--kids">
+  <div class="dahab-sport-hero__inner">
+    <div class="dahab-sport-hero__copy">
+      <p class="eyebrow">Дахаб · детский спортивный лагерь</p>
+      <h1>${escapeHtml(page.title)}</h1>
+      <p>${escapeHtml(page.description)} Летняя программа 2026 года проходит с 27 мая по 30 августа.</p>
+      <div class="dahab-sport-hero__actions">
+        <a class="button button-primary" href="${officialSite}" target="_blank" rel="noopener noreferrer">Перейти на сайт WindSurfKids</a>
+        <a class="button button-ghost" href="#program">Узнать о программе</a>
+      </div>
+      <div class="hero-advantages hero-advantages--sport">
+        ${heroFacts.map((item) => `<span class="hero-advantage">${item}</span>`).join("")}
+      </div>
+    </div>
+    <figure class="dahab-sport-hero__media">
+      <img src="${page.image}" alt="Тренер с участниками детского лагеря WindSurfKids в Дахабе" width="1080" height="1080" loading="eager" decoding="async" fetchpriority="high">
+    </figure>
+  </div>
+</section>
+
+<section class="dahab-sport-section">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("О лагере", "WindSurfKids — лето, которое проходит на воде", "Лагерь работает с 2009 года, а с 2012 года принимает детей в Дахабе. За это время программу прошли более 500 юных виндсёрферов.")}
+    <figure class="dahab-sport-panorama">
+      <img src="${wskImg("water-02.jpg")}" alt="Юный спортсмен WindSurfKids на виндсёрфе в Дахабе" width="1080" height="888" loading="lazy" decoding="async">
+    </figure>
+    <div class="dahab-sport-feature-grid">
+      ${reasons.map(([title, text], index) => `<article><span>0${index + 1}</span><h3>${title}</h3><p>${text}</p></article>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section dahab-sport-section--soft" id="program">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Программа", "Чему учатся и чем занимаются дети", "Водная подготовка остаётся центром программы, а занятия на берегу превращают поездку в полноценный спортивный лагерь.")}
+    <div class="dahab-sport-process">
+      ${program.map(([number, title, text, image, alt]) => `
+        <article>
+          <img src="${image}" alt="${alt}" width="1080" height="1080" loading="lazy" decoding="async">
+          <div><span>${number}</span><h3>${title}</h3><p>${text}</p></div>
+        </article>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Форматы", "Выберите подходящую продолжительность", "Условия и стоимость меняются в зависимости от сезона. Ниже — основные варианты, а актуальные цены размещены на официальном сайте лагеря.")}
+    <div class="dahab-sport-price-grid">
+      ${formats.map(([label, title, text]) => `
+        <article class="dahab-sport-price-card">
+          <small>${label}</small>
+          <h3>${title}</h3>
+          <p>${text}</p>
+          <a class="button button-primary" href="https://windsurfkids.su/price" target="_blank" rel="noopener noreferrer">Узнать стоимость</a>
+        </article>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section dahab-sport-section--soft">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Распорядок", "Как проходит день в лагере", "Режим объединяет тренировку, восстановление, командные активности и полноценный отдых. Пятница — выходной день.")}
+    <div class="dahab-sport-feature-grid">
+      ${schedule.map(([number, title, text]) => `<article><span>${number}</span><h3>${title}</h3><p>${text}</p></article>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section">
+  <div class="dahab-sport-inner dahab-sport-safety">
+    <div class="dahab-sport-safety__copy">
+      <p class="eyebrow">Безопасность</p>
+      <h2>Дети под присмотром на воде и на берегу</h2>
+      <p>С группой работают тренеры, администраторы и спасатели. Перед выходом дети разбирают задачу, получают подходящее оборудование и занимаются в контролируемой акватории.</p>
+      <div class="dahab-sport-safety__list">
+        <span>Опытные тренеры по парусному спорту</span>
+        <span>Спасатели контролируют выходы на воду</span>
+        <span>Индивидуальный подход к возрасту и уровню</span>
+      </div>
+      <a class="button button-primary" href="https://windsurfkids.su/team" target="_blank" rel="noopener noreferrer">Познакомиться с командой</a>
+    </div>
+    <div class="dahab-sport-safety__media">
+      <img src="${wskImg("water-01.jpg")}" alt="Участники WindSurfKids готовятся к выходу на воду" width="900" height="1125" loading="lazy" decoding="async">
+      <img src="${wskImg("camp-01.webp")}" alt="Детская группа WindSurfKids с тренерами" width="766" height="766" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section dahab-sport-section--soft">
+  <div class="dahab-sport-inner dahab-sport-safety">
+    <div class="dahab-sport-safety__copy">
+      <p class="eyebrow">Проживание</p>
+      <h2>Canyon Dahab Hotel</h2>
+      <p>Дети размещаются в светлых номерах по 2–3 человека. В отеле вместе с ними живут тренеры, администраторы и аниматоры, отвечающие за повседневный распорядок.</p>
+      <div class="dahab-sport-safety__list">
+        <span>Трёхразовое сбалансированное питание</span>
+        <span>Бассейн и спортивные площадки рядом</span>
+        <span>Медицинская помощь в шаговой доступности</span>
+      </div>
+      <a class="button button-primary" href="https://windsurfkids.su/hotel" target="_blank" rel="noopener noreferrer">Подробнее о проживании</a>
+    </div>
+    <div class="dahab-sport-safety__media">
+      <img src="${wskImg("hotel-01.jpg")}" alt="Canyon Dahab Hotel — место проживания участников лагеря" width="1024" height="446" loading="lazy" decoding="async">
+      <img src="${wskImg("hotel-02.jpg")}" alt="Номер в Canyon Dahab Hotel" width="1024" height="768" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Фотографии", "Жизнь WindSurfKids в Дахабе", "Тренировки, командные занятия и приключения между Красным морем и Синайскими горами. Фотографии опубликованы официальным сайтом WindSurfKids.")}
+    <div class="dahab-sport-water-grid">
+      ${gallery.map(([image, alt], index) => `
+        <a${index === 0 ? ` class="is-large"` : ""} href="https://windsurfkids.su/photos" target="_blank" rel="noopener noreferrer" aria-label="Открыть фотографии на сайте WindSurfKids">
+          <img src="${image}" alt="${alt}" width="1080" height="1080" loading="lazy" decoding="async">
+        </a>`).join("")}
+    </div>
+    <div class="dahab-sport-water-actions">
+      <a class="button button-primary" href="https://windsurfkids.su/photos" target="_blank" rel="noopener noreferrer">Больше фотографий</a>
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section dahab-sport-section--soft">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Родителям", "Частые вопросы перед поездкой", "Коротко о возрасте, сопровождении, снаряжении и подготовке ребёнка к лагерю.")}
+    <div class="dahab-sport-faq">
+      ${faqs.map(([question, answer], index) => `<details ${index === 0 ? "open" : ""}><summary>${question}</summary><p>${answer}</p></details>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-section">
+  <div class="dahab-sport-inner">
+    ${sectionHeading("Официальная информация", "Полезные разделы WindSurfKids", "Переходите на сайт организатора, чтобы проверить актуальные условия и задать команде лагеря вопросы напрямую.")}
+    <div class="dahab-sport-useful">
+      ${useful.map(([href, label, title, image]) => `
+        <a href="${href}" target="_blank" rel="noopener noreferrer">
+          <img src="${image}" alt="${title}" width="1080" height="1080" loading="lazy" decoding="async">
+          <span>${label}</span>
+          <h3>${title}</h3>
+          <em>Открыть на WindSurfKids</em>
+        </a>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="dahab-sport-cta">
+  <img src="${wskImg("camp-03.webp")}" alt="Поход участников WindSurfKids в Синайских горах" width="1080" height="1080" loading="lazy" decoding="async">
+  <div class="dahab-sport-cta__inner">
+    <p class="eyebrow">Летний сезон 2026</p>
+    <h2>Готовы подарить ребёнку лето на воде?</h2>
+    <p>Актуальные даты, стоимость и наличие мест уточняйте напрямую у команды WindSurfKids. Лагерь является самостоятельным организатором программы.</p>
+    <div>
+      <a class="button button-primary" href="${officialSite}" target="_blank" rel="noopener noreferrer">Перейти на официальный сайт WSK</a>
+      <a class="button button-ghost" href="https://windsurfkids.su/price" target="_blank" rel="noopener noreferrer">Программы и цены</a>
+    </div>
+  </div>
+</section>`.replace(/^[\t ]+$/gm, "");
+};
+
 const dahabHomePage = (page) => {
   const priceCards = [
     ["Wingfoil", "Урок", "70$", "Инструктор и комплект под уровень.", dahabRefImg("price-wingfoil.webp"), "/dahab/wingfoil/price/"],
@@ -1435,6 +1647,7 @@ const countryPage = (page) => {
 const sportPage = (page) => {
   if (page.country === "dahab" && page.sport === "wingfoil") return dahabWingfoilPage(page);
   if (page.country === "dahab" && page.sport === "windsurf") return dahabWindsurfPage(page);
+  if (page.country === "dahab" && page.sport === "windsurf-kids") return dahabWindsurfKidsPage(page);
 
   const country = countriesByKey[page.country];
   const sport = site.sports[page.sport];

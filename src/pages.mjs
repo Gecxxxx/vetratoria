@@ -13,6 +13,12 @@ const dahabSportOverrides = {
     description:
       "Научим управлять парусом, идти нужным курсом и уверенно кататься на доске. Уроки, прокат и программа под ваш уровень на Красном море.",
     image: "/assets/img/final/windsurf/hero.webp"
+  },
+  "windsurf-kids": {
+    title: "Детский лагерь WindSurfKids в Дахабе",
+    description:
+      "Виндсёрфинг, виндфойл, вингфойл и насыщенная программа для детей от 6 лет на Красном море.",
+    image: "/assets/img/windsurf-kids/hero.webp"
   }
 };
 
