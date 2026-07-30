@@ -441,7 +441,7 @@ const contactDialog = (page) => {
 
 const ASSET_VERSION = "20260730-single-media";
 const PAGE_ASSET_VERSIONS = new Map([
-  ["/dahab/team/", "20260730-team-square-photos"],
+  ["/dahab/team/", "20260730-team-windsurf"],
   ["/dahab/windsurf-kids/", "20260730-wsk-overview-hero"]
 ]);
 const assetVersionForPage = (page) => PAGE_ASSET_VERSIONS.get(page.path) || ASSET_VERSION;
@@ -2489,6 +2489,42 @@ const dahabTeamGroups = [
         text: "Видит технические ошибки и помогает заложить прочный фундамент, чтобы прогресс был быстрее и увереннее.",
         meta: "Русский · English",
         photo: "/assets/img/team/dahab/anna.png"
+      }
+    ]
+  },
+  {
+    id: "team-windsurf",
+    eyebrow: "Windsurf Center",
+    title: "Команда виндсёрфинга",
+    lead: "Встречаем гостей, подбираем и настраиваем оборудование, обучаем на воде и следим за безопасностью в акватории.",
+    members: [
+      {
+        name: "Борис",
+        role: "Менеджер · инструктор",
+        text: "В виндсёрфинге с 2003 года. Руководит станцией и помогает подобрать обучение, прокат и оборудование под уровень гостя.",
+        meta: "Русский · English · Română",
+        photo: "/assets/img/team/dahab/boris.jpg"
+      },
+      {
+        name: "Виктория",
+        role: "Работа с гостями",
+        text: "Помогает с организационными вопросами, расписанием и комфортом гостей виндсёрф-станции.",
+        meta: "Русский · English",
+        photo: "/assets/img/team/dahab/victoria.jpg"
+      },
+      {
+        name: "Мустафа",
+        role: "Сервис · оборудование",
+        text: "Помогает подобрать, собрать и настроить виндсёрф-комплект перед выходом на воду.",
+        meta: "العربية · English · Deutsch",
+        photo: "/assets/img/team/dahab/mustafa.jpg"
+      },
+      {
+        name: "Махмуд",
+        role: "Сервис · спасатель",
+        text: "Профессиональный спортсмен и специалист по слалому. Следит за акваторией и приходит на помощь по сигналу.",
+        meta: "العربية · English · Русский",
+        photo: "/assets/img/team/dahab/mahmoud.jpg"
       }
     ]
   },
