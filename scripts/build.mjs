@@ -14,11 +14,6 @@ const escapeHtml = (value = "") =>
     .replace(/"/g, "&quot;");
 
 const countryList = site.countries;
-const countryMapPoints = {
-  dahab: { x: "59.8%", y: "53.5%", label: "Дахаб, Египет" },
-  vietnam: { x: "77.2%", y: "62.5%", label: "Муйне, Вьетнам" },
-  russia: { x: "62.6%", y: "38.5%", label: "Должанская, Россия" }
-};
 
 const pathToFile = (path) => {
   if (path === "/") return join(root, "index.html");
@@ -620,80 +615,16 @@ const home = (page) => `
 
 <section class="home-section home-section--destinations" id="destinations">
   <div class="section-inner">
-    ${sectionHeading("Наши станции", "Выберите направление на карте", "Три страны — разные сезоны и условия на воде. Выберите точку, чтобы познакомиться с направлением.")}
-    <div class="station-map" data-station-map>
-      <div class="station-map__visual">
-        <div class="station-map__canvas" aria-label="Карта направлений Vetratoria">
-          <svg class="station-map__world" viewBox="0 0 1000 520" aria-hidden="true" focusable="false">
-            <defs>
-              <linearGradient id="station-map-ocean" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0" stop-color="#151b1e"/>
-                <stop offset="1" stop-color="#090b0c"/>
-              </linearGradient>
-              <filter id="station-map-glow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="14"/>
-              </filter>
-            </defs>
-            <rect width="1000" height="520" rx="8" fill="url(#station-map-ocean)"/>
-            <g class="station-map__grid">
-              <path d="M0 104H1000M0 208H1000M0 312H1000M0 416H1000"/>
-              <path d="M167 0V520M334 0V520M501 0V520M668 0V520M835 0V520"/>
-            </g>
-            <g class="station-map__land">
-              <path d="M67 102 116 62l89 5 57 29 26 43-23 38-46 14-19 51-39 11-31-43-54-30-34-44Z"/>
-              <path d="m205 269 54 12 42 55-4 68-30 78-35-17-16-73-35-63Z"/>
-              <path d="m432 115 70-52 116-8 91 27 86-8 117 38 37 54-55 27-72-17-40 32-83-21-48 23-51-17-54 20-42-31-62-15Z"/>
-              <path d="m512 239 83-21 57 34-9 82-44 112-49-24-20-88-47-46Z"/>
-              <path d="m774 364 76-31 81 38-23 70-88 19-51-43Z"/>
-            </g>
-            <ellipse class="station-map__route-glow" cx="666" cy="273" rx="245" ry="158" filter="url(#station-map-glow)"/>
-            <path class="station-map__route" d="M626 200Q604 235 598 278Q692 256 772 325"/>
-          </svg>
-          ${countryList.map((country) => {
-            const point = countryMapPoints[country.key];
-            return `
-          <button class="station-map__marker${country.key === "dahab" ? " is-active" : ""}" type="button"
-            style="--marker-x: ${point.x}; --marker-y: ${point.y}"
-            data-station-marker="${country.key}" aria-controls="station-panel-${country.key}"
-            aria-pressed="${country.key === "dahab" ? "true" : "false"}">
-            <span class="station-map__pulse" aria-hidden="true"></span>
-            <span class="station-map__pin" aria-hidden="true"></span>
-            <span class="station-map__marker-label">${escapeHtml(point.label)}</span>
-          </button>`;
-          }).join("")}
-        </div>
-        <div class="station-map__tabs" aria-label="Выбрать направление">
-          ${countryList.map((country) => `
-            <button type="button" class="${country.key === "dahab" ? "is-active" : ""}"
-              data-station-tab="${country.key}" aria-controls="station-panel-${country.key}"
-              aria-pressed="${country.key === "dahab" ? "true" : "false"}">
-              <span>${escapeHtml(country.region)}</span>
-              ${escapeHtml(country.city)}
-            </button>`).join("")}
-        </div>
-      </div>
-      <div class="station-map__details" aria-live="polite">
-        ${countryList.map((country) => `
-          <article class="station-map__panel" id="station-panel-${country.key}" data-station-panel="${country.key}"${country.key === "dahab" ? "" : " hidden"}>
-            <div class="station-map__photo">
-              <img src="${country.hero}" alt="${escapeHtml(`${country.region}, ${country.city} — направление Vetratoria`)}" loading="lazy" decoding="async">
-              <span>${escapeHtml(country.season)}</span>
-            </div>
-            <div class="station-map__copy">
-              <p class="eyebrow">${escapeHtml(country.region)}</p>
-              <h3>${escapeHtml(country.key === "russia" ? "Должанская Коса" : country.title)}</h3>
-              <p>${escapeHtml(country.lead)}</p>
-              <dl>
-                <div><dt>Условия</dt><dd>${escapeHtml(country.tone)}</dd></div>
-                <div><dt>Спорт</dt><dd>${country.sports.map((sport) => escapeHtml(site.sports[sport]?.title || sport)).join(" · ")}</dd></div>
-              </dl>
-              <div class="station-map__actions">
-                <a class="button button-primary" href="${country.href}">Открыть направление</a>
-                <a class="button button-ghost" href="/contacts/" data-contact-modal data-contact-country="${country.key}" data-contact-intent="Подобрать программу">Подобрать программу</a>
-              </div>
-            </div>
-          </article>`).join("")}
-      </div>
+    ${sectionHeading("Направления", "Выберите страну", "Покажем сезон, условия на воде, программы и стоимость обучения.")}
+    <div class="destination-grid">
+      ${countryList.map((country) => `
+        <a class="destination-card" href="${country.href}">
+          ${cardImage(country.hero, `${country.region} · ${country.city}`)}
+          <span>${country.region}</span>
+          <h2>${country.key === "russia" ? "Должанская Коса" : country.title}</h2>
+          <p>${country.lead}</p>
+          <em>Открыть направление</em>
+        </a>`).join("")}
     </div>
   </div>
 </section>

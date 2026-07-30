@@ -186,41 +186,6 @@
     activate(active);
   });
 
-  document.querySelectorAll("[data-station-map]").forEach((stationMap) => {
-    const markers = [...stationMap.querySelectorAll("[data-station-marker]")];
-    const tabs = [...stationMap.querySelectorAll("[data-station-tab]")];
-    const controls = [...markers, ...tabs];
-    const panels = [...stationMap.querySelectorAll("[data-station-panel]")];
-
-    const activateStation = (key) => {
-      controls.forEach((control) => {
-        const controlKey = control.dataset.stationMarker || control.dataset.stationTab;
-        const isActive = controlKey === key;
-        control.classList.toggle("is-active", isActive);
-        control.setAttribute("aria-pressed", String(isActive));
-      });
-
-      panels.forEach((panel) => {
-        panel.hidden = panel.dataset.stationPanel !== key;
-      });
-    };
-
-    controls.forEach((control, index) => {
-      control.addEventListener("click", () => {
-        activateStation(control.dataset.stationMarker || control.dataset.stationTab);
-      });
-
-      control.addEventListener("keydown", (event) => {
-        if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
-        event.preventDefault();
-        const offset = event.key === "ArrowRight" ? 1 : -1;
-        const next = controls[(index + offset + controls.length) % controls.length];
-        activateStation(next.dataset.stationMarker || next.dataset.stationTab);
-        next.focus();
-      });
-    });
-  });
-
   document.querySelectorAll("[data-card-slider]").forEach((cardSlider) => {
     const track = cardSlider.querySelector("[data-card-slider-track]");
     const prev = cardSlider.querySelector("[data-card-slider-prev]");
