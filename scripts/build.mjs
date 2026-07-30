@@ -440,8 +440,11 @@ const contactDialog = (page) => {
 };
 
 const ASSET_VERSION = "20260730-single-media";
-const assetVersionForPage = (page) =>
-  page.path === "/dahab/team/" ? "20260730-team-square-photos" : ASSET_VERSION;
+const PAGE_ASSET_VERSIONS = new Map([
+  ["/dahab/team/", "20260730-team-square-photos"],
+  ["/dahab/windsurf-kids/", "20260730-wsk-overview-hero"]
+]);
+const assetVersionForPage = (page) => PAGE_ASSET_VERSIONS.get(page.path) || ASSET_VERSION;
 const versionedAsset = (path, version = ASSET_VERSION) => `${path}?v=${version}`;
 
 const layout = (page, main) => `<!doctype html>
@@ -1031,23 +1034,20 @@ const dahabWindsurfKidsPage = (page) => {
   ];
 
   return `
-<section class="dahab-sport-hero dahab-sport-hero--kids">
-  <div class="dahab-sport-hero__inner">
-    <div class="dahab-sport-hero__copy">
-      <p class="eyebrow">Дахаб · детский спортивный лагерь</p>
-      <h1>${escapeHtml(page.title)}</h1>
-      <p>${escapeHtml(page.description)} Летняя программа 2026 года проходит с 27 мая по 30 августа.</p>
-      <div class="dahab-sport-hero__actions">
-        <a class="button button-primary" href="${officialSite}" target="_blank" rel="noopener noreferrer">Перейти на сайт WindSurfKids</a>
-        <a class="button button-ghost" href="#program">Узнать о программе</a>
-      </div>
-      <div class="hero-advantages hero-advantages--sport">
-        ${heroFacts.map((item) => `<span class="hero-advantage">${item}</span>`).join("")}
-      </div>
+<section class="dahab-hero dahab-hero--kids">
+  <img class="dahab-hero__image" src="${page.image}" alt="Тренер с участниками детского лагеря WindSurfKids в Дахабе" width="1080" height="1080" loading="eager" decoding="async" fetchpriority="high">
+  <div class="dahab-hero__shade"></div>
+  <div class="dahab-hero__content">
+    <p class="eyebrow">Дахаб · детский спортивный лагерь</p>
+    <h1>Детский лагерь <span>WindSurfKids</span> в Дахабе</h1>
+    <p class="hero-lead">${escapeHtml(page.description)} Летняя программа 2026 года проходит с 27 мая по 30 августа.</p>
+    <div class="hero-advantages">
+      ${heroFacts.map((item) => `<span class="hero-advantage">${item}</span>`).join("")}
     </div>
-    <figure class="dahab-sport-hero__media">
-      <img src="${page.image}" alt="Тренер с участниками детского лагеря WindSurfKids в Дахабе" width="1080" height="1080" loading="eager" decoding="async" fetchpriority="high">
-    </figure>
+    <div class="hero-actions dahab-hero-actions">
+      <a class="button button-primary" href="${officialSite}" target="_blank" rel="noopener noreferrer">Перейти на сайт WindSurfKids</a>
+      <a class="button button-ghost" href="#program">Узнать о программе</a>
+    </div>
   </div>
 </section>
 

@@ -82,6 +82,25 @@
   object-position: center center;
 }
 
+.dahab-hero--kids .dahab-hero__image {
+  object-position: center 52%;
+}
+
+.dahab-hero--kids .dahab-hero__shade {
+  background:
+    linear-gradient(90deg, rgba(5, 5, 5, 0.92) 0%, rgba(5, 5, 5, 0.68) 40%, rgba(5, 5, 5, 0.18) 78%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.62) 100%);
+}
+
+.dahab-hero--kids .dahab-hero__content h1 {
+  max-width: 880px;
+  font-size: clamp(38px, 5vw, 72px);
+}
+
+.dahab-hero--kids .dahab-hero__content h1 span {
+  white-space: nowrap;
+}
+
 .dahab-sport-section {
   padding: 82px 0;
 }
@@ -98,6 +117,7 @@
 .dahab-sport-safety__copy h2,
 .dahab-sport-cta h2 {
   font-size: clamp(34px, 4.4vw, 58px);
+  overflow-wrap: anywhere;
 }
 
 .dahab-sport-feature-grid,
@@ -581,6 +601,10 @@
 }
 
 @media (max-width: 620px) {
+  .dahab-hero--kids .dahab-hero__content h1 {
+      font-size: clamp(34px, 10vw, 40px);
+    }
+
   .dahab-sport-hero__copy h1,
   .dahab-sport-section .section-heading h2,
   .dahab-sport-safety__copy h2,
