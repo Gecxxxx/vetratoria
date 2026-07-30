@@ -102,39 +102,25 @@
   margin-top: 26px;
 }
 
-.dahab-marquee {
-  position: relative;
-  min-height: 42px;
-  overflow-x: clip;
+.dahab-facts-bar {
   background: var(--orange);
   color: var(--white);
-  contain: inline-size paint;
+}
+
+.dahab-facts-bar__inner {
+  display: grid;
+  width: min(100% - var(--page-gutter), var(--wide));
+  margin: 0 auto;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.dahab-facts-bar span {
+  padding: 13px 16px;
+  border-right: 1px solid rgba(255, 255, 255, 0.28);
+  font-size: 12px;
   font-weight: 900;
+  text-align: center;
   text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.dahab-marquee__track {
-  position: absolute;
-  inset-block: 0;
-  left: 0;
-  display: flex;
-  width: max-content;
-  align-items: center;
-  animation: marquee 34s linear infinite;
-}
-
-.dahab-marquee span {
-  padding: 8px 18px;
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
 }
 
 .sport-split,
@@ -244,6 +230,14 @@
   font-size: 38px;
   font-weight: 900;
   line-height: 0.96;
+}
+
+.sport-tile__content p {
+  max-width: 520px;
+  margin: 13px 0 0;
+  color: #e2ddd8;
+  font-size: 15px;
+  line-height: 1.42;
 }
 
 .sport-tile span {
@@ -889,7 +883,7 @@ body.country.country-dahab .dahab-hero {
   order: 1;
 }
 
-body.country.country-dahab .dahab-marquee {
+body.country.country-dahab .dahab-facts-bar {
   order: 2;
 }
 
@@ -910,7 +904,8 @@ body.country.country-dahab .station-advice {
 }
 
 body.country.country-dahab .trust-block {
-  display: none;
+  display: block;
+  order: 7;
 }
 
 @media (max-width: 900px) {
@@ -933,6 +928,22 @@ body.country.country-dahab .trust-block {
 
   body.country.country-dahab .hero-advantages {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+  .dahab-hero .hero-advantage {
+      min-height: 58px;
+      padding: 11px 12px;
+      font-size: 13px;
+    }
+
+  .dahab-facts-bar__inner {
+      width: min(100% - var(--page-gutter-mobile), var(--wide));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+  .dahab-facts-bar span {
+      padding: 11px 8px;
+      font-size: 11px;
     }
 
   .sport-split__grid,
@@ -1019,19 +1030,16 @@ body.country.country-dahab .trust-block {
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .dahab-marquee__track {
-    animation: none;
-    transform: none;
-  }
-}
-
 @media (max-width: 520px) {
   .dahab-hero__content h1,
   .station-advice__head h2,
   .trust-head h2,
   .water-area__copy h2 {
       font-size: 32px;
+    }
+
+  .dahab-hero-actions .button {
+      flex: 1 1 140px;
     }
 
   .sport-tile,
