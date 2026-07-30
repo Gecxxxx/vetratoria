@@ -2337,6 +2337,7 @@ const mediaSportLabels = {
 const mediaEventLabels = {
   training: "Тренировка",
   camp: "Лагерь",
+  "photo-day": "Фото дня",
   competition: "Соревнование",
   station: "Жизнь станции",
   trip: "Поездка"

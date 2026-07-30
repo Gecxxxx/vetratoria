@@ -1,4 +1,7 @@
+import { photoDayAlbums } from "./media-photo-day.mjs";
+
 export const mediaAlbums = [
+  ...photoDayAlbums,
   {
     country: "dahab",
     slug: "2026-06-10-wingfoil-day",
