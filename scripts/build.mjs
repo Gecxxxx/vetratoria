@@ -441,7 +441,7 @@ const contactDialog = (page) => {
 
 const ASSET_VERSION = "20260730-single-media";
 const assetVersionForPage = (page) =>
-  page.path === "/dahab/team/" ? "20260730-team-sliders" : ASSET_VERSION;
+  page.path === "/dahab/team/" ? "20260730-team-square-photos" : ASSET_VERSION;
 const versionedAsset = (path, version = ASSET_VERSION) => `${path}?v=${version}`;
 
 const layout = (page, main) => `<!doctype html>
@@ -2575,7 +2575,7 @@ const dahabTeamGroups = [
 
 const dahabTeamCard = (member) => `
           <article class="team-card">
-            <div class="team-card__media" style="--team-photo: url('${member.photo}')">
+            <div class="team-card__media">
               <img src="${member.photo}" alt="${escapeHtml(`${member.name} — ${member.role} Vetratoria`)}" loading="${member.eager ? "eager" : "lazy"}" decoding="async">
             </div>
             <div class="team-card__content">

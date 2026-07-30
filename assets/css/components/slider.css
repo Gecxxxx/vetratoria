@@ -137,50 +137,33 @@
   flex: 0 0 calc((100% - 48px) / 4);
   min-width: 0;
   overflow: hidden;
-  border: 1px solid var(--line);
   background: #171514;
   scroll-snap-align: start;
-  transition: border-color var(--duration-normal) ease, transform var(--duration-normal) ease;
+  transition: transform var(--duration-normal) ease;
 }
 
 .team-card:hover {
-  border-color: rgba(255, 90, 31, 0.62);
   transform: translateY(-3px);
 }
 
 .team-card__media {
   position: relative;
-  isolation: isolate;
   overflow: hidden;
   aspect-ratio: 1;
   background: #0d0c0b;
 }
 
-.team-card__media::before {
-  position: absolute;
-  inset: -18px;
-  z-index: -1;
-  background-image:
-    linear-gradient(rgba(9, 8, 7, 0.36), rgba(9, 8, 7, 0.36)),
-    var(--team-photo);
-  background-position: center;
-  background-size: cover;
-  content: "";
-  filter: blur(16px);
-  opacity: 0.88;
-  transform: scale(1.08);
-}
-
 .team-card__media img {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
 }
 
 .team-card__content {
   min-height: 236px;
   padding: 22px;
-  border-top: 2px solid var(--orange);
 }
 
 .team-card__role {
