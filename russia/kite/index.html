@@ -42,13 +42,6 @@
         <img src="/assets/icons/tripadvisor.svg" alt="" width="20" height="20">
       </a>
   </nav>
-      <div class="vtr-nav__lang" data-dropdown>
-        <button class="vtr-nav__lang-button" type="button" aria-expanded="false" data-dropdown-toggle>RU <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
-        <div class="vtr-nav__lang-menu">
-          <a href="#">EN</a>
-          <a href="#">DE</a>
-        </div>
-      </div>
     </div>
   </div>
   <div class="vtr-nav__main">
@@ -232,8 +225,8 @@
     <button class="contact-modal__close" type="button" data-contact-close aria-label="Закрыть форму">×</button>
     <div class="contact-modal__head">
       <p class="eyebrow">Быстрая заявка</p>
-      <h2 id="contact-modal-title" data-contact-modal-title>Написать нам</h2>
-      <p>Оставьте контакты — команда уточнит детали и поможет подобрать формат.</p>
+      <h2 id="contact-modal-title" data-contact-modal-title>Оставить заявку</h2>
+      <p>Оставьте имя и номер телефона — команда свяжется с вами и поможет подобрать направление, программу и снаряжение.</p>
       <span class="contact-modal__context" data-contact-modal-context>Россия · Должанская · Kite</span>
     </div>
     <form class="contact-form contact-modal__form" data-contact-form data-contact-modal-form
@@ -245,13 +238,13 @@
       <input type="hidden" name="sport" value="Kite" data-contact-sport-input>
       <input type="hidden" name="country" value="russia" data-contact-country-input>
       <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
-      <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, email или @username" required></label>
+      <label>Номер телефона<input name="contact" autocomplete="tel" inputmode="tel" placeholder="+7 900 000-00-00" required></label>
       <label><span>Комментарий <small>по желанию</small></span><textarea name="message" rows="4" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
-      <button class="button button-primary contact-modal__submit" type="submit">Подготовить заявку</button>
+      <button class="button button-primary contact-modal__submit" type="submit">Отправить через email</button>
       <p class="form-note" data-form-note aria-live="polite"></p>
     </form>
     <div class="contact-modal__direct">
-      <span>Или свяжитесь напрямую</span>
+      <span>Или напишите сразу</span>
       <div>
         <a href="tel:+79884715355" data-contact-direct-phone>
           <img src="/assets/icons/whatsapp.svg" alt="" width="20" height="20">

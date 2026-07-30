@@ -200,13 +200,6 @@ const topNav = (page) => {
     </nav>
     <div class="vtr-nav__right">
       ${socialIconLinks("vtr-nav__socials")}
-      <div class="vtr-nav__lang" data-dropdown>
-        <button class="vtr-nav__lang-button" type="button" aria-expanded="false" data-dropdown-toggle>RU ${arrow}</button>
-        <div class="vtr-nav__lang-menu">
-          <a href="#">EN</a>
-          <a href="#">DE</a>
-        </div>
-      </div>
     </div>
   </div>`;
 };
@@ -404,8 +397,8 @@ const contactDialog = (page) => {
     <button class="contact-modal__close" type="button" data-contact-close aria-label="Закрыть форму">×</button>
     <div class="contact-modal__head">
       <p class="eyebrow">Быстрая заявка</p>
-      <h2 id="contact-modal-title" data-contact-modal-title>Написать нам</h2>
-      <p>Оставьте контакты — команда уточнит детали и поможет подобрать формат.</p>
+      <h2 id="contact-modal-title" data-contact-modal-title>Оставить заявку</h2>
+      <p>Оставьте имя и номер телефона — команда свяжется с вами и поможет подобрать направление, программу и снаряжение.</p>
       <span class="contact-modal__context" data-contact-modal-context>${escapeHtml(context || "Выберите направление")}</span>
     </div>
     <form class="contact-form contact-modal__form" data-contact-form data-contact-modal-form
@@ -422,13 +415,13 @@ const contactDialog = (page) => {
         </select>
       </label>`}
       <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
-      <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, email или @username" required></label>
+      <label>Номер телефона<input name="contact" autocomplete="tel" inputmode="tel" placeholder="+7 900 000-00-00" required></label>
       <label><span>Комментарий <small>по желанию</small></span><textarea name="message" rows="4" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
-      <button class="button button-primary contact-modal__submit" type="submit">${site.contactEndpoint ? "Отправить заявку" : "Подготовить заявку"}</button>
+      <button class="button button-primary contact-modal__submit" type="submit">${site.contactEndpoint ? "Отправить заявку" : "Отправить через email"}</button>
       <p class="form-note" data-form-note aria-live="polite"></p>
     </form>
     <div class="contact-modal__direct">
-      <span>Или свяжитесь напрямую</span>
+      <span>Или напишите сразу</span>
       <div>
         <a href="${phoneHref}" data-contact-direct-phone${country?.key === "dahab" ? ` target="_blank" rel="noopener noreferrer"` : ""}>
           <img src="/assets/icons/whatsapp.svg" alt="" width="20" height="20">
@@ -495,6 +488,21 @@ const hero = (page, actions = "") => `
   </div>
 </section>`;
 
+const homeCountryCopy = {
+  dahab: {
+    lead: "Круглый год. Спокойная лагуна для первых стартов, зоны для прогресса, Wingfoil, Windsurf и детские программы. Взрослый урок — 70$, детский — от 55$.",
+    action: "Смотреть Дахаб"
+  },
+  vietnam: {
+    lead: "Сильный зимний сезон, стабильный бриз и живая станционная атмосфера. Windsurf, Wingfoil и Kite для обучения, прогресса и самостоятельного катания.",
+    action: "Смотреть Муйне"
+  },
+  russia: {
+    lead: "Летний сезон на Должанской косе. Мелкая вода, старт с берега и форматы для новичков, опытных райдеров и семей с детьми.",
+    action: "Смотреть Должанскую"
+  }
+};
+
 const home = (page) => `
 <section class="hero hero-home">
   <div class="home-hero__slider" data-hero-slider aria-label="Фото Vetratoria">
@@ -502,18 +510,18 @@ const home = (page) => `
   </div>
   <div class="hero-shade"></div>
   <div class="hero-content">
-    <p class="eyebrow">Vetratoria Wind Schools</p>
-    <h1>Windsurf, Wingfoil и Kite — от первого старта до уверенного катания</h1>
-    <p class="hero-lead">Обучение и прокат в Египте, Вьетнаме и России. Подберём программу и снаряжение под ваш уровень и условия на воде.</p>
+    <p class="eyebrow">Школы ветра Vetratoria · с 2006 года</p>
+    <h1>Windsurf, Wingfoil и Kite — обучение с нуля и прогресс</h1>
+    <p class="hero-lead">Три страны, опытные инструкторы и снаряжение под ваш уровень. Поможем новичку сделать первые шаги, опытному райдеру — улучшить технику, а семье — выбрать удобный формат поездки.</p>
+    <div class="hero-actions">
+      ${contactCta(page, "Оставить заявку")}
+      <a class="button button-ghost" href="#destinations">Выбрать направление</a>
+    </div>
     <div class="hero-advantages">
       <article class="hero-advantage">С 2006 года</article>
-      <article class="hero-advantage">Обучение с нуля и прогресс</article>
-      <article class="hero-advantage">Опытные инструкторы</article>
-      <article class="hero-advantage">Клубная система скидок</article>
-    </div>
-    <div class="hero-actions">
-      ${contactCta(page, "Написать нам")}
-      ${countryList.map((country) => `<a class="button button-ghost" href="${country.href}">${country.nav}</a>`).join("")}
+      <article class="hero-advantage">10 000+ учеников</article>
+      <article class="hero-advantage">Новички и опытные райдеры</article>
+      <article class="hero-advantage">Обучение, прокат и детские программы</article>
     </div>
     <div class="slider-dots" aria-label="Слайды">
       ${site.slider.map((_, index) => `<button type="button" data-slide-dot aria-label="Слайд ${index + 1}"></button>`).join("")}
@@ -523,15 +531,15 @@ const home = (page) => `
 
 <section class="home-section home-section--destinations" id="destinations">
   <div class="section-inner">
-    ${sectionHeading("Направления", "Выберите страну", "Главная Vetratoria - это вход в сеть. Внутри каждой страны свои условия, станции, цены, команда, безопасность, блог и медиа.")}
+    ${sectionHeading("Направления", "Выберите место под сезон и ваш уровень", "Сравните условия на воде, виды спорта и формат поездки. Если сомневаетесь, оставьте заявку — команда поможет выбрать направление.")}
     <div class="destination-grid">
       ${countryList.map((country) => `
         <a class="destination-card" href="${country.href}">
           ${cardImage(country.hero, `${country.region} · ${country.city}`)}
           <span>${country.region}</span>
           <h2>${country.key === "russia" ? "Должанская Коса" : country.title}</h2>
-          <p>${country.lead}</p>
-          <em>Открыть направление</em>
+          <p>${homeCountryCopy[country.key].lead}</p>
+          <em>${homeCountryCopy[country.key].action}</em>
         </a>`).join("")}
     </div>
   </div>
@@ -540,14 +548,14 @@ const home = (page) => `
 <section class="home-section home-section--brand" id="brand">
   <div class="section-inner brand-split">
     <div class="brand-copy">
-      <p class="eyebrow">О бренде</p>
-      <h2>Vetratoria - это система вокруг ветра, воды и обучения</h2>
-      <p>Мы соединяем спорт, станции, инструкторов, оборудование, безопасность и маршрут клиента в одну понятную клубную систему.</p>
+      <p class="eyebrow">Почему Vetratoria</p>
+      <h2>Не просто выдаём снаряжение — помогаем уверенно выйти на воду</h2>
+      <p>Подбираем место, инструктора и комплект под ваши даты, опыт и цель. Можно начать с нуля, вернуться после перерыва или точечно поработать над техникой.</p>
       <div class="home-proof-list">
-        <span>Страна, спорт, цена и заявка собраны в понятный маршрут.</span>
-        <span>Станции подбираются под ветер, уровень и задачу.</span>
-        <span>Инструктор, зона катания и rescue обсуждаются до выхода.</span>
-        <span>Команда ведет человека от берега до прогресса.</span>
+        <span>Школы и команды работают с 2006 года.</span>
+        <span>Более 10 000 учеников прошли обучение.</span>
+        <span>Снаряжение подбирается под уровень и условия на воде.</span>
+        <span>Есть форматы для новичков, опытных райдеров и семей с детьми.</span>
       </div>
     </div>
     <figure class="brand-media">${cardImage(img("ABOUTVETRATORIA.jpg"), "Станция Vetratoria")}</figure>
@@ -556,11 +564,11 @@ const home = (page) => `
 
 <section class="home-section" id="media-blog">
   <div class="section-inner">
-    ${sectionHeading("Блог и медиа", "Материалы, фото и истории со станций", "Блог помогает подготовиться к поездке, а медиа показывает станции, уроки, людей, снаряжение и атмосферу.")}
+    ${sectionHeading("До поездки", "Посмотрите, как всё устроено на воде", "Полезные материалы помогут подготовиться, а живые фотографии покажут занятия, станции, людей и атмосферу без рекламной постановки.")}
     <div class="destination-grid media-grid">
       ${[
-        { href: "/blog/", image: img("home-blog.webp"), label: "Articles", title: "Блог", lead: "Статьи по странам, спорту, обучению, безопасности и оборудованию." },
-        { href: "/media/", image: img("home-media.webp"), label: "Photo / Video", title: "Медиа", lead: "Фото и видео по Египту, Вьетнаму и России. Альбомы отдельно от статей." }
+        { href: "/blog/", image: img("home-blog.webp"), label: "Полезно знать", title: "Подготовиться к поездке", lead: "Как выбрать спорт, когда ехать, как проходит обучение и что учесть перед первым выходом." },
+        { href: "/media/", image: img("home-media.webp"), label: "Живые кадры", title: "Увидеть атмосферу", lead: "Занятия, станции, команда и обычные дни на воде в Египте, Вьетнаме и России." }
       ].map((item) => `
         <a class="destination-card" href="${item.href}">
           ${cardImage(item.image, item.title)}
@@ -576,13 +584,13 @@ const home = (page) => `
 <section class="home-section home-section--contact" id="contact">
   <div class="section-inner home-cta">
     <div>
-      <p class="eyebrow">Контакты</p>
-      <h2>Напишите нам - подберем направление</h2>
-      <p>Укажите страну, даты, уровень и спорт. Подскажем, куда лучше ехать: Египет, Вьетнам или Россия.</p>
+      <p class="eyebrow">Поможем выбрать</p>
+      <h2>Расскажите, когда и как хотите кататься</h2>
+      <p>Оставьте имя и номер телефона. Команда сравнит направления и предложит формат под ваши даты, уровень и состав поездки.</p>
     </div>
     <div class="home-cta__actions">
-      ${contactCta(page, "Написать нам")}
-      ${countryList.map((country) => `<a class="button button-ghost" href="${country.href}">${country.nav}</a>`).join("")}
+      ${contactCta(page, "Оставить заявку")}
+      <a class="button button-ghost" href="#destinations">Сравнить направления</a>
     </div>
   </div>
 </section>`;
@@ -1319,23 +1327,23 @@ const dahabHowToGetPage = (page) => {
 
 const dahabHomePage = (page) => {
   const priceCards = [
-    ["Wingfoil", "Урок", "70$", "Инструктор и комплект под уровень.", dahabRefImg("price-wingfoil.webp"), "/dahab/wingfoil/price/"],
-    ["Foil boat", "Фойл за лодкой", "60$", "Полёт на фойле без крыла.", dahabRefImg("price-foil-boat.webp"), "/dahab/wingfoil/price/"],
-    ["Windsurf", "Урок", "70$", "Парус, доска и инструктор.", dahabRefImg("price-windsurf.webp"), "/dahab/windsurf/price/"],
-    ["Kids", "Детский урок", "от 55$", "Лёгкое снаряжение и мягкий темп.", dahabRefImg("price-kids.webp"), "/dahab/windsurf-kids/"]
+    ["Wingfoil", "Индивидуальный урок", "70$", "Инструктор, полный комплект, rescue и страховка снаряжения.", dahabRefImg("price-wingfoil.webp"), "/dahab/wingfoil/price/"],
+    ["Foil boat", "Фойл за лодкой", "60$", "Отдельно почувствовать фойл, баланс и высоту до выхода с крылом.", dahabRefImg("price-foil-boat.webp"), "/dahab/wingfoil/price/"],
+    ["Windsurf", "Индивидуальный урок", "70$", "Инструктор, парус, доска, rescue и страховка снаряжения.", dahabRefImg("price-windsurf.webp"), "/dahab/windsurf/price/"],
+    ["Windsurf Kids", "Детский урок", "от 55$", "Лёгкое снаряжение, инструктор рядом и спокойный темп обучения.", dahabRefImg("price-kids.webp"), "/dahab/windsurf-kids/"]
   ];
   const stations = [
-    ["Wing Center", "Wingfoil · Lessons · Rental · Storage", "Обучение, прокат и хранение снаряжения для wingfoil.", dahabRefImg("bg-wingfoil-station.webp")],
-    ["Swiss Inn", "Windsurf · Lessons · Rental · Storage", "Обучение, прокат и хранение снаряжения для windsurf.", dahabRefImg("bg-swiss.webp")],
-    ["Ganet Sinai", "Windsurf · Lessons · Rental · Storage", "Обучение, прокат и хранение снаряжения для windsurf.", dahabRefImg("bg-ganet.webp")]
+    ["Wing Center", "Только Wingfoil", "Обучение, прокат полного комплекта и отдельного снаряжения для wingfoil.", dahabRefImg("bg-wingfoil-station.webp")],
+    ["Swiss Inn", "Windsurf", "Обучение и прокат для windsurf. По уровню сервиса и возможностям равноценна Ganet Sinai.", dahabRefImg("bg-swiss.webp")],
+    ["Ganet Sinai", "Windsurf", "Обучение и прокат для windsurf. По уровню сервиса и возможностям равноценна Swiss Inn.", dahabRefImg("bg-ganet.webp")]
   ];
   const team = [
-    ["A", "Manager & Senior Instructor", "Anatoly", "25+ лет в водных видах спорта. Подберёт RRD-комплект и формат, чтобы первый выход на воду был спокойным и ярким.", "Languages: RU · EN · DE"],
-    ["H", "Pro Instructor", "Hassan", "10+ лет тренерского опыта. Самый узнаваемый райдер на споте: учит балансу, фойлу и уверенности в любых условиях.", "Languages: RU · EN"],
-    ["E", "Kids Instructor", "Egor", "Специализируется на обучении детей от 8 лет. Превращает сложную технику в понятную игру и безопасный прогресс.", "Languages: RU · EN"],
-    ["R", "Instructor", "Roma", "Спокойно объясняет физику ветра, крыло и стойку. Помогает освоиться даже в сильный ветер и не перегружает ученика.", "Languages: RU"],
-    ["I", "Administrator", "Ira", "Душа станции: отвечает за комфорт, безопасность на воде и хорошее настроение до и после каждой сессии.", "Languages: RU · EN"],
-    ["A", "Instructor", "Anya", "Отлично видит технические ошибки и помогает заложить базу, на которой ученик быстрее начинает прогрессировать.", "Languages: RU · EN"]
+    ["А", "Менеджер и старший инструктор", "Анатолий", "25+ лет в водных видах спорта. Подберёт комплект и формат, чтобы первый выход на воду был спокойным и понятным.", "Языки: русский, английский, немецкий"],
+    ["Х", "Инструктор Wingfoil", "Хассан", "10+ лет тренерского опыта. Учит балансу, контролю фойла и уверенным действиям в разных условиях.", "Языки: русский, английский"],
+    ["Е", "Детский инструктор", "Егор", "Объясняет сложную технику через понятные упражнения и помогает ребёнку прогрессировать без лишнего давления.", "Языки: русский, английский"],
+    ["Р", "Инструктор", "Рома", "Спокойно объясняет ветер, положение крыла и стойку. Помогает освоиться и не перегружает ученика теорией.", "Язык: русский"],
+    ["И", "Администратор", "Ира", "Помогает с организацией занятий, выбором формата и всеми вопросами до и после выхода на воду.", "Языки: русский, английский"],
+    ["А", "Инструктор", "Аня", "Замечает технические ошибки и помогает заложить базу, на которой ученик быстрее начинает прогрессировать.", "Языки: русский, английский"]
   ];
   const reviews = dahabReviewItems;
 
@@ -1345,21 +1353,22 @@ const dahabHomePage = (page) => {
   <div class="dahab-hero__shade"></div>
   <div class="dahab-hero__content">
     <p class="eyebrow">Египет · Дахаб</p>
-    <h1>Wingfoil и Windsurf в Дахабе</h1>
-    <p class="hero-lead">Обучение и прокат на Красном море для новичков и опытных райдеров. Подберём программу, инструктора и снаряжение под ваш уровень.</p>
-    <div class="hero-advantages"><span class="hero-advantage">С 2006 года</span><span class="hero-advantage">Условия для любого уровня</span><span class="hero-advantage">10 000+ учеников</span><span class="hero-advantage">3 спасательных катера</span></div>
+    <h1>Wingfoil и Windsurf в Дахабе круглый год</h1>
+    <p class="hero-lead">Обучаем с нуля, помогаем прогрессировать и даём снаряжение в прокат. После первого–второго урока можно выходить на воду и отрабатывать элементы под присмотром rescue-команды.</p>
     <div class="hero-actions dahab-hero-actions">
-      ${contactCta(page, "Написать нам")}
-      <a class="button button-ghost" href="/dahab/wingfoil/">Wingfoil</a>
-      <a class="button button-ghost" href="/dahab/windsurf/">Windsurf</a>
-      <a class="button button-ghost" href="/dahab/wingfoil/price/">Цены</a>
+      ${contactCta(page, "Оставить заявку")}
+      <a class="button button-ghost" href="#prices">Смотреть цены</a>
     </div>
+    <div class="hero-advantages"><span class="hero-advantage">Ветер круглый год</span><span class="hero-advantage">Урок для взрослых — 70$</span><span class="hero-advantage">10 000+ учеников</span><span class="hero-advantage">4 спасательных катера</span></div>
   </div>
 </section>
 
-<section class="dahab-marquee" aria-label="Vetratoria Dahab">
-  <div class="dahab-marquee__track">
-    ${Array.from({ length: 4 }, () => `<span>ДАХАБ · ВЕТЕР КРУГЛЫЙ ГОД / УРОК ВИНГФОЙЛА — 70$ / УРОК ВИНДСЁРФИНГА — 70$ / ДЕТСКИЙ УРОК — ОТ 55$ / ПРОКАТ ПО ФАКТУ / СПАСАТЕЛЬНЫЙ КАТЕР / SWISS INN / GANET SINAI / WING CENTER / </span>`).join("")}
+<section class="dahab-facts-bar" aria-label="Коротко об обучении в Дахабе">
+  <div class="dahab-facts-bar__inner">
+    <span>Ветер круглый год</span>
+    <span>Wingfoil и Windsurf — 70$</span>
+    <span>Детский урок — от 55$</span>
+    <span>Прокат — от 25$</span>
   </div>
 </section>
 
@@ -1367,28 +1376,31 @@ const dahabHomePage = (page) => {
   <div class="sport-split__inner">
     <header class="section-heading">
       <p class="eyebrow">Выберите спорт</p>
-      <h2>Wingfoil или Windsurf</h2>
+      <h2>Что хотите освоить?</h2>
+      <p>Оба направления подходят для старта с нуля и дальнейшего прогресса. Инструктор подберёт программу под ваш опыт, физическую подготовку и цель.</p>
     </header>
     <div class="sport-split__grid">
       <a class="sport-tile" href="/dahab/wingfoil/" aria-label="Открыть страницу Wingfoil в Дахабе">
         <img src="${dahabRefImg("choose-wingfoil.webp")}" alt="Wingfoil в Дахабе" width="1600" height="1067" loading="lazy" decoding="async">
         <div class="sport-tile__content">
           <h2>Wingfoil</h2>
-          <span>Подробнее</span>
+          <p>Крыло, доска и фойл. Для тех, кто хочет почувствовать полёт над водой и готов учиться поэтапно: берег, SUP, фойл и первые самостоятельные метры.</p>
+          <span>Узнать, как проходит обучение →</span>
         </div>
       </a>
       <a class="sport-tile" href="/dahab/windsurf/" aria-label="Открыть страницу Windsurf в Дахабе">
         <img src="/assets/img/final/windsurf/hero.webp" alt="Windsurf в Дахабе" width="1920" height="1280" loading="lazy" decoding="async">
         <div class="sport-tile__content">
           <h2>Windsurf</h2>
-          <span>Подробнее</span>
+          <p>Парус и доска. Подходит для первого знакомства с ветром, спокойного обучения, работы над техникой и скоростью.</p>
+          <span>Узнать, как проходит обучение →</span>
         </div>
       </a>
     </div>
     <a class="wsk-strip" href="/dahab/windsurf-kids/">
       <span class="wsk-strip__media"><img src="${dahabRefImg("wsk-2.webp")}" alt="Детский windsurf в Дахабе" width="1090" height="600" loading="lazy" decoding="async"></span>
-      <span class="wsk-strip__content"><small>Windsurf Kids · Дахаб</small><b>WINDSURFKIDS</b><em>Детский спортивный лагерь WindSurfKids существует с 2009 года, а с 2012 года базируется в Дахабе. Спорт, друзья, творчество и безопасная акватория.</em></span>
-      <span class="wsk-strip__button">Смотреть Kids</span>
+      <span class="wsk-strip__content"><small>Детские программы · Дахаб</small><b>Windsurf Kids</b><em>Лагерь и занятия для детей: windsurf, wingfoil, спорт, друзья и безопасная акватория. Формат подбираем по возрасту и опыту ребёнка.</em></span>
+      <span class="wsk-strip__button">Смотреть программу</span>
     </a>
   </div>
 </section>
@@ -1411,7 +1423,7 @@ const dahabHomePage = (page) => {
         </a>`).join("")}
     </div>
     <div class="price-help-cta">
-      <div><b>Не знаете, с чего начать?</b><p>Напишите даты, уровень и спорт — подберём формат, станцию и снаряжение.</p></div>
+      <div><b>Хотите результат за несколько дней?</b><p>Есть программы на 3–5 дней. Первые полёты часто получаются уже за несколько дней, но темп обучения всегда индивидуален.</p></div>
       <nav>${contactCta(page, "Оставить заявку", "", null)}<a href="/dahab/wingfoil/price/">Wingfoil цены</a><a href="/dahab/windsurf/price/">Windsurf цены</a></nav>
     </div>
   </div>
@@ -1420,7 +1432,8 @@ const dahabHomePage = (page) => {
 <section class="station-advice" id="stations">
   <header class="station-advice__head">
     <p class="eyebrow">Станции</p>
-    <h2>Станции Vetratoria в Дахабе</h2>
+    <h2>Выберите станцию под свой спорт</h2>
+    <p>Wing Center специализируется только на wingfoil. Swiss Inn и Ganet Sinai — две равноценные станции для windsurf.</p>
   </header>
   <div class="station-advice__list">
     ${stations.map(([title, meta, text, image]) => `<a href="/dahab/stations/">
@@ -1428,15 +1441,15 @@ const dahabHomePage = (page) => {
         <div><b>${title}</b><span>${meta}</span><em>${text}</em></div>
       </a>`).join("")}
   </div>
-  ${contactCta(page, "Написать нам", "station-advice__cta")}
+  ${contactCta(page, "Подобрать станцию", "station-advice__cta")}
 </section>
 
 <section class="trust-block" id="team-reviews">
   <div class="trust-block__inner">
     <header class="trust-head">
-      <p class="eyebrow">Команда и отзывы</p>
-      <h2>Команда, которая выводит на воду</h2>
-      <p>Мы не просто выдаём снаряжение — подбираем станцию, ветер и формат под ваш уровень. Инструктор рядом: на берегу, на старте и в воде.</p>
+      <p class="eyebrow">Команда и 144 отзыва</p>
+      <h2>Люди, которые отвечают за ваш прогресс и безопасность</h2>
+      <p>Инструктор помогает на берегу, на старте и в воде. Команда подбирает комплект, следит за условиями и остаётся на связи во время самостоятельной практики.</p>
     </header>
     <section class="trust-slider trust-slider--team" aria-label="Команда Vetratoria Dahab">
       <div class="trust-slider__top">
@@ -1451,12 +1464,12 @@ const dahabHomePage = (page) => {
       <a class="station-atmosphere__card station-atmosphere__card--main" href="/dahab/wingfoil/"><img src="${dahabRefImg("block-wingfoil.webp")}" alt="Wingfoil" loading="lazy" decoding="async"><span>Wingfoil</span><strong>Полёты над водой</strong><em>Крыло, фойл и быстрый прогресс</em></a>
       <a class="station-atmosphere__card" href="/dahab/windsurf/"><img src="${dahabRefImg("block-windsurf.webp")}" alt="Windsurf" loading="lazy" decoding="async"><span>Windsurf</span><strong>Парус и ветер</strong><em>Уроки, прокат и практика</em></a>
       <a class="station-atmosphere__card" href="/dahab/wingfoil/price/"><img src="${dahabRefImg("block-station.webp")}" alt="Станция Vetratoria" loading="lazy" decoding="async"><span>Цены</span><strong>Wingfoil прайс</strong><em>Комплекты, уроки, пакеты и хранение</em></a>
-      <div class="station-atmosphere__panel"><span>Атмосфера станции</span><h3>Станция живёт между выходами на воду</h3><p>Здесь выбирают комплект, смотрят ветер, обсуждают попытки и возвращаются на воду снова. Не только урок — атмосфера Дахаба и команды рядом.</p><div><small>вода</small><small>берег</small><small>прогресс</small></div><a href="/media/dahab/">Смотреть медиа Дахаба →</a></div>
+      <div class="station-atmosphere__panel"><span>Жизнь станции</span><h3>Посмотрите Дахаб без рекламной постановки</h3><p>Живые фотографии с уроков, самостоятельного катания, берега и обычных дней команды на станции.</p><a href="/media/dahab/">Смотреть фото Дахаба →</a></div>
     </section>
     <section class="trust-slider trust-slider--reviews" aria-label="Отзывы гостей Vetratoria Dahab">
       <div class="trust-slider__top">
         <div><span>Отзывы</span><h3>Что говорят гости</h3></div>
-        <a href="https://www.tripadvisor.com/" target="_blank" rel="noopener">144 отзыва →</a>
+        <a href="https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html" target="_blank" rel="noopener">144 отзыва →</a>
         <div class="trust-slider__controls"><button type="button" data-trust-prev="reviews" aria-label="Предыдущие отзывы">‹</button><button type="button" data-trust-next="reviews" aria-label="Следующие отзывы">›</button></div>
       </div>
       <div class="trust-track trust-track--reviews" data-trust-track="reviews">
@@ -1477,7 +1490,7 @@ const dahabHomePage = (page) => {
         <article><strong>02. Скоростная зона</strong><p>Длинные галсы и стабильный ветер. Здесь удобно отрабатывать скорость, повороты, контроль крыла или паруса.</p></article>
         <article><strong>03. Волновая зона</strong><p>Открытая вода для тех, кто уже уверенно катается. Больше ветра, волна и настоящая дахабская практика.</p></article>
       </div>
-  <div class="water-area__actions">${contactCta(page, "Подобрать зону")}<a href="/dahab/safety/">Безопасность на воде →</a></div>
+  <div class="water-area__actions">${contactCta(page, "Подобрать формат")}<a href="/dahab/safety/">Безопасность на воде →</a></div>
     </div>
     <figure class="water-area__visual"><img src="${dahabRefImg("aqva-aerial.webp")}" alt="Акватория Дахаба для wingfoil и windsurf" loading="lazy" decoding="async"></figure>
   </div>
