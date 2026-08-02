@@ -5,12 +5,19 @@
   const navPanel = document.querySelector("[data-nav-panel]");
   const mobileMenu = window.matchMedia("(max-width: 1180px)");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const coarsePointer = window.matchMedia("(pointer: coarse)");
 
   const dropdowns = [...document.querySelectorAll("[data-dropdown]")];
+  let navScrollFrame = null;
 
-  const updateNavBottom = () => {
-    if (!nav) return;
-    document.documentElement.style.setProperty("--nav-bottom", `${Math.max(0, Math.round(nav.getBoundingClientRect().bottom))}px`);
+  const syncNavScroll = () => {
+    navScrollFrame = null;
+    nav?.classList.toggle("is-scrolled", window.scrollY > 8);
+  };
+
+  const scheduleNavScroll = () => {
+    if (navScrollFrame !== null) return;
+    navScrollFrame = window.requestAnimationFrame(syncNavScroll);
   };
 
   const closeDropdowns = (except = null) => {
@@ -52,7 +59,6 @@
       event.preventDefault();
       event.stopPropagation();
       const willOpen = !dropdown.classList.contains("is-open");
-      updateNavBottom();
       closeDropdowns(dropdown);
       dropdown.classList.toggle("is-open", willOpen);
       toggle.setAttribute("aria-expanded", String(willOpen));
@@ -76,7 +82,7 @@
   }
 
   syncMenuMode();
-  updateNavBottom();
+  syncNavScroll();
 
   const currentPath = window.location.pathname.replace(/\/index\.html$/, "/");
   document.querySelectorAll("a[href]").forEach((link) => {
@@ -95,6 +101,7 @@
     const dots = [...document.querySelectorAll("[data-slide-dot]")];
     let active = 0;
     let timer = null;
+    let preloadTimer = null;
 
     const loadSlide = (slide) => {
       const deferredSource = slide?.dataset.src;
@@ -104,8 +111,26 @@
     };
 
     const preloadFollowingSlide = () => {
-      if (reducedMotion.matches || slides.length < 2) return;
-      window.setTimeout(() => loadSlide(slides[(active + 1) % slides.length]), 600);
+      if (preloadTimer) window.clearTimeout(preloadTimer);
+      if (document.hidden || reducedMotion.matches || slides.length < 2) return;
+      preloadTimer = window.setTimeout(() => {
+        loadSlide(slides[(active + 1) % slides.length]);
+        preloadTimer = null;
+      }, 600);
+    };
+
+    const stop = () => {
+      if (timer) window.clearInterval(timer);
+      if (preloadTimer) window.clearTimeout(preloadTimer);
+      timer = null;
+      preloadTimer = null;
+    };
+
+    const start = () => {
+      stop();
+      if (!document.hidden && !reducedMotion.matches && slides.length > 1) {
+        timer = window.setInterval(() => activate(active + 1), 4500);
+      }
     };
 
     const activate = (index) => {
@@ -131,22 +156,14 @@
     dots.forEach((dot, index) => {
       dot.addEventListener("click", () => {
         activate(index);
-        if (timer) window.clearInterval(timer);
+        start();
       });
     });
 
     activate(0);
-
-    if (!reducedMotion.matches && slides.length > 1) {
-      timer = window.setInterval(() => activate(active + 1), 4500);
-    }
-
-    reducedMotion.addEventListener?.("change", (event) => {
-      if (event.matches && timer) {
-        window.clearInterval(timer);
-        timer = null;
-      }
-    });
+    start();
+    document.addEventListener("visibilitychange", () => document.hidden ? stop() : start());
+    reducedMotion.addEventListener?.("change", start);
   }
 
   document.querySelectorAll("[data-brand-slider]").forEach((brandSlider) => {
@@ -174,7 +191,7 @@
 
     const start = () => {
       stop();
-      if (!reducedMotion.matches && slides.length > 1) {
+      if (!document.hidden && !reducedMotion.matches && slides.length > 1) {
         timer = window.setInterval(() => activate(active + 1), 5000);
       }
     };
@@ -187,6 +204,7 @@
       activate(active + 1);
       start();
     });
+    document.addEventListener("visibilitychange", () => document.hidden ? stop() : start());
     reducedMotion.addEventListener?.("change", start);
 
     activate(active);
@@ -204,7 +222,7 @@
       const step = card ? card.getBoundingClientRect().width + cardGap : track.clientWidth * 0.82;
       track.scrollBy({
         left: button.dataset.trustPrev ? -step : step,
-        behavior: reducedMotion.matches ? "auto" : "smooth"
+        behavior: reducedMotion.matches || coarsePointer.matches ? "auto" : "smooth"
       });
     });
   });
@@ -249,7 +267,7 @@
     };
 
     const move = (direction) => {
-      track.scrollBy({ left: scrollStep() * direction, behavior: reducedMotion.matches ? "auto" : "smooth" });
+      track.scrollBy({ left: scrollStep() * direction, behavior: reducedMotion.matches || coarsePointer.matches ? "auto" : "smooth" });
     };
 
     prev?.addEventListener("click", () => move(-1));
@@ -597,10 +615,15 @@
     body.classList.remove("contact-modal-open");
   });
 
-  window.addEventListener("scroll", () => {
-    updateNavBottom();
-    nav?.classList.toggle("is-scrolled", window.scrollY > 8);
-  }, { passive: true });
-
-  window.addEventListener("resize", updateNavBottom);
+  window.addEventListener("scroll", scheduleNavScroll, { passive: true });
+  window.addEventListener("resize", scheduleNavScroll, { passive: true });
+  window.addEventListener("pageshow", () => {
+    setMenuOpen(false);
+    document.querySelectorAll("dialog[open]").forEach((dialog) => dialog.close());
+    body.classList.remove("contact-modal-open");
+    scheduleNavScroll();
+  });
+  window.addEventListener("pagehide", () => {
+    body.classList.remove("nav-open", "contact-modal-open");
+  });
 })();

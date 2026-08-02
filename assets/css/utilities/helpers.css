@@ -15,3 +15,51 @@
 .skip-link:focus {
   transform: translateY(0);
 }
+
+/* Keep touch devices responsive: avoid sticky hover layers and long smooth-scroll work. */
+@media (hover: none), (pointer: coarse) {
+  html,
+  .card-slider__track {
+    scroll-behavior: auto;
+  }
+
+  button,
+  a {
+    touch-action: manipulation;
+  }
+
+  .destination-card:hover,
+  .article-card:hover,
+  .link-card:hover,
+  .team-card:hover,
+  .price-card:hover,
+  .dahab-sport-price-card:hover,
+  .dahab-sport-water-grid a:hover,
+  .dahab-sport-useful a:hover,
+  .media-country-card:hover,
+  .media-album-card:hover {
+    transform: none;
+  }
+
+  .destination-card:hover img,
+  .article-card:hover img,
+  .sport-tile:hover img,
+  .station-advice__list a:hover img,
+  .station-atmosphere__card:hover img,
+  .media-country-card:hover > img,
+  .media-album-card:hover img,
+  .media-photo-card > button:hover img {
+    transform: none;
+  }
+
+  .dahab-marquee__track {
+    animation-duration: 48s;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-modal::backdrop,
+  .media-lightbox::backdrop {
+    backdrop-filter: none;
+  }
+}
