@@ -603,6 +603,27 @@ const homeCountryCopy = {
   }
 };
 
+const brandSlides = [
+  {
+    src: img("vetratoria-windsurf-training.webp"),
+    alt: "Виндсёрферы тренируются на ровной воде в Дахабе",
+    width: 800,
+    height: 500
+  },
+  {
+    src: img("vetratoria-windsurf-lagoon-lesson.webp"),
+    alt: "Ученики Vetratoria готовятся к занятию в лагуне Дахаба",
+    width: 800,
+    height: 500
+  },
+  {
+    src: img("vetratoria-windsurf-community.webp"),
+    alt: "Участники виндсёрф-программы у станции Vetratoria",
+    width: 1200,
+    height: 800
+  }
+];
+
 const home = (page) => `
 <section class="hero hero-home">
   <div class="home-hero__slider" data-hero-slider aria-label="Фото Vetratoria">
@@ -658,7 +679,18 @@ const home = (page) => `
         <span>Перед выходом объясняем задачу, границы акватории и правила безопасности.</span>
       </div>
     </div>
-    <figure class="brand-media">${cardImage(img("ABOUTVETRATORIA.jpg"), "Станция Vetratoria")}</figure>
+    <figure class="brand-media" data-brand-slider aria-label="Обучение и сообщество Vetratoria">
+      <div class="brand-media__viewport">
+        ${brandSlides.map((slide, index) => `<img src="${slide.src}" alt="${escapeHtml(slide.alt)}" width="${slide.width}" height="${slide.height}" data-brand-slide class="${index === 0 ? "is-active" : ""}" aria-hidden="${index === 0 ? "false" : "true"}" loading="lazy" decoding="async">`).join("")}
+      </div>
+      <div class="brand-media__controls">
+        <button type="button" class="brand-media__arrow brand-media__arrow--prev" data-brand-prev aria-label="Предыдущее фото">‹</button>
+        <div class="brand-media__dots" aria-label="Фотографии Vetratoria">
+          ${brandSlides.map((_, index) => `<button type="button" data-brand-dot aria-label="Показать фото ${index + 1}"></button>`).join("")}
+        </div>
+        <button type="button" class="brand-media__arrow brand-media__arrow--next" data-brand-next aria-label="Следующее фото">›</button>
+      </div>
+    </figure>
   </div>
 </section>
 
