@@ -151,7 +151,6 @@
 
   document.querySelectorAll("[data-brand-slider]").forEach((brandSlider) => {
     const slides = [...brandSlider.querySelectorAll("[data-brand-slide]")];
-    const dots = [...brandSlider.querySelectorAll("[data-brand-dot]")];
     const prev = brandSlider.querySelector("[data-brand-prev]");
     const next = brandSlider.querySelector("[data-brand-next]");
     let active = Math.max(0, slides.findIndex((slide) => slide.classList.contains("is-active")));
@@ -164,11 +163,6 @@
         const isActive = slideIndex === active;
         slide.classList.toggle("is-active", isActive);
         slide.setAttribute("aria-hidden", String(!isActive));
-      });
-      dots.forEach((dot, dotIndex) => {
-        const isActive = dotIndex === active;
-        dot.classList.toggle("is-active", isActive);
-        dot.setAttribute("aria-current", String(isActive));
       });
     };
 
@@ -193,17 +187,6 @@
       activate(active + 1);
       start();
     });
-    dots.forEach((dot, index) => {
-      dot.addEventListener("click", () => {
-        activate(index);
-        start();
-      });
-    });
-
-    brandSlider.addEventListener("mouseenter", stop);
-    brandSlider.addEventListener("mouseleave", start);
-    brandSlider.addEventListener("focusin", stop);
-    brandSlider.addEventListener("focusout", start);
     reducedMotion.addEventListener?.("change", start);
 
     activate(active);

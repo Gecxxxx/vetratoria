@@ -605,6 +605,12 @@ const homeCountryCopy = {
 
 const brandSlides = [
   {
+    src: img("vetratoria-station-team.webp"),
+    alt: "Гости и команда Vetratoria у станции в Дахабе",
+    width: 1600,
+    height: 900
+  },
+  {
     src: img("vetratoria-windsurf-training.webp"),
     alt: "Виндсёрферы тренируются на ровной воде в Дахабе",
     width: 800,
@@ -684,11 +690,8 @@ const home = (page) => `
         ${brandSlides.map((slide, index) => `<img src="${slide.src}" alt="${escapeHtml(slide.alt)}" width="${slide.width}" height="${slide.height}" data-brand-slide class="${index === 0 ? "is-active" : ""}" aria-hidden="${index === 0 ? "false" : "true"}" loading="lazy" decoding="async">`).join("")}
       </div>
       <div class="brand-media__controls">
-        <button type="button" class="brand-media__arrow brand-media__arrow--prev" data-brand-prev aria-label="Предыдущее фото">‹</button>
-        <div class="brand-media__dots" aria-label="Фотографии Vetratoria">
-          ${brandSlides.map((_, index) => `<button type="button" data-brand-dot aria-label="Показать фото ${index + 1}"></button>`).join("")}
-        </div>
-        <button type="button" class="brand-media__arrow brand-media__arrow--next" data-brand-next aria-label="Следующее фото">›</button>
+        <button type="button" class="brand-media__side brand-media__side--prev" data-brand-prev aria-label="Предыдущее фото"></button>
+        <button type="button" class="brand-media__side brand-media__side--next" data-brand-next aria-label="Следующее фото"></button>
       </div>
     </figure>
   </div>

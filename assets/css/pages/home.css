@@ -101,64 +101,30 @@
   pointer-events: none;
 }
 
-.brand-media__arrow,
-.brand-media__dots button {
-  border: 1px solid rgba(255, 255, 255, 0.36);
-  background: rgba(8, 8, 7, 0.76);
-  color: var(--white);
-  cursor: pointer;
+.brand-media__side {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  padding: 0;
+  border: 0;
+  background: transparent;
   pointer-events: auto;
 }
 
-.brand-media__arrow {
-  position: absolute;
-  top: 50%;
-  display: grid;
-  width: 46px;
-  height: 46px;
-  place-items: center;
-  border-radius: 50%;
-  font-size: 30px;
-  line-height: 1;
-  transform: translateY(-50%);
-}
-
-.brand-media__arrow--prev {
-  left: 16px;
-}
-
-.brand-media__arrow--next {
-  right: 16px;
-}
-
-.brand-media__arrow:hover,
-.brand-media__arrow:focus-visible,
-.brand-media__dots button:hover,
-.brand-media__dots button:focus-visible {
-  border-color: var(--orange);
-  background: var(--orange);
-}
-
-.brand-media__dots {
-  position: absolute;
-  right: 0;
-  bottom: 16px;
+.brand-media__side--prev {
   left: 0;
-  display: flex;
-  justify-content: center;
-  gap: 8px;
+  cursor: w-resize;
 }
 
-.brand-media__dots button {
-  width: 10px;
-  height: 10px;
-  padding: 0;
-  border-radius: 50%;
+.brand-media__side--next {
+  right: 0;
+  cursor: e-resize;
 }
 
-.brand-media__dots button.is-active {
-  border-color: var(--orange);
-  background: var(--orange);
+.brand-media__side:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: -4px;
 }
 
 .home-proof-list {
@@ -227,11 +193,6 @@
 @media (max-width: 520px) {
   .brand-media__viewport {
       min-height: 330px;
-    }
-
-  .brand-media__arrow {
-      width: 40px;
-      height: 40px;
     }
 
   .brand-copy h2,
