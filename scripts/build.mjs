@@ -95,6 +95,12 @@ const sportLabel = (sportKey) => sportKey === "windsurf-kids" ? "Kids" : site.sp
 
 const countrySportSummary = (country) => country.sports.map(sportLabel).join(", ");
 
+const dahabStationPhones = (className) => site.dahabStations.map((station) => `
+          <a class="${className}" href="tel:${station.phone}">
+            <span>Номер ${station.key === "windsurf" ? "Windsurf" : "Wingfoil"}-станции</span>
+            <b>${station.phoneLabel}</b>
+          </a>`).join("");
+
 const navButton = (label, className = "vtr-nav__link") =>
   `<button class="${className}" type="button" aria-expanded="false" data-dropdown-toggle>${label} ${arrow}</button>`;
 
@@ -102,7 +108,11 @@ const directionsMenu = () => `
       <div class="vtr-nav__item vtr-nav__item--drop vtr-nav__item--directions" data-dropdown>
         ${navButton("Направления")}
         <div class="vtr-nav__dropdown vtr-nav__dropdown--directions">
-          ${countryList.map((country) => `<a href="${country.href}"><b>${country.nav} · ${country.city}</b><span>${countrySportSummary(country)}</span></a>`).join("")}
+          ${countryList.map((country) => `
+          <div class="vtr-nav__direction">
+            <a class="vtr-nav__direction-link" href="${country.href}"><b>${country.nav} · ${country.city}</b><span>${countrySportSummary(country)}</span></a>
+            ${country.key === "dahab" ? `<div class="vtr-nav__direction-phones">${dahabStationPhones("vtr-nav__direction-phone")}</div>` : ""}
+          </div>`).join("")}
         </div>
       </div>`;
 
@@ -171,7 +181,9 @@ const mobileMenu = (page, country) => `
         <section class="vtr-mobile-menu__block" aria-label="Контакты">
           <p class="vtr-mobile-menu__title">Контакты</p>
           <a class="vtr-mobile-menu__row" href="mailto:${contactForPage(page).email}">${contactForPage(page).email}</a>
-          <a class="vtr-mobile-menu__row" href="tel:${contactForPage(page).phone}">${contactForPage(page).phoneLabel}</a>
+          ${contactForPage(page) === site.contacts.dahab
+            ? dahabStationPhones("vtr-mobile-menu__row vtr-mobile-menu__contact-phone")
+            : `<a class="vtr-mobile-menu__row" href="tel:${contactForPage(page).phone}">${contactForPage(page).phoneLabel}</a>`}
           <a class="vtr-mobile-menu__row" href="${contactForPage(page).telegram}" target="_blank" rel="noopener noreferrer">Telegram</a>
           ${socialIconLinks("vtr-mobile-menu__socials")}
         </section>
@@ -193,7 +205,9 @@ const topNav = (page) => {
   <div class="vtr-nav__top">
     <div class="vtr-nav__contacts">
       <a href="mailto:${contact.email}">${contact.email}</a>
-      <a href="tel:${contact.phone}">${contact.phoneLabel}</a>
+      ${contact === site.contacts.dahab
+        ? dahabStationPhones("vtr-nav__station-phone")
+        : `<a href="tel:${contact.phone}">${contact.phoneLabel}</a>`}
     </div>
     <nav class="vtr-nav__countries" aria-label="Выбор страны">
       ${countryList.map((country) => `<a class="vtr-nav__country${page.country === country.key ? " is-active" : ""}" href="${country.href}">${country.nav}</a>`).join("")}

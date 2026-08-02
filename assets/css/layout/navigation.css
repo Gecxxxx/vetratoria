@@ -34,12 +34,31 @@ body.nav-open {
 }
 
 .vtr-nav__contacts {
-  gap: 8px;
+  gap: 16px;
   min-width: 0;
   font-size: 16px;
   font-weight: 900;
   line-height: 1.1;
   white-space: nowrap;
+}
+
+.vtr-nav__station-phone {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vtr-nav__station-phone span {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.vtr-nav__station-phone b {
+  color: var(--white);
+  font-size: 13px;
+  line-height: 1;
 }
 
 .vtr-nav__contacts a:hover,
@@ -267,6 +286,43 @@ body.nav-open {
 
 .vtr-nav__dropdown a + a {
   margin-top: 27px;
+}
+
+.vtr-nav__direction + .vtr-nav__direction {
+  margin-top: 27px;
+}
+
+.vtr-nav__direction-phones {
+  display: grid;
+  gap: 7px;
+  margin-top: 13px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.vtr-nav__dropdown .vtr-nav__direction-phone {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+}
+
+.vtr-nav__dropdown .vtr-nav__direction-phone span {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.vtr-nav__dropdown .vtr-nav__direction-phone b {
+  flex: none;
+  color: var(--white);
+  font-size: 12px;
+}
+
+.vtr-nav__dropdown .vtr-nav__direction-phone:hover b,
+.vtr-nav__dropdown .vtr-nav__direction-phone:focus-visible b {
+  color: var(--orange);
 }
 
 .vtr-nav__dropdown b {
@@ -566,6 +622,22 @@ body.nav-open {
   .vtr-mobile-menu__row span:first-child {
       min-width: 0;
     }
+
+  .vtr-mobile-menu__contact-phone {
+      align-items: center;
+  }
+
+  .vtr-mobile-menu__contact-phone span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.15;
+  }
+
+  .vtr-mobile-menu__contact-phone b {
+      flex: none;
+      font-size: 13px;
+  }
 
   .vtr-mobile-menu__row--split span:last-child {
       margin-left: auto;
