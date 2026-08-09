@@ -4,10 +4,30 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: Inter, Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0;
+}
+
+html {
+  background: var(--bg);
+  scroll-padding-top: calc(var(--nav-main-h) + var(--nav-section-h) + 24px);
+}
+
+body {
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 :focus-visible {

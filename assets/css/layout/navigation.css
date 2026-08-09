@@ -228,7 +228,7 @@ body.nav-open {
   flex-direction: column;
   gap: 5px;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: var(--radius-control);
   background: rgba(255, 255, 255, 0.04);
 }
 

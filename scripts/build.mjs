@@ -17,6 +17,7 @@ const countryList = site.countries;
 
 const pathToFile = (path) => {
   if (path === "/") return join(root, "index.html");
+  if (path === "/404.html") return join(root, "404.html");
   return join(root, ...path.replace(/^\/|\/$/g, "").split("/"), "index.html");
 };
 
@@ -29,6 +30,44 @@ const sectionHeading = (eyebrow, title, lead) => `
     <h2>${escapeHtml(title)}</h2>
     ${lead ? `<p>${escapeHtml(lead)}</p>` : ""}
   </header>`;
+
+const monthLabels = [
+  ["jan", "ЯНВ"], ["feb", "ФЕВ"], ["mar", "МАР"], ["apr", "АПР"],
+  ["may", "МАЙ"], ["jun", "ИЮН"], ["jul", "ИЮЛ"], ["aug", "АВГ"],
+  ["sep", "СЕН"], ["oct", "ОКТ"], ["nov", "НОЯ"], ["dec", "ДЕК"]
+];
+
+const seasonCalendar = (country, { compact = false } = {}) => `
+  <article class="season-card${compact ? " season-card--compact" : ""}" data-reveal>
+    <header class="season-card__header">
+      <div>
+        <span>${escapeHtml(country.region)}</span>
+        <h3>${escapeHtml(country.title)}</h3>
+      </div>
+      <strong>${escapeHtml(country.seasonTitle)}</strong>
+    </header>
+    <div class="season-months" aria-label="Сезон: ${escapeHtml(country.seasonTitle)}">
+      ${monthLabels.map(([key, label]) => {
+        const inSeason = country.seasonMonths.includes(key);
+        return `<span class="${inSeason ? "is-season" : ""}" aria-label="${label}: ${inSeason ? "основной сезон" : "вне основного сезона"}">${label}</span>`;
+      }).join("")}
+    </div>
+    <div class="season-card__wind">
+      <span class="wind-indicator" aria-hidden="true"><i></i><i></i><i></i></span>
+      <div><b>${escapeHtml(country.windLabel)}</b><p>${escapeHtml(country.windSummary)}</p></div>
+    </div>
+    ${compact ? "" : `<p class="season-card__note">${escapeHtml(country.seasonNote)}</p><a href="${country.href}">Открыть направление <span aria-hidden="true">→</span></a>`}
+  </article>`;
+
+const seasonSection = (countries, { compact = false, eyebrow = "Сезоны Vetratoria", title = "Куда ехать сейчас", lead = "Сравните подтверждённые сезоны направлений. Точный прогноз и доступность занятий команда проверит под ваши даты." } = {}) => `
+  <section class="season-section${compact ? " season-section--compact" : ""}">
+    <div class="section-inner">
+      ${sectionHeading(eyebrow, title, lead)}
+      <div class="season-grid${countries.length === 1 ? " season-grid--single" : ""}">
+        ${countries.map((country) => seasonCalendar(country, { compact })).join("")}
+      </div>
+    </div>
+  </section>`;
 
 const sportFeatureGrid = (items) => `
     <div class="dahab-sport-feature-grid dahab-sport-feature-grid--media">
@@ -520,7 +559,7 @@ const contactDialog = (page) => {
       <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, email или @username" required></label>
       <label><span>Комментарий <small>по желанию</small></span><textarea name="message" rows="4" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
       <button class="button button-primary contact-modal__submit" type="submit">${site.contactEndpoint ? "Отправить заявку" : "Подготовить заявку"}</button>
-      <p class="form-note" data-form-note aria-live="polite"></p>
+      <p class="form-note" data-form-note role="status" aria-live="polite"></p>
     </form>
     <div class="contact-modal__direct">
       <span>Или свяжитесь напрямую</span>
@@ -539,7 +578,7 @@ const contactDialog = (page) => {
 </dialog>`;
 };
 
-const ASSET_VERSION = "20260730-ux-seo";
+const ASSET_VERSION = "20260809-staging";
 const PAGE_ASSET_VERSIONS = new Map([
   ["/", `${ASSET_VERSION}-expert-blocks-r2`],
   ["/blog/", `${ASSET_VERSION}-blog-filters`],
@@ -559,6 +598,7 @@ const layout = (page, main) => `<!doctype html>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${escapeHtml(metaTitleForPage(page))}</title>
   <meta name="description" content="${escapeHtml(metaDescriptionForPage(page))}">
+  ${page.kind === "not-found" ? `<meta name="robots" content="noindex, follow">` : ""}
   <link rel="canonical" href="${canonicalForPage(page)}">
   <meta property="og:type" content="${page.kind === "article" ? "article" : "website"}">
   <meta property="og:site_name" content="${site.name}">
@@ -651,7 +691,7 @@ const home = (page) => `
   </div>
   <div class="hero-shade"></div>
   <div class="hero-content">
-    <p class="eyebrow">Vetratoria Wind Schools</p>
+    <p class="eyebrow">Vetratoria · школы ветра</p>
     <h1>Windsurf, Wingfoil и Kite — от первого старта до уверенного катания</h1>
     <p class="hero-lead">Обучение и прокат в Египте, Вьетнаме и России. Подберём программу и снаряжение под ваш уровень и условия на воде.</p>
     <div class="hero-advantages">
@@ -685,6 +725,8 @@ const home = (page) => `
     </div>
   </div>
 </section>
+
+${seasonSection(countryList)}
 
 <section class="home-section home-section--brand" id="brand">
   <div class="section-inner brand-split">
@@ -822,6 +864,13 @@ const dahabWingfoilPage = (page) => {
     </figure>
   </div>
 </section>
+
+${seasonSection([countriesByKey.dahab], {
+  compact: true,
+  eyebrow: "Дахаб · условия Wingfoil",
+  title: "Сезон и ветер",
+  lead: countriesByKey.dahab.seasonNote
+})}
 
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
@@ -1017,6 +1066,13 @@ const dahabWindsurfPage = (page) => {
     </figure>
   </div>
 </section>
+
+${seasonSection([countriesByKey.dahab], {
+  compact: true,
+  eyebrow: "Дахаб · условия Windsurf",
+  title: "Сезон и ветер",
+  lead: countriesByKey.dahab.seasonNote
+})}
 
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
@@ -1517,7 +1573,7 @@ const dahabHomePage = (page) => {
     <p class="eyebrow">Египет · Дахаб</p>
     <h1>Wingfoil и Windsurf в Дахабе</h1>
     <p class="hero-lead">Обучение и прокат на Красном море для новичков и опытных райдеров. Подберём программу, инструктора и снаряжение под ваш уровень.</p>
-    <div class="hero-advantages"><span class="hero-advantage">С 2006 года</span><span class="hero-advantage">Условия для любого уровня</span><span class="hero-advantage">10 000+ учеников</span><span class="hero-advantage">3 спасательных катера</span></div>
+    <div class="hero-advantages"><span class="hero-advantage">С 2006 года</span><span class="hero-advantage">Условия для любого уровня</span><span class="hero-advantage">10 000+ учеников</span><span class="hero-advantage">4 спасательных катера</span></div>
     <div class="hero-actions dahab-hero-actions">
       ${contactCta(page, "Подобрать программу")}
       <a class="button button-ghost" href="#prices">Посмотреть цены</a>
@@ -1531,6 +1587,12 @@ const dahabHomePage = (page) => {
     <span aria-hidden="true">ДАХАБ · ВЕТЕР КРУГЛЫЙ ГОД / УРОК ВИНГФОЙЛА — 70$ / УРОК ВИНДСЁРФИНГА — 70$ / ДЕТСКИЙ УРОК — ОТ 55$ / ПРОКАТ — ОТ 25$ / 4 СПАСАТЕЛЬНЫХ КАТЕРА / SWISS INN / GANET SINAI / WING CENTER / </span>
   </div>
 </section>
+
+${seasonSection([countriesByKey.dahab], {
+  eyebrow: "Дахаб · сезон и ветер",
+  title: "Когда ехать в Дахаб",
+  lead: countriesByKey.dahab.seasonNote
+})}
 
 <section class="sport-split" id="sport">
   <div class="sport-split__inner">
@@ -1817,10 +1879,10 @@ ${stations.map((station, index) => `
 
 const dahabSafetyPage = (page) => {
   const safetyFacts = [
-    ["Rescue", "4 спасательных катера", "Катера поддерживают станции и позволяют быстро реагировать, если райдеру нужна помощь на воде."],
-    ["Control", "Контроль акватории", "Команда следит за фактическими условиями, рабочими зонами и райдерами во время выхода."],
-    ["Connection", "Связь на волнах", "Для выходов на волны выдаём телефоны, чтобы райдер мог связаться со станцией."],
-    ["Briefing", "Инструктаж до старта", "До выхода разбираем ветер, маршрут, границы зоны, сигналы и правила возвращения."]
+    ["Спасение", "4 спасательных катера", "Катера поддерживают станции и позволяют быстро реагировать, если райдеру нужна помощь на воде."],
+    ["Контроль", "Контроль акватории", "Команда следит за фактическими условиями, рабочими зонами и райдерами во время выхода."],
+    ["Связь", "Связь на волнах", "Для выходов на волны выдаём телефоны, чтобы райдер мог связаться со станцией."],
+    ["Инструктаж", "Инструктаж до старта", "До выхода разбираем ветер, маршрут, границы зоны, сигналы и правила возвращения."]
   ];
   const briefingSteps = [
     ["01", "Условия", "Сверяем прогноз с фактическим ветром, его направлением и обстановкой на воде."],
@@ -1938,7 +2000,12 @@ const countryPage = (page) => {
   const actions = `<a class="button button-primary" href="${primaryPricePath}">Цены</a>${contactCta(page, "Написать нам", "button button-ghost")}`;
   const sports = country.sports.map((key) => site.sports[key]);
   return `${hero(page, actions)}
-  <section class="content-section">
+  ${seasonSection([country], {
+    eyebrow: `${country.region} · сезон и ветер`,
+    title: `Когда ехать в ${country.city}`,
+    lead: country.seasonNote
+  })}
+  <section class="content-section content-section--light">
     <div class="section-inner">
       ${sectionHeading("Спорт и станции", `${country.title}: выберите свой формат`, `Здесь собраны ключевые входы: спорт, цены, команда и станционная логика под ${country.tone}.`)}
       <div class="link-grid">
@@ -1946,16 +2013,33 @@ const countryPage = (page) => {
           const sport = site.sports[key];
           return `<a class="link-card" href="/${country.key}/${key}/"><small>${sport.nav}</small><h3>${sport.subtitle}</h3><p>${sport.lead}</p><em>Открыть</em></a>`;
         }).join("")}
-        <a class="link-card link-card--accent" href="${primaryPricePath}"><small>Price</small><h3>Цены и форматы</h3><p>Уроки, курсы, прокат, хранение и подбор программы.</p><em>Смотреть цены</em></a>
+        <a class="link-card link-card--accent" href="${primaryPricePath}"><small>Цены</small><h3>Цены и форматы</h3><p>Уроки, курсы, прокат, хранение и подбор программы.</p><em>Смотреть цены</em></a>
         ${country.extras.map((item) => `<a class="link-card" href="${item.href}"><small>${country.nav}</small><h3>${item.title}</h3><p>Подробности направления, которые помогают спокойно выйти на воду.</p><em>Перейти</em></a>`).join("")}
       </div>
     </div>
   </section>
+  <section class="destination-story" data-reveal>
+    <img src="${country.hero}" alt="${escapeHtml(`${country.region} · ${country.city}, Vetratoria`)}" loading="lazy" decoding="async">
+    <div class="destination-story__shade"></div>
+    <div class="section-inner destination-story__content">
+      <p class="eyebrow">Атмосфера направления</p>
+      <h2>${escapeHtml(country.city)} — место для прогресса на воде</h2>
+      <p>${escapeHtml(country.tone)}.</p>
+      <a class="button button-ghost" href="/media/${country.key}/">Смотреть медиа</a>
+    </div>
+  </section>
   <section class="content-section content-section--soft">
     <div class="section-inner">
+      ${sectionHeading("Дисциплины", "Один сезон — несколько маршрутов", "Выберите дисциплину и переходите к условиям обучения, прокату и ценам без изменения привычной навигации.")}
       <div class="rail-list">
-        ${sports.map((sport, index) => `<article><b>0${index + 1}</b><h3>${sport.title}</h3><p>${sport.lead}</p></article>`).join("")}
+        ${sports.map((sport, index) => `<article data-reveal><b>0${index + 1}</b><h3>${sport.title}</h3><p>${sport.lead}</p><a href="/${country.key}/${country.sports[index]}/">Подробнее <span aria-hidden="true">→</span></a></article>`).join("")}
       </div>
+    </div>
+  </section>
+  <section class="content-section content-section--light destination-contact">
+    <div class="section-inner home-cta">
+      <div><p class="eyebrow">Подбор поездки</p><h2>Уточним сезон под ваши даты</h2><p>Напишите уровень, дисциплину и даты. Команда подтвердит фактические условия и предложит доступный формат.</p></div>
+      <div class="home-cta__actions">${contactCta(page, "Подобрать формат")}<a class="button button-ghost" href="/${country.key}/contacts/">Контакты</a></div>
     </div>
   </section>`;
 };
@@ -1968,7 +2052,13 @@ const sportPage = (page) => {
   const country = countriesByKey[page.country];
   const sport = site.sports[page.sport];
   return `${hero(page, `<a class="button button-primary" href="${page.path}price/">Цены</a>${contactCta(page, "Записаться", "button button-ghost")}`)}
-  <section class="content-section">
+  ${seasonSection([country], {
+    compact: true,
+    eyebrow: `${country.region} · условия`,
+    title: `${sport.title}: сезон и ветер`,
+    lead: "Показываем только подтверждённую проектом сезонность; фактические условия команда уточняет перед занятием."
+  })}
+  <section class="content-section content-section--light">
     <div class="section-inner two-column">
       <div>
         <p class="eyebrow">Формат</p>
@@ -1991,8 +2081,28 @@ const sportPage = (page) => {
         <article class="link-card"><small>04</small><h3>Прогресс</h3><p>Следующий шаг: курс, прокат, фрирайд или самостоятельное катание.</p></article>
       </div>
     </div>
+  </section>
+  <section class="destination-story destination-story--sport" data-reveal>
+    <img src="${page.image}" alt="${escapeHtml(`${sport.title} в ${country.city}`)}" loading="lazy" decoding="async">
+    <div class="destination-story__shade"></div>
+    <div class="section-inner destination-story__content">
+      <p class="eyebrow">Следующий шаг</p>
+      <h2>Подберём формат под уровень и ветер</h2>
+      <p>Без неподтверждённых обещаний: команда сверит условия, доступность инструктора и подходящее снаряжение.</p>
+      ${contactCta(page, "Обсудить поездку")}
+    </div>
   </section>`;
 };
+
+const notFoundPage = (page) => `${hero(page, `<a class="button button-primary" href="/">На главную</a><a class="button button-ghost" href="#directions-404">Выбрать направление</a>`)}
+  <section class="content-section content-section--light" id="directions-404">
+    <div class="section-inner">
+      ${sectionHeading("Направления", "Продолжите с нужной страны", "Все основные разделы сайта доступны по прежним адресам.")}
+      <div class="link-grid">
+        ${countryList.map((country) => `<a class="link-card" href="${country.href}"><small>${country.region}</small><h3>${country.title}</h3><p>${country.seasonTitle} · ${country.windLabel}</p><em>Открыть</em></a>`).join("")}
+      </div>
+    </div>
+  </section>`;
 
 const priceRows = (sportTitle = "Спорт") => [
   [`${sportTitle}: вводный урок`, "60 минут", "индивидуально или мини-группа", "по запросу"],
@@ -2821,7 +2931,7 @@ ${hero(page, heroActions)}
 const dahabTeamGroups = [
   {
     id: "team-wingfoil",
-    eyebrow: "Wingfoil Center",
+    eyebrow: "Центр Wingfoil",
     title: "Команда вингфойла",
     lead: "Помогаем пройти путь от первого знакомства с крылом до уверенного полёта на фойле.",
     members: [
@@ -2873,7 +2983,7 @@ const dahabTeamGroups = [
   },
   {
     id: "team-windsurf",
-    eyebrow: "Windsurf Center",
+    eyebrow: "Центр Windsurf",
     title: "Команда виндсёрфинга",
     lead: "Встречаем гостей, подбираем и настраиваем оборудование, обучаем на воде и следим за безопасностью в акватории.",
     members: [
@@ -3043,7 +3153,7 @@ const featurePage = (page) => {
     safety: [
       ["Зоны", "Катание проходит в понятных зонах под уровень и спорт."],
       ["Инструктор", "На старте рядом человек, который контролирует задачу и условия."],
-      ["Rescue", "Важные правила и помощь на воде обсуждаются до выхода."]
+      ["Спасение", "Важные правила и помощь на воде обсуждаются до выхода."]
     ],
     stations: [
       ["Акватория", "Станция выбирается под ветер, спорт и уровень."],
@@ -3101,6 +3211,8 @@ const render = (page) => {
       return layout(page, page.country === "dahab" ? dahabSafetyPage(page) : featurePage(page));
     case "route":
       return layout(page, page.country === "dahab" ? dahabHowToGetPage(page) : featurePage(page));
+    case "not-found":
+      return layout(page, notFoundPage(page));
     default:
       return layout(page, featurePage(page));
   }
@@ -3121,7 +3233,7 @@ for (const page of allPages) {
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${allPages.map((page) => `  <url><loc>${canonicalForPage(page)}</loc></url>`).join("\n")}
+${allPages.filter((page) => page.kind !== "not-found").map((page) => `  <url><loc>${canonicalForPage(page)}</loc></url>`).join("\n")}
 </urlset>
 `;
 

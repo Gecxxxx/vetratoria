@@ -188,7 +188,7 @@
   position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: var(--radius-card);
   background: #171514;
   color: var(--white);
 }
@@ -352,7 +352,7 @@
   margin-top: 20px;
   overflow: hidden;
   border: 1px solid #e6e1dc;
-  border-radius: 6px;
+  border-radius: var(--radius-card);
   background: #f2efeb;
   color: #14100e;
   text-decoration: none;
@@ -857,7 +857,7 @@
   grid-template-columns: minmax(0, 1.35fr) minmax(380px, 0.75fr);
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   background: #151210;
   box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
 }

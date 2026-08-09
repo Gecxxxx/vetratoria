@@ -22,7 +22,7 @@
   overflow: hidden;
   min-height: 390px;
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: var(--radius-card);
   background: #171514;
   color: var(--white);
   box-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
@@ -146,9 +146,30 @@
   padding: 28px;
 }
 
+.content-section--light .link-card {
+  border-color: var(--color-light-border);
+  background: var(--color-light-elevated);
+  color: var(--color-light-text);
+  box-shadow: 0 16px 40px rgba(53, 41, 30, 0.08);
+}
+
+.content-section--light .link-card h3,
+.content-section--light .link-card p {
+  color: var(--color-light-text);
+}
+
+.content-section--light .link-card p {
+  color: var(--color-light-muted);
+}
+
 .link-card--accent {
   background: #21120d;
   border-color: rgba(255, 90, 31, 0.42);
+}
+
+.content-section--light .link-card--accent {
+  border-color: rgba(255, 90, 31, 0.42);
+  background: #fff0e8;
 }
 
 .link-card em {
@@ -189,6 +210,16 @@
 .rail-list p {
   margin: 9px 0 0;
   color: var(--muted);
+}
+
+.rail-list a {
+  display: inline-flex;
+  gap: 8px;
+  margin-top: 18px;
+  color: var(--orange);
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
 .check-list--inline {

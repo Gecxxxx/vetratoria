@@ -105,7 +105,7 @@
   margin: 0;
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--radius-card);
   background: #151210;
   box-shadow: 0 22px 70px rgba(0, 0, 0, 0.35);
 }
@@ -205,7 +205,7 @@
   align-items: center;
   padding: 38px;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--radius-card);
   background: #1a120f;
 }
 

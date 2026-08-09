@@ -7,7 +7,7 @@
   min-height: 44px;
   padding: 0 18px;
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: var(--radius-control);
   font-size: 12px;
   font-weight: 900;
   line-height: 1;

@@ -30,14 +30,22 @@
   --color-accent-dark: var(--orange-dark);
   --color-border: var(--line);
   --color-border-strong: var(--line-strong);
+  --color-light: #eee9e2;
+  --color-light-elevated: #f8f5ef;
+  --color-light-text: #181411;
+  --color-light-muted: #655f58;
+  --color-light-border: rgba(24, 20, 17, 0.16);
 
   --container-max: var(--max);
   --container-wide: var(--wide);
   --page-gutter: 32px;
   --page-gutter-mobile: 20px;
 
-  --radius-control: 4px;
-  --radius-card: 6px;
+  --radius-control: 6px;
+  --radius-card: 12px;
+  --radius-media: 16px;
+  --space-section: clamp(72px, 8vw, 112px);
+  --space-section-mobile: 56px;
   --shadow-elevated: var(--shadow);
 
   --z-header: 100;

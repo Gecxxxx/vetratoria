@@ -1,0 +1,264 @@
+/* Shared season, wind and destination storytelling components. */
+
+.season-section {
+  padding: var(--space-section) 0;
+  background: var(--color-light);
+  color: var(--color-light-text);
+}
+
+.season-section .section-heading h2 { color: var(--color-light-text); }
+.season-section .section-heading p:not(.eyebrow) { color: var(--color-light-muted); }
+
+.season-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.season-grid--single { grid-template-columns: minmax(0, 1fr); }
+
+.season-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 28px;
+  border: 1px solid var(--color-light-border);
+  border-radius: var(--radius-card);
+  background: var(--color-light-elevated);
+  box-shadow: 0 18px 46px rgba(53, 41, 30, 0.08);
+}
+
+.season-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.season-card__header span {
+  color: var(--orange);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.season-card__header h3 {
+  margin: 5px 0 0;
+  color: var(--color-light-text);
+  font-size: clamp(28px, 2.7vw, 40px);
+  line-height: 1;
+}
+
+.season-card__header strong {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 90, 31, 0.32);
+  border-radius: 999px;
+  background: #fff0e8;
+  color: #9d310e;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.season-months {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 4px;
+  margin-top: 24px;
+}
+
+.season-months span {
+  display: grid;
+  min-width: 0;
+  min-height: 34px;
+  place-items: center;
+  border: 1px solid rgba(24, 20, 17, 0.1);
+  border-radius: 4px;
+  background: #ece7df;
+  color: #817971;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.season-months span.is-season {
+  border-color: var(--color-light-text);
+  background: var(--color-light-text);
+  color: var(--white);
+}
+
+.season-card__wind {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 14px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-light-border);
+}
+
+.wind-indicator {
+  display: grid;
+  width: 36px;
+  gap: 5px;
+  padding-top: 5px;
+}
+
+.wind-indicator i {
+  display: block;
+  height: 3px;
+  border-radius: 99px;
+  background: var(--orange);
+}
+
+.wind-indicator i:nth-child(2) { width: 72%; }
+.wind-indicator i:nth-child(3) { width: 44%; }
+
+.season-card__wind b { color: var(--color-light-text); font-size: 15px; }
+
+.season-card__wind p,
+.season-card__note {
+  margin: 6px 0 0;
+  color: var(--color-light-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.season-card__note { margin-top: 18px; }
+
+.season-card > a {
+  display: inline-flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 22px;
+  color: var(--color-light-text);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.season-section--compact .season-card {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.5fr) minmax(0, 1.2fr) minmax(260px, 0.8fr);
+  align-items: center;
+  gap: 24px;
+}
+
+.season-section--compact .season-months,
+.season-section--compact .season-card__wind { margin-top: 0; }
+
+.season-section--compact .season-card__wind {
+  padding-top: 0;
+  padding-left: 24px;
+  border-top: 0;
+  border-left: 1px solid var(--color-light-border);
+}
+
+.destination-story {
+  position: relative;
+  display: grid;
+  min-height: clamp(520px, 66vw, 760px);
+  overflow: hidden;
+  place-items: end start;
+  background: #111;
+}
+
+.destination-story > img,
+.destination-story__shade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.destination-story > img {
+  object-fit: cover;
+  transition: transform 900ms cubic-bezier(.2,.7,.2,1);
+}
+
+.destination-story__shade {
+  background: linear-gradient(90deg, rgba(8, 8, 7, 0.84), rgba(8, 8, 7, 0.18) 68%), linear-gradient(0deg, rgba(0, 0, 0, 0.55), transparent 55%);
+}
+
+.destination-story__content {
+  position: relative;
+  z-index: 1;
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+
+.destination-story__content h2 {
+  max-width: 720px;
+  margin: 0;
+  color: var(--white);
+  font-size: clamp(38px, 5.4vw, 72px);
+  line-height: 0.98;
+}
+
+.destination-story__content p:not(.eyebrow) {
+  max-width: 620px;
+  margin: 18px 0 28px;
+  color: #e1dcd6;
+  font-size: 18px;
+}
+
+.destination-story--sport { min-height: 560px; }
+
+.content-section--light.destination-contact .home-cta {
+  border-color: var(--color-light-border);
+  border-radius: var(--radius-card);
+  background: var(--color-light-elevated);
+  box-shadow: 0 18px 46px rgba(53, 41, 30, 0.08);
+}
+
+.content-section--light.destination-contact .home-cta h2 { color: var(--color-light-text); }
+
+.content-section--light.destination-contact .button-ghost {
+  border-color: var(--color-light-border);
+  color: var(--color-light-text);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .destination-story:hover > img { transform: scale(1.025); }
+}
+
+@media (max-width: 1100px) {
+  .season-grid { grid-template-columns: 1fr; }
+  .season-section--compact .season-card { grid-template-columns: 1fr; }
+
+  .season-section--compact .season-card__wind {
+    padding-top: 20px;
+    padding-left: 0;
+    border-top: 1px solid var(--color-light-border);
+    border-left: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .season-section { padding: var(--space-section-mobile) 0; }
+  .season-card { padding: 20px; }
+  .season-card__header { display: grid; }
+  .season-card__header strong { justify-self: start; }
+  .season-months { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .destination-story, .destination-story--sport { min-height: 540px; }
+
+  .destination-story__content {
+    padding-top: 72px;
+    padding-bottom: 56px;
+  }
+
+  .destination-story__content h2 { font-size: 38px; }
+  .destination-story__content p:not(.eyebrow) { font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 480ms ease, transform 480ms cubic-bezier(.2,.7,.2,1);
+  }
+
+  .reveal-ready [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
