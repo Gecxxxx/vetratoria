@@ -1,7 +1,9 @@
 /* Buttons and button groups */
 
 .button {
+  position: relative;
   display: inline-flex;
+  overflow: hidden;
   align-items: center;
   justify-content: center;
   min-height: 44px;
@@ -15,10 +17,30 @@
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
+.button::after {
+  position: absolute;
+  top: -60%;
+  bottom: -60%;
+  left: -35%;
+  width: 24%;
+  transform: rotate(14deg) translateX(-220%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.24), transparent);
+  content: "";
+  pointer-events: none;
+  transition: transform 0.46s cubic-bezier(.2, .7, .2, 1);
+}
+
 .button:hover,
 .button:focus-visible {
   transform: translateY(-1px);
 }
+
+.button:hover::after,
+.button:focus-visible::after {
+  transform: rotate(14deg) translateX(650%);
+}
+
+.button:active { transform: translateY(0) scale(0.985); }
 
 .button-primary {
   background: var(--orange);

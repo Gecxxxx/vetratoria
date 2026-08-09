@@ -35,6 +35,14 @@
   background: #0d0c0b;
 }
 
+.home #media-blog {
+  background: var(--color-light);
+  color: var(--color-light-text);
+}
+
+.home #media-blog .section-heading h2 { color: var(--color-light-text); }
+.home #media-blog .section-heading p:not(.eyebrow) { color: var(--color-light-muted); }
+
 .brand-copy h2,
 .home-cta h2 {
   margin: 0;
