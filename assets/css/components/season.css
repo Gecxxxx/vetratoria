@@ -96,14 +96,6 @@
 .season-months span.is-current {
   border-color: var(--orange);
   box-shadow: inset 0 0 0 2px var(--orange);
-  color: #9d310e;
-}
-
-.season-months span.is-season.is-current {
-  border-color: var(--orange);
-  background: var(--orange);
-  box-shadow: none;
-  color: var(--white);
 }
 
 .season-card__wind {

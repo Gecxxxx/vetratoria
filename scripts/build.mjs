@@ -578,7 +578,7 @@ const contactDialog = (page) => {
 </dialog>`;
 };
 
-const ASSET_VERSION = "20260809-staging-r2";
+const ASSET_VERSION = "20260809-staging-r3";
 const PAGE_ASSET_VERSIONS = new Map([
   ["/", `${ASSET_VERSION}-expert-blocks-r2`],
   ["/blog/", `${ASSET_VERSION}-blog-filters`],
