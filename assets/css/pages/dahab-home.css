@@ -663,26 +663,91 @@
   transform: translateX(4px);
 }
 
-.station-life__grid {
+.station-life__slider {
+  min-width: 0;
+}
+
+.station-life__controls {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.station-life__controls > span {
+  color: var(--color-light-muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.station-life__controls > div {
+  display: flex;
+  gap: 8px;
+}
+
+.station-life__controls button {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--color-light-border);
+  border-radius: 50%;
+  background: var(--color-light-elevated);
+  color: var(--color-light-text);
+  cursor: pointer;
+  place-items: center;
+  font: 700 26px/1 Arial, sans-serif;
+  transition: border-color var(--duration-fast) ease, background var(--duration-fast) ease, color var(--duration-fast) ease;
+}
+
+.station-life__controls button:hover,
+.station-life__controls button:focus-visible {
+  border-color: var(--orange);
+  background: var(--orange);
+  color: var(--white);
+}
+
+.station-life__controls button:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+
+.station-life__track {
+  display: flex;
   gap: 16px;
+  overflow-x: auto;
+  padding: 2px 2px 16px;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: var(--orange) rgba(20, 15, 12, 0.1);
+  scrollbar-width: thin;
+}
+
+.station-life__track:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 4px;
 }
 
 .station-life__item {
   position: relative;
+  flex: 0 0 min(72vw, 780px);
   min-width: 0;
+  padding: 0;
   margin: 0;
   overflow: hidden;
+  border: 0;
   border-radius: var(--radius-media);
   background: #181411;
   aspect-ratio: 16 / 9;
+  cursor: zoom-in;
+  scroll-snap-align: start;
+  text-align: left;
 }
 
-.station-life__item--main,
-.station-life__item--wide { grid-column: auto; }
-
 .station-life__item img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -697,7 +762,7 @@
   pointer-events: none;
 }
 
-.station-life__item figcaption {
+.station-life__caption {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -708,7 +773,7 @@
   padding: 24px;
 }
 
-.station-life__item figcaption span {
+.station-life__caption small {
   color: #ff8a61;
   font-size: 11px;
   font-weight: 900;
@@ -716,7 +781,7 @@
   text-transform: uppercase;
 }
 
-.station-life__item figcaption strong {
+.station-life__caption strong {
   max-width: 560px;
   color: var(--white);
   font-size: clamp(19px, 2vw, 28px);
@@ -1196,10 +1261,6 @@ body.country.country-dahab .trust-block {
       gap: 18px;
     }
 
-  .station-life__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
   .water-area__copy {
       padding: 28px;
     }
@@ -1303,17 +1364,9 @@ body.country.country-dahab .trust-block {
       font-size: 36px;
     }
 
-  .station-life__grid {
-      grid-template-columns: 1fr;
-    }
-
-  .station-life__item,
-  .station-life__item--main,
-  .station-life__item--wide {
-      grid-column: 1;
-      aspect-ratio: 16 / 9;
-      min-height: 0;
-    }
+  .station-life__item { flex-basis: calc(100vw - var(--page-gutter)); }
+  .station-life__caption { padding: 18px; }
+  .station-life__caption strong { font-size: 19px; }
 
   .sport-tile,
   .station-advice__list a {

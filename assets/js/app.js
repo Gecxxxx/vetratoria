@@ -308,6 +308,41 @@
     updateControls();
   });
 
+  document.querySelectorAll("[data-life-slider]").forEach((slider) => {
+    const track = slider.querySelector("[data-life-track]");
+    const prev = slider.querySelector("[data-life-prev]");
+    const next = slider.querySelector("[data-life-next]");
+    if (!track) return;
+
+    const scrollStep = () => {
+      const slide = track.querySelector(".station-life__item");
+      const gap = Number.parseFloat(window.getComputedStyle(track).columnGap || "0") || 0;
+      return slide ? slide.getBoundingClientRect().width + gap : track.clientWidth * 0.86;
+    };
+
+    const updateControls = () => {
+      const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+      if (prev) prev.disabled = track.scrollLeft <= 2;
+      if (next) next.disabled = track.scrollLeft >= maxScroll - 2;
+    };
+
+    const move = (direction) => track.scrollBy({
+      left: scrollStep() * direction,
+      behavior: reducedMotion.matches || coarsePointer.matches ? "auto" : "smooth"
+    });
+
+    prev?.addEventListener("click", () => move(-1));
+    next?.addEventListener("click", () => move(1));
+    track.addEventListener("scroll", updateControls, { passive: true });
+    track.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+      event.preventDefault();
+      move(event.key === "ArrowLeft" ? -1 : 1);
+    });
+    if (typeof ResizeObserver === "function") new ResizeObserver(updateControls).observe(track);
+    updateControls();
+  });
+
   document.querySelectorAll("[data-blog-filter-root]").forEach((filterRoot) => {
     const cards = [...filterRoot.querySelectorAll("[data-blog-filter-card]")];
     const buttons = [...filterRoot.querySelectorAll("[data-blog-filter-type]")];

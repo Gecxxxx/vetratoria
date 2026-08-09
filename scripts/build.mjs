@@ -583,9 +583,9 @@ const contactDialog = (page) => {
 
 const ASSET_VERSION = "20260809-staging-r5";
 const PAGE_ASSET_VERSIONS = new Map([
-  ["/", `${ASSET_VERSION}-expert-blocks-r2`],
+  ["/", "20260809-staging-r6-expert-blocks-r2"],
   ["/blog/", `${ASSET_VERSION}-blog-filters`],
-  ["/dahab/", `${ASSET_VERSION}-expert-blocks-r2`],
+  ["/dahab/", "20260809-staging-r6-expert-blocks-r2"],
   ["/dahab/stations/", `${ASSET_VERSION}-shared-stations-hero`],
   ["/dahab/team/", `${ASSET_VERSION}-team-windsurf`],
   ["/dahab/windsurf-kids/", `${ASSET_VERSION}-wsk-overview-hero`]
@@ -715,21 +715,17 @@ const home = (page) => `
 
 <section class="home-section home-section--destinations" id="destinations">
   <div class="section-inner">
-    ${sectionHeading("Направления и сезоны", "Выберите место под даты и свою цель", "Фотографии, подтверждённые сезоны и характер ветра собраны в одной карточке — сравнить направления можно без повторяющихся блоков.")}
+    ${sectionHeading("Направления и сезоны", "Выберите место под даты и свою цель", "Три направления, реальные фотографии и понятный календарь сезона — всё главное видно сразу.")}
     <div class="destination-season-grid">
       ${countryList.map((country) => `
         <a class="destination-season-card" href="${country.href}" data-reveal>
-          <figure>
-            ${cardImage(country.hero, `${country.region} · ${country.city}`)}
-            <figcaption><span>${country.region}</span><h2>${country.key === "russia" ? "Должанская Коса" : country.title}</h2></figcaption>
-          </figure>
-          <div class="destination-season-card__body">
-            <header><span>Сезон</span><strong>${escapeHtml(country.seasonTitle)}</strong></header>
+          ${cardImage(country.hero, `${country.region} · ${country.city}`)}
+          <div class="destination-season-card__overlay">
+            <header>
+              <div><span>${country.region}</span><h2>${country.key === "russia" ? "Должанская Коса" : country.title}</h2></div>
+              <strong>${escapeHtml(country.seasonTitle)}</strong>
+            </header>
             ${seasonMonths(country)}
-            <div class="destination-season-card__wind">
-              <span class="wind-indicator" aria-hidden="true"><i></i><i></i><i></i></span>
-              <div><b>${escapeHtml(country.windLabel)}</b><p>${escapeHtml(country.windSummary)}</p></div>
-            </div>
             <em>${homeCountryCopy[country.key].action} <span aria-hidden="true">→</span></em>
           </div>
         </a>`).join("")}
@@ -1573,6 +1569,16 @@ const dahabHomePage = (page) => {
     ["Что входит в стоимость урока?", "Инструктор, подходящее снаряжение, спасательная поддержка и страховка снаряжения. Перед оплатой команда подтвердит продолжительность и состав выбранного формата."]
   ];
   const reviews = dahabReviewItems;
+  const stationLifePhotos = [
+    [img("vetratoria-station-team.webp"), "Люди", "Команда и гости рядом — до выхода и после катания", "Гости и команда Vetratoria у станции в Дахабе", 1600, 900],
+    ["/assets/img/media/dahab/photo-day/2026-05-24-photo-day/47.jpg", "Подготовка", "Настраиваем снаряжение вместе", "Подготовка виндсёрф-снаряжения перед занятием в Дахабе", 1080, 720],
+    ["/assets/img/media/dahab/photo-day/2026-06-07-photo-day/01.jpg", "На берегу", "Улыбки перед новым выходом", "Гостья Vetratoria улыбается перед занятием на воде", 1080, 720],
+    ["/assets/img/media/dahab/photo-day/2026-06-07-photo-day/04.jpg", "Обучение", "Инструктор рядом на первых шагах", "Инструктор помогает ученику подготовиться к занятию", 1080, 720],
+    ["/assets/img/media/dahab/photo-day/2026-06-07-photo-day/09.jpg", "Команда", "Возвращаемся на берег вместе", "Гости Vetratoria возвращаются после занятия", 1080, 720],
+    ["/assets/img/media/dahab/photo-day/2026-06-03-photo-day/02.jpg", "Снаряжение", "Собираем комплект под человека и ветер", "Подбор и настройка виндсёрф-снаряжения в Дахабе", 1080, 720],
+    ["/assets/img/media/dahab/photo-day/2026-05-24-photo-day/45.jpg", "После воды", "Отдыхаем и делимся впечатлениями", "Райдер после катания у станции Vetratoria", 1080, 720],
+    ["/assets/img/media/dahab/photo-day/2026-05-24-photo-day/46.jpg", "Атмосфера", "Обсуждаем катание и следующий выход", "Гости общаются между выходами на воду", 1080, 720]
+  ];
 
   return `
 <section class="dahab-hero">
@@ -1697,26 +1703,40 @@ ${seasonSection([countriesByKey.dahab], {
         <a href="/media/dahab/">Смотреть все фотографии <span aria-hidden="true">→</span></a>
       </div>
     </header>
-    <div class="station-life__grid">
-      <figure class="station-life__item station-life__item--main" data-reveal="photo">
-        <img src="${img("vetratoria-station-team.webp")}" alt="Гости и команда Vetratoria у станции в Дахабе" width="1600" height="900" loading="lazy" decoding="async">
-        <figcaption><span>Люди</span><strong>Команда и гости рядом — до выхода и после катания</strong></figcaption>
-      </figure>
-      <figure class="station-life__item" data-reveal="photo">
-        <img src="/assets/img/media/dahab/photo-day/2026-05-24-photo-day/47.jpg" alt="Подготовка виндсёрф-снаряжения перед занятием в Дахабе" width="1080" height="720" loading="lazy" decoding="async">
-        <figcaption><span>Подготовка</span><strong>Подбираем и настраиваем снаряжение вместе</strong></figcaption>
-      </figure>
-      <figure class="station-life__item" data-reveal="photo">
-        <img src="/assets/img/media/dahab/photo-day/2026-05-31-photo-day/29.jpg" alt="Обычный день у станции Vetratoria в Дахабе" width="1080" height="720" loading="lazy" decoding="async">
-        <figcaption><span>Станция</span><strong>Собираемся, обсуждаем ветер и готовимся к воде</strong></figcaption>
-      </figure>
-      <figure class="station-life__item station-life__item--wide" data-reveal="photo">
-        <img src="/assets/img/media/dahab/photo-day/2026-05-24-photo-day/46.jpg" alt="Гости отдыхают и общаются между выходами на воду" width="1080" height="720" loading="lazy" decoding="async">
-        <figcaption><span>После катания</span><strong>Делимся впечатлениями и планируем следующий выход</strong></figcaption>
-      </figure>
+    <div class="station-life__slider" data-life-slider>
+      <div class="station-life__controls" aria-label="Управление фотогалереей">
+        <span>8 живых кадров со станции</span>
+        <div><button type="button" data-life-prev aria-label="Предыдущие фотографии">‹</button><button type="button" data-life-next aria-label="Следующие фотографии">›</button></div>
+      </div>
+      <div class="station-life__track" data-life-track tabindex="0" aria-label="Фотографии жизни станции">
+        ${stationLifePhotos.map(([src, label, title, alt, width, height], index) => `
+          <button class="station-life__item" type="button" data-media-photo-open data-media-photo-index="${index}" data-media-src="${src}" data-media-alt="${escapeHtml(alt)}" aria-label="Открыть фотографию ${index + 1} из ${stationLifePhotos.length}">
+            <img src="${src}" alt="${escapeHtml(alt)}" width="${width}" height="${height}" loading="lazy" decoding="async">
+            <span class="station-life__caption"><small>${escapeHtml(label)}</small><strong>${escapeHtml(title)}</strong></span>
+          </button>`).join("")}
+      </div>
     </div>
   </div>
 </section>
+<dialog class="media-lightbox" data-media-lightbox aria-label="Просмотр фотографий жизни станции">
+  <div class="media-lightbox__surface">
+    <header>
+      <span data-media-lightbox-count></span>
+      <div>
+        <a href="${stationLifePhotos[0][0]}" download data-media-lightbox-download>Скачать</a>
+        <button type="button" data-media-lightbox-close aria-label="Закрыть">×</button>
+      </div>
+    </header>
+    <div class="media-lightbox__stage">
+      <button type="button" data-media-lightbox-prev aria-label="Предыдущая фотография">‹</button>
+      <figure>
+        <img src="${stationLifePhotos[0][0]}" alt="${escapeHtml(stationLifePhotos[0][3])}" data-media-lightbox-image>
+        <figcaption>Жизнь станции Vetratoria Dahab</figcaption>
+      </figure>
+      <button type="button" data-media-lightbox-next aria-label="Следующая фотография">›</button>
+    </div>
+  </div>
+</dialog>
 
 <section class="trust-block" id="team-reviews">
   <div class="trust-block__inner">

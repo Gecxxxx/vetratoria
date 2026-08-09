@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "check": "node scripts/verify.mjs",
-    "dev": "python -m http.server 4175 --bind 127.0.0.1"
+    "dev": "sh -c 'python3 -m http.server 4173 --bind 0.0.0.0' --"
   },
   "engines": {
     "node": ">=20"
