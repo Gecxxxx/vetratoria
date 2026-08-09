@@ -583,9 +583,11 @@ const contactDialog = (page) => {
 
 const ASSET_VERSION = "20260809-staging-r5";
 const PAGE_ASSET_VERSIONS = new Map([
-  ["/", "20260809-staging-r6-expert-blocks-r2"],
+  ["/", "20260809-staging-r7-expert-blocks-r2"],
   ["/blog/", `${ASSET_VERSION}-blog-filters`],
   ["/dahab/", "20260809-staging-r6-expert-blocks-r2"],
+  ["/dahab/wingfoil/", "20260809-staging-r7-station-life"],
+  ["/dahab/windsurf/", "20260809-staging-r7-station-life"],
   ["/dahab/stations/", `${ASSET_VERSION}-shared-stations-hero`],
   ["/dahab/team/", `${ASSET_VERSION}-team-windsurf`],
   ["/dahab/windsurf-kids/", `${ASSET_VERSION}-wsk-overview-hero`]
@@ -808,6 +810,54 @@ const dahabReviewItems = [
   ["Y", "Yuriy Tolchinskiy", "★★★★★", "Приезжал осваивать wingfoil. Довольно быстро получилось лететь на фойле и делать повороты. Спасибо Hassan за продуктивные тренировки."]
 ];
 
+const sportStationLife = ({ id, eyebrow, title, lead, photos }) => `
+<section class="station-life station-life--sport" id="${id}" aria-labelledby="${id}-title">
+  <div class="station-life__inner">
+    <header class="station-life__head" data-reveal="line">
+      <div>
+        <p class="eyebrow">${escapeHtml(eyebrow)}</p>
+        <h2 id="${id}-title">${escapeHtml(title)}</h2>
+      </div>
+      <div>
+        <p>${escapeHtml(lead)}</p>
+        <a href="/media/dahab/">Смотреть все фотографии <span aria-hidden="true">→</span></a>
+      </div>
+    </header>
+    <div class="station-life__slider" data-life-slider>
+      <div class="station-life__controls" aria-label="Управление фотогалереей">
+        <span>${photos.length} живых кадров</span>
+        <div><button type="button" data-life-prev aria-label="Предыдущие фотографии">‹</button><button type="button" data-life-next aria-label="Следующие фотографии">›</button></div>
+      </div>
+      <div class="station-life__track" data-life-track tabindex="0" aria-label="${escapeHtml(title)}">
+        ${photos.map(([src, label, caption, alt, width, height], index) => `
+          <button class="station-life__item" type="button" data-media-photo-open data-media-group="${id}" data-media-photo-index="${index}" data-media-src="${src}" data-media-alt="${escapeHtml(alt)}" aria-label="Открыть фотографию ${index + 1} из ${photos.length}">
+            <img src="${src}" alt="${escapeHtml(alt)}" width="${width}" height="${height}" loading="lazy" decoding="async">
+            <span class="station-life__caption"><small>${escapeHtml(label)}</small><strong>${escapeHtml(caption)}</strong></span>
+          </button>`).join("")}
+      </div>
+    </div>
+  </div>
+</section>
+<dialog class="media-lightbox" data-media-lightbox="${id}" aria-label="Полноэкранный просмотр: ${escapeHtml(title)}">
+  <div class="media-lightbox__surface">
+    <header>
+      <span data-media-lightbox-count></span>
+      <div>
+        <a href="${photos[0][0]}" download data-media-lightbox-download>Скачать</a>
+        <button type="button" data-media-lightbox-close aria-label="Закрыть">×</button>
+      </div>
+    </header>
+    <div class="media-lightbox__stage">
+      <button type="button" data-media-lightbox-prev aria-label="Предыдущая фотография">‹</button>
+      <figure>
+        <img src="${photos[0][0]}" alt="${escapeHtml(photos[0][3])}" data-media-lightbox-image>
+        <figcaption>${escapeHtml(title)}</figcaption>
+      </figure>
+      <button type="button" data-media-lightbox-next aria-label="Следующая фотография">›</button>
+    </div>
+  </div>
+</dialog>`;
+
 const dahabWingfoilPage = (page) => {
   const heroFacts = ["Обучение с нуля", "Спасательный катер", "Связь BB Talkin", "Снаряжение RRD"];
   const reasons = [
@@ -834,6 +884,16 @@ const dahabWingfoilPage = (page) => {
     [wingfoilWaterImg("water-03.webp"), "Wingfoil ride на Красном море"],
     [wingfoilWaterImg("water-04.webp"), "Два райдера wingfoil в Дахабе"],
     [wingfoilWaterImg("water-05.webp"), "Wingfoil на открытой воде"]
+  ];
+  const stationPhotos = [
+    [dahabRefImg("bg-wingfoil-station.webp"), "Wing Center", "День начинается у воды и с подготовки комплекта", "Wing Center Vetratoria в Дахабе", 1600, 1067],
+    [wingfoilSectionImg("wing-start-coaching.webp"), "Подготовка", "Разбираем крыло и первые действия до старта", "Инструктор объясняет управление крылом у берега", 1920, 1080],
+    [wingfoilSectionImg("foil-boat-training.webp"), "Foil boat", "Тренируем баланс и контроль высоты отдельно", "Тренировка на фойле за лодкой в Дахабе", 1920, 1080],
+    [wingfoilSectionImg("wingfoil-duo.webp"), "На воде", "Инструктор остаётся рядом во время первых полётов", "Ученик и инструктор Wingfoil на воде", 1920, 1080],
+    [wingfoilSectionImg("rescue-boats.webp"), "Команда", "Готовим лодки и контролируем акваторию", "Спасательные лодки Wing Center Vetratoria", 1920, 1080],
+    [wingfoilWaterImg("water-01.webp"), "Катание", "Первые уверенные проходы над Красным морем", "Wingfoil над бирюзовой водой Дахаба", 1920, 1080],
+    [wingfoilWaterImg("water-04.webp"), "Вместе", "Делим воду, ветер и хорошие выходы", "Два райдера Wingfoil в Дахабе", 1920, 1080],
+    ["/assets/img/media/dahab/photo-day/2026-05-24-photo-day/46.jpg", "После воды", "Обсуждаем прогресс и следующий выход", "Гости общаются после катания на станции", 1080, 720]
   ];
   const reviews = dahabReviewItems;
   const faqs = [
@@ -950,6 +1010,14 @@ ${seasonSection([countriesByKey.dahab], {
   </div>
 </section>
 
+${sportStationLife({
+  id: "wingfoil-station-life",
+  eyebrow: "Жизнь Wing Center",
+  title: "Wingfoil-станция между выходами на воду",
+  lead: "Здесь подбирают крыло, собирают фойл, разбирают прогноз, тренируются с лодкой и делятся впечатлениями после катания.",
+  photos: stationPhotos
+})}
+
 <section class="dahab-sport-section dahab-sport-section--soft dahab-sport-reviews" id="reviews">
   <div class="dahab-sport-inner">
     <div class="dahab-sport-reviews__head">
@@ -1036,6 +1104,16 @@ const dahabWindsurfPage = (page) => {
     [windsurfWaterImg("dahab-windsurf-sail-control-closeup.webp"), "Контроль паруса во время катания на виндсёрфе", 1080, 720],
     [windsurfWaterImg("dahab-windsurf-speedy-session.webp"), "Два виндсёрфера в скоростной зоне Speedy", 1080, 720],
     [windsurfWaterImg("dahab-windsurf-lagoon-ride.webp"), "Катание на виндсёрфе в лагуне Дахаба", 1600, 1067]
+  ];
+  const stationPhotos = [
+    [dahabRefImg("bg-swiss.webp"), "Swiss Inn", "Готовим доски и паруса к новому ветровому дню", "Windsurf-станция Swiss Inn Vetratoria", 1600, 1067],
+    [dahabRefImg("bg-ganet.webp"), "Ganet Sinai", "Встречаемся на станции и выбираем формат катания", "Windsurf-станция Ganet Sinai Vetratoria", 1600, 1067],
+    ["/assets/img/media/dahab/photo-day/2026-05-24-photo-day/47.jpg", "Подготовка", "Настраиваем парус под райдера и текущий ветер", "Подготовка виндсёрф-снаряжения перед занятием", 1080, 720],
+    [windsurfSectionImg("dahab-windsurf-sail-control.webp"), "Обучение", "Разбираем управление парусом до выхода", "Инструктор объясняет управление виндсёрф-парусом", 1254, 1254],
+    [windsurfSectionImg("dahab-windsurf-first-tacks.webp"), "Первые галсы", "Инструктор рядом, пока движения становятся уверенными", "Первые галсы ученика на Windsurf в Дахабе", 1600, 1600],
+    [windsurfWaterImg("dahab-windsurf-speedy-session.webp"), "Speedy", "Выходим на скорость и тренируем технику вместе", "Два виндсёрфера в зоне Speedy", 1080, 720],
+    [windsurfWaterImg("dahab-windsurf-planing.webp"), "Прогресс", "Возвращаемся за следующим парусом и новой задачей", "Глиссирование на Windsurf в Дахабе", 1080, 720],
+    ["/assets/img/media/dahab/photo-day/2026-05-24-photo-day/46.jpg", "После катания", "Отдыхаем, общаемся и планируем следующий выход", "Гости Windsurf-станции общаются после катания", 1080, 720]
   ];
   const reviews = dahabReviewItems;
   const faqs = [
@@ -1151,6 +1229,14 @@ ${seasonSection([countriesByKey.dahab], {
     </div>
   </div>
 </section>
+
+${sportStationLife({
+  id: "windsurf-station-life",
+  eyebrow: "Жизнь Windsurf-станций",
+  title: "Swiss Inn и Ganet Sinai: день вокруг ветра",
+  lead: "Подбираем доску и парус, разбираем задачу, выходим в лагуну или Speedy, а после катания обсуждаем технику и следующий шаг.",
+  photos: stationPhotos
+})}
 
 <section class="dahab-sport-section dahab-sport-section--soft dahab-sport-reviews" id="reviews">
   <div class="dahab-sport-inner">

@@ -447,7 +447,9 @@
   });
 
   document.querySelectorAll("[data-media-lightbox]").forEach((dialog) => {
-    const photoButtons = [...document.querySelectorAll("[data-media-photo-open]")];
+    const group = dialog.dataset.mediaLightbox || "";
+    const photoButtons = [...document.querySelectorAll("[data-media-photo-open]")]
+      .filter((button) => group ? button.dataset.mediaGroup === group : !button.dataset.mediaGroup);
     const image = dialog.querySelector("[data-media-lightbox-image]");
     const count = dialog.querySelector("[data-media-lightbox-count]");
     const download = dialog.querySelector("[data-media-lightbox-download]");

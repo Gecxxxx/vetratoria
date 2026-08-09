@@ -96,6 +96,8 @@
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
 .destination-season-card__overlay h2 {
   margin: 6px 0 0;
   color: var(--white);
@@ -157,8 +159,9 @@
 @media (hover: hover) and (pointer: fine) {
   .destination-season-card:hover,
   .destination-season-card:focus-visible {
-    border-color: rgba(255, 90, 31, 0.48);
-    box-shadow: 0 24px 58px rgba(53, 41, 30, 0.14);
+    border-color: var(--orange);
+    outline: 0;
+    box-shadow: 0 0 0 3px var(--orange), 0 24px 58px rgba(53, 41, 30, 0.18);
     transform: translateY(-3px);
   }
 
