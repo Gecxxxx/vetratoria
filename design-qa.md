@@ -52,4 +52,18 @@ The source and implementation were opened in one comparison input together with 
 
 - P3: the final ordering of station-life photos can be curated later when the client supplies a definitive album sequence; the component accepts additional real images without layout changes.
 
+## iOS station-life follow-up — 2026-08-09
+
+- Source visual truth: `/workspace/scratch/65e995573032/upload/F2514494-0B1B-4373-B734-B049A184F2C4.png` (1179 × 2556 pixels) and `/workspace/scratch/65e995573032/upload/DB3FC378-7CC3-4CCA-BEA7-B88C8889ADED.jpeg` (709 × 1536 pixels).
+- Implementation screenshots: cloud-browser captures with responsive frames at 320 × 844, 390 × 844, and 414 × 844 CSS px, device scale factor 1. The browser did not expose filesystem paths for these captures.
+- State: first slide visible on Dahab, Wingfoil, and Windsurf station-life blocks; second Windsurf slide selected; lightbox open at `2 из 8`.
+- Full-view comparison: both iPhone references showed the carousel media collapsed into a thin horizontal strip. Post-fix captures show a stable 190–240 px media height, a large first photo, and a narrow preview of the next slide at every tested width.
+- Focused comparison: the heading was reduced to 28–34 px, vertical spacing was tightened, the native horizontal scrollbar was hidden, image sizing was made independent of Safari flex/aspect-ratio calculation, and captions now allow up to three lines.
+- Primary interactions tested: next-slide button, touch-style horizontal carousel state, photo opening, previous/next lightbox controls, and close control.
+- Console errors checked: no `terminal.local` site-origin errors.
+- P1 fixed: iOS Safari could collapse flex-button slides because their cross-axis size depended only on `aspect-ratio`. The mobile component now has an explicit responsive `height` and `min-height`, with absolutely fitted images.
+- P2 fixed: oversized mobile headings and excessive section rhythm reduced the visible photo area. Mobile typography and section spacing are now compact without changing the desktop layout.
+- Required fidelity surfaces: existing font and color tokens remain unchanged; spacing now matches a mobile content rhythm; real Vetratoria images keep correct crops; copy and interaction labels are unchanged.
+- Post-fix evidence at 320, 390, and 414 px shows no actionable P0/P1/P2 findings.
+
 final result: passed

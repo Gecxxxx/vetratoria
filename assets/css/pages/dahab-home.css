@@ -1332,24 +1332,32 @@ body.country.country-dahab .trust-block {
     }
 
   .station-life__head h2 {
-      font-size: clamp(31px, 9vw, 36px);
+      font-size: clamp(28px, 8.2vw, 34px);
+      line-height: 1;
     }
 
-  .station-life__head { margin-bottom: 24px; }
-  .station-life__head p:not(.eyebrow) { font-size: 15px; }
+  .station-life { padding: 48px 0; }
+  .station-life__head { gap: 14px; margin-bottom: 22px; }
+  .station-life__head p:not(.eyebrow) { font-size: 15px; line-height: 1.45; }
+  .station-life__head a { margin-top: 14px; }
   .station-life__controls { margin-bottom: 12px; }
   .station-life__controls > span { max-width: 150px; line-height: 1.35; }
   .station-life__controls button { width: 44px; height: 44px; }
   .station-life__track {
       gap: 10px;
-      margin-right: calc(var(--page-gutter-mobile) / -2);
-      padding-right: calc(var(--page-gutter-mobile) / 2);
+      margin-right: 0;
+      padding: 2px 2px 4px;
+      scrollbar-width: none;
     }
+  .station-life__track::-webkit-scrollbar { display: none; }
   .station-life__item {
       flex-basis: 91%;
+      height: clamp(190px, 58vw, 240px);
+      min-height: clamp(190px, 58vw, 240px);
       border-radius: 10px;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: auto;
     }
+  .station-life__item img { position: absolute; inset: 0; }
   .station-life__caption { gap: 5px; padding: 16px; }
   .station-life__caption small { font-size: 9px; }
   .station-life__caption strong {
@@ -1358,7 +1366,7 @@ body.country.country-dahab .trust-block {
       font-size: clamp(17px, 5.2vw, 20px);
       line-height: 1.08;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 3;
     }
 
   .water-area__inner { padding: 20px; }
@@ -1406,7 +1414,11 @@ body.country.country-dahab .trust-block {
 @media (max-width: 360px) {
   .station-life__controls > span { max-width: 120px; font-size: 10px; }
   .station-life__controls button { width: 42px; height: 42px; }
-  .station-life__item { flex-basis: 94%; }
+  .station-life__item {
+      flex-basis: 94%;
+      height: 190px;
+      min-height: 190px;
+    }
   .water-area__inner { padding: 16px; }
   .water-area__head h2 { font-size: 29px; }
   .water-area__cards article { grid-template-columns: 28px minmax(0, 1fr); }

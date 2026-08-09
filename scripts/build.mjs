@@ -585,9 +585,9 @@ const ASSET_VERSION = "20260809-staging-r5";
 const PAGE_ASSET_VERSIONS = new Map([
   ["/", "20260809-staging-r8-mobile-cards"],
   ["/blog/", `${ASSET_VERSION}-blog-filters`],
-  ["/dahab/", "20260809-staging-r8-water-area-mobile"],
-  ["/dahab/wingfoil/", "20260809-staging-r8-station-life-mobile"],
-  ["/dahab/windsurf/", "20260809-staging-r8-station-life-mobile"],
+  ["/dahab/", "20260809-staging-r9-ios-slider"],
+  ["/dahab/wingfoil/", "20260809-staging-r9-ios-slider"],
+  ["/dahab/windsurf/", "20260809-staging-r9-ios-slider"],
   ["/dahab/stations/", `${ASSET_VERSION}-shared-stations-hero`],
   ["/dahab/team/", `${ASSET_VERSION}-team-windsurf`],
   ["/dahab/windsurf-kids/", `${ASSET_VERSION}-wsk-overview-hero`]
