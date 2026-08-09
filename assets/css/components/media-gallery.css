@@ -469,13 +469,31 @@
   }
 
   .media-lightbox__stage {
-    grid-template-columns: 42px minmax(0, 1fr) 42px;
-    gap: 6px;
+    position: relative;
+    display: block;
     padding: 8px;
   }
 
   .media-lightbox__stage > button {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
     width: 40px;
     height: 44px;
+    background: rgba(16, 14, 13, 0.82);
+    transform: translateY(-50%);
+  }
+
+  .media-lightbox__stage > button:first-child { left: 14px; }
+  .media-lightbox__stage > button:last-child { right: 14px; }
+
+  .media-lightbox__stage img {
+    width: 100%;
+    max-height: calc(100vh - 138px);
+  }
+
+  .media-lightbox__stage figcaption {
+    padding: 0 48px;
+    text-align: center;
   }
 }

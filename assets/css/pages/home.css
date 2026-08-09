@@ -327,7 +327,8 @@
     }
 
   .destination-season-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .destination-season-card:last-child { grid-column: 1 / -1; width: calc(50% - 10px); justify-self: center; }
+  .destination-season-card:last-child { grid-column: 1 / -1; width: auto; }
+  .destination-season-card { min-height: 500px; }
 
   .brand-copy,
   .home-cta {
@@ -339,13 +340,20 @@
     }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 700px) {
   .destination-season-grid { grid-template-columns: 1fr; }
   .destination-season-card:last-child { grid-column: auto; width: auto; }
-  .destination-season-card { min-height: 470px; }
-  .destination-season-card__overlay { padding: 20px; }
+  .destination-season-card { min-height: clamp(430px, 135vw, 520px); }
+  .destination-season-card__overlay { padding: clamp(18px, 5vw, 24px); }
   .destination-season-card__overlay > header { align-items: start; }
   .destination-season-card__overlay > header > strong { margin-top: 2px; }
+  .destination-season-card .season-months {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 5px;
+    margin-top: 16px;
+    padding-top: 16px;
+  }
+  .destination-season-card .season-months span { min-height: 32px; }
 
   .brand-media__viewport {
       min-height: 330px;
@@ -360,6 +368,17 @@
       font-size: 36px;
     }
 
+}
+
+@media (max-width: 390px) {
+  .destination-season-card__overlay > header {
+    display: grid;
+    gap: 12px;
+  }
+
+  .destination-season-card__overlay h2 { font-size: 31px; }
+  .destination-season-card__overlay > header > strong { justify-self: start; }
+  .destination-season-card__overlay > em { margin-top: 14px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

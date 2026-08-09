@@ -1,43 +1,55 @@
-# Design QA — directions and station life
+# Design QA — акватория и мобильные экспертные блоки
 
-- Source visual truth: `/workspace/scratch/65e995573032/upload/5a8c2e0a-f881-4a93-b4ee-cccb518f34af.png` plus the user's written direction in the same request.
-- Implementation: browser-rendered local preview at `http://terminal.local:4173/` and `http://terminal.local:4173/dahab/`.
-- Implementation screenshot: cloud-browser captures made during this QA pass (homepage destination section, station-life carousel, and open lightbox).
-- Viewport: 1363 × 936 CSS px, device scale factor 1.
-- Source pixels: 911 × 662. Implementation capture pixels: 1363 × 936. Comparison was normalized by reviewing the same content region rather than browser chrome.
-- State: default homepage destination section; Dahab station-life carousel at first and second positions; station-life lightbox open on image 3 of 8.
+- Source visual truth: `/workspace/scratch/65e995573032/upload/81ef5fcd-a8af-4b93-bd06-cd89dee8621b.png` and the user's written requirements for a white informational water-area block.
+- Implementation: browser-rendered local preview at `http://terminal.local:4173/` for `/`, `/dahab/`, `/dahab/wingfoil/`, and `/dahab/windsurf/`.
+- Implementation screenshots: cloud-browser captures of the desktop water-area block and responsive iframe captures at 320, 360, 390, and 414 CSS px. The cloud browser did not expose filesystem paths for these captures.
+- Source pixels: 1917 × 801. Desktop implementation capture: 1348 × 936 pixels at 1348 × 936 CSS px and device scale factor 1.
+- Mobile implementation captures: 1363 × 936 outer pixels with same-origin responsive frames of 320 × 844, 360 × 844, 390 × 844, and 414 × 844 CSS px at device scale factor 1.
+- State: water-area overview, destination season cards, first station-life slide, lightbox open, and mobile menu open.
 
 ## Full-view comparison evidence
 
-The source showed three destinations with photo headers followed by a large light text area. The revised implementation keeps the three-column rhythm but makes every card a large, fully photographic, clickable surface. Country, destination, season badge, month calendar, and CTA are overlaid in the lower contrast-safe area. The requested wind paragraphs are absent.
+The source had a dark sales-oriented split panel with orange pills and action links. The revised implementation keeps the real aerial image and the three-zone structure but turns the section into a light informational card. The heading and neutral overview lead the section; the map and separate Lagoon, Speedy, and Kamikaze descriptions form the main content. Sales pills and CTAs are absent.
 
-The former four-image station-life grid is replaced by a horizontally scrollable 16:9 carousel. The viewport intentionally shows the next card edge, providing a clear scrolling affordance without reducing the primary image.
+The source and implementation were opened in one comparison input together with desktop and 320 px implementation captures. The light version creates the requested visual pause, keeps the existing Vetratoria type and orange accent, and preserves the aerial image as the spatial explanation.
 
 ## Focused-region comparison evidence
 
-- Month cells were inspected at full desktop size. Season months use dark fill; August, the current month, uses an orange outline without replacing the season fill.
-- The carousel next control changed track scroll position from 2 px to 798 px.
-- Clicking a carousel image opened the native dialog at `3 из 8` with the selected real photograph, previous/next controls, download link, and close control.
-- Closing the dialog restored the page state.
-- No horizontal page overflow was present on either tested route.
-- Browser console contained no site-origin errors.
+- At 320 and 390 px the water-area heading, lead, 4:3 map, caption, and three numbered zone descriptions stack without clipping or horizontal page overflow.
+- Homepage destination cards were checked at 320 and 390 px. The month calendar changes to two six-month rows, all month labels remain readable, and the full photographic card remains clickable.
+- Station-life sliders were checked at 320, 360, 390, and 414 px on Dahab, Wingfoil, and Windsurf routes. One 16:10 mobile card occupies about 91% of the track and reveals the next card edge as a swipe affordance.
+- Carousel controls remain at least 42 × 42 px; captions are clamped to two lines on narrow screens.
+- Opening a station-life image displays a modal viewer with the image using almost the full available mobile width and navigation controls over the media rather than beside it.
+- The Dahab mobile menu was opened at 360 px and remained independently scrollable without covering or widening the page.
+- Browser console contained no site-origin errors. Logged errors came only from the cloud browser extension.
 
 ## Required fidelity surfaces
 
-- Fonts and typography: existing Vetratoria type system retained; overlay hierarchy remains readable and consistent with the rest of the site.
-- Spacing and layout rhythm: large photographic cards, consistent radii, 20 px destination gaps, 16 px carousel gaps, and aligned controls.
-- Colors and visual tokens: existing light section, orange accent, dark season state, and orange current-month outline retained.
-- Image quality and assets: only existing real Vetratoria photographs are used; images retain their source proportions and use `object-fit: cover` inside 16:9 presentation areas.
-- Copy and content: verbose wind descriptions removed from the homepage cards; destination names, seasons, months, and navigation CTAs remain.
+- Fonts and typography: the existing Vetratoria family, weights, and uppercase labels are retained; display titles reflow at narrow widths without orphaned fragments or clipping.
+- Spacing and layout rhythm: desktop uses a balanced header plus map/content grid; mobile changes to a deliberate vertical composition with 16–20 px card padding and consistent separators.
+- Colors and visual tokens: the water section now uses the shared light surface, border, shadow, dark text, muted body text, and restrained orange section accents.
+- Image quality and assets: the existing Dahab aerial photograph and real station photographs are preserved; no stock imagery or generated placeholders were added. Responsive crops use 4:3 for the map and 16:10 for mobile carousel cards.
+- Copy and content: removed sales-oriented pills and CTA copy; added factual descriptions of the separated Lagoon, Speedy, and Kamikaze zones without introducing unverified wind statistics.
 
 ## Comparison history
 
-- Initial P1: destination cards read as text cards with small photo headers, contrary to the requested image-led hierarchy. Fixed by moving all essential season content onto large photographic cards.
-- Initial P1: station life stopped after four static images. Fixed with eight real images, horizontal navigation, keyboard scrolling, touch scrolling, and a full-screen lightbox.
-- Post-fix evidence: browser captures and interaction checks listed above. No actionable P0/P1/P2 findings remain.
+- Initial P1: the water-area block remained a long dark product/sales panel and conflicted with the requested informational purpose. Fixed with a shared light surface, simplified hierarchy, and removal of pills and actions.
+- Initial P1: new destination cards compressed 12 month cells into one unreadable mobile row. Fixed with a six-column, two-row mobile calendar.
+- Initial P2: tablet destination layout centered the third card at half width. Fixed by allowing the third card to span the full tablet grid.
+- Initial P1: station-life items used viewport-based widths and squeezed captions/controls at 320–414 px. Fixed with container-relative slide widths, compact controls, mobile crop, and two-line captions.
+- Initial P2: modal navigation consumed too much image width on small screens. Fixed by overlaying previous/next controls on the image.
+- Post-fix browser evidence at all listed viewports shows no actionable P0/P1/P2 findings.
+
+## Primary interactions tested
+
+- destination card navigation affordance;
+- station-life horizontal scrolling and next-card preview;
+- station-life image opening in the lightbox;
+- lightbox close control;
+- mobile menu open state and internal scrolling.
 
 ## Follow-up polish
 
-- P3: replace or reorder individual carousel photographs later if the client supplies a curated final selection; the component supports additional images without changing its layout.
+- P3: the final ordering of station-life photos can be curated later when the client supplies a definitive album sequence; the component accepts additional real images without layout changes.
 
 final result: passed

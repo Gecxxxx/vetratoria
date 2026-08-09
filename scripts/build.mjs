@@ -583,11 +583,11 @@ const contactDialog = (page) => {
 
 const ASSET_VERSION = "20260809-staging-r5";
 const PAGE_ASSET_VERSIONS = new Map([
-  ["/", "20260809-staging-r7-expert-blocks-r2"],
+  ["/", "20260809-staging-r8-mobile-cards"],
   ["/blog/", `${ASSET_VERSION}-blog-filters`],
-  ["/dahab/", "20260809-staging-r6-expert-blocks-r2"],
-  ["/dahab/wingfoil/", "20260809-staging-r7-station-life"],
-  ["/dahab/windsurf/", "20260809-staging-r7-station-life"],
+  ["/dahab/", "20260809-staging-r8-water-area-mobile"],
+  ["/dahab/wingfoil/", "20260809-staging-r8-station-life-mobile"],
+  ["/dahab/windsurf/", "20260809-staging-r8-station-life-mobile"],
   ["/dahab/stations/", `${ASSET_VERSION}-shared-stations-hero`],
   ["/dahab/team/", `${ASSET_VERSION}-team-windsurf`],
   ["/dahab/windsurf-kids/", `${ASSET_VERSION}-wsk-overview-hero`]
@@ -1791,7 +1791,7 @@ ${seasonSection([countriesByKey.dahab], {
     </header>
     <div class="station-life__slider" data-life-slider>
       <div class="station-life__controls" aria-label="Управление фотогалереей">
-        <span>8 живых кадров со станции</span>
+        <span>8 живых кадров</span>
         <div><button type="button" data-life-prev aria-label="Предыдущие фотографии">‹</button><button type="button" data-life-next aria-label="Следующие фотографии">›</button></div>
       </div>
       <div class="station-life__track" data-life-track tabindex="0" aria-label="Фотографии жизни станции">
@@ -1846,23 +1846,22 @@ ${seasonSection([countriesByKey.dahab], {
 
 <section class="water-area" id="water-area" aria-labelledby="water-area-title">
   <div class="water-area__inner">
-    <div class="water-area__copy">
+    <header class="water-area__head" data-reveal="line">
       <p class="eyebrow">Акватория</p>
       <h2 id="water-area-title">От первых метров в лагуне до открытого моря</h2>
-      <p>В Дахабе можно менять акваторию по мере прогресса. Перед каждым выходом команда оценивает ветер, ваш уровень и способность самостоятельно держать курс и вернуться к станции.</p>
-      <div class="water-area__facts" aria-label="Как выбирается акватория">
-        <span>Зона под текущий уровень</span>
-        <span>Инструктаж перед выходом</span>
-        <span>4 спасательных катера</span>
-      </div>
+      <p>Акватория Дахаба разделена на три отдельные зоны. У каждой свой рельеф воды и характер катания — от закрытой учебной лагуны до волн открытого моря.</p>
+    </header>
+    <div class="water-area__layout">
+      <figure class="water-area__visual">
+        <img src="${dahabRefImg("aqva-aerial.webp")}" alt="Три отдельные зоны акватории Дахаба: лагуна, Speedy и Камикадзе" width="900" height="1200" loading="lazy" decoding="async">
+        <figcaption>Лагуна, Speedy и Камикадзе расположены рядом, но разделены берегом и косой.</figcaption>
+      </figure>
       <div class="water-area__cards">
-        <article data-reveal="line"><span aria-hidden="true">01</span><div><strong>Лагуна</strong><small>Первые старты и базовая техника</small><p>Защищённая и более ровная вода помогает освоить баланс, управление крылом или парусом, первые галсы и возвращение в точку выхода.</p></div></article>
-        <article data-reveal="line"><span aria-hidden="true">02</span><div><strong>Speedy · скоростная зона</strong><small>Уверенный курс и длинные галсы</small><p>Подходит райдерам, которые уже контролируют снаряжение. Здесь работают над скоростью, поворотами и устойчивым движением выбранным курсом.</p></div></article>
-        <article data-reveal="line"><span aria-hidden="true">03</span><div><strong>Открытое море и волны</strong><small>Самостоятельное уверенное катание</small><p>Следующий уровень для тех, кто умеет оценивать условия, контролировать курс и самостоятельно возвращаться к станции.</p></div></article>
+        <article data-reveal="line"><span aria-hidden="true">01</span><div><strong>Лагуна</strong><small>Закрытая учебная зона</small><p>Лагуна защищена берегом и подходит для учеников: здесь спокойнее вода, проще отрабатывать первые старты, баланс и базовую технику.</p></div></article>
+        <article data-reveal="line"><span aria-hidden="true">02</span><div><strong>Speedy</strong><small>Гладкая скоростная зона</small><p>Speedy отделена от открытого моря косой. Благодаря этому вода остаётся гладкой при разных направлениях ветра — здесь уверенные райдеры разгоняются и отрабатывают технику на скорости.</p></div></article>
+        <article data-reveal="line"><span aria-hidden="true">03</span><div><strong>Камикадзе</strong><small>Открытое море и волны</small><p>Камикадзе находится уже за защищённой частью акватории. Это отдельная зона открытого моря с волной для самостоятельных опытных райдеров.</p></div></article>
       </div>
-      <div class="water-area__actions">${contactCta(page, "Подобрать формат")}<a href="/dahab/safety/">Как устроена безопасность →</a></div>
     </div>
-    <figure class="water-area__visual"><img src="${dahabRefImg("aqva-aerial.webp")}" alt="Акватория Дахаба для wingfoil и windsurf" width="900" height="1200" loading="lazy" decoding="async"></figure>
   </div>
 </section>
 
