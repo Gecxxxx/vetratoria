@@ -49,7 +49,7 @@ const seasonCalendar = (country, { compact = false } = {}) => `
     <div class="season-months" aria-label="Сезон: ${escapeHtml(country.seasonTitle)}">
       ${monthLabels.map(([key, label]) => {
         const inSeason = country.seasonMonths.includes(key);
-        return `<span class="${inSeason ? "is-season" : ""}" aria-label="${label}: ${inSeason ? "основной сезон" : "вне основного сезона"}">${label}</span>`;
+        return `<span class="${inSeason ? "is-season" : ""}" data-month="${key}" aria-label="${label}: ${inSeason ? "основной сезон" : "вне основного сезона"}">${label}</span>`;
       }).join("")}
     </div>
     <div class="season-card__wind">
@@ -578,7 +578,7 @@ const contactDialog = (page) => {
 </dialog>`;
 };
 
-const ASSET_VERSION = "20260809-staging";
+const ASSET_VERSION = "20260809-staging-r2";
 const PAGE_ASSET_VERSIONS = new Map([
   ["/", `${ASSET_VERSION}-expert-blocks-r2`],
   ["/blog/", `${ASSET_VERSION}-blog-filters`],
@@ -1589,6 +1589,7 @@ const dahabHomePage = (page) => {
 </section>
 
 ${seasonSection([countriesByKey.dahab], {
+  compact: true,
   eyebrow: "Дахаб · сезон и ветер",
   title: "Когда ехать в Дахаб",
   lead: countriesByKey.dahab.seasonNote
@@ -2001,6 +2002,7 @@ const countryPage = (page) => {
   const sports = country.sports.map((key) => site.sports[key]);
   return `${hero(page, actions)}
   ${seasonSection([country], {
+    compact: true,
     eyebrow: `${country.region} · сезон и ветер`,
     title: `Когда ехать в ${country.city}`,
     lead: country.seasonNote

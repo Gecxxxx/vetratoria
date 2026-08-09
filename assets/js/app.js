@@ -99,6 +99,14 @@
     revealItems.forEach((item) => item.classList.add("is-visible"));
   }
 
+  const monthKeys = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+  const currentMonthKey = monthKeys[new Date().getMonth()];
+  document.querySelectorAll(`[data-month="${currentMonthKey}"]`).forEach((month) => {
+    month.classList.add("is-current");
+    month.setAttribute("aria-label", `${month.getAttribute("aria-label")}; текущий месяц`);
+    month.setAttribute("title", "Текущий месяц");
+  });
+
   const currentPath = window.location.pathname.replace(/\/index\.html$/, "/");
   document.querySelectorAll("a[href]").forEach((link) => {
     const href = link.getAttribute("href");

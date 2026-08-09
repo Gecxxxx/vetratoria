@@ -9,6 +9,12 @@
 .season-section .section-heading h2 { color: var(--color-light-text); }
 .season-section .section-heading p:not(.eyebrow) { color: var(--color-light-muted); }
 
+.season-section--compact {
+  padding: clamp(58px, 6vw, 78px) 0;
+}
+
+.season-section--compact .section-heading { margin-bottom: 22px; }
+
 .season-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -84,6 +90,19 @@
 .season-months span.is-season {
   border-color: var(--color-light-text);
   background: var(--color-light-text);
+  color: var(--white);
+}
+
+.season-months span.is-current {
+  border-color: var(--orange);
+  box-shadow: inset 0 0 0 2px var(--orange);
+  color: #9d310e;
+}
+
+.season-months span.is-season.is-current {
+  border-color: var(--orange);
+  background: var(--orange);
+  box-shadow: none;
   color: var(--white);
 }
 
@@ -235,6 +254,7 @@
 
 @media (max-width: 700px) {
   .season-section { padding: var(--space-section-mobile) 0; }
+  .season-section--compact { padding: 48px 0; }
   .season-card { padding: 20px; }
   .season-card__header { display: grid; }
   .season-card__header strong { justify-self: start; }

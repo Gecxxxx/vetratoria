@@ -980,46 +980,8 @@
   object-position: center;
 }
 
-body.country.country-dahab main {
-  display: flex;
-  flex-direction: column;
-}
-
-body.country.country-dahab .dahab-hero {
-  order: 1;
-}
-
-body.country.country-dahab .dahab-marquee {
-  order: 2;
-}
-
-body.country.country-dahab .sport-split {
-  order: 3;
-}
-
-body.country.country-dahab .dahab-learning {
-  order: 4;
-}
-
-body.country.country-dahab .compact-band {
-  order: 5;
-}
-
-body.country.country-dahab .station-advice {
-  order: 6;
-}
-
 body.country.country-dahab .trust-block {
   display: block;
-  order: 7;
-}
-
-body.country.country-dahab .water-area {
-  order: 8;
-}
-
-body.country.country-dahab .dahab-faq-section {
-  order: 9;
 }
 
 @media (max-width: 900px) {
