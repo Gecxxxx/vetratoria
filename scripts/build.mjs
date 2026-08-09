@@ -37,6 +37,14 @@ const monthLabels = [
   ["sep", "СЕН"], ["oct", "ОКТ"], ["nov", "НОЯ"], ["dec", "ДЕК"]
 ];
 
+const seasonMonths = (country) => `
+    <div class="season-months" aria-label="Сезон: ${escapeHtml(country.seasonTitle)}">
+      ${monthLabels.map(([key, label]) => {
+        const inSeason = country.seasonMonths.includes(key);
+        return `<span class="${inSeason ? "is-season" : ""}" data-month="${key}" aria-label="${label}: ${inSeason ? "основной сезон" : "вне основного сезона"}">${label}</span>`;
+      }).join("")}
+    </div>`;
+
 const seasonCalendar = (country, { compact = false } = {}) => `
   <article class="season-card${compact ? " season-card--compact" : ""}" data-reveal>
     <header class="season-card__header">
@@ -46,12 +54,7 @@ const seasonCalendar = (country, { compact = false } = {}) => `
       </div>
       <strong>${escapeHtml(country.seasonTitle)}</strong>
     </header>
-    <div class="season-months" aria-label="Сезон: ${escapeHtml(country.seasonTitle)}">
-      ${monthLabels.map(([key, label]) => {
-        const inSeason = country.seasonMonths.includes(key);
-        return `<span class="${inSeason ? "is-season" : ""}" data-month="${key}" aria-label="${label}: ${inSeason ? "основной сезон" : "вне основного сезона"}">${label}</span>`;
-      }).join("")}
-    </div>
+    ${seasonMonths(country)}
     <div class="season-card__wind">
       <span class="wind-indicator" aria-hidden="true"><i></i><i></i><i></i></span>
       <div><b>${escapeHtml(country.windLabel)}</b><p>${escapeHtml(country.windSummary)}</p></div>
@@ -578,7 +581,7 @@ const contactDialog = (page) => {
 </dialog>`;
 };
 
-const ASSET_VERSION = "20260809-staging-r4";
+const ASSET_VERSION = "20260809-staging-r5";
 const PAGE_ASSET_VERSIONS = new Map([
   ["/", `${ASSET_VERSION}-expert-blocks-r2`],
   ["/blog/", `${ASSET_VERSION}-blog-filters`],
@@ -712,21 +715,27 @@ const home = (page) => `
 
 <section class="home-section home-section--destinations" id="destinations">
   <div class="section-inner">
-    ${sectionHeading("Направления", "Выберите место под сезон и свою цель", "Сравните условия на воде и виды спорта. Если сомневаетесь, расскажите о поездке — команда предложит подходящее направление.")}
-    <div class="destination-grid">
+    ${sectionHeading("Направления и сезоны", "Выберите место под даты и свою цель", "Фотографии, подтверждённые сезоны и характер ветра собраны в одной карточке — сравнить направления можно без повторяющихся блоков.")}
+    <div class="destination-season-grid">
       ${countryList.map((country) => `
-        <a class="destination-card" href="${country.href}">
-          ${cardImage(country.hero, `${country.region} · ${country.city}`)}
-          <span>${country.region}</span>
-          <h2>${country.key === "russia" ? "Должанская Коса" : country.title}</h2>
-          <p>${homeCountryCopy[country.key].lead}</p>
-          <em>${homeCountryCopy[country.key].action}</em>
+        <a class="destination-season-card" href="${country.href}" data-reveal>
+          <figure>
+            ${cardImage(country.hero, `${country.region} · ${country.city}`)}
+            <figcaption><span>${country.region}</span><h2>${country.key === "russia" ? "Должанская Коса" : country.title}</h2></figcaption>
+          </figure>
+          <div class="destination-season-card__body">
+            <header><span>Сезон</span><strong>${escapeHtml(country.seasonTitle)}</strong></header>
+            ${seasonMonths(country)}
+            <div class="destination-season-card__wind">
+              <span class="wind-indicator" aria-hidden="true"><i></i><i></i><i></i></span>
+              <div><b>${escapeHtml(country.windLabel)}</b><p>${escapeHtml(country.windSummary)}</p></div>
+            </div>
+            <em>${homeCountryCopy[country.key].action} <span aria-hidden="true">→</span></em>
+          </div>
         </a>`).join("")}
     </div>
   </div>
 </section>
-
-${seasonSection(countryList)}
 
 <section class="home-section home-section--brand" id="brand">
   <div class="section-inner brand-split">
@@ -1745,7 +1754,6 @@ ${seasonSection([countriesByKey.dahab], {
         <article data-reveal="line"><span aria-hidden="true">02</span><div><strong>Speedy · скоростная зона</strong><small>Уверенный курс и длинные галсы</small><p>Подходит райдерам, которые уже контролируют снаряжение. Здесь работают над скоростью, поворотами и устойчивым движением выбранным курсом.</p></div></article>
         <article data-reveal="line"><span aria-hidden="true">03</span><div><strong>Открытое море и волны</strong><small>Самостоятельное уверенное катание</small><p>Следующий уровень для тех, кто умеет оценивать условия, контролировать курс и самостоятельно возвращаться к станции.</p></div></article>
       </div>
-      <p class="water-area__note"><strong>Важно:</strong> конкретную зону подтверждаем по фактическому ветру и обстановке на воде — не только по плану поездки.</p>
       <div class="water-area__actions">${contactCta(page, "Подобрать формат")}<a href="/dahab/safety/">Как устроена безопасность →</a></div>
     </div>
     <figure class="water-area__visual"><img src="${dahabRefImg("aqva-aerial.webp")}" alt="Акватория Дахаба для wingfoil и windsurf" width="900" height="1200" loading="lazy" decoding="async"></figure>

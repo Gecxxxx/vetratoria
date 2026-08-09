@@ -665,30 +665,22 @@
 
 .station-life__grid {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-auto-rows: 240px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
 
 .station-life__item {
   position: relative;
-  grid-column: span 5;
   min-width: 0;
   margin: 0;
   overflow: hidden;
   border-radius: var(--radius-media);
   background: #181411;
+  aspect-ratio: 16 / 9;
 }
 
-.station-life__item--main {
-  grid-column: span 7;
-  grid-row: span 2;
-}
-
-.station-life__item--wide {
-  grid-column: 1 / -1;
-  min-height: 280px;
-}
+.station-life__item--main,
+.station-life__item--wide { grid-column: auto; }
 
 .station-life__item img {
   width: 100%;
@@ -1082,19 +1074,6 @@
   line-height: 1.45;
 }
 
-.water-area__note {
-  max-width: 650px;
-  margin: 18px 0 0;
-  padding: 14px 16px;
-  border-left: 2px solid var(--orange);
-  background: rgba(255, 255, 255, 0.045);
-  color: #d8d2cd;
-  font-size: 13px;
-  line-height: 1.45;
-}
-
-.water-area__note strong { color: var(--white); }
-
 .water-area__actions {
   display: flex;
   flex-wrap: wrap;
@@ -1219,18 +1198,6 @@ body.country.country-dahab .trust-block {
 
   .station-life__grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-auto-rows: 260px;
-    }
-
-  .station-life__item,
-  .station-life__item--main {
-      grid-column: span 1;
-      grid-row: span 1;
-    }
-
-  .station-life__item--main,
-  .station-life__item--wide {
-      grid-column: 1 / -1;
     }
 
   .water-area__copy {
@@ -1338,14 +1305,13 @@ body.country.country-dahab .trust-block {
 
   .station-life__grid {
       grid-template-columns: 1fr;
-      grid-auto-rows: auto;
     }
 
   .station-life__item,
   .station-life__item--main,
   .station-life__item--wide {
       grid-column: 1;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 16 / 9;
       min-height: 0;
     }
 
