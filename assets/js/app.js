@@ -107,6 +107,27 @@
     month.setAttribute("title", "Текущий месяц");
   });
 
+  document.querySelectorAll("[data-exclusive-accordion]").forEach((accordion) => {
+    const items = [...accordion.querySelectorAll("details")];
+    if (!items.length) return;
+
+    const syncState = (item) => {
+      item.querySelector("summary")?.setAttribute("aria-expanded", String(item.open));
+    };
+
+    items.forEach((item) => {
+      item.addEventListener("toggle", () => {
+        if (item.open) {
+          items.forEach((otherItem) => {
+            if (otherItem !== item && otherItem.open) otherItem.removeAttribute("open");
+          });
+        }
+        syncState(item);
+      });
+      syncState(item);
+    });
+  });
+
   const currentPath = window.location.pathname.replace(/\/index\.html$/, "/");
   document.querySelectorAll("a[href]").forEach((link) => {
     const href = link.getAttribute("href");

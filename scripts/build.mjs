@@ -1868,9 +1868,18 @@ ${stationLifeGallery({
 
 <section class="dahab-faq-section" id="faq">
   <div class="dahab-inner">
-    ${sectionHeading("Перед записью", "Честные ответы о сроках и результате", "Ветер и обучение нельзя подогнать под одно обещание. Ниже — ориентиры, по которым действительно можно планировать поездку.")}
-    <div class="dahab-sport-faq">
-      ${dahabFaqs.map(([question, answer], index) => `<details ${index === 0 ? "open" : ""}><summary>${question}</summary><p>${answer}</p></details>`).join("")}
+    <div class="dahab-faq-section__layout">
+      <header class="dahab-faq-section__intro">
+        <p class="eyebrow">Перед записью</p>
+        <h2>Честные ответы о сроках и результате</h2>
+        <p>Ветер и обучение нельзя подогнать под одно обещание. Ниже — ориентиры, по которым действительно можно планировать поездку.</p>
+      </header>
+      <div class="dahab-faq-section__accordion" data-exclusive-accordion aria-label="Частые вопросы перед записью">
+        ${dahabFaqs.map(([question, answer], index) => `<details class="dahab-faq-section__item" ${index === 0 ? "open" : ""}>
+          <summary aria-expanded="${index === 0 ? "true" : "false"}"><span class="dahab-faq-section__number" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span><span>${question}</span></summary>
+          <p>${answer}</p>
+        </details>`).join("")}
+      </div>
     </div>
     <div class="price-help-cta dahab-faq-section__cta">
       <div><b>Подберём программу под ваши даты</b><p>Оставьте имя и телефон или напишите в WhatsApp / Telegram. Ответим по формату, стоимости и свободному времени.</p></div>

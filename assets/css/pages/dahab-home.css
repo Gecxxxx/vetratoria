@@ -621,16 +621,119 @@
 }
 
 .dahab-faq-section {
-  background: #15100e;
+  background: #100e0d;
 }
 
-.dahab-faq-section .section-heading {
-  max-width: 900px;
+.dahab-faq-section__layout {
+  display: grid;
+  grid-template-columns: minmax(260px, .76fr) minmax(0, 1.24fr);
+  gap: clamp(42px, 7vw, 118px);
+  align-items: start;
+}
+
+.dahab-faq-section__intro {
+  max-width: 430px;
+  padding-top: 12px;
+}
+
+.dahab-faq-section__intro .eyebrow {
+  margin: 0;
+}
+
+.dahab-faq-section__intro h2 {
+  max-width: 430px;
+  margin: 14px 0 18px;
+  color: var(--white);
+  font-size: clamp(38px, 4.2vw, 64px);
+  font-weight: 900;
+  letter-spacing: -.055em;
+  line-height: .95;
+}
+
+.dahab-faq-section__intro > p:last-child {
+  max-width: 390px;
+  margin: 0;
+  color: #bfb8b3;
+  font-size: 16px;
+  line-height: 1.52;
+}
+
+.dahab-faq-section__accordion {
+  display: grid;
+  gap: 2px;
+  overflow: hidden;
+  border: 1px solid #403b37;
+  border-radius: 3px;
+  background: #403b37;
+}
+
+.dahab-faq-section__item {
+  background: #171310;
+}
+
+.dahab-faq-section__item[open] {
+  background: #1c1612;
+  box-shadow: inset 3px 0 0 var(--orange);
+}
+
+.dahab-faq-section__item summary {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 20px;
+  gap: 14px;
+  align-items: start;
+  min-height: 86px;
+  padding: 24px 28px;
+  color: var(--white);
+  cursor: pointer;
+  font-size: clamp(18px, 1.55vw, 23px);
+  font-weight: 900;
+  line-height: 1.1;
+  list-style: none;
+}
+
+.dahab-faq-section__item summary::-webkit-details-marker {
+  display: none;
+}
+
+.dahab-faq-section__number {
+  color: var(--orange);
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.dahab-faq-section__item summary::after {
+  color: var(--orange);
+  content: "+";
+  font-size: 25px;
+  font-weight: 400;
+  line-height: .66;
+  text-align: right;
+}
+
+.dahab-faq-section__item[open] summary::after {
+  content: "−";
+}
+
+.dahab-faq-section__item summary:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: -4px;
+}
+
+.dahab-faq-section__item > p {
+  max-width: 670px;
+  margin: -5px 54px 0 98px;
+  padding: 0 28px 24px 0;
+  color: #d5cfca;
+  font-size: 15px;
+  line-height: 1.48;
 }
 
 .dahab-faq-section__cta {
-  max-width: 900px;
-  margin-top: 24px;
+  max-width: none;
+  margin-top: 42px;
+  padding-top: 26px;
+  border-top: 1px solid #403b37;
 }
 
 .station-advice {
@@ -1420,6 +1523,24 @@ body.country.country-dahab .trust-block {
       gap: 14px;
     }
 
+  .dahab-faq-section__layout {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+  .dahab-faq-section__intro {
+      max-width: 620px;
+      padding-top: 0;
+    }
+
+  .dahab-faq-section__intro h2 {
+      max-width: 580px;
+    }
+
+  .dahab-faq-section__cta {
+      margin-top: 30px;
+    }
+
   .price-help-cta nav {
       justify-content: flex-start;
     }
@@ -1554,6 +1675,38 @@ body.country.country-dahab .trust-block {
     }
   .water-area__cards strong { font-size: 23px; }
   .water-area__cards p { font-size: 14px; }
+
+  .dahab-faq-section__intro h2 {
+      font-size: clamp(36px, 11vw, 48px);
+    }
+
+  .dahab-faq-section__intro > p:last-child {
+      font-size: 15px;
+    }
+
+  .dahab-faq-section__item summary {
+      grid-template-columns: 34px minmax(0, 1fr) 16px;
+      gap: 10px;
+      min-height: 0;
+      padding: 18px 16px;
+      font-size: 18px;
+    }
+
+  .dahab-faq-section__number {
+      padding-top: 1px;
+      font-size: 13px;
+    }
+
+  .dahab-faq-section__item summary::after {
+      font-size: 21px;
+    }
+
+  .dahab-faq-section__item > p {
+      margin: -2px 20px 0 60px;
+      padding: 0 0 19px;
+      font-size: 14px;
+      line-height: 1.45;
+    }
 
   .sport-tile,
   .station-advice__list a {
