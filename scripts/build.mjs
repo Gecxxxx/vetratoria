@@ -589,11 +589,11 @@ const ASSET_VERSION = "20260809-staging-r5";
 const PAGE_ASSET_VERSIONS = new Map([
   ["/", "20260810-staging-r14-editorial-approach"],
   ["/blog/", `${ASSET_VERSION}-blog-filters`],
-  ["/dahab/", "20260810-staging-r13-compact-rail"],
+  ["/dahab/", "20260810-staging-r15-station-gallery"],
   ["/vietnam/", "20260810-staging-r13-compact-rail"],
   ["/russia/", "20260810-staging-r13-compact-rail"],
-  ["/dahab/wingfoil/", "20260810-staging-r13-compact-rail"],
-  ["/dahab/windsurf/", "20260810-staging-r13-compact-rail"],
+  ["/dahab/wingfoil/", "20260810-staging-r15-station-gallery"],
+  ["/dahab/windsurf/", "20260810-staging-r15-station-gallery"],
   ["/vietnam/wingfoil/", "20260810-staging-r13-compact-rail"],
   ["/vietnam/windsurf/", "20260810-staging-r13-compact-rail"],
   ["/vietnam/kite/", "20260810-staging-r13-compact-rail"],
@@ -816,29 +816,31 @@ const dahabReviewItems = [
   ["Y", "Yuriy Tolchinskiy", "★★★★★", "Приезжал осваивать wingfoil. Довольно быстро получилось лететь на фойле и делать повороты. Спасибо Hassan за продуктивные тренировки."]
 ];
 
-const sportStationLife = ({ id, eyebrow, title, lead, photos }) => `
+const stationLifeGallery = ({ id, eyebrow, title, lead, photos }) => `
 <section class="station-life station-life--sport" id="${id}" aria-labelledby="${id}-title">
   <div class="station-life__inner">
-    <header class="station-life__head" data-reveal="line">
-      <div>
+    <div class="station-life__layout" data-life-slider>
+      <header class="station-life__panel" data-reveal="line">
         <p class="eyebrow">${escapeHtml(eyebrow)}</p>
         <h2 id="${id}-title">${escapeHtml(title)}</h2>
-      </div>
-      <div>
         <p>${escapeHtml(lead)}</p>
         <a href="/media/dahab/">Смотреть все фотографии <span aria-hidden="true">→</span></a>
-      </div>
-    </header>
-    <div class="station-life__slider" data-life-slider>
-      <div class="station-life__controls" aria-label="Управление фотогалереей">
-        <span>${photos.length} живых кадров</span>
-        <div><button type="button" data-life-prev aria-label="Предыдущие фотографии">‹</button><button type="button" data-life-next aria-label="Следующие фотографии">›</button></div>
+        <div class="station-life__panel-footer">
+          <span><b data-life-current>01</b> / ${String(photos.length).padStart(2, "0")}</span>
+          <div><button type="button" data-life-prev aria-label="Предыдущая фотография">‹</button><button type="button" data-life-next aria-label="Следующая фотография">›</button></div>
+        </div>
+      </header>
+      <div class="station-life__gallery">
+        <button class="station-life__featured" type="button" data-life-featured data-media-photo-open data-media-group="${id}" data-media-photo-index="0" data-media-src="${photos[0][0]}" data-media-alt="${escapeHtml(photos[0][3])}" aria-label="Открыть фотографию 1 из ${photos.length} на весь экран">
+          <img src="${photos[0][0]}" alt="${escapeHtml(photos[0][3])}" width="${photos[0][4]}" height="${photos[0][5]}" decoding="async">
+          <span class="station-life__expand">Открыть на весь экран ↗</span>
+          <span class="station-life__caption"><small>${escapeHtml(photos[0][1])}</small><strong>${escapeHtml(photos[0][2])}</strong></span>
+        </button>
       </div>
       <div class="station-life__track" data-life-track tabindex="0" aria-label="${escapeHtml(title)}">
         ${photos.map(([src, label, caption, alt, width, height], index) => `
-          <button class="station-life__item" type="button" data-media-photo-open data-media-group="${id}" data-media-photo-index="${index}" data-media-src="${src}" data-media-alt="${escapeHtml(alt)}" aria-label="Открыть фотографию ${index + 1} из ${photos.length}">
+          <button class="station-life__item${index === 0 ? " is-active" : ""}" type="button" data-life-thumb data-media-photo-source data-media-group="${id}" data-media-photo-index="${index}" data-media-src="${src}" data-media-alt="${escapeHtml(alt)}" data-life-label="${escapeHtml(label)}" data-life-caption="${escapeHtml(caption)}" aria-pressed="${index === 0 ? "true" : "false"}" aria-label="Показать фотографию ${index + 1} из ${photos.length}">
             <img src="${src}" alt="${escapeHtml(alt)}" width="${width}" height="${height}" loading="lazy" decoding="async">
-            <span class="station-life__caption"><small>${escapeHtml(label)}</small><strong>${escapeHtml(caption)}</strong></span>
           </button>`).join("")}
       </div>
     </div>
@@ -863,6 +865,8 @@ const sportStationLife = ({ id, eyebrow, title, lead, photos }) => `
     </div>
   </div>
 </dialog>`;
+
+const sportStationLife = (options) => stationLifeGallery(options);
 
 const dahabWingfoilPage = (page) => {
   const heroFacts = ["Обучение с нуля", "Спасательный катер", "Связь BB Talkin", "Снаряжение RRD"];
@@ -1783,52 +1787,13 @@ ${seasonSection([countriesByKey.dahab], {
   ${contactCta(page, "Подобрать станцию", "station-advice__cta")}
 </section>
 
-<section class="station-life" id="station-life" aria-labelledby="station-life-title">
-  <div class="station-life__inner">
-    <header class="station-life__head" data-reveal="line">
-      <div>
-        <p class="eyebrow">Жизнь станции</p>
-        <h2 id="station-life-title">Место, куда приезжают кататься — и остаются за атмосферой</h2>
-      </div>
-      <div>
-        <p>День начинается с прогноза и подбора комплекта, продолжается на воде, а заканчивается разговорами о новых элементах и следующем выходе.</p>
-        <a href="/media/dahab/">Смотреть все фотографии <span aria-hidden="true">→</span></a>
-      </div>
-    </header>
-    <div class="station-life__slider" data-life-slider>
-      <div class="station-life__controls" aria-label="Управление фотогалереей">
-        <span>8 живых кадров</span>
-        <div><button type="button" data-life-prev aria-label="Предыдущие фотографии">‹</button><button type="button" data-life-next aria-label="Следующие фотографии">›</button></div>
-      </div>
-      <div class="station-life__track" data-life-track tabindex="0" aria-label="Фотографии жизни станции">
-        ${stationLifePhotos.map(([src, label, title, alt, width, height], index) => `
-          <button class="station-life__item" type="button" data-media-photo-open data-media-photo-index="${index}" data-media-src="${src}" data-media-alt="${escapeHtml(alt)}" aria-label="Открыть фотографию ${index + 1} из ${stationLifePhotos.length}">
-            <img src="${src}" alt="${escapeHtml(alt)}" width="${width}" height="${height}" loading="lazy" decoding="async">
-            <span class="station-life__caption"><small>${escapeHtml(label)}</small><strong>${escapeHtml(title)}</strong></span>
-          </button>`).join("")}
-      </div>
-    </div>
-  </div>
-</section>
-<dialog class="media-lightbox" data-media-lightbox aria-label="Просмотр фотографий жизни станции">
-  <div class="media-lightbox__surface">
-    <header>
-      <span data-media-lightbox-count></span>
-      <div>
-        <a href="${stationLifePhotos[0][0]}" download data-media-lightbox-download>Скачать</a>
-        <button type="button" data-media-lightbox-close aria-label="Закрыть">×</button>
-      </div>
-    </header>
-    <div class="media-lightbox__stage">
-      <button type="button" data-media-lightbox-prev aria-label="Предыдущая фотография">‹</button>
-      <figure>
-        <img src="${stationLifePhotos[0][0]}" alt="${escapeHtml(stationLifePhotos[0][3])}" data-media-lightbox-image>
-        <figcaption>Жизнь станции Vetratoria Dahab</figcaption>
-      </figure>
-      <button type="button" data-media-lightbox-next aria-label="Следующая фотография">›</button>
-    </div>
-  </div>
-</dialog>
+${stationLifeGallery({
+  id: "station-life",
+  eyebrow: "Жизнь станции",
+  title: "Место, куда приезжают кататься — и остаются за атмосферой",
+  lead: "День начинается с прогноза и подбора комплекта, продолжается на воде, а заканчивается разговорами о новых элементах и следующем выходе.",
+  photos: stationLifePhotos
+})}
 
 <section class="trust-block" id="team-reviews">
   <div class="trust-block__inner">

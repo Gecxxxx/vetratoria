@@ -312,35 +312,45 @@
     const track = slider.querySelector("[data-life-track]");
     const prev = slider.querySelector("[data-life-prev]");
     const next = slider.querySelector("[data-life-next]");
-    if (!track) return;
+    const featured = slider.querySelector("[data-life-featured]");
+    const featuredImage = featured?.querySelector("img");
+    const featuredLabel = featured?.querySelector(".station-life__caption small");
+    const featuredCaption = featured?.querySelector(".station-life__caption strong");
+    const current = slider.querySelector("[data-life-current]");
+    const thumbs = [...slider.querySelectorAll("[data-life-thumb]")];
+    if (!track || !featured || !featuredImage || !thumbs.length) return;
 
-    const scrollStep = () => {
-      const slide = track.querySelector(".station-life__item");
-      const gap = Number.parseFloat(window.getComputedStyle(track).columnGap || "0") || 0;
-      return slide ? slide.getBoundingClientRect().width + gap : track.clientWidth * 0.86;
+    let activeIndex = 0;
+
+    const activate = (index, shouldScroll = true) => {
+      activeIndex = (index + thumbs.length) % thumbs.length;
+      const thumb = thumbs[activeIndex];
+      featuredImage.src = thumb.dataset.mediaSrc || "";
+      featuredImage.alt = thumb.dataset.mediaAlt || "";
+      featured.dataset.mediaPhotoIndex = String(activeIndex);
+      featured.dataset.mediaSrc = thumb.dataset.mediaSrc || "";
+      featured.dataset.mediaAlt = thumb.dataset.mediaAlt || "";
+      featured.setAttribute("aria-label", `Открыть фотографию ${activeIndex + 1} из ${thumbs.length} на весь экран`);
+      if (featuredLabel) featuredLabel.textContent = thumb.dataset.lifeLabel || "";
+      if (featuredCaption) featuredCaption.textContent = thumb.dataset.lifeCaption || "";
+      if (current) current.textContent = String(activeIndex + 1).padStart(2, "0");
+      thumbs.forEach((item, itemIndex) => {
+        const selected = itemIndex === activeIndex;
+        item.classList.toggle("is-active", selected);
+        item.setAttribute("aria-pressed", String(selected));
+      });
+      if (shouldScroll) thumb.scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth", block: "nearest", inline: "nearest" });
     };
 
-    const updateControls = () => {
-      const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
-      if (prev) prev.disabled = track.scrollLeft <= 2;
-      if (next) next.disabled = track.scrollLeft >= maxScroll - 2;
-    };
-
-    const move = (direction) => track.scrollBy({
-      left: scrollStep() * direction,
-      behavior: reducedMotion.matches || coarsePointer.matches ? "auto" : "smooth"
-    });
-
-    prev?.addEventListener("click", () => move(-1));
-    next?.addEventListener("click", () => move(1));
-    track.addEventListener("scroll", updateControls, { passive: true });
+    thumbs.forEach((thumb, index) => thumb.addEventListener("click", () => activate(index)));
+    prev?.addEventListener("click", () => activate(activeIndex - 1));
+    next?.addEventListener("click", () => activate(activeIndex + 1));
     track.addEventListener("keydown", (event) => {
       if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
       event.preventDefault();
-      move(event.key === "ArrowLeft" ? -1 : 1);
+      activate(activeIndex + (event.key === "ArrowLeft" ? -1 : 1));
     });
-    if (typeof ResizeObserver === "function") new ResizeObserver(updateControls).observe(track);
-    updateControls();
+    activate(0, false);
   });
 
   document.querySelectorAll("[data-blog-filter-root]").forEach((filterRoot) => {
@@ -450,29 +460,32 @@
     const group = dialog.dataset.mediaLightbox || "";
     const photoButtons = [...document.querySelectorAll("[data-media-photo-open]")]
       .filter((button) => group ? button.dataset.mediaGroup === group : !button.dataset.mediaGroup);
+    const photoSources = [...document.querySelectorAll("[data-media-photo-source]")]
+      .filter((button) => group ? button.dataset.mediaGroup === group : !button.dataset.mediaGroup);
+    const photos = photoSources.length ? photoSources : photoButtons;
     const image = dialog.querySelector("[data-media-lightbox-image]");
     const count = dialog.querySelector("[data-media-lightbox-count]");
     const download = dialog.querySelector("[data-media-lightbox-download]");
     const close = dialog.querySelector("[data-media-lightbox-close]");
     const prev = dialog.querySelector("[data-media-lightbox-prev]");
     const next = dialog.querySelector("[data-media-lightbox-next]");
-    if (!photoButtons.length || !image) return;
+    if (!photoButtons.length || !photos.length || !image) return;
 
     let activeIndex = 0;
 
     const showPhoto = (index) => {
-      activeIndex = (index + photoButtons.length) % photoButtons.length;
-      const button = photoButtons[activeIndex];
+      activeIndex = (index + photos.length) % photos.length;
+      const button = photos[activeIndex];
       const src = button.dataset.mediaSrc;
       image.src = src;
       image.alt = button.dataset.mediaAlt || "";
-      if (count) count.textContent = `${activeIndex + 1} из ${photoButtons.length}`;
+      if (count) count.textContent = `${activeIndex + 1} из ${photos.length}`;
       if (download) download.href = src;
     };
 
     photoButtons.forEach((button, index) => {
       button.addEventListener("click", () => {
-        showPhoto(index);
+        showPhoto(Number.parseInt(button.dataset.mediaPhotoIndex || String(index), 10));
         dialog.showModal();
       });
     });
@@ -487,7 +500,7 @@
       if (event.key === "ArrowLeft") showPhoto(activeIndex - 1);
       if (event.key === "ArrowRight") showPhoto(activeIndex + 1);
     });
-    dialog.addEventListener("close", () => photoButtons[activeIndex]?.focus());
+    dialog.addEventListener("close", () => photoButtons[0]?.focus());
   });
 
   const countryOption = (form) => form.querySelector("[data-contact-country-select]")?.selectedOptions?.[0];

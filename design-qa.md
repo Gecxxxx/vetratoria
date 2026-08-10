@@ -1,63 +1,47 @@
-# Design QA
-
 **Source visual truth**
 
-- Selected concept: `/workspace/scratch/65e995573032/generated_images/exec-77b0432b-8e72-4138-8445-4b5f2840c349.png`
+- Selected Product Design option 2: `/workspace/scratch/65e995573032/generated_images/exec-6e9ef518-b2e0-432d-9925-52847a242e3b.png`
+- Source pixels: 1584 × 1024, desktop editorial station-gallery concept.
 
 **Implementation evidence**
 
-- Browser-rendered capture: `qa-approach-editorial.jpg`
-- Route/state: homepage, `#brand` section, editorial approach layout visible.
-- Desktop viewport: 1363 × 936 CSS px, 1× density; implementation capture is 1348 × 926 px after scrollbar allocation.
-- Source capture: 1680 × 935 px. Compared on the common component region; page navigation is outside the target component.
-- Mobile: 390 px framed viewport; rendered document width 375 px after native scrollbar allocation, with no horizontal overflow.
+- Browser-rendered route: `http://terminal.local:4173/dahab/#station-life`
+- Desktop cloud-browser capture: 1363 × 936 CSS px, device scale factor 1, normal state and selected-photo state.
+- Mobile cloud-browser capture: responsive iframe at 390 × 844 CSS px, device scale factor 1, selected-photo state.
+- Additional routes checked: `/dahab/wingfoil/` and `/dahab/windsurf/`.
+- Primary interactions tested: thumbnail selection, previous/next controls, selected counter, active outline, fullscreen lightbox, lightbox count.
+- Console checked on all three routes. No application errors or warnings; one Chrome-extension metadata error was external to the site.
 
 **Full-view comparison evidence**
 
-- Both source and implementation place the real station photo on the left and the copy/principles on the right, on a cream surface with black type and orange numbering.
-- The implementation uses the original Vetratoria image asset rather than generated or stock imagery.
+- The implementation follows the selected composition: dark editorial panel on the left, dominant landscape image on the right, and four-up horizontal filmstrip below.
+- The longer approved Vetratoria headline is preserved, so it wraps into more lines than the shorter generated concept headline; font size and panel width were adjusted to retain comparable hierarchy.
+- Real project photography is used throughout. The generated concept's invented portrait was not introduced.
 
 **Focused region comparison evidence**
 
-- The former bordered list cards are replaced by four numbered rows with thin dividers, matching the selected editorial hierarchy.
-- The left image is landscape, rounded and large enough to carry the section emotionally; it remains visible without the former unstable slider state.
-- At 390 px the content stacks as heading → numbered rows → photograph, with readable touch-scale type and no clipped text.
+- Typography: heavy display hierarchy, white-on-black panel, orange eyebrow, and compact supporting copy match the reference direction.
+- Spacing/layout: panel and lead image share height; filmstrip spans both columns; mobile stacks panel, image, and thumbnails without compressed strips.
+- Colors/tokens: existing Vetratoria cream, near-black, white, and orange tokens are preserved.
+- Image quality: original responsive project images, `object-fit: cover`, stable aspect ratios, lazy-loaded thumbnails.
+- Copy/content: existing Russian copy and photo captions preserved; no invented services or claims.
 
-**Required fidelity surfaces**
+**Findings and comparison history**
 
-- Fonts and typography: existing Vetratoria type system retained; heading is the dominant visual anchor and supporting text stays readable.
-- Spacing and layout rhythm: two balanced desktop columns and a single intentional mobile column; no nested card surface remains.
-- Colors and visual tokens: existing cream, near-black and orange tokens are preserved.
-- Image quality and assets: existing `vetratoria-station-team.webp` is used, with object-fit crop appropriate to both desktop and mobile.
-- Copy and content: all four original approach statements and the existing 2006/10,000-person paragraph remain; only their presentation changed.
-
-**Findings**
-
-- No actionable P0, P1 or P2 findings remain.
-- The prior image slider rendered a black media surface in browser QA. It was intentionally replaced by the selected concept’s single real photo, removing the broken state.
-- No application-origin console warnings or errors were found.
-
-**Comparison history**
-
-- Iteration 1 — [P1] The original block used a contained text card and a failing image slider; this differed materially from selected Option 1.
-- Fix: removed the contained surface, moved the image to the left, introduced a vertical divider and editorial numbered rows, and used a stable direct project image.
-- Post-fix evidence: `qa-approach-editorial.jpg`, desktop browser inspection and 390 px mobile inspection. No P0/P1/P2 issues remain.
-
-**Primary interactions tested**
-
-- Existing country navigation remains present above the section.
-- The section image is a non-interactive editorial asset; no broken slider controls remain.
-- Mobile navigation remains visible in the checked state.
-
-**Implementation checklist**
-
-- [x] Selected Option 1 implemented on homepage.
-- [x] Four proof statements converted to semantic ordered list rows.
-- [x] Desktop and 390 px mobile rendering checked.
-- [x] No horizontal overflow or application console errors.
+- [Resolved P1] Initial browser load retained cached JavaScript and the filmstrip opened only one image. Fixed by versioning the Dahab route assets and shared Dahab stylesheet. Post-fix evidence: selecting thumbnail 2 updates the lead image and counter to `02`; lightbox reports `2 из 8`.
+- [Resolved P2] First desktop pass wrapped the long headline too aggressively. Fixed by widening the editorial panel and reducing the display scale. Post-fix evidence: balanced five-line title at 1363 px.
+- [Resolved P2] Previous mobile carousel collapsed into narrow image strips. Fixed with a stacked 390 px layout, 4:3 lead image, and 42% thumbnail widths. Post-fix evidence: zero horizontal overflow and readable selected thumbnail state.
 
 **Follow-up polish**
 
-- None required for this iteration.
+- P3: replace the text fullscreen affordance with the project's final icon set if a dedicated expand icon is added later.
+
+**Implementation checklist**
+
+- Shared component applied to overview, Wingfoil, and Windsurf.
+- Keyboard arrow support retained for the thumbnail rail.
+- `aria-pressed`, descriptive labels, and dialog semantics preserved.
+- `prefers-reduced-motion` respected by instant scrolling.
+- Production build and project verification passed.
 
 final result: passed
