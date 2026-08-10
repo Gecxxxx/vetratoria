@@ -109,6 +109,123 @@
   background: #14110f;
 }
 
+.dahab-sport-section--location {
+  background: var(--color-light);
+  color: var(--color-light-text);
+}
+
+.dahab-sport-section--location .section-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  gap: 16px clamp(32px, 6vw, 104px);
+  max-width: none;
+  margin-bottom: clamp(32px, 4vw, 54px);
+}
+
+.dahab-sport-section--location .section-heading .eyebrow {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.dahab-sport-section--location .section-heading h2 {
+  margin: 0;
+  color: var(--color-light-text);
+  font-size: clamp(42px, 5vw, 70px);
+  line-height: 0.93;
+}
+
+.dahab-sport-section--location .section-heading > p:last-child {
+  align-self: end;
+  max-width: 500px;
+  margin: 0;
+  color: var(--color-light-muted);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.dahab-sport-location-atlas {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  gap: clamp(18px, 2vw, 30px);
+  align-items: stretch;
+}
+
+.dahab-sport-location-atlas__lead {
+  min-height: 620px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-media);
+  background: #ddd6ce;
+}
+
+.dahab-sport-location-atlas__lead img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dahab-sport-location-atlas__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 1.55vw, 24px);
+}
+
+.dahab-sport-location-atlas__grid article {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-light-border);
+  border-radius: var(--radius-card);
+  background: var(--color-light-elevated);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.dahab-sport-location-atlas__grid article:hover {
+  border-color: rgba(255, 90, 31, 0.8);
+  box-shadow: 0 16px 32px rgba(53, 41, 30, 0.1);
+  transform: translateY(-3px);
+}
+
+.dahab-sport-location-atlas__grid img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.dahab-sport-location-atlas__grid article > div {
+  padding: clamp(16px, 1.8vw, 24px);
+}
+
+.dahab-sport-location-atlas__grid span {
+  display: block;
+  color: var(--orange);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.dahab-sport-location-atlas__grid h3 {
+  margin: 10px 0 0;
+  color: var(--color-light-text);
+  font-size: clamp(20px, 2vw, 28px);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+}
+
+.dahab-sport-location-atlas__grid p {
+  margin: 10px 0 0;
+  color: var(--color-light-muted);
+  font-size: 14px;
+  line-height: 1.44;
+}
+
 .dahab-sport-section .section-heading {
   max-width: 880px;
 }
@@ -562,6 +679,14 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+  .dahab-sport-location-atlas {
+      grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    }
+
+  .dahab-sport-location-atlas__lead {
+      min-height: 0;
+    }
+
 }
 
 @media (max-width: 900px) {
@@ -598,6 +723,20 @@
   .dahab-sport-cta__inner {
       padding: 72px 0;
     }
+
+  .dahab-sport-section--location .section-heading,
+  .dahab-sport-location-atlas {
+      grid-template-columns: 1fr;
+    }
+
+  .dahab-sport-section--location .section-heading > p:last-child {
+      max-width: 620px;
+    }
+
+  .dahab-sport-location-atlas__lead {
+      min-height: 0;
+      aspect-ratio: 16 / 10;
+    }
 }
 
 @media (max-width: 620px) {
@@ -616,6 +755,39 @@
   .dahab-sport-process,
   .dahab-sport-price-grid {
       grid-template-columns: 1fr;
+    }
+
+  .dahab-sport-section--location .section-heading h2 {
+      font-size: clamp(36px, 11vw, 46px);
+    }
+
+  .dahab-sport-section--location .section-heading > p:last-child {
+      font-size: 15px;
+    }
+
+  .dahab-sport-location-atlas__grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: none;
+    }
+
+  .dahab-sport-location-atlas__grid article {
+      grid-template-columns: minmax(132px, 0.8fr) minmax(0, 1.2fr);
+      grid-template-rows: none;
+      align-items: stretch;
+    }
+
+  .dahab-sport-location-atlas__grid img {
+      height: 100%;
+      min-height: 150px;
+      aspect-ratio: auto;
+    }
+
+  .dahab-sport-location-atlas__grid article > div {
+      padding: 18px;
+    }
+
+  .dahab-sport-location-atlas__grid h3 {
+      font-size: 23px;
     }
 
   .dahab-sport-safety__media img {

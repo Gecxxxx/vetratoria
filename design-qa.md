@@ -1,39 +1,52 @@
 **Source visual truth**
 
-- Selected Product Design option 2: `/workspace/scratch/65e995573032/generated_images/exec-f3cc298a-0fe7-4e2b-bec9-f0d84322f3e8.png`
-- Source direction: editorial training route — vertical stepper in a black panel, live photo, then a compact lesson-includes panel.
+- Selected Product Design option 2: `/workspace/scratch/65e995573032/generated_images/exec-3e38efe7-3181-487e-b9be-35477f47598f.png`
+- Reference composition: warm white location block, large editorial riding image at left and a compact 2 × 2 grid of four photographic reasons at right.
 
 **Implementation evidence**
 
-- Browser-rendered route: `http://terminal.local:4173/dahab/#learning`
-- Desktop cloud-browser capture: 1363 × 936 CSS px, device scale factor 1.
-- Mobile cloud-browser capture: responsive iframe at 390 × 844 CSS px, device scale factor 1.
-- Content checks: four learning steps, four lesson-includes items, loaded project photo, zero overflow in the learning block at 390 px.
+- Browser-rendered implementation: `/dahab/wingfoil/` and shared counterpart `/dahab/windsurf/`.
+- Desktop viewport: 1363 × 936 CSS px, device scale factor 1; normal section state.
+- Mobile viewport: responsive iframe 390 × 844 CSS px, device scale factor 1; normal section state.
+- Source image: 1484 × 1058 px. Implementation was judged as a content region rather than including browser chrome; no density normalization was required for the CSS layout check.
+- Primary checks: all five images loaded, four reason cards render, shared Windsurf component renders, desktop/mobile grid changes at the intended breakpoint, no horizontal overflow.
+- Console: no application errors or warnings. Two Chrome-extension metadata errors were external to the site.
 
 **Full-view comparison evidence**
 
-- The implementation follows the selected composition: a dark left-hand learning route with a vertical orange-numbered line, a dominant real project photo at right, and a white lesson-includes panel beneath it.
-- Existing approved Russian content is retained; the redesign changes hierarchy and rhythm, not the programme claims.
-- Real project photography is used. No generated imagery or invented service information was introduced.
+- The rendered Wingfoil section keeps the reference’s light milk-colored surface, large left image, 2 × 2 right-side reason grid, orange numerical markers, thin borders and restrained radii.
+- The existing page heading and approved Russian explanatory copy are retained. This makes the title column slightly more text-led than the generated reference, which is an intentional content-preserving deviation.
+- The same presentation is applied to Windsurf through the shared helper without changing the WindSurfKids block.
 
 **Focused region comparison evidence**
 
-- Typography: heavy display hierarchy, white-on-black panel, orange eyebrow, and compact supporting copy match the reference direction.
-- Spacing/layout: the vertical path is read first; image and practical inclusions form a clear secondary column. Mobile stacks the path, photo, and inclusions without horizontal scrolling.
-- Colors/tokens: existing Vetratoria cream, near-black, white, and orange tokens are preserved.
-- Image quality: original responsive project images, `object-fit: cover`, stable aspect ratios, lazy-loaded thumbnails.
-- Copy/content: existing Russian copy and photo captions preserved; no invented services or claims.
+- Typography: near-black display heading, orange eyebrow/step numbers, compact black card titles and muted body copy retain the reference hierarchy. At 390 px the heading wraps inside its container with no overflow.
+- Spacing and layout rhythm: desktop tracks measure 657 px / 632 px with matching 794 px lead and grid heights; each reason card is 387 px high. Mobile becomes a clear photo-first vertical stack with image/text rows.
+- Colors and tokens: uses existing `--color-light`, `--color-light-text`, `--color-light-muted`, `--color-light-border`, and `--orange` Vetratoria tokens.
+- Image quality and assets: only existing project photographs are used, with stable `width`/`height`, lazy loading and `object-fit: cover`; no generated imagery was shipped.
+- Copy/content: all four existing benefits remain unchanged; no prices, statistics, services or staff claims were added.
 
-**Findings and comparison history**
+**Findings**
 
-- [Resolved P1] The initial mobile layout inherited a desktop minimum width from the two-column grid. Fixed by using a zero-minimum mobile grid track and zero-minimum children. Post-fix evidence: `pageOverflow: -15`, `blockOverflow: 0`, `titleOverflow: 0` at 390 px.
-- [Resolved P2] The longest Russian heading could exceed a narrow container. Fixed with controlled wrapping; the text remains legible and fully contained at 390 px.
+- [Resolved P1] Initial implementation allowed intrinsic image heights to determine the right grid, making the column thousands of pixels tall.
+  Location: `.dahab-sport-location-atlas__grid`.
+  Evidence: first desktop check measured a 3307 px grid and blank lower card space.
+  Fix: explicit equal grid rows, zero-minimum image row, and `height: 100%` image fit.
+  Post-fix evidence: 794 px lead/grid height and four equal 387 px cards at 1363 px.
+- [Resolved P2] Mobile grid required an explicit one-column mobile mode plus row-oriented cards for readable photos and copy.
+  Location: `@media (max-width: 620px)`.
+  Fix: one-column grid and a 132 px media column per card.
+  Post-fix evidence: `pageOverflow: -15`, `sectionOverflow: 0`; all four images loaded at 390 px.
 
 **Implementation checklist**
 
-- Semantics use an ordered list for the four-step route and articles for existing lesson inclusions.
-- Real image dimensions, lazy loading and `object-fit: cover` preserve stable rendering.
-- No new motion or dependencies were added.
-- Production build and project verification passed.
+- Shared atlas helper used on Wingfoil and Windsurf location sections.
+- White location surface intentionally confined to these two sport pages.
+- Existing source images, metadata and route hierarchy preserved.
+- `npm run build`, `npm run check`, and `git diff --check` passed.
+
+**Follow-up polish**
+
+- P3: if later supplied, a more dramatic wide Wingfoil project photo could make the lead image even closer to the generated visual reference; the current page hero image is used to avoid introducing stock or synthetic media.
 
 final result: passed

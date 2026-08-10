@@ -72,7 +72,23 @@ const seasonSection = (countries, { compact = false, eyebrow = "Сезоны Vet
     </div>
   </section>`;
 
-const sportFeatureGrid = (items) => `
+const sportFeatureGrid = (items, { atlas = false, leadImage, leadAlt = "" } = {}) => atlas ? `
+    <div class="dahab-sport-location-atlas">
+      <figure class="dahab-sport-location-atlas__lead">
+        <img src="${leadImage}" alt="${escapeHtml(leadAlt)}" width="1920" height="1080" loading="lazy" decoding="async">
+      </figure>
+      <div class="dahab-sport-location-atlas__grid">
+        ${items.map(([title, text, image, alt, width = 1080, height = 1080], index) => `
+          <article>
+            <img src="${image}" alt="${escapeHtml(alt)}" width="${width}" height="${height}" loading="lazy" decoding="async">
+            <div>
+              <span>0${index + 1}</span>
+              <h3>${escapeHtml(title)}</h3>
+              <p>${escapeHtml(text)}</p>
+            </div>
+          </article>`).join("")}
+      </div>
+    </div>` : `
     <div class="dahab-sport-feature-grid dahab-sport-feature-grid--media">
       ${items.map(([title, text, image, alt, width = 1080, height = 1080], index) => `
         <article>
@@ -592,8 +608,8 @@ const PAGE_ASSET_VERSIONS = new Map([
   ["/dahab/", "20260810-staging-r16-learning-atlas"],
   ["/vietnam/", "20260810-staging-r13-compact-rail"],
   ["/russia/", "20260810-staging-r13-compact-rail"],
-  ["/dahab/wingfoil/", "20260810-staging-r15-station-gallery"],
-  ["/dahab/windsurf/", "20260810-staging-r15-station-gallery"],
+  ["/dahab/wingfoil/", "20260810-staging-r17-location-atlas"],
+  ["/dahab/windsurf/", "20260810-staging-r17-location-atlas"],
   ["/vietnam/wingfoil/", "20260810-staging-r13-compact-rail"],
   ["/vietnam/windsurf/", "20260810-staging-r13-compact-rail"],
   ["/vietnam/kite/", "20260810-staging-r13-compact-rail"],
@@ -947,10 +963,10 @@ ${seasonSection([countriesByKey.dahab], {
   lead: countriesByKey.dahab.seasonNote
 })}
 
-<section class="dahab-sport-section">
+<section class="dahab-sport-section dahab-sport-section--location">
   <div class="dahab-sport-inner">
     ${sectionHeading("Локация", "Почему Дахаб подходит для Wingfoil", "Стабильный ветер, ровная вода, несколько зон катания и развитая система безопасности создают в Дахабе подходящие условия для обучения Wingfoil.")}
-    ${sportFeatureGrid(reasons)}
+    ${sportFeatureGrid(reasons, { atlas: true, leadImage: page.image, leadAlt: "Wingfoil в Дахабе на Красном море" })}
   </div>
 </section>
 
@@ -1167,10 +1183,10 @@ ${seasonSection([countriesByKey.dahab], {
   lead: countriesByKey.dahab.seasonNote
 })}
 
-<section class="dahab-sport-section">
+<section class="dahab-sport-section dahab-sport-section--location">
   <div class="dahab-sport-inner">
     ${sectionHeading("Локация", "Почему Дахаб подходит для Windsurf", "Учебная лагуна, стабильный ветер и несколько зон катания позволяют начать с нуля и постепенно перейти к глиссированию, скорости и открытому морю.")}
-    ${sportFeatureGrid(reasons)}
+    ${sportFeatureGrid(reasons, { atlas: true, leadImage: page.image, leadAlt: "Windsurf в Дахабе на Красном море" })}
   </div>
 </section>
 
