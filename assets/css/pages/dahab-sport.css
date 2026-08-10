@@ -109,6 +109,10 @@
   background: #14110f;
 }
 
+.dahab-sport-section--faq {
+  background: #100e0d;
+}
+
 .dahab-sport-section--location {
   background: var(--color-light);
   color: var(--color-light-text);
@@ -574,22 +578,71 @@
   line-height: 1.45;
 }
 
+.dahab-sport-faq-layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(36px, 7vw, 132px);
+  align-items: start;
+}
+
+.dahab-sport-faq-layout__intro .eyebrow {
+  margin: 0 0 12px;
+}
+
+.dahab-sport-faq-layout__intro h2 {
+  max-width: 440px;
+  margin: 0;
+  color: var(--white);
+  font-size: clamp(34px, 4.15vw, 58px);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 0.93;
+}
+
+.dahab-sport-faq-layout__intro > p:last-child {
+  max-width: 360px;
+  margin: 18px 0 0;
+  color: #b9b2ac;
+  font-size: 15px;
+  line-height: 1.48;
+}
+
 .dahab-sport-faq {
   display: grid;
-  gap: 10px;
-  max-width: 900px;
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid #443b36;
+  background: #191412;
 }
 
 .dahab-sport-faq details {
   padding: 0;
+  border: 0;
+  border-bottom: 1px solid #443b36;
+  background: transparent;
+}
+
+.dahab-sport-faq details:last-child {
+  border-bottom: 0;
+}
+
+.dahab-sport-faq details[open] {
+  background: #241d19;
+  box-shadow: inset 2px 0 0 var(--orange);
 }
 
 .dahab-sport-faq summary {
-  min-height: 58px;
-  padding: 18px 22px;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) 20px;
+  gap: 14px;
+  align-items: center;
+  min-height: 64px;
+  padding: 16px 20px;
   color: var(--white);
   cursor: pointer;
+  font-size: 17px;
   font-weight: 900;
+  line-height: 1.1;
   list-style: none;
 }
 
@@ -597,19 +650,36 @@
   display: none;
 }
 
+.dahab-sport-faq__number {
+  color: var(--orange);
+  font-size: 12px;
+  font-weight: 900;
+}
+
 .dahab-sport-faq summary::after {
-  float: right;
   color: var(--orange);
   content: "+";
+  font-size: 18px;
+  font-weight: 400;
+  text-align: right;
 }
 
 .dahab-sport-faq details[open] summary::after {
-  content: "-";
+  content: "−";
 }
 
 .dahab-sport-faq p {
-  margin: 0;
-  padding: 0 22px 20px;
+  max-width: 760px;
+  margin: -2px 20px 18px 68px;
+  padding: 0;
+  color: #c9c1bb;
+  font-size: 14px;
+  line-height: 1.48;
+}
+
+.dahab-sport-faq summary:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: -3px;
 }
 
 .dahab-sport-useful {
@@ -720,6 +790,11 @@
       grid-template-columns: 1fr;
     }
 
+  .dahab-sport-faq-layout {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
   .dahab-sport-cta__inner {
       padding: 72px 0;
     }
@@ -812,5 +887,22 @@
 
   .dahab-sport-review-card {
       flex-basis: min(330px, calc(100vw - 36px));
+    }
+
+  .dahab-sport-faq-layout__intro h2 {
+      max-width: 540px;
+    }
+
+  .dahab-sport-faq summary {
+      grid-template-columns: 29px minmax(0, 1fr) 16px;
+      gap: 10px;
+      min-height: 58px;
+      padding: 15px 14px;
+      font-size: 15px;
+    }
+
+  .dahab-sport-faq p {
+      margin: -2px 14px 16px 53px;
+      font-size: 13px;
     }
 }

@@ -1,51 +1,44 @@
 **Source visual truth**
 
-- Selected visual reference: `/workspace/scratch/65e995573032/upload/525cf511-26b4-4a67-8965-eed1715adfc4.png`.
-- Target: a black, photo-led Vetratoria block with two large editorial entry points. User-required differences: use existing project photos, remove `01/02`, and use the explicit actions “Открыть блог” and “Открыть медиа”.
-
-**Implementation evidence**
-
-- Browser-rendered implementation: `http://terminal.local:4173/?faq-media-design-r18#media-blog`.
-- Desktop viewport: 1363 × 936 CSS px, device scale factor 1.
-- Mobile viewport: 390 × 844 CSS px in a local responsive browser frame, device scale factor 1.
-- Source reference: 720 × 510 px. Comparison used the content region rather than surrounding browser chrome or the QA frame.
-- Primary checks: both cards load real project WebP assets, “Все материалы” links to `/media/`, the left destination links to `/blog/`, the right destination links to `/media/`, text and focusable link surfaces remain available on mobile.
-- Console: no page application errors. Reported errors originate from the external Chrome extension `content-script.bundle.js`.
-
-**Full-view comparison evidence**
-
-- The implementation keeps the target’s black editorial surface, two equally strong image-led destinations, restrained orange accents and lower media overlays.
-- It uses the actual existing `home-blog.webp` and `home-media.webp` project images rather than generated or stock replacements.
-- The selected numbers were removed. The CTA labels are replaced by the requested “Открыть блог” and “Открыть медиа”.
-
-**Focused region comparison evidence**
-
-- Typography: heading and card titles use the existing Vetratoria display scale; supporting copy stays readable over the dark image overlay.
-- Spacing and layout rhythm: 20 px desktop image gap, large 390–510 px image slots, a lightweight “Все материалы” link, and an understated footer divider match the reference’s airy editorial rhythm.
-- Colors and tokens: near-black page surface, existing `--line`, `--white` and `--orange` tokens preserve contrast and active affordance.
-- Image quality and asset fidelity: both files are existing 1200 × 840 WebP assets with fixed intrinsic dimensions, lazy loading and `object-fit: cover`; no artificial image asset was created.
-- Copy and links: two original intents are preserved; calls to action now name the destination directly.
+- Reference: `/workspace/scratch/65e995573032/upload/3e5501e2-792a-45bb-a233-505067bc5e99.png` (1013 × 430 px).
+- Implementation: browser-rendered `/dahab/wingfoil/?faq-r18b#faq`, desktop cloud-browser viewport 1366 × 936 CSS px; mobile implementation was rendered inside a 390 × 844 px iframe at `/qa-mobile.html`.
+- State compared: first answer open; dark FAQ section; one accordion item expanded.
 
 **Findings**
 
-- [Resolved P1] The prior component used generic smaller destination cards and generic “Открыть” labels.
-  Location: `scripts/build.mjs`, home `#media-blog` section.
-  Fix: dedicated `home-explore` editorial structure with two photo destinations and explicit CTA copy.
-  Post-fix evidence: desktop capture shows large equal photo areas and distinct Blog/Media actions.
-- [Resolved P2] At 390 px the target needed a clear single-column order and readable image overlays.
-  Location: `assets/css/pages/home.css`, `@media (max-width: 700px)`.
-  Fix: single-column grid, responsive image height and mobile title/body sizing.
-  Post-fix evidence: 390 px browser capture shows the heading, “Все материалы” link and first card without horizontal overflow.
+- No actionable P0/P1/P2 differences remain for the reusable sport FAQ. The rendered component follows the reference hierarchy: editorial left column, compact right-side numbered accordion, orange active marker and a dark bordered surface.
+- Acceptable intentional difference: CTA is only retained on the Dahab overview FAQ, where it already exists; sport and travel FAQ sections do not invent a new conversion block.
+
+**Comparison history**
+
+- [P1, fixed] Generic FAQ sections used a vertical list with no numbered editorial layout and could appear on a lighter surface. Fixed by introducing one centralized `sportFaqBlock` renderer and `.dahab-sport-section--faq` dark section token.
+- [P2, fixed] Generic accordions permitted visually inconsistent expanded states. Added the existing `data-exclusive-accordion` behavior and explicit `aria-expanded` state to every generated FAQ.
+- [P2, fixed] Mobile rows risked over-wide labels. At 620 px and below the layout becomes one column, rows use 29px/1fr/16px tracks, and answer indents reduce to fit the 390px viewport.
+
+**Evidence and checks**
+
+- Desktop: browser DOM showed one open item and no horizontal overflow (`scrollWidth <= innerWidth`). The first FAQ was visible in the target dark state.
+- Interaction: keyboard activation of item 02 left exactly one FAQ item open; item 02 reported `aria-expanded="true"`, item 01 reported `aria-expanded="false"`.
+- Mobile: 390 px rendered frame contained the FAQ and reported no horizontal overflow. The responsive one-column rule was active.
+- Console: no site-origin errors were found for the checked FAQ route. The only logged errors came from the cloud-browser metadata extension (`chrome-extension://…`), not from site code.
+
+**Required fidelity surfaces**
+
+- Fonts and typography: existing Vetratoria family and 900-weight hierarchy retained; small orange numerals remain legible and answers use a softer 14/13px reading size.
+- Spacing and layout rhythm: desktop has a deliberate two-column gap; mobile collapses without squeezed columns or excess gutters.
+- Colors and visual tokens: `#100e0d` section, `#191412` accordion, `#443b36` dividers and the existing orange accent match the dark Vetratoria direction in the reference.
+- Image quality and asset fidelity: this reference contains no content image inside the FAQ; no replacement imagery was added.
+- Copy and content: existing questions and answers are unchanged; headings are retained per route.
 
 **Implementation checklist**
 
-- Real project images retained and optimized existing WebP assets used.
-- Card interactions remain native links with hover and focus states.
-- Desktop and mobile visual QA completed.
-- `npm run build`, `npm run check` and `git diff --check` passed.
+- [x] Centralize sport FAQ markup.
+- [x] Apply the dark, numbered accordion style to Wingfoil, Windsurf, WindSurfKids and travel FAQ sections.
+- [x] Preserve the overview FAQ CTA and its existing design.
+- [x] Verify desktop interaction, mobile overflow, build and static checks.
 
 **Follow-up polish**
 
-- P3: when new portrait-oriented station photos are added to the archive, the same component can opt into 9:16 crops without changing content or the link model.
+- [P3] When final production content is approved, consider shortening any exceptionally long question to keep all desktop closed rows visually uniform.
 
 final result: passed

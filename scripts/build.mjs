@@ -31,6 +31,21 @@ const sectionHeading = (eyebrow, title, lead) => `
     ${lead ? `<p>${escapeHtml(lead)}</p>` : ""}
   </header>`;
 
+const sportFaqBlock = (eyebrow, title, lead, faqs) => `
+  <div class="dahab-sport-faq-layout">
+    <header class="dahab-sport-faq-layout__intro">
+      <p class="eyebrow">${escapeHtml(eyebrow)}</p>
+      <h2>${escapeHtml(title)}</h2>
+      ${lead ? `<p>${escapeHtml(lead)}</p>` : ""}
+    </header>
+    <div class="dahab-sport-faq" data-exclusive-accordion aria-label="${escapeHtml(title)}">
+      ${faqs.map(([question, answer], index) => `<details class="dahab-sport-faq__item" ${index === 0 ? "open" : ""}>
+        <summary aria-expanded="${index === 0 ? "true" : "false"}"><span class="dahab-sport-faq__number" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span><span>${escapeHtml(question)}</span></summary>
+        <p>${escapeHtml(answer)}</p>
+      </details>`).join("")}
+    </div>
+  </div>`;
+
 const monthLabels = [
   ["jan", "ЯНВ"], ["feb", "ФЕВ"], ["mar", "МАР"], ["apr", "АПР"],
   ["may", "МАЙ"], ["jun", "ИЮН"], ["jul", "ИЮЛ"], ["aug", "АВГ"],
@@ -608,8 +623,8 @@ const PAGE_ASSET_VERSIONS = new Map([
   ["/dahab/", "20260810-staging-r16-learning-atlas"],
   ["/vietnam/", "20260810-staging-r13-compact-rail"],
   ["/russia/", "20260810-staging-r13-compact-rail"],
-  ["/dahab/wingfoil/", "20260810-staging-r17-location-atlas"],
-  ["/dahab/windsurf/", "20260810-staging-r17-location-atlas"],
+  ["/dahab/wingfoil/", "20260810-staging-r18-faq-system"],
+  ["/dahab/windsurf/", "20260810-staging-r18-faq-system"],
   ["/vietnam/wingfoil/", "20260810-staging-r13-compact-rail"],
   ["/vietnam/windsurf/", "20260810-staging-r13-compact-rail"],
   ["/vietnam/kite/", "20260810-staging-r13-compact-rail"],
@@ -618,7 +633,8 @@ const PAGE_ASSET_VERSIONS = new Map([
   ["/russia/kite/", "20260810-staging-r13-compact-rail"],
   ["/dahab/stations/", `${ASSET_VERSION}-shared-stations-hero`],
   ["/dahab/team/", `${ASSET_VERSION}-team-windsurf`],
-  ["/dahab/windsurf-kids/", `${ASSET_VERSION}-wsk-overview-hero`]
+  ["/dahab/windsurf-kids/", "20260810-staging-r18-faq-system"],
+  ["/dahab/how-to-get/", "20260810-staging-r18-faq-system"]
 ]);
 const assetVersionForPage = (page) =>
   page.path.startsWith("/media/") ? `${ASSET_VERSION}-media-library` : PAGE_ASSET_VERSIONS.get(page.path) || ASSET_VERSION;
@@ -745,7 +761,7 @@ const home = (page) => `
 
 <section class="home-section home-section--destinations" id="destinations">
   <div class="section-inner">
-    ${sectionHeading("Направления и сезоны", "Выберите место под даты и свою цель", "Три направления, реальные фотографии и понятный календарь сезона — всё главное видно сразу.")}
+    ${sectionHeading("Направления и сезоны", "Выберите страну", "")}
     <div class="destination-season-grid">
       ${countryList.map((country) => `
         <a class="destination-season-card" href="${country.href}" data-reveal>
@@ -785,7 +801,7 @@ const home = (page) => `
 <section class="home-section" id="media-blog">
   <div class="section-inner home-explore">
     <header class="home-explore__head">
-      <div>${sectionHeading("До поездки", "Посмотрите, как всё устроено на воде", "Разборы помогут подготовиться, а живые фотографии покажут занятия, станции и обычные дни команды без рекламной постановки.")}</div>
+      <div>${sectionHeading("До поездки", "Посмотрите, как всё устроено на воде", "")}</div>
       <a href="/media/">Все материалы <span aria-hidden="true">→</span></a>
     </header>
     <div class="home-explore__grid">
@@ -806,7 +822,6 @@ const home = (page) => `
         </div>
       </a>
     </div>
-    <p class="home-explore__line">Сначала — подготовка · затем — вода и команда</p>
   </div>
 </section>
 
@@ -1075,12 +1090,9 @@ ${sportStationLife({
   </div>
 </section>
 
-<section class="dahab-sport-section dahab-sport-section--soft">
+<section class="dahab-sport-section dahab-sport-section--faq" id="faq">
   <div class="dahab-sport-inner">
-    ${sectionHeading("FAQ", "Частые вопросы", "Короткие ответы перед первым выходом на wingfoil в Дахабе.")}
-    <div class="dahab-sport-faq">
-      ${faqs.map(([question, answer], index) => `<details ${index === 0 ? "open" : ""}><summary>${question}</summary><p>${answer}</p></details>`).join("")}
-    </div>
+    ${sportFaqBlock("FAQ", "Частые вопросы", "Короткие ответы перед первым выходом на wingfoil в Дахабе.", faqs)}
   </div>
 </section>
 
@@ -1295,12 +1307,9 @@ ${sportStationLife({
   </div>
 </section>
 
-<section class="dahab-sport-section dahab-sport-section--soft">
+<section class="dahab-sport-section dahab-sport-section--faq" id="faq">
   <div class="dahab-sport-inner">
-    ${sectionHeading("FAQ", "Частые вопросы", "Короткие ответы перед первым уроком windsurf в Дахабе.")}
-    <div class="dahab-sport-faq">
-      ${faqs.map(([question, answer], index) => `<details ${index === 0 ? "open" : ""}><summary>${question}</summary><p>${answer}</p></details>`).join("")}
-    </div>
+    ${sportFaqBlock("FAQ", "Частые вопросы", "Короткие ответы перед первым уроком windsurf в Дахабе.", faqs)}
   </div>
 </section>
 
@@ -1497,12 +1506,9 @@ const dahabWindsurfKidsPage = (page) => {
   </div>
 </section>
 
-<section class="dahab-sport-section dahab-sport-section--soft">
+<section class="dahab-sport-section dahab-sport-section--faq" id="faq">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Родителям", "Частые вопросы перед поездкой", "Коротко о возрасте, сопровождении, снаряжении и подготовке ребёнка к лагерю.")}
-    <div class="dahab-sport-faq">
-      ${faqs.map(([question, answer], index) => `<details ${index === 0 ? "open" : ""}><summary>${question}</summary><p>${answer}</p></details>`).join("")}
-    </div>
+    ${sportFaqBlock("Родителям", "Частые вопросы перед поездкой", "Коротко о возрасте, сопровождении, снаряжении и подготовке ребёнка к лагерю.", faqs)}
   </div>
 </section>
 
@@ -1636,12 +1642,9 @@ const dahabHowToGetPage = (page) => {
   </div>
 </section>
 
-<section class="dahab-sport-section">
+<section class="dahab-sport-section dahab-sport-section--faq" id="faq">
   <div class="dahab-sport-inner">
-    ${sectionHeading("FAQ", "Частые вопросы о дороге", "Коротко о времени в пути, багаже, машине и документах.")}
-    <div class="dahab-sport-faq">
-      ${faqs.map(([question, answer], index) => `<details ${index === 0 ? "open" : ""}><summary>${question}</summary><p>${answer}</p></details>`).join("")}
-    </div>
+    ${sportFaqBlock("FAQ", "Частые вопросы о дороге", "Коротко о времени в пути, багаже, машине и документах.", faqs)}
   </div>
 </section>
 

@@ -21,8 +21,8 @@
   <meta name="twitter:image" content="https://vetratoria.ru/assets/img/contacts/dahab-hero.webp">
   <meta name="theme-color" content="#0d0c0b">
   <link rel="icon" href="/assets/img/vetratoria-logo.png">
-  <link rel="stylesheet" href="/assets/css/main.css?v=20260809-staging-r5">
-  <script defer src="/assets/js/app.js?v=20260809-staging-r5"></script>
+  <link rel="stylesheet" href="/assets/css/main.css?v=20260810-staging-r18-faq-system">
+  <script defer src="/assets/js/app.js?v=20260810-staging-r18-faq-system"></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Vetratoria","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/dahab/how-to-get/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Vetratoria","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Дахаб","item":"https://vetratoria.ru/dahab/"},{"@type":"ListItem","position":3,"name":"Как добраться до Дахаба","item":"https://vetratoria.ru/dahab/how-to-get/"}]}]}</script>
 </head>
 <body class="modern-site route country-dahab">
@@ -269,17 +269,37 @@
   </div>
 </section>
 
-<section class="dahab-sport-section">
+<section class="dahab-sport-section dahab-sport-section--faq" id="faq">
   <div class="dahab-sport-inner">
 
-  <header class="section-heading">
-    <p class="eyebrow">FAQ</p>
-    <h2>Частые вопросы о дороге</h2>
-    <p>Коротко о времени в пути, багаже, машине и документах.</p>
-  </header>
-    <div class="dahab-sport-faq">
-      <details open><summary>Какой аэропорт выбирать?</summary><p>Удобнее всего прилетать в международный аэропорт Шарм-эль-Шейха. От него до Дахаба около 100 км.</p></details><details ><summary>Сколько занимает трансфер?</summary><p>Обычно дорога занимает от одного до полутора часов. Время зависит от трафика, остановок и прохождения контрольных пунктов.</p></details><details ><summary>Можно ли заказать машину для группы?</summary><p>Да. В зависимости от количества пассажиров организуем легковой автомобиль или микроавтобус. Сообщите состав группы и объём багажа заранее.</p></details><details ><summary>Можно ли перевезти спортивное оборудование?</summary><p>Да, но габариты снаряжения нужно указать при заказе, чтобы мы подобрали подходящий автомобиль.</p></details><details ><summary>Нужна ли виза для поездки в Дахаб?</summary><p>Для короткой поездки только по курортам Южного Синая обычно доступен бесплатный штамп. Для более длительного отдыха или поездок по остальному Египту нужна туристическая виза.</p></details><details ><summary>Где проверять актуальные правила?</summary><p>Используйте официальный портал Egypt e-Visa и требования вашей авиакомпании. Окончательное решение о въезде принимает пограничная служба Египта.</p></details>
+  <div class="dahab-sport-faq-layout">
+    <header class="dahab-sport-faq-layout__intro">
+      <p class="eyebrow">FAQ</p>
+      <h2>Частые вопросы о дороге</h2>
+      <p>Коротко о времени в пути, багаже, машине и документах.</p>
+    </header>
+    <div class="dahab-sport-faq" data-exclusive-accordion aria-label="Частые вопросы о дороге">
+      <details class="dahab-sport-faq__item" open>
+        <summary aria-expanded="true"><span class="dahab-sport-faq__number" aria-hidden="true">01</span><span>Какой аэропорт выбирать?</span></summary>
+        <p>Удобнее всего прилетать в международный аэропорт Шарм-эль-Шейха. От него до Дахаба около 100 км.</p>
+      </details><details class="dahab-sport-faq__item" >
+        <summary aria-expanded="false"><span class="dahab-sport-faq__number" aria-hidden="true">02</span><span>Сколько занимает трансфер?</span></summary>
+        <p>Обычно дорога занимает от одного до полутора часов. Время зависит от трафика, остановок и прохождения контрольных пунктов.</p>
+      </details><details class="dahab-sport-faq__item" >
+        <summary aria-expanded="false"><span class="dahab-sport-faq__number" aria-hidden="true">03</span><span>Можно ли заказать машину для группы?</span></summary>
+        <p>Да. В зависимости от количества пассажиров организуем легковой автомобиль или микроавтобус. Сообщите состав группы и объём багажа заранее.</p>
+      </details><details class="dahab-sport-faq__item" >
+        <summary aria-expanded="false"><span class="dahab-sport-faq__number" aria-hidden="true">04</span><span>Можно ли перевезти спортивное оборудование?</span></summary>
+        <p>Да, но габариты снаряжения нужно указать при заказе, чтобы мы подобрали подходящий автомобиль.</p>
+      </details><details class="dahab-sport-faq__item" >
+        <summary aria-expanded="false"><span class="dahab-sport-faq__number" aria-hidden="true">05</span><span>Нужна ли виза для поездки в Дахаб?</span></summary>
+        <p>Для короткой поездки только по курортам Южного Синая обычно доступен бесплатный штамп. Для более длительного отдыха или поездок по остальному Египту нужна туристическая виза.</p>
+      </details><details class="dahab-sport-faq__item" >
+        <summary aria-expanded="false"><span class="dahab-sport-faq__number" aria-hidden="true">06</span><span>Где проверять актуальные правила?</span></summary>
+        <p>Используйте официальный портал Egypt e-Visa и требования вашей авиакомпании. Окончательное решение о въезде принимает пограничная служба Египта.</p>
+      </details>
     </div>
+  </div>
   </div>
 </section>
 
