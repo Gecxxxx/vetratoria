@@ -222,7 +222,7 @@ body.nav-open {
 }
 
 .vtr-nav__logo img {
-  width: 122px;
+  width: 112px;
   height: auto;
 }
 
@@ -518,7 +518,7 @@ body.nav-open {
     }
 
   .vtr-nav__logo img {
-      width: clamp(96px, 15vw, 126px);
+      width: clamp(88px, 13.8vw, 116px);
     }
 
   .vtr-nav__burger {
@@ -726,7 +726,7 @@ body.nav-open {
     }
 
   .vtr-nav__logo img {
-      width: 88px;
+      width: 81px;
     }
 
   .vtr-mobile-menu__row {

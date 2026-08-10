@@ -587,7 +587,7 @@ const contactDialog = (page) => {
 
 const ASSET_VERSION = "20260809-staging-r5";
 const PAGE_ASSET_VERSIONS = new Map([
-  ["/", "20260810-staging-r11-home-brandline"],
+  ["/", "20260810-staging-r12-logo-breathing-room"],
   ["/blog/", `${ASSET_VERSION}-blog-filters`],
   ["/dahab/", "20260810-staging-r10-color-rhythm"],
   ["/vietnam/", "20260810-staging-r10-compact-season"],
