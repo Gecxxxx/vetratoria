@@ -2,60 +2,59 @@
 
 **Source visual truth**
 
-- Selected Option 2: `/workspace/scratch/65e995573032/generated_images/exec-8bc5ef5b-0e3a-4628-a228-5fcaa60db3da.png`
+- Selected concept: `/workspace/scratch/65e995573032/generated_images/exec-77b0432b-8e72-4138-8445-4b5f2840c349.png`
 
 **Implementation evidence**
 
-- Browser-rendered implementation capture: `qa-season-rail.jpg`
-- Local preview: `http://terminal.local:4173/dahab/`
-- Desktop implementation viewport: 1363 × 936 CSS px, device scale factor 1; capture is 1363 × 936 px at 1×.
-- Source capture: 2048 × 768 px. The season module was compared as the common content region, with browser navigation excluded from the implementation capture.
-- Mobile state: 390 px framed viewport; document scroll width was 375 px after native scrollbar allocation, with no horizontal overflow.
-- State: Dahab overview compact season rail at the current-month outline; Vietnam overview checked as the shared-country variant.
+- Browser-rendered capture: `qa-approach-editorial.jpg`
+- Route/state: homepage, `#brand` section, editorial approach layout visible.
+- Desktop viewport: 1363 × 936 CSS px, 1× density; implementation capture is 1348 × 926 px after scrollbar allocation.
+- Source capture: 1680 × 935 px. Compared on the common component region; page navigation is outside the target component.
+- Mobile: 390 px framed viewport; rendered document width 375 px after native scrollbar allocation, with no horizontal overflow.
 
 **Full-view comparison evidence**
 
-- The implementation follows selected Option 2: a narrow title column, vertical divider, compact country/season header, 12-month rail and a single verified wind label.
-- The seasonal data, month state and current-month outline are retained from the existing project; no wind figures or new claims were introduced.
+- Both source and implementation place the real station photo on the left and the copy/principles on the right, on a cream surface with black type and orange numbering.
+- The implementation uses the original Vetratoria image asset rather than generated or stock imagery.
 
 **Focused region comparison evidence**
 
-- The reference and implementation were opened in one comparison input. The live result matches the requested compact hierarchy, dark surface, orange current-month outline and unboxed rail treatment.
-- On mobile, the title and rail intentionally stack; months become a 6 × 2 grid and the wind label remains below the divider without overflow.
-- Vietnam confirms that the shared component preserves each direction's own title, season badge, months and verified wind label.
+- The former bordered list cards are replaced by four numbered rows with thin dividers, matching the selected editorial hierarchy.
+- The left image is landscape, rounded and large enough to carry the section emotionally; it remains visible without the former unstable slider state.
+- At 390 px the content stacks as heading → numbered rows → photograph, with readable touch-scale type and no clipped text.
 
 **Required fidelity surfaces**
 
-- Fonts and typography: the existing display/body font system is retained; the title column uses a tighter, compact scale matching the selected option.
-- Spacing and layout rhythm: the former enclosing card was removed; shared grid spacing creates one concise rail on desktop and a deliberate vertical rhythm on mobile.
-- Colors and visual tokens: existing dark `#0d0c0b`, white type and orange state token are retained; only the current month receives the orange outline.
-- Image quality and assets: this seasonal component has no image asset in the selected visual; site photography remains untouched.
-- Copy and content: the descriptive wind paragraph is removed from the compact rail. Direction-specific, verified wind labels and the existing seasonal months remain.
+- Fonts and typography: existing Vetratoria type system retained; heading is the dominant visual anchor and supporting text stays readable.
+- Spacing and layout rhythm: two balanced desktop columns and a single intentional mobile column; no nested card surface remains.
+- Colors and visual tokens: existing cream, near-black and orange tokens are preserved.
+- Image quality and assets: existing `vetratoria-station-team.webp` is used, with object-fit crop appropriate to both desktop and mobile.
+- Copy and content: all four original approach statements and the existing 2006/10,000-person paragraph remain; only their presentation changed.
 
 **Findings**
 
 - No actionable P0, P1 or P2 findings remain.
-- No application-origin console warnings or errors were found on Dahab or Vietnam; browser-extension messages, if any, were excluded.
+- The prior image slider rendered a black media surface in browser QA. It was intentionally replaced by the selected concept’s single real photo, removing the broken state.
+- No application-origin console warnings or errors were found.
 
 **Comparison history**
 
-- Iteration 1 — [P1] The prior compact card was still a three-part enclosed panel and kept an overlong wind description; it did not match the selected Option 2 hierarchy.
-- Fix: changed the shared compact-season layout to a title column plus rail, removed the enclosing card/long description, preserved the season data and aligned the wind label beneath the months.
-- Post-fix evidence: `qa-season-rail.jpg`, live Dahab desktop inspection, Vietnam shared-component inspection and the 390 px mobile state. No P0/P1/P2 issues remain.
+- Iteration 1 — [P1] The original block used a contained text card and a failing image slider; this differed materially from selected Option 1.
+- Fix: removed the contained surface, moved the image to the left, introduced a vertical divider and editorial numbered rows, and used a stable direct project image.
+- Post-fix evidence: `qa-approach-editorial.jpg`, desktop browser inspection and 390 px mobile inspection. No P0/P1/P2 issues remain.
 
 **Primary interactions tested**
 
-- Seasonal rail renders all 12 accessible month labels and its current-month state.
-- Direction navigation and the Dahab sport cards remain present after the compact rail.
-- Mobile header/menu remains visible above the checked season state.
+- Existing country navigation remains present above the section.
+- The section image is a non-interactive editorial asset; no broken slider controls remain.
+- Mobile navigation remains visible in the checked state.
 
 **Implementation checklist**
 
-- [x] Selected Option 2 applied to the shared compact-season component.
-- [x] All direction overview and sport routes receive a versioned shared stylesheet.
-- [x] Desktop Dahab and Vietnam shared-component renders checked.
-- [x] 390 px mobile render and overflow checked.
-- [x] Application console checked.
+- [x] Selected Option 1 implemented on homepage.
+- [x] Four proof statements converted to semantic ordered list rows.
+- [x] Desktop and 390 px mobile rendering checked.
+- [x] No horizontal overflow or application console errors.
 
 **Follow-up polish**
 

@@ -587,7 +587,7 @@ const contactDialog = (page) => {
 
 const ASSET_VERSION = "20260809-staging-r5";
 const PAGE_ASSET_VERSIONS = new Map([
-  ["/", "20260810-staging-r12-logo-breathing-room"],
+  ["/", "20260810-staging-r14-editorial-approach"],
   ["/blog/", `${ASSET_VERSION}-blog-filters`],
   ["/dahab/", "20260810-staging-r13-compact-rail"],
   ["/vietnam/", "20260810-staging-r13-compact-rail"],
@@ -753,21 +753,15 @@ const home = (page) => `
       <p class="eyebrow">Опыт и подход</p>
       <h2>Наша цель — не провести урок, а сделать вас увереннее на воде</h2>
       <p>Vetratoria работает с 2006 года. За это время обучение прошли более 10 000 человек — от первого знакомства с ветром до уверенного катания и новых элементов.</p>
-      <div class="home-proof-list">
-        <span>Новичку даём устойчивую базу и понятную последовательность действий.</span>
-        <span>Опытному райдеру помогаем разобрать технику и точечно улучшить результат.</span>
-        <span>Доску, парус или крыло подбираем под уровень, вес и условия на воде.</span>
-        <span>Перед выходом объясняем задачу, границы акватории и правила безопасности.</span>
-      </div>
+      <ol class="home-proof-list">
+        <li><b>01</b><span>Новичку даём устойчивую базу и понятную последовательность действий.</span></li>
+        <li><b>02</b><span>Опытному райдеру помогаем разобрать технику и точечно улучшить результат.</span></li>
+        <li><b>03</b><span>Доску, парус или крыло подбираем под уровень, вес и условия на воде.</span></li>
+        <li><b>04</b><span>Перед выходом объясняем задачу, границы акватории и правила безопасности.</span></li>
+      </ol>
     </div>
-    <figure class="brand-media" data-brand-slider aria-label="Обучение и сообщество Vetratoria">
-      <div class="brand-media__viewport">
-        ${brandSlides.map((slide, index) => `<img src="${slide.src}" alt="${escapeHtml(slide.alt)}" width="${slide.width}" height="${slide.height}" data-brand-slide class="${index === 0 ? "is-active" : ""}" aria-hidden="${index === 0 ? "false" : "true"}" loading="lazy" decoding="async">`).join("")}
-      </div>
-      <div class="brand-media__controls">
-        <button type="button" class="brand-media__side brand-media__side--prev" data-brand-prev aria-label="Предыдущее фото"></button>
-        <button type="button" class="brand-media__side brand-media__side--next" data-brand-next aria-label="Следующее фото"></button>
-      </div>
+    <figure class="brand-media" aria-label="Команда и обучение Vetratoria">
+      <img class="brand-media__image" src="${brandSlides[0].src}" alt="${escapeHtml(brandSlides[0].alt)}" width="${brandSlides[0].width}" height="${brandSlides[0].height}" loading="lazy" decoding="async">
     </figure>
   </div>
 </section>
