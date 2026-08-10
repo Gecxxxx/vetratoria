@@ -549,7 +549,7 @@
   height: 50px;
   flex: 0 0 auto;
   place-items: center;
-  border-radius: 50%;
+  border-radius: 0;
   background: #432014;
   color: var(--orange);
   font-weight: 900;

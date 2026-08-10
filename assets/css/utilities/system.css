@@ -1,0 +1,117 @@
+/* Final geometry and motion layer. It deliberately loads after page styles. */
+
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+  transition-timing-function: var(--motion-ease) !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 420ms var(--motion-ease-out) var(--reveal-delay, 0ms),
+      transform 520ms var(--motion-ease-out) var(--reveal-delay, 0ms) !important;
+  }
+
+  .reveal-ready [data-reveal="line"] {
+    transform: translateX(-14px);
+    transition-duration: 420ms, 560ms !important;
+  }
+
+  .reveal-ready [data-reveal="photo"] {
+    clip-path: inset(0 0 8% 0);
+    transform: scale(0.99);
+    transition:
+      opacity 440ms var(--motion-ease-out) var(--reveal-delay, 0ms),
+      clip-path 620ms var(--motion-ease-out) var(--reveal-delay, 0ms),
+      transform 620ms var(--motion-ease-out) var(--reveal-delay, 0ms) !important;
+  }
+
+  .reveal-ready [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal-ready [data-reveal="photo"].is-visible {
+    clip-path: inset(0);
+  }
+
+  :where(.button, button, summary, .vtr-nav__link, .vtr-mobile-menu__row) {
+    transition-duration: var(--duration-fast) !important;
+  }
+
+  :where(
+    .destination-card,
+    .destination-season-card,
+    .article-card,
+    .link-card,
+    .home-explore__story,
+    .dahab-sport-card,
+    .dahab-program-card,
+    .station-card,
+    .media-card
+  ) {
+    transition-duration: var(--duration-normal) !important;
+  }
+
+  :where(
+    .destination-card,
+    .destination-season-card,
+    .article-card,
+    .home-explore__story,
+    .dahab-sport-card,
+    .station-card,
+    .media-card
+  ) img {
+    transition-duration: var(--duration-slow) !important;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    :where(
+      .destination-card,
+      .destination-season-card,
+      .article-card,
+      .link-card,
+      .home-explore__story,
+      .dahab-sport-card,
+      .dahab-program-card,
+      .station-card,
+      .media-card
+    ):hover {
+      transform: translateY(-3px);
+    }
+
+    :where(
+      .destination-card,
+      .destination-season-card,
+      .article-card,
+      .home-explore__story,
+      .dahab-sport-card,
+      .station-card,
+      .media-card
+    ):hover img {
+      transform: scale(1.035);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    clip-path: none !important;
+    transform: none !important;
+  }
+}

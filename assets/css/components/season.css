@@ -80,7 +80,7 @@
   flex: 0 0 auto;
   padding: 7px 10px;
   border: 1px solid rgba(255, 90, 31, 0.32);
-  border-radius: 999px;
+  border-radius: 0;
   background: #fff0e8;
   color: #9d310e;
   font-size: 11px;
@@ -100,7 +100,7 @@
   min-height: 34px;
   place-items: center;
   border: 1px solid rgba(24, 20, 17, 0.1);
-  border-radius: 4px;
+  border-radius: 0;
   background: #ece7df;
   color: #817971;
   font-size: 9px;
@@ -137,7 +137,7 @@
 .wind-indicator i {
   display: block;
   height: 3px;
-  border-radius: 99px;
+  border-radius: 0;
   background: var(--orange);
 }
 

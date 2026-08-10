@@ -41,9 +41,9 @@
   --page-gutter: 32px;
   --page-gutter-mobile: 20px;
 
-  --radius-control: 6px;
-  --radius-card: 12px;
-  --radius-media: 16px;
+  --radius-control: 0;
+  --radius-card: 0;
+  --radius-media: 0;
   --space-section: clamp(72px, 8vw, 112px);
   --space-section-mobile: 56px;
   --shadow-elevated: var(--shadow);
@@ -53,6 +53,8 @@
   --z-dropdown: 220;
 
   --duration-fast: 0.18s;
-  --duration-normal: 0.2s;
-  --duration-slow: 0.35s;
+  --duration-normal: 0.42s;
+  --duration-slow: 0.64s;
+  --motion-ease: cubic-bezier(0.2, 0.72, 0.2, 1);
+  --motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }

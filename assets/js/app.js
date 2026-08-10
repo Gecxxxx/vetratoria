@@ -85,6 +85,13 @@
   syncNavScroll();
 
   const revealItems = [...document.querySelectorAll("[data-reveal]")];
+  revealItems.forEach((item) => {
+    const siblings = item.parentElement
+      ? [...item.parentElement.children].filter((child) => child.hasAttribute("data-reveal"))
+      : [];
+    const position = siblings.indexOf(item);
+    if (position > 0) item.style.setProperty("--reveal-delay", `${Math.min(position * 70, 210)}ms`);
+  });
   if (revealItems.length && !reducedMotion.matches && "IntersectionObserver" in window) {
     document.documentElement.classList.add("reveal-ready");
     const revealObserver = new IntersectionObserver((entries, observer) => {

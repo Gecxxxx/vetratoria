@@ -344,7 +344,7 @@
   height: 46px;
   place-items: center;
   border: 1px solid var(--orange);
-  border-radius: 50%;
+  border-radius: 0;
   color: var(--orange);
   font-size: 12px;
   font-weight: 900;
@@ -663,7 +663,7 @@
   gap: 2px;
   overflow: hidden;
   border: 1px solid #403b37;
-  border-radius: 3px;
+  border-radius: 0;
   background: #403b37;
 }
 
@@ -1152,7 +1152,7 @@
   width: 64px;
   height: 64px;
   border: 2px solid var(--orange);
-  border-radius: 50%;
+  border-radius: 0;
   background: #231510;
   color: var(--orange);
   place-items: center;

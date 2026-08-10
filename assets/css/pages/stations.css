@@ -177,7 +177,7 @@
   width: 34px;
   height: 34px;
   border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 50%;
+  border-radius: 0;
   background: rgba(0, 0, 0, 0.48);
   color: var(--white);
   font: inherit;

@@ -251,15 +251,13 @@ const mobileMenu = (page, country) => `
           <a class="vtr-mobile-menu__row" href="/media/">Медиа</a>
           <a class="vtr-mobile-menu__row" href="${country ? `/${country.key}/contacts/` : "/contacts/"}">Контакты</a>
         </section>
-        <section class="vtr-mobile-menu__block" aria-label="Контакты">
+        ${contactForPage(page) === site.contacts.dahab ? "" : `<section class="vtr-mobile-menu__block" aria-label="Контакты">
           <p class="vtr-mobile-menu__title">Контакты</p>
           <a class="vtr-mobile-menu__row" href="mailto:${contactForPage(page).email}">${contactForPage(page).email}</a>
-          ${contactForPage(page) === site.contacts.dahab
-            ? dahabStationPhones("vtr-mobile-menu__row vtr-mobile-menu__contact-phone")
-            : `<a class="vtr-mobile-menu__row" href="tel:${contactForPage(page).phone}">${contactForPage(page).phoneLabel}</a>`}
+          <a class="vtr-mobile-menu__row" href="tel:${contactForPage(page).phone}">${contactForPage(page).phoneLabel}</a>
           <a class="vtr-mobile-menu__row" href="${contactForPage(page).telegram}" target="_blank" rel="noopener noreferrer">Telegram</a>
           ${socialIconLinks("vtr-mobile-menu__socials")}
-        </section>
+        </section>`}
       </div>`;
 
 const mainNavPanel = (page, country) => `
@@ -616,28 +614,8 @@ const contactDialog = (page) => {
 </dialog>`;
 };
 
-const ASSET_VERSION = "20260809-staging-r5";
-const PAGE_ASSET_VERSIONS = new Map([
-  ["/", "20260810-staging-r14-editorial-approach"],
-  ["/blog/", `${ASSET_VERSION}-blog-filters`],
-  ["/dahab/", "20260810-staging-r20-water-tablet"],
-  ["/vietnam/", "20260810-staging-r13-compact-rail"],
-  ["/russia/", "20260810-staging-r13-compact-rail"],
-  ["/dahab/wingfoil/", "20260810-staging-r18-faq-system"],
-  ["/dahab/windsurf/", "20260810-staging-r18-faq-system"],
-  ["/vietnam/wingfoil/", "20260810-staging-r13-compact-rail"],
-  ["/vietnam/windsurf/", "20260810-staging-r13-compact-rail"],
-  ["/vietnam/kite/", "20260810-staging-r13-compact-rail"],
-  ["/russia/wingfoil/", "20260810-staging-r13-compact-rail"],
-  ["/russia/windsurf/", "20260810-staging-r13-compact-rail"],
-  ["/russia/kite/", "20260810-staging-r13-compact-rail"],
-  ["/dahab/stations/", `${ASSET_VERSION}-shared-stations-hero`],
-  ["/dahab/team/", `${ASSET_VERSION}-team-windsurf`],
-  ["/dahab/windsurf-kids/", "20260810-staging-r18-faq-system"],
-  ["/dahab/how-to-get/", "20260810-staging-r18-faq-system"]
-]);
-const assetVersionForPage = (page) =>
-  page.path.startsWith("/media/") ? `${ASSET_VERSION}-media-library` : PAGE_ASSET_VERSIONS.get(page.path) || ASSET_VERSION;
+const ASSET_VERSION = "20260810-staging-r21-motion-square";
+const assetVersionForPage = () => ASSET_VERSION;
 const versionedAsset = (path, version = ASSET_VERSION) => `${path}?v=${version}`;
 
 const layout = (page, main) => `<!doctype html>
