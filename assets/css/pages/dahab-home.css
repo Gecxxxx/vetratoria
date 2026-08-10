@@ -1384,7 +1384,6 @@
 }
 
 .water-area__cards article:first-child { border-top: 0; }
-.water-area__cards article:first-child { box-shadow: inset 2px 0 0 var(--orange); }
 
 .water-area__cards span {
   padding-top: 5px;
@@ -1432,14 +1431,6 @@
   aspect-ratio: 4 / 3;
 }
 
-.water-area__visual::after {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 68%, rgba(3, 8, 12, 0.7));
-  content: "";
-  pointer-events: none;
-}
-
 .water-area__visual img {
   display: block;
   width: 100%;
@@ -1448,17 +1439,19 @@
   object-position: center;
 }
 
-.water-area__visual figcaption {
-  position: absolute;
-  right: 22px;
-  bottom: 20px;
-  left: 22px;
-  z-index: 1;
-  max-width: 430px;
-  color: var(--white);
-  font-size: 13px;
-  font-weight: 800;
-  line-height: 1.4;
+@media (max-width: 1100px) {
+  .water-area__intro,
+  .water-area__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .water-area__intro {
+    gap: 24px;
+  }
+
+  .water-area__visual {
+    aspect-ratio: 16 / 10;
+  }
 }
 
 body.country.country-dahab .trust-block {
@@ -1689,7 +1682,6 @@ body.country.country-dahab .trust-block {
   .water-area__intro > div:last-child > p:first-child { font-size: 15px; }
   .water-area__layout { gap: 12px; }
   .water-area__visual { aspect-ratio: 4 / 3; }
-  .water-area__visual figcaption { right: 14px; bottom: 13px; left: 14px; font-size: 11px; }
   .water-area__cards article {
       grid-template-columns: 32px minmax(0, 1fr);
       gap: 10px;

@@ -620,7 +620,7 @@ const ASSET_VERSION = "20260809-staging-r5";
 const PAGE_ASSET_VERSIONS = new Map([
   ["/", "20260810-staging-r14-editorial-approach"],
   ["/blog/", `${ASSET_VERSION}-blog-filters`],
-  ["/dahab/", "20260810-staging-r19-water-route"],
+  ["/dahab/", "20260810-staging-r20-water-tablet"],
   ["/vietnam/", "20260810-staging-r13-compact-rail"],
   ["/russia/", "20260810-staging-r13-compact-rail"],
   ["/dahab/wingfoil/", "20260810-staging-r18-faq-system"],
@@ -1872,7 +1872,6 @@ ${stationLifeGallery({
     <div class="water-area__layout">
       <figure class="water-area__visual">
         <img src="${dahabRefImg("aqva-aerial.webp")}" alt="Три отдельные зоны акватории Дахаба: лагуна, Speedy и Камикадзе" width="900" height="1200" loading="lazy" decoding="async">
-        <figcaption>Лагуна, Speedy и Камикадзе расположены рядом, но разделены берегом и косой.</figcaption>
       </figure>
       <div class="water-area__cards">
         <article data-reveal="line"><span aria-hidden="true">01</span><div><strong>Лагуна</strong><small>Закрытая учебная зона</small><p>Лагуна защищена берегом и подходит для учеников: здесь спокойнее вода, проще отрабатывать первые старты, баланс и базовую технику.</p></div></article>
