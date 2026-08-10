@@ -28,12 +28,12 @@
 }
 
 .home-section--destinations {
-  background: var(--color-light);
-  color: var(--color-light-text);
+  background: #0d0c0b;
+  color: var(--text);
 }
 
-.home-section--destinations .section-heading h2 { color: var(--color-light-text); }
-.home-section--destinations .section-heading p:not(.eyebrow) { color: var(--color-light-muted); }
+.home-section--destinations .section-heading h2 { color: var(--white); }
+.home-section--destinations .section-heading p:not(.eyebrow) { color: var(--muted); }
 
 .destination-season-grid {
   display: grid;
@@ -170,16 +170,17 @@
 }
 
 .home-section--brand {
-  background: #0d0c0b;
-}
-
-.home #media-blog {
   background: var(--color-light);
   color: var(--color-light-text);
 }
 
-.home #media-blog .section-heading h2 { color: var(--color-light-text); }
-.home #media-blog .section-heading p:not(.eyebrow) { color: var(--color-light-muted); }
+.home #media-blog {
+  background: #0d0c0b;
+  color: var(--text);
+}
+
+.home #media-blog .section-heading h2 { color: var(--white); }
+.home #media-blog .section-heading p:not(.eyebrow) { color: var(--muted); }
 
 .brand-copy h2,
 .home-cta h2 {
@@ -210,6 +211,22 @@
   padding: 42px;
   border: 1px solid var(--line);
   background: #151210;
+}
+
+.home-section--brand .brand-copy {
+  border-color: var(--color-light-border);
+  border-radius: var(--radius-card);
+  background: var(--color-light-elevated);
+  box-shadow: 0 18px 46px rgba(53, 41, 30, 0.08);
+}
+
+.home-section--brand .brand-copy h2 { color: var(--color-light-text); }
+.home-section--brand .brand-copy > p:not(.eyebrow) { color: var(--color-light-muted); }
+
+.home-section--brand .home-proof-list span {
+  border-color: var(--color-light-border);
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--color-light-text);
 }
 
 .brand-media {

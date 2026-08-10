@@ -583,9 +583,11 @@ const contactDialog = (page) => {
 
 const ASSET_VERSION = "20260809-staging-r5";
 const PAGE_ASSET_VERSIONS = new Map([
-  ["/", "20260809-staging-r8-mobile-cards"],
+  ["/", "20260810-staging-r10-color-rhythm"],
   ["/blog/", `${ASSET_VERSION}-blog-filters`],
-  ["/dahab/", "20260809-staging-r9-ios-slider"],
+  ["/dahab/", "20260810-staging-r10-color-rhythm"],
+  ["/vietnam/", "20260810-staging-r10-compact-season"],
+  ["/russia/", "20260810-staging-r10-compact-season"],
   ["/dahab/wingfoil/", "20260809-staging-r9-ios-slider"],
   ["/dahab/windsurf/", "20260809-staging-r9-ios-slider"],
   ["/dahab/stations/", `${ASSET_VERSION}-shared-stations-hero`],
