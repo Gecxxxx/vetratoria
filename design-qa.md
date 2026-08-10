@@ -2,64 +2,59 @@
 
 **Source visual truth**
 
-- `/workspace/scratch/65e995573032/upload/7b37e33a-6614-478b-9d55-d714f8c1b3b8.png`
-- `/workspace/scratch/65e995573032/upload/5fa38064-dd36-4b19-936d-214c699918e3.png`
+- Selected Option 2: `/workspace/scratch/65e995573032/generated_images/exec-8bc5ef5b-0e3a-4628-a228-5fcaa60db3da.png`
 
 **Implementation evidence**
 
-- Browser-rendered focused capture: `qa-home-destinations.jpg`
-- Local preview: `http://terminal.local:4173/`
-- Desktop viewport: 1363 × 936 CSS px, device scale factor 1.
-- Focused implementation capture: 1348 × 936 px (viewport minus scrollbar), density 1×.
-- Source capture: 1916 × 1077 px with browser chrome and page zoom; compared compositionally after accounting for the different zoom level.
-- Responsive states checked in same-origin framed viewports: 320, 390 and 820 px requested widths; rendered content widths were 305, 375 and 805 px after native scrollbar allocation.
-- State: home destinations section visible with hover state; Dahab compact season section; Dahab learning section.
+- Browser-rendered implementation capture: `qa-season-rail.jpg`
+- Local preview: `http://terminal.local:4173/dahab/`
+- Desktop implementation viewport: 1363 × 936 CSS px, device scale factor 1; capture is 1363 × 936 px at 1×.
+- Source capture: 2048 × 768 px. The season module was compared as the common content region, with browser navigation excluded from the implementation capture.
+- Mobile state: 390 px framed viewport; document scroll width was 375 px after native scrollbar allocation, with no horizontal overflow.
+- State: Dahab overview compact season rail at the current-month outline; Vietnam overview checked as the shared-country variant.
 
 **Full-view comparison evidence**
 
-- The requested rhythm is present on the homepage: dark destination selection → light company/approach section → dark media section.
-- The Dahab overview now uses dark season and sport sections followed by a light learning section. Subsequent sections retain their previous themes.
-- Source and implementation use the same imagery, typography, navigation, spacing system and card geometry; no new art direction was introduced.
+- The implementation follows selected Option 2: a narrow title column, vertical divider, compact country/season header, 12-month rail and a single verified wind label.
+- The seasonal data, month state and current-month outline are retained from the existing project; no wind figures or new claims were introduced.
 
 **Focused region comparison evidence**
 
-- Destination cards remain large, photographic and clickable; orange hover outline is preserved against the new dark section surface.
-- Compact season panel keeps country, season badge, all 12 months, current-month outline and verified wind copy in one horizontal row on desktop.
-- At mobile width the compact panel becomes one column, months become a 6 × 2 grid, and the wind explanation remains fully visible without horizontal overflow.
+- The reference and implementation were opened in one comparison input. The live result matches the requested compact hierarchy, dark surface, orange current-month outline and unboxed rail treatment.
+- On mobile, the title and rail intentionally stack; months become a 6 × 2 grid and the wind label remains below the divider without overflow.
+- Vietnam confirms that the shared component preserves each direction's own title, season badge, months and verified wind label.
 
 **Required fidelity surfaces**
 
-- Fonts and typography: existing font family, weight hierarchy and wrapping preserved; light sections explicitly switch headings and body copy to dark tokens.
-- Spacing and layout rhythm: section spacing remains on shared tokens; compact season section and card padding were reduced without reducing touch readability.
-- Colors and visual tokens: dark sections use existing `#0d0c0b`; light sections use existing light/elevated tokens; orange remains the only accent.
-- Image quality and assets: all existing project photographs remain unchanged with their original crops and responsive image behavior.
-- Copy and content: no seasonal or wind claims were added; all existing text and month data remain intact.
+- Fonts and typography: the existing display/body font system is retained; the title column uses a tighter, compact scale matching the selected option.
+- Spacing and layout rhythm: the former enclosing card was removed; shared grid spacing creates one concise rail on desktop and a deliberate vertical rhythm on mobile.
+- Colors and visual tokens: existing dark `#0d0c0b`, white type and orange state token are retained; only the current month receives the orange outline.
+- Image quality and assets: this seasonal component has no image asset in the selected visual; site photography remains untouched.
+- Copy and content: the descriptive wind paragraph is removed from the compact rail. Direction-specific, verified wind labels and the existing seasonal months remain.
 
 **Findings**
 
 - No actionable P0, P1 or P2 findings remain.
-- Browser extension metadata errors were observed only from `chrome-extension://...`; no application-origin console errors were found.
+- No application-origin console warnings or errors were found on Dahab or Vietnam; browser-extension messages, if any, were excluded.
 
 **Comparison history**
 
-- Initial requested mismatch: homepage destinations were light, company section dark, media section light; Dahab season and learning were light/dark respectively.
-- Fix: inverted only the requested section surfaces, added scoped text/card token overrides, and compacted the shared destination season presentation.
-- Post-fix evidence: `qa-home-destinations.jpg` plus live desktop/mobile browser inspection show the intended dark/light rhythm, readable contrast and zero horizontal overflow at checked widths.
+- Iteration 1 — [P1] The prior compact card was still a three-part enclosed panel and kept an overlong wind description; it did not match the selected Option 2 hierarchy.
+- Fix: changed the shared compact-season layout to a title column plus rail, removed the enclosing card/long description, preserved the season data and aligned the wind label beneath the months.
+- Post-fix evidence: `qa-season-rail.jpg`, live Dahab desktop inspection, Vietnam shared-component inspection and the 390 px mobile state. No P0/P1/P2 issues remain.
 
 **Primary interactions tested**
 
-- Destination-card hover/focus affordance.
-- Homepage destination links remain clickable.
-- Dahab sport cards remain clickable.
-- Mobile menu remains visible and usable in the checked mobile states.
+- Seasonal rail renders all 12 accessible month labels and its current-month state.
+- Direction navigation and the Dahab sport cards remain present after the compact rail.
+- Mobile header/menu remains visible above the checked season state.
 
 **Implementation checklist**
 
-- [x] Homepage color rhythm updated.
-- [x] Dahab season/sport/learning color rhythm updated.
-- [x] Compact season card updated for desktop and mobile.
-- [x] 320/390/820 px overflow checks passed.
-- [x] Desktop and mobile browser render checked.
+- [x] Selected Option 2 applied to the shared compact-season component.
+- [x] All direction overview and sport routes receive a versioned shared stylesheet.
+- [x] Desktop Dahab and Vietnam shared-component renders checked.
+- [x] 390 px mobile render and overflow checked.
 - [x] Application console checked.
 
 **Follow-up polish**

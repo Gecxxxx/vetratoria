@@ -10,27 +10,30 @@
 .season-section .section-heading p:not(.eyebrow) { color: var(--color-light-muted); }
 
 .season-section--compact {
-  padding: clamp(44px, 4.5vw, 60px) 0;
+  padding: clamp(38px, 4vw, 52px) 0;
   background: #0d0c0b;
   color: var(--text);
 }
 
-.season-section--compact .section-heading {
+.season-section--compact .section-inner {
   display: grid;
-  max-width: none;
-  grid-template-columns: minmax(280px, 0.72fr) minmax(320px, 1fr);
-  gap: 10px 40px;
-  align-items: end;
-  margin-bottom: 18px;
+  grid-template-columns: minmax(220px, 0.46fr) minmax(0, 1.54fr);
+  align-items: center;
+  gap: clamp(32px, 5vw, 74px);
 }
 
-.season-section--compact .section-heading .eyebrow { grid-column: 1 / -1; }
-.season-section--compact .section-heading h2 { color: var(--white); }
-.season-section--compact .section-heading p:not(.eyebrow) {
+.season-section--compact .section-heading {
+  display: block;
+  max-width: none;
   margin: 0;
-  color: var(--muted);
-  font-size: 15px;
+  padding-right: clamp(28px, 4vw, 58px);
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
 }
+
+.season-section--compact .section-heading .eyebrow { margin-bottom: 12px; }
+.season-section--compact .section-heading h2 { color: var(--white); }
+.season-section--compact .section-heading h2 { font-size: clamp(30px, 3.1vw, 46px); line-height: 0.94; }
+.season-section--compact .section-heading p:not(.eyebrow) { display: none; }
 
 .season-grid {
   display: grid;
@@ -166,18 +169,18 @@
 
 .season-section--compact .season-card {
   display: grid;
-  grid-template-columns: minmax(150px, 0.42fr) minmax(0, 1.4fr) minmax(220px, 0.72fr);
-  align-items: center;
-  gap: 18px;
-  padding: 18px 20px;
-  border-color: rgba(255, 255, 255, 0.12);
-  background: #171412;
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.24);
+  gap: 14px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
+.season-section--compact .season-card__header { align-items: center; }
 .season-section--compact .season-card__header h3 {
   color: var(--white);
-  font-size: clamp(26px, 2.2vw, 34px);
+  font-size: clamp(25px, 2.2vw, 34px);
 }
 
 .season-section--compact .season-card__header strong {
@@ -188,7 +191,7 @@
 }
 
 .season-section--compact .season-months span {
-  min-height: 30px;
+  min-height: 42px;
   border-color: rgba(255, 255, 255, 0.1);
   background: #292522;
   color: #958e87;
@@ -201,17 +204,23 @@
 }
 
 .season-section--compact .season-card__wind b { color: var(--white); }
-.season-section--compact .season-card__wind p { color: var(--muted); font-size: 13px; }
+.season-section--compact .season-card__wind p { display: none; }
 
 .season-section--compact .season-months,
 .season-section--compact .season-card__wind { margin-top: 0; }
 
 .season-section--compact .season-card__wind {
-  padding-top: 0;
-  padding-left: 18px;
-  border-top: 0;
-  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  grid-template-columns: auto auto;
+  justify-content: end;
+  gap: 13px;
+  padding-top: 13px;
+  padding-left: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-left: 0;
 }
+
+.season-section--compact .wind-indicator { padding-top: 3px; }
+.season-section--compact .season-card__wind b { font-size: 14px; }
 
 .destination-story {
   position: relative;
@@ -283,28 +292,24 @@
 
 @media (max-width: 1100px) {
   .season-grid { grid-template-columns: 1fr; }
-  .season-section--compact .season-card { grid-template-columns: 1fr; }
-
-  .season-section--compact .season-card__wind {
-    padding-top: 20px;
-    padding-left: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    border-left: 0;
-  }
 }
 
 @media (max-width: 700px) {
   .season-section { padding: var(--space-section-mobile) 0; }
-  .season-section--compact { padding: 46px 0; }
+  .season-section--compact { padding: 38px 0 42px; }
+  .season-section--compact .section-inner { display: block; }
   .season-section--compact .section-heading {
-    display: block;
-    margin-bottom: 18px;
+    margin-bottom: 22px;
+    padding-right: 0;
+    border-right: 0;
   }
-  .season-section--compact .section-heading p:not(.eyebrow) {
-    margin-top: 10px;
-    font-size: 14px;
-  }
-  .season-section--compact .season-card { padding: 18px; }
+  .season-section--compact .section-heading h2 { font-size: clamp(30px, 10vw, 40px); }
+  .season-section--compact .season-card { gap: 13px; }
+  .season-section--compact .season-card__header { display: flex; }
+  .season-section--compact .season-card__header strong { justify-self: auto; }
+  .season-section--compact .season-months { gap: 4px; }
+  .season-section--compact .season-months span { min-height: 38px; }
+  .season-section--compact .season-card__wind { justify-content: start; }
   .season-card { padding: 20px; }
   .season-card__header { display: grid; }
   .season-card__header strong { justify-self: start; }
