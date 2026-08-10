@@ -42,6 +42,13 @@ body.nav-open {
   white-space: nowrap;
 }
 
+.vtr-nav__brand-line {
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+}
+
 .vtr-nav__station-phone {
   display: inline-flex;
   flex-direction: column;

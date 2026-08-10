@@ -243,13 +243,17 @@ const mainNavPanel = (page, country) => `
 
 const topNav = (page) => {
   const contact = contactForPage(page);
+  const isHome = page.path === "/";
+  const topNavContacts = isHome
+    ? `<span class="vtr-nav__brand-line">Vetratoria — школы ветра с 2006 года</span>`
+    : `<a href="mailto:${contact.email}">${contact.email}</a>
+      ${contact === site.contacts.dahab
+        ? dahabStationPhones("vtr-nav__station-phone")
+        : `<a href="tel:${contact.phone}">${contact.phoneLabel}</a>`}`;
   return `
   <div class="vtr-nav__top">
     <div class="vtr-nav__contacts">
-      <a href="mailto:${contact.email}">${contact.email}</a>
-      ${contact === site.contacts.dahab
-        ? dahabStationPhones("vtr-nav__station-phone")
-        : `<a href="tel:${contact.phone}">${contact.phoneLabel}</a>`}
+      ${topNavContacts}
     </div>
     <nav class="vtr-nav__countries" aria-label="Выбор страны">
       ${countryList.map((country) => `<a class="vtr-nav__country${page.country === country.key ? " is-active" : ""}" href="${country.href}">${country.nav}</a>`).join("")}
@@ -583,7 +587,7 @@ const contactDialog = (page) => {
 
 const ASSET_VERSION = "20260809-staging-r5";
 const PAGE_ASSET_VERSIONS = new Map([
-  ["/", "20260810-staging-r10-color-rhythm"],
+  ["/", "20260810-staging-r11-home-brandline"],
   ["/blog/", `${ASSET_VERSION}-blog-filters`],
   ["/dahab/", "20260810-staging-r10-color-rhythm"],
   ["/vietnam/", "20260810-staging-r10-compact-season"],
