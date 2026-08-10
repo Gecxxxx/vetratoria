@@ -854,7 +854,6 @@ const stationLifeGallery = ({ id, eyebrow, title, lead, photos }) => `
         <button class="station-life__featured" type="button" data-life-featured data-media-photo-open data-media-group="${id}" data-media-photo-index="0" data-media-src="${photos[0][0]}" data-media-alt="${escapeHtml(photos[0][3])}" aria-label="Открыть фотографию 1 из ${photos.length} на весь экран">
           <img src="${photos[0][0]}" alt="${escapeHtml(photos[0][3])}" width="${photos[0][4]}" height="${photos[0][5]}" decoding="async">
           <span class="station-life__expand">Открыть на весь экран ↗</span>
-          <span class="station-life__caption"><small>${escapeHtml(photos[0][1])}</small><strong>${escapeHtml(photos[0][2])}</strong></span>
         </button>
       </div>
       <div class="station-life__track" data-life-track tabindex="0" aria-label="${escapeHtml(title)}">
@@ -879,7 +878,6 @@ const stationLifeGallery = ({ id, eyebrow, title, lead, photos }) => `
       <button type="button" data-media-lightbox-prev aria-label="Предыдущая фотография">‹</button>
       <figure>
         <img src="${photos[0][0]}" alt="${escapeHtml(photos[0][3])}" data-media-lightbox-image>
-        <figcaption>${escapeHtml(title)}</figcaption>
       </figure>
       <button type="button" data-media-lightbox-next aria-label="Следующая фотография">›</button>
     </div>
@@ -1072,13 +1070,13 @@ ${sportStationLife({
 
 <section class="dahab-sport-section dahab-sport-section--faq" id="faq">
   <div class="dahab-sport-inner">
-    ${sportFaqBlock("FAQ", "Частые вопросы", "Короткие ответы перед первым выходом на wingfoil в Дахабе.", faqs)}
+    ${sportFaqBlock("FAQ", "Частые вопросы", "", faqs)}
   </div>
 </section>
 
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Материалы", "Полезное о Wingfoil", "Статьи, медиа и правила, которые помогают заранее понять формат и спокойно приехать на станцию.")}
+    ${sectionHeading("Материалы", "Полезное о Wingfoil", "")}
     <div class="dahab-sport-useful">
       ${useful.map(([href, label, title, image]) => `
         <a href="${href}">
@@ -1244,7 +1242,7 @@ ${seasonSection([countriesByKey.dahab], {
 
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Медиа", "Windsurf на воде", "Кадры с уроков, проката и станций помогают заранее понять формат, воду и атмосферу Дахаба.")}
+    ${sectionHeading("Медиа", "Windsurf на воде", "")}
     <div class="dahab-sport-water-grid">
       ${waterPhotos.map(([image, alt, width, height], index) => `
         <a${index === 0 ? ` class="is-large"` : ""} href="/media/dahab/" aria-label="Открыть медиа Дахаба">
@@ -1289,13 +1287,13 @@ ${sportStationLife({
 
 <section class="dahab-sport-section dahab-sport-section--faq" id="faq">
   <div class="dahab-sport-inner">
-    ${sportFaqBlock("FAQ", "Частые вопросы", "Короткие ответы перед первым уроком windsurf в Дахабе.", faqs)}
+    ${sportFaqBlock("FAQ", "Частые вопросы", "", faqs)}
   </div>
 </section>
 
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Материалы", "Полезное о Windsurf", "Страницы, которые помогают выбрать формат, станцию и понять стоимость до поездки.")}
+    ${sectionHeading("Материалы", "Полезное о Windsurf", "")}
     <div class="dahab-sport-useful">
       ${useful.map(([href, label, title, image]) => `
         <a href="${href}">
@@ -1488,13 +1486,13 @@ const dahabWindsurfKidsPage = (page) => {
 
 <section class="dahab-sport-section dahab-sport-section--faq" id="faq">
   <div class="dahab-sport-inner">
-    ${sportFaqBlock("Родителям", "Частые вопросы перед поездкой", "Коротко о возрасте, сопровождении, снаряжении и подготовке ребёнка к лагерю.", faqs)}
+    ${sportFaqBlock("Родителям", "Частые вопросы перед поездкой", "", faqs)}
   </div>
 </section>
 
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Официальная информация", "Полезные разделы WindSurfKids", "Переходите на сайт организатора, чтобы проверить актуальные условия и задать команде лагеря вопросы напрямую.")}
+    ${sectionHeading("Официальная информация", "Полезные разделы WindSurfKids", "")}
     <div class="dahab-sport-useful">
       ${useful.map(([href, label, title, image]) => `
         <a href="${href}" target="_blank" rel="noopener noreferrer">
@@ -1615,7 +1613,7 @@ const dahabHowToGetPage = (page) => {
 
 <section class="dahab-sport-section dahab-sport-section--soft">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Перед вылетом", "Что подготовить для спокойной встречи", "Четыре простых шага помогут быстро найти водителя и без задержек отправиться в Дахаб.")}
+    ${sectionHeading("Перед вылетом", "Что подготовить для спокойной встречи", "")}
     <div class="dahab-sport-feature-grid">
       ${preparation.map(([title, text], index) => `<article><span>0${index + 1}</span><h3>${title}</h3><p>${text}</p></article>`).join("")}
     </div>
@@ -1624,7 +1622,7 @@ const dahabHowToGetPage = (page) => {
 
 <section class="dahab-sport-section dahab-sport-section--faq" id="faq">
   <div class="dahab-sport-inner">
-    ${sportFaqBlock("FAQ", "Частые вопросы о дороге", "Коротко о времени в пути, багаже, машине и документах.", faqs)}
+    ${sportFaqBlock("FAQ", "Частые вопросы о дороге", "", faqs)}
   </div>
 </section>
 
@@ -1692,7 +1690,7 @@ const dahabHomePage = (page) => {
     <p class="eyebrow">Египет · Дахаб</p>
     <h1>Wingfoil и Windsurf в Дахабе</h1>
     <p class="hero-lead">Обучение и прокат на Красном море для новичков и опытных райдеров. Подберём программу, инструктора и снаряжение под ваш уровень.</p>
-    <div class="hero-advantages"><span class="hero-advantage">С 2006 года</span><span class="hero-advantage">Условия для любого уровня</span><span class="hero-advantage">10 000+ учеников</span><span class="hero-advantage">4 спасательных катера</span></div>
+    <div class="hero-advantages"><span class="hero-advantage">С 2006 года</span><span class="hero-advantage">Условия для любого уровня</span><span class="hero-advantage hero-advantage--nowrap">10&nbsp;000+&nbsp;учеников</span><span class="hero-advantage">4 спасательных катера</span></div>
     <div class="hero-actions dahab-hero-actions">
       ${contactCta(page, "Подобрать программу")}
       <a class="button button-ghost" href="#prices">Посмотреть цены</a>
@@ -1760,7 +1758,6 @@ ${seasonSection([countriesByKey.dahab], {
       <aside class="dahab-learning__side">
         <figure class="dahab-learning__media">
           <img src="${stationLifePhotos[3][0]}" alt="${escapeHtml(stationLifePhotos[3][3])}" width="${stationLifePhotos[3][4]}" height="${stationLifePhotos[3][5]}" loading="lazy" decoding="async">
-          <figcaption>Дахаб · обучение в спокойной акватории</figcaption>
         </figure>
         <div class="dahab-learning__included">
           <header><p class="eyebrow">В урок уже входит</p><h3>Можно приехать без своего снаряжения</h3></header>
@@ -1822,7 +1819,6 @@ ${stationLifeGallery({
     <header class="trust-head">
       <p class="eyebrow">144 актуальных отзыва</p>
       <h2>Что говорят гости Vetratoria</h2>
-      <p>Отзывы помогают понять не только качество обучения, но и то, как команда относится к гостям до занятия, на воде и после возвращения на станцию.</p>
     </header>
     <section class="trust-slider trust-slider--reviews" aria-label="Отзывы гостей Vetratoria Dahab">
       <div class="trust-slider__top">
@@ -1893,7 +1889,6 @@ const stationSlider = ({ title, lead, images }) => `
     <div class="dahab-station-slider__viewport">
       ${images.map((image, index) => `<img data-station-slide class="${index === 0 ? "is-active" : ""}" src="${stationImg(image.file)}" alt="${escapeHtml(image.alt)}" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" aria-hidden="${index === 0 ? "false" : "true"}">`).join("")}
     </div>
-    <figcaption class="dahab-station-slider__caption"><b>${escapeHtml(title)}</b><span>${escapeHtml(lead)}</span></figcaption>
     <div class="dahab-station-slider__nav">
       <button type="button" data-station-prev aria-label="Предыдущее фото">←</button>
       <button type="button" data-station-next aria-label="Следующее фото">→</button>
@@ -2120,7 +2115,7 @@ const dahabSafetyPage = (page) => {
 
 <section class="dahab-sport-section dahab-sport-section--soft" id="briefing-steps">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Порядок", "Четыре шага перед выходом", "Короткая последовательность помогает не упустить важное и спокойно начать занятие или самостоятельную практику.")}
+    ${sectionHeading("Порядок", "Четыре шага перед выходом", "")}
     <div class="dahab-sport-feature-grid">
       ${briefingSteps.map(([number, title, text]) => `
         <article>
@@ -2258,11 +2253,11 @@ const notFoundPage = (page) => `${hero(page, `<a class="button button-primary" h
     </div>
   </section>`;
 
-const priceRows = (sportTitle = "Спорт") => [
-  [`${sportTitle}: вводный урок`, "60 минут", "индивидуально или мини-группа", "по запросу"],
-  [`${sportTitle}: курс`, "3-5 занятий", "план прогресса и инструктор", "по запросу"],
-  ["Прокат снаряжения", "1 час / день", "подбор под ветер и уровень", "по запросу"],
-  ["Хранение", "день / месяц", "станция и доступ к инфраструктуре", "по запросу"]
+const priceRows = (sportTitle = "Спорт", { showServiceDetails = true } = {}) => [
+  [`${sportTitle}: вводный урок`, "60 минут", showServiceDetails ? "индивидуально или мини-группа" : "", showServiceDetails ? "по запросу" : ""],
+  [`${sportTitle}: курс`, "3-5 занятий", showServiceDetails ? "план прогресса и инструктор" : "", showServiceDetails ? "по запросу" : ""],
+  ["Прокат снаряжения", "1 час / день", showServiceDetails ? "подбор под ветер и уровень" : "", showServiceDetails ? "по запросу" : ""],
+  ["Хранение", "день / месяц", showServiceDetails ? "станция и доступ к инфраструктуре" : "", showServiceDetails ? "по запросу" : ""]
 ];
 
 const dahabWingfoilPricePage = (page) => `
@@ -2522,9 +2517,7 @@ const dahabWindsurfPricePage = (page) => `
     <header class="windsurf-price-heading">
       <p class="eyebrow">Windsurf · обучение</p>
       <h2>Обучение виндсерфингу</h2>
-      <p>Друзья! Бронируйте курсы и прокат оборудования заранее, для бронирования пишите нам на почту dahab@vetratoria.ru или +201029321772 Telegram, WhatsApp.</p>
     </header>
-    <p class="windsurf-price-copy"><strong>Групповые/индивидуальные курсы обучения = прокат матчасти + инструктор.</strong></p>
     <h3 class="windsurf-price-subtitle">Групповые и индивидуальные курсы обучения</h3>
     <div class="windsurf-table-wrap">
       <table class="windsurf-price-table windsurf-price-table--wide">
@@ -2555,7 +2548,6 @@ const dahabWindsurfPricePage = (page) => `
     <header class="windsurf-price-heading">
       <p class="eyebrow">Windsurf · индивидуально</p>
       <h2>Индивидуальные занятия</h2>
-      <p>1 час = 60 минут.</p>
     </header>
     <div class="windsurf-table-wrap">
       <table class="windsurf-price-table">
@@ -2577,7 +2569,6 @@ const dahabWindsurfPricePage = (page) => `
     <header class="windsurf-price-heading">
       <p class="eyebrow">Windsurf · прокат</p>
       <h2>Прокат оборудования для виндсерфинга</h2>
-      <p>Бронируйте курсы и прокат оборудования заранее, для бронирования пишите нам на почту dahab@vetratoria.ru - +201029321772 (Telegram, WhatsApp.)</p>
     </header>
     <p class="windsurf-price-copy"><strong>Прокат одного комплекта матчасти для виндсерфинга</strong></p>
     <div class="windsurf-table-wrap">
@@ -2654,7 +2645,6 @@ const dahabWindsurfPricePage = (page) => `
     <header class="windsurf-price-heading">
       <p class="eyebrow">Windsurf · хранение</p>
       <h2>Гидрофойл и хранение оборудования</h2>
-      <p>Этот блок относится к windsurf-разделу и не вынесен отдельно.</p>
     </header>
     <p class="windsurf-price-copy">Аренда гидрофойла для виндсерфинга — 30$ / час.</p>
     <div class="windsurf-table-wrap">
@@ -2702,12 +2692,13 @@ const pricePage = (page) => {
   const country = countriesByKey[page.country];
   const sport = page.sport ? site.sports[page.sport] : null;
   const title = sport ? sport.title : "Vetratoria";
+  const isDahabKidsPrice = page.country === "dahab" && page.sport === "windsurf-kids";
   return `${hero(page, `${contactCta(page, "Уточнить цену")}<a class="button button-ghost" href="/${country.key}/">К направлению</a>`)}
   <section class="content-section">
     <div class="section-inner">
-      ${sectionHeading("Прайс", "Форматы и стоимость", "Цены зависят от ветра, сезона, инструктора, комплекта и длительности программы. Финальную доступность лучше подтвердить перед поездкой.")}
+      ${sectionHeading("Прайс", "Форматы и стоимость", isDahabKidsPrice ? "" : "Цены зависят от ветра, сезона, инструктора, комплекта и длительности программы. Финальную доступность лучше подтвердить перед поездкой.")}
       <div class="price-table">
-        ${priceRows(title).map((row) => `<article><b>${row[0]}</b><span>${row[1]}</span><span>${row[2]}</span><em>${row[3]}</em></article>`).join("")}
+        ${priceRows(title, { showServiceDetails: !isDahabKidsPrice }).map((row) => `<article><b>${row[0]}</b><span>${row[1]}</span><span>${row[2]}</span><em>${row[3]}</em></article>`).join("")}
       </div>
     </div>
   </section>`;
@@ -2772,9 +2763,9 @@ const articlePage = (page) => {
       <p class="eyebrow">${country.region} · ${sport.nav}</p>
       <h2>Главное перед стартом</h2>
       <p>${page.description}</p>
-      <p>Перед поездкой важно понять не только название спорта, но и реальный сценарий: где проходит занятие, какое снаряжение подходит, сколько времени заложить на первые шаги и что будет следующим уровнем после вводного урока.</p>
+      ${country.key === "dahab" ? "" : "<p>Перед поездкой важно понять не только название спорта, но и реальный сценарий: где проходит занятие, какое снаряжение подходит, сколько времени заложить на первые шаги и что будет следующим уровнем после вводного урока.</p>"}
       <h2>Как строится занятие</h2>
-      <p>Инструктор объясняет ветер и акваторию, подбирает комплект, ставит короткую техническую задачу и ведет ученика по воде. После занятия остается понятный план: повторить базу, перейти на курс, взять прокат или выбрать другой формат.</p>
+      ${country.key === "dahab" ? "" : "<p>Инструктор объясняет ветер и акваторию, подбирает комплект, ставит короткую техническую задачу и ведет ученика по воде. После занятия остается понятный план: повторить базу, перейти на курс, взять прокат или выбрать другой формат.</p>"}
       <div class="check-list check-list--inline">
         ${sport.bullets.map((item) => `<span>${item}</span>`).join("")}
       </div>
@@ -2881,7 +2872,7 @@ const mediaCountryPage = (page) => {
 ${hero(page, `<a class="button button-primary" href="#media-albums">Смотреть альбомы</a><a class="button button-ghost" href="/media/">Все страны</a>`)}
 <section class="content-section" id="media-albums" data-media-filter-root>
   <div class="section-inner">
-    ${sectionHeading("Альбомы", `Медиа: ${country.city}`, "Выберите год, вид спорта или событие. Поиск работает по названию и описанию альбома.")}
+    ${sectionHeading("Альбомы", `Медиа: ${country.city}`, country.key === "dahab" ? "" : "Выберите год, вид спорта или событие. Поиск работает по названию и описанию альбома.")}
     <div class="media-filter-panel">
       ${mediaFilterSelect("year", "Год", years, {}, "Все годы")}
       ${mediaFilterSelect("sport", "Спорт", sports, mediaSportLabels, "Все виды спорта")}
@@ -2891,10 +2882,10 @@ ${hero(page, `<a class="button button-primary" href="#media-albums">Смотре
         <input type="search" data-media-filter-search placeholder="Название альбома" autocomplete="off">
       </label>
     </div>
-    <p class="media-filter-status" data-media-filter-status aria-live="polite"></p>
+    ${country.key === "dahab" ? "" : `<p class="media-filter-status" data-media-filter-status aria-live="polite"></p>`}
     <div class="media-album-grid" data-media-filter-list>
       ${albums.map((album) => mediaAlbumCard(country, album)).join("")}
-      <p class="media-filter-empty" data-media-filter-empty hidden>Альбомов с такими параметрами пока нет. Измените фильтры или поисковый запрос.</p>
+      ${country.key === "dahab" ? "" : `<p class="media-filter-empty" data-media-filter-empty hidden>Альбомов с такими параметрами пока нет. Измените фильтры или поисковый запрос.</p>`}
     </div>
   </div>
 </section>`;
@@ -2912,7 +2903,7 @@ ${hero(page, `<a class="button button-primary" href="#album-photos">Открыт
     ${sectionHeading(
       `${formatMediaDate(album.date)} · ${mediaSportLabels[album.sport]}`,
       album.title,
-      `${album.description} Нажмите на фотографию для увеличения или скачайте отдельный файл.`
+      country.key === "dahab" ? album.description : `${album.description} Нажмите на фотографию для увеличения или скачайте отдельный файл.`
     )}
     <div class="media-photo-grid">
       ${album.photos.map((src, index) => {
@@ -2944,7 +2935,6 @@ ${hero(page, `<a class="button button-primary" href="#album-photos">Открыт
       <button type="button" data-media-lightbox-prev aria-label="Предыдущая фотография">‹</button>
       <figure>
         <img src="${album.photos[0]}" alt="${escapeHtml(`${album.title} — фотография 1`)}" data-media-lightbox-image>
-        <figcaption>${escapeHtml(album.title)}</figcaption>
       </figure>
       <button type="button" data-media-lightbox-next aria-label="Следующая фотография">›</button>
     </div>
@@ -3047,7 +3037,7 @@ ${hero(page, heroActions)}
       isGeneral
         ? "Пишите напрямую команде направления или оставьте общую заявку ниже."
         : isDahab
-          ? "Для windsurf и wingfoil работают отдельные контакты. Выберите нужную станцию."
+          ? ""
           : "Свяжитесь напрямую или заполните короткую форму ниже."
     )}
     <div class="contacts-directory${isDahab ? " contacts-directory--stations" : ""}">
@@ -3073,9 +3063,9 @@ ${hero(page, heroActions)}
         isGeneral ? "Подберём направление" : "Напишите команде",
         isGeneral
           ? "Оставьте имя, удобный способ связи, выберите страну и при желании добавьте комментарий."
-          : "Оставьте имя и удобный способ связи. Комментарий можно не заполнять."
+          : isDahab ? "" : "Оставьте имя и удобный способ связи. Комментарий можно не заполнять."
       )}
-      <p class="contact-form-hint">После нажатия откроется ваше почтовое приложение с уже подготовленной заявкой.</p>
+      ${isDahab ? "" : `<p class="contact-form-hint">После нажатия откроется ваше почтовое приложение с уже подготовленной заявкой.</p>`}
     </div>
     ${contactForm(page)}
   </div>
@@ -3290,7 +3280,7 @@ ${hero(page, `${contactCta(page, "Написать команде")}<a class="bu
       ${sectionHeading(
         "Vetratoria · Дахаб",
         "Одна команда — разные роли",
-        "Мы объединили специалистов по wingfoil и windsurf, детских тренеров и спасателей. Листайте карточки стрелками или проводите по ним пальцем."
+        ""
       )}
       ${dahabTeamGroups.map(dahabTeamSlider).join("")}
     </div>

@@ -342,8 +342,6 @@
     const next = slider.querySelector("[data-life-next]");
     const featured = slider.querySelector("[data-life-featured]");
     const featuredImage = featured?.querySelector("img");
-    const featuredLabel = featured?.querySelector(".station-life__caption small");
-    const featuredCaption = featured?.querySelector(".station-life__caption strong");
     const current = slider.querySelector("[data-life-current]");
     const thumbs = [...slider.querySelectorAll("[data-life-thumb]")];
     if (!track || !featured || !featuredImage || !thumbs.length) return;
@@ -359,8 +357,6 @@
       featured.dataset.mediaSrc = thumb.dataset.mediaSrc || "";
       featured.dataset.mediaAlt = thumb.dataset.mediaAlt || "";
       featured.setAttribute("aria-label", `Открыть фотографию ${activeIndex + 1} из ${thumbs.length} на весь экран`);
-      if (featuredLabel) featuredLabel.textContent = thumb.dataset.lifeLabel || "";
-      if (featuredCaption) featuredCaption.textContent = thumb.dataset.lifeCaption || "";
       if (current) current.textContent = String(activeIndex + 1).padStart(2, "0");
       thumbs.forEach((item, itemIndex) => {
         const selected = itemIndex === activeIndex;
