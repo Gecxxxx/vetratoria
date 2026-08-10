@@ -1305,47 +1305,67 @@
 }
 
 .water-area__inner {
-  padding: clamp(32px, 4vw, 58px);
-  border: 1px solid var(--color-light-border);
-  border-radius: var(--radius-card);
-  background: var(--color-light-elevated);
-  box-shadow: 0 24px 64px rgba(53, 41, 30, 0.1);
+  display: grid;
+  gap: clamp(30px, 4vw, 56px);
 }
 
-.water-area__head {
+.water-area__intro {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
-  gap: clamp(24px, 5vw, 76px);
-  margin-bottom: clamp(28px, 3.5vw, 48px);
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  gap: clamp(32px, 7vw, 138px);
+  padding: clamp(34px, 4.25vw, 64px);
+  border-radius: var(--radius-card);
+  background: #12100f;
   align-items: end;
 }
 
-.water-area__head .eyebrow {
-  grid-column: 1 / -1;
-  margin-bottom: -10px;
+.water-area__intro .eyebrow {
+  margin: 0 0 16px;
 }
 
-.water-area__head h2 {
+.water-area__intro h2 {
   max-width: 760px;
   margin: 0;
-  color: var(--color-light-text);
-  font-size: clamp(40px, 4.5vw, 66px);
+  color: var(--white);
+  font-size: clamp(42px, 5vw, 72px);
   font-weight: 900;
-  line-height: 0.98;
+  letter-spacing: -0.055em;
+  line-height: 0.92;
 }
 
-.water-area__head > p:last-child {
+.water-area__intro > div:last-child {
+  align-self: end;
+}
+
+.water-area__intro > div:last-child > p:first-child {
   max-width: 500px;
   margin: 0;
-  color: var(--color-light-muted);
+  color: #cbc4bd;
   font-size: 17px;
   line-height: 1.55;
 }
 
+.water-area__route {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 26px 0 0;
+  color: var(--orange);
+  font-size: clamp(16px, 1.65vw, 22px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.water-area__route b {
+  color: var(--white);
+  font-weight: 500;
+}
+
 .water-area__layout {
   display: grid;
-  grid-template-columns: minmax(340px, 0.9fr) minmax(0, 1.1fr);
-  gap: clamp(28px, 4vw, 58px);
+  grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.78fr);
+  gap: clamp(28px, 5vw, 94px);
   align-items: stretch;
 }
 
@@ -1356,14 +1376,15 @@
 
 .water-area__cards article {
   display: grid;
-  grid-template-columns: 44px minmax(0, 1fr);
-  gap: clamp(14px, 2vw, 24px);
-  padding: clamp(20px, 2.4vw, 30px) 0;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: clamp(16px, 2vw, 28px);
+  padding: clamp(24px, 2.8vw, 38px) 0;
   border-top: 1px solid var(--color-light-border);
   align-content: center;
 }
 
 .water-area__cards article:first-child { border-top: 0; }
+.water-area__cards article:first-child { box-shadow: inset 2px 0 0 var(--orange); }
 
 .water-area__cards span {
   padding-top: 5px;
@@ -1376,7 +1397,9 @@
 .water-area__cards strong {
   display: block;
   color: var(--color-light-text);
-  font-size: clamp(23px, 2vw, 30px);
+  font-size: clamp(28px, 2.8vw, 42px);
+  font-weight: 900;
+  letter-spacing: -0.045em;
   line-height: 1;
 }
 
@@ -1404,9 +1427,9 @@
   margin: 0;
   overflow: hidden;
   border: 1px solid var(--color-light-border);
-  border-radius: var(--radius-media);
+  border-radius: var(--radius-card);
   background: #0b1014;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 3;
 }
 
 .water-area__visual::after {
@@ -1468,7 +1491,7 @@ body.country.country-dahab .trust-block {
   .price-grid,
   .station-advice__list,
   .station-atmosphere,
-  .water-area__head,
+  .water-area__intro,
   .water-area__layout {
       grid-template-columns: 1fr;
     }
@@ -1513,9 +1536,8 @@ body.country.country-dahab .trust-block {
   .station-life__featured { min-height: 0; }
   .station-life__track { grid-column: 1; }
 
-  .water-area__inner { padding: 30px; }
-  .water-area__head { gap: 16px; }
-  .water-area__head .eyebrow { grid-column: auto; margin-bottom: 0; }
+  .water-area__inner { gap: 24px; }
+  .water-area__intro { gap: 22px; padding: 34px; }
   .water-area__layout { gap: 24px; }
 
   .water-area__cards article {
@@ -1619,7 +1641,7 @@ body.country.country-dahab .trust-block {
   .dahab-hero__content h1,
   .station-advice__head h2,
   .trust-head h2,
-  .water-area__head h2 {
+  .water-area__intro h2 {
       font-size: 32px;
     }
 
@@ -1662,9 +1684,9 @@ body.country.country-dahab .trust-block {
       -webkit-line-clamp: 3;
     }
 
-  .water-area__inner { padding: 20px; }
-  .water-area__head { margin-bottom: 24px; }
-  .water-area__head > p:last-child { font-size: 15px; }
+  .water-area__inner { gap: 16px; }
+  .water-area__intro { gap: 18px; padding: 28px 22px; }
+  .water-area__intro > div:last-child > p:first-child { font-size: 15px; }
   .water-area__layout { gap: 12px; }
   .water-area__visual { aspect-ratio: 4 / 3; }
   .water-area__visual figcaption { right: 14px; bottom: 13px; left: 14px; font-size: 11px; }
@@ -1795,7 +1817,7 @@ body.country.country-dahab .trust-block {
   .station-life__item {
       flex-basis: 58%;
     }
-  .water-area__inner { padding: 16px; }
-  .water-area__head h2 { font-size: 29px; }
+  .water-area__intro { padding: 24px 18px; }
+  .water-area__intro h2 { font-size: 29px; }
   .water-area__cards article { grid-template-columns: 28px minmax(0, 1fr); }
 }

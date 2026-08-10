@@ -620,7 +620,7 @@ const ASSET_VERSION = "20260809-staging-r5";
 const PAGE_ASSET_VERSIONS = new Map([
   ["/", "20260810-staging-r14-editorial-approach"],
   ["/blog/", `${ASSET_VERSION}-blog-filters`],
-  ["/dahab/", "20260810-staging-r16-learning-atlas"],
+  ["/dahab/", "20260810-staging-r19-water-route"],
   ["/vietnam/", "20260810-staging-r13-compact-rail"],
   ["/russia/", "20260810-staging-r13-compact-rail"],
   ["/dahab/wingfoil/", "20260810-staging-r18-faq-system"],
@@ -1859,10 +1859,15 @@ ${stationLifeGallery({
 
 <section class="water-area" id="water-area" aria-labelledby="water-area-title">
   <div class="water-area__inner">
-    <header class="water-area__head" data-reveal="line">
-      <p class="eyebrow">Акватория</p>
-      <h2 id="water-area-title">От первых метров в лагуне до открытого моря</h2>
-      <p>Акватория Дахаба разделена на три отдельные зоны. У каждой свой рельеф воды и характер катания — от закрытой учебной лагуны до волн открытого моря.</p>
+    <header class="water-area__intro" data-reveal="line">
+      <div>
+        <p class="eyebrow">Акватория</p>
+        <h2 id="water-area-title">От первых метров в лагуне до открытого моря</h2>
+      </div>
+      <div>
+        <p>Акватория Дахаба разделена на три отдельные зоны. У каждой свой рельеф воды и характер катания — от закрытой учебной лагуны до волн открытого моря.</p>
+        <p class="water-area__route" aria-label="Маршрут по акватории: Лагуна, затем Speedy, затем Камикадзе"><span>Лагуна</span><b aria-hidden="true">→</b><span>Speedy</span><b aria-hidden="true">→</b><span>Камикадзе</span></p>
+      </div>
     </header>
     <div class="water-area__layout">
       <figure class="water-area__visual">
