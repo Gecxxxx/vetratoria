@@ -267,90 +267,191 @@
   color: var(--color-light-text);
 }
 
-.dahab-learning .section-heading {
-  max-width: 880px;
+.dahab-learning__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.94fr) minmax(430px, 1.16fr);
+  gap: clamp(20px, 3vw, 44px);
+  align-items: stretch;
 }
 
-.dahab-learning .section-heading h2 { color: var(--color-light-text); }
-.dahab-learning .section-heading p:not(.eyebrow) { color: var(--color-light-muted); }
+.dahab-learning__journey {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 660px;
+  padding: clamp(28px, 4vw, 62px);
+  background: #11100f;
+  color: #fff;
+}
+
+.dahab-learning__heading {
+  max-width: 570px;
+}
+
+.dahab-learning__heading .eyebrow,
+.dahab-learning__included .eyebrow {
+  color: var(--orange);
+}
+
+.dahab-learning__heading h2 {
+  margin: 12px 0 0;
+  color: #fff;
+  font-size: clamp(38px, 4.15vw, 66px);
+  font-weight: 900;
+  letter-spacing: -0.065em;
+  line-height: 0.92;
+  overflow-wrap: anywhere;
+}
+
+.dahab-learning__heading > p:last-child {
+  max-width: 520px;
+  margin: 26px 0 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 16px;
+  line-height: 1.55;
+}
 
 .dahab-learning__steps {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
+  gap: 0;
+  margin: auto 0 0;
+  padding: clamp(32px, 4vw, 64px) 0 0;
+  list-style: none;
 }
 
-.dahab-learning__steps article {
-  min-height: 230px;
-  padding: 24px;
-  border: 1px solid var(--color-light-border);
-  border-top: 2px solid var(--orange);
-  border-radius: var(--radius-card);
-  background: var(--color-light-elevated);
-  box-shadow: 0 14px 34px rgba(53, 41, 30, 0.07);
+.dahab-learning__steps li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 18px;
+  padding: 0 0 25px;
+}
+
+.dahab-learning__steps li:not(:last-child)::after {
+  position: absolute;
+  top: 46px;
+  bottom: 6px;
+  left: 22px;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  content: "";
 }
 
 .dahab-learning__steps span {
+  z-index: 1;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border: 1px solid var(--orange);
+  border-radius: 50%;
   color: var(--orange);
   font-size: 12px;
   font-weight: 900;
+  background: #11100f;
 }
 
 .dahab-learning__steps h3 {
-  margin: 15px 0 0;
-  color: var(--color-light-text);
-  font-size: 24px;
+  margin: 6px 0 0;
+  color: #fff;
+  font-size: clamp(20px, 1.65vw, 26px);
   font-weight: 900;
   line-height: 1.04;
 }
 
-.dahab-learning__steps p,
-.dahab-learning__included p {
-  margin: 12px 0 0;
-  color: var(--color-light-muted);
-  line-height: 1.48;
+.dahab-learning__steps p {
+  max-width: 500px;
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.dahab-learning__side {
+  display: grid;
+  min-width: 0;
+  grid-template-rows: minmax(360px, 1fr) auto;
+  gap: 18px;
+}
+
+.dahab-learning__media {
+  position: relative;
+  min-height: 360px;
+  margin: 0;
+  overflow: hidden;
+  background: #d8d2cb;
+}
+
+.dahab-learning__media::after {
+  position: absolute;
+  inset: auto 0 0;
+  height: 42%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.72));
+  content: "";
+  pointer-events: none;
+}
+
+.dahab-learning__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  object-fit: cover;
+}
+
+.dahab-learning__media figcaption {
+  position: absolute;
+  z-index: 1;
+  right: 22px;
+  bottom: 20px;
+  left: 22px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .dahab-learning__included {
   display: grid;
-  grid-template-columns: minmax(240px, 0.72fr) minmax(0, 2fr);
-  gap: 20px;
-  margin-top: 20px;
-  padding: 26px;
+  grid-template-columns: minmax(180px, 0.7fr) minmax(0, 1.3fr);
+  gap: 28px;
+  padding: clamp(22px, 2.2vw, 34px);
+  background: #fff;
   border: 1px solid var(--color-light-border);
-  border-radius: var(--radius-card);
-  background: var(--color-light-elevated);
-  box-shadow: 0 18px 46px rgba(53, 41, 30, 0.08);
 }
 
 .dahab-learning__included header h3 {
   margin: 8px 0 0;
   color: var(--color-light-text);
-  font-size: 30px;
+  font-size: clamp(23px, 2vw, 31px);
   font-weight: 900;
-  line-height: 1;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
 }
 
 .dahab-learning__included > div {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 0 18px;
+  align-content: start;
 }
 
 .dahab-learning__included article {
-  padding: 18px;
-  border: 1px solid var(--color-light-border);
-  border-radius: 8px;
-  background: #fff;
+  padding: 14px 0;
+  border-top: 1px solid var(--color-light-border);
 }
 
 .dahab-learning__included strong {
   color: var(--color-light-text);
-  font-size: 17px;
+  font-size: 15px;
 }
 
-.dahab-learning__included article p {
-  font-size: 14px;
+.dahab-learning__included p {
+  margin: 6px 0 0;
+  color: var(--color-light-muted);
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 .wsk-strip {
@@ -1269,12 +1370,12 @@ body.country.country-dahab .trust-block {
       grid-template-columns: 1fr;
     }
 
-  .dahab-learning__steps {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+  .dahab-learning__layout {
+      grid-template-columns: minmax(0, 1fr);
     }
 
-  .dahab-learning__included {
-      grid-template-columns: 1fr;
+  .dahab-learning__journey {
+      min-height: 0;
     }
 
   .dahab-section,
@@ -1468,13 +1569,66 @@ body.country.country-dahab .trust-block {
       min-height: 360px;
     }
 
-  .dahab-learning__steps,
+  .dahab-learning__included,
   .dahab-learning__included > div {
       grid-template-columns: 1fr;
     }
 
-  .dahab-learning__steps article {
-      min-height: 0;
+  .dahab-learning__journey {
+      padding: 32px 22px;
+    }
+
+  .dahab-learning__heading h2 {
+      font-size: clamp(36px, 12vw, 52px);
+    }
+
+  .dahab-learning__heading > p:last-child {
+      margin-top: 20px;
+      font-size: 15px;
+    }
+
+  .dahab-learning__steps {
+      padding-top: 36px;
+    }
+
+  .dahab-learning__steps li {
+      grid-template-columns: 46px minmax(0, 1fr);
+      gap: 13px;
+      padding-bottom: 22px;
+    }
+
+  .dahab-learning__steps span {
+      width: 38px;
+      height: 38px;
+      font-size: 10px;
+    }
+
+  .dahab-learning__steps li:not(:last-child)::after {
+      top: 38px;
+      left: 18px;
+    }
+
+  .dahab-learning__steps h3 {
+      margin-top: 5px;
+      font-size: 21px;
+    }
+
+  .dahab-learning__steps p {
+      font-size: 13px;
+    }
+
+  .dahab-learning__side {
+      grid-template-rows: auto auto;
+    }
+
+  .dahab-learning__media,
+  .dahab-learning__media img {
+      min-height: 270px;
+    }
+
+  .dahab-learning__included {
+      gap: 24px;
+      padding: 24px 22px;
     }
 
   .trust-card--person {

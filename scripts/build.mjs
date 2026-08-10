@@ -589,7 +589,7 @@ const ASSET_VERSION = "20260809-staging-r5";
 const PAGE_ASSET_VERSIONS = new Map([
   ["/", "20260810-staging-r14-editorial-approach"],
   ["/blog/", `${ASSET_VERSION}-blog-filters`],
-  ["/dahab/", "20260810-staging-r15-station-gallery"],
+  ["/dahab/", "20260810-staging-r16-learning-atlas"],
   ["/vietnam/", "20260810-staging-r13-compact-rail"],
   ["/russia/", "20260810-staging-r13-compact-rail"],
   ["/dahab/wingfoil/", "20260810-staging-r15-station-gallery"],
@@ -1738,14 +1738,28 @@ ${seasonSection([countriesByKey.dahab], {
 
 <section class="dahab-learning" id="learning">
   <div class="dahab-inner">
-    ${sectionHeading("Обучение", "От первого знакомства до самостоятельной практики", "Мы не обещаем одинаковый результат всем. Строим занятия так, чтобы каждый следующий шаг опирался на уже контролируемый навык.")}
-    <div class="dahab-learning__steps">
-      ${learningSteps.map(([number, title, text]) => `<article><span>${number}</span><h3>${title}</h3><p>${text}</p></article>`).join("")}
-    </div>
-    <div class="dahab-learning__included">
-      <header><p class="eyebrow">Уже входит в урок</p><h3>Можно приехать без своего снаряжения</h3></header>
-      <div>
-        ${lessonIncludes.map(([title, text]) => `<article><strong>${title}</strong><p>${text}</p></article>`).join("")}
+    <div class="dahab-learning__layout">
+      <div class="dahab-learning__journey">
+        <header class="dahab-learning__heading">
+          <p class="eyebrow">Обучение</p>
+          <h2>От первого знакомства до самостоятельной практики</h2>
+          <p>Мы не обещаем одинаковый результат всем. Строим занятия так, чтобы каждый следующий шаг опирался на уже контролируемый навык.</p>
+        </header>
+        <ol class="dahab-learning__steps">
+          ${learningSteps.map(([number, title, text]) => `<li><span>${number}</span><div><h3>${title}</h3><p>${text}</p></div></li>`).join("")}
+        </ol>
+      </div>
+      <aside class="dahab-learning__side">
+        <figure class="dahab-learning__media">
+          <img src="${stationLifePhotos[3][0]}" alt="${escapeHtml(stationLifePhotos[3][3])}" width="${stationLifePhotos[3][4]}" height="${stationLifePhotos[3][5]}" loading="lazy" decoding="async">
+          <figcaption>Дахаб · обучение в спокойной акватории</figcaption>
+        </figure>
+        <div class="dahab-learning__included">
+          <header><p class="eyebrow">В урок уже входит</p><h3>Можно приехать без своего снаряжения</h3></header>
+          <div>
+            ${lessonIncludes.map(([title, text]) => `<article><strong>${title}</strong><p>${text}</p></article>`).join("")}
+          </div>
+        </div>
       </div>
     </div>
   </div>
