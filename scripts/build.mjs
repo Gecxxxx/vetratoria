@@ -251,10 +251,12 @@ const mobileMenu = (page, country) => `
           <a class="vtr-mobile-menu__row" href="/media/">Медиа</a>
           <a class="vtr-mobile-menu__row" href="${country ? `/${country.key}/contacts/` : "/contacts/"}">Контакты</a>
         </section>
-        ${contactForPage(page) === site.contacts.dahab ? "" : `<section class="vtr-mobile-menu__block" aria-label="Контакты">
+        ${page.path === "/" ? socialIconLinks("vtr-mobile-menu__socials") : `<section class="vtr-mobile-menu__block" aria-label="Контакты">
           <p class="vtr-mobile-menu__title">Контакты</p>
           <a class="vtr-mobile-menu__row" href="mailto:${contactForPage(page).email}">${contactForPage(page).email}</a>
-          <a class="vtr-mobile-menu__row" href="tel:${contactForPage(page).phone}">${contactForPage(page).phoneLabel}</a>
+          ${contactForPage(page) === site.contacts.dahab
+            ? dahabStationPhones("vtr-mobile-menu__row vtr-mobile-menu__contact-phone")
+            : `<a class="vtr-mobile-menu__row" href="tel:${contactForPage(page).phone}">${contactForPage(page).phoneLabel}</a>`}
           <a class="vtr-mobile-menu__row" href="${contactForPage(page).telegram}" target="_blank" rel="noopener noreferrer">Telegram</a>
           ${socialIconLinks("vtr-mobile-menu__socials")}
         </section>`}
