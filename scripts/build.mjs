@@ -783,21 +783,30 @@ const home = (page) => `
 </section>
 
 <section class="home-section" id="media-blog">
-  <div class="section-inner">
-    ${sectionHeading("До поездки", "Посмотрите, как всё устроено на воде", "Разборы помогут подготовиться, а живые фотографии покажут занятия, станции и обычные дни команды без рекламной постановки.")}
-    <div class="destination-grid media-grid">
-      ${[
-        { href: "/blog/", image: img("home-blog.webp"), label: "Полезно знать", title: "Подготовиться к поездке", lead: "Как выбрать спорт, когда ехать, как проходит обучение и что важно перед первым выходом." },
-        { href: "/media/", image: img("home-media.webp"), label: "Фото и видео", title: "Увидеть атмосферу", lead: "Занятия, самостоятельное катание, команда и обычные дни на воде в трёх странах." }
-      ].map((item) => `
-        <a class="destination-card" href="${item.href}">
-          ${cardImage(item.image, item.title)}
-          <span>${item.label}</span>
-          <h2>${item.title}</h2>
-          <p>${item.lead}</p>
-          <em>Открыть</em>
-        </a>`).join("")}
+  <div class="section-inner home-explore">
+    <header class="home-explore__head">
+      <div>${sectionHeading("До поездки", "Посмотрите, как всё устроено на воде", "Разборы помогут подготовиться, а живые фотографии покажут занятия, станции и обычные дни команды без рекламной постановки.")}</div>
+      <a href="/media/">Все материалы <span aria-hidden="true">→</span></a>
+    </header>
+    <div class="home-explore__grid">
+      <a class="home-explore__story" href="/blog/">
+        <img src="${img("home-blog.webp")}" alt="Подготовка к выходу на воду" width="1200" height="840" loading="lazy" decoding="async">
+        <div>
+          <h2>Подготовиться к поездке</h2>
+          <p>Как выбрать спорт, когда ехать, как проходит обучение и что важно перед первым выходом.</p>
+          <strong>Открыть блог <span aria-hidden="true">→</span></strong>
+        </div>
+      </a>
+      <a class="home-explore__story" href="/media/">
+        <img src="${img("home-media.webp")}" alt="Гости и команда Vetratoria на станции" width="1200" height="840" loading="lazy" decoding="async">
+        <div>
+          <h2>Увидеть атмосферу</h2>
+          <p>Занятия, самостоятельное катание, команда и обычные дни на воде в трёх странах.</p>
+          <strong>Открыть медиа <span aria-hidden="true">→</span></strong>
+        </div>
+      </a>
     </div>
+    <p class="home-explore__line">Сначала — подготовка · затем — вода и команда</p>
   </div>
 </section>
 

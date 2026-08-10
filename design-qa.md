@@ -1,55 +1,51 @@
 **Source visual truth**
 
-- Selected interaction/layout reference: `/workspace/scratch/65e995573032/upload/c692782e-ac6b-485e-9363-f3aa349c844f.png`.
-- Target: a dark Vetratoria section with an editorial introduction, compact question rows, a visible open/closed state, orange emphasis and a contact CTA.
+- Selected visual reference: `/workspace/scratch/65e995573032/upload/525cf511-26b4-4a67-8965-eed1715adfc4.png`.
+- Target: a black, photo-led Vetratoria block with two large editorial entry points. User-required differences: use existing project photos, remove `01/02`, and use the explicit actions “Открыть блог” and “Открыть медиа”.
 
 **Implementation evidence**
 
-- Browser-rendered implementation: `http://terminal.local:4173/dahab/#faq` (desktop) and `http://terminal.local:4173/qa-faq-mobile.html` (390 px embedded mobile viewport).
-- Desktop viewport: 1363 × 936 CSS px, device scale factor 1; first answer open, then second answer open.
-- Mobile viewport: 390 × 844 CSS px inside the QA frame, device scale factor 1; first answer open, then second answer open.
-- Source reference: 577 × 380 px. Implementation captures were visually compared in the same QA pass, normalizing on the component region rather than browser or embed-frame chrome.
-- Primary interactions tested: mouse/touch-equivalent summary activation, one-open-item behavior, `aria-expanded` synchronization, native keyboard-operable summary controls and focus-visible styling.
-- Console: no application errors or warnings. Three historic Chrome-extension metadata errors were external to the site.
+- Browser-rendered implementation: `http://terminal.local:4173/?faq-media-design-r18#media-blog`.
+- Desktop viewport: 1363 × 936 CSS px, device scale factor 1.
+- Mobile viewport: 390 × 844 CSS px in a local responsive browser frame, device scale factor 1.
+- Source reference: 720 × 510 px. Comparison used the content region rather than surrounding browser chrome or the QA frame.
+- Primary checks: both cards load real project WebP assets, “Все материалы” links to `/media/`, the left destination links to `/blog/`, the right destination links to `/media/`, text and focusable link surfaces remain available on mobile.
+- Console: no page application errors. Reported errors originate from the external Chrome extension `content-script.bundle.js`.
 
 **Full-view comparison evidence**
 
-- The implementation preserves the reference’s dark premium surface, left editorial title area, large accordion column and bottom CTA band.
-- It intentionally uses near-black accordion rows instead of the reference’s light rows, following the approved black Vetratoria treatment while retaining orange state accents and the same information hierarchy.
-- The desktop layout has a clear asymmetric 0.76 / 1.24 grid; mobile becomes a single column with compact 34 px index and 16 px control tracks.
+- The implementation keeps the target’s black editorial surface, two equally strong image-led destinations, restrained orange accents and lower media overlays.
+- It uses the actual existing `home-blog.webp` and `home-media.webp` project images rather than generated or stock replacements.
+- The selected numbers were removed. The CTA labels are replaced by the requested “Открыть блог” and “Открыть медиа”.
 
 **Focused region comparison evidence**
 
-- Typography: bold white headline, orange eyebrow and numbering, muted readable answer copy. Desktop and 390 px mobile wrapping remain inside their containers.
-- Spacing and layout rhythm: the accordion uses 2 px dividers, restrained 3 px radius and a 42 px CTA separation; compact mobile padding prevents a long-card effect.
-- Colors and tokens: black/near-black surfaces use `#100e0d`, `#171310` and `#1c1612`; existing `--orange` is reserved for selected state and actions; white and muted text retain contrast.
-- Image quality and assets: the target contains no image assets for this block. No synthetic imagery, placeholder artwork or changed project media was introduced.
-- Copy/content: all existing Vetratoria questions and approved answers are retained; no prices, wind statistics, services or staff claims were added.
+- Typography: heading and card titles use the existing Vetratoria display scale; supporting copy stays readable over the dark image overlay.
+- Spacing and layout rhythm: 20 px desktop image gap, large 390–510 px image slots, a lightweight “Все материалы” link, and an understated footer divider match the reference’s airy editorial rhythm.
+- Colors and tokens: near-black page surface, existing `--line`, `--white` and `--orange` tokens preserve contrast and active affordance.
+- Image quality and asset fidelity: both files are existing 1200 × 840 WebP assets with fixed intrinsic dimensions, lazy loading and `object-fit: cover`; no artificial image asset was created.
+- Copy and links: two original intents are preserved; calls to action now name the destination directly.
 
 **Findings**
 
-- [Resolved P1] The previous generic FAQ was only a vertical stack and did not reflect the selected editorial two-column composition.
-  Location: `scripts/build.mjs`, `.dahab-faq-section`.
-  Fix: a dedicated intro/accordion layout with numbered rows and a full-width CTA band.
-  Post-fix evidence: desktop browser capture shows the intended two-column component with consistent row rhythm.
-- [Resolved P1] Multiple answers could remain open and state was not explicitly communicated.
-  Location: `assets/js/app.js`, `[data-exclusive-accordion]`.
-  Fix: selecting an item closes all other items and synchronizes `aria-expanded` on every summary.
-  Post-fix evidence: desktop and 390 px mobile tests both returned `[false, true, false, false]` after opening the second answer.
-- [Resolved P2] The generic FAQ did not have a mobile-specific compact layout.
-  Location: `assets/css/pages/dahab-home.css`, `@media (max-width: 520px)`.
-  Fix: dedicated small-screen grid, spacing and answer offsets.
-  Post-fix evidence: 390 × 844 browser frame shows no horizontal overflow and retains visible open/closed controls.
+- [Resolved P1] The prior component used generic smaller destination cards and generic “Открыть” labels.
+  Location: `scripts/build.mjs`, home `#media-blog` section.
+  Fix: dedicated `home-explore` editorial structure with two photo destinations and explicit CTA copy.
+  Post-fix evidence: desktop capture shows large equal photo areas and distinct Blog/Media actions.
+- [Resolved P2] At 390 px the target needed a clear single-column order and readable image overlays.
+  Location: `assets/css/pages/home.css`, `@media (max-width: 700px)`.
+  Fix: single-column grid, responsive image height and mobile title/body sizing.
+  Post-fix evidence: 390 px browser capture shows the heading, “Все материалы” link and first card without horizontal overflow.
 
 **Implementation checklist**
 
-- Dedicated semantic `<details>/<summary>` FAQ markup created for the Dahab overview.
-- Exclusive interactive state, keyboard support and focus visibility verified.
-- Desktop and mobile visual checks completed.
-- `npm run build`, `npm run check`, and `git diff --check` passed.
+- Real project images retained and optimized existing WebP assets used.
+- Card interactions remain native links with hover and focus states.
+- Desktop and mobile visual QA completed.
+- `npm run build`, `npm run check` and `git diff --check` passed.
 
 **Follow-up polish**
 
-- P3: the FAQ could later gain URL-based deep-linking to a specific question if that becomes useful for campaign pages; it is not needed for the current browse-and-compare flow.
+- P3: when new portrait-oriented station photos are added to the archive, the same component can opt into 9:16 crops without changing content or the link model.
 
 final result: passed
