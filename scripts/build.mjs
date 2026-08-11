@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 56031)
-Total output lines: 3387
-
 import { mkdir, rm, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
