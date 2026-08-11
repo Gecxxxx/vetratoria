@@ -157,7 +157,7 @@ const contactCta = (page, label, className = "button button-primary", sportKey =
     country ? `data-contact-country="${country.key}"` : "",
     country ? `data-contact-country-label="${escapeHtml(site.contacts[country.key].title)}"` : "",
     sportKey ? `data-contact-sport="${escapeHtml(sportLabel(sportKey))}"` : "",
-    destination?.formEmail || destination?.электронная почта ? `data-contact-электронная почта="${escapeHtml(destination.formEmail || destination.электронная почта)}"` : "",
+    destination?.formEmail || destination?.email ? `data-contact-email="${escapeHtml(destination.formEmail || destination.email)}"` : "",
     destination?.phone ? `data-contact-phone="${escapeHtml(destination.phone)}"` : "",
     destination?.telegram ? `data-contact-telegram="${escapeHtml(destination.telegram)}"` : ""
   ].filter(Boolean).join(" ");
@@ -253,7 +253,7 @@ const mobileMenu = (page, country) => `
         </section>
         ${page.path === "/" ? socialIconLinks("vtr-mobile-menu__socials") : `<section class="vtr-mobile-menu__block" aria-label="Контакты">
           <p class="vtr-mobile-menu__title">Контакты</p>
-          <a class="vtr-mobile-menu__row" href="mailto:${contactForPage(page).электронная почта}">${contactForPage(page).электронная почта}</a>
+          <a class="vtr-mobile-menu__row" href="mailto:${contactForPage(page).email}">${contactForPage(page).email}</a>
           ${contactForPage(page) === site.contacts.dahab
             ? dahabStationPhones("vtr-mobile-menu__row vtr-mobile-menu__contact-phone")
             : `<a class="vtr-mobile-menu__row" href="tel:${contactForPage(page).phone}">${contactForPage(page).phoneLabel}</a>`}
@@ -277,7 +277,7 @@ const topNav = (page) => {
   const isHome = page.path === "/";
   const topNavContacts = isHome
     ? `<span class="vtr-nav__brand-line">Vetratoria — школы ветра с 2006 года</span>`
-    : `<a href="mailto:${contact.электронная почта}">${contact.электронная почта}</a>
+    : `<a href="mailto:${contact.email}">${contact.email}</a>
       ${contact === site.contacts.dahab
         ? dahabStationPhones("vtr-nav__station-phone")
         : `<a href="tel:${contact.phone}">${contact.phoneLabel}</a>`}`;
@@ -413,7 +413,7 @@ const footer = (page) => {
       <div>
         <h3>Связь</h3>
         ${contactCta(page, "Написать нам", "")}
-        <a href="mailto:${contact.электронная почта}">${contact.электронная почта}</a>
+        <a href="mailto:${contact.email}">${contact.email}</a>
         <a href="tel:${contact.phone}">${contact.phoneLabel}</a>
       </div>
     </nav>
@@ -537,7 +537,7 @@ const structuredDataForPage = (page) => {
       url: canonicalForPage(page),
       description: metaDescriptionForPage(page),
       image: absoluteUrl(metaImageForPage(page)),
-      электронная почта: site.contacts.dahab.электронная почта,
+      email: site.contacts.dahab.email,
       telephone: site.contacts.dahab.phone,
       parentOrganization: {
         "@id": organizationId
@@ -557,7 +557,7 @@ const structuredDataForPage = (page) => {
 
 const contactCountryOption = (country) => {
   const contact = site.contacts[country.key];
-  return `<option value="${country.key}" data-электронная почта="${escapeHtml(contact.formEmail)}" data-phone="${escapeHtml(contact.phone)}" data-telegram="${escapeHtml(contact.telegram)}">${escapeHtml(contact.title)}</option>`;
+  return `<option value="${country.key}" data-email="${escapeHtml(contact.formEmail)}" data-phone="${escapeHtml(contact.phone)}" data-telegram="${escapeHtml(contact.telegram)}">${escapeHtml(contact.title)}</option>`;
 };
 
 const contactDialog = (page) => {
@@ -582,7 +582,7 @@ const contactDialog = (page) => {
     </div>
     <form class="contact-form contact-modal__form" data-contact-form data-contact-modal-form
       data-endpoint="${escapeHtml(site.contactEndpoint || "")}"
-      data-mail-to="${country ? escapeHtml(destination.formEmail || destination.электронная почта) : ""}"
+      data-mail-to="${country ? escapeHtml(destination.formEmail || destination.email) : ""}"
       data-direction="${escapeHtml(context)}">
       <input type="hidden" name="source" value="${escapeHtml(page.path)}">
       <input type="hidden" name="intent" value="" data-contact-intent-input>
@@ -905,7 +905,7 @@ const dahabWingfoilPage = (page) => {
     ["Ветер почти круглый год", "Стабильные ветровые условия позволяют планировать обучение в разные сезоны и проводить несколько занятий подряд.", dahabFinalImg("dahab-flat-water-training-zone.webp"), "Ровная вода и ветровой флаг в лагуне Дахаба", 1254, 1254],
     ["Три зоны для прогресса", "Лагуна, Спиди и открытое море позволяют постепенно переходить от первых стартов к уверенному катанию.", dahabFinalImg("dahab-lagoon-riding-zones.webp"), "Учебные зоны Вингфойл в лагуне Дахаба", 1254, 1254],
     ["Флэт для первых полётов", "Ровная вода помогает легче удерживать баланс, набирать скорость и контролировать доску при выходе на фойл.", wingfoilSectionImg("dahab-wingfoil-stable-wind.webp"), "Первый полёт на Вингфойл над ровной водой в Дахабе", 1600, 1600],
-    ["4 спасательных катера", "Катера дежурят на акватории и помогают быстро вернуться на станцию, если ветер ослабнет или потребуется помощь.", dahabFinalImg("dahab-спасение-boat.webp"), "Спасательный катер школы Vetratoria в Дахабе", 1600, 1600]
+    ["4 спасательных катера", "Катера дежурят на акватории и помогают быстро вернуться на станцию, если ветер ослабнет или потребуется помощь.", dahabFinalImg("dahab-rescue-boat.webp"), "Спасательный катер школы Vetratoria в Дахабе", 1600, 1600]
   ];
   const learning = [
     ["01", "Винг на SUP", "Учимся держать крыло, разворачиваться, идти нужным курсом и понимать, как работает ветер.", wingfoilSectionImg("wing-start-coaching.webp"), "Инструктор помогает ученику стартовать с крылом у берега"],
@@ -931,7 +931,7 @@ const dahabWingfoilPage = (page) => {
     [wingfoilSectionImg("wing-start-coaching.webp"), "Подготовка", "Разбираем крыло и первые действия до старта", "Инструктор объясняет управление крылом у берега", 1920, 1080],
     [wingfoilSectionImg("foil-boat-training.webp"), "Фойл за лодкой", "Тренируем баланс и контроль высоты отдельно", "Тренировка на фойле за лодкой в Дахабе", 1920, 1080],
     [wingfoilSectionImg("wingfoil-duo.webp"), "На воде", "Инструктор остаётся рядом во время первых полётов", "Ученик и инструктор Вингфойл на воде", 1920, 1080],
-    [wingfoilSectionImg("спасение-boats.webp"), "Команда", "Готовим лодки и контролируем акваторию", "Спасательные лодки Винг-центр Vetratoria", 1920, 1080],
+    [wingfoilSectionImg("rescue-boats.webp"), "Команда", "Готовим лодки и контролируем акваторию", "Спасательные лодки винг-центра Vetratoria", 1920, 1080],
     [wingfoilWaterImg("water-01.webp"), "Катание", "Первые уверенные проходы над Красным морем", "Вингфойл над бирюзовой водой Дахаба", 1920, 1080],
     [wingfoilWaterImg("water-04.webp"), "Вместе", "Делим воду, ветер и хорошие выходы", "Два райдера Вингфойл в Дахабе", 1920, 1080],
     ["/assets/img/media/dahab/photo-day/2026-05-24-photo-day/46.jpg", "После воды", "Обсуждаем прогресс и следующий выход", "Гости общаются после катания на станции", 1080, 720]
@@ -1031,7 +1031,7 @@ ${seasonSection([countriesByKey.dahab], {
       <a class="button button-primary" href="/dahab/safety/">Подробнее</a>
     </div>
     <div class="dahab-sport-safety__media">
-      <img src="${wingfoilSectionImg("спасение-boats.webp")}" alt="Rescue boats на берегу станции Vetratoria" width="1920" height="1080" loading="lazy" decoding="async">
+      <img src="${wingfoilSectionImg("rescue-boats.webp")}" alt="Спасательные катера на берегу станции Vetratoria" width="1920" height="1080" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -1122,7 +1122,7 @@ const dahabWindsurfPage = (page) => {
     ["Ветер для глиссирования", "Стабильный ветер позволяет регулярно тренироваться и быстрее переходить от водоизмещающего режима к глиссированию.", dahabFinalImg("dahab-flat-water-training-zone.webp"), "Ветровой флаг на берегу лагуны Дахаба", 1254, 1254],
     ["Лагуна для старта", "Ровная вода и удобная учебная акватория помогают безопасно освоить доску, парус и первые галсы.", windsurfSectionImg("dahab-windsurf-planing-wind.webp"), "Обучение виндсёрфингу в лагуне Дахаба", 1600, 1600],
     ["Три зоны для прогресса", "Лагуна подходит для обучения, Спиди — для скорости, а открытое море — для уверенного катания и волн.", dahabFinalImg("dahab-lagoon-riding-zones.webp"), "Три зоны катания на виндсёрфе в Дахабе", 1254, 1254],
-    ["4 спасательных катера", "Система спасения помогает безопасно тренироваться и быстро вернуться на станцию при поломке или ослаблении ветра.", dahabFinalImg("dahab-спасение-boat.webp"), "Спасательный катер на акватории Дахаба", 1600, 1600]
+    ["4 спасательных катера", "Система спасения помогает безопасно тренироваться и быстро вернуться на станцию при поломке или ослаблении ветра.", dahabFinalImg("dahab-rescue-boat.webp"), "Спасательный катер на акватории Дахаба", 1600, 1600]
   ];
   const learning = [
     ["01", "Управление парусом", "На берегу разбираем стойку, положение рук, направление ветра и основные способы управления парусом.", windsurfSectionImg("dahab-windsurf-sail-control.webp"), "Объяснение управления парусом перед уроком Виндсёрфинг", 1254, 1254],
@@ -1163,7 +1163,7 @@ const dahabWindsurfPage = (page) => {
   ];
   const useful = [
     ["/dahab/blog/windsurf/", "Виндсёрфинг", "Как начать Виндсёрфинг с нуля", dahabRefImg("windsurf-hero.webp")],
-    ["/dahab/windsurf/price/", "Цены", "Уроки, прокат и программы Виндсёрфинг", dahabRefImg("price-виндсёрфинг.webp")],
+    ["/dahab/windsurf/price/", "Цены", "Уроки, прокат и программы виндсёрфинга", dahabRefImg("price-windsurf.webp")],
     ["/dahab/stations/", "Станции", "Где кататься на виндсёрфинге в Дахабе", dahabRefImg("bg-swiss.webp")]
   ];
 
@@ -1248,7 +1248,7 @@ ${seasonSection([countriesByKey.dahab], {
       <a class="button button-primary" href="/dahab/safety/">Подробнее</a>
     </div>
     <div class="dahab-sport-safety__media">
-      <img src="${wingfoilSectionImg("спасение-boats.webp")}" alt="Rescue boats на берегу станции Vetratoria" width="1920" height="1080" loading="lazy" decoding="async">
+      <img src="${wingfoilSectionImg("rescue-boats.webp")}" alt="Спасательные катера на берегу станции Vetratoria" width="1920" height="1080" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -1655,9 +1655,9 @@ const dahabHowToGetPage = (page) => {
 
 const dahabHomePage = (page) => {
   const priceCards = [
-    ["Вингфойл", "Индивидуальный урок", "70$", "Инструктор, полный комплект, спасательная поддержка и страховка снаряжения.", dahabRefImg("price-вингфойл.webp"), "/dahab/wingfoil/price/"],
+    ["Вингфойл", "Индивидуальный урок", "70$", "Инструктор, полный комплект, спасательная поддержка и страховка снаряжения.", dahabRefImg("price-wingfoil.webp"), "/dahab/wingfoil/price/"],
     ["Подготовка к Вингфойл", "Фойл за лодкой", "60$", "Отдельно тренируем баланс и контроль высоты — без необходимости одновременно управлять крылом.", dahabRefImg("price-foil-boat.webp"), "/dahab/wingfoil/price/"],
-    ["Виндсёрфинг", "Индивидуальный урок", "70$", "Инструктор, доска, парус, спасательная поддержка и страховка снаряжения.", dahabRefImg("price-виндсёрфинг.webp"), "/dahab/windsurf/price/"],
+    ["Виндсёрфинг", "Индивидуальный урок", "70$", "Инструктор, доска, парус, спасательная поддержка и страховка снаряжения.", dahabRefImg("price-windsurf.webp"), "/dahab/windsurf/price/"],
     ["Детский виндсёрфинг", "Детский урок", "от 55$", "Лёгкий парус, подходящая доска, инструктор рядом и спокойный темп.", dahabRefImg("price-kids.webp"), "/dahab/windsurf-kids/"]
   ];
   const stations = [
@@ -1733,7 +1733,7 @@ ${seasonSection([countriesByKey.dahab], {
     </header>
     <div class="sport-split__grid">
       <a class="sport-tile" href="/dahab/wingfoil/" aria-label="Открыть страницу вингфойла в Дахабе">
-        <img src="${dahabRefImg("choose-вингфойл.webp")}" alt="Вингфойл в Дахабе" width="1600" height="1067" loading="lazy" decoding="async">
+        <img src="${dahabRefImg("choose-wingfoil.webp")}" alt="Вингфойл в Дахабе" width="1600" height="1067" loading="lazy" decoding="async">
         <div class="sport-tile__content">
           <h2>Вингфойл</h2>
           <span>Подробнее</span>
@@ -2790,10 +2790,10 @@ const articlePage = (page) => {
 };
 
 const mediaSportLabels = {
-  вингфойл: "Вингфойл",
-  виндсёрфинг: "Виндсёрфинг",
+  wingfoil: "Вингфойл",
+  windsurf: "Виндсёрфинг",
   wsk: "Детский виндсёрфинг",
-  кайтсёрфинг: "Кайт"
+  kite: "Кайтсёрфинг"
 };
 
 const mediaEventLabels = {
@@ -2971,7 +2971,7 @@ const countryContactCard = (country, showPageLink = true) => {
       <p class="eyebrow">${escapeHtml(country.region)}</p>
       <h2>${escapeHtml(country.city)}</h2>
       <div class="contact-country-card__methods">
-        ${contactMethod({ href: `mailto:${contact.электронная почта}`, label: "Электронная почта", value: contact.электронная почта })}
+        ${contactMethod({ href: `mailto:${contact.email}`, label: "Электронная почта", value: contact.email })}
         ${contactMethod({
           href: country.key === "vietnam" ? contact.telegram : `tel:${contact.phone}`,
           icon: country.key === "vietnam" ? "/assets/icons/telegram.svg" : "",
@@ -2990,7 +2990,7 @@ const dahabStationCard = (station) => `
     <h2>${escapeHtml(station.title)}</h2>
     <p>${escapeHtml(station.description)}</p>
     <div class="contact-station-card__methods">
-      ${contactMethod({ href: `mailto:${station.электронная почта}`, label: "Электронная почта", value: station.электронная почта })}
+      ${contactMethod({ href: `mailto:${station.email}`, label: "Электронная почта", value: station.email })}
       ${contactMethod({
         href: `https://wa.me/${station.phone.replace(/\D/g, "")}`,
         icon: "/assets/icons/whatsapp.svg",
@@ -3016,7 +3016,7 @@ const contactForm = (page) => {
       <input type="hidden" name="source" value="${escapeHtml(page.path)}">
       <input type="hidden" name="intent" value="Форма страницы контактов">
       <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
-      <label>Способ связи<input name="contact" autocomplete="электронная почта" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>
+      <label>Способ связи<input name="contact" autocomplete="email" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>
       ${isGeneral ? `
       <label>Страна
         <select name="country" data-contact-country-select required>
@@ -3035,7 +3035,7 @@ const contactsPage = (page) => {
   const contact = contactForPage(page);
   const heroActions = isDahab
     ? `<a class="button button-primary" href="#windsurf">Виндсёрфинг</a><a class="button button-ghost" href="#wingfoil">Вингфойл</a>`
-    : `<a class="button button-primary" href="#contact-form">Написать нам</a><a class="button button-ghost" href="mailto:${contact.электронная почта}">Email</a>`;
+    : `<a class="button button-primary" href="#contact-form">Написать нам</a><a class="button button-ghost" href="mailto:${contact.email}">Электронная почта</a>`;
   const directory = isGeneral
     ? countryList.map(countryContactCard).join("")
     : isDahab
@@ -3244,7 +3244,7 @@ const dahabTeamGroups = [
         role: "Спасатель · оборудование",
         text: "Помогает собрать и настроить комплект, поддерживает детей и взрослых на берегу и во время занятий.",
         meta: "Помощь на берегу и воде",
-        photo: "/assets/img/team/dahab/hassan-спасение.jpg"
+        photo: "/assets/img/team/dahab/hassan-rescue.jpg"
       },
       {
         name: "Мустафа",
