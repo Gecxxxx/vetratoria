@@ -782,6 +782,7 @@
 
 .station-advice__list b {
   display: block;
+  margin-top: 7px;
   color: var(--white);
   font-size: 28px;
   font-weight: 900;
@@ -797,13 +798,29 @@
   text-transform: uppercase;
 }
 
-.station-advice__list em {
-  display: block;
-  margin-top: 10px;
-  color: #ded8d4;
-  font-size: 14px;
-  font-style: normal;
-  line-height: 1.35;
+.station-advice__services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.station-advice__services li {
+  display: inline-flex;
+  min-height: 28px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 999px;
+  background: rgba(12, 12, 11, 0.42);
+  color: #fff;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 .station-advice__cta {
