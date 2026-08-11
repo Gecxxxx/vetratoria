@@ -884,7 +884,6 @@ const stationLifeGallery = ({ id, eyebrow, title, lead, photos }) => `
     <header>
       <span data-media-lightbox-count></span>
       <div>
-        <a href="${photos[0][0]}" download data-media-lightbox-download>Скачать</a>
         <button type="button" data-media-lightbox-close aria-label="Закрыть">×</button>
       </div>
     </header>
@@ -2944,7 +2943,6 @@ ${hero(page, `<a class="button button-primary" href="#album-photos">Открыт
     <header>
       <span data-media-lightbox-count></span>
       <div>
-        <a href="${album.photos[0]}" download data-media-lightbox-download>Скачать</a>
         <button type="button" data-media-lightbox-close aria-label="Закрыть">×</button>
       </div>
     </header>
