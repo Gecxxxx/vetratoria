@@ -4,13 +4,13 @@ const img = (name) => `/assets/img/home-uploaded/${name}`;
 const dahabImg = (name) => `/assets/img/dahab/${name}`;
 
 const dahabSportOverrides = {
-  вингфойл: {
+  wingfoil: {
     title: "Вингфойл в Дахабе",
     description:
       "Научим управлять крылом, вставать на фойл и уверенно кататься. Пошаговая программа, индивидуальный инструктор и безопасная практика на воде.",
     image: "/assets/img/final/wingfoil/hero-duo.webp"
   },
-  виндсёрфинг: {
+  windsurf: {
     title: "Виндсёрфинг в Дахабе",
     description:
       "Научим управлять парусом, идти нужным курсом и уверенно кататься на доске. Уроки, прокат и программа под ваш уровень на Красном море.",
@@ -31,7 +31,7 @@ export const site = {
   title: "Vetratoria - виндсёрфинг и вингфойл школы в Египте, Вьетнаме и России",
   description:
     "Vetratoria - сеть виндсёрфинг и вингфойл школ. Египет, Вьетнам и Россия: выберите направление, спорт, станцию и формат обучения.",
-  электронная почта: "dahab@vetratoria.ru",
+  email: "dahab@vetratoria.ru",
   phone: "+201029321772",
   contactEndpoint: "",
   logo: "/assets/img/vetratoria-logo.png",
@@ -56,7 +56,7 @@ export const site = {
     dahab: {
       title: "Египет · Дахаб",
       formEmail: "dahab@vetratoria.ru",
-      электронная почта: "dahab@vetratoria.ru",
+      email: "dahab@vetratoria.ru",
       phone: "+201029321772",
       phoneLabel: "+20 102 932 1772",
       telegram: "https://t.me/dahabvetratoria",
@@ -67,7 +67,7 @@ export const site = {
     vietnam: {
       title: "Вьетнам · Муйне",
       formEmail: "vietnam@vetratoria.ru",
-      электронная почта: "vietnam@vetratoria.ru",
+      email: "vietnam@vetratoria.ru",
       phone: "+79884715355",
       phoneLabel: "+7 988 471 5355",
       telegram: "https://t.me/+79884715355",
@@ -78,7 +78,7 @@ export const site = {
     russia: {
       title: "Россия · Должанская",
       formEmail: "russia@vetratoria.ru",
-      электронная почта: "russia@vetratoria.ru",
+      email: "russia@vetratoria.ru",
       phone: "+79884715355",
       phoneLabel: "+7 988 471 5355",
       telegram: "https://t.me/+79884715355",
@@ -93,7 +93,7 @@ export const site = {
       eyebrow: "Виндсёрфинг · станции",
       title: "Виндсёрфинг в Дахабе",
       description: "Ганет Синай и Свисс Инн: обучение, прокат и помощь команды на воде.",
-      электронная почта: "dahab@vetratoria.ru",
+      email: "dahab@vetratoria.ru",
       phone: "+201029321772",
       phoneLabel: "+20 102 932 1772",
       telegram: "https://t.me/dahabvetratoria"
@@ -103,7 +103,7 @@ export const site = {
       eyebrow: "Вингфойл · Винг-центр",
       title: "Винг-центр",
       description: "Вингфойл, фойл за лодкой, обучение с нуля и самостоятельная практика.",
-      электронная почта: "vetratoria.wingcenter@gmail.com",
+      email: "vetratoria.wingcenter@gmail.com",
       phone: "+201151015941",
       phoneLabel: "+20 115 101 5941",
       telegram: "https://t.me/talking_wingfoil_center_dahab"
@@ -185,7 +185,7 @@ export const site = {
     }
   ],
   sports: {
-    вингфойл: {
+    wingfoil: {
       nav: "Вингфойл",
       title: "Вингфойл",
       subtitle: "Крыло и фойл",
@@ -194,7 +194,7 @@ export const site = {
       hero: img("home-slider-6.webp"),
       bullets: ["старт с инструктором", "подбор крыла и доски", "контроль безопасности", "маршрут прогресса"]
     },
-    виндсёрфинг: {
+    windsurf: {
       nav: "Виндсёрфинг",
       title: "Виндсёрфинг",
       subtitle: "Парус и доска",
@@ -212,7 +212,7 @@ export const site = {
       hero: img("home-slider-4.webp"),
       bullets: ["легкое снаряжение", "игровая подача", "короткие уроки", "постоянный контроль"]
     },
-    кайтсёрфинг: {
+    kite: {
       nav: "Кайтсёрфинг",
       title: "Кайтсёрфинг",
       subtitle: "Кайт и ветер",
