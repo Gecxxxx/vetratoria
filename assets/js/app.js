@@ -1,5 +1,14 @@
 (() => {
   const body = document.body;
+
+  // Remove an accidental tool-output banner that was prepended to generated HTML.
+  // Keeping this guard here also protects older cached pages during the rollout.
+  const injectedOutputWarning = /^Warning: truncated output \(original token count: \d+\)\s*Total output lines: \d+\s*/;
+  [...body.childNodes].forEach((node) => {
+    if (node.nodeType !== Node.TEXT_NODE || !injectedOutputWarning.test(node.textContent || "")) return;
+    node.textContent = (node.textContent || "").replace(injectedOutputWarning, "");
+  });
+
   const nav = document.querySelector("[data-nav]");
   const menuButton = document.querySelector("[data-menu-toggle]");
   const navPanel = document.querySelector("[data-nav-panel]");
@@ -11,8 +20,15 @@
   let navScrollFrame = null;
   let compactNavTimer = null;
   let lastScrollY = window.scrollY;
+  let scrollDirection = 0;
+  let scrollTravel = 0;
 
   const isCompactNavEnabled = () => !mobileMenu.matches && !reducedMotion.matches;
+
+  const resetScrollIntent = () => {
+    scrollDirection = 0;
+    scrollTravel = 0;
+  };
 
   const clearCompactNavTimer = () => {
     if (compactNavTimer === null) return;
@@ -22,7 +38,9 @@
 
   const setCompactNav = (compact) => {
     if (!nav || !isCompactNavEnabled()) return;
+    if (!compact) nav.classList.remove("is-compact-preview");
     nav.classList.toggle("is-compact", compact);
+    resetScrollIntent();
   };
 
   const revealCompactNavFor = (duration = 5000) => {
@@ -37,29 +55,49 @@
 
   const syncNavScroll = () => {
     navScrollFrame = null;
-    const scrollY = window.scrollY;
+    const scrollY = Math.max(0, window.scrollY);
+    const rawDelta = scrollY - lastScrollY;
+    lastScrollY = scrollY;
     nav?.classList.toggle("is-scrolled", scrollY > 8);
 
     if (!nav || !isCompactNavEnabled()) {
       nav?.classList.remove("is-compact", "is-compact-preview");
       clearCompactNavTimer();
-      lastScrollY = scrollY;
+      resetScrollIntent();
       return;
     }
 
-    const scrollDelta = scrollY - lastScrollY;
-    if (scrollY < 96) {
+    if (scrollY <= 120) {
       clearCompactNavTimer();
       nav.classList.remove("is-compact", "is-compact-preview");
-    } else if (scrollDelta > 4) {
-      clearCompactNavTimer();
-      nav.classList.remove("is-compact-preview");
-      setCompactNav(true);
-    } else if (scrollDelta < -4) {
-      clearCompactNavTimer();
-      nav.classList.remove("is-compact");
+      resetScrollIntent();
+      return;
     }
-    lastScrollY = scrollY;
+
+    // Ignore sub-pixel/layout noise and accumulate only deliberate movement.
+    if (Math.abs(rawDelta) < 1) return;
+    const direction = rawDelta > 0 ? 1 : -1;
+    if (direction !== scrollDirection) {
+      scrollDirection = direction;
+      scrollTravel = 0;
+    }
+    scrollTravel += Math.min(Math.abs(rawDelta), 48);
+
+    if (direction > 0) {
+      // Any downward scroll closes the five-second hover preview immediately.
+      if (nav.classList.contains("is-compact-preview")) {
+        clearCompactNavTimer();
+        nav.classList.remove("is-compact-preview");
+        setCompactNav(true);
+        return;
+      }
+      if (scrollTravel >= 24 && !nav.classList.contains("is-compact")) {
+        setCompactNav(true);
+      }
+    } else if (scrollTravel >= 16 && nav.classList.contains("is-compact")) {
+      clearCompactNavTimer();
+      setCompactNav(false);
+    }
   };
 
   const scheduleNavScroll = () => {
