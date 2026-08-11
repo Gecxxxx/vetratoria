@@ -1858,7 +1858,7 @@ ${stationLifeGallery({
 <section class="station-advice" id="stations">
   <header class="station-advice__head">
     <p class="eyebrow">Станции</p>
-    <h2>Станция зависит от выбранного спорта</h2>
+    <h2>3 станции в Дахабе</h2>
   </header>
   <div class="station-advice__list">
     ${stations.map(([title, meta, image]) => `<a href="/dahab/stations/">
