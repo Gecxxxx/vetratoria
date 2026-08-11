@@ -1859,7 +1859,6 @@ ${stationLifeGallery({
   <header class="station-advice__head">
     <p class="eyebrow">Станции</p>
     <h2>Станция зависит от выбранного спорта</h2>
-    <p>Wing Center специализируется только на wingfoil. Swiss Inn и Ganet Sinai — две равноценные станции для windsurf.</p>
   </header>
   <div class="station-advice__list">
     ${stations.map(([title, meta, image]) => `<a href="/dahab/stations/">
@@ -1871,7 +1870,7 @@ ${stationLifeGallery({
         </div>
       </a>`).join("")}
   </div>
-  ${contactCta(page, "Подобрать станцию", "station-advice__cta")}
+  ${contactCta(page, "Написать нам", "station-advice__cta")}
 </section>
 
 <section class="dahab-faq-section" id="faq">
