@@ -4,20 +4,20 @@ const img = (name) => `/assets/img/home-uploaded/${name}`;
 const dahabImg = (name) => `/assets/img/dahab/${name}`;
 
 const dahabSportOverrides = {
-  wingfoil: {
-    title: "Wingfoil в Дахабе",
+  вингфойл: {
+    title: "Вингфойл в Дахабе",
     description:
       "Научим управлять крылом, вставать на фойл и уверенно кататься. Пошаговая программа, индивидуальный инструктор и безопасная практика на воде.",
     image: "/assets/img/final/wingfoil/hero-duo.webp"
   },
-  windsurf: {
-    title: "Windsurf в Дахабе",
+  виндсёрфинг: {
+    title: "Виндсёрфинг в Дахабе",
     description:
       "Научим управлять парусом, идти нужным курсом и уверенно кататься на доске. Уроки, прокат и программа под ваш уровень на Красном море.",
     image: "/assets/img/final/windsurf/hero.webp"
   },
   "windsurf-kids": {
-    title: "Детский лагерь WindSurfKids в Дахабе",
+    title: "Детский лагерь Детский виндсёрфинг в Дахабе",
     description:
       "Виндсёрфинг, виндфойл, вингфойл и насыщенная программа для детей от 6 лет на Красном море.",
     image: "/assets/img/windsurf-kids/hero.webp"
@@ -28,10 +28,10 @@ export const site = {
   name: "Vetratoria",
   baseUrl: "https://vetratoria.ru",
   locale: "ru_RU",
-  title: "Vetratoria - windsurf и wingfoil школы в Египте, Вьетнаме и России",
+  title: "Vetratoria - виндсёрфинг и вингфойл школы в Египте, Вьетнаме и России",
   description:
-    "Vetratoria - сеть windsurf и wingfoil школ. Египет, Вьетнам и Россия: выберите направление, спорт, станцию и формат обучения.",
-  email: "dahab@vetratoria.ru",
+    "Vetratoria - сеть виндсёрфинг и вингфойл школ. Египет, Вьетнам и Россия: выберите направление, спорт, станцию и формат обучения.",
+  электронная почта: "dahab@vetratoria.ru",
   phone: "+201029321772",
   contactEndpoint: "",
   logo: "/assets/img/vetratoria-logo.png",
@@ -56,18 +56,18 @@ export const site = {
     dahab: {
       title: "Египет · Дахаб",
       formEmail: "dahab@vetratoria.ru",
-      email: "dahab@vetratoria.ru",
+      электронная почта: "dahab@vetratoria.ru",
       phone: "+201029321772",
       phoneLabel: "+20 102 932 1772",
       telegram: "https://t.me/dahabvetratoria",
       pageTitle: "Контакты Vetratoria в Дахабе",
       pageDescription:
-        "Свяжитесь с windsurf-станциями или Wing Center в Дахабе: WhatsApp, Telegram, email и чаты райдеров."
+        "Свяжитесь с виндсёрфинг-станциями или винг-центр в Дахабе: WhatsApp, Telegram, электронная почта и чаты райдеров."
     },
     vietnam: {
       title: "Вьетнам · Муйне",
       formEmail: "vietnam@vetratoria.ru",
-      email: "vietnam@vetratoria.ru",
+      электронная почта: "vietnam@vetratoria.ru",
       phone: "+79884715355",
       phoneLabel: "+7 988 471 5355",
       telegram: "https://t.me/+79884715355",
@@ -78,7 +78,7 @@ export const site = {
     russia: {
       title: "Россия · Должанская",
       formEmail: "russia@vetratoria.ru",
-      email: "russia@vetratoria.ru",
+      электронная почта: "russia@vetratoria.ru",
       phone: "+79884715355",
       phoneLabel: "+7 988 471 5355",
       telegram: "https://t.me/+79884715355",
@@ -90,20 +90,20 @@ export const site = {
   dahabStations: [
     {
       key: "windsurf",
-      eyebrow: "Windsurf · станции",
-      title: "Windsurf в Дахабе",
-      description: "Ganet Sinai и Swiss Inn: обучение, прокат и помощь команды на воде.",
-      email: "dahab@vetratoria.ru",
+      eyebrow: "Виндсёрфинг · станции",
+      title: "Виндсёрфинг в Дахабе",
+      description: "Ганет Синай и Свисс Инн: обучение, прокат и помощь команды на воде.",
+      электронная почта: "dahab@vetratoria.ru",
       phone: "+201029321772",
       phoneLabel: "+20 102 932 1772",
       telegram: "https://t.me/dahabvetratoria"
     },
     {
       key: "wingfoil",
-      eyebrow: "Wingfoil · Wing Center",
-      title: "Wing Center",
-      description: "Wingfoil, foil boat, обучение с нуля и самостоятельная практика.",
-      email: "vetratoria.wingcenter@gmail.com",
+      eyebrow: "Вингфойл · Винг-центр",
+      title: "Винг-центр",
+      description: "Вингфойл, фойл за лодкой, обучение с нуля и самостоятельная практика.",
+      электронная почта: "vetratoria.wingcenter@gmail.com",
       phone: "+201151015941",
       phoneLabel: "+20 115 101 5941",
       telegram: "https://t.me/talking_wingfoil_center_dahab"
@@ -119,14 +119,14 @@ export const site = {
       href: "/dahab/",
       hero: img("home-direction-dahab.webp"),
       lead:
-        "Главное направление Vetratoria: Wingfoil, Windsurf, Windsurf Kids, станции, цены и безопасность.",
+        "Главное направление Vetratoria: Вингфойл, Виндсёрфинг, Детский виндсёрфинг, станции, цены и безопасность.",
       season: "365 дней в году",
       seasonTitle: "Круглый год",
       seasonMonths: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"],
       seasonNote: "Школы работают круглый год; конкретное ветровое окно уточняем под даты и выбранный спорт.",
       windLabel: "Ветер почти круглый год",
       windSummary: "Стабильные ветровые условия и несколько зон позволяют подбирать формат под уровень и фактическую обстановку на воде.",
-      tone: "лагуна, фрирайд, foil boat и сильная инструкторская команда",
+      tone: "лагуна, фрирайд, фойл за лодкой и сильная инструкторская команда",
       sports: ["wingfoil", "windsurf", "windsurf-kids"],
       extras: [
         { title: "Станции", href: "/dahab/stations/" },
@@ -144,7 +144,7 @@ export const site = {
       href: "/vietnam/",
       hero: img("home-direction-vietnam.webp"),
       lead:
-        "Вьетнамское направление Vetratoria: сезон, windsurf, wingfoil, kite, условия поездки и контакты.",
+        "Вьетнамское направление Vetratoria: сезон, виндсёрфинг, вингфойл, кайтсёрфинг, условия поездки и контакты.",
       season: "сильный зимний сезон",
       seasonTitle: "Зимний сезон",
       seasonMonths: ["dec", "jan", "feb"],
@@ -154,7 +154,7 @@ export const site = {
       tone: "волна, стабильный бриз, длинная береговая линия и активная станционная жизнь",
       sports: ["windsurf", "wingfoil", "kite"],
       extras: [
-        { title: "Цены Windsurf", href: "/vietnam/windsurf/price/" },
+        { title: "Цены на виндсёрфинг", href: "/vietnam/windsurf/price/" },
         { title: "Команда", href: "/vietnam/team/" },
         { title: "Блог", href: "/vietnam/blog/" }
       ]
@@ -178,25 +178,25 @@ export const site = {
       tone: "коса, мелкая вода, обучение с берега, семейные поездки и тренировки на несколько дней",
       sports: ["windsurf", "wingfoil", "kite"],
       extras: [
-        { title: "Цены Windsurf", href: "/russia/windsurf/price/" },
+        { title: "Цены на виндсёрфинг", href: "/russia/windsurf/price/" },
         { title: "Команда", href: "/russia/team/" },
         { title: "Блог", href: "/russia/blog/" }
       ]
     }
   ],
   sports: {
-    wingfoil: {
-      nav: "Wingfoil",
-      title: "Wingfoil",
+    вингфойл: {
+      nav: "Вингфойл",
+      title: "Вингфойл",
       subtitle: "Крыло и фойл",
       lead:
-        "Первые полеты, foil boat, Wing + SUP, Wing + Foil и понятный прогресс от старта до самостоятельного катания.",
+        "Первые полеты, фойл за лодкой, Винг + SUP, Винг + фойл и понятный прогресс от старта до самостоятельного катания.",
       hero: img("home-slider-6.webp"),
       bullets: ["старт с инструктором", "подбор крыла и доски", "контроль безопасности", "маршрут прогресса"]
     },
-    windsurf: {
-      nav: "Windsurf",
-      title: "Windsurf",
+    виндсёрфинг: {
+      nav: "Виндсёрфинг",
+      title: "Виндсёрфинг",
       subtitle: "Парус и доска",
       lead:
         "Классическое обучение, прокат, курсы, фрирайд и уверенное катание на ветру под задачу и уровень.",
@@ -204,22 +204,22 @@ export const site = {
       bullets: ["первые галсы", "курсы для прогресса", "прокат снаряжения", "фрирайд и техника"]
     },
     "windsurf-kids": {
-      nav: "Windsurf Kids",
-      title: "Windsurf Kids",
+      nav: "Детский виндсёрфинг",
+      title: "Детский виндсёрфинг",
       subtitle: "Детский формат",
       lead:
         "Легкие паруса, спокойный темп, безопасная акватория и программа, в которой ребенок понимает воду и ветер.",
       hero: img("home-slider-4.webp"),
       bullets: ["легкое снаряжение", "игровая подача", "короткие уроки", "постоянный контроль"]
     },
-    kite: {
-      nav: "Kite",
-      title: "Kite",
+    кайтсёрфинг: {
+      nav: "Кайтсёрфинг",
+      title: "Кайтсёрфинг",
       subtitle: "Кайт и ветер",
       lead:
         "Обучение кайту, управление крылом, безопасный старт, первые проходы и самостоятельная практика.",
       hero: img("home-slider-5.webp"),
-      bullets: ["управление кайтом", "body drag", "старт с доской", "практика по ветру"]
+      bullets: ["управление кайтом", "бодидраг", "старт с доской", "практика по ветру"]
     }
   },
   slider: [
@@ -238,7 +238,7 @@ export const articles = [
     country: "dahab",
     sport: "windsurf",
     topics: ["windsurf"],
-    title: "Как начать заниматься windsurf в Дахабе",
+    title: "Как начать заниматься виндсёрфинг в Дахабе",
     lead: "Что выбрать на первом уроке, как проходит обучение и почему лагуна помогает быстрее поймать баланс.",
     image: img("home-slider-1.webp")
   },
@@ -247,8 +247,8 @@ export const articles = [
     country: "dahab",
     sport: "wingfoil",
     topics: ["wingfoil"],
-    title: "Wingfoil в Дахабе: от крыла до первого полета",
-    lead: "Форматы Wing + SUP, Wing + Foil, foil boat и логика перехода от контроля крыла к полету.",
+    title: "Вингфойл в Дахабе: от крыла до первого полета",
+    lead: "Форматы Винг + SUP, Винг + фойл, фойл за лодкой и логика перехода от контроля крыла к полету.",
     image: img("home-slider-6.webp")
   },
   {
@@ -256,7 +256,7 @@ export const articles = [
     country: "dahab",
     sport: "windsurf-kids",
     topics: ["wsk", "safety"],
-    title: "Windsurf Kids: как ребенку выйти на воду спокойно",
+    title: "Детский виндсёрфинг: как ребенку выйти на воду спокойно",
     lead: "Легкие паруса, короткие уроки, инструктор рядом и безопасный темп без давления.",
     image: img("home-slider-4.webp")
   },
@@ -265,7 +265,7 @@ export const articles = [
     country: "vietnam",
     sport: "windsurf",
     topics: ["windsurf", "trip"],
-    title: "Windsurf в Муйне: ветер, волна и сезон",
+    title: "Виндсёрфинг в Муйне: ветер, волна и сезон",
     lead: "Как готовиться к поездке, какие условия ждать и кому подойдет вьетнамская акватория.",
     image: img("home-direction-vietnam.webp")
   },
@@ -274,7 +274,7 @@ export const articles = [
     country: "vietnam",
     sport: "wingfoil",
     topics: ["wingfoil", "trip"],
-    title: "Wingfoil во Вьетнаме",
+    title: "Вингфойл во Вьетнаме",
     lead: "Стабильный бриз, пространство для прогресса и сценарии занятий на несколько дней.",
     image: img("home-slider-6.webp")
   },
@@ -292,7 +292,7 @@ export const articles = [
     country: "russia",
     sport: "windsurf",
     topics: ["windsurf", "trip"],
-    title: "Windsurf на Должанской",
+    title: "Виндсёрфинг на Должанской",
     lead: "Летний формат, мелкая вода, старт с берега и удобный план для первых галсов.",
     image: img("home-direction-russia.webp")
   },
@@ -301,7 +301,7 @@ export const articles = [
     country: "russia",
     sport: "wingfoil",
     topics: ["wingfoil", "trip"],
-    title: "Wingfoil в России",
+    title: "Вингфойл в России",
     lead: "Как использовать летний сезон для первых полетов и спокойного прогресса на фойле.",
     image: img("home-slider-6.webp")
   },
@@ -458,14 +458,14 @@ for (const country of site.countries) {
       sport: sportKey,
       eyebrow: `${sport.title} · цены`,
       title: isDahabWingfoilPrice
-        ? "Цены Wingfoil в Дахабе"
+        ? "Цены на вингфойл в Дахабе"
         : isDahabWindsurfPrice
-          ? "Цены Windsurf в Дахабе"
+          ? "Цены на виндсёрфинг в Дахабе"
           : `${sport.title}: цены ${country.title}`,
       description: isDahabWingfoilPrice
-        ? "Аренда комплектов, уроки, отдельные части оборудования и пакеты Wingfoil в Дахабе."
+        ? "Аренда комплектов, уроки, отдельные части оборудования и пакеты Вингфойл в Дахабе."
         : isDahabWindsurfPrice
-          ? "Полный прайс Windsurf в Дахабе: обучение, индивидуальные занятия, прокат, скидки, гидрофойл и хранение."
+          ? "Полный прайс Виндсёрфинг в Дахабе: обучение, индивидуальные занятия, прокат, скидки, гидрофойл и хранение."
           : `Форматы занятий, курсы и самостоятельная практика: ${sport.lead.toLowerCase()}`,
       image: isDahabWingfoilPrice
         ? "/assets/img/final/wingfoil/hero.webp"
@@ -491,7 +491,7 @@ pages.push(
     kind: "safety",
     country: "dahab",
     eyebrow: "Дахаб · безопасность",
-    title: "Безопасность в Дахабе — rescue, связь и инструктаж",
+    title: "Безопасность в Дахабе — спасение, связь и инструктаж",
     description: "4 спасательных катера, контроль на воде, связь на волнах, инструктаж и объяснение акватории перед каждым выходом.",
     image: "/assets/img/final/dahab/safety-boat.webp"
   },
@@ -501,7 +501,7 @@ pages.push(
     country: "dahab",
     eyebrow: "Дахаб · станции",
     title: "Станции Vetratoria в Дахабе",
-    description: "Vetratoria Ganet Sinai, Wing Center и Swiss Inn: где кататься на wingfoil и windsurf в Дахабе.",
+    description: "Vetratoria Ганет Синай, Винг-центр и Свисс Инн: где кататься на вингфойл и виндсёрфинг в Дахабе.",
     image: "/assets/img/final/stations/hero.webp"
   }
 );
