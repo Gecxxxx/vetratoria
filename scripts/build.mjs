@@ -616,7 +616,7 @@ const contactDialog = (page) => {
 </dialog>`;
 };
 
-const ASSET_VERSION = "20260810-staging-r21-motion-square";
+const ASSET_VERSION = "20260811-staging-r23-stable-compact-nav";
 const assetVersionForPage = () => ASSET_VERSION;
 const versionedAsset = (path, version = ASSET_VERSION) => `${path}?v=${version}`;
 
