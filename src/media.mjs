@@ -5,14 +5,14 @@ export const mediaAlbums = [
   {
     country: "dahab",
     slug: "2026-06-10-wingfoil-day",
-    title: "Wingfoil day",
+    title: "День вингфойла",
     date: "2026-06-10",
     sport: "wingfoil",
     event: "training",
-    description: "Тренировка Wing Center: подготовка оборудования, работа с крылом и первые уверенные полёты.",
-    cover: "/assets/img/final/media/cover-wingfoil.webp",
+    description: "Тренировка Винг-центр: подготовка оборудования, работа с крылом и первые уверенные полёты.",
+    cover: "/assets/img/final/media/cover-вингфойл.webp",
     photos: [
-      "/assets/img/final/media/cover-wingfoil.webp",
+      "/assets/img/final/media/cover-вингфойл.webp",
       "/assets/img/final/wingfoil/sections/wingfoil-ride.webp",
       "/assets/img/final/wingfoil/sections/wing-start-coaching.webp",
       "/assets/img/final/wingfoil/sections/wingfoil-duo.webp",
@@ -24,7 +24,7 @@ export const mediaAlbums = [
   {
     country: "dahab",
     slug: "2026-05-26-windsurf-lesson",
-    title: "Первый урок Windsurf",
+    title: "Первый урок виндсёрфинга",
     date: "2026-05-26",
     sport: "windsurf",
     event: "training",
@@ -35,18 +35,18 @@ export const mediaAlbums = [
       "/assets/img/final/windsurf/hero.webp",
       "/assets/img/dahab-ref/windsurf-hero.webp",
       "/assets/img/dahab/windsurf-lesson-water.webp",
-      "/assets/img/dahab-ref/block-windsurf.webp",
-      "/assets/img/dahab-ref/price-windsurf.webp"
+      "/assets/img/dahab-ref/block-виндсёрфинг.webp",
+      "/assets/img/dahab-ref/price-виндсёрфинг.webp"
     ]
   },
   {
     country: "dahab",
     slug: "2026-05-18-windsurf-kids-camp",
-    title: "День лагеря WindSurfKids",
+    title: "День лагеря детского виндсёрфинга",
     date: "2026-05-18",
     sport: "wsk",
     event: "camp",
-    description: "Тренировка на воде, командные занятия и приключения участников WindSurfKids в Дахабе.",
+    description: "Тренировка на воде, командные занятия и приключения участников Детский виндсёрфинг в Дахабе.",
     cover: "/assets/img/windsurf-kids/water-02.jpg",
     photos: [
       "/assets/img/windsurf-kids/water-02.jpg",
@@ -60,7 +60,7 @@ export const mediaAlbums = [
   {
     country: "vietnam",
     slug: "2026-02-14-windsurf-season",
-    title: "Windsurf-сезон в Муйне",
+    title: "Сезон виндсёрфинга в Муйне",
     date: "2026-02-14",
     sport: "windsurf",
     event: "training",
@@ -77,7 +77,7 @@ export const mediaAlbums = [
   {
     country: "vietnam",
     slug: "2026-02-08-wingfoil-session",
-    title: "Wingfoil-сессия",
+    title: "Сессия по вингфойлу",
     date: "2026-02-08",
     sport: "wingfoil",
     event: "trip",
@@ -111,7 +111,7 @@ export const mediaAlbums = [
   {
     country: "russia",
     slug: "2026-07-20-windsurf-summer",
-    title: "Летний Windsurf",
+    title: "Летний виндсёрфинг",
     date: "2026-07-20",
     sport: "windsurf",
     event: "training",
@@ -128,7 +128,7 @@ export const mediaAlbums = [
   {
     country: "russia",
     slug: "2026-07-12-wingfoil-on-spit",
-    title: "Wingfoil на косе",
+    title: "Вингфойл на косе",
     date: "2026-07-12",
     sport: "wingfoil",
     event: "competition",
