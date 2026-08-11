@@ -18,86 +18,55 @@
 
   const dropdowns = [...document.querySelectorAll("[data-dropdown]")];
   let navScrollFrame = null;
-  let compactNavTimer = null;
-  let lastScrollY = window.scrollY;
-  let scrollDirection = 0;
-  let scrollTravel = 0;
+  let compactNavCloseTimer = null;
 
+  const COMPACT_NAV_THRESHOLD = 140;
+  const COMPACT_NAV_CLOSE_DELAY = 500;
   const isCompactNavEnabled = () => !mobileMenu.matches && !reducedMotion.matches;
 
-  const resetScrollIntent = () => {
-    scrollDirection = 0;
-    scrollTravel = 0;
+  const clearCompactNavCloseTimer = () => {
+    if (compactNavCloseTimer === null) return;
+    window.clearTimeout(compactNavCloseTimer);
+    compactNavCloseTimer = null;
   };
 
-  const clearCompactNavTimer = () => {
-    if (compactNavTimer === null) return;
-    window.clearTimeout(compactNavTimer);
-    compactNavTimer = null;
-  };
-
-  const setCompactNav = (compact) => {
+  const setCompactPreview = (open) => {
     if (!nav || !isCompactNavEnabled()) return;
-    if (!compact) nav.classList.remove("is-compact-preview");
-    nav.classList.toggle("is-compact", compact);
-    resetScrollIntent();
+    clearCompactNavCloseTimer();
+    nav.classList.toggle("is-compact-preview", open && nav.classList.contains("is-compact"));
   };
 
-  const revealCompactNavFor = (duration = 5000) => {
+  const scheduleCompactPreviewClose = () => {
     if (!nav?.classList.contains("is-compact") || !isCompactNavEnabled()) return;
-    clearCompactNavTimer();
-    nav.classList.add("is-compact-preview");
-    compactNavTimer = window.setTimeout(() => {
+    clearCompactNavCloseTimer();
+    compactNavCloseTimer = window.setTimeout(() => {
       nav.classList.remove("is-compact-preview");
-      compactNavTimer = null;
-    }, duration);
+      compactNavCloseTimer = null;
+    }, COMPACT_NAV_CLOSE_DELAY);
   };
 
   const syncNavScroll = () => {
     navScrollFrame = null;
     const scrollY = Math.max(0, window.scrollY);
-    const rawDelta = scrollY - lastScrollY;
-    lastScrollY = scrollY;
     nav?.classList.toggle("is-scrolled", scrollY > 8);
 
     if (!nav || !isCompactNavEnabled()) {
       nav?.classList.remove("is-compact", "is-compact-preview");
-      clearCompactNavTimer();
-      resetScrollIntent();
+      clearCompactNavCloseTimer();
       return;
     }
 
-    if (scrollY <= 120) {
-      clearCompactNavTimer();
+    if (scrollY <= COMPACT_NAV_THRESHOLD) {
       nav.classList.remove("is-compact", "is-compact-preview");
-      resetScrollIntent();
+      clearCompactNavCloseTimer();
       return;
     }
 
-    // Ignore sub-pixel/layout noise and accumulate only deliberate movement.
-    if (Math.abs(rawDelta) < 1) return;
-    const direction = rawDelta > 0 ? 1 : -1;
-    if (direction !== scrollDirection) {
-      scrollDirection = direction;
-      scrollTravel = 0;
-    }
-    scrollTravel += Math.min(Math.abs(rawDelta), 48);
-
-    if (direction > 0) {
-      // Any downward scroll closes the five-second hover preview immediately.
-      if (nav.classList.contains("is-compact-preview")) {
-        clearCompactNavTimer();
-        nav.classList.remove("is-compact-preview");
-        setCompactNav(true);
-        return;
-      }
-      if (scrollTravel >= 24 && !nav.classList.contains("is-compact")) {
-        setCompactNav(true);
-      }
-    } else if (scrollTravel >= 16 && nav.classList.contains("is-compact")) {
-      clearCompactNavTimer();
-      setCompactNav(false);
-    }
+    // Below the threshold the header stays compact in either scroll direction.
+    // Scrolling also closes a hover/focus preview immediately.
+    nav.classList.add("is-compact");
+    nav.classList.remove("is-compact-preview");
+    clearCompactNavCloseTimer();
   };
 
   const scheduleNavScroll = () => {
@@ -166,7 +135,13 @@
     mobileMenu.addListener(syncMenuMode);
   }
 
-  nav?.addEventListener("pointerenter", () => revealCompactNavFor());
+  nav?.addEventListener("pointerenter", () => setCompactPreview(true));
+  nav?.addEventListener("pointerleave", scheduleCompactPreviewClose);
+  nav?.addEventListener("focusin", () => setCompactPreview(true));
+  nav?.addEventListener("focusout", (event) => {
+    if (event.relatedTarget instanceof Node && nav.contains(event.relatedTarget)) return;
+    scheduleCompactPreviewClose();
+  });
 
   syncMenuMode();
   syncNavScroll();
