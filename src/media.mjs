@@ -10,9 +10,9 @@ export const mediaAlbums = [
     sport: "wingfoil",
     event: "training",
     description: "Тренировка Винг-центр: подготовка оборудования, работа с крылом и первые уверенные полёты.",
-    cover: "/assets/img/final/media/cover-вингфойл.webp",
+    cover: "/assets/img/final/media/cover-wingfoil.webp",
     photos: [
-      "/assets/img/final/media/cover-вингфойл.webp",
+      "/assets/img/final/media/cover-wingfoil.webp",
       "/assets/img/final/wingfoil/sections/wingfoil-ride.webp",
       "/assets/img/final/wingfoil/sections/wing-start-coaching.webp",
       "/assets/img/final/wingfoil/sections/wingfoil-duo.webp",
@@ -35,8 +35,8 @@ export const mediaAlbums = [
       "/assets/img/final/windsurf/hero.webp",
       "/assets/img/dahab-ref/windsurf-hero.webp",
       "/assets/img/dahab/windsurf-lesson-water.webp",
-      "/assets/img/dahab-ref/block-виндсёрфинг.webp",
-      "/assets/img/dahab-ref/price-виндсёрфинг.webp"
+      "/assets/img/dahab-ref/block-windsurf.webp",
+      "/assets/img/dahab-ref/price-windsurf.webp"
     ]
   },
   {
