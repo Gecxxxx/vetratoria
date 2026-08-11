@@ -9,8 +9,13 @@ body.nav-open {
 }
 
 @media (min-width: 1181px) and (prefers-reduced-motion: no-preference) {
-  body {
+  body.modern-site {
     padding-top: calc(var(--nav-top-h) + var(--nav-main-h) + var(--nav-section-h));
+  }
+
+  /* На главной нет локального меню страны: резервируем только два уровня шапки. */
+  body.modern-site.page-home {
+    padding-top: calc(var(--nav-top-h) + var(--nav-main-h));
   }
 
   .site-header.vtr-nav {

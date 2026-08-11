@@ -659,7 +659,7 @@ const layout = (page, main) => `<!doctype html>
   <script defer src="${versionedAsset("/assets/js/app.js", assetVersionForPage(page))}"></script>
   <script type="application/ld+json">${structuredDataForPage(page)}</script>
 </head>
-<body class="modern-site ${page.kind}${page.country ? ` country-${page.country}` : ""}">
+<body class="modern-site ${page.kind}${page.path === "/" ? " page-home" : ""}${page.country ? ` country-${page.country}` : ""}">
   <a class="skip-link" href="#main">К содержанию</a>
   ${header(page)}
   <main id="main">${main}</main>
