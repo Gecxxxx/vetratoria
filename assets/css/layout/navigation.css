@@ -9,10 +9,19 @@ body.nav-open {
 }
 
 @media (min-width: 1181px) and (prefers-reduced-motion: no-preference) {
+  body {
+    padding-top: calc(var(--nav-top-h) + var(--nav-main-h) + var(--nav-section-h));
+  }
+
+  .site-header.vtr-nav {
+    position: fixed;
+    inset: 0 0 auto;
+  }
+
   .vtr-nav__top,
   .vtr-nav__main,
   .vtr-nav__section {
-    transition: height 260ms ease, padding 260ms ease, border-color 220ms ease, opacity 180ms ease, transform 260ms ease;
+    transition: height 280ms var(--motion-ease-out), min-height 280ms var(--motion-ease-out), padding 280ms var(--motion-ease-out), border-color 180ms ease, opacity 160ms ease, transform 280ms var(--motion-ease-out);
   }
 
   .vtr-nav.is-compact .vtr-nav__top {
