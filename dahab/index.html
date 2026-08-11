@@ -1,11 +1,20 @@
-Warning: truncated output (original token count: 13464)
-Total output lines: 593
-
 <!doctype html>
 <html lang="ru">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (() => {
+      document.documentElement.classList.add("vtr-nav-state-pending");
+      try {
+        const navigationType = performance.getEntriesByType("navigation")[0]?.type;
+        const savedScrollY = Number(sessionStorage.getItem("vtr:scroll:" + location.pathname) || 0);
+        if ((navigationType === "reload" || navigationType === "back_forward") && savedScrollY > 140) {
+          document.documentElement.classList.add("vtr-nav-initial-compact");
+        }
+      } catch {}
+    })();
+  </script>
   <title>Дахаб — Wingfoil и Windsurf на Красном море | Vetratoria</title>
   <meta name="description" content="Vetratoria Dahab: Wingfoil, Windsurf, Kids, аренда, уроки, станции Wing Center, Swiss Inn и Ganet Sinai.">
 
@@ -24,8 +33,8 @@ Total output lines: 593
   <meta name="twitter:image" content="https://vetratoria.ru/assets/img/dahab-ref/ganet-sinai.webp">
   <meta name="theme-color" content="#0d0c0b">
   <link rel="icon" href="/assets/img/vetratoria-logo.png">
-  <link rel="stylesheet" href="/assets/css/main.css?v=20260811-staging-r22-compact-nav">
-  <script defer src="/assets/js/app.js?v=20260811-staging-r22-compact-nav"></script>
+  <link rel="stylesheet" href="/assets/css/main.css?v=20260811-staging-r24-nav-first-paint">
+  <script defer src="/assets/js/app.js?v=20260811-staging-r24-nav-first-paint"></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Vetratoria","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/dahab/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Vetratoria","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Дахаб","item":"https://vetratoria.ru/dahab/"}]},{"@type":"SportsActivityLocation","@id":"https://vetratoria.ru/dahab/#sports-location","name":"Vetratoria Дахаб","url":"https://vetratoria.ru/dahab/","description":"Vetratoria Dahab: Wingfoil, Windsurf, Kids, аренда, уроки, станции Wing Center, Swiss Inn и Ganet Sinai.","image":"https://vetratoria.ru/assets/img/dahab-ref/ganet-sinai.webp","email":"dahab@vetratoria.ru","telephone":"+201029321772","parentOrganization":{"@id":"https://vetratoria.ru/#organization"},"areaServed":{"@type":"City","name":"Дахаб"}}]}</script>
 </head>
 <body class="modern-site country country-dahab">
@@ -255,7 +264,7 @@ Total output lines: 593
         </div>
       </a>
       <a class="sport-tile" href="/dahab/windsurf/" aria-label="Открыть страницу Windsurf в Дахабе">
-        <img src="/assets/img/final/windsurf/hero.webp" alt="Windsurf в Дахабе" width="1920" height="1280" loading="lazy" decoding="async">
+        <img src="/assets/img/final/windsurf/hero.webp" alt="Windsurf в Дахабе" width="1920" height="1280" loading="eager" decoding="async">
         <div class="sport-tile__content">
           <h2>Windsurf</h2>
           <span>Подробнее</span>
@@ -298,6 +307,31 @@ Total output lines: 593
   </div>
 </section>
 
+<section class="water-area" id="water-area" aria-labelledby="water-area-title">
+  <div class="water-area__inner">
+    <header class="water-area__intro" data-reveal="line">
+      <div>
+        <p class="eyebrow">Акватория</p>
+        <h2 id="water-area-title">От первых метров в лагуне до открытого моря</h2>
+      </div>
+      <div>
+        <p>Акватория Дахаба разделена на три отдельные зоны. У каждой свой рельеф воды и характер катания — от закрытой учебной лагуны до волн открытого моря.</p>
+        <p class="water-area__route" aria-label="Маршрут по акватории: Лагуна, затем Speedy, затем Камикадзе"><span>Лагуна</span><b aria-hidden="true">→</b><span>Speedy</span><b aria-hidden="true">→</b><span>Камикадзе</span></p>
+      </div>
+    </header>
+    <div class="water-area__layout">
+      <figure class="water-area__visual">
+        <img src="/assets/img/dahab-ref/aqva-aerial.webp" alt="Три отдельные зоны акватории Дахаба: лагуна, Speedy и Камикадзе" width="900" height="1200" loading="lazy" decoding="async">
+      </figure>
+      <div class="water-area__cards">
+        <article data-reveal="line"><span aria-hidden="true">01</span><div><strong>Лагуна</strong><small>Закрытая учебная зона</small><p>Лагуна защищена берегом и подходит для учеников: здесь спокойнее вода, проще отрабатывать первые старты, баланс и базовую технику.</p></div></article>
+        <article data-reveal="line"><span aria-hidden="true">02</span><div><strong>Speedy</strong><small>Гладкая скоростная зона</small><p>Speedy отделена от открытого моря косой. Благодаря этому вода остаётся гладкой при разных направлениях ветра — здесь уверенные райдеры разгоняются и отрабатывают технику на скорости.</p></div></article>
+        <article data-reveal="line"><span aria-hidden="true">03</span><div><strong>Камикадзе</strong><small>Открытое море и волны</small><p>Камикадзе находится уже за защищённой частью акватории. Это отдельная зона открытого моря с волной для самостоятельных опытных райдеров.</p></div></article>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="dahab-section compact-band" id="prices">
   <div class="dahab-inner">
 
@@ -313,7 +347,51 @@ Total output lines: 593
           <span>Wingfoil</span>
           <h3>Индивидуальный урок</h3>
           <b>70$</b>
-          <p>Инструк…1464 tokens truncated…footer">
+          <p>Инструктор, полный комплект, спасательная поддержка и страховка снаряжения.</p>
+          <em>Смотреть формат →</em>
+        </a>
+        <a class="price-card" href="/dahab/wingfoil/price/">
+          <figure class="price-photo"><img src="/assets/img/dahab-ref/price-foil-boat.webp" alt="Подготовка к Wingfoil Фойл за лодкой" width="900" height="675" loading="lazy" decoding="async"></figure>
+          <span>Подготовка к Wingfoil</span>
+          <h3>Фойл за лодкой</h3>
+          <b>60$</b>
+          <p>Отдельно тренируем баланс и контроль высоты — без необходимости одновременно управлять крылом.</p>
+          <em>Смотреть формат →</em>
+        </a>
+        <a class="price-card" href="/dahab/windsurf/price/">
+          <figure class="price-photo"><img src="/assets/img/dahab-ref/price-windsurf.webp" alt="Windsurf Индивидуальный урок" width="900" height="675" loading="lazy" decoding="async"></figure>
+          <span>Windsurf</span>
+          <h3>Индивидуальный урок</h3>
+          <b>70$</b>
+          <p>Инструктор, доска, парус, спасательная поддержка и страховка снаряжения.</p>
+          <em>Смотреть формат →</em>
+        </a>
+        <a class="price-card" href="/dahab/windsurf-kids/">
+          <figure class="price-photo"><img src="/assets/img/dahab-ref/price-kids.webp" alt="Windsurf Kids Детский урок" width="900" height="675" loading="lazy" decoding="async"></figure>
+          <span>Windsurf Kids</span>
+          <h3>Детский урок</h3>
+          <b>от 55$</b>
+          <p>Лёгкий парус, подходящая доска, инструктор рядом и спокойный темп.</p>
+          <em>Смотреть формат →</em>
+        </a>
+    </div>
+    <div class="price-help-cta">
+      <div><b>Хотите заниматься 3–5 дней?</b><p>Соберём программу из уроков и самостоятельной практики. Первые полёты часто получаются за несколько дней, но темп всегда индивидуален.</p></div>
+      <nav><a href="/dahab/contacts/" data-contact-modal data-contact-intent="Оставить заявку" data-contact-country="dahab" data-contact-country-label="Египет · Дахаб" data-contact-email="dahab@vetratoria.ru" data-contact-phone="+201029321772" data-contact-telegram="https://t.me/dahabvetratoria">Оставить заявку</a><a href="/dahab/wingfoil/price/">Цены на Wingfoil</a><a href="/dahab/windsurf/price/">Цены на Windsurf</a></nav>
+    </div>
+  </div>
+</section>
+
+
+<section class="station-life station-life--sport" id="station-life" aria-labelledby="station-life-title">
+  <div class="station-life__inner">
+    <div class="station-life__layout" data-life-slider>
+      <header class="station-life__panel" data-reveal="line">
+        <p class="eyebrow">Жизнь станции</p>
+        <h2 id="station-life-title">Место, куда приезжают кататься — и остаются за атмосферой</h2>
+        <p>День начинается с прогноза и подбора комплекта, продолжается на воде, а заканчивается разговорами о новых элементах и следующем выходе.</p>
+        <a href="/media/dahab/">Смотреть все фотографии <span aria-hidden="true">→</span></a>
+        <div class="station-life__panel-footer">
           <span><b data-life-current>01</b> / 08</span>
           <div><button type="button" data-life-prev aria-label="Предыдущая фотография">‹</button><button type="button" data-life-next aria-label="Следующая фотография">›</button></div>
         </div>
@@ -392,29 +470,25 @@ Total output lines: 593
   </div>
 </section>
 
-<section class="water-area" id="water-area" aria-labelledby="water-area-title">
-  <div class="water-area__inner">
-    <header class="water-area__intro" data-reveal="line">
-      <div>
-        <p class="eyebrow">Акватория</p>
-        <h2 id="water-area-title">От первых метров в лагуне до открытого моря</h2>
-      </div>
-      <div>
-        <p>Акватория Дахаба разделена на три отдельные зоны. У каждой свой рельеф воды и характер катания — от закрытой учебной лагуны до волн открытого моря.</p>
-        <p class="water-area__route" aria-label="Маршрут по акватории: Лагуна, затем Speedy, затем Камикадзе"><span>Лагуна</span><b aria-hidden="true">→</b><span>Speedy</span><b aria-hidden="true">→</b><span>Камикадзе</span></p>
-      </div>
-    </header>
-    <div class="water-area__layout">
-      <figure class="water-area__visual">
-        <img src="/assets/img/dahab-ref/aqva-aerial.webp" alt="Три отдельные зоны акватории Дахаба: лагуна, Speedy и Камикадзе" width="900" height="1200" loading="lazy" decoding="async">
-      </figure>
-      <div class="water-area__cards">
-        <article data-reveal="line"><span aria-hidden="true">01</span><div><strong>Лагуна</strong><small>Закрытая учебная зона</small><p>Лагуна защищена берегом и подходит для учеников: здесь спокойнее вода, проще отрабатывать первые старты, баланс и базовую технику.</p></div></article>
-        <article data-reveal="line"><span aria-hidden="true">02</span><div><strong>Speedy</strong><small>Гладкая скоростная зона</small><p>Speedy отделена от открытого моря косой. Благодаря этому вода остаётся гладкой при разных направлениях ветра — здесь уверенные райдеры разгоняются и отрабатывают технику на скорости.</p></div></article>
-        <article data-reveal="line"><span aria-hidden="true">03</span><div><strong>Камикадзе</strong><small>Открытое море и волны</small><p>Камикадзе находится уже за защищённой частью акватории. Это отдельная зона открытого моря с волной для самостоятельных опытных райдеров.</p></div></article>
-      </div>
-    </div>
+<section class="station-advice" id="stations">
+  <header class="station-advice__head">
+    <p class="eyebrow">Станции</p>
+    <h2>Станция зависит от выбранного спорта</h2>
+    <p>Wing Center специализируется только на wingfoil. Swiss Inn и Ganet Sinai — две равноценные станции для windsurf.</p>
+  </header>
+  <div class="station-advice__list">
+    <a href="/dahab/stations/">
+        <figure><img src="/assets/img/dahab-ref/bg-wingfoil-station.webp" alt="Wing Center" width="1600" height="1067" loading="lazy" decoding="async"></figure>
+        <div><b>Wing Center</b><span>Только Wingfoil</span><em>Обучение, прокат полного комплекта и отдельного снаряжения для wingfoil.</em></div>
+      </a><a href="/dahab/stations/">
+        <figure><img src="/assets/img/dahab-ref/bg-swiss.webp" alt="Swiss Inn" width="1600" height="1067" loading="lazy" decoding="async"></figure>
+        <div><b>Swiss Inn</b><span>Windsurf</span><em>Обучение и прокат для windsurf. По возможностям и уровню сервиса равноценна Ganet Sinai.</em></div>
+      </a><a href="/dahab/stations/">
+        <figure><img src="/assets/img/dahab-ref/bg-ganet.webp" alt="Ganet Sinai" width="1600" height="1067" loading="lazy" decoding="async"></figure>
+        <div><b>Ganet Sinai</b><span>Windsurf</span><em>Обучение и прокат для windsurf. По возможностям и уровню сервиса равноценна Swiss Inn.</em></div>
+      </a>
   </div>
+  <a class="station-advice__cta" href="/dahab/contacts/" data-contact-modal data-contact-intent="Подобрать станцию" data-contact-country="dahab" data-contact-country-label="Египет · Дахаб" data-contact-email="dahab@vetratoria.ru" data-contact-phone="+201029321772" data-contact-telegram="https://t.me/dahabvetratoria">Подобрать станцию</a>
 </section>
 
 <section class="dahab-faq-section" id="faq">

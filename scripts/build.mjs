@@ -616,7 +616,7 @@ const contactDialog = (page) => {
 </dialog>`;
 };
 
-const ASSET_VERSION = "20260811-staging-r23-stable-compact-nav";
+const ASSET_VERSION = "20260811-staging-r24-nav-first-paint";
 const assetVersionForPage = () => ASSET_VERSION;
 const versionedAsset = (path, version = ASSET_VERSION) => `${path}?v=${version}`;
 
@@ -625,6 +625,18 @@ const layout = (page, main) => `<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (() => {
+      document.documentElement.classList.add("vtr-nav-state-pending");
+      try {
+        const navigationType = performance.getEntriesByType("navigation")[0]?.type;
+        const savedScrollY = Number(sessionStorage.getItem("vtr:scroll:" + location.pathname) || 0);
+        if ((navigationType === "reload" || navigationType === "back_forward") && savedScrollY > 140) {
+          document.documentElement.classList.add("vtr-nav-initial-compact");
+        }
+      } catch {}
+    })();
+  </script>
   <title>${escapeHtml(metaTitleForPage(page))}</title>
   <meta name="description" content="${escapeHtml(metaDescriptionForPage(page))}">
   ${page.kind === "not-found" ? `<meta name="robots" content="noindex, follow">` : ""}
@@ -1727,7 +1739,7 @@ ${seasonSection([countriesByKey.dahab], {
         </div>
       </a>
       <a class="sport-tile" href="/dahab/windsurf/" aria-label="Открыть страницу Windsurf в Дахабе">
-        <img src="/assets/img/final/windsurf/hero.webp" alt="Windsurf в Дахабе" width="1920" height="1280" loading="lazy" decoding="async">
+        <img src="/assets/img/final/windsurf/hero.webp" alt="Windsurf в Дахабе" width="1920" height="1280" loading="eager" decoding="async">
         <div class="sport-tile__content">
           <h2>Windsurf</h2>
           <span>Подробнее</span>
@@ -1770,6 +1782,31 @@ ${seasonSection([countriesByKey.dahab], {
   </div>
 </section>
 
+<section class="water-area" id="water-area" aria-labelledby="water-area-title">
+  <div class="water-area__inner">
+    <header class="water-area__intro" data-reveal="line">
+      <div>
+        <p class="eyebrow">Акватория</p>
+        <h2 id="water-area-title">От первых метров в лагуне до открытого моря</h2>
+      </div>
+      <div>
+        <p>Акватория Дахаба разделена на три отдельные зоны. У каждой свой рельеф воды и характер катания — от закрытой учебной лагуны до волн открытого моря.</p>
+        <p class="water-area__route" aria-label="Маршрут по акватории: Лагуна, затем Speedy, затем Камикадзе"><span>Лагуна</span><b aria-hidden="true">→</b><span>Speedy</span><b aria-hidden="true">→</b><span>Камикадзе</span></p>
+      </div>
+    </header>
+    <div class="water-area__layout">
+      <figure class="water-area__visual">
+        <img src="${dahabRefImg("aqva-aerial.webp")}" alt="Три отдельные зоны акватории Дахаба: лагуна, Speedy и Камикадзе" width="900" height="1200" loading="lazy" decoding="async">
+      </figure>
+      <div class="water-area__cards">
+        <article data-reveal="line"><span aria-hidden="true">01</span><div><strong>Лагуна</strong><small>Закрытая учебная зона</small><p>Лагуна защищена берегом и подходит для учеников: здесь спокойнее вода, проще отрабатывать первые старты, баланс и базовую технику.</p></div></article>
+        <article data-reveal="line"><span aria-hidden="true">02</span><div><strong>Speedy</strong><small>Гладкая скоростная зона</small><p>Speedy отделена от открытого моря косой. Благодаря этому вода остаётся гладкой при разных направлениях ветра — здесь уверенные райдеры разгоняются и отрабатывают технику на скорости.</p></div></article>
+        <article data-reveal="line"><span aria-hidden="true">03</span><div><strong>Камикадзе</strong><small>Открытое море и волны</small><p>Камикадзе находится уже за защищённой частью акватории. Это отдельная зона открытого моря с волной для самостоятельных опытных райдеров.</p></div></article>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="dahab-section compact-band" id="prices">
   <div class="dahab-inner">
     ${sectionHeading("Цены", "Сколько стоит начать", "В стоимость урока входят инструктор, подходящее снаряжение, спасательная поддержка и страховка снаряжения.")}
@@ -1789,21 +1826,6 @@ ${seasonSection([countriesByKey.dahab], {
       <nav>${contactCta(page, "Оставить заявку", "", null)}<a href="/dahab/wingfoil/price/">Цены на Wingfoil</a><a href="/dahab/windsurf/price/">Цены на Windsurf</a></nav>
     </div>
   </div>
-</section>
-
-<section class="station-advice" id="stations">
-  <header class="station-advice__head">
-    <p class="eyebrow">Станции</p>
-    <h2>Станция зависит от выбранного спорта</h2>
-    <p>Wing Center специализируется только на wingfoil. Swiss Inn и Ganet Sinai — две равноценные станции для windsurf.</p>
-  </header>
-  <div class="station-advice__list">
-    ${stations.map(([title, meta, text, image]) => `<a href="/dahab/stations/">
-        <figure><img src="${image}" alt="${title}" width="1600" height="1067" loading="lazy" decoding="async"></figure>
-        <div><b>${title}</b><span>${meta}</span><em>${text}</em></div>
-      </a>`).join("")}
-  </div>
-  ${contactCta(page, "Подобрать станцию", "station-advice__cta")}
 </section>
 
 ${stationLifeGallery({
@@ -1833,29 +1855,19 @@ ${stationLifeGallery({
   </div>
 </section>
 
-<section class="water-area" id="water-area" aria-labelledby="water-area-title">
-  <div class="water-area__inner">
-    <header class="water-area__intro" data-reveal="line">
-      <div>
-        <p class="eyebrow">Акватория</p>
-        <h2 id="water-area-title">От первых метров в лагуне до открытого моря</h2>
-      </div>
-      <div>
-        <p>Акватория Дахаба разделена на три отдельные зоны. У каждой свой рельеф воды и характер катания — от закрытой учебной лагуны до волн открытого моря.</p>
-        <p class="water-area__route" aria-label="Маршрут по акватории: Лагуна, затем Speedy, затем Камикадзе"><span>Лагуна</span><b aria-hidden="true">→</b><span>Speedy</span><b aria-hidden="true">→</b><span>Камикадзе</span></p>
-      </div>
-    </header>
-    <div class="water-area__layout">
-      <figure class="water-area__visual">
-        <img src="${dahabRefImg("aqva-aerial.webp")}" alt="Три отдельные зоны акватории Дахаба: лагуна, Speedy и Камикадзе" width="900" height="1200" loading="lazy" decoding="async">
-      </figure>
-      <div class="water-area__cards">
-        <article data-reveal="line"><span aria-hidden="true">01</span><div><strong>Лагуна</strong><small>Закрытая учебная зона</small><p>Лагуна защищена берегом и подходит для учеников: здесь спокойнее вода, проще отрабатывать первые старты, баланс и базовую технику.</p></div></article>
-        <article data-reveal="line"><span aria-hidden="true">02</span><div><strong>Speedy</strong><small>Гладкая скоростная зона</small><p>Speedy отделена от открытого моря косой. Благодаря этому вода остаётся гладкой при разных направлениях ветра — здесь уверенные райдеры разгоняются и отрабатывают технику на скорости.</p></div></article>
-        <article data-reveal="line"><span aria-hidden="true">03</span><div><strong>Камикадзе</strong><small>Открытое море и волны</small><p>Камикадзе находится уже за защищённой частью акватории. Это отдельная зона открытого моря с волной для самостоятельных опытных райдеров.</p></div></article>
-      </div>
-    </div>
+<section class="station-advice" id="stations">
+  <header class="station-advice__head">
+    <p class="eyebrow">Станции</p>
+    <h2>Станция зависит от выбранного спорта</h2>
+    <p>Wing Center специализируется только на wingfoil. Swiss Inn и Ganet Sinai — две равноценные станции для windsurf.</p>
+  </header>
+  <div class="station-advice__list">
+    ${stations.map(([title, meta, text, image]) => `<a href="/dahab/stations/">
+        <figure><img src="${image}" alt="${title}" width="1600" height="1067" loading="lazy" decoding="async"></figure>
+        <div><b>${title}</b><span>${meta}</span><em>${text}</em></div>
+      </a>`).join("")}
   </div>
+  ${contactCta(page, "Подобрать станцию", "station-advice__cta")}
 </section>
 
 <section class="dahab-faq-section" id="faq">

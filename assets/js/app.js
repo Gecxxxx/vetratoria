@@ -15,6 +15,7 @@
   const mobileMenu = window.matchMedia("(max-width: 1180px)");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const coarsePointer = window.matchMedia("(pointer: coarse)");
+  const navScrollStorageKey = `vtr:scroll:${window.location.pathname}`;
 
   const dropdowns = [...document.querySelectorAll("[data-dropdown]")];
   let navScrollFrame = null;
@@ -70,8 +71,20 @@
   };
 
   const scheduleNavScroll = () => {
+    try {
+      window.sessionStorage.setItem(navScrollStorageKey, String(Math.max(0, window.scrollY)));
+    } catch {}
     if (navScrollFrame !== null) return;
     navScrollFrame = window.requestAnimationFrame(syncNavScroll);
+  };
+
+  const finishInitialNavState = () => {
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        syncNavScroll();
+        document.documentElement.classList.remove("vtr-nav-state-pending", "vtr-nav-initial-compact");
+      });
+    });
   };
 
   const closeDropdowns = (except = null) => {
@@ -780,8 +793,8 @@
     setMenuOpen(false);
     document.querySelectorAll("dialog[open]").forEach((dialog) => dialog.close());
     body.classList.remove("contact-modal-open");
-    lastScrollY = window.scrollY;
     scheduleNavScroll();
+    finishInitialNavState();
   });
   window.addEventListener("pagehide", () => {
     body.classList.remove("nav-open", "contact-modal-open");

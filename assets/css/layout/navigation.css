@@ -24,27 +24,40 @@ body.nav-open {
     transition: height 280ms var(--motion-ease-out), min-height 280ms var(--motion-ease-out), padding 280ms var(--motion-ease-out), border-color 180ms ease, opacity 160ms ease, transform 280ms var(--motion-ease-out);
   }
 
-  .vtr-nav.is-compact .vtr-nav__top {
+  html.vtr-nav-state-pending .vtr-nav__top,
+  html.vtr-nav-state-pending .vtr-nav__main,
+  html.vtr-nav-state-pending .vtr-nav__section {
+    transition: none;
+  }
+
+  .vtr-nav.is-compact .vtr-nav__top,
+  html.vtr-nav-initial-compact .vtr-nav .vtr-nav__top {
     grid-template-columns: 1fr;
     height: 46px;
     padding: 0 24px;
   }
 
   .vtr-nav.is-compact .vtr-nav__contacts,
-  .vtr-nav.is-compact .vtr-nav__right {
+  .vtr-nav.is-compact .vtr-nav__right,
+  html.vtr-nav-initial-compact .vtr-nav .vtr-nav__contacts,
+  html.vtr-nav-initial-compact .vtr-nav .vtr-nav__right {
     display: none;
   }
 
-  .vtr-nav.is-compact .vtr-nav__countries {
+  .vtr-nav.is-compact .vtr-nav__countries,
+  html.vtr-nav-initial-compact .vtr-nav .vtr-nav__countries {
     justify-self: center;
   }
 
-  .vtr-nav.is-compact .vtr-nav__country {
+  .vtr-nav.is-compact .vtr-nav__country,
+  html.vtr-nav-initial-compact .vtr-nav .vtr-nav__country {
     min-width: 96px;
   }
 
   .vtr-nav.is-compact .vtr-nav__main,
-  .vtr-nav.is-compact .vtr-nav__section {
+  .vtr-nav.is-compact .vtr-nav__section,
+  html.vtr-nav-initial-compact .vtr-nav .vtr-nav__main,
+  html.vtr-nav-initial-compact .vtr-nav .vtr-nav__section {
     height: 0;
     min-height: 0;
     padding-top: 0;
