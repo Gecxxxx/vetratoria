@@ -9,10 +9,57 @@
 
   const dropdowns = [...document.querySelectorAll("[data-dropdown]")];
   let navScrollFrame = null;
+  let compactNavTimer = null;
+  let lastScrollY = window.scrollY;
+
+  const isCompactNavEnabled = () => !mobileMenu.matches && !reducedMotion.matches;
+
+  const clearCompactNavTimer = () => {
+    if (compactNavTimer === null) return;
+    window.clearTimeout(compactNavTimer);
+    compactNavTimer = null;
+  };
+
+  const setCompactNav = (compact) => {
+    if (!nav || !isCompactNavEnabled()) return;
+    nav.classList.toggle("is-compact", compact);
+  };
+
+  const revealCompactNavFor = (duration = 5000) => {
+    if (!nav?.classList.contains("is-compact") || !isCompactNavEnabled()) return;
+    clearCompactNavTimer();
+    nav.classList.add("is-compact-preview");
+    compactNavTimer = window.setTimeout(() => {
+      nav.classList.remove("is-compact-preview");
+      compactNavTimer = null;
+    }, duration);
+  };
 
   const syncNavScroll = () => {
     navScrollFrame = null;
-    nav?.classList.toggle("is-scrolled", window.scrollY > 8);
+    const scrollY = window.scrollY;
+    nav?.classList.toggle("is-scrolled", scrollY > 8);
+
+    if (!nav || !isCompactNavEnabled()) {
+      nav?.classList.remove("is-compact", "is-compact-preview");
+      clearCompactNavTimer();
+      lastScrollY = scrollY;
+      return;
+    }
+
+    const scrollDelta = scrollY - lastScrollY;
+    if (scrollY < 96) {
+      clearCompactNavTimer();
+      nav.classList.remove("is-compact", "is-compact-preview");
+    } else if (scrollDelta > 4) {
+      clearCompactNavTimer();
+      nav.classList.remove("is-compact-preview");
+      setCompactNav(true);
+    } else if (scrollDelta < -4) {
+      clearCompactNavTimer();
+      nav.classList.remove("is-compact");
+    }
+    lastScrollY = scrollY;
   };
 
   const scheduleNavScroll = () => {
@@ -80,6 +127,8 @@
   } else {
     mobileMenu.addListener(syncMenuMode);
   }
+
+  nav?.addEventListener("pointerenter", () => revealCompactNavFor());
 
   syncMenuMode();
   syncNavScroll();
@@ -718,6 +767,7 @@
     setMenuOpen(false);
     document.querySelectorAll("dialog[open]").forEach((dialog) => dialog.close());
     body.classList.remove("contact-modal-open");
+    lastScrollY = window.scrollY;
     scheduleNavScroll();
   });
   window.addEventListener("pagehide", () => {

@@ -8,6 +8,87 @@ body.nav-open {
   width: 100%;
 }
 
+@media (min-width: 1181px) and (prefers-reduced-motion: no-preference) {
+  .vtr-nav__top,
+  .vtr-nav__main,
+  .vtr-nav__section {
+    transition: height 260ms ease, padding 260ms ease, border-color 220ms ease, opacity 180ms ease, transform 260ms ease;
+  }
+
+  .vtr-nav.is-compact .vtr-nav__top {
+    grid-template-columns: 1fr;
+    height: 46px;
+    padding: 0 24px;
+  }
+
+  .vtr-nav.is-compact .vtr-nav__contacts,
+  .vtr-nav.is-compact .vtr-nav__right {
+    display: none;
+  }
+
+  .vtr-nav.is-compact .vtr-nav__countries {
+    justify-self: center;
+  }
+
+  .vtr-nav.is-compact .vtr-nav__country {
+    min-width: 96px;
+  }
+
+  .vtr-nav.is-compact .vtr-nav__main,
+  .vtr-nav.is-compact .vtr-nav__section {
+    height: 0;
+    min-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-color: transparent;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transform: translateY(-8px);
+  }
+
+  .vtr-nav.is-compact-preview .vtr-nav__top {
+    grid-template-columns: minmax(320px, 1fr) auto minmax(320px, 1fr);
+    height: var(--nav-top-h);
+    padding: 0 36px;
+  }
+
+  .vtr-nav.is-compact-preview .vtr-nav__contacts,
+  .vtr-nav.is-compact-preview .vtr-nav__right {
+    display: flex;
+  }
+
+  .vtr-nav.is-compact-preview .vtr-nav__countries {
+    justify-self: stretch;
+  }
+
+  .vtr-nav.is-compact-preview .vtr-nav__country {
+    min-width: 104px;
+  }
+
+  .vtr-nav.is-compact-preview .vtr-nav__main {
+    height: var(--nav-main-h);
+    min-height: var(--nav-main-h);
+    padding: 0 36px;
+    border-color: var(--line);
+    opacity: 1;
+    overflow: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .vtr-nav.is-compact-preview .vtr-nav__section {
+    height: var(--nav-section-h);
+    min-height: var(--nav-section-h);
+    padding: 0 20px;
+    border-color: var(--line);
+    opacity: 1;
+    overflow: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}
+
 .vtr-nav a,
 .vtr-nav button {
   letter-spacing: 0;
