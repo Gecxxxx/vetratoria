@@ -1,5 +1,6 @@
 /* Vetratoria CSS entrypoint. Keep imports ordered from foundations to page-specific overrides. */
 
+@import url("./base/fonts.css?v=20260811-staging-r25-local-inter");
 @import url("./base/variables.css?v=20260809-staging");
 @import url("./base/reset.css");
 @import url("./base/typography.css?v=20260809-staging-r4");

@@ -616,7 +616,7 @@ const contactDialog = (page) => {
 </dialog>`;
 };
 
-const ASSET_VERSION = "20260811-staging-r24-nav-first-paint";
+const ASSET_VERSION = "20260811-staging-r25-local-inter";
 const assetVersionForPage = () => ASSET_VERSION;
 const versionedAsset = (path, version = ASSET_VERSION) => `${path}?v=${version}`;
 
@@ -655,6 +655,8 @@ const layout = (page, main) => `<!doctype html>
   <meta name="twitter:image" content="${absoluteUrl(metaImageForPage(page))}">
   <meta name="theme-color" content="#0d0c0b">
   <link rel="icon" href="${site.logo}">
+  <link rel="preload" href="/assets/fonts/inter-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${versionedAsset("/assets/css/main.css", assetVersionForPage(page))}">
   <script defer src="${versionedAsset("/assets/js/app.js", assetVersionForPage(page))}"></script>
   <script type="application/ld+json">${structuredDataForPage(page)}</script>

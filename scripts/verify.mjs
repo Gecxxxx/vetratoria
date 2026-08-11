@@ -62,7 +62,7 @@ for (const page of allPages) {
     if (!value.startsWith("/") || value.startsWith("//")) continue;
     if (value.startsWith("/#")) continue;
 
-    if (/\.(?:webp|png|jpe?g|svg|css|js)$/i.test(value)) {
+    if (/\.(?:webp|png|jpe?g|svg|css|js|woff2?)$/i.test(value)) {
       assert(await exists(join(root, value.slice(1))), `${page.path}: asset is missing: ${value}`);
       continue;
     }
