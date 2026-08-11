@@ -157,20 +157,20 @@ const contactCta = (page, label, className = "button button-primary", sportKey =
     country ? `data-contact-country="${country.key}"` : "",
     country ? `data-contact-country-label="${escapeHtml(site.contacts[country.key].title)}"` : "",
     sportKey ? `data-contact-sport="${escapeHtml(sportLabel(sportKey))}"` : "",
-    destination?.formEmail || destination?.email ? `data-contact-email="${escapeHtml(destination.formEmail || destination.email)}"` : "",
+    destination?.formEmail || destination?.электронная почта ? `data-contact-электронная почта="${escapeHtml(destination.formEmail || destination.электронная почта)}"` : "",
     destination?.phone ? `data-contact-phone="${escapeHtml(destination.phone)}"` : "",
     destination?.telegram ? `data-contact-telegram="${escapeHtml(destination.telegram)}"` : ""
   ].filter(Boolean).join(" ");
   return `<a ${attributes}>${escapeHtml(label)}</a>`;
 };
 
-const sportLabel = (sportKey) => sportKey === "windsurf-kids" ? "Kids" : site.sports[sportKey].nav;
+const sportLabel = (sportKey) => sportKey === "windsurf-kids" ? "Детский" : site.sports[sportKey].nav;
 
 const countrySportSummary = (country) => country.sports.map(sportLabel).join(", ");
 
 const dahabStationPhones = (className) => site.dahabStations.map((station) => `
           <a class="${className}" href="tel:${station.phone}">
-            <span>Номер ${station.key === "windsurf" ? "Windsurf" : "Wingfoil"}-станции</span>
+            <span>Номер ${station.key === "windsurf" ? "Виндсёрфинг" : "Вингфойл"}-станции</span>
             <b>${station.phoneLabel}</b>
           </a>`).join("");
 
@@ -222,8 +222,8 @@ const mobileCountrySection = (page, country) => {
     .filter((href) => href.startsWith(`/${country.key}/`) || href.startsWith(`/media/${country.key}/`));
   const sportLinks = country.key === "dahab"
     ? [
-        { label: "Wingfoil", href: "/dahab/wingfoil/" },
-        { label: "Windsurf", href: "/dahab/windsurf/" }
+        { label: "Вингфойл", href: "/dahab/wingfoil/" },
+        { label: "Виндсёрфинг", href: "/dahab/windsurf/" }
       ]
     : country.sports.map((sportKey) => ({
         label: site.sports[sportKey].nav,
@@ -253,7 +253,7 @@ const mobileMenu = (page, country) => `
         </section>
         ${page.path === "/" ? socialIconLinks("vtr-mobile-menu__socials") : `<section class="vtr-mobile-menu__block" aria-label="Контакты">
           <p class="vtr-mobile-menu__title">Контакты</p>
-          <a class="vtr-mobile-menu__row" href="mailto:${contactForPage(page).email}">${contactForPage(page).email}</a>
+          <a class="vtr-mobile-menu__row" href="mailto:${contactForPage(page).электронная почта}">${contactForPage(page).электронная почта}</a>
           ${contactForPage(page) === site.contacts.dahab
             ? dahabStationPhones("vtr-mobile-menu__row vtr-mobile-menu__contact-phone")
             : `<a class="vtr-mobile-menu__row" href="tel:${contactForPage(page).phone}">${contactForPage(page).phoneLabel}</a>`}
@@ -277,7 +277,7 @@ const topNav = (page) => {
   const isHome = page.path === "/";
   const topNavContacts = isHome
     ? `<span class="vtr-nav__brand-line">Vetratoria — школы ветра с 2006 года</span>`
-    : `<a href="mailto:${contact.email}">${contact.email}</a>
+    : `<a href="mailto:${contact.электронная почта}">${contact.электронная почта}</a>
       ${contact === site.contacts.dahab
         ? dahabStationPhones("vtr-nav__station-phone")
         : `<a href="tel:${contact.phone}">${contact.phoneLabel}</a>`}`;
@@ -302,7 +302,7 @@ const sectionLinkClass = (active) => `vtr-nav__section-link${active ? " is-activ
 
 const schoolDropdown = (country) => country.key === "dahab" ? [
   { label: "Команда", href: "/dahab/team/" },
-  { label: "Windsurf Kids", href: "/dahab/windsurf-kids/" },
+  { label: "Детский виндсёрфинг", href: "/dahab/windsurf-kids/" },
   { label: "Безопасность", href: "/dahab/safety/" },
   { label: "Как добраться", href: "/dahab/how-to-get/" },
   { label: "Медиа", href: "/media/dahab/" },
@@ -332,19 +332,19 @@ const countrySectionNav = (page, country) => {
   const baseLinks = country.key === "dahab"
     ? [
         `<a class="${sectionLinkClass(page.path === country.href)}" href="${country.href}">Обзор</a>`,
-        `<a class="${sectionLinkClass(page.path === "/dahab/wingfoil/")}" href="/dahab/wingfoil/">Wingfoil</a>`,
-        `<a class="${sectionLinkClass(page.path === "/dahab/windsurf/")}" href="/dahab/windsurf/">Windsurf</a>`,
+        `<a class="${sectionLinkClass(page.path === "/dahab/wingfoil/")}" href="/dahab/wingfoil/">Вингфойл</a>`,
+        `<a class="${sectionLinkClass(page.path === "/dahab/windsurf/")}" href="/dahab/windsurf/">Виндсёрфинг</a>`,
         sectionDropdown("Цены", countrySectionActive(page, pricePaths), [
-          { label: "Wingfoil", href: "/dahab/wingfoil/price/" },
-          { label: "Windsurf", href: "/dahab/windsurf/price/" }
+          { label: "Вингфойл", href: "/dahab/wingfoil/price/" },
+          { label: "Виндсёрфинг", href: "/dahab/windsurf/price/" }
         ]),
         `<a class="${sectionLinkClass(countrySectionActive(page, ["/dahab/stations/"]))}" href="/dahab/stations/">Станции</a>`
       ]
     : [
         `<a class="${sectionLinkClass(page.path === country.href)}" href="${country.href}">Обзор</a>`,
-        `<a class="${sectionLinkClass(page.path === `/${country.key}/windsurf/`)}" href="/${country.key}/windsurf/">Windsurf</a>`,
-        `<a class="${sectionLinkClass(page.path === `/${country.key}/wingfoil/`)}" href="/${country.key}/wingfoil/">Wingfoil</a>`,
-        `<a class="${sectionLinkClass(page.path === `/${country.key}/kite/`)}" href="/${country.key}/kite/">Kite</a>`,
+        `<a class="${sectionLinkClass(page.path === `/${country.key}/windsurf/`)}" href="/${country.key}/windsurf/">Виндсёрфинг</a>`,
+        `<a class="${sectionLinkClass(page.path === `/${country.key}/wingfoil/`)}" href="/${country.key}/wingfoil/">Вингфойл</a>`,
+        `<a class="${sectionLinkClass(page.path === `/${country.key}/kite/`)}" href="/${country.key}/kite/">Кайтсёрфинг</a>`,
         sectionDropdown("Цены", countrySectionActive(page, pricePaths), priceSportKeys.map((sportKey) => ({
           label: site.sports[sportKey].nav,
           href: `/${country.key}/${sportKey}/price/`
@@ -385,12 +385,12 @@ const footer = (page) => {
   <div class="footer-inner">
     <div class="footer-brand">
       <img src="${site.logo}" alt="Vetratoria" width="198" height="97">
-      <p>Vetratoria - windsurf и wingfoil школы в Египте, Вьетнаме и России. Выберите страну, спорт и формат обучения.</p>
+      <p>Vetratoria - виндсёрфинг и вингфойл школы в Египте, Вьетнаме и России. Выберите страну, спорт и формат обучения.</p>
       <div class="footer-stats">
         <span>С 2006 года</span>
         <span>3 страны</span>
-        <span>Windsurf</span>
-        <span>Wingfoil</span>
+        <span>Виндсёрфинг</span>
+        <span>Вингфойл</span>
       </div>
     </div>
     <nav class="footer-nav" aria-label="Навигация в подвале">
@@ -400,9 +400,9 @@ const footer = (page) => {
       </div>
       <div>
         <h3>Спорт</h3>
-        <a href="/dahab/wingfoil/">Wingfoil Дахаб</a>
-        <a href="/dahab/windsurf/">Windsurf Дахаб</a>
-        <a href="/dahab/windsurf-kids/">Windsurf Kids</a>
+        <a href="/dahab/wingfoil/">Вингфойл Дахаб</a>
+        <a href="/dahab/windsurf/">Виндсёрфинг Дахаб</a>
+        <a href="/dahab/windsurf-kids/">Детский виндсёрфинг</a>
       </div>
       <div>
         <h3>Материалы</h3>
@@ -413,7 +413,7 @@ const footer = (page) => {
       <div>
         <h3>Связь</h3>
         ${contactCta(page, "Написать нам", "")}
-        <a href="mailto:${contact.email}">${contact.email}</a>
+        <a href="mailto:${contact.электронная почта}">${contact.электронная почта}</a>
         <a href="tel:${contact.phone}">${contact.phoneLabel}</a>
       </div>
     </nav>
@@ -430,7 +430,7 @@ const dahabFooter = (page) => `
   <div class="dahab-footer-pro__inner">
     <a class="dahab-footer-pro__brand" href="/" aria-label="Vetratoria - главная">
       <img src="${site.logo}" alt="Vetratoria" width="198" height="97">
-      <p>Windsurf и Wingfoil в Египте, Вьетнаме и России.</p>
+      <p>Виндсёрфинг и Вингфойл в Египте, Вьетнаме и России.</p>
     </a>
     <div class="dahab-footer-pro__cards">
       <article>
@@ -440,7 +440,7 @@ const dahabFooter = (page) => `
       </article>
       <article>
         <h2>Карта станций</h2>
-        <p>Wing Center · Swiss Inn · Ganet Sinai</p>
+        <p>Винг-центр · Свисс Инн · Ганет Синай</p>
       </article>
       <article>
         <h2>Соцсети</h2>
@@ -458,11 +458,11 @@ const dahabFooter = (page) => `
 const footerForPage = (page) => page.kind === "country" && page.country === "dahab" ? dahabFooter(page) : footer(page);
 
 const metaTitleForPage = (page) =>
-  page.path === "/dahab/" ? "Дахаб — Wingfoil и Windsurf на Красном море | Vetratoria" : page.title || site.title;
+  page.path === "/dahab/" ? "Дахаб — Вингфойл и Виндсёрфинг на Красном море | Vetratoria" : page.title || site.title;
 
 const metaDescriptionForPage = (page) => {
   if (page.path === "/dahab/") {
-    return "Vetratoria Dahab: Wingfoil, Windsurf, Kids, аренда, уроки, станции Wing Center, Swiss Inn и Ganet Sinai.";
+    return "Vetratoria в Дахабе: Вингфойл, Виндсёрфинг, детские программы, аренда, уроки, станции Винг-центр, Свисс Инн и Ганет Синай.";
   }
 
   const description = page.description || site.description;
@@ -533,11 +533,11 @@ const structuredDataForPage = (page) => {
     graph.push({
       "@type": "SportsActivityLocation",
       "@id": `${canonicalForPage(page)}#sports-location`,
-      name: "Vetratoria Дахаб",
+      name: "Vetratoria в Дахабе",
       url: canonicalForPage(page),
       description: metaDescriptionForPage(page),
       image: absoluteUrl(metaImageForPage(page)),
-      email: site.contacts.dahab.email,
+      электронная почта: site.contacts.dahab.электронная почта,
       telephone: site.contacts.dahab.phone,
       parentOrganization: {
         "@id": organizationId
@@ -557,7 +557,7 @@ const structuredDataForPage = (page) => {
 
 const contactCountryOption = (country) => {
   const contact = site.contacts[country.key];
-  return `<option value="${country.key}" data-email="${escapeHtml(contact.formEmail)}" data-phone="${escapeHtml(contact.phone)}" data-telegram="${escapeHtml(contact.telegram)}">${escapeHtml(contact.title)}</option>`;
+  return `<option value="${country.key}" data-электронная почта="${escapeHtml(contact.formEmail)}" data-phone="${escapeHtml(contact.phone)}" data-telegram="${escapeHtml(contact.telegram)}">${escapeHtml(contact.title)}</option>`;
 };
 
 const contactDialog = (page) => {
@@ -582,7 +582,7 @@ const contactDialog = (page) => {
     </div>
     <form class="contact-form contact-modal__form" data-contact-form data-contact-modal-form
       data-endpoint="${escapeHtml(site.contactEndpoint || "")}"
-      data-mail-to="${country ? escapeHtml(destination.formEmail || destination.email) : ""}"
+      data-mail-to="${country ? escapeHtml(destination.formEmail || destination.электронная почта) : ""}"
       data-direction="${escapeHtml(context)}">
       <input type="hidden" name="source" value="${escapeHtml(page.path)}">
       <input type="hidden" name="intent" value="" data-contact-intent-input>
@@ -594,7 +594,7 @@ const contactDialog = (page) => {
         </select>
       </label>`}
       <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
-      <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, email или @username" required></label>
+      <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>
       <label><span>Комментарий <small>по желанию</small></span><textarea name="message" rows="4" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
       <button class="button button-primary contact-modal__submit" type="submit">${site.contactEndpoint ? "Отправить заявку" : "Подготовить заявку"}</button>
       <p class="form-note" data-form-note role="status" aria-live="polite"></p>
@@ -687,11 +687,11 @@ const hero = (page, actions = "") => `
 
 const homeCountryCopy = {
   dahab: {
-    lead: "Круглый год. Wingfoil, Windsurf и детские программы на Красном море: от первого занятия до самостоятельной практики под наблюдением команды.",
+    lead: "Круглый год. Вингфойл, Виндсёрфинг и детские программы на Красном море: от первого занятия до самостоятельной практики под наблюдением команды.",
     action: "Смотреть Дахаб"
   },
   vietnam: {
-    lead: "Сильный зимний сезон, стабильный бриз и длинная береговая линия. Windsurf, Wingfoil и Kite для обучения, прогресса и самостоятельного катания.",
+    lead: "Сильный зимний сезон, стабильный бриз и длинная береговая линия. Виндсёрфинг, Вингфойл и Кайтсёрфинг для обучения, прогресса и самостоятельного катания.",
     action: "Смотреть Муйне"
   },
   russia: {
@@ -735,7 +735,7 @@ const home = (page) => `
   <div class="hero-shade"></div>
   <div class="hero-content">
     <p class="eyebrow">Vetratoria · школы ветра</p>
-    <h1>Windsurf, Wingfoil и Kite — от первого старта до уверенного катания</h1>
+    <h1>Виндсёрфинг, Вингфойл и Кайтсёрфинг — от первого старта до уверенного катания</h1>
     <p class="hero-lead">Обучение и прокат в Египте, Вьетнаме и России. Подберём программу и снаряжение под ваш уровень и условия на воде.</p>
     <div class="hero-advantages">
       <article class="hero-advantage">С 2006 года</article>
@@ -844,10 +844,10 @@ const dahabFinalImg = (name) => finalImg(`dahab/${name}`);
 
 const dahabReviewItems = [
   ["B", "Boris Sizov", "★★★★★", "Очень удобно приезжать без своего снаряжения: есть все размеры крыльев и досок, оборудования хватает. Толик, Ира и Хассан — настоящие профессионалы."],
-  ["D", "Dmitrii Polishchuk", "★★★★★", "Отличная surf-станция, классная локация для выхода в море, дружелюбная команда и сильное оборудование для wingfoil. Очень рекомендую."],
-  ["O", "Olga Krasnova", "★★★★★", "Wing Center Vetratoria — магическое место. Мои первые шаги на wingfoil получились, а снаряжение подходит и новичкам, и продолжающим."],
+  ["D", "Dmitrii Polishchuk", "★★★★★", "Отличная surf-станция, классная локация для выхода в море, дружелюбная команда и сильное оборудование для вингфойл. Очень рекомендую."],
+  ["O", "Olga Krasnova", "★★★★★", "Винг-центр Vetratoria — магическое место. Мои первые шаги на вингфойл получились, а снаряжение подходит и новичкам, и продолжающим."],
   ["E", "Evgeniy Kolosov", "★★★★★", "Vetratoria в Египте оставила только положительные впечатления: высокий уровень инструкторов, идеальные условия и очень дружелюбная атмосфера."],
-  ["Y", "Yuriy Tolchinskiy", "★★★★★", "Приезжал осваивать wingfoil. Довольно быстро получилось лететь на фойле и делать повороты. Спасибо Hassan за продуктивные тренировки."]
+  ["Y", "Yuriy Tolchinskiy", "★★★★★", "Приезжал осваивать вингфойл. Довольно быстро получилось лететь на фойле и делать повороты. Спасибо Hassan за продуктивные тренировки."]
 ];
 
 const stationLifeGallery = ({ id, eyebrow, title, lead, photos }) => `
@@ -903,51 +903,51 @@ const dahabWingfoilPage = (page) => {
   const heroFacts = ["Обучение с нуля", "Спасательный катер", "Связь BB Talkin", "Снаряжение RRD"];
   const reasons = [
     ["Ветер почти круглый год", "Стабильные ветровые условия позволяют планировать обучение в разные сезоны и проводить несколько занятий подряд.", dahabFinalImg("dahab-flat-water-training-zone.webp"), "Ровная вода и ветровой флаг в лагуне Дахаба", 1254, 1254],
-    ["Три зоны для прогресса", "Лагуна, Speedy и открытое море позволяют постепенно переходить от первых стартов к уверенному катанию.", dahabFinalImg("dahab-lagoon-riding-zones.webp"), "Учебные зоны Wingfoil в лагуне Дахаба", 1254, 1254],
-    ["Флэт для первых полётов", "Ровная вода помогает легче удерживать баланс, набирать скорость и контролировать доску при выходе на фойл.", wingfoilSectionImg("dahab-wingfoil-stable-wind.webp"), "Первый полёт на Wingfoil над ровной водой в Дахабе", 1600, 1600],
-    ["4 спасательных катера", "Катера дежурят на акватории и помогают быстро вернуться на станцию, если ветер ослабнет или потребуется помощь.", dahabFinalImg("dahab-rescue-boat.webp"), "Спасательный катер школы Vetratoria в Дахабе", 1600, 1600]
+    ["Три зоны для прогресса", "Лагуна, Спиди и открытое море позволяют постепенно переходить от первых стартов к уверенному катанию.", dahabFinalImg("dahab-lagoon-riding-zones.webp"), "Учебные зоны Вингфойл в лагуне Дахаба", 1254, 1254],
+    ["Флэт для первых полётов", "Ровная вода помогает легче удерживать баланс, набирать скорость и контролировать доску при выходе на фойл.", wingfoilSectionImg("dahab-wingfoil-stable-wind.webp"), "Первый полёт на Вингфойл над ровной водой в Дахабе", 1600, 1600],
+    ["4 спасательных катера", "Катера дежурят на акватории и помогают быстро вернуться на станцию, если ветер ослабнет или потребуется помощь.", dahabFinalImg("dahab-спасение-boat.webp"), "Спасательный катер школы Vetratoria в Дахабе", 1600, 1600]
   ];
   const learning = [
-    ["01", "Wing на SUP", "Учимся держать крыло, разворачиваться, идти нужным курсом и понимать, как работает ветер.", wingfoilSectionImg("wing-start-coaching.webp"), "Инструктор помогает ученику стартовать с крылом у берега"],
-    ["02", "Foil за лодкой", "Пробуем фойл без крыла: баланс, подъем, контроль высоты и уверенность на доске.", wingfoilSectionImg("foil-boat-training.webp"), "Foil за лодкой в Дахабе"],
-    ["03", "Wingfoil с инструктором", "Соединяем крыло и фойл. Первые старты, первые метры, контроль скорости и направления.", wingfoilSectionImg("wingfoil-duo.webp"), "Wingfoil с инструктором на воде"],
-    ["04", "Практика и прогресс", "После первых успешных попыток можно кататься самостоятельно под контролем станции и брать уроки точечно.", wingfoilSectionImg("wingfoil-ride.webp"), "Уверенный райдер wingfoil в Дахабе"]
+    ["01", "Винг на SUP", "Учимся держать крыло, разворачиваться, идти нужным курсом и понимать, как работает ветер.", wingfoilSectionImg("wing-start-coaching.webp"), "Инструктор помогает ученику стартовать с крылом у берега"],
+    ["02", "Фойл за лодкой", "Пробуем фойл без крыла: баланс, подъем, контроль высоты и уверенность на доске.", wingfoilSectionImg("foil-boat-training.webp"), "Фойл за лодкой в Дахабе"],
+    ["03", "Вингфойл с инструктором", "Соединяем крыло и фойл. Первые старты, первые метры, контроль скорости и направления.", wingfoilSectionImg("wingfoil-duo.webp"), "Вингфойл с инструктором на воде"],
+    ["04", "Практика и прогресс", "После первых успешных попыток можно кататься самостоятельно под контролем станции и брать уроки точечно.", wingfoilSectionImg("wingfoil-ride.webp"), "Уверенный райдер вингфойл в Дахабе"]
   ];
   const prices = [
-    ["Урок", "Wingfoil урок", "70$", "Индивидуальное занятие с инструктором для первых стартов, исправления ошибок и прогресса.", "Записаться"],
-    ["Лодка", "Foil за лодкой", "60$", "Отдельный этап для понимания фойла: баланс, подъем и контроль высоты.", "Записаться"],
-    ["Новичок", "Программа для новичка", "от 270$", "Wing на SUP, фойл за лодкой, первые попытки wingfoil и практика.", "Подобрать программу"],
+    ["Урок", "Вингфойл урок", "70$", "Индивидуальное занятие с инструктором для первых стартов, исправления ошибок и прогресса.", "Записаться"],
+    ["Лодка", "Фойл за лодкой", "60$", "Отдельный этап для понимания фойла: баланс, подъем и контроль высоты.", "Записаться"],
+    ["Новичок", "Программа для новичка", "от 270$", "Винг на SUP, фойл за лодкой, первые попытки вингфойл и практика.", "Подобрать программу"],
     ["Прокат", "Прокат", "от 25$", "Для тех, кто уже катается самостоятельно.", "Оставить заявку"]
   ];
   const waterPhotos = [
-    [wingfoilWaterImg("water-01.webp"), "Wingfoil над бирюзовой водой в Дахабе"],
-    [wingfoilWaterImg("water-02.webp"), "Прыжок на wingfoil в Дахабе"],
-    [wingfoilWaterImg("water-03.webp"), "Wingfoil ride на Красном море"],
-    [wingfoilWaterImg("water-04.webp"), "Два райдера wingfoil в Дахабе"],
-    [wingfoilWaterImg("water-05.webp"), "Wingfoil на открытой воде"]
+    [wingfoilWaterImg("water-01.webp"), "Вингфойл над бирюзовой водой в Дахабе"],
+    [wingfoilWaterImg("water-02.webp"), "Прыжок на вингфойл в Дахабе"],
+    [wingfoilWaterImg("water-03.webp"), "Вингфойл ride на Красном море"],
+    [wingfoilWaterImg("water-04.webp"), "Два райдера вингфойл в Дахабе"],
+    [wingfoilWaterImg("water-05.webp"), "Вингфойл на открытой воде"]
   ];
   const stationPhotos = [
-    [dahabRefImg("bg-wingfoil-station.webp"), "Wing Center", "День начинается у воды и с подготовки комплекта", "Wing Center Vetratoria в Дахабе", 1600, 1067],
+    [dahabRefImg("bg-wingfoil-station.webp"), "Винг-центр", "День начинается у воды и с подготовки комплекта", "Винг-центр Vetratoria в Дахабе", 1600, 1067],
     [wingfoilSectionImg("wing-start-coaching.webp"), "Подготовка", "Разбираем крыло и первые действия до старта", "Инструктор объясняет управление крылом у берега", 1920, 1080],
-    [wingfoilSectionImg("foil-boat-training.webp"), "Foil boat", "Тренируем баланс и контроль высоты отдельно", "Тренировка на фойле за лодкой в Дахабе", 1920, 1080],
-    [wingfoilSectionImg("wingfoil-duo.webp"), "На воде", "Инструктор остаётся рядом во время первых полётов", "Ученик и инструктор Wingfoil на воде", 1920, 1080],
-    [wingfoilSectionImg("rescue-boats.webp"), "Команда", "Готовим лодки и контролируем акваторию", "Спасательные лодки Wing Center Vetratoria", 1920, 1080],
-    [wingfoilWaterImg("water-01.webp"), "Катание", "Первые уверенные проходы над Красным морем", "Wingfoil над бирюзовой водой Дахаба", 1920, 1080],
-    [wingfoilWaterImg("water-04.webp"), "Вместе", "Делим воду, ветер и хорошие выходы", "Два райдера Wingfoil в Дахабе", 1920, 1080],
+    [wingfoilSectionImg("foil-boat-training.webp"), "Фойл за лодкой", "Тренируем баланс и контроль высоты отдельно", "Тренировка на фойле за лодкой в Дахабе", 1920, 1080],
+    [wingfoilSectionImg("wingfoil-duo.webp"), "На воде", "Инструктор остаётся рядом во время первых полётов", "Ученик и инструктор Вингфойл на воде", 1920, 1080],
+    [wingfoilSectionImg("спасение-boats.webp"), "Команда", "Готовим лодки и контролируем акваторию", "Спасательные лодки Винг-центр Vetratoria", 1920, 1080],
+    [wingfoilWaterImg("water-01.webp"), "Катание", "Первые уверенные проходы над Красным морем", "Вингфойл над бирюзовой водой Дахаба", 1920, 1080],
+    [wingfoilWaterImg("water-04.webp"), "Вместе", "Делим воду, ветер и хорошие выходы", "Два райдера Вингфойл в Дахабе", 1920, 1080],
     ["/assets/img/media/dahab/photo-day/2026-05-24-photo-day/46.jpg", "После воды", "Обсуждаем прогресс и следующий выход", "Гости общаются после катания на станции", 1080, 720]
   ];
   const reviews = dahabReviewItems;
   const faqs = [
-    ["Можно ли начать с нуля?", "Да. Обычно начинаем с управления крылом на берегу и Wing + SUP, затем добавляем foil boat или Wing + Foil по готовности."],
+    ["Можно ли начать с нуля?", "Да. Обычно начинаем с управления крылом на берегу и Винг + SUP, затем добавляем фойл за лодкой или Винг + фойл по готовности."],
     ["Сколько занятий нужно до первых полетов?", "Зависит от ветра, баланса и прошлого опыта. Часто первые короткие полеты появляются после нескольких последовательных выходов."],
     ["Что входит в урок?", "Инструктор, подбор комплекта, шлем, жилет, разбор зоны катания, постановка задач и обратная связь после выхода."],
-    ["Нужен ли опыт windsurf или kite?", "Нет, но опыт любых водных видов помогает. Для старта важнее спокойная вода, правильный комплект и понятная последовательность."],
+    ["Нужен ли опыт виндсёрфинг или кайтсёрфинг?", "Нет, но опыт любых водных видов помогает. Для старта важнее спокойная вода, правильный комплект и понятная последовательность."],
     ["Когда лучше ехать в Дахаб?", "Дахаб работает круглый год. Конкретные окна по ветру и формату лучше уточнять перед поездкой под ваши даты."]
   ];
   const useful = [
-    ["/dahab/blog/wingfoil/", "Wingfoil", "Как начать Wingfoil с нуля", wingfoilSectionImg("wing-start-coaching.webp")],
-    ["/dahab/blog/wingfoil/", "Сравнение", "Wingfoil или Windsurf: что выбрать", wingfoilSectionImg("wingfoil-ride.webp")],
-    ["/dahab/blog/wingfoil/", "Foil boat", "Почему фойл за лодкой помогает быстрее прогрессировать", wingfoilSectionImg("foil-boat-training.webp")]
+    ["/dahab/blog/wingfoil/", "Вингфойл", "Как начать Вингфойл с нуля", wingfoilSectionImg("wing-start-coaching.webp")],
+    ["/dahab/blog/wingfoil/", "Сравнение", "Вингфойл или Виндсёрфинг: что выбрать", wingfoilSectionImg("wingfoil-ride.webp")],
+    ["/dahab/blog/wingfoil/", "Фойл за лодкой", "Почему фойл за лодкой помогает быстрее прогрессировать", wingfoilSectionImg("foil-boat-training.webp")]
   ];
 
   return `
@@ -966,28 +966,28 @@ const dahabWingfoilPage = (page) => {
       </div>
     </div>
     <figure class="dahab-sport-hero__media">
-      <img src="${page.image}" alt="Wingfoil в Дахабе — райдеры на фойле" width="1920" height="1080" loading="eager" decoding="async" fetchpriority="high">
+      <img src="${page.image}" alt="Вингфойл в Дахабе — райдеры на фойле" width="1920" height="1080" loading="eager" decoding="async" fetchpriority="high">
     </figure>
   </div>
 </section>
 
 ${seasonSection([countriesByKey.dahab], {
   compact: true,
-  eyebrow: "Дахаб · условия Wingfoil",
+  eyebrow: "Дахаб · условия для вингфойла",
   title: "Сезон и ветер",
   lead: countriesByKey.dahab.seasonNote
 })}
 
 <section class="dahab-sport-section dahab-sport-section--location">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Локация", "Почему Дахаб подходит для Wingfoil", "Стабильный ветер, ровная вода, несколько зон катания и развитая система безопасности создают в Дахабе подходящие условия для обучения Wingfoil.")}
-    ${sportFeatureGrid(reasons, { atlas: true, leadImage: page.image, leadAlt: "Wingfoil в Дахабе на Красном море" })}
+    ${sectionHeading("Локация", "Почему Дахаб подходит для вингфойла", "Стабильный ветер, ровная вода, несколько зон катания и развитая система безопасности создают в Дахабе подходящие условия для обучения Вингфойл.")}
+    ${sportFeatureGrid(reasons, { atlas: true, leadImage: page.image, leadAlt: "Вингфойл в Дахабе на Красном море" })}
   </div>
 </section>
 
 <section class="dahab-sport-section dahab-sport-section--soft">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Обучение", "Как проходит обучение Wingfoil", "В реальности это не один случайный урок, а понятная лестница: берег, крыло, доска, фойл, первые полеты и самостоятельность.")}
+    ${sectionHeading("Обучение", "Как проходит обучение вингфойлу", "В реальности это не один случайный урок, а понятная лестница: берег, крыло, доска, фойл, первые полеты и самостоятельность.")}
     <div class="dahab-sport-process">
       ${learning.map(([number, title, text, image, alt]) => `
         <article>
@@ -1000,7 +1000,7 @@ ${seasonSection([countriesByKey.dahab], {
 
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Цены", "Цены на Wingfoil", "Можно взять разовый урок, попробовать фойл за лодкой или собрать программу на несколько дней. Если вы не уверены, с чего начать, оставьте заявку — мы подберем вариант под ваш уровень, даты и ветер.")}
+    ${sectionHeading("Цены", "Цены на вингфойл", "Можно взять разовый урок, попробовать фойл за лодкой или собрать программу на несколько дней. Если вы не уверены, с чего начать, оставьте заявку — мы подберем вариант под ваш уровень, даты и ветер.")}
     <div class="dahab-sport-price-grid">
       ${prices.map(([label, title, value, text, cta]) => `
         <article class="dahab-sport-price-card">
@@ -1012,7 +1012,7 @@ ${seasonSection([countriesByKey.dahab], {
         </article>`).join("")}
     </div>
     <div class="dahab-sport-price-actions">
-      <a class="button button-ghost" href="/dahab/wingfoil/price/">Цены Wingfoil</a>
+      <a class="button button-ghost" href="/dahab/wingfoil/price/">Цены на вингфойл</a>
     </div>
   </div>
 </section>
@@ -1022,16 +1022,16 @@ ${seasonSection([countriesByKey.dahab], {
     <div class="dahab-sport-safety__copy">
       <p class="eyebrow">Безопасность</p>
       <h2>Безопасность на воде</h2>
-      <p>Wingfoil быстро дает ощущение свободы, но первые выходы требуют контроля. Перед стартом разбираем ветер, границы зоны, сигналы, комплект и действия, если нужно вернуться к берегу.</p>
+      <p>Вингфойл быстро дает ощущение свободы, но первые выходы требуют контроля. Перед стартом разбираем ветер, границы зоны, сигналы, комплект и действия, если нужно вернуться к берегу.</p>
       <div class="dahab-sport-safety__list">
         <span>Инструктор рядом на старте и в воде</span>
         <span>Шлем, жилет и подходящий комплект</span>
-        <span>Понятная зона катания и rescue</span>
+        <span>Понятная зона катания и спасение</span>
       </div>
       <a class="button button-primary" href="/dahab/safety/">Подробнее</a>
     </div>
     <div class="dahab-sport-safety__media">
-      <img src="${wingfoilSectionImg("rescue-boats.webp")}" alt="Rescue boats на берегу станции Vetratoria" width="1920" height="1080" loading="lazy" decoding="async">
+      <img src="${wingfoilSectionImg("спасение-boats.webp")}" alt="Rescue boats на берегу станции Vetratoria" width="1920" height="1080" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -1053,8 +1053,8 @@ ${seasonSection([countriesByKey.dahab], {
 
 ${sportStationLife({
   id: "wingfoil-station-life",
-  eyebrow: "Жизнь Wing Center",
-  title: "Wingfoil-станция между выходами на воду",
+  eyebrow: "Жизнь Винг-центр",
+  title: "Вингфойл-станция между выходами на воду",
   lead: "Здесь подбирают крыло, собирают фойл, разбирают прогноз, тренируются с лодкой и делятся впечатлениями после катания.",
   photos: stationPhotos
 })}
@@ -1068,7 +1068,7 @@ ${sportStationLife({
       </div>
       <a href="https://www.tripadvisor.com/" target="_blank" rel="noopener">144 отзыва →</a>
     </div>
-    <div class="dahab-sport-review-track" aria-label="Отзывы гостей Vetratoria Dahab">
+    <div class="dahab-sport-review-track" aria-label="Отзывы гостей Vetratoria в Дахабе">
       ${reviews.map(([initial, name, stars, text]) => `
         <article class="dahab-sport-review-card">
           <div class="dahab-sport-review-card__top">
@@ -1083,13 +1083,13 @@ ${sportStationLife({
 
 <section class="dahab-sport-section dahab-sport-section--faq" id="faq">
   <div class="dahab-sport-inner">
-    ${sportFaqBlock("FAQ", "Частые вопросы", "", faqs)}
+    ${sportFaqBlock("Частые вопросы", "Частые вопросы", "", faqs)}
   </div>
 </section>
 
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Материалы", "Полезное о Wingfoil", "")}
+    ${sectionHeading("Материалы", "Полезное о Вингфойл", "")}
     <div class="dahab-sport-useful">
       ${useful.map(([href, label, title, image]) => `
         <a href="${href}">
@@ -1103,11 +1103,11 @@ ${sportStationLife({
 </section>
 
 <section class="dahab-sport-cta">
-  <img src="${wingfoilSectionImg("wingfoil-ride.webp")}" alt="Wingfoil в Дахабе на воде" width="1920" height="1080" loading="lazy" decoding="async">
+  <img src="${wingfoilSectionImg("wingfoil-ride.webp")}" alt="Вингфойл в Дахабе на воде" width="1920" height="1080" loading="lazy" decoding="async">
   <div class="dahab-sport-cta__inner">
     <p class="eyebrow">Заявка</p>
-    <h2>Хотите попробовать Wingfoil в Дахабе?</h2>
-    <p>Напишите даты, уровень и цель поездки. Подберем формат: Wing + SUP, foil boat, урок Wing + Foil или самостоятельную практику.</p>
+    <h2>Хотите попробовать вингфойл в Дахабе?</h2>
+    <p>Напишите даты, уровень и цель поездки. Подберем формат: Винг + SUP, фойл за лодкой, урок Винг + фойл или самостоятельную практику.</p>
     <div>
       ${contactCta(page, "Написать нам", "button button-primary", "wingfoil")}
       <a class="button button-ghost" href="/dahab/wingfoil/price/">Цены</a>
@@ -1121,18 +1121,18 @@ const dahabWindsurfPage = (page) => {
   const reasons = [
     ["Ветер для глиссирования", "Стабильный ветер позволяет регулярно тренироваться и быстрее переходить от водоизмещающего режима к глиссированию.", dahabFinalImg("dahab-flat-water-training-zone.webp"), "Ветровой флаг на берегу лагуны Дахаба", 1254, 1254],
     ["Лагуна для старта", "Ровная вода и удобная учебная акватория помогают безопасно освоить доску, парус и первые галсы.", windsurfSectionImg("dahab-windsurf-planing-wind.webp"), "Обучение виндсёрфингу в лагуне Дахаба", 1600, 1600],
-    ["Три зоны для прогресса", "Лагуна подходит для обучения, Speedy — для скорости, а открытое море — для уверенного катания и волн.", dahabFinalImg("dahab-lagoon-riding-zones.webp"), "Три зоны катания на виндсёрфе в Дахабе", 1254, 1254],
-    ["4 спасательных катера", "Система спасения помогает безопасно тренироваться и быстро вернуться на станцию при поломке или ослаблении ветра.", dahabFinalImg("dahab-rescue-boat.webp"), "Спасательный катер на акватории Дахаба", 1600, 1600]
+    ["Три зоны для прогресса", "Лагуна подходит для обучения, Спиди — для скорости, а открытое море — для уверенного катания и волн.", dahabFinalImg("dahab-lagoon-riding-zones.webp"), "Три зоны катания на виндсёрфе в Дахабе", 1254, 1254],
+    ["4 спасательных катера", "Система спасения помогает безопасно тренироваться и быстро вернуться на станцию при поломке или ослаблении ветра.", dahabFinalImg("dahab-спасение-boat.webp"), "Спасательный катер на акватории Дахаба", 1600, 1600]
   ];
   const learning = [
-    ["01", "Управление парусом", "На берегу разбираем стойку, положение рук, направление ветра и основные способы управления парусом.", windsurfSectionImg("dahab-windsurf-sail-control.webp"), "Объяснение управления парусом перед уроком Windsurf", 1254, 1254],
+    ["01", "Управление парусом", "На берегу разбираем стойку, положение рук, направление ветра и основные способы управления парусом.", windsurfSectionImg("dahab-windsurf-sail-control.webp"), "Объяснение управления парусом перед уроком Виндсёрфинг", 1254, 1254],
     ["02", "Первые галсы", "На спокойной воде учимся вставать на доску, набирать ход и двигаться выбранным курсом.", windsurfSectionImg("dahab-windsurf-first-tacks.webp"), "Первые галсы на виндсёрфе в лагуне Дахаба", 1600, 1600],
     ["03", "Повороты и контроль", "Отрабатываем развороты, управление скоростью и возвращение к точке старта без помощи инструктора.", windsurfSectionImg("dahab-windsurf-turn-control.webp"), "Обучение поворотам на виндсёрфе", 1600, 1600],
     ["04", "Глиссирование и прогресс", "После освоения базы переходим к трапеции, петлям, глиссированию и более скоростному оборудованию.", windsurfSectionImg("dahab-windsurf-planing-progress.webp"), "Глиссирование на виндсёрфе в Дахабе", 720, 720]
   ];
   const prices = [
-    ["Урок", "Урок Windsurf", "$70", "Индивидуальное занятие с инструктором для новичков и продолжающих.", "Записаться"],
-    ["Kids", "Детский урок Windsurf", "от $55", "Легкий парус, спокойный темп и инструктор рядом.", "Записаться"],
+    ["Урок", "Урок Виндсёрфинг", "$70", "Индивидуальное занятие с инструктором для новичков и продолжающих.", "Записаться"],
+    ["Детский", "Детский урок Виндсёрфинг", "от $55", "Легкий парус, спокойный темп и инструктор рядом.", "Записаться"],
     ["Программа", "Программа для новичка", "от $95", "Для тех, кто приезжает научиться кататься с понятным планом.", "Подобрать программу"],
     ["Прокат", "Прокат", "от 25$", "Для самостоятельного катания с подбором доски и паруса.", "Оставить заявку"]
   ];
@@ -1140,31 +1140,31 @@ const dahabWindsurfPage = (page) => {
     [windsurfWaterImg("dahab-windsurf-planing.webp"), "Глиссирование на виндсёрфе в Дахабе", 1080, 720],
     [windsurfWaterImg("dahab-windsurf-foil-speed.webp"), "Виндсёрфинг на фойле в акватории Дахаба", 1080, 720],
     [windsurfWaterImg("dahab-windsurf-sail-control-closeup.webp"), "Контроль паруса во время катания на виндсёрфе", 1080, 720],
-    [windsurfWaterImg("dahab-windsurf-speedy-session.webp"), "Два виндсёрфера в скоростной зоне Speedy", 1080, 720],
+    [windsurfWaterImg("dahab-windsurf-speedy-session.webp"), "Два виндсёрфера в скоростной зоне Спиди", 1080, 720],
     [windsurfWaterImg("dahab-windsurf-lagoon-ride.webp"), "Катание на виндсёрфе в лагуне Дахаба", 1600, 1067]
   ];
   const stationPhotos = [
-    [dahabRefImg("bg-swiss.webp"), "Swiss Inn", "Готовим доски и паруса к новому ветровому дню", "Windsurf-станция Swiss Inn Vetratoria", 1600, 1067],
-    [dahabRefImg("bg-ganet.webp"), "Ganet Sinai", "Встречаемся на станции и выбираем формат катания", "Windsurf-станция Ganet Sinai Vetratoria", 1600, 1067],
+    [dahabRefImg("bg-swiss.webp"), "Свисс Инн", "Готовим доски и паруса к новому ветровому дню", "Станция виндсёрфинга Свисс Инн Vetratoria", 1600, 1067],
+    [dahabRefImg("bg-ganet.webp"), "Ганет Синай", "Встречаемся на станции и выбираем формат катания", "Станция виндсёрфинга Ганет Синай Vetratoria", 1600, 1067],
     ["/assets/img/media/dahab/photo-day/2026-05-24-photo-day/47.jpg", "Подготовка", "Настраиваем парус под райдера и текущий ветер", "Подготовка виндсёрф-снаряжения перед занятием", 1080, 720],
     [windsurfSectionImg("dahab-windsurf-sail-control.webp"), "Обучение", "Разбираем управление парусом до выхода", "Инструктор объясняет управление виндсёрф-парусом", 1254, 1254],
-    [windsurfSectionImg("dahab-windsurf-first-tacks.webp"), "Первые галсы", "Инструктор рядом, пока движения становятся уверенными", "Первые галсы ученика на Windsurf в Дахабе", 1600, 1600],
-    [windsurfWaterImg("dahab-windsurf-speedy-session.webp"), "Speedy", "Выходим на скорость и тренируем технику вместе", "Два виндсёрфера в зоне Speedy", 1080, 720],
-    [windsurfWaterImg("dahab-windsurf-planing.webp"), "Прогресс", "Возвращаемся за следующим парусом и новой задачей", "Глиссирование на Windsurf в Дахабе", 1080, 720],
-    ["/assets/img/media/dahab/photo-day/2026-05-24-photo-day/46.jpg", "После катания", "Отдыхаем, общаемся и планируем следующий выход", "Гости Windsurf-станции общаются после катания", 1080, 720]
+    [windsurfSectionImg("dahab-windsurf-first-tacks.webp"), "Первые галсы", "Инструктор рядом, пока движения становятся уверенными", "Первые галсы ученика на Виндсёрфинг в Дахабе", 1600, 1600],
+    [windsurfWaterImg("dahab-windsurf-speedy-session.webp"), "Спиди", "Выходим на скорость и тренируем технику вместе", "Два виндсёрфера в зоне Спиди", 1080, 720],
+    [windsurfWaterImg("dahab-windsurf-planing.webp"), "Прогресс", "Возвращаемся за следующим парусом и новой задачей", "Глиссирование на Виндсёрфинг в Дахабе", 1080, 720],
+    ["/assets/img/media/dahab/photo-day/2026-05-24-photo-day/46.jpg", "После катания", "Отдыхаем, общаемся и планируем следующий выход", "Гости станции виндсёрфинга общаются после катания", 1080, 720]
   ];
   const reviews = dahabReviewItems;
   const faqs = [
     ["Можно ли начать с нуля?", "Да. Начинаем с берега и простых упражнений на воде: стойка, парус, курс и разворот."],
     ["Что входит в урок?", "Инструктор, подбор доски и паруса, объяснение зоны катания, практика на воде и обратная связь."],
     ["Когда можно брать прокат?", "Когда вы уверенно стартуете, возвращаетесь к берегу и понимаете правила акватории. Команда подскажет подходящий комплект."],
-    ["Подходит ли windsurf детям?", "Да, для детей есть отдельный формат Windsurf Kids с легким снаряжением и спокойным темпом."],
-    ["Где проходят занятия?", "В зависимости от ветра и уровня занятия проходят на станциях Vetratoria в Дахабе, чаще Swiss Inn или Ganet Sinai."]
+    ["Подходит ли виндсёрфинг детям?", "Да, для детей есть отдельный формат Детский виндсёрфинг с легким снаряжением и спокойным темпом."],
+    ["Где проходят занятия?", "В зависимости от ветра и уровня занятия проходят на станциях Vetratoria в Дахабе, чаще Свисс Инн или Ганет Синай."]
   ];
   const useful = [
-    ["/dahab/blog/windsurf/", "Windsurf", "Как начать Windsurf с нуля", dahabRefImg("windsurf-hero.webp")],
-    ["/dahab/windsurf/price/", "Цены", "Уроки, прокат и программы Windsurf", dahabRefImg("price-windsurf.webp")],
-    ["/dahab/stations/", "Станции", "Где кататься на windsurf в Дахабе", dahabRefImg("bg-swiss.webp")]
+    ["/dahab/blog/windsurf/", "Виндсёрфинг", "Как начать Виндсёрфинг с нуля", dahabRefImg("windsurf-hero.webp")],
+    ["/dahab/windsurf/price/", "Цены", "Уроки, прокат и программы Виндсёрфинг", dahabRefImg("price-виндсёрфинг.webp")],
+    ["/dahab/stations/", "Станции", "Где кататься на виндсёрфинге в Дахабе", dahabRefImg("bg-swiss.webp")]
   ];
 
   return `
@@ -1183,28 +1183,28 @@ const dahabWindsurfPage = (page) => {
       </div>
     </div>
     <figure class="dahab-sport-hero__media">
-      <img src="${page.image}" alt="Windsurf в Дахабе на Красном море" width="1600" height="1067" loading="eager" decoding="async" fetchpriority="high">
+      <img src="${page.image}" alt="Виндсёрфинг в Дахабе на Красном море" width="1600" height="1067" loading="eager" decoding="async" fetchpriority="high">
     </figure>
   </div>
 </section>
 
 ${seasonSection([countriesByKey.dahab], {
   compact: true,
-  eyebrow: "Дахаб · условия Windsurf",
+  eyebrow: "Дахаб · условия для виндсёрфинга",
   title: "Сезон и ветер",
   lead: countriesByKey.dahab.seasonNote
 })}
 
 <section class="dahab-sport-section dahab-sport-section--location">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Локация", "Почему Дахаб подходит для Windsurf", "Учебная лагуна, стабильный ветер и несколько зон катания позволяют начать с нуля и постепенно перейти к глиссированию, скорости и открытому морю.")}
-    ${sportFeatureGrid(reasons, { atlas: true, leadImage: page.image, leadAlt: "Windsurf в Дахабе на Красном море" })}
+    ${sectionHeading("Локация", "Почему Дахаб подходит для виндсёрфинга", "Учебная лагуна, стабильный ветер и несколько зон катания позволяют начать с нуля и постепенно перейти к глиссированию, скорости и открытому морю.")}
+    ${sportFeatureGrid(reasons, { atlas: true, leadImage: page.image, leadAlt: "Виндсёрфинг в Дахабе на Красном море" })}
   </div>
 </section>
 
 <section class="dahab-sport-section dahab-sport-section--soft">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Обучение", "Как проходит обучение Windsurf", "Обучение строится поэтапно: управление парусом на берегу, первые галсы в лагуне, повороты и переход к уверенному катанию.")}
+    ${sectionHeading("Обучение", "Как проходит обучение виндсёрфингу", "Обучение строится поэтапно: управление парусом на берегу, первые галсы в лагуне, повороты и переход к уверенному катанию.")}
     <div class="dahab-sport-process">
       ${learning.map(([number, title, text, image, alt, width, height]) => `
         <article>
@@ -1217,7 +1217,7 @@ ${seasonSection([countriesByKey.dahab], {
 
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Цены", "Цены на Windsurf", "Можно взять разовый урок, детское занятие, прокат или собрать программу на несколько дней под ваши даты и уровень.")}
+    ${sectionHeading("Цены", "Цены на виндсёрфинг", "Можно взять разовый урок, детское занятие, прокат или собрать программу на несколько дней под ваши даты и уровень.")}
     <div class="dahab-sport-price-grid">
       ${prices.map(([label, title, value, text, cta]) => `
         <article class="dahab-sport-price-card">
@@ -1225,11 +1225,11 @@ ${seasonSection([countriesByKey.dahab], {
           <h3>${title}</h3>
           <b>${value}</b>
           <p>${text}</p>
-          ${contactCta(page, cta, "button button-primary", label === "Kids" ? "windsurf-kids" : "windsurf")}
+          ${contactCta(page, cta, "button button-primary", label === "Детский" ? "windsurf-kids" : "windsurf")}
         </article>`).join("")}
     </div>
     <div class="dahab-sport-price-actions">
-      <a class="button button-ghost" href="/dahab/windsurf/price/">Цены Windsurf</a>
+      <a class="button button-ghost" href="/dahab/windsurf/price/">Цены на виндсёрфинг</a>
     </div>
   </div>
 </section>
@@ -1243,19 +1243,19 @@ ${seasonSection([countriesByKey.dahab], {
       <div class="dahab-sport-safety__list">
         <span>Инструктор рядом на уроке</span>
         <span>Доска и парус под уровень</span>
-        <span>Понятная зона катания и rescue</span>
+        <span>Понятная зона катания и спасение</span>
       </div>
       <a class="button button-primary" href="/dahab/safety/">Подробнее</a>
     </div>
     <div class="dahab-sport-safety__media">
-      <img src="${wingfoilSectionImg("rescue-boats.webp")}" alt="Rescue boats на берегу станции Vetratoria" width="1920" height="1080" loading="lazy" decoding="async">
+      <img src="${wingfoilSectionImg("спасение-boats.webp")}" alt="Rescue boats на берегу станции Vetratoria" width="1920" height="1080" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
 
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Медиа", "Windsurf на воде", "")}
+    ${sectionHeading("Медиа", "Виндсёрфинг на воде", "")}
     <div class="dahab-sport-water-grid">
       ${waterPhotos.map(([image, alt, width, height], index) => `
         <a${index === 0 ? ` class="is-large"` : ""} href="/media/dahab/" aria-label="Открыть медиа Дахаба">
@@ -1270,9 +1270,9 @@ ${seasonSection([countriesByKey.dahab], {
 
 ${sportStationLife({
   id: "windsurf-station-life",
-  eyebrow: "Жизнь Windsurf-станций",
-  title: "Swiss Inn и Ganet Sinai: день вокруг ветра",
-  lead: "Подбираем доску и парус, разбираем задачу, выходим в лагуну или Speedy, а после катания обсуждаем технику и следующий шаг.",
+  eyebrow: "Жизнь Станций",
+  title: "Свисс Инн и Ганет Синай: день вокруг ветра",
+  lead: "Подбираем доску и парус, разбираем задачу, выходим в лагуну или Спиди, а после катания обсуждаем технику и следующий шаг.",
   photos: stationPhotos
 })}
 
@@ -1285,7 +1285,7 @@ ${sportStationLife({
       </div>
       <a href="https://www.tripadvisor.com/" target="_blank" rel="noopener">144 отзыва →</a>
     </div>
-    <div class="dahab-sport-review-track" aria-label="Отзывы гостей Vetratoria Dahab">
+    <div class="dahab-sport-review-track" aria-label="Отзывы гостей Vetratoria в Дахабе">
       ${reviews.map(([initial, name, stars, text]) => `
         <article class="dahab-sport-review-card">
           <div class="dahab-sport-review-card__top">
@@ -1300,13 +1300,13 @@ ${sportStationLife({
 
 <section class="dahab-sport-section dahab-sport-section--faq" id="faq">
   <div class="dahab-sport-inner">
-    ${sportFaqBlock("FAQ", "Частые вопросы", "", faqs)}
+    ${sportFaqBlock("Частые вопросы", "Частые вопросы", "", faqs)}
   </div>
 </section>
 
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Материалы", "Полезное о Windsurf", "")}
+    ${sectionHeading("Материалы", "Полезное о Виндсёрфинг", "")}
     <div class="dahab-sport-useful">
       ${useful.map(([href, label, title, image]) => `
         <a href="${href}">
@@ -1320,10 +1320,10 @@ ${sportStationLife({
 </section>
 
 <section class="dahab-sport-cta">
-  <img src="${page.image}" alt="Windsurf в Дахабе на воде" width="1600" height="1067" loading="lazy" decoding="async">
+  <img src="${page.image}" alt="Виндсёрфинг в Дахабе на воде" width="1600" height="1067" loading="lazy" decoding="async">
   <div class="dahab-sport-cta__inner">
     <p class="eyebrow">Заявка</p>
-    <h2>Хотите попробовать Windsurf в Дахабе?</h2>
+    <h2>Хотите попробовать виндсёрфинг в Дахабе?</h2>
     <p>Напишите даты, уровень и цель поездки. Подберем урок, прокат или программу на несколько дней.</p>
     <div>
       ${contactCta(page, "Написать нам", "button button-primary", "windsurf")}
@@ -1338,16 +1338,16 @@ const dahabWindsurfKidsPage = (page) => {
   const wskImg = (name) => `/assets/img/windsurf-kids/${name}`;
   const heroFacts = ["С 2009 года", "Дети от 6 лет", "500+ воспитанников", "Дахаб · Красное море"];
   const reasons = [
-    ["Спорт с понятного старта", "Новички знакомятся с ветром, доской и парусом в спокойном темпе, а продолжающие развивают технику.", wskImg("water-02.jpg"), "Юный спортсмен WindSurfKids на виндсёрфе"],
-    ["Профессиональная команда", "С детьми работают тренеры с опытом в парусном спорте и отдельным вниманием к возрасту каждого участника.", wskImg("hero.webp"), "Тренер проводит занятие для участников WindSurfKids"],
-    ["Безопасность на воде", "Акваторию контролирует команда спасателей, а оборудование подбирается под рост, вес и уровень ребёнка.", wskImg("water-01.jpg"), "Участники WindSurfKids готовят оборудование на берегу"],
-    ["Лагерь, а не только уроки", "В программе есть спорт, снорклинг, прогулки по горам, игры, экскурсии и время с новыми друзьями.", wskImg("camp-03.webp"), "Поход участников WindSurfKids в Синайских горах"]
+    ["Спорт с понятного старта", "Новички знакомятся с ветром, доской и парусом в спокойном темпе, а продолжающие развивают технику.", wskImg("water-02.jpg"), "Юный спортсмен Детский виндсёрфинг на виндсёрфе"],
+    ["Профессиональная команда", "С детьми работают тренеры с опытом в парусном спорте и отдельным вниманием к возрасту каждого участника.", wskImg("hero.webp"), "Тренер проводит занятие для участников Детский виндсёрфинг"],
+    ["Безопасность на воде", "Акваторию контролирует команда спасателей, а оборудование подбирается под рост, вес и уровень ребёнка.", wskImg("water-01.jpg"), "Участники Детский виндсёрфинг готовят оборудование на берегу"],
+    ["Лагерь, а не только уроки", "В программе есть спорт, снорклинг, прогулки по горам, игры, экскурсии и время с новыми друзьями.", wskImg("camp-03.webp"), "Поход участников Детский виндсёрфинг в Синайских горах"]
   ];
   const program = [
-    ["01", "Виндсёрфинг", "Стойка, управление парусом, выбор курса и первые самостоятельные галсы.", wskImg("water-02.jpg"), "Юный спортсмен WindSurfKids катается на виндсёрфе в Дахабе"],
-    ["02", "Виндфойл и вингфойл", "Знакомство с современными фойл-дисциплинами для детей, готовых двигаться дальше.", wskImg("water-03.jpg"), "Участник WindSurfKids со снаряжением на станции в Дахабе"],
-    ["03", "Спорт и приключения", "Командные игры, снорклинг на рифах, прогулки по горам и поездки по Дахабу.", wskImg("camp-03.webp"), "Поход участников WindSurfKids в горах рядом с Дахабом"],
-    ["04", "Командная жизнь", "Совместные занятия помогают стать самостоятельнее, увереннее и найти новых друзей.", wskImg("camp-01.webp"), "Участники детского лагеря WindSurfKids на станции Vetratoria"]
+    ["01", "Виндсёрфинг", "Стойка, управление парусом, выбор курса и первые самостоятельные галсы.", wskImg("water-02.jpg"), "Юный спортсмен Детский виндсёрфинг катается на виндсёрфе в Дахабе"],
+    ["02", "Виндфойл и вингфойл", "Знакомство с современными фойл-дисциплинами для детей, готовых двигаться дальше.", wskImg("water-03.jpg"), "Участник программы детского виндсёрфинга со снаряжением на станции в Дахабе"],
+    ["03", "Спорт и приключения", "Командные игры, снорклинг на рифах, прогулки по горам и поездки по Дахабу.", wskImg("camp-03.webp"), "Поход участников Детский виндсёрфинг в горах рядом с Дахабом"],
+    ["04", "Командная жизнь", "Совместные занятия помогают стать самостоятельнее, увереннее и найти новых друзей.", wskImg("camp-01.webp"), "Участники детского лагеря детского виндсёрфинга на станции Vetratoria"]
   ];
   const formats = [
     ["Короткий формат", "Половина дня", "Утренняя зарядка, теория, тренировка на воде и оборудование."],
@@ -1362,39 +1362,39 @@ const dahabWindsurfKidsPage = (page) => {
     ["04", "Вечер", "Ужин, футбол, баскетбол или волейбол, общий фильм и отбой в 22:00."]
   ];
   const faqs = [
-    ["С какого возраста принимают детей?", "WindSurfKids принимает детей с 6 лет. Конкретный формат подбирается с учётом возраста, физической подготовки и опыта на воде."],
-    ["Можно приехать без родителей?", "Да. Организаторы помогают согласовать сопровождение ребёнка или встречу в аэропорту. Детали необходимо заранее подтвердить с командой WSK."],
+    ["С какого возраста принимают детей?", "Детский виндсёрфинг принимает детей с 6 лет. Конкретный формат подбирается с учётом возраста, физической подготовки и опыта на воде."],
+    ["Можно приехать без родителей?", "Да. Организаторы помогают согласовать сопровождение ребёнка или встречу в аэропорту. Детали необходимо заранее подтвердить с командой лагеря."],
     ["Нужно ли своё оборудование?", "Нет. Оборудование для заявленных тренировочных форматов предоставляется лагерем и подбирается под участника."],
-    ["Где живут дети?", "Участники размещаются по 2–3 человека в Canyon Dahab Hotel. Вместе с ними проживают тренеры, администраторы и аниматоры лагеря."],
+    ["Где живут дети?", "Участники размещаются по 2–3 человека в отель «Каньон Дахаб». Вместе с ними проживают тренеры, администраторы и аниматоры лагеря."],
     ["Что нужно взять с собой?", "Понадобятся медицинская страховка, одежда и обувь для спорта и отдыха, головной убор, солнцезащитный крем и личные вещи. Полный список размещён на официальном сайте."],
-    ["Где проверить актуальные цены и даты?", "Все условия, свободные места, стоимость и детали трансфера нужно уточнять напрямую у организаторов WindSurfKids."]
+    ["Где проверить актуальные цены и даты?", "Все условия, свободные места, стоимость и детали трансфера нужно уточнять напрямую у организаторов Детский виндсёрфинг."]
   ];
   const useful = [
-    ["https://windsurfkids.su/team", "Команда", "Тренеры и спасатели WindSurfKids", wskImg("hero.webp")],
+    ["https://windsurfkids.su/team", "Команда", "Тренеры и спасатели Детский виндсёрфинг", wskImg("hero.webp")],
     ["https://windsurfkids.su/parrents", "Родителям", "Документы, сопровождение и список вещей", wskImg("camp-02.webp")],
     ["https://windsurfkids.su/price", "Форматы", "Актуальные программы и стоимость", wskImg("water-01.jpg")]
   ];
   const gallery = [
-    [wskImg("water-02.jpg"), "Юный виндсёрфер WindSurfKids на Красном море"],
+    [wskImg("water-02.jpg"), "Юный виндсёрфер Детский виндсёрфинг на Красном море"],
     [wskImg("water-01.jpg"), "Дети готовят оборудование к тренировке"],
-    [wskImg("water-04.jpg"), "Инструктор и участник WindSurfKids готовятся к тренировке на закате"],
-    [wskImg("camp-04.webp"), "Участница WindSurfKids готовит снаряжение на берегу"],
-    [wskImg("camp-05.webp"), "Группа WindSurfKids с тренерами на станции Vetratoria"]
+    [wskImg("water-04.jpg"), "Инструктор и участник Детский виндсёрфинг готовятся к тренировке на закате"],
+    [wskImg("camp-04.webp"), "Участница Детский виндсёрфинг готовит снаряжение на берегу"],
+    [wskImg("camp-05.webp"), "Группа детского виндсёрфинга с тренерами на станции Vetratoria"]
   ];
 
   return `
 <section class="dahab-hero dahab-hero--kids">
-  <img class="dahab-hero__image" src="${page.image}" alt="Тренер с участниками детского лагеря WindSurfKids в Дахабе" width="1080" height="1080" loading="eager" decoding="async" fetchpriority="high">
+  <img class="dahab-hero__image" src="${page.image}" alt="Тренер с участниками детского лагеря детского виндсёрфинга в Дахабе" width="1080" height="1080" loading="eager" decoding="async" fetchpriority="high">
   <div class="dahab-hero__shade"></div>
   <div class="dahab-hero__content">
     <p class="eyebrow">Дахаб · детский спортивный лагерь</p>
-    <h1>Детский лагерь <span>WindSurfKids</span> в Дахабе</h1>
+    <h1>Детский лагерь <span>Детский виндсёрфинг</span> в Дахабе</h1>
     <p class="hero-lead">${escapeHtml(page.description)} Летняя программа 2026 года проходит с 27 мая по 30 августа.</p>
     <div class="hero-advantages">
       ${heroFacts.map((item) => `<span class="hero-advantage">${item}</span>`).join("")}
     </div>
     <div class="hero-actions dahab-hero-actions">
-      <a class="button button-primary" href="${officialSite}" target="_blank" rel="noopener noreferrer">Перейти на сайт WindSurfKids</a>
+      <a class="button button-primary" href="${officialSite}" target="_blank" rel="noopener noreferrer">Перейти на сайт Детский виндсёрфинг</a>
       <a class="button button-ghost" href="#program">Узнать о программе</a>
     </div>
   </div>
@@ -1402,7 +1402,7 @@ const dahabWindsurfKidsPage = (page) => {
 
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
-    ${sectionHeading("О лагере", "WindSurfKids — лето, которое проходит на воде", "Лагерь работает с 2009 года, а с 2012 года принимает детей в Дахабе. За это время программу прошли более 500 юных виндсёрферов.")}
+    ${sectionHeading("О лагере", "Детский виндсёрфинг — лето, которое проходит на воде", "Лагерь работает с 2009 года, а с 2012 года принимает детей в Дахабе. За это время программу прошли более 500 юных виндсёрферов.")}
     ${sportFeatureGrid(reasons)}
   </div>
 </section>
@@ -1458,7 +1458,7 @@ const dahabWindsurfKidsPage = (page) => {
       <a class="button button-primary" href="https://windsurfkids.su/team" target="_blank" rel="noopener noreferrer">Познакомиться с командой</a>
     </div>
     <div class="dahab-sport-safety__media">
-      <img src="${wskImg("camp-01.webp")}" alt="Детская группа WindSurfKids с тренерами" width="766" height="766" loading="lazy" decoding="async">
+      <img src="${wskImg("camp-01.webp")}" alt="Детская группа Детский виндсёрфинг с тренерами" width="766" height="766" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -1467,7 +1467,7 @@ const dahabWindsurfKidsPage = (page) => {
   <div class="dahab-sport-inner dahab-sport-safety">
     <div class="dahab-sport-safety__copy">
       <p class="eyebrow">Проживание</p>
-      <h2>Canyon Dahab Hotel</h2>
+      <h2>отель «Каньон Дахаб»</h2>
       <p>Дети размещаются в светлых номерах по 2–3 человека. В отеле вместе с ними живут тренеры, администраторы и аниматоры, отвечающие за повседневный распорядок.</p>
       <div class="dahab-sport-safety__list">
         <span>Трёхразовое сбалансированное питание</span>
@@ -1477,17 +1477,17 @@ const dahabWindsurfKidsPage = (page) => {
       <a class="button button-primary" href="https://windsurfkids.su/hotel" target="_blank" rel="noopener noreferrer">Подробнее о проживании</a>
     </div>
     <div class="dahab-sport-safety__media">
-      <img src="${wskImg("hotel-01.jpg")}" alt="Canyon Dahab Hotel — место проживания участников лагеря" width="1024" height="446" loading="lazy" decoding="async">
+      <img src="${wskImg("hotel-01.jpg")}" alt="отель «Каньон Дахаб» — место проживания участников лагеря" width="1024" height="446" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
 
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Фотографии", "Жизнь WindSurfKids в Дахабе", "Тренировки, командные занятия и приключения между Красным морем и Синайскими горами. Фотографии опубликованы официальным сайтом WindSurfKids.")}
+    ${sectionHeading("Фотографии", "Жизнь Детский виндсёрфинг в Дахабе", "Тренировки, командные занятия и приключения между Красным морем и Синайскими горами. Фотографии опубликованы официальным сайтом Детский виндсёрфинг.")}
     <div class="dahab-sport-water-grid">
       ${gallery.map(([image, alt], index) => `
-        <a${index === 0 ? ` class="is-large"` : ""} href="https://windsurfkids.su/photos" target="_blank" rel="noopener noreferrer" aria-label="Открыть фотографии на сайте WindSurfKids">
+        <a${index === 0 ? ` class="is-large"` : ""} href="https://windsurfkids.su/photos" target="_blank" rel="noopener noreferrer" aria-label="Открыть фотографии на сайте Детский виндсёрфинг">
           <img src="${image}" alt="${alt}" width="1080" height="1080" loading="lazy" decoding="async">
         </a>`).join("")}
     </div>
@@ -1505,25 +1505,25 @@ const dahabWindsurfKidsPage = (page) => {
 
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Официальная информация", "Полезные разделы WindSurfKids", "")}
+    ${sectionHeading("Официальная информация", "Полезные разделы Детский виндсёрфинг", "")}
     <div class="dahab-sport-useful">
       ${useful.map(([href, label, title, image]) => `
         <a href="${href}" target="_blank" rel="noopener noreferrer">
           <img src="${image}" alt="${title}" width="1080" height="1080" loading="lazy" decoding="async">
           <span>${label}</span>
           <h3>${title}</h3>
-          <em>Открыть на WindSurfKids</em>
+          <em>Открыть на Детский виндсёрфинг</em>
         </a>`).join("")}
     </div>
   </div>
 </section>
 
 <section class="dahab-sport-cta">
-  <img src="${wskImg("camp-03.webp")}" alt="Поход участников WindSurfKids в Синайских горах" width="1080" height="1080" loading="lazy" decoding="async">
+  <img src="${wskImg("camp-03.webp")}" alt="Поход участников Детский виндсёрфинг в Синайских горах" width="1080" height="1080" loading="lazy" decoding="async">
   <div class="dahab-sport-cta__inner">
     <p class="eyebrow">Летний сезон 2026</p>
     <h2>Готовы подарить ребёнку лето на воде?</h2>
-    <p>Актуальные даты, стоимость и наличие мест уточняйте напрямую у команды WindSurfKids. Лагерь является самостоятельным организатором программы.</p>
+    <p>Актуальные даты, стоимость и наличие мест уточняйте напрямую у команды Детский виндсёрфинг. Лагерь является самостоятельным организатором программы.</p>
     <div>
       <a class="button button-primary" href="${officialSite}" target="_blank" rel="noopener noreferrer">Перейти на официальный сайт WSK</a>
       <a class="button button-ghost" href="https://windsurfkids.su/price" target="_blank" rel="noopener noreferrer">Программы и цены</a>
@@ -1549,7 +1549,7 @@ const dahabHowToGetPage = (page) => {
     ["Рейс", "Сохраните номер рейса и актуальное время прибытия."],
     ["Связь", "Оставьте телефон с WhatsApp или Telegram для контакта с водителем."],
     ["Багаж", "Предупредите заранее, если везёте доску, парус, крыло или другой негабаритный багаж."],
-    ["Документы", "Возьмите распечатку e-Visa, если оформляли её онлайн, бронь проживания и страховой полис."]
+    ["Документы", "Возьмите распечатку электронную визу, если оформляли её онлайн, бронь проживания и страховой полис."]
   ];
   const faqs = [
     ["Какой аэропорт выбирать?", "Удобнее всего прилетать в международный аэропорт Шарм-эль-Шейха. От него до Дахаба около 100 км."],
@@ -1557,7 +1557,7 @@ const dahabHowToGetPage = (page) => {
     ["Можно ли заказать машину для группы?", "Да. В зависимости от количества пассажиров организуем легковой автомобиль или микроавтобус. Сообщите состав группы и объём багажа заранее."],
     ["Можно ли перевезти спортивное оборудование?", "Да, но габариты снаряжения нужно указать при заказе, чтобы мы подобрали подходящий автомобиль."],
     ["Нужна ли виза для поездки в Дахаб?", "Для короткой поездки только по курортам Южного Синая обычно доступен бесплатный штамп. Для более длительного отдыха или поездок по остальному Египту нужна туристическая виза."],
-    ["Где проверять актуальные правила?", "Используйте официальный портал Egypt e-Visa и требования вашей авиакомпании. Окончательное решение о въезде принимает пограничная служба Египта."]
+    ["Где проверять актуальные правила?", "Используйте официальный портал электронных виз Египта и требования вашей авиакомпании. Окончательное решение о въезде принимает пограничная служба Египта."]
   ];
 
   return `
@@ -1607,7 +1607,7 @@ const dahabHowToGetPage = (page) => {
       ${contactCta(page, "Заказать трансфер")}
     </div>
     <div class="dahab-sport-safety__media">
-      <img src="${dahabRefImg("bg-ganet.webp")}" alt="Станция Vetratoria Ganet Sinai в Дахабе" width="1600" height="1067" loading="lazy" decoding="async">
+      <img src="${dahabRefImg("bg-ganet.webp")}" alt="Станция Vetratoria Ганет Синай в Дахабе" width="1600" height="1067" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -1619,7 +1619,7 @@ const dahabHowToGetPage = (page) => {
       ${entryRules.map(([title, text], index) => `<article><span>0${index + 1}</span><h3>${title}</h3><p>${text}</p></article>`).join("")}
     </div>
     <div class="dahab-sport-price-actions">
-      <a class="button button-primary" href="https://www.visa2egypt.gov.eg/eVisa/Home" target="_blank" rel="noopener noreferrer">Официальный портал Egypt e-Visa</a>
+      <a class="button button-primary" href="https://www.visa2egypt.gov.eg/eVisa/Home" target="_blank" rel="noopener noreferrer">Официальный портал электронных виз Египта</a>
     </div>
   </div>
 </section>
@@ -1635,7 +1635,7 @@ const dahabHowToGetPage = (page) => {
 
 <section class="dahab-sport-section dahab-sport-section--faq" id="faq">
   <div class="dahab-sport-inner">
-    ${sportFaqBlock("FAQ", "Частые вопросы о дороге", "", faqs)}
+    ${sportFaqBlock("Частые вопросы", "Частые вопросы о дороге", "", faqs)}
   </div>
 </section>
 
@@ -1655,15 +1655,15 @@ const dahabHowToGetPage = (page) => {
 
 const dahabHomePage = (page) => {
   const priceCards = [
-    ["Wingfoil", "Индивидуальный урок", "70$", "Инструктор, полный комплект, спасательная поддержка и страховка снаряжения.", dahabRefImg("price-wingfoil.webp"), "/dahab/wingfoil/price/"],
-    ["Подготовка к Wingfoil", "Фойл за лодкой", "60$", "Отдельно тренируем баланс и контроль высоты — без необходимости одновременно управлять крылом.", dahabRefImg("price-foil-boat.webp"), "/dahab/wingfoil/price/"],
-    ["Windsurf", "Индивидуальный урок", "70$", "Инструктор, доска, парус, спасательная поддержка и страховка снаряжения.", dahabRefImg("price-windsurf.webp"), "/dahab/windsurf/price/"],
-    ["Windsurf Kids", "Детский урок", "от 55$", "Лёгкий парус, подходящая доска, инструктор рядом и спокойный темп.", dahabRefImg("price-kids.webp"), "/dahab/windsurf-kids/"]
+    ["Вингфойл", "Индивидуальный урок", "70$", "Инструктор, полный комплект, спасательная поддержка и страховка снаряжения.", dahabRefImg("price-вингфойл.webp"), "/dahab/wingfoil/price/"],
+    ["Подготовка к Вингфойл", "Фойл за лодкой", "60$", "Отдельно тренируем баланс и контроль высоты — без необходимости одновременно управлять крылом.", dahabRefImg("price-foil-boat.webp"), "/dahab/wingfoil/price/"],
+    ["Виндсёрфинг", "Индивидуальный урок", "70$", "Инструктор, доска, парус, спасательная поддержка и страховка снаряжения.", dahabRefImg("price-виндсёрфинг.webp"), "/dahab/windsurf/price/"],
+    ["Детский виндсёрфинг", "Детский урок", "от 55$", "Лёгкий парус, подходящая доска, инструктор рядом и спокойный темп.", dahabRefImg("price-kids.webp"), "/dahab/windsurf-kids/"]
   ];
   const stations = [
-    ["Wing Center", "Только Wingfoil", dahabRefImg("bg-wingfoil-station.webp")],
-    ["Swiss Inn", "Windsurf", dahabRefImg("bg-swiss.webp")],
-    ["Ganet Sinai", "Windsurf", dahabRefImg("bg-ganet.webp")]
+    ["Винг-центр", "Только вингфойл", dahabRefImg("bg-wingfoil-station.webp")],
+    ["Свисс Инн", "Виндсёрфинг", dahabRefImg("bg-swiss.webp")],
+    ["Ганет Синай", "Виндсёрфинг", dahabRefImg("bg-ganet.webp")]
   ];
   const learningSteps = [
     ["01", "Определяем вашу точку старта", "Уточняем опыт, цель и самочувствие, смотрим ветер и подбираем комплект по весу и уровню."],
@@ -1679,8 +1679,8 @@ const dahabHomePage = (page) => {
   ];
   const dahabFaqs = [
     ["Сколько занятий нужно до первых самостоятельных метров?", "После первого–второго занятия многие уже могут выходить на воду и отрабатывать базовые элементы самостоятельно под наблюдением спасательной команды. Точный момент зависит от ветра, выбранного спорта и уверенности ученика."],
-    ["Есть ли программа на 3–5 дней?", "Да. Можно сочетать уроки и самостоятельную практику с прокатом. Наполнение программы подбираем по уровню, а актуальную стоимость смотрите на страницах цен Wingfoil и Windsurf."],
-    ["Можно ли рассчитывать на первые полёты за несколько занятий?", "У многих первые контролируемые полёты на wingfoil получаются за несколько дней. Мы говорим об этом честно: скорость прогресса зависит от ветра, физической подготовки, предыдущего опыта и времени на самостоятельную практику."],
+    ["Есть ли программа на 3–5 дней?", "Да. Можно сочетать уроки и самостоятельную практику с прокатом. Наполнение программы подбираем по уровню, а актуальную стоимость смотрите на страницах цен Вингфойл и Виндсёрфинг."],
+    ["Можно ли рассчитывать на первые полёты за несколько занятий?", "У многих первые контролируемые полёты на вингфойл получаются за несколько дней. Мы говорим об этом честно: скорость прогресса зависит от ветра, физической подготовки, предыдущего опыта и времени на самостоятельную практику."],
     ["Что входит в стоимость урока?", "Инструктор, подходящее снаряжение, спасательная поддержка и страховка снаряжения. Перед оплатой команда подтвердит продолжительность и состав выбранного формата."]
   ];
   const reviews = dahabReviewItems;
@@ -1697,11 +1697,11 @@ const dahabHomePage = (page) => {
 
   return `
 <section class="dahab-hero">
-  <img class="dahab-hero__image" src="${dahabRefImg("ganet-sinai.webp")}" alt="Дахаб: Wingfoil и Windsurf на Красном море" width="1600" height="1067" fetchpriority="high">
+  <img class="dahab-hero__image" src="${dahabRefImg("ganet-sinai.webp")}" alt="Дахаб: Вингфойл и Виндсёрфинг на Красном море" width="1600" height="1067" fetchpriority="high">
   <div class="dahab-hero__shade"></div>
   <div class="dahab-hero__content">
     <p class="eyebrow">Египет · Дахаб</p>
-    <h1>Wingfoil и Windsurf в Дахабе</h1>
+    <h1>Вингфойл и Виндсёрфинг в Дахабе</h1>
     <p class="hero-lead">Обучение и прокат на Красном море для новичков и опытных райдеров. Подберём программу, инструктора и снаряжение под ваш уровень.</p>
     <div class="hero-advantages"><span class="hero-advantage">С 2006 года</span><span class="hero-advantage">Условия для любого уровня</span><span class="hero-advantage hero-advantage--nowrap">10&nbsp;000+&nbsp;учеников</span><span class="hero-advantage">4 спасательных катера</span></div>
     <div class="hero-actions dahab-hero-actions">
@@ -1711,7 +1711,7 @@ const dahabHomePage = (page) => {
   </div>
 </section>
 
-<section class="dahab-marquee" aria-label="Vetratoria Dahab">
+<section class="dahab-marquee" aria-label="Vetratoria в Дахабе">
   <div class="dahab-marquee__track">
     <span>ДАХАБ · ВЕТЕР КРУГЛЫЙ ГОД / УРОК ВИНГФОЙЛА — 70$ / УРОК ВИНДСЁРФИНГА — 70$ / ДЕТСКИЙ УРОК — ОТ 55$ / ПРОКАТ — ОТ 25$ / 4 СПАСАТЕЛЬНЫХ КАТЕРА / SWISS INN / GANET SINAI / WING CENTER / </span>
     <span aria-hidden="true">ДАХАБ · ВЕТЕР КРУГЛЫЙ ГОД / УРОК ВИНГФОЙЛА — 70$ / УРОК ВИНДСЁРФИНГА — 70$ / ДЕТСКИЙ УРОК — ОТ 55$ / ПРОКАТ — ОТ 25$ / 4 СПАСАТЕЛЬНЫХ КАТЕРА / SWISS INN / GANET SINAI / WING CENTER / </span>
@@ -1732,25 +1732,25 @@ ${seasonSection([countriesByKey.dahab], {
       <h2>Выберите свой спорт</h2>
     </header>
     <div class="sport-split__grid">
-      <a class="sport-tile" href="/dahab/wingfoil/" aria-label="Открыть страницу Wingfoil в Дахабе">
-        <img src="${dahabRefImg("choose-wingfoil.webp")}" alt="Wingfoil в Дахабе" width="1600" height="1067" loading="lazy" decoding="async">
+      <a class="sport-tile" href="/dahab/wingfoil/" aria-label="Открыть страницу вингфойла в Дахабе">
+        <img src="${dahabRefImg("choose-вингфойл.webp")}" alt="Вингфойл в Дахабе" width="1600" height="1067" loading="lazy" decoding="async">
         <div class="sport-tile__content">
-          <h2>Wingfoil</h2>
+          <h2>Вингфойл</h2>
           <span>Подробнее</span>
         </div>
       </a>
-      <a class="sport-tile" href="/dahab/windsurf/" aria-label="Открыть страницу Windsurf в Дахабе">
-        <img src="/assets/img/final/windsurf/hero.webp" alt="Windsurf в Дахабе" width="1920" height="1280" loading="eager" decoding="async">
+      <a class="sport-tile" href="/dahab/windsurf/" aria-label="Открыть страницу виндсёрфинга в Дахабе">
+        <img src="/assets/img/final/windsurf/hero.webp" alt="Виндсёрфинг в Дахабе" width="1920" height="1280" loading="eager" decoding="async">
         <div class="sport-tile__content">
-          <h2>Windsurf</h2>
+          <h2>Виндсёрфинг</h2>
           <span>Подробнее</span>
         </div>
       </a>
     </div>
     <a class="wsk-strip" href="/dahab/windsurf-kids/">
-      <span class="wsk-strip__media"><img src="${dahabRefImg("wsk-2.webp")}" alt="Детский windsurf в Дахабе" width="1090" height="600" loading="lazy" decoding="async"></span>
-      <span class="wsk-strip__content"><small>Windsurf Kids · Дахаб</small><b>WINDSURFKIDS</b><em>Детский спортивный лагерь WindSurfKids существует с 2009 года, а с 2012 года базируется в Дахабе. Спорт, друзья, творчество и безопасная акватория.</em></span>
-      <span class="wsk-strip__button">Смотреть Kids</span>
+      <span class="wsk-strip__media"><img src="${dahabRefImg("wsk-2.webp")}" alt="Детский виндсёрфинг в Дахабе" width="1090" height="600" loading="lazy" decoding="async"></span>
+      <span class="wsk-strip__content"><small>Детский виндсёрфинг · Дахаб</small><b>WINDSURFKIDS</b><em>Детский спортивный лагерь Детский виндсёрфинг существует с 2009 года, а с 2012 года базируется в Дахабе. Спорт, друзья, творчество и безопасная акватория.</em></span>
+      <span class="wsk-strip__button">Смотреть Детский</span>
     </a>
   </div>
 </section>
@@ -1792,16 +1792,16 @@ ${seasonSection([countriesByKey.dahab], {
       </div>
       <div>
         <p>Акватория Дахаба разделена на три отдельные зоны. У каждой свой рельеф воды и характер катания — от закрытой учебной лагуны до волн открытого моря.</p>
-        <p class="water-area__route" aria-label="Маршрут по акватории: Лагуна, затем Speedy, затем Камикадзе"><span>Лагуна</span><b aria-hidden="true">→</b><span>Speedy</span><b aria-hidden="true">→</b><span>Камикадзе</span></p>
+        <p class="water-area__route" aria-label="Маршрут по акватории: Лагуна, затем Спиди, затем Камикадзе"><span>Лагуна</span><b aria-hidden="true">→</b><span>Спиди</span><b aria-hidden="true">→</b><span>Камикадзе</span></p>
       </div>
     </header>
     <div class="water-area__layout">
       <figure class="water-area__visual">
-        <img src="${dahabRefImg("aqva-aerial.webp")}" alt="Три отдельные зоны акватории Дахаба: лагуна, Speedy и Камикадзе" width="900" height="1200" loading="lazy" decoding="async">
+        <img src="${dahabRefImg("aqva-aerial.webp")}" alt="Три отдельные зоны акватории Дахаба: лагуна, Спиди и Камикадзе" width="900" height="1200" loading="lazy" decoding="async">
       </figure>
       <div class="water-area__cards">
         <article data-reveal="line"><span aria-hidden="true">01</span><div><strong>Лагуна</strong><small>Закрытая учебная зона</small><p>Лагуна защищена берегом и подходит для учеников: здесь спокойнее вода, проще отрабатывать первые старты, баланс и базовую технику.</p></div></article>
-        <article data-reveal="line"><span aria-hidden="true">02</span><div><strong>Speedy</strong><small>Гладкая скоростная зона</small><p>Speedy отделена от открытого моря косой. Благодаря этому вода остаётся гладкой при разных направлениях ветра — здесь уверенные райдеры разгоняются и отрабатывают технику на скорости.</p></div></article>
+        <article data-reveal="line"><span aria-hidden="true">02</span><div><strong>Спиди</strong><small>Гладкая скоростная зона</small><p>Спиди отделена от открытого моря косой. Благодаря этому вода остаётся гладкой при разных направлениях ветра — здесь уверенные райдеры разгоняются и отрабатывают технику на скорости.</p></div></article>
         <article data-reveal="line"><span aria-hidden="true">03</span><div><strong>Камикадзе</strong><small>Открытое море и волны</small><p>Камикадзе находится уже за защищённой частью акватории. Это отдельная зона открытого моря с волной для самостоятельных опытных райдеров.</p></div></article>
       </div>
     </div>
@@ -1824,7 +1824,7 @@ ${seasonSection([countriesByKey.dahab], {
     </div>
     <div class="price-help-cta">
       <div><b>Хотите заниматься 3–5 дней?</b><p>Соберём программу из уроков и самостоятельной практики. Первые полёты часто получаются за несколько дней, но темп всегда индивидуален.</p></div>
-      <nav>${contactCta(page, "Оставить заявку", "", null)}<a href="/dahab/wingfoil/price/">Цены на Wingfoil</a><a href="/dahab/windsurf/price/">Цены на Windsurf</a></nav>
+      <nav>${contactCta(page, "Оставить заявку", "", null)}<a href="/dahab/wingfoil/price/">Цены на вингфойл</a><a href="/dahab/windsurf/price/">Цены на виндсёрфинг</a></nav>
     </div>
   </div>
 </section>
@@ -1843,7 +1843,7 @@ ${stationLifeGallery({
       <p class="eyebrow">144 актуальных отзыва</p>
       <h2>Что говорят гости Vetratoria</h2>
     </header>
-    <section class="trust-slider trust-slider--reviews" aria-label="Отзывы гостей Vetratoria Dahab">
+    <section class="trust-slider trust-slider--reviews" aria-label="Отзывы гостей Vetratoria в Дахабе">
       <div class="trust-slider__top">
         <div><span>Отзывы</span><h3>О школе и команде</h3></div>
         <a href="https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html" target="_blank" rel="noopener">144 отзыва →</a>
@@ -1915,68 +1915,68 @@ const dahabStationsPage = (page) => {
   const stations = [
     {
       id: "vetratoria-ganet",
-      eyebrow: "Windsurf",
-      title: "Vetratoria Ganet Sinai",
+      eyebrow: "Виндсёрфинг",
+      title: "Vetratoria Ганет Синай",
       text: [
-        "База Vetratoria в Дахабе для windsurf, проката, уроков и станционной жизни рядом с водой. Здесь удобно встретиться с командой, подобрать комплект и понять, какая зона подходит под ветер и уровень.",
-        "Ganet хорошо подходит для практики, прогресса и спокойного выбора формата без лишней логистики: пришли на станцию, обсудили условия, вышли на воду."
+        "База Vetratoria в Дахабе для виндсёрфинга, проката, уроков и станционной жизни рядом с водой. Здесь удобно встретиться с командой, подобрать комплект и понять, какая зона подходит под ветер и уровень.",
+        "Ганет хорошо подходит для практики, прогресса и спокойного выбора формата без лишней логистики: пришли на станцию, обсудили условия, вышли на воду."
       ],
-      tags: ["Windsurf", "Прокат", "Практика", "Команда рядом"],
-      sliderTitle: "Ganet Sinai",
-      sliderLead: "Windsurf-база, прокат, уроки и выбор формата под ветер.",
+      tags: ["Виндсёрфинг", "Прокат", "Практика", "Команда рядом"],
+      sliderTitle: "Ганет Синай",
+      sliderLead: "Виндсёрфинг-база, прокат, уроки и выбор формата под ветер.",
       images: [
-        { file: "ganet-01.webp", alt: "Vetratoria Ganet Sinai у воды" },
-        { file: "ganet-02.webp", alt: "Снаряжение на станции Ganet Sinai" },
-        { file: "ganet-03.webp", alt: "Внутри станции Ganet Sinai" },
-        { file: "ganet-04.webp", alt: "Пляж и старт у Ganet Sinai" },
-        { file: "ganet-05.webp", alt: "Оборудование Vetratoria Ganet" },
-        { file: "ganet-06.webp", alt: "Фасад Vetratoria Ganet Sinai" }
+        { file: "ganet-01.webp", alt: "Vetratoria Ганет Синай у воды" },
+        { file: "ganet-02.webp", alt: "Снаряжение на станции Ганет Синай" },
+        { file: "ganet-03.webp", alt: "Внутри станции Ганет Синай" },
+        { file: "ganet-04.webp", alt: "Пляж и старт у Ганет Синай" },
+        { file: "ganet-05.webp", alt: "Оборудование Vetratoria Ганет" },
+        { file: "ganet-06.webp", alt: "Фасад Vetratoria Ганет Синай" }
       ]
     },
     {
       id: "wing-center",
       reverse: true,
-      eyebrow: "Wingfoil",
-      title: "Wing Center",
+      eyebrow: "Вингфойл",
+      title: "Винг-центр",
       text: [
-        "Главная точка для wingfoil: здесь начинаются уроки, подбор крыла и доски, фойл за лодкой и первые самостоятельные выходы. Формат подходит тем, кто хочет быстро разобраться с фойлом и крылом.",
-        "На Wing Center удобно смотреть ветер, обсуждать попытки с инструктором и возвращаться на воду снова — без сложной системы пакетов и лишних шагов."
+        "Главная точка для вингфойл: здесь начинаются уроки, подбор крыла и доски, фойл за лодкой и первые самостоятельные выходы. Формат подходит тем, кто хочет быстро разобраться с фойлом и крылом.",
+        "На Винг-центр удобно смотреть ветер, обсуждать попытки с инструктором и возвращаться на воду снова — без сложной системы пакетов и лишних шагов."
       ],
-      tags: ["Wingfoil", "Foil boat", "Уроки", "Подбор комплекта"],
-      sliderTitle: "Wing Center",
-      sliderLead: "Wingfoil, foil boat, оборудование и выходы на воду.",
+      tags: ["Вингфойл", "Фойл за лодкой", "Уроки", "Подбор комплекта"],
+      sliderTitle: "Винг-центр",
+      sliderLead: "Вингфойл, фойл за лодкой, оборудование и выходы на воду.",
       images: [
-        { file: "wing-center-01.webp", alt: "Wing Center Vetratoria" },
-        { file: "wing-center-02.webp", alt: "Пляж у Wing Center" },
-        { file: "wing-center-03.webp", alt: "Карта акватории Wing Center" },
-        { file: "wing-center-04.webp", alt: "Зона отдыха Wing Center" },
-        { file: "wing-center-05.webp", alt: "Стартовая зона Wing Center" },
-        { file: "wing-center-06.webp", alt: "Wing Center со стороны воды" },
-        { file: "wing-center-07.webp", alt: "Оборудование Wing Center" },
-        { file: "wing-center-08.webp", alt: "Зона ожидания Wing Center" },
-        { file: "wing-center-09.webp", alt: "Фасад Wing Center" },
-        { file: "wing-center-10.webp", alt: "Терраса Wing Center" }
+        { file: "wing-center-01.webp", alt: "Винг-центр Vetratoria" },
+        { file: "wing-center-02.webp", alt: "Пляж у Винг-центр" },
+        { file: "wing-center-03.webp", alt: "Карта акватории Винг-центр" },
+        { file: "wing-center-04.webp", alt: "Зона отдыха Винг-центр" },
+        { file: "wing-center-05.webp", alt: "Стартовая зона Винг-центр" },
+        { file: "wing-center-06.webp", alt: "Винг-центр со стороны воды" },
+        { file: "wing-center-07.webp", alt: "Оборудование Винг-центр" },
+        { file: "wing-center-08.webp", alt: "Зона ожидания Винг-центр" },
+        { file: "wing-center-09.webp", alt: "Фасад Винг-центр" },
+        { file: "wing-center-10.webp", alt: "Терраса Винг-центр" }
       ]
     },
     {
       id: "swiss-inn",
-      eyebrow: "Windsurf",
-      title: "Swiss Inn",
+      eyebrow: "Виндсёрфинг",
+      title: "Свисс Инн",
       text: [
-        "Станция рядом с отелем и понятным стартом на воду. Swiss Inn удобен для windsurf-уроков, детского формата, проката и тех, кто хочет простую логистику между отдыхом и катанием.",
+        "Станция рядом с отелем и понятным стартом на воду. Свисс Инн удобен для уроков виндсёрфинга, детского формата, проката и тех, кто хочет простую логистику между отдыхом и катанием.",
         "Здесь хорошо начинать спокойно: берег рядом, оборудование под рукой, инструктор видит условия и помогает выбрать парус, доску и задачу на занятие."
       ],
-      tags: ["Windsurf", "Kids", "Первые уроки", "Отель рядом"],
-      sliderTitle: "Swiss Inn",
-      sliderLead: "Windsurf, kids, первые уроки и комфортный старт рядом с отелем.",
+      tags: ["Виндсёрфинг", "Детский", "Первые уроки", "Отель рядом"],
+      sliderTitle: "Свисс Инн",
+      sliderLead: "Виндсёрфинг, kids, первые уроки и комфортный старт рядом с отелем.",
       images: [
-        { file: "swiss-01.webp", alt: "Оборудование Swiss Inn" },
-        { file: "swiss-02.webp", alt: "Паруса на Swiss Inn" },
-        { file: "swiss-03.webp", alt: "Зона хранения Swiss Inn" },
-        { file: "swiss-04.webp", alt: "Терраса Swiss Inn" },
-        { file: "swiss-05.webp", alt: "Пляж Swiss Inn" },
-        { file: "swiss-06.webp", alt: "Фасад Vetratoria Swiss Inn" },
-        { file: "swiss-07.webp", alt: "Снаряжение Swiss Inn" }
+        { file: "swiss-01.webp", alt: "Оборудование Свисс Инн" },
+        { file: "swiss-02.webp", alt: "Паруса на Свисс Инн" },
+        { file: "swiss-03.webp", alt: "Зона хранения Свисс Инн" },
+        { file: "swiss-04.webp", alt: "Терраса Свисс Инн" },
+        { file: "swiss-05.webp", alt: "Пляж Свисс Инн" },
+        { file: "swiss-06.webp", alt: "Фасад Vetratoria Свисс Инн" },
+        { file: "swiss-07.webp", alt: "Снаряжение Свисс Инн" }
       ]
     }
   ];
@@ -1990,7 +1990,7 @@ const dahabStationsPage = (page) => {
   <div class="hero-content">
     <p class="eyebrow">Дахаб · станции</p>
     <h1 id="stations-title">Станции Vetratoria в Дахабе</h1>
-    <p>Три точки у воды: Vetratoria Ganet Sinai, Wing Center и Swiss Inn. На этой странице — коротко о каждой станции, фото и понятный выбор, куда ехать под ваш спорт, уровень и даты.</p>
+    <p>Три точки у воды: Vetratoria Ганет Синай, Винг-центр и Свисс Инн. На этой странице — коротко о каждой станции, фото и понятный выбор, куда ехать под ваш спорт, уровень и даты.</p>
     <div class="hero-actions">
       ${contactCta(page, "Подобрать станцию")}
       <a class="button button-ghost" href="#vetratoria-ganet">Смотреть станции</a>
@@ -2000,12 +2000,12 @@ const dahabStationsPage = (page) => {
 
 <nav class="dahab-stations-pills-bar" aria-label="Быстрый выбор станции и спорта">
   <div class="dahab-stations-inner dahab-stations-pills">
-    <a href="#vetratoria-ganet">Ganet Sinai</a>
-    <a href="#wing-center">Wing Center</a>
-    <a href="#swiss-inn">Swiss Inn</a>
-    <a href="/dahab/windsurf/">Windsurf</a>
-    <a href="/dahab/wingfoil/">Wingfoil</a>
-    <a href="/dahab/windsurf-kids/">Kids</a>
+    <a href="#vetratoria-ganet">Ганет Синай</a>
+    <a href="#wing-center">Винг-центр</a>
+    <a href="#swiss-inn">Свисс Инн</a>
+    <a href="/dahab/windsurf/">Виндсёрфинг</a>
+    <a href="/dahab/wingfoil/">Вингфойл</a>
+    <a href="/dahab/windsurf-kids/">Детский</a>
   </div>
 </nav>
 
@@ -2030,7 +2030,7 @@ ${stations.map((station, index) => `
       <div>
         <p class="eyebrow">Подбор станции</p>
         <h2>Не знаете, куда лучше приехать?</h2>
-        <p>Напишите даты, отель, уровень и спорт. Мы подскажем, какая станция будет удобнее именно для вашего формата: wingfoil, windsurf, kids, прокат или уроки.</p>
+        <p>Напишите даты, отель, уровень и спорт. Мы подскажем, какая станция будет удобнее именно для вашего формата: вингфойл, виндсёрфинг, детская программа, прокат или уроки.</p>
       </div>
       <div class="dahab-stations-actions">
         ${contactCta(page, "Подобрать станцию")}
@@ -2062,7 +2062,7 @@ const dahabSafetyPage = (page) => {
   <div class="dahab-hero__content">
     <p class="eyebrow">Дахаб · безопасность</p>
     <h1>Безопасность на воде — часть каждого выхода</h1>
-    <p class="hero-lead">В Vetratoria безопасность начинается до воды: объясняем акваторию, проводим инструктаж, контролируем райдеров и поддерживаем rescue-готовность на станциях.</p>
+    <p class="hero-lead">В Vetratoria безопасность начинается до воды: объясняем акваторию, проводим инструктаж, контролируем райдеров и поддерживаем спасение-готовность на станциях.</p>
     <div class="hero-advantages">
       <span class="hero-advantage">4 спасательных катера</span>
       <span class="hero-advantage">Контроль на воде</span>
@@ -2278,12 +2278,12 @@ const priceRows = (sportTitle = "Спорт", { showServiceDetails = true } = {}
 
 const dahabWingfoilPricePage = (page) => `
 <section class="dahab-hero dahab-hero--price">
-  <img class="dahab-hero__image" src="/assets/img/final/wingfoil/hero.webp" alt="Цены Wingfoil в Дахабе" width="1600" height="1067" fetchpriority="high">
+  <img class="dahab-hero__image" src="/assets/img/final/wingfoil/hero.webp" alt="Цены на вингфойл в Дахабе" width="1600" height="1067" fetchpriority="high">
   <div class="dahab-hero__shade"></div>
   <div class="dahab-hero__content">
-    <p class="eyebrow">Египет · Дахаб · Wingfoil</p>
-    <h1>Цены Wingfoil в Дахабе</h1>
-    <p>Полный прайс: аренда комплектов, уроки винга, фойл за лодкой, Wing + SUP, Wing + Foil, отдельная аренда крыла и доски, обучающие пакеты, интенсив-пакеты, страховка и хранение.</p>
+    <p class="eyebrow">Египет · Дахаб · Вингфойл</p>
+    <h1>Цены на вингфойл в Дахабе</h1>
+    <p>Полный прайс: аренда комплектов, уроки винга, фойл за лодкой, Винг + SUP, Винг + фойл, отдельная аренда крыла и доски, обучающие пакеты, интенсив-пакеты, страховка и хранение.</p>
     <div class="hero-actions dahab-hero-actions">
       <a class="button button-primary" href="#rental">Аренда</a>
       <a class="button button-primary" href="#lessons">Уроки</a>
@@ -2297,7 +2297,7 @@ const dahabWingfoilPricePage = (page) => `
 <section class="wingfoil-price-section wingfoil-price-section--soft" id="rental">
   <div class="wingfoil-price-inner">
     <header class="wingfoil-price-heading">
-      <p class="eyebrow">Wingfoil · аренда</p>
+      <p class="eyebrow">Вингфойл · аренда</p>
       <h2>Аренда комплектов для винг-сёрфинга</h2>
       <p>Комплект и категория подбираются под уровень, вес, ветер и задачу.</p>
     </header>
@@ -2324,7 +2324,7 @@ const dahabWingfoilPricePage = (page) => `
     </div>
     <p class="wingfoil-price-copy">Лодочная поддержка: $10</p>
 
-    <h3 class="wingfoil-price-subtitle">Хранение wingfoil-оборудования</h3>
+    <h3 class="wingfoil-price-subtitle">Хранение вингфойл-оборудования</h3>
     <div class="wingfoil-table-wrap">
       <table class="wingfoil-price-table">
         <thead><tr><th>Период хранения</th><th>Цена ($)</th></tr></thead>
@@ -2357,9 +2357,9 @@ const dahabWingfoilPricePage = (page) => `
 <section class="wingfoil-price-section" id="lessons">
   <div class="wingfoil-price-inner">
     <header class="wingfoil-price-heading">
-      <p class="eyebrow">Wingfoil · уроки</p>
+      <p class="eyebrow">Вингфойл · уроки</p>
       <h2>Уроки и часовые форматы</h2>
-      <p>Для старта можно идти через Wing + SUP и фойл за лодкой, дальше — Wing + Foil и самостоятельная практика.</p>
+      <p>Для старта можно идти через Винг + SUP и фойл за лодкой, дальше — Винг + фойл и самостоятельная практика.</p>
     </header>
 
     <h3 class="wingfoil-price-subtitle">Уроки винга (винг + доска + инструктор)</h3>
@@ -2397,9 +2397,9 @@ const dahabWingfoilPricePage = (page) => `
 <section class="wingfoil-price-section wingfoil-price-section--soft" id="parts">
   <div class="wingfoil-price-inner">
     <header class="wingfoil-price-heading">
-      <p class="eyebrow">Wingfoil · отдельные части</p>
+      <p class="eyebrow">Вингфойл · отдельные части</p>
       <h2>Аренда только винга или только доски</h2>
-      <p>Скидки клуба Vetratoria не распространяются на аренду отдельных частей комплекта wingfoil.</p>
+      <p>Скидки клуба Vetratoria не распространяются на аренду отдельных частей комплекта вингфойл.</p>
     </header>
 
     <h3 class="wingfoil-price-subtitle">Аренда винга (только винг)</h3>
@@ -2447,7 +2447,7 @@ const dahabWingfoilPricePage = (page) => `
     </div>
     <div class="wingfoil-price-notes">
       <p>Время аренды доски заканчивается только после снятия фойла! Если фойл остаётся на доске, аренда считается как полный день даже без катания. Пожалуйста, будьте внимательны!</p>
-      <p>Скидки клуба Vetratoria не распространяются на аренду отдельных частей комплекта wingfoil. Скидки на аренду отдельных частей действуют только если оборудование было куплено в клубе.</p>
+      <p>Скидки клуба Vetratoria не распространяются на аренду отдельных частей комплекта вингфойл. Скидки на аренду отдельных частей действуют только если оборудование было куплено в клубе.</p>
       <p>Цена и условия страховки на аренду отдельных частей соответствуют общему прайс-листу и правилам страховки.</p>
     </div>
   </div>
@@ -2456,7 +2456,7 @@ const dahabWingfoilPricePage = (page) => `
 <section class="wingfoil-price-section" id="packages">
   <div class="wingfoil-price-inner">
     <header class="wingfoil-price-heading">
-      <p class="eyebrow">Wingfoil · пакеты</p>
+      <p class="eyebrow">Вингфойл · пакеты</p>
       <h2>Обучающие и интенсив-пакеты</h2>
       <p>Пакеты рассчитаны на одного человека. Мини-группы не предусмотрены. Дополнительные скидки не действуют — пакеты уже уценены.</p>
     </header>
@@ -2496,14 +2496,14 @@ const dahabWingfoilPricePage = (page) => `
 <section class="wingfoil-price-section wingfoil-price-section--dark" id="application">
   <div class="wingfoil-price-inner">
     <div class="wingfoil-price-contact">
-      <figure><img src="/assets/img/final/wingfoil/lesson-coaching.webp" alt="Wingfoil Vetratoria Dahab" width="1600" height="1067" loading="lazy" decoding="async"></figure>
+      <figure><img src="/assets/img/final/wingfoil/lesson-coaching.webp" alt="Вингфойл Vetratoria в Дахабе" width="1600" height="1067" loading="lazy" decoding="async"></figure>
       <div>
         <p class="eyebrow">Заявка</p>
-        <h2>Подобрать Wingfoil</h2>
+        <h2>Подобрать Вингфойл</h2>
         <p>Напишите даты, уровень, вес и задачу: первый раз, фойл за лодкой, прокат, пакет или хранение.</p>
         <div class="wingfoil-price-contact__actions">
           ${contactCta(page, "Оставить заявку", "button button-primary", "wingfoil")}
-          <a class="button button-ghost" href="/dahab/wingfoil/">О Wingfoil</a>
+          <a class="button button-ghost" href="/dahab/wingfoil/">О вингфойле</a>
         </div>
       </div>
     </div>
@@ -2512,12 +2512,12 @@ const dahabWingfoilPricePage = (page) => `
 
 const dahabWindsurfPricePage = (page) => `
 <section class="dahab-hero dahab-hero--price">
-  <img class="dahab-hero__image" src="/assets/img/final/windsurf/hero.webp" alt="Цены Windsurf в Дахабе" width="1600" height="1067" fetchpriority="high">
+  <img class="dahab-hero__image" src="/assets/img/final/windsurf/hero.webp" alt="Цены на виндсёрфинг в Дахабе" width="1600" height="1067" fetchpriority="high">
   <div class="dahab-hero__shade"></div>
   <div class="dahab-hero__content">
-    <p class="eyebrow">Египет · Дахаб · Windsurf</p>
-    <h1>Цены Windsurf в Дахабе</h1>
-    <p>Полный прайс: обучение виндсерфингу, курсы 1–7 дней, индивидуальные занятия, прокат оборудования, страховка, скидки, аренда гидрофойла и хранение windsurf-оборудования.</p>
+    <p class="eyebrow">Египет · Дахаб · Виндсёрфинг</p>
+    <h1>Цены на виндсёрфинг в Дахабе</h1>
+    <p>Полный прайс: обучение виндсёрфингу, курсы 1–7 дней, индивидуальные занятия, прокат оборудования, страховка, скидки, аренда гидрофойла и хранение виндсёрфинг-оборудования.</p>
     <div class="hero-actions dahab-hero-actions">
       <a class="button button-primary" href="#courses">Курсы</a>
       <a class="button button-primary" href="#lessons">Уроки</a>
@@ -2531,8 +2531,8 @@ const dahabWindsurfPricePage = (page) => `
 <section class="windsurf-price-section" id="courses">
   <div class="windsurf-price-inner">
     <header class="windsurf-price-heading">
-      <p class="eyebrow">Windsurf · обучение</p>
-      <h2>Обучение виндсерфингу</h2>
+      <p class="eyebrow">Виндсёрфинг · обучение</p>
+      <h2>Обучение виндсёрфингу</h2>
     </header>
     <h3 class="windsurf-price-subtitle">Групповые и индивидуальные курсы обучения</h3>
     <div class="windsurf-table-wrap">
@@ -2562,7 +2562,7 @@ const dahabWindsurfPricePage = (page) => `
 <section class="windsurf-price-section windsurf-price-section--soft" id="lessons">
   <div class="windsurf-price-inner">
     <header class="windsurf-price-heading">
-      <p class="eyebrow">Windsurf · индивидуально</p>
+      <p class="eyebrow">Виндсёрфинг · индивидуально</p>
       <h2>Индивидуальные занятия</h2>
     </header>
     <div class="windsurf-table-wrap">
@@ -2583,10 +2583,10 @@ const dahabWindsurfPricePage = (page) => `
 <section class="windsurf-price-section" id="rental">
   <div class="windsurf-price-inner">
     <header class="windsurf-price-heading">
-      <p class="eyebrow">Windsurf · прокат</p>
-      <h2>Прокат оборудования для виндсерфинга</h2>
+      <p class="eyebrow">Виндсёрфинг · прокат</p>
+      <h2>Прокат оборудования для виндсёрфинга</h2>
     </header>
-    <p class="windsurf-price-copy"><strong>Прокат одного комплекта матчасти для виндсерфинга</strong></p>
+    <p class="windsurf-price-copy"><strong>Прокат одного комплекта матчасти для виндсёрфинга</strong></p>
     <div class="windsurf-table-wrap">
       <table class="windsurf-price-table windsurf-price-table--wide">
         <thead>
@@ -2626,7 +2626,7 @@ const dahabWindsurfPricePage = (page) => `
       </div>
       <div class="windsurf-table-wrap">
         <table class="windsurf-price-table">
-          <thead><tr><th>Прокат</th><th>MEGA SUP</th><th>SUP</th><th>FOIL</th></tr></thead>
+          <thead><tr><th>Прокат</th><th>МЕГА SUP</th><th>SUP</th><th>ФОЙЛ</th></tr></thead>
           <tbody><tr><td>1 час</td><td>35$</td><td>10$</td><td>30$</td></tr><tr><td>1 день</td><td>80$</td><td>25$</td><td>75$</td></tr></tbody>
         </table>
       </div>
@@ -2641,7 +2641,7 @@ const dahabWindsurfPricePage = (page) => `
 <section class="windsurf-price-section windsurf-price-section--soft" id="discounts">
   <div class="windsurf-price-inner">
     <header class="windsurf-price-heading">
-      <p class="eyebrow">Windsurf · скидки</p>
+      <p class="eyebrow">Виндсёрфинг · скидки</p>
       <h2>Скидки Vetratoria</h2>
     </header>
     <div class="windsurf-price-notes">
@@ -2659,10 +2659,10 @@ const dahabWindsurfPricePage = (page) => `
 <section class="windsurf-price-section" id="storage">
   <div class="windsurf-price-inner">
     <header class="windsurf-price-heading">
-      <p class="eyebrow">Windsurf · хранение</p>
+      <p class="eyebrow">Виндсёрфинг · хранение</p>
       <h2>Гидрофойл и хранение оборудования</h2>
     </header>
-    <p class="windsurf-price-copy">Аренда гидрофойла для виндсерфинга — 30$ / час.</p>
+    <p class="windsurf-price-copy">Аренда гидрофойла для виндсёрфинга — 30$ / час.</p>
     <div class="windsurf-table-wrap">
       <table class="windsurf-price-table">
         <thead><tr><th>Хранение оборудования</th><th>Цена, $</th></tr></thead>
@@ -2687,14 +2687,14 @@ const dahabWindsurfPricePage = (page) => `
 <section class="windsurf-price-section windsurf-price-section--dark" id="application">
   <div class="windsurf-price-inner">
     <div class="windsurf-price-contact">
-      <figure><img src="/assets/img/final/windsurf/lesson-water.webp" alt="Windsurf Vetratoria Dahab" width="1600" height="1067" loading="lazy" decoding="async"></figure>
+      <figure><img src="/assets/img/final/windsurf/lesson-water.webp" alt="Виндсёрфинг Vetratoria в Дахабе" width="1600" height="1067" loading="lazy" decoding="async"></figure>
       <div>
         <p class="eyebrow">Заявка</p>
-        <h2>Подобрать Windsurf</h2>
+        <h2>Подобрать Виндсёрфинг</h2>
         <p>Напишите даты, уровень, возраст, интересующий курс и нужен ли прокат или хранение.</p>
         <div class="windsurf-price-contact__actions">
           ${contactCta(page, "Оставить заявку", "button button-primary", "windsurf")}
-          <a class="button button-ghost" href="/dahab/windsurf/">О Windsurf</a>
+          <a class="button button-ghost" href="/dahab/windsurf/">О виндсёрфинге</a>
         </div>
       </div>
     </div>
@@ -2734,9 +2734,9 @@ const blogFilterPanel = () => `
       </div>
       <div class="blog-filter-group" role="group" aria-label="Фильтр по теме">
         ${blogFilterButton("topic", "all", "Все темы", true)}
-        ${blogFilterButton("topic", "wingfoil", "Wingfoil")}
-        ${blogFilterButton("topic", "windsurf", "Windsurf")}
-        ${blogFilterButton("topic", "wsk", "WSK")}
+        ${blogFilterButton("topic", "wingfoil", "Вингфойл")}
+        ${blogFilterButton("topic", "windsurf", "Виндсёрфинг")}
+        ${blogFilterButton("topic", "wsk", "Детский лагерь")}
         ${blogFilterButton("topic", "kite", "Кайт")}
         ${blogFilterButton("topic", "safety", "Безопасность")}
         ${blogFilterButton("topic", "trip", "Поездка")}
@@ -2790,10 +2790,10 @@ const articlePage = (page) => {
 };
 
 const mediaSportLabels = {
-  wingfoil: "Wingfoil",
-  windsurf: "Windsurf",
-  wsk: "WindSurfKids",
-  kite: "Кайт"
+  вингфойл: "Вингфойл",
+  виндсёрфинг: "Виндсёрфинг",
+  wsk: "Детский виндсёрфинг",
+  кайтсёрфинг: "Кайт"
 };
 
 const mediaEventLabels = {
@@ -2819,8 +2819,8 @@ const mediaCountLabel = (count, one, few, many) => {
 };
 
 const mediaCountryDescriptions = {
-  dahab: "Wingfoil, Windsurf, WindSurfKids, станции и события Дахаба.",
-  vietnam: "Сезон в Муйне, Windsurf, Wingfoil, Kite и жизнь станции.",
+  dahab: "Вингфойл, Виндсёрфинг, Детский виндсёрфинг, станции и события Дахаба.",
+  vietnam: "Сезон в Муйне, Виндсёрфинг, Вингфойл, Кайтсёрфинг и жизнь станции.",
   russia: "Должанская коса, летние тренировки, команда и события."
 };
 
@@ -2971,7 +2971,7 @@ const countryContactCard = (country, showPageLink = true) => {
       <p class="eyebrow">${escapeHtml(country.region)}</p>
       <h2>${escapeHtml(country.city)}</h2>
       <div class="contact-country-card__methods">
-        ${contactMethod({ href: `mailto:${contact.email}`, label: "Email", value: contact.email })}
+        ${contactMethod({ href: `mailto:${contact.электронная почта}`, label: "Электронная почта", value: contact.электронная почта })}
         ${contactMethod({
           href: country.key === "vietnam" ? contact.telegram : `tel:${contact.phone}`,
           icon: country.key === "vietnam" ? "/assets/icons/telegram.svg" : "",
@@ -2990,7 +2990,7 @@ const dahabStationCard = (station) => `
     <h2>${escapeHtml(station.title)}</h2>
     <p>${escapeHtml(station.description)}</p>
     <div class="contact-station-card__methods">
-      ${contactMethod({ href: `mailto:${station.email}`, label: "Email", value: station.email })}
+      ${contactMethod({ href: `mailto:${station.электронная почта}`, label: "Электронная почта", value: station.электронная почта })}
       ${contactMethod({
         href: `https://wa.me/${station.phone.replace(/\D/g, "")}`,
         icon: "/assets/icons/whatsapp.svg",
@@ -3002,7 +3002,7 @@ const dahabStationCard = (station) => `
         href: station.telegram,
         icon: "/assets/icons/telegram.svg",
         label: "Telegram · чат станции",
-        value: station.key === "wingfoil" ? "Wing Center Dahab" : "Vetratoria Windsurf",
+        value: station.key === "wingfoil" ? "Винг-центр в Дахабе" : "Vetratoria Виндсёрфинг",
         external: true
       })}
     </div>
@@ -3016,7 +3016,7 @@ const contactForm = (page) => {
       <input type="hidden" name="source" value="${escapeHtml(page.path)}">
       <input type="hidden" name="intent" value="Форма страницы контактов">
       <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
-      <label>Способ связи<input name="contact" autocomplete="email" placeholder="Телефон, email или @username" required></label>
+      <label>Способ связи<input name="contact" autocomplete="электронная почта" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>
       ${isGeneral ? `
       <label>Страна
         <select name="country" data-contact-country-select required>
@@ -3034,8 +3034,8 @@ const contactsPage = (page) => {
   const isDahab = page.country === "dahab";
   const contact = contactForPage(page);
   const heroActions = isDahab
-    ? `<a class="button button-primary" href="#windsurf">Windsurf</a><a class="button button-ghost" href="#wingfoil">Wingfoil</a>`
-    : `<a class="button button-primary" href="#contact-form">Написать нам</a><a class="button button-ghost" href="mailto:${contact.email}">Email</a>`;
+    ? `<a class="button button-primary" href="#windsurf">Виндсёрфинг</a><a class="button button-ghost" href="#wingfoil">Вингфойл</a>`
+    : `<a class="button button-primary" href="#contact-form">Написать нам</a><a class="button button-ghost" href="mailto:${contact.электронная почта}">Email</a>`;
   const directory = isGeneral
     ? countryList.map(countryContactCard).join("")
     : isDahab
@@ -3090,7 +3090,7 @@ ${hero(page, heroActions)}
 const dahabTeamGroups = [
   {
     id: "team-wingfoil",
-    eyebrow: "Центр Wingfoil",
+    eyebrow: "Центр Вингфойл",
     title: "Команда вингфойла",
     lead: "Помогаем пройти путь от первого знакомства с крылом до уверенного полёта на фойле.",
     members: [
@@ -3098,7 +3098,7 @@ const dahabTeamGroups = [
         name: "Анатолий",
         role: "Менеджер · старший инструктор",
         text: "Более 25 лет в водных видах спорта. Подберёт комплект RRD под ваши навыки, ветер и задачу занятия.",
-        meta: "Русский · English · Deutsch",
+        meta: "Русский · английский · немецкий",
         photo: "/assets/img/team/dahab/anatoly.png",
         eager: true
       },
@@ -3106,7 +3106,7 @@ const dahabTeamGroups = [
         name: "Хасан",
         role: "Профессиональный инструктор",
         text: "Узнаваемый райдер спота с десятилетним тренерским опытом. Учит балансу, технике и уверенности на фойле.",
-        meta: "Русский · English",
+        meta: "Русский · английский",
         photo: "/assets/img/team/dahab/hassan.png",
         eager: true
       },
@@ -3114,7 +3114,7 @@ const dahabTeamGroups = [
         name: "Егор",
         role: "Детский спортивный инструктор",
         text: "Тренирует детей от восьми лет. Превращает сложную технику в понятную игру и закладывает безопасную базу.",
-        meta: "Русский · English",
+        meta: "Русский · английский",
         photo: "/assets/img/team/dahab/egor.png"
       },
       {
@@ -3128,21 +3128,21 @@ const dahabTeamGroups = [
         name: "Ира",
         role: "Администратор",
         text: "Душа станции. Отвечает за расписание, комфорт гостей и хорошее настроение до и после каждой сессии.",
-        meta: "Русский · English",
+        meta: "Русский · английский",
         photo: "/assets/img/team/dahab/ira.jpg"
       },
       {
         name: "Анна",
         role: "Инструктор",
         text: "Видит технические ошибки и помогает заложить прочный фундамент, чтобы прогресс был быстрее и увереннее.",
-        meta: "Русский · English",
+        meta: "Русский · английский",
         photo: "/assets/img/team/dahab/anna.png"
       }
     ]
   },
   {
     id: "team-windsurf",
-    eyebrow: "Центр Windsurf",
+    eyebrow: "Центр Виндсёрфинг",
     title: "Команда виндсёрфинга",
     lead: "Встречаем гостей, подбираем и настраиваем оборудование, обучаем на воде и следим за безопасностью в акватории.",
     members: [
@@ -3150,57 +3150,57 @@ const dahabTeamGroups = [
         name: "Борис",
         role: "Менеджер · инструктор",
         text: "В виндсёрфинге с 2003 года. Руководит станцией и помогает подобрать обучение, прокат и оборудование под уровень гостя.",
-        meta: "Русский · English · Română",
+        meta: "Русский · английский · Română",
         photo: "/assets/img/team/dahab/boris.jpg"
       },
       {
         name: "Виктория",
         role: "Работа с гостями",
         text: "Помогает с организационными вопросами, расписанием и комфортом гостей виндсёрф-станции.",
-        meta: "Русский · English",
+        meta: "Русский · английский",
         photo: "/assets/img/team/dahab/victoria.jpg"
       },
       {
         name: "Мустафа",
         role: "Сервис · оборудование",
         text: "Помогает подобрать, собрать и настроить виндсёрф-комплект перед выходом на воду.",
-        meta: "العربية · English · Deutsch",
+        meta: "العربية · английский · немецкий",
         photo: "/assets/img/team/dahab/mustafa.jpg"
       },
       {
         name: "Махмуд",
         role: "Сервис · спасатель",
         text: "Профессиональный спортсмен и специалист по слалому. Следит за акваторией и приходит на помощь по сигналу.",
-        meta: "العربية · English · Русский",
+        meta: "العربية · английский · Русский",
         photo: "/assets/img/team/dahab/mahmoud.jpg"
       }
     ]
   },
   {
     id: "team-kids",
-    eyebrow: "WindSurfKids",
+    eyebrow: "Детский виндсёрфинг",
     title: "Детские тренеры",
     lead: "Спортивная дисциплина, внимание к ребёнку и насыщенная командная жизнь за пределами тренировок.",
     members: [
       {
         name: "Иван Пупенок",
-        role: "Организатор WindSurfKids",
+        role: "Организатор Детский виндсёрфинг",
         text: "Профессиональный тренер, преподаватель и действующий спортсмен в дисциплине слалом.",
         meta: "Тренер · спортсмен",
         photo: "/assets/img/team/dahab/ivan-pupenok.jpg"
       },
       {
         name: "Филипп Андреев",
-        role: "Тренер WindSurfKids",
+        role: "Тренер Детский виндсёрфинг",
         text: "Легко находит общий язык с юными серферами и подбирает индивидуальный подход к каждому ребёнку.",
-        meta: "Windsurf · детские группы",
+        meta: "Виндсёрфинг · детские группы",
         photo: "/assets/img/team/dahab/filipp-andreev.jpg"
       },
       {
         name: "Роман Тарасов",
-        role: "Тренер WindSurfKids",
-        text: "Помогает детям осваивать виндсерфинг последовательно, безопасно и с удовольствием от каждого нового навыка.",
-        meta: "Windsurf · техника",
+        role: "Тренер Детский виндсёрфинг",
+        text: "Помогает детям осваивать виндсёрфинг последовательно, безопасно и с удовольствием от каждого нового навыка.",
+        meta: "Виндсёрфинг · техника",
         photo: "/assets/img/team/dahab/roman-tarasov.jpg"
       },
       {
@@ -3212,9 +3212,9 @@ const dahabTeamGroups = [
       },
       {
         name: "Тихон",
-        role: "Тренер WindSurfKids",
-        text: "С детства занимается виндсерфингом, участвовал в соревнованиях и выбрал педагогическое направление.",
-        meta: "Windsurf · педагогика",
+        role: "Тренер Детский виндсёрфинг",
+        text: "С детства занимается виндсёрфингом, участвовал в соревнованиях и выбрал педагогическое направление.",
+        meta: "Виндсёрфинг · педагогика",
         photo: "/assets/img/team/dahab/tikhon.jpg"
       }
     ]
@@ -3236,7 +3236,7 @@ const dahabTeamGroups = [
         name: "Махмуд",
         role: "Спасатель · оборудование",
         text: "Опытный спасатель и спортсмен в дисциплине слалом. Помогает подготовить снаряжение перед выходом.",
-        meta: "Спасение · slalom",
+        meta: "Спасение · слалом",
         photo: "/assets/img/team/dahab/mahmoud.jpg"
       },
       {
@@ -3244,7 +3244,7 @@ const dahabTeamGroups = [
         role: "Спасатель · оборудование",
         text: "Помогает собрать и настроить комплект, поддерживает детей и взрослых на берегу и во время занятий.",
         meta: "Помощь на берегу и воде",
-        photo: "/assets/img/team/dahab/hassan-rescue.jpg"
+        photo: "/assets/img/team/dahab/hassan-спасение.jpg"
       },
       {
         name: "Мустафа",
