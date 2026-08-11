@@ -564,7 +564,6 @@
     const photos = photoSources.length ? photoSources : photoButtons;
     const image = dialog.querySelector("[data-media-lightbox-image]");
     const count = dialog.querySelector("[data-media-lightbox-count]");
-    const download = dialog.querySelector("[data-media-lightbox-download]");
     const close = dialog.querySelector("[data-media-lightbox-close]");
     const prev = dialog.querySelector("[data-media-lightbox-prev]");
     const next = dialog.querySelector("[data-media-lightbox-next]");
@@ -579,7 +578,6 @@
       image.src = src;
       image.alt = button.dataset.mediaAlt || "";
       if (count) count.textContent = `${activeIndex + 1} из ${photos.length}`;
-      if (download) download.href = src;
     };
 
     photoButtons.forEach((button, index) => {
