@@ -4,7 +4,7 @@
   "private": true,
   "description": "Clean static rebuild of the Vetratoria website.",
   "scripts": {
-    "build": "node -e \"console.log('Publishing the committed static site.')\"",
+    "build": "node scripts/build.mjs",
     "check": "node scripts/verify.mjs",
     "dev": "sh -c 'python3 -m http.server 4173 --bind 0.0.0.0' --"
   },
