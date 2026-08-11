@@ -1660,9 +1660,9 @@ const dahabHomePage = (page) => {
     ["Windsurf Kids", "Детский урок", "от 55$", "Лёгкий парус, подходящая доска, инструктор рядом и спокойный темп.", dahabRefImg("price-kids.webp"), "/dahab/windsurf-kids/"]
   ];
   const stations = [
-    ["Wing Center", "Только Wingfoil", "Обучение, прокат полного комплекта и отдельного снаряжения для wingfoil.", dahabRefImg("bg-wingfoil-station.webp")],
-    ["Swiss Inn", "Windsurf", "Обучение и прокат для windsurf. По возможностям и уровню сервиса равноценна Ganet Sinai.", dahabRefImg("bg-swiss.webp")],
-    ["Ganet Sinai", "Windsurf", "Обучение и прокат для windsurf. По возможностям и уровню сервиса равноценна Swiss Inn.", dahabRefImg("bg-ganet.webp")]
+    ["Wing Center", "Только Wingfoil", dahabRefImg("bg-wingfoil-station.webp")],
+    ["Swiss Inn", "Windsurf", dahabRefImg("bg-swiss.webp")],
+    ["Ganet Sinai", "Windsurf", dahabRefImg("bg-ganet.webp")]
   ];
   const learningSteps = [
     ["01", "Определяем вашу точку старта", "Уточняем опыт, цель и самочувствие, смотрим ветер и подбираем комплект по весу и уровню."],
@@ -1862,9 +1862,13 @@ ${stationLifeGallery({
     <p>Wing Center специализируется только на wingfoil. Swiss Inn и Ganet Sinai — две равноценные станции для windsurf.</p>
   </header>
   <div class="station-advice__list">
-    ${stations.map(([title, meta, text, image]) => `<a href="/dahab/stations/">
+    ${stations.map(([title, meta, image]) => `<a href="/dahab/stations/">
         <figure><img src="${image}" alt="${title}" width="1600" height="1067" loading="lazy" decoding="async"></figure>
-        <div><b>${title}</b><span>${meta}</span><em>${text}</em></div>
+        <div>
+          <span>${meta}</span>
+          <b>${title}</b>
+          <ul class="station-advice__services" aria-label="Услуги станции"><li>Обучение</li><li>Прокат</li><li>Хранение</li></ul>
+        </div>
       </a>`).join("")}
   </div>
   ${contactCta(page, "Подобрать станцию", "station-advice__cta")}
