@@ -9,9 +9,9 @@
 .windsurf-price-contact h2 {
   margin: 0;
   color: var(--white);
-  font-weight: 900;
-  line-height: 0.92;
-  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 0.98;
+  text-transform: none;
 }
 
 .windsurf-price-contact__actions {
@@ -84,7 +84,7 @@
   background: #37170f;
   color: var(--white);
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1.25;
   text-transform: uppercase;
 }
@@ -101,9 +101,9 @@
   margin: 34px 0 12px;
   color: var(--white);
   font-size: clamp(22px, 2.2vw, 32px);
-  font-weight: 900;
-  line-height: 1;
-  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.08;
+  text-transform: none;
 }
 
 .windsurf-price-copy {
@@ -181,7 +181,38 @@
 @media (max-width: 520px) {
   .windsurf-price-heading h2,
   .windsurf-price-contact h2 {
-    font-size: 34px;
+    font-size: 32px;
   }
 
+  .windsurf-table-wrap {
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .windsurf-price-table th,
+  .windsurf-price-table td {
+    padding: 12px;
+  }
+
+  .windsurf-price-table th:first-child,
+  .windsurf-price-table td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    box-shadow: 8px 0 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .windsurf-price-table th:first-child {
+    z-index: 2;
+    background: #37170f;
+  }
+
+  .windsurf-price-table tbody tr:nth-child(odd) td:first-child {
+    background: #171615;
+  }
+
+  .windsurf-price-table tbody tr:nth-child(even) td:first-child {
+    background: #141312;
+  }
 }
