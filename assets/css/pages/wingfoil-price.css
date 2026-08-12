@@ -79,7 +79,7 @@
   background: #37170f;
   color: var(--white);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.25;
   text-transform: uppercase;
 }
@@ -95,7 +95,7 @@
 .wingfoil-price-table .table-section td {
   background: var(--orange);
   color: var(--white);
-  font-weight: 700;
+  font-weight: 500;
   text-transform: uppercase;
 }
 
@@ -103,7 +103,7 @@
   margin: 34px 0 12px;
   color: var(--white);
   font-size: clamp(22px, 2.2vw, 32px);
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.08;
   text-transform: none;
 }
