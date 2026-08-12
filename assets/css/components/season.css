@@ -154,6 +154,23 @@
   line-height: 1.5;
 }
 
+.season-card__stat {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 16px;
+  color: var(--color-light-muted);
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.season-card__stat strong {
+  color: var(--color-light-text);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
 .season-card__note { margin-top: 18px; }
 
 .season-card > a {
@@ -205,6 +222,12 @@
 
 .season-section--compact .season-card__wind b { color: var(--white); }
 .season-section--compact .season-card__wind p { display: none; }
+.season-section--compact .season-card__stat {
+  justify-content: end;
+  margin-top: 0;
+  color: #b9b2ab;
+}
+.season-section--compact .season-card__stat strong { color: var(--white); }
 
 .season-section--compact .season-months,
 .season-section--compact .season-card__wind { margin-top: 0; }

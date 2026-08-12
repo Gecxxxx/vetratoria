@@ -74,10 +74,13 @@ const seasonCalendar = (country, { compact = false } = {}) => `
       <span class="wind-indicator" aria-hidden="true"><i></i><i></i><i></i></span>
       <div><b>${escapeHtml(country.windLabel)}</b><p>${escapeHtml(country.windSummary)}</p></div>
     </div>
+    <div class="season-card__stat" aria-label="Статистика ветрового сезона">
+      <strong>${escapeHtml(country.windStat)}</strong><span>${escapeHtml(country.windStatLabel)}</span>
+    </div>
     ${compact ? "" : `<p class="season-card__note">${escapeHtml(country.seasonNote)}</p><a href="${country.href}">Открыть направление <span aria-hidden="true">→</span></a>`}
   </article>`;
 
-const seasonSection = (countries, { compact = false, eyebrow = "Сезоны Vetratoria", title = "Куда ехать сейчас", lead = "Сравните подтверждённые сезоны направлений. Точный прогноз и доступность занятий команда проверит под ваши даты." } = {}) => `
+const seasonSection = (countries, { compact = false, eyebrow = "Сезоны Ветратории", title = "Куда ехать сейчас", lead = "Сравните подтверждённые сезоны направлений. Точный прогноз и доступность занятий команда проверит под ваши даты." } = {}) => `
   <section class="season-section${compact ? " season-section--compact" : ""}">
     <div class="section-inner">
       ${sectionHeading(eyebrow, title, lead)}
@@ -122,7 +125,7 @@ const currentCountry = (page) =>
 const arrow = '<span class="vtr-nav__chevron" aria-hidden="true">⌄</span>';
 
 const socialIconLinks = (className = "") => `
-  <nav class="social-icon-links${className ? ` ${className}` : ""}" aria-label="Социальные сети Vetratoria">
+  <nav class="social-icon-links${className ? ` ${className}` : ""}" aria-label="Социальные сети Ветратории">
     ${site.socials.map((item) => `
       <a href="${item.href}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(item.label)}" title="${escapeHtml(item.label)}">
         <img src="${item.icon}" alt="" width="20" height="20">
@@ -246,7 +249,7 @@ const mobileMenu = (page, country) => `
         ${country ? mobileCountrySection(page, country) : mobileDirectionsSection()}
         <section class="vtr-mobile-menu__block" aria-label="Главное">
           <p class="vtr-mobile-menu__title">Главное</p>
-          <a class="vtr-mobile-menu__row" href="/">Vetratoria</a>
+          <a class="vtr-mobile-menu__row" href="/">Ветратория</a>
           <a class="vtr-mobile-menu__row" href="/blog/">Блог</a>
           <a class="vtr-mobile-menu__row" href="/media/">Медиа</a>
           <a class="vtr-mobile-menu__row" href="${country ? `/${country.key}/contacts/` : "/contacts/"}">Контакты</a>
@@ -264,7 +267,7 @@ const mobileMenu = (page, country) => `
 
 const mainNavPanel = (page, country) => `
     <nav class="vtr-nav__panel" id="site-navigation" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
-      <a class="vtr-nav__link" href="/">Vetratoria</a>
+      <a class="vtr-nav__link" href="/">Ветратория</a>
       ${directionsMenu()}
       <a class="vtr-nav__link" href="/blog/">Блог</a>
       <a class="vtr-nav__link" href="/media/">Медиа</a>
@@ -276,7 +279,7 @@ const topNav = (page) => {
   const contact = contactForPage(page);
   const isHome = page.path === "/";
   const topNavContacts = isHome
-    ? `<span class="vtr-nav__brand-line">Vetratoria — школы ветра с 2006 года</span>`
+    ? `<span class="vtr-nav__brand-line">Ветратория — школы ветра с 2006 года</span>`
     : `<a href="mailto:${contact.email}">${contact.email}</a>
       ${contact === site.contacts.dahab
         ? dahabStationPhones("vtr-nav__station-phone")
@@ -365,8 +368,8 @@ const header = (page) => {
 <header class="${headerClass}" data-nav>
   ${topNav(country ? { ...page, country: country.key } : page)}
   <div class="vtr-nav__main">
-    <a class="vtr-nav__logo" href="/" aria-label="Vetratoria - главная">
-      <img src="${site.logo}" alt="Vetratoria" width="198" height="97">
+    <a class="vtr-nav__logo" href="/" aria-label="Ветратория — главная">
+      <img src="${site.logo}" alt="Ветратория" width="198" height="97">
     </a>
     <button class="vtr-nav__burger" type="button" aria-label="Открыть меню" aria-controls="site-navigation" aria-expanded="false" data-menu-toggle>
       <span></span><span></span><span></span>
@@ -384,8 +387,8 @@ const footer = (page) => {
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="${site.logo}" alt="Vetratoria" width="198" height="97">
-      <p>Vetratoria - виндсёрфинг и вингфойл школы в Египте, Вьетнаме и России. Выберите страну, спорт и формат обучения.</p>
+      <img src="${site.logo}" alt="Ветратория" width="198" height="97">
+      <p>Ветратория — школы виндсёрфинга и вингфойла в Египте, Вьетнаме и России. Выберите страну, спорт и формат обучения.</p>
       <div class="footer-stats">
         <span>С 2006 года</span>
         <span>3 страны</span>
@@ -419,7 +422,7 @@ const footer = (page) => {
     </nav>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 Vetratoria</span>
+    <span>© 2026 Ветратория</span>
     <span>Условия, расписание, цены и доступность форматов уточняются перед поездкой.</span>
   </div>
 </footer>`;
@@ -428,8 +431,8 @@ const footer = (page) => {
 const dahabFooter = (page) => `
 <footer class="site-footer dahab-footer-pro">
   <div class="dahab-footer-pro__inner">
-    <a class="dahab-footer-pro__brand" href="/" aria-label="Vetratoria - главная">
-      <img src="${site.logo}" alt="Vetratoria" width="198" height="97">
+    <a class="dahab-footer-pro__brand" href="/" aria-label="Ветратория — главная">
+      <img src="${site.logo}" alt="Ветратория" width="198" height="97">
       <p>Виндсёрфинг и Вингфойл в Египте, Вьетнаме и России.</p>
     </a>
     <div class="dahab-footer-pro__cards">
@@ -450,7 +453,7 @@ const dahabFooter = (page) => `
     </div>
   </div>
   <div class="dahab-footer-pro__bottom">
-    <span>© 2026 Vetratoria</span>
+    <span>© 2026 Ветратория</span>
     <span>Условия и доступность форматов подтверждаются перед поездкой.</span>
   </div>
 </footer>`;
@@ -458,11 +461,11 @@ const dahabFooter = (page) => `
 const footerForPage = (page) => page.kind === "country" && page.country === "dahab" ? dahabFooter(page) : footer(page);
 
 const metaTitleForPage = (page) =>
-  page.path === "/dahab/" ? "Дахаб — Вингфойл и Виндсёрфинг на Красном море | Vetratoria" : page.title || site.title;
+  page.path === "/dahab/" ? "Дахаб — вингфойл и виндсёрфинг на Красном море | Ветратория" : page.title || site.title;
 
 const metaDescriptionForPage = (page) => {
   if (page.path === "/dahab/") {
-    return "Vetratoria в Дахабе: Вингфойл, Виндсёрфинг, детские программы, аренда, уроки, станции Винг-центр, Свисс Инн и Ганет Синай.";
+    return "Ветратория в Дахабе: вингфойл, виндсёрфинг, детские программы, аренда, уроки, станции Винг-центр, Свисс Инн и Ганет Синай.";
   }
 
   const description = page.description || site.description;
@@ -533,7 +536,7 @@ const structuredDataForPage = (page) => {
     graph.push({
       "@type": "SportsActivityLocation",
       "@id": `${canonicalForPage(page)}#sports-location`,
-      name: "Vetratoria в Дахабе",
+      name: "Ветратория в Дахабе",
       url: canonicalForPage(page),
       description: metaDescriptionForPage(page),
       image: absoluteUrl(metaImageForPage(page)),
@@ -563,7 +566,7 @@ const contactCountryOption = (country) => {
 const contactDialog = (page) => {
   const country = contactCountryForPage(page);
   const destination = contactDestination(page) || site.contacts[countryList[0].key];
-  const direction = country ? site.contacts[country.key].title : "Vetratoria";
+  const direction = country ? site.contacts[country.key].title : "Ветратория";
   const sport = page.sport ? sportLabel(page.sport) : "";
   const context = [direction, sport].filter(Boolean).join(" · ");
   const phoneHref = country?.key === "dahab"
@@ -703,7 +706,7 @@ const homeCountryCopy = {
 const brandSlides = [
   {
     src: img("vetratoria-station-team.webp"),
-    alt: "Гости и команда Vetratoria у станции в Дахабе",
+    alt: "Гости и команда Ветратории у станции в Дахабе",
     width: 1600,
     height: 900
   },
@@ -715,13 +718,13 @@ const brandSlides = [
   },
   {
     src: img("vetratoria-windsurf-lagoon-lesson.webp"),
-    alt: "Ученики Vetratoria готовятся к занятию в лагуне Дахаба",
+    alt: "Ученики Ветратории готовятся к занятию в лагуне Дахаба",
     width: 800,
     height: 500
   },
   {
     src: img("vetratoria-windsurf-community.webp"),
-    alt: "Участники виндсёрф-программы у станции Vetratoria",
+    alt: "Участники виндсёрф-программы у станции Ветратория",
     width: 1200,
     height: 800
   }
@@ -729,12 +732,12 @@ const brandSlides = [
 
 const home = (page) => `
 <section class="hero hero-home">
-  <div class="home-hero__slider" data-hero-slider aria-label="Фото Vetratoria">
+  <div class="home-hero__slider" data-hero-slider aria-label="Фото Ветратории">
     ${site.slider.map((src, index) => `<img ${index === 0 ? `src="${src}" fetchpriority="high"` : `data-src="${src}"`} alt="" width="1200" height="780" data-slide ${index === 0 ? `class="is-active"` : ""} aria-hidden="${index === 0 ? "false" : "true"}" loading="${index === 0 ? "eager" : "lazy"}" decoding="async">`).join("")}
   </div>
   <div class="hero-shade"></div>
   <div class="hero-content">
-    <p class="eyebrow">Vetratoria · школы ветра</p>
+    <p class="eyebrow">Ветратория · школы ветра</p>
     <h1>Виндсёрфинг, Вингфойл и Кайтсёрфинг — от первого старта до уверенного катания</h1>
     <p class="hero-lead">Обучение и прокат в Египте, Вьетнаме и России. Подберём программу и снаряжение под ваш уровень и условия на воде.</p>
     <div class="hero-advantages">
@@ -778,7 +781,7 @@ const home = (page) => `
     <div class="brand-copy">
       <p class="eyebrow">Опыт и подход</p>
       <h2>Наша цель — не провести урок, а сделать вас увереннее на воде</h2>
-      <p>Vetratoria работает с 2006 года. За это время обучение прошли более 10 000 человек — от первого знакомства с ветром до уверенного катания и новых элементов.</p>
+      <p>Ветратория работает с 2006 года. За это время обучение прошли более 10 000 человек — от первого знакомства с ветром до уверенного катания и новых элементов.</p>
       <ol class="home-proof-list">
         <li><b>01</b><span>Новичку даём устойчивую базу и понятную последовательность действий.</span></li>
         <li><b>02</b><span>Опытному райдеру помогаем разобрать технику и точечно улучшить результат.</span></li>
@@ -786,7 +789,7 @@ const home = (page) => `
         <li><b>04</b><span>Перед выходом объясняем задачу, границы акватории и правила безопасности.</span></li>
       </ol>
     </div>
-    <figure class="brand-media" aria-label="Команда и обучение Vetratoria">
+    <figure class="brand-media" aria-label="Команда и обучение Ветратории">
       <img class="brand-media__image" src="${brandSlides[0].src}" alt="${escapeHtml(brandSlides[0].alt)}" width="${brandSlides[0].width}" height="${brandSlides[0].height}" loading="lazy" decoding="async">
     </figure>
   </div>
@@ -808,7 +811,7 @@ const home = (page) => `
         </div>
       </a>
       <a class="home-explore__story" href="/media/">
-        <img src="${img("home-media.webp")}" alt="Гости и команда Vetratoria на станции" width="1200" height="840" loading="lazy" decoding="async">
+        <img src="${img("home-media.webp")}" alt="Гости и команда Ветратории на станции" width="1200" height="840" loading="lazy" decoding="async">
         <div>
           <h2>Увидеть атмосферу</h2>
           <p>Занятия, самостоятельное катание, команда и обычные дни на воде в трёх странах.</p>
@@ -845,8 +848,8 @@ const dahabFinalImg = (name) => finalImg(`dahab/${name}`);
 const dahabReviewItems = [
   ["B", "Boris Sizov", "★★★★★", "Очень удобно приезжать без своего снаряжения: есть все размеры крыльев и досок, оборудования хватает. Толик, Ира и Хассан — настоящие профессионалы."],
   ["D", "Dmitrii Polishchuk", "★★★★★", "Отличная surf-станция, классная локация для выхода в море, дружелюбная команда и сильное оборудование для вингфойл. Очень рекомендую."],
-  ["O", "Olga Krasnova", "★★★★★", "Винг-центр Vetratoria — магическое место. Мои первые шаги на вингфойл получились, а снаряжение подходит и новичкам, и продолжающим."],
-  ["E", "Evgeniy Kolosov", "★★★★★", "Vetratoria в Египте оставила только положительные впечатления: высокий уровень инструкторов, идеальные условия и очень дружелюбная атмосфера."],
+  ["O", "Ольга Краснова", "★★★★★", "Винг-центр Ветратории — магическое место. Мои первые шаги на вингфойле получились, а снаряжение подходит и новичкам, и продолжающим."],
+  ["E", "Евгений Колосов", "★★★★★", "Ветратория в Египте оставила только положительные впечатления: высокий уровень инструкторов, идеальные условия и очень дружелюбная атмосфера."],
   ["Y", "Yuriy Tolchinskiy", "★★★★★", "Приезжал осваивать вингфойл. Довольно быстро получилось лететь на фойле и делать повороты. Спасибо Hassan за продуктивные тренировки."]
 ];
 
@@ -905,7 +908,7 @@ const dahabWingfoilPage = (page) => {
     ["Ветер почти круглый год", "Стабильные ветровые условия позволяют планировать обучение в разные сезоны и проводить несколько занятий подряд.", dahabFinalImg("dahab-flat-water-training-zone.webp"), "Ровная вода и ветровой флаг в лагуне Дахаба", 1254, 1254],
     ["Три зоны для прогресса", "Лагуна, Спиди и открытое море позволяют постепенно переходить от первых стартов к уверенному катанию.", dahabFinalImg("dahab-lagoon-riding-zones.webp"), "Учебные зоны Вингфойл в лагуне Дахаба", 1254, 1254],
     ["Флэт для первых полётов", "Ровная вода помогает легче удерживать баланс, набирать скорость и контролировать доску при выходе на фойл.", wingfoilSectionImg("dahab-wingfoil-stable-wind.webp"), "Первый полёт на Вингфойл над ровной водой в Дахабе", 1600, 1600],
-    ["4 спасательных катера", "Катера дежурят на акватории и помогают быстро вернуться на станцию, если ветер ослабнет или потребуется помощь.", dahabFinalImg("dahab-rescue-boat.webp"), "Спасательный катер школы Vetratoria в Дахабе", 1600, 1600]
+    ["4 спасательных катера", "Катера дежурят на акватории и помогают быстро вернуться на станцию, если ветер ослабнет или потребуется помощь.", dahabFinalImg("dahab-rescue-boat.webp"), "Спасательный катер школы Ветратория в Дахабе", 1600, 1600]
   ];
   const learning = [
     ["01", "Винг на SUP", "Учимся держать крыло, разворачиваться, идти нужным курсом и понимать, как работает ветер.", wingfoilSectionImg("wing-start-coaching.webp"), "Инструктор помогает ученику стартовать с крылом у берега"],
@@ -927,11 +930,11 @@ const dahabWingfoilPage = (page) => {
     [wingfoilWaterImg("water-05.webp"), "Вингфойл на открытой воде"]
   ];
   const stationPhotos = [
-    [dahabRefImg("bg-wingfoil-station.webp"), "Винг-центр", "День начинается у воды и с подготовки комплекта", "Винг-центр Vetratoria в Дахабе", 1600, 1067],
+    [dahabRefImg("bg-wingfoil-station.webp"), "Винг-центр", "День начинается у воды и с подготовки комплекта", "Винг-центр Ветратории в Дахабе", 1600, 1067],
     [wingfoilSectionImg("wing-start-coaching.webp"), "Подготовка", "Разбираем крыло и первые действия до старта", "Инструктор объясняет управление крылом у берега", 1920, 1080],
     [wingfoilSectionImg("foil-boat-training.webp"), "Фойл за лодкой", "Тренируем баланс и контроль высоты отдельно", "Тренировка на фойле за лодкой в Дахабе", 1920, 1080],
     [wingfoilSectionImg("wingfoil-duo.webp"), "На воде", "Инструктор остаётся рядом во время первых полётов", "Ученик и инструктор Вингфойл на воде", 1920, 1080],
-    [wingfoilSectionImg("rescue-boats.webp"), "Команда", "Готовим лодки и контролируем акваторию", "Спасательные лодки винг-центра Vetratoria", 1920, 1080],
+    [wingfoilSectionImg("rescue-boats.webp"), "Команда", "Готовим лодки и контролируем акваторию", "Спасательные лодки винг-центра Ветратории", 1920, 1080],
     [wingfoilWaterImg("water-01.webp"), "Катание", "Первые уверенные проходы над Красным морем", "Вингфойл над бирюзовой водой Дахаба", 1920, 1080],
     [wingfoilWaterImg("water-04.webp"), "Вместе", "Делим воду, ветер и хорошие выходы", "Два райдера Вингфойл в Дахабе", 1920, 1080],
     ["/assets/img/media/dahab/photo-day/2026-05-24-photo-day/46.jpg", "После воды", "Обсуждаем прогресс и следующий выход", "Гости общаются после катания на станции", 1080, 720]
@@ -1031,7 +1034,7 @@ ${seasonSection([countriesByKey.dahab], {
       <a class="button button-primary" href="/dahab/safety/">Подробнее</a>
     </div>
     <div class="dahab-sport-safety__media">
-      <img src="${wingfoilSectionImg("rescue-boats.webp")}" alt="Спасательные катера на берегу станции Vetratoria" width="1920" height="1080" loading="lazy" decoding="async">
+      <img src="${wingfoilSectionImg("rescue-boats.webp")}" alt="Спасательные катера на берегу станции Ветратория" width="1920" height="1080" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -1068,7 +1071,7 @@ ${sportStationLife({
       </div>
       <a href="https://www.tripadvisor.com/" target="_blank" rel="noopener">144 отзыва →</a>
     </div>
-    <div class="dahab-sport-review-track" aria-label="Отзывы гостей Vetratoria в Дахабе">
+    <div class="dahab-sport-review-track" aria-label="Отзывы гостей Ветратории в Дахабе">
       ${reviews.map(([initial, name, stars, text]) => `
         <article class="dahab-sport-review-card">
           <div class="dahab-sport-review-card__top">
@@ -1089,7 +1092,7 @@ ${sportStationLife({
 
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Материалы", "Полезное о Вингфойл", "")}
+    ${sectionHeading("Материалы", "Полезное о вингфойле", "")}
     <div class="dahab-sport-useful">
       ${useful.map(([href, label, title, image]) => `
         <a href="${href}">
@@ -1144,8 +1147,8 @@ const dahabWindsurfPage = (page) => {
     [windsurfWaterImg("dahab-windsurf-lagoon-ride.webp"), "Катание на виндсёрфе в лагуне Дахаба", 1600, 1067]
   ];
   const stationPhotos = [
-    [dahabRefImg("bg-swiss.webp"), "Свисс Инн", "Готовим доски и паруса к новому ветровому дню", "Станция виндсёрфинга Свисс Инн Vetratoria", 1600, 1067],
-    [dahabRefImg("bg-ganet.webp"), "Ганет Синай", "Встречаемся на станции и выбираем формат катания", "Станция виндсёрфинга Ганет Синай Vetratoria", 1600, 1067],
+    [dahabRefImg("bg-swiss.webp"), "Свисс Инн", "Готовим доски и паруса к новому ветровому дню", "Станция виндсёрфинга Свисс Инн Ветратория", 1600, 1067],
+    [dahabRefImg("bg-ganet.webp"), "Ганет Синай", "Встречаемся на станции и выбираем формат катания", "Станция виндсёрфинга Ганет Синай Ветратория", 1600, 1067],
     ["/assets/img/media/dahab/photo-day/2026-05-24-photo-day/47.jpg", "Подготовка", "Настраиваем парус под райдера и текущий ветер", "Подготовка виндсёрф-снаряжения перед занятием", 1080, 720],
     [windsurfSectionImg("dahab-windsurf-sail-control.webp"), "Обучение", "Разбираем управление парусом до выхода", "Инструктор объясняет управление виндсёрф-парусом", 1254, 1254],
     [windsurfSectionImg("dahab-windsurf-first-tacks.webp"), "Первые галсы", "Инструктор рядом, пока движения становятся уверенными", "Первые галсы ученика на Виндсёрфинг в Дахабе", 1600, 1600],
@@ -1159,7 +1162,7 @@ const dahabWindsurfPage = (page) => {
     ["Что входит в урок?", "Инструктор, подбор доски и паруса, объяснение зоны катания, практика на воде и обратная связь."],
     ["Когда можно брать прокат?", "Когда вы уверенно стартуете, возвращаетесь к берегу и понимаете правила акватории. Команда подскажет подходящий комплект."],
     ["Подходит ли виндсёрфинг детям?", "Да, для детей есть отдельный формат Детский виндсёрфинг с легким снаряжением и спокойным темпом."],
-    ["Где проходят занятия?", "В зависимости от ветра и уровня занятия проходят на станциях Vetratoria в Дахабе, чаще Свисс Инн или Ганет Синай."]
+    ["Где проходят занятия?", "В зависимости от ветра и уровня занятия проходят на станциях Ветратории в Дахабе, чаще Свисс Инн или Ганет Синай."]
   ];
   const useful = [
     ["/dahab/blog/windsurf/", "Виндсёрфинг", "Как начать Виндсёрфинг с нуля", dahabRefImg("windsurf-hero.webp")],
@@ -1248,7 +1251,7 @@ ${seasonSection([countriesByKey.dahab], {
       <a class="button button-primary" href="/dahab/safety/">Подробнее</a>
     </div>
     <div class="dahab-sport-safety__media">
-      <img src="${wingfoilSectionImg("rescue-boats.webp")}" alt="Спасательные катера на берегу станции Vetratoria" width="1920" height="1080" loading="lazy" decoding="async">
+      <img src="${wingfoilSectionImg("rescue-boats.webp")}" alt="Спасательные катера на берегу станции Ветратория" width="1920" height="1080" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -1285,7 +1288,7 @@ ${sportStationLife({
       </div>
       <a href="https://www.tripadvisor.com/" target="_blank" rel="noopener">144 отзыва →</a>
     </div>
-    <div class="dahab-sport-review-track" aria-label="Отзывы гостей Vetratoria в Дахабе">
+    <div class="dahab-sport-review-track" aria-label="Отзывы гостей Ветратории в Дахабе">
       ${reviews.map(([initial, name, stars, text]) => `
         <article class="dahab-sport-review-card">
           <div class="dahab-sport-review-card__top">
@@ -1306,7 +1309,7 @@ ${sportStationLife({
 
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Материалы", "Полезное о Виндсёрфинг", "")}
+    ${sectionHeading("Материалы", "Полезное о виндсёрфинге", "")}
     <div class="dahab-sport-useful">
       ${useful.map(([href, label, title, image]) => `
         <a href="${href}">
@@ -1347,7 +1350,7 @@ const dahabWindsurfKidsPage = (page) => {
     ["01", "Виндсёрфинг", "Стойка, управление парусом, выбор курса и первые самостоятельные галсы.", wskImg("water-02.jpg"), "Юный спортсмен Детский виндсёрфинг катается на виндсёрфе в Дахабе"],
     ["02", "Виндфойл и вингфойл", "Знакомство с современными фойл-дисциплинами для детей, готовых двигаться дальше.", wskImg("water-03.jpg"), "Участник программы детского виндсёрфинга со снаряжением на станции в Дахабе"],
     ["03", "Спорт и приключения", "Командные игры, снорклинг на рифах, прогулки по горам и поездки по Дахабу.", wskImg("camp-03.webp"), "Поход участников Детский виндсёрфинг в горах рядом с Дахабом"],
-    ["04", "Командная жизнь", "Совместные занятия помогают стать самостоятельнее, увереннее и найти новых друзей.", wskImg("camp-01.webp"), "Участники детского лагеря детского виндсёрфинга на станции Vetratoria"]
+    ["04", "Командная жизнь", "Совместные занятия помогают стать самостоятельнее, увереннее и найти новых друзей.", wskImg("camp-01.webp"), "Участники детского лагеря детского виндсёрфинга на станции Ветратория"]
   ];
   const formats = [
     ["Короткий формат", "Половина дня", "Утренняя зарядка, теория, тренировка на воде и оборудование."],
@@ -1379,7 +1382,7 @@ const dahabWindsurfKidsPage = (page) => {
     [wskImg("water-01.jpg"), "Дети готовят оборудование к тренировке"],
     [wskImg("water-04.jpg"), "Инструктор и участник Детский виндсёрфинг готовятся к тренировке на закате"],
     [wskImg("camp-04.webp"), "Участница Детский виндсёрфинг готовит снаряжение на берегу"],
-    [wskImg("camp-05.webp"), "Группа детского виндсёрфинга с тренерами на станции Vetratoria"]
+    [wskImg("camp-05.webp"), "Группа детского виндсёрфинга с тренерами на станции Ветратория"]
   ];
 
   return `
@@ -1484,7 +1487,7 @@ const dahabWindsurfKidsPage = (page) => {
 
 <section class="dahab-sport-section">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Фотографии", "Жизнь Детский виндсёрфинг в Дахабе", "Тренировки, командные занятия и приключения между Красным морем и Синайскими горами. Фотографии опубликованы официальным сайтом Детский виндсёрфинг.")}
+    ${sectionHeading("Фотографии", "Жизнь детского виндсёрфинга в Дахабе", "Тренировки, командные занятия и приключения между Красным морем и Синайскими горами. Фотографии опубликованы официальным сайтом детского виндсёрфинга.")}
     <div class="dahab-sport-water-grid">
       ${gallery.map(([image, alt], index) => `
         <a${index === 0 ? ` class="is-large"` : ""} href="https://windsurfkids.su/photos" target="_blank" rel="noopener noreferrer" aria-label="Открыть фотографии на сайте Детский виндсёрфинг">
@@ -1607,7 +1610,7 @@ const dahabHowToGetPage = (page) => {
       ${contactCta(page, "Заказать трансфер")}
     </div>
     <div class="dahab-sport-safety__media">
-      <img src="${dahabRefImg("bg-ganet.webp")}" alt="Станция Vetratoria Ганет Синай в Дахабе" width="1600" height="1067" loading="lazy" decoding="async">
+      <img src="${dahabRefImg("bg-ganet.webp")}" alt="Станция Ветратория Ганет Синай в Дахабе" width="1600" height="1067" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -1685,13 +1688,13 @@ const dahabHomePage = (page) => {
   ];
   const reviews = dahabReviewItems;
   const stationLifePhotos = [
-    [img("vetratoria-station-team.webp"), "Люди", "Команда и гости рядом — до выхода и после катания", "Гости и команда Vetratoria у станции в Дахабе", 1600, 900],
+    [img("vetratoria-station-team.webp"), "Люди", "Команда и гости рядом — до выхода и после катания", "Гости и команда Ветратории у станции в Дахабе", 1600, 900],
     ["/assets/img/media/dahab/photo-day/2026-05-24-photo-day/47.jpg", "Подготовка", "Настраиваем снаряжение вместе", "Подготовка виндсёрф-снаряжения перед занятием в Дахабе", 1080, 720],
-    ["/assets/img/media/dahab/photo-day/2026-06-07-photo-day/01.jpg", "На берегу", "Улыбки перед новым выходом", "Гостья Vetratoria улыбается перед занятием на воде", 1080, 720],
+    ["/assets/img/media/dahab/photo-day/2026-06-07-photo-day/01.jpg", "На берегу", "Улыбки перед новым выходом", "Гостья Ветратории улыбается перед занятием на воде", 1080, 720],
     ["/assets/img/media/dahab/photo-day/2026-06-07-photo-day/04.jpg", "Обучение", "Инструктор рядом на первых шагах", "Инструктор помогает ученику подготовиться к занятию", 1080, 720],
-    ["/assets/img/media/dahab/photo-day/2026-06-07-photo-day/09.jpg", "Команда", "Возвращаемся на берег вместе", "Гости Vetratoria возвращаются после занятия", 1080, 720],
+    ["/assets/img/media/dahab/photo-day/2026-06-07-photo-day/09.jpg", "Команда", "Возвращаемся на берег вместе", "Гости Ветратории возвращаются после занятия", 1080, 720],
     ["/assets/img/media/dahab/photo-day/2026-06-03-photo-day/02.jpg", "Снаряжение", "Собираем комплект под человека и ветер", "Подбор и настройка виндсёрф-снаряжения в Дахабе", 1080, 720],
-    ["/assets/img/media/dahab/photo-day/2026-05-24-photo-day/45.jpg", "После воды", "Отдыхаем и делимся впечатлениями", "Райдер после катания у станции Vetratoria", 1080, 720],
+    ["/assets/img/media/dahab/photo-day/2026-05-24-photo-day/45.jpg", "После воды", "Отдыхаем и делимся впечатлениями", "Райдер после катания у станции Ветратория", 1080, 720],
     ["/assets/img/media/dahab/photo-day/2026-05-24-photo-day/46.jpg", "Атмосфера", "Обсуждаем катание и следующий выход", "Гости общаются между выходами на воду", 1080, 720]
   ];
 
@@ -1711,7 +1714,7 @@ const dahabHomePage = (page) => {
   </div>
 </section>
 
-<section class="dahab-marquee" aria-label="Vetratoria в Дахабе">
+<section class="dahab-marquee" aria-label="Ветратория в Дахабе">
   <div class="dahab-marquee__track">
     <span>ДАХАБ · ВЕТЕР КРУГЛЫЙ ГОД / УРОК ВИНГФОЙЛА — 70$ / УРОК ВИНДСЁРФИНГА — 70$ / ДЕТСКИЙ УРОК — ОТ 55$ / ПРОКАТ — ОТ 25$ / 4 СПАСАТЕЛЬНЫХ КАТЕРА / SWISS INN / GANET SINAI / WING CENTER / </span>
     <span aria-hidden="true">ДАХАБ · ВЕТЕР КРУГЛЫЙ ГОД / УРОК ВИНГФОЙЛА — 70$ / УРОК ВИНДСЁРФИНГА — 70$ / ДЕТСКИЙ УРОК — ОТ 55$ / ПРОКАТ — ОТ 25$ / 4 СПАСАТЕЛЬНЫХ КАТЕРА / SWISS INN / GANET SINAI / WING CENTER / </span>
@@ -1841,9 +1844,9 @@ ${stationLifeGallery({
   <div class="trust-block__inner">
     <header class="trust-head">
       <p class="eyebrow">144 актуальных отзыва</p>
-      <h2>Что говорят гости Vetratoria</h2>
+      <h2>Что говорят гости Ветратории</h2>
     </header>
-    <section class="trust-slider trust-slider--reviews" aria-label="Отзывы гостей Vetratoria в Дахабе">
+    <section class="trust-slider trust-slider--reviews" aria-label="Отзывы гостей Ветратории в Дахабе">
       <div class="trust-slider__top">
         <div><span>Отзывы</span><h3>О школе и команде</h3></div>
         <a href="https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html" target="_blank" rel="noopener">144 отзыва →</a>
@@ -1916,21 +1919,21 @@ const dahabStationsPage = (page) => {
     {
       id: "vetratoria-ganet",
       eyebrow: "Виндсёрфинг",
-      title: "Vetratoria Ганет Синай",
+      title: "Ветратория Ганет Синай",
       text: [
-        "База Vetratoria в Дахабе для виндсёрфинга, проката, уроков и станционной жизни рядом с водой. Здесь удобно встретиться с командой, подобрать комплект и понять, какая зона подходит под ветер и уровень.",
+        "База Ветратории в Дахабе для виндсёрфинга, проката, уроков и станционной жизни рядом с водой. Здесь удобно встретиться с командой, подобрать комплект и понять, какая зона подходит под ветер и уровень.",
         "Ганет хорошо подходит для практики, прогресса и спокойного выбора формата без лишней логистики: пришли на станцию, обсудили условия, вышли на воду."
       ],
       tags: ["Виндсёрфинг", "Прокат", "Практика", "Команда рядом"],
       sliderTitle: "Ганет Синай",
       sliderLead: "Виндсёрфинг-база, прокат, уроки и выбор формата под ветер.",
       images: [
-        { file: "ganet-01.webp", alt: "Vetratoria Ганет Синай у воды" },
+        { file: "ganet-01.webp", alt: "Ветратория Ганет Синай у воды" },
         { file: "ganet-02.webp", alt: "Снаряжение на станции Ганет Синай" },
         { file: "ganet-03.webp", alt: "Внутри станции Ганет Синай" },
         { file: "ganet-04.webp", alt: "Пляж и старт у Ганет Синай" },
-        { file: "ganet-05.webp", alt: "Оборудование Vetratoria Ганет" },
-        { file: "ganet-06.webp", alt: "Фасад Vetratoria Ганет Синай" }
+        { file: "ganet-05.webp", alt: "Оборудование Ветратории Ганет" },
+        { file: "ganet-06.webp", alt: "Фасад Ветратория Ганет Синай" }
       ]
     },
     {
@@ -1946,7 +1949,7 @@ const dahabStationsPage = (page) => {
       sliderTitle: "Винг-центр",
       sliderLead: "Вингфойл, фойл за лодкой, оборудование и выходы на воду.",
       images: [
-        { file: "wing-center-01.webp", alt: "Винг-центр Vetratoria" },
+        { file: "wing-center-01.webp", alt: "Винг-центр Ветратории" },
         { file: "wing-center-02.webp", alt: "Пляж у Винг-центр" },
         { file: "wing-center-03.webp", alt: "Карта акватории Винг-центр" },
         { file: "wing-center-04.webp", alt: "Зона отдыха Винг-центр" },
@@ -1975,7 +1978,7 @@ const dahabStationsPage = (page) => {
         { file: "swiss-03.webp", alt: "Зона хранения Свисс Инн" },
         { file: "swiss-04.webp", alt: "Терраса Свисс Инн" },
         { file: "swiss-05.webp", alt: "Пляж Свисс Инн" },
-        { file: "swiss-06.webp", alt: "Фасад Vetratoria Свисс Инн" },
+        { file: "swiss-06.webp", alt: "Фасад Ветратория Свисс Инн" },
         { file: "swiss-07.webp", alt: "Снаряжение Свисс Инн" }
       ]
     }
@@ -1984,13 +1987,13 @@ const dahabStationsPage = (page) => {
   return `
 <section class="hero page-hero dahab-stations-hero" aria-labelledby="stations-title">
   <div class="hero-bg">
-    <img src="${stationImg("hero.webp")}" alt="Станции Vetratoria в Дахабе" width="1920" height="1080" fetchpriority="high" decoding="async">
+    <img src="${stationImg("hero.webp")}" alt="Станции Ветратории в Дахабе" width="1920" height="1080" fetchpriority="high" decoding="async">
   </div>
   <div class="hero-shade"></div>
   <div class="hero-content">
     <p class="eyebrow">Дахаб · станции</p>
-    <h1 id="stations-title">Станции Vetratoria в Дахабе</h1>
-    <p>Три точки у воды: Vetratoria Ганет Синай, Винг-центр и Свисс Инн. На этой странице — коротко о каждой станции, фото и понятный выбор, куда ехать под ваш спорт, уровень и даты.</p>
+    <h1 id="stations-title">Станции Ветратории в Дахабе</h1>
+    <p>Три точки у воды: Ветратория Ганет Синай, Винг-центр и Свисс Инн. На этой странице — коротко о каждой станции, фото и понятный выбор, куда ехать под ваш спорт, уровень и даты.</p>
     <div class="hero-actions">
       ${contactCta(page, "Подобрать станцию")}
       <a class="button button-ghost" href="#vetratoria-ganet">Смотреть станции</a>
@@ -2057,12 +2060,12 @@ const dahabSafetyPage = (page) => {
 
   return `
 <section class="dahab-hero">
-  <img class="dahab-hero__image" src="${dahabSafetyImg("safety-boat.webp")}" alt="Спасательный катер Vetratoria в Дахабе" width="1600" height="1067" fetchpriority="high">
+  <img class="dahab-hero__image" src="${dahabSafetyImg("safety-boat.webp")}" alt="Спасательный катер Ветратории в Дахабе" width="1600" height="1067" fetchpriority="high">
   <div class="dahab-hero__shade"></div>
   <div class="dahab-hero__content">
     <p class="eyebrow">Дахаб · безопасность</p>
     <h1>Безопасность на воде — часть каждого выхода</h1>
-    <p class="hero-lead">В Vetratoria безопасность начинается до воды: объясняем акваторию, проводим инструктаж, контролируем райдеров и поддерживаем спасение-готовность на станциях.</p>
+    <p class="hero-lead">В Ветратории безопасность начинается до воды: объясняем акваторию, проводим инструктаж, контролируем райдеров и поддерживаем готовность спасательной команды на станциях.</p>
     <div class="hero-advantages">
       <span class="hero-advantage">4 спасательных катера</span>
       <span class="hero-advantage">Контроль на воде</span>
@@ -2078,7 +2081,7 @@ const dahabSafetyPage = (page) => {
 
 <section class="dahab-sport-section" id="safety-system">
   <div class="dahab-sport-inner">
-    ${sectionHeading("Главное", "Что Vetratoria делает для безопасности", "Райдер заранее понимает, кто контролирует воду, как устроена связь и что происходит перед первым выходом.")}
+    ${sectionHeading("Главное", "Как Ветратория обеспечивает безопасность", "Райдер заранее понимает, кто контролирует воду, как устроена связь и что происходит перед первым выходом.")}
     <div class="dahab-sport-feature-grid">
       ${safetyFacts.map(([label, title, text]) => `
         <article>
@@ -2124,7 +2127,7 @@ const dahabSafetyPage = (page) => {
       ${contactCta(page, "Уточнить формат")}
     </div>
     <div class="dahab-sport-safety__media">
-      <img src="${dahabSafetyImg("cover-safety.webp")}" alt="Контроль райдера спасательным катером Vetratoria" width="1600" height="1067" loading="lazy" decoding="async">
+      <img src="${dahabSafetyImg("cover-safety.webp")}" alt="Контроль райдера спасательным катером Ветратории" width="1600" height="1067" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -2144,7 +2147,7 @@ const dahabSafetyPage = (page) => {
 </section>
 
 <section class="dahab-sport-cta">
-  <img src="${dahabSafetyImg("safety-boat.webp")}" alt="Rescue Vetratoria в Дахабе" width="1600" height="1067" loading="lazy" decoding="async">
+  <img src="${dahabSafetyImg("safety-boat.webp")}" alt="Спасательный катер Ветратории в Дахабе" width="1600" height="1067" loading="lazy" decoding="async">
   <div class="dahab-sport-cta__inner">
     <p class="eyebrow">Подбор формата</p>
     <h2>Не уверены, какая зона подойдёт?</h2>
@@ -2184,7 +2187,7 @@ const countryPage = (page) => {
     </div>
   </section>
   <section class="destination-story" data-reveal>
-    <img src="${country.hero}" alt="${escapeHtml(`${country.region} · ${country.city}, Vetratoria`)}" loading="lazy" decoding="async">
+    <img src="${country.hero}" alt="${escapeHtml(`${country.region} · ${country.city}, Ветратория`)}" loading="lazy" decoding="async">
     <div class="destination-story__shade"></div>
     <div class="section-inner destination-story__content">
       <p class="eyebrow">Атмосфера направления</p>
@@ -2399,7 +2402,7 @@ const dahabWingfoilPricePage = (page) => `
     <header class="wingfoil-price-heading">
       <p class="eyebrow">Вингфойл · отдельные части</p>
       <h2>Аренда только винга или только доски</h2>
-      <p>Скидки клуба Vetratoria не распространяются на аренду отдельных частей комплекта вингфойл.</p>
+      <p>Скидки клуба Ветратории не распространяются на аренду отдельных частей комплекта вингфойла.</p>
     </header>
 
     <h3 class="wingfoil-price-subtitle">Аренда винга (только винг)</h3>
@@ -2447,7 +2450,7 @@ const dahabWingfoilPricePage = (page) => `
     </div>
     <div class="wingfoil-price-notes">
       <p>Время аренды доски заканчивается только после снятия фойла! Если фойл остаётся на доске, аренда считается как полный день даже без катания. Пожалуйста, будьте внимательны!</p>
-      <p>Скидки клуба Vetratoria не распространяются на аренду отдельных частей комплекта вингфойл. Скидки на аренду отдельных частей действуют только если оборудование было куплено в клубе.</p>
+      <p>Скидки клуба Ветратории не распространяются на аренду отдельных частей комплекта вингфойла. Скидки на аренду отдельных частей действуют только если оборудование было куплено в клубе.</p>
       <p>Цена и условия страховки на аренду отдельных частей соответствуют общему прайс-листу и правилам страховки.</p>
     </div>
   </div>
@@ -2496,7 +2499,7 @@ const dahabWingfoilPricePage = (page) => `
 <section class="wingfoil-price-section wingfoil-price-section--dark" id="application">
   <div class="wingfoil-price-inner">
     <div class="wingfoil-price-contact">
-      <figure><img src="/assets/img/final/wingfoil/lesson-coaching.webp" alt="Вингфойл Vetratoria в Дахабе" width="1600" height="1067" loading="lazy" decoding="async"></figure>
+      <figure><img src="/assets/img/final/wingfoil/lesson-coaching.webp" alt="Вингфойл Ветратории в Дахабе" width="1600" height="1067" loading="lazy" decoding="async"></figure>
       <div>
         <p class="eyebrow">Заявка</p>
         <h2>Подобрать Вингфойл</h2>
@@ -2642,7 +2645,7 @@ const dahabWindsurfPricePage = (page) => `
   <div class="windsurf-price-inner">
     <header class="windsurf-price-heading">
       <p class="eyebrow">Виндсёрфинг · скидки</p>
-      <h2>Скидки Vetratoria</h2>
+      <h2>Скидки Ветратории</h2>
     </header>
     <div class="windsurf-price-notes">
       <p><strong>Скидки по возрасту (при предъявлении подтверждающего документа):</strong></p>
@@ -2687,7 +2690,7 @@ const dahabWindsurfPricePage = (page) => `
 <section class="windsurf-price-section windsurf-price-section--dark" id="application">
   <div class="windsurf-price-inner">
     <div class="windsurf-price-contact">
-      <figure><img src="/assets/img/final/windsurf/lesson-water.webp" alt="Виндсёрфинг Vetratoria в Дахабе" width="1600" height="1067" loading="lazy" decoding="async"></figure>
+      <figure><img src="/assets/img/final/windsurf/lesson-water.webp" alt="Виндсёрфинг Ветратории в Дахабе" width="1600" height="1067" loading="lazy" decoding="async"></figure>
       <div>
         <p class="eyebrow">Заявка</p>
         <h2>Подобрать Виндсёрфинг</h2>
@@ -2707,7 +2710,7 @@ const pricePage = (page) => {
 
   const country = countriesByKey[page.country];
   const sport = page.sport ? site.sports[page.sport] : null;
-  const title = sport ? sport.title : "Vetratoria";
+  const title = sport ? sport.title : "Ветратория";
   const isDahabKidsPrice = page.country === "dahab" && page.sport === "windsurf-kids";
   return `${hero(page, `${contactCta(page, "Уточнить цену")}<a class="button button-ghost" href="/${country.key}/">К направлению</a>`)}
   <section class="content-section">
@@ -3002,7 +3005,7 @@ const dahabStationCard = (station) => `
         href: station.telegram,
         icon: "/assets/icons/telegram.svg",
         label: "Telegram · чат станции",
-        value: station.key === "wingfoil" ? "Винг-центр в Дахабе" : "Vetratoria Виндсёрфинг",
+        value: station.key === "wingfoil" ? "Винг-центр в Дахабе" : "Ветратория Виндсёрфинг",
         external: true
       })}
     </div>
@@ -3064,7 +3067,7 @@ ${hero(page, heroActions)}
   <div class="section-inner contact-social">
     <div>
       <p class="eyebrow">Социальные сети</p>
-      <h2>Vetratoria в сети</h2>
+      <h2>Ветратория в сети</h2>
       <p>Новости станций, свежие фото и отзывы гостей.</p>
     </div>
     ${socialIconLinks("contact-social__links")}
@@ -3260,7 +3263,7 @@ const dahabTeamGroups = [
 const dahabTeamCard = (member) => `
           <article class="team-card">
             <div class="team-card__media">
-              <img src="${member.photo}" alt="${escapeHtml(`${member.name} — ${member.role} Vetratoria`)}" loading="${member.eager ? "eager" : "lazy"}" decoding="async">
+              <img src="${member.photo}" alt="${escapeHtml(`${member.name} — ${member.role} Ветратория`)}" loading="${member.eager ? "eager" : "lazy"}" decoding="async">
             </div>
             <div class="team-card__content">
               <span class="team-card__role">${escapeHtml(member.role)}</span>
@@ -3293,7 +3296,7 @@ ${hero(page, `${contactCta(page, "Написать команде")}<a class="bu
   <section class="content-section team-page">
     <div class="section-inner">
       ${sectionHeading(
-        "Vetratoria · Дахаб",
+        "Ветратория · Дахаб",
         "Одна команда — разные роли",
         ""
       )}

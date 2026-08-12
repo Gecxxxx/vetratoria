@@ -14,5 +14,9 @@ h1,
 h2,
 h3 {
   text-wrap: balance;
-  letter-spacing: -0.04em;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  font-weight: 700 !important;
+  letter-spacing: -0.032em;
 }

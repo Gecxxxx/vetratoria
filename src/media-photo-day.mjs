@@ -7,7 +7,7 @@ export const photoDayAlbums = [
     "date": "2026-06-07",
     "sport": "windsurf",
     "event": "photo-day",
-    "description": "Свежие кадры с воды: виндсерфинг, ученики и райдеры Vetratoria в лагуне Дахаба.",
+    "description": "Свежие кадры с воды: виндсёрфинг, ученики и райдеры Ветратории в лагуне Дахаба.",
     "source": "https://vetratoria.ru/gallery/foto-dnya-06-07-iyunya.php",
     "cover": "/assets/img/media/dahab/photo-day/2026-06-07-photo-day/01.jpg",
     "photos": [
@@ -80,7 +80,7 @@ export const photoDayAlbums = [
     "date": "2026-06-03",
     "sport": "windsurf",
     "event": "photo-day",
-    "description": "Свежие кадры с воды: виндсерфинг, ученики и райдеры Vetratoria в лагуне Дахаба.",
+    "description": "Свежие кадры с воды: виндсёрфинг, ученики и райдеры Ветратории в лагуне Дахаба.",
     "source": "https://vetratoria.ru/gallery/foto-dnya-02-03-iyunya.php",
     "cover": "/assets/img/media/dahab/photo-day/2026-06-03-photo-day/01.jpg",
     "photos": [
@@ -128,7 +128,7 @@ export const photoDayAlbums = [
     "date": "2026-05-31",
     "sport": "windsurf",
     "event": "photo-day",
-    "description": "Свежие кадры с воды: виндсерфинг, ученики и райдеры Vetratoria в лагуне Дахаба.",
+    "description": "Свежие кадры с воды: виндсёрфинг, ученики и райдеры Ветратории в лагуне Дахаба.",
     "source": "https://vetratoria.ru/gallery/foto-dnya-30-31-maya.php",
     "cover": "/assets/img/media/dahab/photo-day/2026-05-31-photo-day/01.jpg",
     "photos": [
@@ -171,7 +171,7 @@ export const photoDayAlbums = [
     "date": "2026-05-26",
     "sport": "windsurf",
     "event": "photo-day",
-    "description": "Свежие кадры с воды: виндсерфинг, ученики и райдеры Vetratoria в лагуне Дахаба.",
+    "description": "Свежие кадры с воды: виндсёрфинг, ученики и райдеры Ветратории в лагуне Дахаба.",
     "source": "https://vetratoria.ru/gallery/foto-dnya-26-maya.php",
     "cover": "/assets/img/media/dahab/photo-day/2026-05-26-photo-day/01.jpg",
     "photos": [
@@ -236,7 +236,7 @@ export const photoDayAlbums = [
     "date": "2026-05-24",
     "sport": "windsurf",
     "event": "photo-day",
-    "description": "Свежие кадры с воды: виндсерфинг, ученики и райдеры Vetratoria в лагуне Дахаба.",
+    "description": "Свежие кадры с воды: виндсёрфинг, ученики и райдеры Ветратории в лагуне Дахаба.",
     "source": "https://vetratoria.ru/gallery/foto-dnya-24-maya.php",
     "cover": "/assets/img/media/dahab/photo-day/2026-05-24-photo-day/01.jpg",
     "photos": [

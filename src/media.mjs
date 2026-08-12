@@ -98,7 +98,7 @@ export const mediaAlbums = [
     date: "2026-01-30",
     sport: "kite",
     event: "station",
-    description: "Ветер, подготовка оборудования и один насыщенный день на станции Vetratoria.",
+    description: "Ветер, подготовка оборудования и один насыщенный день на станции Ветратория.",
     cover: "/assets/img/home-uploaded/home-slider-5.webp",
     photos: [
       "/assets/img/home-uploaded/home-slider-5.webp",

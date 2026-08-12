@@ -608,7 +608,7 @@
     const country = String(data.get("country") || option?.value || "").trim();
     const sport = String(data.get("sport") || "").trim();
     const intent = String(data.get("intent") || "").trim();
-    const direction = form.dataset.direction || option?.textContent?.trim() || "Vetratoria";
+    const direction = form.dataset.direction || option?.textContent?.trim() || "Ветратория";
 
     return {
       name: String(data.get("name") || "").trim(),
@@ -655,7 +655,7 @@
       return;
     }
 
-    const subject = `Заявка Vetratoria: ${payload.direction}`;
+    const subject = `Заявка Ветратория: ${payload.direction}`;
     const mailBody = [
       `Имя: ${payload.name}`,
       `Способ связи: ${payload.contact}`,
@@ -753,7 +753,7 @@
 
       const option = countryOption(contactModalForm);
       const selectedCountry = country || option?.value || "";
-      const selectedCountryLabel = countryLabel || option?.textContent?.trim() || "Vetratoria";
+    const selectedCountryLabel = countryLabel || option?.textContent?.trim() || "Ветратория";
       const direction = [selectedCountryLabel, sport].filter(Boolean).join(" · ");
       contactModalForm.dataset.direction = direction;
       contactModalForm.dataset.mailTo = trigger.dataset.contactEmail || option?.dataset.email || contactModalForm.dataset.mailTo;
