@@ -559,8 +559,18 @@
   .destination-season-card:last-child { grid-column: auto; width: auto; }
   .destination-season-card { min-height: clamp(430px, 135vw, 520px); }
   .destination-season-card__overlay { padding: clamp(18px, 5vw, 24px); }
-  .destination-season-card__overlay > header { align-items: start; }
-  .destination-season-card__overlay > header > strong { margin-top: 2px; }
+  .destination-season-card__overlay > header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+  }
+  .destination-season-card__overlay > header > strong {
+    justify-self: start;
+    max-inline-size: 100%;
+    white-space: normal;
+    line-height: 1.25;
+  }
   .destination-season-card .season-months {
     grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 5px;
