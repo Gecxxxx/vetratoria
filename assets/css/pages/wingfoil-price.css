@@ -9,9 +9,9 @@
 .wingfoil-price-contact h2 {
   margin: 0;
   color: var(--white);
-  font-weight: 900;
-  line-height: 0.92;
-  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 0.98;
+  text-transform: none;
 }
 
 .wingfoil-price-contact__actions {
@@ -79,7 +79,7 @@
   background: #37170f;
   color: var(--white);
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1.25;
   text-transform: uppercase;
 }
@@ -95,7 +95,7 @@
 .wingfoil-price-table .table-section td {
   background: var(--orange);
   color: var(--white);
-  font-weight: 900;
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -103,9 +103,9 @@
   margin: 34px 0 12px;
   color: var(--white);
   font-size: clamp(22px, 2.2vw, 32px);
-  font-weight: 900;
-  line-height: 1;
-  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.08;
+  text-transform: none;
 }
 
 .wingfoil-price-copy {
@@ -169,6 +169,38 @@
 @media (max-width: 520px) {
   .wingfoil-price-heading h2,
   .wingfoil-price-contact h2 {
-    font-size: 34px;
+    font-size: 32px;
+  }
+
+  .wingfoil-table-wrap {
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .wingfoil-price-table th,
+  .wingfoil-price-table td {
+    padding: 12px;
+  }
+
+  .wingfoil-price-table th:first-child,
+  .wingfoil-price-table td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    box-shadow: 8px 0 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .wingfoil-price-table th:first-child {
+    z-index: 2;
+    background: #37170f;
+  }
+
+  .wingfoil-price-table tbody tr:nth-child(odd):not(.table-section) td:first-child {
+    background: #171615;
+  }
+
+  .wingfoil-price-table tbody tr:nth-child(even):not(.table-section) td:first-child {
+    background: #141312;
   }
 }
