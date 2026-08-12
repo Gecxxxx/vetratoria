@@ -68,7 +68,9 @@
   font-size: clamp(38px, 4vw, 58px);
   font-weight: 900;
   line-height: 0.9;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
   text-transform: uppercase;
 }
 
@@ -224,7 +226,9 @@
   font-size: 29px;
   font-weight: 900;
   line-height: 0.98;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .media-album-card__content em {
