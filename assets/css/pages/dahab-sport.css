@@ -294,7 +294,7 @@
 .dahab-sport-useful span {
   color: var(--orange);
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
 }
@@ -371,7 +371,7 @@
   margin-top: 10px;
   color: var(--orange);
   font-size: clamp(36px, 4.2vw, 58px);
-  font-weight: 900;
+  font-weight: 700;
   line-height: 0.9;
   overflow-wrap: normal;
   word-break: normal;
