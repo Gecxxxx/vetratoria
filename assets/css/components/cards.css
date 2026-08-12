@@ -260,3 +260,12 @@
       font-size: 26px;
     }
 }
+
+
+/* Keep checklist items readable in light sections. */
+.content-section--light .check-list span {
+  border-color: var(--color-light-border);
+  background: var(--color-light-elevated);
+  color: var(--color-light-text);
+  font-weight: 500;
+}
