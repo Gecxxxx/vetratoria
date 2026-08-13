@@ -88,7 +88,7 @@
   color: var(--orange);
   font-size: 12px;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1.1;
   text-transform: uppercase;
 }
@@ -99,7 +99,7 @@
   margin: 10px 0 0;
   color: var(--white);
   font-size: 30px;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1;
 }
 
@@ -178,7 +178,7 @@
   color: var(--orange);
   font-style: normal;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 500;
   text-transform: uppercase;
 }
 
@@ -218,7 +218,7 @@
   margin-top: 18px;
   color: var(--orange);
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 500;
   text-transform: uppercase;
 }
 
