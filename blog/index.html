@@ -3,12 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (() => {
+      document.documentElement.classList.add("vtr-nav-state-pending");
+      try {
+        const navigationType = performance.getEntriesByType("navigation")[0]?.type;
+        const savedScrollY = Number(sessionStorage.getItem("vtr:scroll:" + location.pathname) || 0);
+        if ((navigationType === "reload" || navigationType === "back_forward") && savedScrollY > 140) {
+          document.documentElement.classList.add("vtr-nav-initial-compact");
+        }
+      } catch {}
+    })();
+  </script>
   <title>Материалы со всех стран</title>
   <meta name="description" content="Статьи по странам, спорту, обучению, безопасности и оборудованию.">
 
   <link rel="canonical" href="https://vetratoria.ru/blog/">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Vetratoria">
+  <meta property="og:site_name" content="Ветратория">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:url" content="https://vetratoria.ru/blog/">
   <meta property="og:title" content="Материалы со всех стран">
@@ -21,9 +33,11 @@
   <meta name="twitter:image" content="https://vetratoria.ru/assets/img/home-uploaded/home-blog.webp">
   <meta name="theme-color" content="#0d0c0b">
   <link rel="icon" href="/assets/img/vetratoria-logo.png">
-  <link rel="stylesheet" href="/assets/css/main.css?v=20260811-staging-r22-compact-nav">
-  <script defer src="/assets/js/app.js?v=20260811-staging-r22-compact-nav"></script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Vetratoria","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/blog/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Vetratoria","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Материалы со всех стран","item":"https://vetratoria.ru/blog/"}]}]}</script>
+  <link rel="preload" href="/assets/fonts/inter-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/main.css?v=20260811-staging-r25-local-inter">
+  <script defer src="/assets/js/app.js?v=20260811-staging-r25-local-inter"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/blog/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Материалы со всех стран","item":"https://vetratoria.ru/blog/"}]}]}</script>
 </head>
 <body class="modern-site blog-index">
   <a class="skip-link" href="#main">К содержанию</a>
@@ -35,11 +49,11 @@
       <a href="mailto:dahab@vetratoria.ru">dahab@vetratoria.ru</a>
 
           <a class="vtr-nav__station-phone" href="tel:+201029321772">
-            <span>Номер Windsurf-станции</span>
+            <span>Номер Виндсёрфинг-станции</span>
             <b>+20 102 932 1772</b>
           </a>
           <a class="vtr-nav__station-phone" href="tel:+201151015941">
-            <span>Номер Wingfoil-станции</span>
+            <span>Номер Вингфойл-станции</span>
             <b>+20 115 101 5941</b>
           </a>
     </div>
@@ -48,7 +62,7 @@
     </nav>
     <div class="vtr-nav__right">
 
-  <nav class="social-icon-links vtr-nav__socials" aria-label="Социальные сети Vetratoria">
+  <nav class="social-icon-links vtr-nav__socials" aria-label="Социальные сети Ветратории">
 
       <a href="https://vk.ru/club2195523" target="_blank" rel="noopener noreferrer" aria-label="VKontakte" title="VKontakte">
         <img src="/assets/icons/vk.svg" alt="" width="20" height="20">
@@ -64,38 +78,38 @@
     </div>
   </div>
   <div class="vtr-nav__main">
-    <a class="vtr-nav__logo" href="/" aria-label="Vetratoria - главная">
-      <img src="/assets/img/vetratoria-logo.png" alt="Vetratoria" width="198" height="97">
+    <a class="vtr-nav__logo" href="/" aria-label="Ветратория — главная">
+      <img src="/assets/img/vetratoria-logo.png" alt="Ветратория" width="198" height="97">
     </a>
     <button class="vtr-nav__burger" type="button" aria-label="Открыть меню" aria-controls="site-navigation" aria-expanded="false" data-menu-toggle>
       <span></span><span></span><span></span>
     </button>
 
     <nav class="vtr-nav__panel" id="site-navigation" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
-      <a class="vtr-nav__link" href="/">Vetratoria</a>
+      <a class="vtr-nav__link" href="/">Ветратория</a>
 
       <div class="vtr-nav__item vtr-nav__item--drop vtr-nav__item--directions" data-dropdown>
         <button class="vtr-nav__link" type="button" aria-expanded="false" data-dropdown-toggle>Направления <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
         <div class="vtr-nav__dropdown vtr-nav__dropdown--directions">
 
           <div class="vtr-nav__direction">
-            <a class="vtr-nav__direction-link" href="/dahab/"><b>Египет · Дахаб</b><span>Wingfoil, Windsurf, Kids</span></a>
+            <a class="vtr-nav__direction-link" href="/dahab/"><b>Египет · Дахаб</b><span>Вингфойл, Виндсёрфинг</span></a>
             <div class="vtr-nav__direction-phones">
           <a class="vtr-nav__direction-phone" href="tel:+201029321772">
-            <span>Номер Windsurf-станции</span>
+            <span>Номер Виндсёрфинг-станции</span>
             <b>+20 102 932 1772</b>
           </a>
           <a class="vtr-nav__direction-phone" href="tel:+201151015941">
-            <span>Номер Wingfoil-станции</span>
+            <span>Номер Вингфойл-станции</span>
             <b>+20 115 101 5941</b>
           </a></div>
           </div>
           <div class="vtr-nav__direction">
-            <a class="vtr-nav__direction-link" href="/vietnam/"><b>Вьетнам · Муйне</b><span>Windsurf, Wingfoil, Kite</span></a>
+            <a class="vtr-nav__direction-link" href="/vietnam/"><b>Вьетнам · Муйне</b><span>Виндсёрфинг, Вингфойл, Кайтсёрфинг</span></a>
 
           </div>
           <div class="vtr-nav__direction">
-            <a class="vtr-nav__direction-link" href="/russia/"><b>Россия · Должанская</b><span>Windsurf, Wingfoil, Kite</span></a>
+            <a class="vtr-nav__direction-link" href="/russia/"><b>Россия · Должанская</b><span>Виндсёрфинг, Вингфойл, Кайтсёрфинг</span></a>
 
           </div>
         </div>
@@ -111,20 +125,20 @@
 
         <a class="vtr-mobile-menu__row vtr-mobile-menu__row--split" href="/dahab/">
           <span>Египет · Дахаб</span>
-          <span>Wingfoil, Windsurf, Kids</span>
+          <span>Вингфойл, Виндсёрфинг</span>
         </a>
         <a class="vtr-mobile-menu__row vtr-mobile-menu__row--split" href="/vietnam/">
           <span>Вьетнам · Муйне</span>
-          <span>Windsurf, Wingfoil, Kite</span>
+          <span>Виндсёрфинг, Вингфойл, Кайтсёрфинг</span>
         </a>
         <a class="vtr-mobile-menu__row vtr-mobile-menu__row--split" href="/russia/">
           <span>Россия · Должанская</span>
-          <span>Windsurf, Wingfoil, Kite</span>
+          <span>Виндсёрфинг, Вингфойл, Кайтсёрфинг</span>
         </a>
       </section>
         <section class="vtr-mobile-menu__block" aria-label="Главное">
           <p class="vtr-mobile-menu__title">Главное</p>
-          <a class="vtr-mobile-menu__row" href="/">Vetratoria</a>
+          <a class="vtr-mobile-menu__row" href="/">Ветратория</a>
           <a class="vtr-mobile-menu__row" href="/blog/">Блог</a>
           <a class="vtr-mobile-menu__row" href="/media/">Медиа</a>
           <a class="vtr-mobile-menu__row" href="/contacts/">Контакты</a>
@@ -134,16 +148,16 @@
           <a class="vtr-mobile-menu__row" href="mailto:dahab@vetratoria.ru">dahab@vetratoria.ru</a>
 
           <a class="vtr-mobile-menu__row vtr-mobile-menu__contact-phone" href="tel:+201029321772">
-            <span>Номер Windsurf-станции</span>
+            <span>Номер Виндсёрфинг-станции</span>
             <b>+20 102 932 1772</b>
           </a>
           <a class="vtr-mobile-menu__row vtr-mobile-menu__contact-phone" href="tel:+201151015941">
-            <span>Номер Wingfoil-станции</span>
+            <span>Номер Вингфойл-станции</span>
             <b>+20 115 101 5941</b>
           </a>
           <a class="vtr-mobile-menu__row" href="https://t.me/dahabvetratoria" target="_blank" rel="noopener noreferrer">Telegram</a>
 
-  <nav class="social-icon-links vtr-mobile-menu__socials" aria-label="Социальные сети Vetratoria">
+  <nav class="social-icon-links vtr-mobile-menu__socials" aria-label="Социальные сети Ветратории">
 
       <a href="https://vk.ru/club2195523" target="_blank" rel="noopener noreferrer" aria-label="VKontakte" title="VKontakte">
         <img src="/assets/icons/vk.svg" alt="" width="20" height="20">
@@ -193,9 +207,9 @@
       </div>
       <div class="blog-filter-group" role="group" aria-label="Фильтр по теме">
         <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="all" aria-pressed="true">Все темы</button>
-        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="wingfoil" aria-pressed="false">Wingfoil</button>
-        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="windsurf" aria-pressed="false">Windsurf</button>
-        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="wsk" aria-pressed="false">WSK</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="wingfoil" aria-pressed="false">Вингфойл</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="windsurf" aria-pressed="false">Виндсёрфинг</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="wsk" aria-pressed="false">Детский лагерь</button>
         <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="kite" aria-pressed="false">Кайт</button>
         <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="safety" aria-pressed="false">Безопасность</button>
         <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="trip" aria-pressed="false">Поездка</button>
@@ -208,57 +222,57 @@
     <p class="blog-filter-status" data-blog-filter-status aria-live="polite"></p>
     <div class="article-grid" data-blog-filter-list>
 
-        <a class="article-card" href="/dahab/blog/windsurf/" data-blog-filter-card data-blog-country="dahab" data-blog-topics="windsurf" data-blog-search="Дахаб Windsurf Как начать заниматься windsurf в Дахабе Что выбрать на первом уроке, как проходит обучение и почему лагуна помогает быстрее поймать баланс.">
-          <img src="/assets/img/home-uploaded/home-slider-1.webp" alt="Как начать заниматься windsurf в Дахабе" loading="lazy" decoding="async">
-          <small>Дахаб · Windsurf</small>
-          <h3>Как начать заниматься windsurf в Дахабе</h3>
+        <a class="article-card" href="/dahab/blog/windsurf/" data-blog-filter-card data-blog-country="dahab" data-blog-topics="windsurf" data-blog-search="Дахаб Виндсёрфинг Как начать заниматься виндсёрфинг в Дахабе Что выбрать на первом уроке, как проходит обучение и почему лагуна помогает быстрее поймать баланс.">
+          <img src="/assets/img/home-uploaded/home-slider-1.webp" alt="Как начать заниматься виндсёрфинг в Дахабе" loading="lazy" decoding="async">
+          <small>Дахаб · Виндсёрфинг</small>
+          <h3>Как начать заниматься виндсёрфинг в Дахабе</h3>
           <p>Что выбрать на первом уроке, как проходит обучение и почему лагуна помогает быстрее поймать баланс.</p>
         </a>
-        <a class="article-card" href="/dahab/blog/wingfoil/" data-blog-filter-card data-blog-country="dahab" data-blog-topics="wingfoil" data-blog-search="Дахаб Wingfoil Wingfoil в Дахабе: от крыла до первого полета Форматы Wing + SUP, Wing + Foil, foil boat и логика перехода от контроля крыла к полету.">
-          <img src="/assets/img/home-uploaded/home-slider-6.webp" alt="Wingfoil в Дахабе: от крыла до первого полета" loading="lazy" decoding="async">
-          <small>Дахаб · Wingfoil</small>
-          <h3>Wingfoil в Дахабе: от крыла до первого полета</h3>
-          <p>Форматы Wing + SUP, Wing + Foil, foil boat и логика перехода от контроля крыла к полету.</p>
+        <a class="article-card" href="/dahab/blog/wingfoil/" data-blog-filter-card data-blog-country="dahab" data-blog-topics="wingfoil" data-blog-search="Дахаб Вингфойл Вингфойл в Дахабе: от крыла до первого полета Форматы Винг + SUP, Винг + фойл, фойл за лодкой и логика перехода от контроля крыла к полету.">
+          <img src="/assets/img/home-uploaded/home-slider-6.webp" alt="Вингфойл в Дахабе: от крыла до первого полета" loading="lazy" decoding="async">
+          <small>Дахаб · Вингфойл</small>
+          <h3>Вингфойл в Дахабе: от крыла до первого полета</h3>
+          <p>Форматы Винг + SUP, Винг + фойл, фойл за лодкой и логика перехода от контроля крыла к полету.</p>
         </a>
-        <a class="article-card" href="/dahab/blog/windsurf-kids/" data-blog-filter-card data-blog-country="dahab" data-blog-topics="wsk safety" data-blog-search="Дахаб Windsurf Kids Windsurf Kids: как ребенку выйти на воду спокойно Легкие паруса, короткие уроки, инструктор рядом и безопасный темп без давления.">
-          <img src="/assets/img/home-uploaded/home-slider-4.webp" alt="Windsurf Kids: как ребенку выйти на воду спокойно" loading="lazy" decoding="async">
-          <small>Дахаб · Windsurf Kids</small>
-          <h3>Windsurf Kids: как ребенку выйти на воду спокойно</h3>
+        <a class="article-card" href="/dahab/blog/windsurf-kids/" data-blog-filter-card data-blog-country="dahab" data-blog-topics="wsk safety" data-blog-search="Дахаб Детский виндсёрфинг Детский виндсёрфинг: как ребенку выйти на воду спокойно Легкие паруса, короткие уроки, инструктор рядом и безопасный темп без давления.">
+          <img src="/assets/img/home-uploaded/home-slider-4.webp" alt="Детский виндсёрфинг: как ребенку выйти на воду спокойно" loading="lazy" decoding="async">
+          <small>Дахаб · Детский виндсёрфинг</small>
+          <h3>Детский виндсёрфинг: как ребенку выйти на воду спокойно</h3>
           <p>Легкие паруса, короткие уроки, инструктор рядом и безопасный темп без давления.</p>
         </a>
-        <a class="article-card" href="/vietnam/blog/windsurf/" data-blog-filter-card data-blog-country="vietnam" data-blog-topics="windsurf trip" data-blog-search="Муйне Windsurf Windsurf в Муйне: ветер, волна и сезон Как готовиться к поездке, какие условия ждать и кому подойдет вьетнамская акватория.">
-          <img src="/assets/img/home-uploaded/home-direction-vietnam.webp" alt="Windsurf в Муйне: ветер, волна и сезон" loading="lazy" decoding="async">
-          <small>Муйне · Windsurf</small>
-          <h3>Windsurf в Муйне: ветер, волна и сезон</h3>
+        <a class="article-card" href="/vietnam/blog/windsurf/" data-blog-filter-card data-blog-country="vietnam" data-blog-topics="windsurf trip" data-blog-search="Муйне Виндсёрфинг Виндсёрфинг в Муйне: ветер, волна и сезон Как готовиться к поездке, какие условия ждать и кому подойдет вьетнамская акватория.">
+          <img src="/assets/img/home-uploaded/home-direction-vietnam.webp" alt="Виндсёрфинг в Муйне: ветер, волна и сезон" loading="lazy" decoding="async">
+          <small>Муйне · Виндсёрфинг</small>
+          <h3>Виндсёрфинг в Муйне: ветер, волна и сезон</h3>
           <p>Как готовиться к поездке, какие условия ждать и кому подойдет вьетнамская акватория.</p>
         </a>
-        <a class="article-card" href="/vietnam/blog/wingfoil/" data-blog-filter-card data-blog-country="vietnam" data-blog-topics="wingfoil trip" data-blog-search="Муйне Wingfoil Wingfoil во Вьетнаме Стабильный бриз, пространство для прогресса и сценарии занятий на несколько дней.">
-          <img src="/assets/img/home-uploaded/home-slider-6.webp" alt="Wingfoil во Вьетнаме" loading="lazy" decoding="async">
-          <small>Муйне · Wingfoil</small>
-          <h3>Wingfoil во Вьетнаме</h3>
+        <a class="article-card" href="/vietnam/blog/wingfoil/" data-blog-filter-card data-blog-country="vietnam" data-blog-topics="wingfoil trip" data-blog-search="Муйне Вингфойл Вингфойл во Вьетнаме Стабильный бриз, пространство для прогресса и сценарии занятий на несколько дней.">
+          <img src="/assets/img/home-uploaded/home-slider-6.webp" alt="Вингфойл во Вьетнаме" loading="lazy" decoding="async">
+          <small>Муйне · Вингфойл</small>
+          <h3>Вингфойл во Вьетнаме</h3>
           <p>Стабильный бриз, пространство для прогресса и сценарии занятий на несколько дней.</p>
         </a>
-        <a class="article-card" href="/vietnam/blog/kite/" data-blog-filter-card data-blog-country="vietnam" data-blog-topics="kite safety trip" data-blog-search="Муйне Kite Кайт в Муйне Почему направление подходит для кайта, как строится обучение и что учесть перед стартом.">
+        <a class="article-card" href="/vietnam/blog/kite/" data-blog-filter-card data-blog-country="vietnam" data-blog-topics="kite safety trip" data-blog-search="Муйне Кайтсёрфинг Кайт в Муйне Почему направление подходит для кайта, как строится обучение и что учесть перед стартом.">
           <img src="/assets/img/home-uploaded/home-slider-5.webp" alt="Кайт в Муйне" loading="lazy" decoding="async">
-          <small>Муйне · Kite</small>
+          <small>Муйне · Кайтсёрфинг</small>
           <h3>Кайт в Муйне</h3>
           <p>Почему направление подходит для кайта, как строится обучение и что учесть перед стартом.</p>
         </a>
-        <a class="article-card" href="/russia/blog/windsurf/" data-blog-filter-card data-blog-country="russia" data-blog-topics="windsurf trip" data-blog-search="Должанская Windsurf Windsurf на Должанской Летний формат, мелкая вода, старт с берега и удобный план для первых галсов.">
-          <img src="/assets/img/home-uploaded/home-direction-russia.webp" alt="Windsurf на Должанской" loading="lazy" decoding="async">
-          <small>Должанская · Windsurf</small>
-          <h3>Windsurf на Должанской</h3>
+        <a class="article-card" href="/russia/blog/windsurf/" data-blog-filter-card data-blog-country="russia" data-blog-topics="windsurf trip" data-blog-search="Должанская Виндсёрфинг Виндсёрфинг на Должанской Летний формат, мелкая вода, старт с берега и удобный план для первых галсов.">
+          <img src="/assets/img/home-uploaded/home-direction-russia.webp" alt="Виндсёрфинг на Должанской" loading="lazy" decoding="async">
+          <small>Должанская · Виндсёрфинг</small>
+          <h3>Виндсёрфинг на Должанской</h3>
           <p>Летний формат, мелкая вода, старт с берега и удобный план для первых галсов.</p>
         </a>
-        <a class="article-card" href="/russia/blog/wingfoil/" data-blog-filter-card data-blog-country="russia" data-blog-topics="wingfoil trip" data-blog-search="Должанская Wingfoil Wingfoil в России Как использовать летний сезон для первых полетов и спокойного прогресса на фойле.">
-          <img src="/assets/img/home-uploaded/home-slider-6.webp" alt="Wingfoil в России" loading="lazy" decoding="async">
-          <small>Должанская · Wingfoil</small>
-          <h3>Wingfoil в России</h3>
+        <a class="article-card" href="/russia/blog/wingfoil/" data-blog-filter-card data-blog-country="russia" data-blog-topics="wingfoil trip" data-blog-search="Должанская Вингфойл Вингфойл в России Как использовать летний сезон для первых полетов и спокойного прогресса на фойле.">
+          <img src="/assets/img/home-uploaded/home-slider-6.webp" alt="Вингфойл в России" loading="lazy" decoding="async">
+          <small>Должанская · Вингфойл</small>
+          <h3>Вингфойл в России</h3>
           <p>Как использовать летний сезон для первых полетов и спокойного прогресса на фойле.</p>
         </a>
-        <a class="article-card" href="/russia/blog/kite/" data-blog-filter-card data-blog-country="russia" data-blog-topics="kite safety trip" data-blog-search="Должанская Kite Кайт на Должанской Кому подойдет российская локация и как безопасно войти в кайт-формат.">
+        <a class="article-card" href="/russia/blog/kite/" data-blog-filter-card data-blog-country="russia" data-blog-topics="kite safety trip" data-blog-search="Должанская Кайтсёрфинг Кайт на Должанской Кому подойдет российская локация и как безопасно войти в кайт-формат.">
           <img src="/assets/img/home-uploaded/home-slider-5.webp" alt="Кайт на Должанской" loading="lazy" decoding="async">
-          <small>Должанская · Kite</small>
+          <small>Должанская · Кайтсёрфинг</small>
           <h3>Кайт на Должанской</h3>
           <p>Кому подойдет российская локация и как безопасно войти в кайт-формат.</p>
         </a>
@@ -270,13 +284,13 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="/assets/img/vetratoria-logo.png" alt="Vetratoria" width="198" height="97">
-      <p>Vetratoria - windsurf и wingfoil школы в Египте, Вьетнаме и России. Выберите страну, спорт и формат обучения.</p>
+      <img src="/assets/img/vetratoria-logo.png" alt="Ветратория" width="198" height="97">
+      <p>Ветратория — школы виндсёрфинга и вингфойла в Египте, Вьетнаме и России. Выберите страну, спорт и формат обучения.</p>
       <div class="footer-stats">
         <span>С 2006 года</span>
         <span>3 страны</span>
-        <span>Windsurf</span>
-        <span>Wingfoil</span>
+        <span>Виндсёрфинг</span>
+        <span>Вингфойл</span>
       </div>
     </div>
     <nav class="footer-nav" aria-label="Навигация в подвале">
@@ -286,9 +300,9 @@
       </div>
       <div>
         <h3>Спорт</h3>
-        <a href="/dahab/wingfoil/">Wingfoil Дахаб</a>
-        <a href="/dahab/windsurf/">Windsurf Дахаб</a>
-        <a href="/dahab/windsurf-kids/">Windsurf Kids</a>
+        <a href="/dahab/wingfoil/">Вингфойл Дахаб</a>
+        <a href="/dahab/windsurf/">Виндсёрфинг Дахаб</a>
+        <a href="https://windsurfkids.su/" target="_blank" rel="noopener noreferrer">Детский виндсёрфинг</a>
       </div>
       <div>
         <h3>Материалы</h3>
@@ -305,7 +319,7 @@
     </nav>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 Vetratoria</span>
+    <span>© 2026 Ветратория</span>
     <span>Условия, расписание, цены и доступность форматов уточняются перед поездкой.</span>
   </div>
 </footer>
@@ -317,12 +331,12 @@
       <p class="eyebrow">Быстрая заявка</p>
       <h2 id="contact-modal-title" data-contact-modal-title>Написать нам</h2>
       <p>Оставьте контакты — команда уточнит детали и поможет подобрать формат.</p>
-      <span class="contact-modal__context" data-contact-modal-context>Vetratoria</span>
+      <span class="contact-modal__context" data-contact-modal-context>Ветратория</span>
     </div>
     <form class="contact-form contact-modal__form" data-contact-form data-contact-modal-form
       data-endpoint=""
       data-mail-to=""
-      data-direction="Vetratoria">
+      data-direction="Ветратория">
       <input type="hidden" name="source" value="/blog/">
       <input type="hidden" name="intent" value="" data-contact-intent-input>
       <input type="hidden" name="sport" value="" data-contact-sport-input>
@@ -333,7 +347,7 @@
         </select>
       </label>
       <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
-      <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, email или @username" required></label>
+      <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>
       <label><span>Комментарий <small>по желанию</small></span><textarea name="message" rows="4" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
       <button class="button button-primary contact-modal__submit" type="submit">Подготовить заявку</button>
       <p class="form-note" data-form-note role="status" aria-live="polite"></p>

@@ -3,27 +3,41 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Windsurf в Должанская</title>
+  <script>
+    (() => {
+      document.documentElement.classList.add("vtr-nav-state-pending");
+      try {
+        const navigationType = performance.getEntriesByType("navigation")[0]?.type;
+        const savedScrollY = Number(sessionStorage.getItem("vtr:scroll:" + location.pathname) || 0);
+        if ((navigationType === "reload" || navigationType === "back_forward") && savedScrollY > 140) {
+          document.documentElement.classList.add("vtr-nav-initial-compact");
+        }
+      } catch {}
+    })();
+  </script>
+  <title>Виндсёрфинг в Должанская</title>
   <meta name="description" content="Классическое обучение, прокат, курсы, фрирайд и уверенное катание на ветру под задачу и уровень. Направление: Россия · Должанская.">
 
   <link rel="canonical" href="https://vetratoria.ru/russia/windsurf/">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Vetratoria">
+  <meta property="og:site_name" content="Ветратория">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:url" content="https://vetratoria.ru/russia/windsurf/">
-  <meta property="og:title" content="Windsurf в Должанская">
+  <meta property="og:title" content="Виндсёрфинг в Должанская">
   <meta property="og:description" content="Классическое обучение, прокат, курсы, фрирайд и уверенное катание на ветру под задачу и уровень. Направление: Россия · Должанская.">
   <meta property="og:image" content="https://vetratoria.ru/assets/img/home-uploaded/home-slider-1.webp">
-  <meta property="og:image:alt" content="Windsurf в Должанская">
+  <meta property="og:image:alt" content="Виндсёрфинг в Должанская">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Windsurf в Должанская">
+  <meta name="twitter:title" content="Виндсёрфинг в Должанская">
   <meta name="twitter:description" content="Классическое обучение, прокат, курсы, фрирайд и уверенное катание на ветру под задачу и уровень. Направление: Россия · Должанская.">
   <meta name="twitter:image" content="https://vetratoria.ru/assets/img/home-uploaded/home-slider-1.webp">
   <meta name="theme-color" content="#0d0c0b">
   <link rel="icon" href="/assets/img/vetratoria-logo.png">
-  <link rel="stylesheet" href="/assets/css/main.css?v=20260811-staging-r22-compact-nav">
-  <script defer src="/assets/js/app.js?v=20260811-staging-r22-compact-nav"></script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Vetratoria","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/russia/windsurf/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Vetratoria","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Должанская","item":"https://vetratoria.ru/russia/"},{"@type":"ListItem","position":3,"name":"Windsurf в Должанская","item":"https://vetratoria.ru/russia/windsurf/"}]}]}</script>
+  <link rel="preload" href="/assets/fonts/inter-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/main.css?v=20260811-staging-r25-local-inter">
+  <script defer src="/assets/js/app.js?v=20260811-staging-r25-local-inter"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/russia/windsurf/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Должанская","item":"https://vetratoria.ru/russia/"},{"@type":"ListItem","position":3,"name":"Виндсёрфинг в Должанская","item":"https://vetratoria.ru/russia/windsurf/"}]}]}</script>
 </head>
 <body class="modern-site sport country-russia">
   <a class="skip-link" href="#main">К содержанию</a>
@@ -40,7 +54,7 @@
     </nav>
     <div class="vtr-nav__right">
 
-  <nav class="social-icon-links vtr-nav__socials" aria-label="Социальные сети Vetratoria">
+  <nav class="social-icon-links vtr-nav__socials" aria-label="Социальные сети Ветратории">
 
       <a href="https://vk.ru/club2195523" target="_blank" rel="noopener noreferrer" aria-label="VKontakte" title="VKontakte">
         <img src="/assets/icons/vk.svg" alt="" width="20" height="20">
@@ -56,38 +70,38 @@
     </div>
   </div>
   <div class="vtr-nav__main">
-    <a class="vtr-nav__logo" href="/" aria-label="Vetratoria - главная">
-      <img src="/assets/img/vetratoria-logo.png" alt="Vetratoria" width="198" height="97">
+    <a class="vtr-nav__logo" href="/" aria-label="Ветратория — главная">
+      <img src="/assets/img/vetratoria-logo.png" alt="Ветратория" width="198" height="97">
     </a>
     <button class="vtr-nav__burger" type="button" aria-label="Открыть меню" aria-controls="site-navigation" aria-expanded="false" data-menu-toggle>
       <span></span><span></span><span></span>
     </button>
 
     <nav class="vtr-nav__panel" id="site-navigation" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
-      <a class="vtr-nav__link" href="/">Vetratoria</a>
+      <a class="vtr-nav__link" href="/">Ветратория</a>
 
       <div class="vtr-nav__item vtr-nav__item--drop vtr-nav__item--directions" data-dropdown>
         <button class="vtr-nav__link" type="button" aria-expanded="false" data-dropdown-toggle>Направления <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
         <div class="vtr-nav__dropdown vtr-nav__dropdown--directions">
 
           <div class="vtr-nav__direction">
-            <a class="vtr-nav__direction-link" href="/dahab/"><b>Египет · Дахаб</b><span>Wingfoil, Windsurf, Kids</span></a>
+            <a class="vtr-nav__direction-link" href="/dahab/"><b>Египет · Дахаб</b><span>Вингфойл, Виндсёрфинг</span></a>
             <div class="vtr-nav__direction-phones">
           <a class="vtr-nav__direction-phone" href="tel:+201029321772">
-            <span>Номер Windsurf-станции</span>
+            <span>Номер Виндсёрфинг-станции</span>
             <b>+20 102 932 1772</b>
           </a>
           <a class="vtr-nav__direction-phone" href="tel:+201151015941">
-            <span>Номер Wingfoil-станции</span>
+            <span>Номер Вингфойл-станции</span>
             <b>+20 115 101 5941</b>
           </a></div>
           </div>
           <div class="vtr-nav__direction">
-            <a class="vtr-nav__direction-link" href="/vietnam/"><b>Вьетнам · Муйне</b><span>Windsurf, Wingfoil, Kite</span></a>
+            <a class="vtr-nav__direction-link" href="/vietnam/"><b>Вьетнам · Муйне</b><span>Виндсёрфинг, Вингфойл, Кайтсёрфинг</span></a>
 
           </div>
           <div class="vtr-nav__direction">
-            <a class="vtr-nav__direction-link" href="/russia/"><b>Россия · Должанская</b><span>Windsurf, Wingfoil, Kite</span></a>
+            <a class="vtr-nav__direction-link" href="/russia/"><b>Россия · Должанская</b><span>Виндсёрфинг, Вингфойл, Кайтсёрфинг</span></a>
 
           </div>
         </div>
@@ -101,12 +115,12 @@
       <section class="vtr-mobile-menu__block vtr-mobile-menu__block--accent" aria-label="Навигация Должанская">
         <p class="vtr-mobile-menu__title">Должанская</p>
         <a class="vtr-mobile-menu__row" href="/russia/">Обзор</a>
-        <a class="vtr-mobile-menu__row is-active" href="/russia/windsurf/">Windsurf</a><a class="vtr-mobile-menu__row" href="/russia/wingfoil/">Wingfoil</a><a class="vtr-mobile-menu__row" href="/russia/kite/">Kite</a>
+        <a class="vtr-mobile-menu__row is-active" href="/russia/windsurf/">Виндсёрфинг</a><a class="vtr-mobile-menu__row" href="/russia/wingfoil/">Вингфойл</a><a class="vtr-mobile-menu__row" href="/russia/kite/">Кайтсёрфинг</a>
 
         <div class="vtr-mobile-menu__item vtr-mobile-menu__item--drop" data-dropdown>
           <button class="vtr-mobile-menu__row" type="button" aria-expanded="false" data-dropdown-toggle>Цены <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
           <div class="vtr-mobile-menu__submenu">
-            <a class="vtr-mobile-menu__row" href="/russia/windsurf/price/">Windsurf</a><a class="vtr-mobile-menu__row" href="/russia/wingfoil/price/">Wingfoil</a><a class="vtr-mobile-menu__row" href="/russia/kite/price/">Kite</a>
+            <a class="vtr-mobile-menu__row" href="/russia/windsurf/price/">Виндсёрфинг</a><a class="vtr-mobile-menu__row" href="/russia/wingfoil/price/">Вингфойл</a><a class="vtr-mobile-menu__row" href="/russia/kite/price/">Кайтсёрфинг</a>
           </div>
         </div>
 
@@ -120,7 +134,7 @@
       </section>
         <section class="vtr-mobile-menu__block" aria-label="Главное">
           <p class="vtr-mobile-menu__title">Главное</p>
-          <a class="vtr-mobile-menu__row" href="/">Vetratoria</a>
+          <a class="vtr-mobile-menu__row" href="/">Ветратория</a>
           <a class="vtr-mobile-menu__row" href="/blog/">Блог</a>
           <a class="vtr-mobile-menu__row" href="/media/">Медиа</a>
           <a class="vtr-mobile-menu__row" href="/russia/contacts/">Контакты</a>
@@ -131,7 +145,7 @@
           <a class="vtr-mobile-menu__row" href="tel:+79884715355">+7 988 471 5355</a>
           <a class="vtr-mobile-menu__row" href="https://t.me/+79884715355" target="_blank" rel="noopener noreferrer">Telegram</a>
 
-  <nav class="social-icon-links vtr-mobile-menu__socials" aria-label="Социальные сети Vetratoria">
+  <nav class="social-icon-links vtr-mobile-menu__socials" aria-label="Социальные сети Ветратории">
 
       <a href="https://vk.ru/club2195523" target="_blank" rel="noopener noreferrer" aria-label="VKontakte" title="VKontakte">
         <img src="/assets/icons/vk.svg" alt="" width="20" height="20">
@@ -149,11 +163,11 @@
   </div>
 
   <nav class="vtr-nav__section" aria-label="Навигация Должанская">
-    <a class="vtr-nav__section-link" href="/russia/">Обзор</a><a class="vtr-nav__section-link is-active" href="/russia/windsurf/">Windsurf</a><a class="vtr-nav__section-link" href="/russia/wingfoil/">Wingfoil</a><a class="vtr-nav__section-link" href="/russia/kite/">Kite</a>
+    <a class="vtr-nav__section-link" href="/russia/">Обзор</a><a class="vtr-nav__section-link is-active" href="/russia/windsurf/">Виндсёрфинг</a><a class="vtr-nav__section-link" href="/russia/wingfoil/">Вингфойл</a><a class="vtr-nav__section-link" href="/russia/kite/">Кайтсёрфинг</a>
     <div class="vtr-nav__section-item vtr-nav__section-item--drop" data-dropdown>
       <button class="vtr-nav__section-link" type="button" aria-expanded="false" data-dropdown-toggle>Цены <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
       <div class="vtr-nav__section-dropdown">
-        <a href="/russia/windsurf/price/">Windsurf</a><a href="/russia/wingfoil/price/">Wingfoil</a><a href="/russia/kite/price/">Kite</a>
+        <a href="/russia/windsurf/price/">Виндсёрфинг</a><a href="/russia/wingfoil/price/">Вингфойл</a><a href="/russia/kite/price/">Кайтсёрфинг</a>
       </div>
     </div>
 
@@ -172,10 +186,10 @@
   </div>
   <div class="hero-shade"></div>
   <div class="hero-content">
-    <p class="eyebrow">Должанская · Windsurf</p>
-    <h1>Windsurf в Должанская</h1>
+    <p class="eyebrow">Должанская · Виндсёрфинг</p>
+    <h1>Виндсёрфинг в Должанская</h1>
     <p class="hero-lead">Классическое обучение, прокат, курсы, фрирайд и уверенное катание на ветру под задачу и уровень.</p>
-    <div class="hero-actions"><a class="button button-primary" href="/russia/windsurf/price/">Цены</a><a class="button button-ghost" href="/russia/contacts/" data-contact-modal data-contact-intent="Записаться" data-contact-country="russia" data-contact-country-label="Россия · Должанская" data-contact-sport="Windsurf" data-contact-email="russia@vetratoria.ru" data-contact-phone="+79884715355" data-contact-telegram="https://t.me/+79884715355">Записаться</a></div>
+    <div class="hero-actions"><a class="button button-primary" href="/russia/windsurf/price/">Цены</a><a class="button button-ghost" href="/russia/contacts/" data-contact-modal data-contact-intent="Записаться" data-contact-country="russia" data-contact-country-label="Россия · Должанская" data-contact-sport="Виндсёрфинг" data-contact-email="russia@vetratoria.ru" data-contact-phone="+79884715355" data-contact-telegram="https://t.me/+79884715355">Записаться</a></div>
   </div>
 </section>
 
@@ -184,7 +198,7 @@
 
   <header class="section-heading">
     <p class="eyebrow">Россия · условия</p>
-    <h2>Windsurf: сезон и ветер</h2>
+    <h2>Виндсёрфинг: сезон и ветер</h2>
     <p>Показываем только подтверждённую проектом сезонность; фактические условия команда уточняет перед занятием.</p>
   </header>
       <div class="season-grid season-grid--single">
@@ -195,15 +209,18 @@
         <span>Россия</span>
         <h3>Должанская</h3>
       </div>
-      <strong>Летний сезон</strong>
+      <strong>Май — середина сентября</strong>
     </header>
 
-    <div class="season-months" aria-label="Сезон: Летний сезон">
-      <span class="" data-month="jan" aria-label="ЯНВ: вне основного сезона">ЯНВ</span><span class="" data-month="feb" aria-label="ФЕВ: вне основного сезона">ФЕВ</span><span class="" data-month="mar" aria-label="МАР: вне основного сезона">МАР</span><span class="" data-month="apr" aria-label="АПР: вне основного сезона">АПР</span><span class="" data-month="may" aria-label="МАЙ: вне основного сезона">МАЙ</span><span class="is-season" data-month="jun" aria-label="ИЮН: основной сезон">ИЮН</span><span class="is-season" data-month="jul" aria-label="ИЮЛ: основной сезон">ИЮЛ</span><span class="is-season" data-month="aug" aria-label="АВГ: основной сезон">АВГ</span><span class="" data-month="sep" aria-label="СЕН: вне основного сезона">СЕН</span><span class="" data-month="oct" aria-label="ОКТ: вне основного сезона">ОКТ</span><span class="" data-month="nov" aria-label="НОЯ: вне основного сезона">НОЯ</span><span class="" data-month="dec" aria-label="ДЕК: вне основного сезона">ДЕК</span>
+    <div class="season-months" aria-label="Сезон: Май — середина сентября">
+      <span class="" data-month="jan" aria-label="ЯНВ: вне основного сезона">ЯНВ</span><span class="" data-month="feb" aria-label="ФЕВ: вне основного сезона">ФЕВ</span><span class="" data-month="mar" aria-label="МАР: вне основного сезона">МАР</span><span class="" data-month="apr" aria-label="АПР: вне основного сезона">АПР</span><span class="is-season" data-month="may" aria-label="МАЙ: основной сезон">МАЙ</span><span class="is-season" data-month="jun" aria-label="ИЮН: основной сезон">ИЮН</span><span class="is-season" data-month="jul" aria-label="ИЮЛ: основной сезон">ИЮЛ</span><span class="is-season" data-month="aug" aria-label="АВГ: основной сезон">АВГ</span><span class="is-season" data-month="sep" aria-label="СЕН: основной сезон">СЕН</span><span class="" data-month="oct" aria-label="ОКТ: вне основного сезона">ОКТ</span><span class="" data-month="nov" aria-label="НОЯ: вне основного сезона">НОЯ</span><span class="" data-month="dec" aria-label="ДЕК: вне основного сезона">ДЕК</span>
     </div>
     <div class="season-card__wind">
       <span class="wind-indicator" aria-hidden="true"><i></i><i></i><i></i></span>
       <div><b>Ветер по фактическим условиям</b><p>Мелкая вода и старт с берега помогают учиться; силу и направление ветра подтверждаем перед выходом.</p></div>
+    </div>
+    <div class="season-card__stat" aria-label="Статистика ветрового сезона">
+      <strong>5/12</strong><span>месяцев летнего ветра</span>
     </div>
 
   </article>
@@ -240,26 +257,26 @@
     </div>
   </section>
   <section class="destination-story destination-story--sport" data-reveal>
-    <img src="/assets/img/home-uploaded/home-slider-1.webp" alt="Windsurf в Должанская" loading="lazy" decoding="async">
+    <img src="/assets/img/home-uploaded/home-slider-1.webp" alt="Виндсёрфинг в Должанская" loading="lazy" decoding="async">
     <div class="destination-story__shade"></div>
     <div class="section-inner destination-story__content">
       <p class="eyebrow">Следующий шаг</p>
       <h2>Подберём формат под уровень и ветер</h2>
       <p>Без неподтверждённых обещаний: команда сверит условия, доступность инструктора и подходящее снаряжение.</p>
-      <a class="button button-primary" href="/russia/contacts/" data-contact-modal data-contact-intent="Обсудить поездку" data-contact-country="russia" data-contact-country-label="Россия · Должанская" data-contact-sport="Windsurf" data-contact-email="russia@vetratoria.ru" data-contact-phone="+79884715355" data-contact-telegram="https://t.me/+79884715355">Обсудить поездку</a>
+      <a class="button button-primary" href="/russia/contacts/" data-contact-modal data-contact-intent="Обсудить поездку" data-contact-country="russia" data-contact-country-label="Россия · Должанская" data-contact-sport="Виндсёрфинг" data-contact-email="russia@vetratoria.ru" data-contact-phone="+79884715355" data-contact-telegram="https://t.me/+79884715355">Обсудить поездку</a>
     </div>
   </section></main>
 
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="/assets/img/vetratoria-logo.png" alt="Vetratoria" width="198" height="97">
-      <p>Vetratoria - windsurf и wingfoil школы в Египте, Вьетнаме и России. Выберите страну, спорт и формат обучения.</p>
+      <img src="/assets/img/vetratoria-logo.png" alt="Ветратория" width="198" height="97">
+      <p>Ветратория — школы виндсёрфинга и вингфойла в Египте, Вьетнаме и России. Выберите страну, спорт и формат обучения.</p>
       <div class="footer-stats">
         <span>С 2006 года</span>
         <span>3 страны</span>
-        <span>Windsurf</span>
-        <span>Wingfoil</span>
+        <span>Виндсёрфинг</span>
+        <span>Вингфойл</span>
       </div>
     </div>
     <nav class="footer-nav" aria-label="Навигация в подвале">
@@ -269,9 +286,9 @@
       </div>
       <div>
         <h3>Спорт</h3>
-        <a href="/dahab/wingfoil/">Wingfoil Дахаб</a>
-        <a href="/dahab/windsurf/">Windsurf Дахаб</a>
-        <a href="/dahab/windsurf-kids/">Windsurf Kids</a>
+        <a href="/dahab/wingfoil/">Вингфойл Дахаб</a>
+        <a href="/dahab/windsurf/">Виндсёрфинг Дахаб</a>
+        <a href="https://windsurfkids.su/" target="_blank" rel="noopener noreferrer">Детский виндсёрфинг</a>
       </div>
       <div>
         <h3>Материалы</h3>
@@ -281,14 +298,14 @@
       </div>
       <div>
         <h3>Связь</h3>
-        <a href="/russia/contacts/" data-contact-modal data-contact-intent="Написать нам" data-contact-country="russia" data-contact-country-label="Россия · Должанская" data-contact-sport="Windsurf" data-contact-email="russia@vetratoria.ru" data-contact-phone="+79884715355" data-contact-telegram="https://t.me/+79884715355">Написать нам</a>
+        <a href="/russia/contacts/" data-contact-modal data-contact-intent="Написать нам" data-contact-country="russia" data-contact-country-label="Россия · Должанская" data-contact-sport="Виндсёрфинг" data-contact-email="russia@vetratoria.ru" data-contact-phone="+79884715355" data-contact-telegram="https://t.me/+79884715355">Написать нам</a>
         <a href="mailto:russia@vetratoria.ru">russia@vetratoria.ru</a>
         <a href="tel:+79884715355">+7 988 471 5355</a>
       </div>
     </nav>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 Vetratoria</span>
+    <span>© 2026 Ветратория</span>
     <span>Условия, расписание, цены и доступность форматов уточняются перед поездкой.</span>
   </div>
 </footer>
@@ -300,18 +317,18 @@
       <p class="eyebrow">Быстрая заявка</p>
       <h2 id="contact-modal-title" data-contact-modal-title>Написать нам</h2>
       <p>Оставьте контакты — команда уточнит детали и поможет подобрать формат.</p>
-      <span class="contact-modal__context" data-contact-modal-context>Россия · Должанская · Windsurf</span>
+      <span class="contact-modal__context" data-contact-modal-context>Россия · Должанская · Виндсёрфинг</span>
     </div>
     <form class="contact-form contact-modal__form" data-contact-form data-contact-modal-form
       data-endpoint=""
       data-mail-to="russia@vetratoria.ru"
-      data-direction="Россия · Должанская · Windsurf">
+      data-direction="Россия · Должанская · Виндсёрфинг">
       <input type="hidden" name="source" value="/russia/windsurf/">
       <input type="hidden" name="intent" value="" data-contact-intent-input>
-      <input type="hidden" name="sport" value="Windsurf" data-contact-sport-input>
+      <input type="hidden" name="sport" value="Виндсёрфинг" data-contact-sport-input>
       <input type="hidden" name="country" value="russia" data-contact-country-input>
       <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
-      <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, email или @username" required></label>
+      <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>
       <label><span>Комментарий <small>по желанию</small></span><textarea name="message" rows="4" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
       <button class="button button-primary contact-modal__submit" type="submit">Подготовить заявку</button>
       <p class="form-note" data-form-note role="status" aria-live="polite"></p>

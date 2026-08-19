@@ -129,7 +129,7 @@ export const site = {
       windStat: "12/12",
       windStatLabel: "месяцев для поездки",
       tone: "лагуна, фрирайд, фойл за лодкой и сильная инструкторская команда",
-      sports: ["wingfoil", "windsurf", "windsurf-kids"],
+      sports: ["wingfoil", "windsurf"],
       extras: [
         { title: "Станции", href: "/dahab/stations/" },
         { title: "Безопасность", href: "/dahab/safety/" },

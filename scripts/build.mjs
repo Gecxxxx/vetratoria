@@ -305,7 +305,6 @@ const sectionLinkClass = (active) => `vtr-nav__section-link${active ? " is-activ
 
 const schoolDropdown = (country) => country.key === "dahab" ? [
   { label: "Команда", href: "/dahab/team/" },
-  { label: "Детский виндсёрфинг", href: "/dahab/windsurf-kids/" },
   { label: "Безопасность", href: "/dahab/safety/" },
   { label: "Как добраться", href: "/dahab/how-to-get/" },
   { label: "Медиа", href: "/media/dahab/" },
@@ -405,7 +404,7 @@ const footer = (page) => {
         <h3>Спорт</h3>
         <a href="/dahab/wingfoil/">Вингфойл Дахаб</a>
         <a href="/dahab/windsurf/">Виндсёрфинг Дахаб</a>
-        <a href="/dahab/windsurf-kids/">Детский виндсёрфинг</a>
+        <a href="https://windsurfkids.su/" target="_blank" rel="noopener noreferrer">Детский виндсёрфинг</a>
       </div>
       <div>
         <h3>Материалы</h3>
@@ -1661,7 +1660,7 @@ const dahabHomePage = (page) => {
     ["Вингфойл", "Индивидуальный урок", "70$", "Инструктор, полный комплект, спасательная поддержка и страховка снаряжения.", dahabRefImg("price-wingfoil.webp"), "/dahab/wingfoil/price/"],
     ["Подготовка к Вингфойл", "Фойл за лодкой", "60$", "Отдельно тренируем баланс и контроль высоты — без необходимости одновременно управлять крылом.", dahabRefImg("price-foil-boat.webp"), "/dahab/wingfoil/price/"],
     ["Виндсёрфинг", "Индивидуальный урок", "70$", "Инструктор, доска, парус, спасательная поддержка и страховка снаряжения.", dahabRefImg("price-windsurf.webp"), "/dahab/windsurf/price/"],
-    ["Детский виндсёрфинг", "Детский урок", "от 55$", "Лёгкий парус, подходящая доска, инструктор рядом и спокойный темп.", dahabRefImg("price-kids.webp"), "/dahab/windsurf-kids/"]
+    ["Детский виндсёрфинг", "Детский урок", "от 55$", "Лёгкий парус, подходящая доска, инструктор рядом и спокойный темп.", dahabRefImg("price-kids.webp"), "https://windsurfkids.su/"]
   ];
   const stations = [
     ["Винг-центр", "Только вингфойл", dahabRefImg("bg-wingfoil-station.webp")],
@@ -1750,10 +1749,10 @@ ${seasonSection([countriesByKey.dahab], {
         </div>
       </a>
     </div>
-    <a class="wsk-strip" href="/dahab/windsurf-kids/">
+    <a class="wsk-strip" href="https://windsurfkids.su/" target="_blank" rel="noopener noreferrer">
       <span class="wsk-strip__media"><img src="${dahabRefImg("wsk-2.webp")}" alt="Детский виндсёрфинг в Дахабе" width="1090" height="600" loading="lazy" decoding="async"></span>
       <span class="wsk-strip__content"><small>Детский виндсёрфинг · Дахаб</small><b>WINDSURFKIDS</b><em>Детский спортивный лагерь Детский виндсёрфинг существует с 2009 года, а с 2012 года базируется в Дахабе. Спорт, друзья, творчество и безопасная акватория.</em></span>
-      <span class="wsk-strip__button">Смотреть Детский</span>
+      <span class="wsk-strip__button">Сайт лагеря</span>
     </a>
   </div>
 </section>
@@ -1784,6 +1783,20 @@ ${seasonSection([countriesByKey.dahab], {
       </div>
     </div>
   </div>
+</section>
+
+<section class="dahab-safety-spotlight" aria-labelledby="dahab-safety-spotlight-title">
+  <a class="dahab-safety-spotlight__inner" href="/dahab/safety/">
+    <span class="dahab-safety-spotlight__media">
+      <img src="${wingfoilSectionImg("rescue-boats.webp")}" alt="Спасательные катера Ветратории на берегу в Дахабе" width="1920" height="1080" loading="lazy" decoding="async">
+    </span>
+    <span class="dahab-safety-spotlight__content">
+      <small>Безопасность на воде</small>
+      <b id="dahab-safety-spotlight-title">4 спасательных катера</b>
+      <em>Катера поддерживают три станции и помогают быстро вернуться на берег, если ветер ослабнет, сломается снаряжение или потребуется помощь.</em>
+      <strong>Как устроена безопасность <span aria-hidden="true">→</span></strong>
+    </span>
+  </a>
 </section>
 
 <section class="water-area" id="water-area" aria-labelledby="water-area-title">
@@ -2008,7 +2021,7 @@ const dahabStationsPage = (page) => {
     <a href="#swiss-inn">Свисс Инн</a>
     <a href="/dahab/windsurf/">Виндсёрфинг</a>
     <a href="/dahab/wingfoil/">Вингфойл</a>
-    <a href="/dahab/windsurf-kids/">Детский</a>
+    <a href="https://windsurfkids.su/" target="_blank" rel="noopener noreferrer">Детский</a>
   </div>
 </nav>
 
@@ -2776,7 +2789,11 @@ ${hero(page, contactCta(page, "Задать вопрос"))}
 const articlePage = (page) => {
   const sport = site.sports[page.sport];
   const country = countriesByKey[page.country];
-  return `${hero(page, `<a class="button button-primary" href="/${country.key}/${page.sport}/">Открыть спорт</a>${contactCta(page, "Написать нам", "button button-ghost")}`)}
+  const sportHref = page.country === "dahab" && page.sport === "windsurf-kids"
+    ? "https://windsurfkids.su/"
+    : `/${country.key}/${page.sport}/`;
+  const sportLinkAttrs = sportHref.startsWith("https://") ? ` target="_blank" rel="noopener noreferrer"` : "";
+  return `${hero(page, `<a class="button button-primary" href="${sportHref}"${sportLinkAttrs}>Открыть спорт</a>${contactCta(page, "Написать нам", "button button-ghost")}`)}
   <article class="content-section article-body">
     <div class="article-inner">
       <p class="eyebrow">${country.region} · ${sport.nav}</p>

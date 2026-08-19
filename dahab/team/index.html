@@ -3,27 +3,41 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (() => {
+      document.documentElement.classList.add("vtr-nav-state-pending");
+      try {
+        const navigationType = performance.getEntriesByType("navigation")[0]?.type;
+        const savedScrollY = Number(sessionStorage.getItem("vtr:scroll:" + location.pathname) || 0);
+        if ((navigationType === "reload" || navigationType === "back_forward") && savedScrollY > 140) {
+          document.documentElement.classList.add("vtr-nav-initial-compact");
+        }
+      } catch {}
+    })();
+  </script>
   <title>Люди, которые держат курс</title>
-  <meta name="description" content="Инструкторы, тренеры, администраторы и спасатели Vetratoria. На берегу и на воде рядом всегда есть человек, которому можно доверять. Направление: Египет · Дахаб.">
+  <meta name="description" content="Инструкторы, тренеры, администраторы и спасатели Ветратории. На берегу и на воде рядом всегда есть человек, которому можно доверять. Направление: Египет · Дахаб.">
 
   <link rel="canonical" href="https://vetratoria.ru/dahab/team/">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Vetratoria">
+  <meta property="og:site_name" content="Ветратория">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:url" content="https://vetratoria.ru/dahab/team/">
   <meta property="og:title" content="Люди, которые держат курс">
-  <meta property="og:description" content="Инструкторы, тренеры, администраторы и спасатели Vetratoria. На берегу и на воде рядом всегда есть человек, которому можно доверять. Направление: Египет · Дахаб.">
+  <meta property="og:description" content="Инструкторы, тренеры, администраторы и спасатели Ветратории. На берегу и на воде рядом всегда есть человек, которому можно доверять. Направление: Египет · Дахаб.">
   <meta property="og:image" content="https://vetratoria.ru/assets/img/home-uploaded/ABOUTVETRATORIA.jpg">
   <meta property="og:image:alt" content="Люди, которые держат курс">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Люди, которые держат курс">
-  <meta name="twitter:description" content="Инструкторы, тренеры, администраторы и спасатели Vetratoria. На берегу и на воде рядом всегда есть человек, которому можно доверять. Направление: Египет · Дахаб.">
+  <meta name="twitter:description" content="Инструкторы, тренеры, администраторы и спасатели Ветратории. На берегу и на воде рядом всегда есть человек, которому можно доверять. Направление: Египет · Дахаб.">
   <meta name="twitter:image" content="https://vetratoria.ru/assets/img/home-uploaded/ABOUTVETRATORIA.jpg">
   <meta name="theme-color" content="#0d0c0b">
   <link rel="icon" href="/assets/img/vetratoria-logo.png">
-  <link rel="stylesheet" href="/assets/css/main.css?v=20260811-staging-r22-compact-nav">
-  <script defer src="/assets/js/app.js?v=20260811-staging-r22-compact-nav"></script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Vetratoria","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/dahab/team/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Vetratoria","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Дахаб","item":"https://vetratoria.ru/dahab/"},{"@type":"ListItem","position":3,"name":"Люди, которые держат курс","item":"https://vetratoria.ru/dahab/team/"}]}]}</script>
+  <link rel="preload" href="/assets/fonts/inter-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/main.css?v=20260811-staging-r25-local-inter">
+  <script defer src="/assets/js/app.js?v=20260811-staging-r25-local-inter"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/dahab/team/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Дахаб","item":"https://vetratoria.ru/dahab/"},{"@type":"ListItem","position":3,"name":"Люди, которые держат курс","item":"https://vetratoria.ru/dahab/team/"}]}]}</script>
 </head>
 <body class="modern-site team country-dahab">
   <a class="skip-link" href="#main">К содержанию</a>
@@ -35,11 +49,11 @@
       <a href="mailto:dahab@vetratoria.ru">dahab@vetratoria.ru</a>
 
           <a class="vtr-nav__station-phone" href="tel:+201029321772">
-            <span>Номер Windsurf-станции</span>
+            <span>Номер Виндсёрфинг-станции</span>
             <b>+20 102 932 1772</b>
           </a>
           <a class="vtr-nav__station-phone" href="tel:+201151015941">
-            <span>Номер Wingfoil-станции</span>
+            <span>Номер Вингфойл-станции</span>
             <b>+20 115 101 5941</b>
           </a>
     </div>
@@ -48,7 +62,7 @@
     </nav>
     <div class="vtr-nav__right">
 
-  <nav class="social-icon-links vtr-nav__socials" aria-label="Социальные сети Vetratoria">
+  <nav class="social-icon-links vtr-nav__socials" aria-label="Социальные сети Ветратории">
 
       <a href="https://vk.ru/club2195523" target="_blank" rel="noopener noreferrer" aria-label="VKontakte" title="VKontakte">
         <img src="/assets/icons/vk.svg" alt="" width="20" height="20">
@@ -64,38 +78,38 @@
     </div>
   </div>
   <div class="vtr-nav__main">
-    <a class="vtr-nav__logo" href="/" aria-label="Vetratoria - главная">
-      <img src="/assets/img/vetratoria-logo.png" alt="Vetratoria" width="198" height="97">
+    <a class="vtr-nav__logo" href="/" aria-label="Ветратория — главная">
+      <img src="/assets/img/vetratoria-logo.png" alt="Ветратория" width="198" height="97">
     </a>
     <button class="vtr-nav__burger" type="button" aria-label="Открыть меню" aria-controls="site-navigation" aria-expanded="false" data-menu-toggle>
       <span></span><span></span><span></span>
     </button>
 
     <nav class="vtr-nav__panel" id="site-navigation" aria-label="Основная навигация" data-nav-panel aria-hidden="false">
-      <a class="vtr-nav__link" href="/">Vetratoria</a>
+      <a class="vtr-nav__link" href="/">Ветратория</a>
 
       <div class="vtr-nav__item vtr-nav__item--drop vtr-nav__item--directions" data-dropdown>
         <button class="vtr-nav__link" type="button" aria-expanded="false" data-dropdown-toggle>Направления <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
         <div class="vtr-nav__dropdown vtr-nav__dropdown--directions">
 
           <div class="vtr-nav__direction">
-            <a class="vtr-nav__direction-link" href="/dahab/"><b>Египет · Дахаб</b><span>Wingfoil, Windsurf, Kids</span></a>
+            <a class="vtr-nav__direction-link" href="/dahab/"><b>Египет · Дахаб</b><span>Вингфойл, Виндсёрфинг</span></a>
             <div class="vtr-nav__direction-phones">
           <a class="vtr-nav__direction-phone" href="tel:+201029321772">
-            <span>Номер Windsurf-станции</span>
+            <span>Номер Виндсёрфинг-станции</span>
             <b>+20 102 932 1772</b>
           </a>
           <a class="vtr-nav__direction-phone" href="tel:+201151015941">
-            <span>Номер Wingfoil-станции</span>
+            <span>Номер Вингфойл-станции</span>
             <b>+20 115 101 5941</b>
           </a></div>
           </div>
           <div class="vtr-nav__direction">
-            <a class="vtr-nav__direction-link" href="/vietnam/"><b>Вьетнам · Муйне</b><span>Windsurf, Wingfoil, Kite</span></a>
+            <a class="vtr-nav__direction-link" href="/vietnam/"><b>Вьетнам · Муйне</b><span>Виндсёрфинг, Вингфойл, Кайтсёрфинг</span></a>
 
           </div>
           <div class="vtr-nav__direction">
-            <a class="vtr-nav__direction-link" href="/russia/"><b>Россия · Должанская</b><span>Windsurf, Wingfoil, Kite</span></a>
+            <a class="vtr-nav__direction-link" href="/russia/"><b>Россия · Должанская</b><span>Виндсёрфинг, Вингфойл, Кайтсёрфинг</span></a>
 
           </div>
         </div>
@@ -109,12 +123,12 @@
       <section class="vtr-mobile-menu__block vtr-mobile-menu__block--accent" aria-label="Навигация Дахаб">
         <p class="vtr-mobile-menu__title">Дахаб</p>
         <a class="vtr-mobile-menu__row" href="/dahab/">Обзор</a>
-        <a class="vtr-mobile-menu__row" href="/dahab/wingfoil/">Wingfoil</a><a class="vtr-mobile-menu__row" href="/dahab/windsurf/">Windsurf</a>
+        <a class="vtr-mobile-menu__row" href="/dahab/wingfoil/">Вингфойл</a><a class="vtr-mobile-menu__row" href="/dahab/windsurf/">Виндсёрфинг</a>
 
         <div class="vtr-mobile-menu__item vtr-mobile-menu__item--drop" data-dropdown>
           <button class="vtr-mobile-menu__row" type="button" aria-expanded="false" data-dropdown-toggle>Цены <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
           <div class="vtr-mobile-menu__submenu">
-            <a class="vtr-mobile-menu__row" href="/dahab/wingfoil/price/">Wingfoil</a><a class="vtr-mobile-menu__row" href="/dahab/windsurf/price/">Windsurf</a>
+            <a class="vtr-mobile-menu__row" href="/dahab/wingfoil/price/">Вингфойл</a><a class="vtr-mobile-menu__row" href="/dahab/windsurf/price/">Виндсёрфинг</a>
           </div>
         </div>
         <a class="vtr-mobile-menu__row" href="/dahab/stations/">Станции</a>
@@ -122,13 +136,13 @@
         <div class="vtr-mobile-menu__item vtr-mobile-menu__item--drop is-active" data-dropdown>
           <button class="vtr-mobile-menu__row is-active" type="button" aria-expanded="false" data-dropdown-toggle>О школе <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
           <div class="vtr-mobile-menu__submenu">
-            <a class="vtr-mobile-menu__row" href="/dahab/team/">Команда</a><a class="vtr-mobile-menu__row" href="/dahab/windsurf-kids/">Windsurf Kids</a><a class="vtr-mobile-menu__row" href="/dahab/safety/">Безопасность</a><a class="vtr-mobile-menu__row" href="/dahab/how-to-get/">Как добраться</a><a class="vtr-mobile-menu__row" href="/media/dahab/">Медиа</a><a class="vtr-mobile-menu__row" href="/dahab/contacts/">Контакты</a>
+            <a class="vtr-mobile-menu__row" href="/dahab/team/">Команда</a><a class="vtr-mobile-menu__row" href="/dahab/safety/">Безопасность</a><a class="vtr-mobile-menu__row" href="/dahab/how-to-get/">Как добраться</a><a class="vtr-mobile-menu__row" href="/media/dahab/">Медиа</a><a class="vtr-mobile-menu__row" href="/dahab/contacts/">Контакты</a>
           </div>
         </div>
       </section>
         <section class="vtr-mobile-menu__block" aria-label="Главное">
           <p class="vtr-mobile-menu__title">Главное</p>
-          <a class="vtr-mobile-menu__row" href="/">Vetratoria</a>
+          <a class="vtr-mobile-menu__row" href="/">Ветратория</a>
           <a class="vtr-mobile-menu__row" href="/blog/">Блог</a>
           <a class="vtr-mobile-menu__row" href="/media/">Медиа</a>
           <a class="vtr-mobile-menu__row" href="/dahab/contacts/">Контакты</a>
@@ -138,16 +152,16 @@
           <a class="vtr-mobile-menu__row" href="mailto:dahab@vetratoria.ru">dahab@vetratoria.ru</a>
 
           <a class="vtr-mobile-menu__row vtr-mobile-menu__contact-phone" href="tel:+201029321772">
-            <span>Номер Windsurf-станции</span>
+            <span>Номер Виндсёрфинг-станции</span>
             <b>+20 102 932 1772</b>
           </a>
           <a class="vtr-mobile-menu__row vtr-mobile-menu__contact-phone" href="tel:+201151015941">
-            <span>Номер Wingfoil-станции</span>
+            <span>Номер Вингфойл-станции</span>
             <b>+20 115 101 5941</b>
           </a>
           <a class="vtr-mobile-menu__row" href="https://t.me/dahabvetratoria" target="_blank" rel="noopener noreferrer">Telegram</a>
 
-  <nav class="social-icon-links vtr-mobile-menu__socials" aria-label="Социальные сети Vetratoria">
+  <nav class="social-icon-links vtr-mobile-menu__socials" aria-label="Социальные сети Ветратории">
 
       <a href="https://vk.ru/club2195523" target="_blank" rel="noopener noreferrer" aria-label="VKontakte" title="VKontakte">
         <img src="/assets/icons/vk.svg" alt="" width="20" height="20">
@@ -165,18 +179,18 @@
   </div>
 
   <nav class="vtr-nav__section" aria-label="Навигация Дахаб">
-    <a class="vtr-nav__section-link" href="/dahab/">Обзор</a><a class="vtr-nav__section-link" href="/dahab/wingfoil/">Wingfoil</a><a class="vtr-nav__section-link" href="/dahab/windsurf/">Windsurf</a>
+    <a class="vtr-nav__section-link" href="/dahab/">Обзор</a><a class="vtr-nav__section-link" href="/dahab/wingfoil/">Вингфойл</a><a class="vtr-nav__section-link" href="/dahab/windsurf/">Виндсёрфинг</a>
     <div class="vtr-nav__section-item vtr-nav__section-item--drop" data-dropdown>
       <button class="vtr-nav__section-link" type="button" aria-expanded="false" data-dropdown-toggle>Цены <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
       <div class="vtr-nav__section-dropdown">
-        <a href="/dahab/wingfoil/price/">Wingfoil</a><a href="/dahab/windsurf/price/">Windsurf</a>
+        <a href="/dahab/wingfoil/price/">Вингфойл</a><a href="/dahab/windsurf/price/">Виндсёрфинг</a>
       </div>
     </div><a class="vtr-nav__section-link" href="/dahab/stations/">Станции</a>
 
     <div class="vtr-nav__section-item vtr-nav__section-item--drop is-active" data-dropdown>
       <button class="vtr-nav__section-link" type="button" aria-expanded="false" data-dropdown-toggle>О школе <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
       <div class="vtr-nav__section-dropdown">
-        <a href="/dahab/team/">Команда</a><a href="/dahab/windsurf-kids/">Windsurf Kids</a><a href="/dahab/safety/">Безопасность</a><a href="/dahab/how-to-get/">Как добраться</a><a href="/media/dahab/">Медиа</a><a href="/dahab/contacts/">Контакты</a>
+        <a href="/dahab/team/">Команда</a><a href="/dahab/safety/">Безопасность</a><a href="/dahab/how-to-get/">Как добраться</a><a href="/media/dahab/">Медиа</a><a href="/dahab/contacts/">Контакты</a>
       </div>
     </div>
   </nav>
@@ -191,7 +205,7 @@
   <div class="hero-content">
     <p class="eyebrow">Египет · команда</p>
     <h1>Люди, которые держат курс</h1>
-    <p class="hero-lead">Инструкторы, тренеры, администраторы и спасатели Vetratoria. На берегу и на воде рядом всегда есть человек, которому можно доверять.</p>
+    <p class="hero-lead">Инструкторы, тренеры, администраторы и спасатели Ветратории. На берегу и на воде рядом всегда есть человек, которому можно доверять.</p>
     <div class="hero-actions"><a class="button button-primary" href="/dahab/contacts/" data-contact-modal data-contact-intent="Написать команде" data-contact-country="dahab" data-contact-country-label="Египет · Дахаб" data-contact-email="dahab@vetratoria.ru" data-contact-phone="+201029321772" data-contact-telegram="https://t.me/dahabvetratoria">Написать команде</a><a class="button button-ghost" href="#team-wingfoil">Познакомиться</a></div>
   </div>
 </section>
@@ -199,7 +213,7 @@
     <div class="section-inner">
 
   <header class="section-heading">
-    <p class="eyebrow">Vetratoria · Дахаб</p>
+    <p class="eyebrow">Ветратория · Дахаб</p>
     <h2>Одна команда — разные роли</h2>
 
   </header>
@@ -207,7 +221,7 @@
       <section class="card-slider" id="team-wingfoil" data-card-slider aria-labelledby="team-wingfoil-title">
         <div class="card-slider__header">
           <div class="card-slider__heading">
-            <p class="eyebrow">Центр Wingfoil</p>
+            <p class="eyebrow">Центр Вингфойл</p>
             <h2 id="team-wingfoil-title">Команда вингфойла</h2>
             <p>Помогаем пройти путь от первого знакомства с крылом до уверенного полёта на фойле.</p>
           </div>
@@ -220,40 +234,40 @@
 
           <article class="team-card">
             <div class="team-card__media">
-              <img src="/assets/img/team/dahab/anatoly.png" alt="Анатолий — Менеджер · старший инструктор Vetratoria" loading="eager" decoding="async">
+              <img src="/assets/img/team/dahab/anatoly.png" alt="Анатолий — Менеджер · старший инструктор Ветратория" loading="eager" decoding="async">
             </div>
             <div class="team-card__content">
               <span class="team-card__role">Менеджер · старший инструктор</span>
               <h3>Анатолий</h3>
               <p>Более 25 лет в водных видах спорта. Подберёт комплект RRD под ваши навыки, ветер и задачу занятия.</p>
-              <span class="team-card__meta">Русский · English · Deutsch</span>
+              <span class="team-card__meta">Русский · английский · немецкий</span>
             </div>
           </article>
           <article class="team-card">
             <div class="team-card__media">
-              <img src="/assets/img/team/dahab/hassan.png" alt="Хасан — Профессиональный инструктор Vetratoria" loading="eager" decoding="async">
+              <img src="/assets/img/team/dahab/hassan.png" alt="Хасан — Профессиональный инструктор Ветратория" loading="eager" decoding="async">
             </div>
             <div class="team-card__content">
               <span class="team-card__role">Профессиональный инструктор</span>
               <h3>Хасан</h3>
               <p>Узнаваемый райдер спота с десятилетним тренерским опытом. Учит балансу, технике и уверенности на фойле.</p>
-              <span class="team-card__meta">Русский · English</span>
+              <span class="team-card__meta">Русский · английский</span>
             </div>
           </article>
           <article class="team-card">
             <div class="team-card__media">
-              <img src="/assets/img/team/dahab/egor.png" alt="Егор — Детский спортивный инструктор Vetratoria" loading="lazy" decoding="async">
+              <img src="/assets/img/team/dahab/egor.png" alt="Егор — Детский спортивный инструктор Ветратория" loading="lazy" decoding="async">
             </div>
             <div class="team-card__content">
               <span class="team-card__role">Детский спортивный инструктор</span>
               <h3>Егор</h3>
               <p>Тренирует детей от восьми лет. Превращает сложную технику в понятную игру и закладывает безопасную базу.</p>
-              <span class="team-card__meta">Русский · English</span>
+              <span class="team-card__meta">Русский · английский</span>
             </div>
           </article>
           <article class="team-card">
             <div class="team-card__media">
-              <img src="/assets/img/team/dahab/roma.png" alt="Рома — Инструктор Vetratoria" loading="lazy" decoding="async">
+              <img src="/assets/img/team/dahab/roma.png" alt="Рома — Инструктор Ветратория" loading="lazy" decoding="async">
             </div>
             <div class="team-card__content">
               <span class="team-card__role">Инструктор</span>
@@ -264,24 +278,24 @@
           </article>
           <article class="team-card">
             <div class="team-card__media">
-              <img src="/assets/img/team/dahab/ira.jpg" alt="Ира — Администратор Vetratoria" loading="lazy" decoding="async">
+              <img src="/assets/img/team/dahab/ira.jpg" alt="Ира — Администратор Ветратория" loading="lazy" decoding="async">
             </div>
             <div class="team-card__content">
               <span class="team-card__role">Администратор</span>
               <h3>Ира</h3>
               <p>Душа станции. Отвечает за расписание, комфорт гостей и хорошее настроение до и после каждой сессии.</p>
-              <span class="team-card__meta">Русский · English</span>
+              <span class="team-card__meta">Русский · английский</span>
             </div>
           </article>
           <article class="team-card">
             <div class="team-card__media">
-              <img src="/assets/img/team/dahab/anna.png" alt="Анна — Инструктор Vetratoria" loading="lazy" decoding="async">
+              <img src="/assets/img/team/dahab/anna.png" alt="Анна — Инструктор Ветратория" loading="lazy" decoding="async">
             </div>
             <div class="team-card__content">
               <span class="team-card__role">Инструктор</span>
               <h3>Анна</h3>
               <p>Видит технические ошибки и помогает заложить прочный фундамент, чтобы прогресс был быстрее и увереннее.</p>
-              <span class="team-card__meta">Русский · English</span>
+              <span class="team-card__meta">Русский · английский</span>
             </div>
           </article>
         </div>
@@ -289,7 +303,7 @@
       <section class="card-slider" id="team-windsurf" data-card-slider aria-labelledby="team-windsurf-title">
         <div class="card-slider__header">
           <div class="card-slider__heading">
-            <p class="eyebrow">Центр Windsurf</p>
+            <p class="eyebrow">Центр Виндсёрфинг</p>
             <h2 id="team-windsurf-title">Команда виндсёрфинга</h2>
             <p>Встречаем гостей, подбираем и настраиваем оборудование, обучаем на воде и следим за безопасностью в акватории.</p>
           </div>
@@ -302,46 +316,46 @@
 
           <article class="team-card">
             <div class="team-card__media">
-              <img src="/assets/img/team/dahab/boris.jpg" alt="Борис — Менеджер · инструктор Vetratoria" loading="lazy" decoding="async">
+              <img src="/assets/img/team/dahab/boris.jpg" alt="Борис — Менеджер · инструктор Ветратория" loading="lazy" decoding="async">
             </div>
             <div class="team-card__content">
               <span class="team-card__role">Менеджер · инструктор</span>
               <h3>Борис</h3>
               <p>В виндсёрфинге с 2003 года. Руководит станцией и помогает подобрать обучение, прокат и оборудование под уровень гостя.</p>
-              <span class="team-card__meta">Русский · English · Română</span>
+              <span class="team-card__meta">Русский · английский · Română</span>
             </div>
           </article>
           <article class="team-card">
             <div class="team-card__media">
-              <img src="/assets/img/team/dahab/victoria.jpg" alt="Виктория — Работа с гостями Vetratoria" loading="lazy" decoding="async">
+              <img src="/assets/img/team/dahab/victoria.jpg" alt="Виктория — Работа с гостями Ветратория" loading="lazy" decoding="async">
             </div>
             <div class="team-card__content">
               <span class="team-card__role">Работа с гостями</span>
               <h3>Виктория</h3>
               <p>Помогает с организационными вопросами, расписанием и комфортом гостей виндсёрф-станции.</p>
-              <span class="team-card__meta">Русский · English</span>
+              <span class="team-card__meta">Русский · английский</span>
             </div>
           </article>
           <article class="team-card">
             <div class="team-card__media">
-              <img src="/assets/img/team/dahab/mustafa.jpg" alt="Мустафа — Сервис · оборудование Vetratoria" loading="lazy" decoding="async">
+              <img src="/assets/img/team/dahab/mustafa.jpg" alt="Мустафа — Сервис · оборудование Ветратория" loading="lazy" decoding="async">
             </div>
             <div class="team-card__content">
               <span class="team-card__role">Сервис · оборудование</span>
               <h3>Мустафа</h3>
               <p>Помогает подобрать, собрать и настроить виндсёрф-комплект перед выходом на воду.</p>
-              <span class="team-card__meta">العربية · English · Deutsch</span>
+              <span class="team-card__meta">العربية · английский · немецкий</span>
             </div>
           </article>
           <article class="team-card">
             <div class="team-card__media">
-              <img src="/assets/img/team/dahab/mahmoud.jpg" alt="Махмуд — Сервис · спасатель Vetratoria" loading="lazy" decoding="async">
+              <img src="/assets/img/team/dahab/mahmoud.jpg" alt="Махмуд — Сервис · спасатель Ветратория" loading="lazy" decoding="async">
             </div>
             <div class="team-card__content">
               <span class="team-card__role">Сервис · спасатель</span>
               <h3>Махмуд</h3>
               <p>Профессиональный спортсмен и специалист по слалому. Следит за акваторией и приходит на помощь по сигналу.</p>
-              <span class="team-card__meta">العربية · English · Русский</span>
+              <span class="team-card__meta">العربية · английский · Русский</span>
             </div>
           </article>
         </div>
@@ -349,7 +363,7 @@
       <section class="card-slider" id="team-kids" data-card-slider aria-labelledby="team-kids-title">
         <div class="card-slider__header">
           <div class="card-slider__heading">
-            <p class="eyebrow">WindSurfKids</p>
+            <p class="eyebrow">Детский виндсёрфинг</p>
             <h2 id="team-kids-title">Детские тренеры</h2>
             <p>Спортивная дисциплина, внимание к ребёнку и насыщенная командная жизнь за пределами тренировок.</p>
           </div>
@@ -362,10 +376,10 @@
 
           <article class="team-card">
             <div class="team-card__media">
-              <img src="/assets/img/team/dahab/ivan-pupenok.jpg" alt="Иван Пупенок — Организатор WindSurfKids Vetratoria" loading="lazy" decoding="async">
+              <img src="/assets/img/team/dahab/ivan-pupenok.jpg" alt="Иван Пупенок — Организатор Детский виндсёрфинг Ветратория" loading="lazy" decoding="async">
             </div>
             <div class="team-card__content">
-              <span class="team-card__role">Организатор WindSurfKids</span>
+              <span class="team-card__role">Организатор Детский виндсёрфинг</span>
               <h3>Иван Пупенок</h3>
               <p>Профессиональный тренер, преподаватель и действующий спортсмен в дисциплине слалом.</p>
               <span class="team-card__meta">Тренер · спортсмен</span>
@@ -373,29 +387,29 @@
           </article>
           <article class="team-card">
             <div class="team-card__media">
-              <img src="/assets/img/team/dahab/filipp-andreev.jpg" alt="Филипп Андреев — Тренер WindSurfKids Vetratoria" loading="lazy" decoding="async">
+              <img src="/assets/img/team/dahab/filipp-andreev.jpg" alt="Филипп Андреев — Тренер Детский виндсёрфинг Ветратория" loading="lazy" decoding="async">
             </div>
             <div class="team-card__content">
-              <span class="team-card__role">Тренер WindSurfKids</span>
+              <span class="team-card__role">Тренер Детский виндсёрфинг</span>
               <h3>Филипп Андреев</h3>
               <p>Легко находит общий язык с юными серферами и подбирает индивидуальный подход к каждому ребёнку.</p>
-              <span class="team-card__meta">Windsurf · детские группы</span>
+              <span class="team-card__meta">Виндсёрфинг · детские группы</span>
             </div>
           </article>
           <article class="team-card">
             <div class="team-card__media">
-              <img src="/assets/img/team/dahab/roman-tarasov.jpg" alt="Роман Тарасов — Тренер WindSurfKids Vetratoria" loading="lazy" decoding="async">
+              <img src="/assets/img/team/dahab/roman-tarasov.jpg" alt="Роман Тарасов — Тренер Детский виндсёрфинг Ветратория" loading="lazy" decoding="async">
             </div>
             <div class="team-card__content">
-              <span class="team-card__role">Тренер WindSurfKids</span>
+              <span class="team-card__role">Тренер Детский виндсёрфинг</span>
               <h3>Роман Тарасов</h3>
-              <p>Помогает детям осваивать виндсерфинг последовательно, безопасно и с удовольствием от каждого нового навыка.</p>
-              <span class="team-card__meta">Windsurf · техника</span>
+              <p>Помогает детям осваивать виндсёрфинг последовательно, безопасно и с удовольствием от каждого нового навыка.</p>
+              <span class="team-card__meta">Виндсёрфинг · техника</span>
             </div>
           </article>
           <article class="team-card">
             <div class="team-card__media">
-              <img src="/assets/img/team/dahab/kristina-trishina.jpg" alt="Кристина Тришина — Администратор Vetratoria" loading="lazy" decoding="async">
+              <img src="/assets/img/team/dahab/kristina-trishina.jpg" alt="Кристина Тришина — Администратор Ветратория" loading="lazy" decoding="async">
             </div>
             <div class="team-card__content">
               <span class="team-card__role">Администратор</span>
@@ -406,13 +420,13 @@
           </article>
           <article class="team-card">
             <div class="team-card__media">
-              <img src="/assets/img/team/dahab/tikhon.jpg" alt="Тихон — Тренер WindSurfKids Vetratoria" loading="lazy" decoding="async">
+              <img src="/assets/img/team/dahab/tikhon.jpg" alt="Тихон — Тренер Детский виндсёрфинг Ветратория" loading="lazy" decoding="async">
             </div>
             <div class="team-card__content">
-              <span class="team-card__role">Тренер WindSurfKids</span>
+              <span class="team-card__role">Тренер Детский виндсёрфинг</span>
               <h3>Тихон</h3>
-              <p>С детства занимается виндсерфингом, участвовал в соревнованиях и выбрал педагогическое направление.</p>
-              <span class="team-card__meta">Windsurf · педагогика</span>
+              <p>С детства занимается виндсёрфингом, участвовал в соревнованиях и выбрал педагогическое направление.</p>
+              <span class="team-card__meta">Виндсёрфинг · педагогика</span>
             </div>
           </article>
         </div>
@@ -433,7 +447,7 @@
 
           <article class="team-card">
             <div class="team-card__media">
-              <img src="/assets/img/team/dahab/said.jpg" alt="Саид — Главный спасатель Vetratoria" loading="lazy" decoding="async">
+              <img src="/assets/img/team/dahab/said.jpg" alt="Саид — Главный спасатель Ветратория" loading="lazy" decoding="async">
             </div>
             <div class="team-card__content">
               <span class="team-card__role">Главный спасатель</span>
@@ -444,18 +458,18 @@
           </article>
           <article class="team-card">
             <div class="team-card__media">
-              <img src="/assets/img/team/dahab/mahmoud.jpg" alt="Махмуд — Спасатель · оборудование Vetratoria" loading="lazy" decoding="async">
+              <img src="/assets/img/team/dahab/mahmoud.jpg" alt="Махмуд — Спасатель · оборудование Ветратория" loading="lazy" decoding="async">
             </div>
             <div class="team-card__content">
               <span class="team-card__role">Спасатель · оборудование</span>
               <h3>Махмуд</h3>
               <p>Опытный спасатель и спортсмен в дисциплине слалом. Помогает подготовить снаряжение перед выходом.</p>
-              <span class="team-card__meta">Спасение · slalom</span>
+              <span class="team-card__meta">Спасение · слалом</span>
             </div>
           </article>
           <article class="team-card">
             <div class="team-card__media">
-              <img src="/assets/img/team/dahab/hassan-rescue.jpg" alt="Хасан — Спасатель · оборудование Vetratoria" loading="lazy" decoding="async">
+              <img src="/assets/img/team/dahab/hassan-rescue.jpg" alt="Хасан — Спасатель · оборудование Ветратория" loading="lazy" decoding="async">
             </div>
             <div class="team-card__content">
               <span class="team-card__role">Спасатель · оборудование</span>
@@ -466,7 +480,7 @@
           </article>
           <article class="team-card">
             <div class="team-card__media">
-              <img src="/assets/img/team/dahab/mustafa.jpg" alt="Мустафа — Спасатель · оборудование Vetratoria" loading="lazy" decoding="async">
+              <img src="/assets/img/team/dahab/mustafa.jpg" alt="Мустафа — Спасатель · оборудование Ветратория" loading="lazy" decoding="async">
             </div>
             <div class="team-card__content">
               <span class="team-card__role">Спасатель · оборудование</span>
@@ -483,13 +497,13 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="/assets/img/vetratoria-logo.png" alt="Vetratoria" width="198" height="97">
-      <p>Vetratoria - windsurf и wingfoil школы в Египте, Вьетнаме и России. Выберите страну, спорт и формат обучения.</p>
+      <img src="/assets/img/vetratoria-logo.png" alt="Ветратория" width="198" height="97">
+      <p>Ветратория — школы виндсёрфинга и вингфойла в Египте, Вьетнаме и России. Выберите страну, спорт и формат обучения.</p>
       <div class="footer-stats">
         <span>С 2006 года</span>
         <span>3 страны</span>
-        <span>Windsurf</span>
-        <span>Wingfoil</span>
+        <span>Виндсёрфинг</span>
+        <span>Вингфойл</span>
       </div>
     </div>
     <nav class="footer-nav" aria-label="Навигация в подвале">
@@ -499,9 +513,9 @@
       </div>
       <div>
         <h3>Спорт</h3>
-        <a href="/dahab/wingfoil/">Wingfoil Дахаб</a>
-        <a href="/dahab/windsurf/">Windsurf Дахаб</a>
-        <a href="/dahab/windsurf-kids/">Windsurf Kids</a>
+        <a href="/dahab/wingfoil/">Вингфойл Дахаб</a>
+        <a href="/dahab/windsurf/">Виндсёрфинг Дахаб</a>
+        <a href="https://windsurfkids.su/" target="_blank" rel="noopener noreferrer">Детский виндсёрфинг</a>
       </div>
       <div>
         <h3>Материалы</h3>
@@ -518,7 +532,7 @@
     </nav>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 Vetratoria</span>
+    <span>© 2026 Ветратория</span>
     <span>Условия, расписание, цены и доступность форматов уточняются перед поездкой.</span>
   </div>
 </footer>
@@ -541,7 +555,7 @@
       <input type="hidden" name="sport" value="" data-contact-sport-input>
       <input type="hidden" name="country" value="dahab" data-contact-country-input>
       <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
-      <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, email или @username" required></label>
+      <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>
       <label><span>Комментарий <small>по желанию</small></span><textarea name="message" rows="4" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
       <button class="button button-primary contact-modal__submit" type="submit">Подготовить заявку</button>
       <p class="form-note" data-form-note role="status" aria-live="polite"></p>

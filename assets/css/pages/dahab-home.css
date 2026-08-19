@@ -1332,6 +1332,78 @@
   color: var(--white);
 }
 
+.dahab-safety-spotlight {
+  padding: 0 0 82px;
+  background: #10100f;
+}
+
+.dahab-safety-spotlight__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(360px, 0.85fr);
+  width: min(100% - var(--page-gutter), var(--wide));
+  min-height: 430px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-card);
+  background: #171514;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.dahab-safety-spotlight__media {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.dahab-safety-spotlight__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dahab-safety-spotlight__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(30px, 4vw, 64px);
+}
+
+.dahab-safety-spotlight__content small {
+  color: var(--orange);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.dahab-safety-spotlight__content b {
+  max-width: 520px;
+  margin-top: 16px;
+  font-size: clamp(42px, 5vw, 72px);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 0.92;
+}
+
+.dahab-safety-spotlight__content em {
+  max-width: 540px;
+  margin-top: 24px;
+  color: #cbc4bd;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 1.55;
+}
+
+.dahab-safety-spotlight__content strong {
+  margin-top: 30px;
+  color: var(--orange);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+
 .water-area__inner {
   display: grid;
   gap: clamp(30px, 4vw, 56px);
@@ -1396,6 +1468,7 @@
   grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.78fr);
   gap: clamp(28px, 5vw, 94px);
   align-items: stretch;
+  overflow: hidden;
 }
 
 .water-area__cards {
@@ -1458,6 +1531,7 @@
   border-radius: var(--radius-card);
   background: #0b1014;
   aspect-ratio: 4 / 3;
+  align-self: start;
 }
 
 .water-area__visual img {
@@ -1469,6 +1543,14 @@
 }
 
 @media (max-width: 1100px) {
+  .dahab-safety-spotlight__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .dahab-safety-spotlight__media {
+    aspect-ratio: 16 / 9;
+  }
+
   .water-area__intro,
   .water-area__layout {
     grid-template-columns: 1fr;
@@ -1488,6 +1570,22 @@ body.country.country-dahab .trust-block {
 }
 
 @media (max-width: 900px) {
+  .dahab-safety-spotlight {
+    padding-bottom: 56px;
+  }
+
+  .dahab-safety-spotlight__inner {
+    width: min(100% - var(--page-gutter-mobile), var(--wide));
+    min-height: 0;
+  }
+
+  .dahab-safety-spotlight__content {
+    padding: 28px 22px 32px;
+  }
+
+  .dahab-safety-spotlight__content b {
+    font-size: 40px;
+  }
   .dahab-hero {
       min-height: 560px;
     }
