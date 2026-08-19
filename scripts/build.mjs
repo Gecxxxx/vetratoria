@@ -52,13 +52,28 @@ const monthLabels = [
   ["sep", "СЕН"], ["oct", "ОКТ"], ["nov", "НОЯ"], ["dec", "ДЕК"]
 ];
 
-const seasonMonths = (country) => `
+const seasonMonths = (country, { interactive = false } = {}) => `
     <div class="season-months" aria-label="Сезон: ${escapeHtml(country.seasonTitle)}">
       ${monthLabels.map(([key, label]) => {
         const inSeason = country.seasonMonths.includes(key);
+        if (interactive && country.windMonths?.[key]) {
+          const stats = country.windMonths[key];
+          return `<button class="season-month-button${inSeason ? " is-season" : ""}" type="button" data-month="${key}" data-wind="${escapeHtml(stats.wind)}" data-windy="${escapeHtml(stats.windy)}" data-air="${escapeHtml(stats.air)}" data-water="${escapeHtml(stats.water)}" aria-pressed="false" aria-label="${label}: показать статистику">${label}</button>`;
+        }
         return `<span class="${inSeason ? "is-season" : ""}" data-month="${key}" aria-label="${label}: ${inSeason ? "основной сезон" : "вне основного сезона"}">${label}</span>`;
       }).join("")}
     </div>`;
+
+const windMonthStats = (country) => {
+  if (!country.windMonths) return "";
+  const initial = country.windMonths.jan;
+  return `<div class="wind-month-stats" data-wind-month-stats aria-live="polite">
+    <article><span>Ветер</span><strong data-wind-stat="wind">${escapeHtml(initial.wind)}</strong></article>
+    <article><span>Ветреных дней</span><strong data-wind-stat="windy">${escapeHtml(initial.windy)}</strong></article>
+    <article><span>Воздух</span><strong data-wind-stat="air">${escapeHtml(initial.air)}</strong></article>
+    <article><span>Вода</span><strong data-wind-stat="water">${escapeHtml(initial.water)}</strong></article>
+  </div>`;
+};
 
 const seasonCalendar = (country, { compact = false } = {}) => `
   <article class="season-card${compact ? " season-card--compact" : ""}" data-reveal>
@@ -69,7 +84,8 @@ const seasonCalendar = (country, { compact = false } = {}) => `
       </div>
       <strong>${escapeHtml(country.seasonTitle)}</strong>
     </header>
-    ${seasonMonths(country)}
+    ${seasonMonths(country, { interactive: compact && Boolean(country.windMonths) })}
+    ${compact ? windMonthStats(country) : ""}
     <div class="season-card__wind">
       <span class="wind-indicator" aria-hidden="true"><i></i><i></i><i></i></span>
       <div><b>${escapeHtml(country.windLabel)}</b><p>${escapeHtml(country.windSummary)}</p></div>

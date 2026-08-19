@@ -189,6 +189,27 @@
     month.setAttribute("title", "Текущий месяц");
   });
 
+  document.querySelectorAll("[data-wind-month-stats]").forEach((statsPanel) => {
+    const card = statsPanel.closest(".season-card");
+    const buttons = [...(card?.querySelectorAll(".season-month-button") || [])];
+    if (!buttons.length) return;
+
+    const selectMonth = (button) => {
+      buttons.forEach((item) => {
+        const selected = item === button;
+        item.classList.toggle("is-selected", selected);
+        item.setAttribute("aria-pressed", String(selected));
+      });
+      ["wind", "windy", "air", "water"].forEach((key) => {
+        const output = statsPanel.querySelector(`[data-wind-stat="${key}"]`);
+        if (output) output.textContent = button.dataset[key] || "—";
+      });
+    };
+
+    buttons.forEach((button) => button.addEventListener("click", () => selectMonth(button)));
+    selectMonth(buttons.find((button) => button.dataset.month === currentMonthKey) || buttons[0]);
+  });
+
   document.querySelectorAll("[data-exclusive-accordion]").forEach((accordion) => {
     const items = [...accordion.querySelectorAll("details")];
     if (!items.length) return;
