@@ -75,7 +75,7 @@ body.nav-open {
   }
 
   .vtr-nav.is-compact-preview .vtr-nav__top {
-    grid-template-columns: minmax(320px, 1fr) auto minmax(320px, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     height: var(--nav-top-h);
     padding: 0 36px;
   }
@@ -122,8 +122,9 @@ body.nav-open {
 }
 
 .vtr-nav__top {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(320px, 1fr) auto minmax(320px, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
   height: var(--nav-top-h);
   padding: 0 36px;
@@ -142,9 +143,9 @@ body.nav-open {
 }
 
 .vtr-nav__contacts {
-  gap: 16px;
+  gap: 10px;
   min-width: 0;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 900;
   line-height: 1.1;
   white-space: nowrap;
@@ -165,14 +166,14 @@ body.nav-open {
 
 .vtr-nav__station-phone span {
   color: var(--muted);
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 800;
   line-height: 1;
 }
 
 .vtr-nav__station-phone b {
   color: var(--white);
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1;
 }
 
@@ -182,6 +183,9 @@ body.nav-open {
 }
 
 .vtr-nav__countries {
+  position: absolute;
+  inset: 0 auto 0 50%;
+  transform: translateX(-50%);
   align-self: stretch;
   justify-content: center;
 }
@@ -209,6 +213,7 @@ body.nav-open {
 }
 
 .vtr-nav__right {
+  grid-column: 2;
   justify-content: flex-end;
   gap: 18px;
   min-width: 0;
