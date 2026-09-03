@@ -60,6 +60,61 @@ A focused browser crop of the full footer was inspected because link typography,
 
 final result: passed
 
+## Vietnam remaining pages QA — 2026-09-03
+
+- Source visual truth: the approved `/vietnam/` direction page and `/vietnam/windsurf/` sport page, using the established Dahab editorial section system.
+- Implementations: three Vietnam price pages, `/vietnam/team/`, `/vietnam/contacts/`, `/vietnam/blog/` and three Vietnam guide articles.
+- Browser-rendered evidence: cloud-browser captures of the windsurf price hero and table, school hero, contacts hero and revised blog hero.
+- Viewport: 1363 × 936 CSS px, device density 1; rendered content width 1348 px.
+- State: desktop, Vietnam direction selected, representative active navigation states.
+
+### Full-view comparison evidence
+
+The new pages preserve the approved split hero, black editorial surfaces, thin borders, square controls, orange labels and large white display type. All nine routes use the same section rhythm and contextual Vietnam header/footer as the approved direction and sport pages. The initial blog hero used a legacy image with an oversized red baked-in graphic; it was replaced with a clean surfing photograph and captured again.
+
+### Focused-region comparison evidence
+
+The long windsurf price table was inspected at readable scale. Labels, durations, prices and inclusions align in four clear columns; orange price emphasis is consistent, and the table remains horizontally scrollable below the mobile breakpoint. The school and contact heroes were also inspected to confirm long Russian headings, phone/email values and advantage tiles do not clip or collide.
+
+### Required fidelity surfaces
+
+- Fonts and typography: existing project families, weights and type scale are retained; long headings wrap deliberately without clipping.
+- Spacing and layout rhythm: split heroes, 2×2 fact grids, three-card editorial grids and alternating price sections match the approved Vietnam pages.
+- Colors and visual tokens: only the existing black, warm dark brown, light editorial surface, orange accent and shared border tokens are used.
+- Image quality and asset fidelity: real source photographs from the Vietnam site are used locally; the mismatched graphic-heavy blog hero was removed.
+- Copy and content: pages use Vietnam-specific season, station history, sports, phone, email, address and supplied ordinary prices. No instructor names were invented.
+- Interactions and accessibility: navigation and anchors are semantic, the contact form retains labels, images have descriptive alt text, and price tables have headings.
+
+### Findings
+
+- No actionable P0, P1 or P2 issue remains.
+- P3: the available source library has limited dedicated kite action photography, so the kite pages use the real Malibu/station beach until a current kite photo is supplied.
+
+### Functional and responsive checks
+
+- All nine routes rendered the expected H1, footer and eager hero image.
+- All nine routes have zero horizontal page overflow at the checked desktop viewport.
+- Existing responsive rules collapse split heroes and content grids; long price tables use an intentional internal horizontal scroller with a sticky first column on narrow screens.
+- Static verification passed for all 62 routes, assets, metadata, landmarks and headings.
+- Console contained only unrelated browser-extension metadata messages and no site-origin errors.
+
+### Comparison history
+
+- Initial P2: the blog hero displayed an old source image with a large red graphic dominating the composition.
+- Fix: replaced it with a clean locally stored surfing image while preserving the approved split-hero crop.
+- Post-fix evidence: revised blog hero captured at 1363 × 936 with content width equal to viewport content width and no overflow.
+
+### Implementation checklist
+
+- [x] Build all three Vietnam price pages with complete price data.
+- [x] Replace the generic team route with an `О школе и команде` page.
+- [x] Build the Vietnam contacts page with its phone, email and station address.
+- [x] Build the Vietnam blog hub and three detailed sport guides.
+- [x] Keep shared navigation, footer and visual system consistent.
+- [x] Validate all routes in build output and browser.
+
+final result: passed
+
 ## Vietnam sport pages QA — 2026-09-03
 
 - Visual target: the established Dahab sport-page system and the approved Vietnam direction page.

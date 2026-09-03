@@ -173,7 +173,7 @@ export const site = {
       sports: ["windsurf", "wingfoil", "kite"],
       extras: [
         { title: "Цены на виндсёрфинг", href: "/vietnam/windsurf/price/" },
-        { title: "Команда", href: "/vietnam/team/" },
+        { title: "О школе", href: "/vietnam/team/" },
         { title: "Блог", href: "/vietnam/blog/" }
       ]
     },
@@ -438,11 +438,17 @@ for (const country of site.countries) {
     kind: "team",
     country: country.key,
     eyebrow: `${country.region} · команда`,
-    title: country.key === "dahab" ? "Люди, которые держат курс" : `Команда ${country.title}`,
+    title: country.key === "dahab"
+      ? "Люди, которые держат курс"
+      : country.key === "vietnam"
+        ? "О школе Ветратория во Вьетнаме"
+        : `Команда ${country.title}`,
     description: country.key === "dahab"
       ? "Инструкторы, тренеры, администраторы и спасатели Ветратории. На берегу и на воде рядом всегда есть человек, которому можно доверять."
-      : "Инструкторы, администраторы, менеджеры и поддержка на воде.",
-    image: img("ABOUTVETRATORIA.jpg")
+      : country.key === "vietnam"
+        ? "Станция в Муйне, обучение трём ветровым дисциплинам и команда, которая помогает на берегу и на воде с 2011 года."
+        : "Инструкторы, администраторы, менеджеры и поддержка на воде.",
+    image: country.key === "vietnam" ? "/assets/img/vietnam-source/station.jpg" : img("ABOUTVETRATORIA.jpg")
   });
 
   const contact = site.contacts[country.key];
@@ -487,7 +493,9 @@ for (const country of site.countries) {
         : isDahabWindsurfPrice
           ? "Полный прайс Виндсёрфинг в Дахабе: обучение, индивидуальные занятия, прокат, скидки, гидрофойл и хранение."
           : `Форматы занятий, курсы и самостоятельная практика: ${sport.lead.toLowerCase()}`,
-      image: isDahabWingfoilPrice
+      image: country.key === "vietnam"
+        ? `/assets/img/vietnam-source/${sportKey === "windsurf" ? "aerial.jpg" : sportKey === "wingfoil" ? "community.jpg" : "station.jpg"}`
+        : isDahabWingfoilPrice
         ? "/assets/img/final/wingfoil/hero.webp"
         : isDahabWindsurfPrice
           ? "/assets/img/final/windsurf/hero.webp"

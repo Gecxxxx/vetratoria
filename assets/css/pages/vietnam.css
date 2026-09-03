@@ -1,0 +1,46 @@
+/* Vietnam direction supporting pages */
+
+.vietnam-fact-grid article {
+  display: block;
+  min-height: 0;
+  padding: clamp(20px, 2.1vw, 30px);
+}
+
+.vietnam-fact-grid h3 {
+  max-width: 250px;
+}
+
+.vietnam-process--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.country-vietnam .windsurf-price-table td:nth-child(3) {
+  color: var(--orange);
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.country-vietnam .windsurf-price-heading > p:last-child {
+  max-width: 720px;
+}
+
+@media (max-width: 620px) {
+  .vietnam-fact-grid article {
+    display: block;
+    padding: 20px;
+  }
+
+  .country-vietnam .windsurf-price-table {
+    min-width: 640px;
+  }
+
+  .vietnam-process--three {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 621px) and (max-width: 1100px) {
+  .vietnam-process--three {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
