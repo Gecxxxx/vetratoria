@@ -269,40 +269,37 @@
   </div>
 </dialog></main>
 
-<footer class="site-footer">
+<footer class="site-footer site-footer--clean" data-site-footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="/assets/img/vetratoria-logo.png" alt="Ветратория" width="198" height="97">
-      <p>Ветратория — школы виндсёрфинга и вингфойла в Египте, Вьетнаме и России. Выберите страну, спорт и формат обучения.</p>
-      <div class="footer-stats">
-        <span>С 2006 года</span>
-        <span>3 страны</span>
-        <span>Виндсёрфинг</span>
-        <span>Вингфойл</span>
-      </div>
+      <a href="/" aria-label="Ветратория — главная">
+        <img src="/assets/img/vetratoria-logo.png" alt="Ветратория" width="198" height="97">
+      </a>
+      <p>Школы ветра<br>с 2006 года</p>
     </div>
     <nav class="footer-nav" aria-label="Навигация в подвале">
-      <div>
-        <h3>Страны</h3>
-        <a href="/dahab/">Египет · Дахаб</a><a href="/vietnam/">Вьетнам · Муйне</a><a href="/russia/">Россия · Должанская</a>
+      <div class="footer-column">
+        <h2>Страны</h2>
+        <div class="footer-links">
+          <a href="/dahab/">Египет · Дахаб</a>
+          <a href="/vietnam/">Вьетнам · Муйне</a>
+          <a href="/russia/" class="is-current" aria-current="page">Россия · Должанская</a>
+        </div>
       </div>
-      <div>
-        <h3>Спорт</h3>
-        <a href="/dahab/wingfoil/">Вингфойл Дахаб</a>
-        <a href="/dahab/windsurf/">Виндсёрфинг Дахаб</a>
-        <a href="https://windsurfkids.su/" target="_blank" rel="noopener noreferrer">Детский виндсёрфинг</a>
+      <div class="footer-column">
+        <h2>Спорт</h2>
+        <div class="footer-links">
+          <a href="/russia/kite/">Кайтсёрфинг Должанская</a>
+          <a href="/russia/windsurf/">Виндсёрфинг Должанская</a>
+          <a href="/russia/wingfoil/" class="is-current" aria-current="page">Вингфойл Должанская</a>
+        </div>
       </div>
-      <div>
-        <h3>Материалы</h3>
-        <a href="/blog/">Блог</a>
-        <a href="/media/">Медиа</a>
-        <a href="/russia/contacts/">Контакты</a>
-      </div>
-      <div>
-        <h3>Связь</h3>
-        <a href="/russia/contacts/" data-contact-modal data-contact-intent="Написать нам" data-contact-country="russia" data-contact-country-label="Россия · Должанская" data-contact-email="russia@vetratoria.ru" data-contact-phone="+79884715355" data-contact-telegram="https://t.me/+79884715355">Написать нам</a>
-        <a href="mailto:russia@vetratoria.ru">russia@vetratoria.ru</a>
-        <a href="tel:+79884715355">+7 988 471 5355</a>
+      <div class="footer-column footer-column--contact">
+        <h2>Связь</h2>
+        <div class="footer-links">
+          <a href="tel:+79884715355">+7 988 471 5355</a>
+          <a href="mailto:russia@vetratoria.ru">russia@vetratoria.ru</a>
+        </div>
       </div>
     </nav>
   </div>
