@@ -58,4 +58,6 @@ A focused browser crop of the full footer was inspected because link typography,
 - [x] Synchronize all static site footers.
 - [x] Validate routes, markup, active states, and browser rendering.
 
+- CDN deployment refresh requested after the cache-busting stylesheet update.
+
 final result: passed
