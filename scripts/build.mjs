@@ -1867,7 +1867,6 @@ ${stationLifeGallery({
         <div>
           <span>${meta}</span>
           <b>${title}</b>
-          <ul class="station-advice__services" aria-label="Услуги станции"><li>Обучение</li><li>Прокат</li><li>Хранение</li></ul>
         </div>
       </a>`).join("")}
   </div>
