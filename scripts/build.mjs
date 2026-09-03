@@ -396,43 +396,42 @@ const header = (page) => {
 };
 
 const footer = (page) => {
-  const contact = contactForPage(page);
-  const contactsHref = page.country ? `/${page.country}/contacts/` : "/contacts/";
+  const country = currentCountry(page);
+  const countryKey = country?.key;
+  const sportKey = page.sport || ["wingfoil", "windsurf", "kite"].find((key) => page.path.includes(key));
+  const link = (label, href, active = false) => `<a href="${href}"${active ? ' class="is-current" aria-current="page"' : ""}${href.startsWith("http") ? ' target="_blank" rel="noopener noreferrer"' : ""}>${label}</a>`;
+  const countryLinks = countryList.map((item) => link(`${item.region} · ${item.city}`, item.href, item.key === countryKey)).join("\n          ");
+  const sportsByCountry = {
+    dahab: [["Вингфойл Дахаб", "/dahab/wingfoil/", "wingfoil"], ["Виндсёрфинг Дахаб", "/dahab/windsurf/", "windsurf"], ["Детский виндсёрфинг", "https://windsurfkids.su/", "windsurf-kids"]],
+    vietnam: [["Кайтсёрфинг Муйне", "/vietnam/kite/", "kite"], ["Виндсёрфинг Муйне", "/vietnam/windsurf/", "windsurf"], ["Вингфойл Муйне", "/vietnam/wingfoil/", "wingfoil"]],
+    russia: [["Кайтсёрфинг Должанская", "/russia/kite/", "kite"], ["Виндсёрфинг Должанская", "/russia/windsurf/", "windsurf"], ["Вингфойл Должанская", "/russia/wingfoil/", "wingfoil"]]
+  };
+  const globalSports = [["Вингфойл", "/dahab/wingfoil/", "wingfoil"], ["Виндсёрфинг", "/dahab/windsurf/", "windsurf"], ["Кайтсёрфинг", "/vietnam/kite/", "kite"], ["Детский виндсёрфинг", "https://windsurfkids.su/", "windsurf-kids"]];
+  const sportLinks = (sportsByCountry[countryKey] || globalSports).map(([label, href, key]) => link(label, href, key === sportKey)).join("\n          ");
+  const contactLinks = countryKey === "dahab"
+    ? site.dahabStations.map((station) => `<a class="footer-contact" href="tel:${station.phone}"><span>Номер ${station.key === "windsurf" ? "Виндсёрфинг" : "Вингфойл"}-станции</span><strong>${station.phoneLabel}</strong></a>`).join("\n          ") + `\n          <a class="footer-contact" href="mailto:${site.contacts.dahab.email}"><span>Почта</span><strong>${site.contacts.dahab.email}</strong></a>`
+    : countryKey
+      ? `<a class="footer-contact" href="tel:${site.contacts[countryKey].phone}"><span>Номер станции</span><strong>${site.contacts[countryKey].phoneLabel}</strong></a>\n          <a class="footer-contact" href="mailto:${site.contacts[countryKey].email}"><span>Почта</span><strong>${site.contacts[countryKey].email}</strong></a>`
+      : countryList.map((item) => link(`${item.region} · ${item.city}`, `/${item.key}/contacts/`)).join("\n          ");
   return `
-<footer class="site-footer">
+<footer class="site-footer site-footer--clean" data-site-footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="${site.logo}" alt="Ветратория" width="198" height="97">
-      <p>Ветратория — школы виндсёрфинга и вингфойла в Египте, Вьетнаме и России. Выберите страну, спорт и формат обучения.</p>
-      <div class="footer-stats">
-        <span>С 2006 года</span>
-        <span>3 страны</span>
-        <span>Виндсёрфинг</span>
-        <span>Вингфойл</span>
-      </div>
+      <a href="/" aria-label="Ветратория — главная"><img src="${site.logo}" alt="Ветратория" width="198" height="97"></a>
+      <p>Школы ветра<br>с 2006 года</p>
     </div>
     <nav class="footer-nav" aria-label="Навигация в подвале">
-      <div>
-        <h3>Страны</h3>
-        ${countryList.map((country) => `<a href="${country.href}">${country.region} · ${country.city}</a>`).join("")}
+      <div class="footer-column">
+        <h2>Страны</h2>
+        <div class="footer-links">${countryLinks}</div>
       </div>
-      <div>
-        <h3>Спорт</h3>
-        <a href="/dahab/wingfoil/">Вингфойл Дахаб</a>
-        <a href="/dahab/windsurf/">Виндсёрфинг Дахаб</a>
-        <a href="https://windsurfkids.su/" target="_blank" rel="noopener noreferrer">Детский виндсёрфинг</a>
+      <div class="footer-column">
+        <h2>Спорт</h2>
+        <div class="footer-links">${sportLinks}</div>
       </div>
-      <div>
-        <h3>Материалы</h3>
-        <a href="/blog/">Блог</a>
-        <a href="/media/">Медиа</a>
-        <a href="${contactsHref}">Контакты</a>
-      </div>
-      <div>
-        <h3>Связь</h3>
-        ${contactCta(page, "Написать нам", "")}
-        <a href="mailto:${contact.email}">${contact.email}</a>
-        <a href="tel:${contact.phone}">${contact.phoneLabel}</a>
+      <div class="footer-column footer-column--contact">
+        <h2>Связь</h2>
+        <div class="footer-links">${contactLinks}</div>
       </div>
     </nav>
   </div>
@@ -442,38 +441,7 @@ const footer = (page) => {
   </div>
 </footer>`;
 };
-
-const dahabFooter = (page) => `
-<footer class="site-footer dahab-footer-pro">
-  <div class="dahab-footer-pro__inner">
-    <a class="dahab-footer-pro__brand" href="/" aria-label="Ветратория — главная">
-      <img src="${site.logo}" alt="Ветратория" width="198" height="97">
-      <p>Виндсёрфинг и Вингфойл в Египте, Вьетнаме и России.</p>
-    </a>
-    <div class="dahab-footer-pro__cards">
-      <article>
-        <h2>Контакты Дахаба</h2>
-        <p>Напишите даты, уровень и спорт — подберём станцию.</p>
-        <nav>${contactCta(page, "Оставить заявку", "")}<a href="/dahab/contacts/">Контакты станции</a></nav>
-      </article>
-      <article>
-        <h2>Карта станций</h2>
-        <p>Винг-центр · Свисс Инн · Ганет Синай</p>
-      </article>
-      <article>
-        <h2>Соцсети</h2>
-        ${socialIconLinks("dahab-footer-pro__socials")}
-        <p>Следите за новостями станции и медиа с воды.</p>
-      </article>
-    </div>
-  </div>
-  <div class="dahab-footer-pro__bottom">
-    <span>© 2026 Ветратория</span>
-    <span>Условия и доступность форматов подтверждаются перед поездкой.</span>
-  </div>
-</footer>`;
-
-const footerForPage = (page) => page.kind === "country" && page.country === "dahab" ? dahabFooter(page) : footer(page);
+const footerForPage = (page) => footer(page);
 
 const metaTitleForPage = (page) =>
   page.path === "/dahab/" ? "Дахаб — вингфойл и виндсёрфинг на Красном море | Ветратория" : page.title || site.title;
@@ -634,7 +602,7 @@ const contactDialog = (page) => {
 </dialog>`;
 };
 
-const ASSET_VERSION = "20260811-staging-r25-local-inter";
+const ASSET_VERSION = "20260903-staging-footer-r2";
 const assetVersionForPage = () => ASSET_VERSION;
 const versionedAsset = (path, version = ASSET_VERSION) => `${path}?v=${version}`;
 
