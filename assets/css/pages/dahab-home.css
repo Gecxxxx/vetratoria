@@ -177,6 +177,19 @@
   gap: 20px;
 }
 
+.sport-split__grid--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.sport-split__grid--three .sport-tile,
+.sport-split__grid--three .sport-tile__content {
+  min-height: 410px;
+}
+
+.vietnam-hero .dahab-hero__image {
+  object-position: center;
+}
+
 .sport-tile,
 .station-advice__list a,
 .station-atmosphere__card,
@@ -771,6 +784,14 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
+}
+
+.station-advice__list--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.station-advice__list--single a {
+  min-height: 440px;
 }
 
 .station-advice__list a {
@@ -1603,7 +1624,8 @@ body.country.country-dahab .trust-block {
       font-size: 16px;
     }
 
-  body.country.country-dahab .hero-advantages {
+  body.country.country-dahab .hero-advantages,
+  body.country.country-vietnam .hero-advantages {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 

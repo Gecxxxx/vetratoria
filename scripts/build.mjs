@@ -1896,6 +1896,82 @@ ${stationLifeGallery({
 </section>`;
 };
 
+const vietnamHomePage = (page) => {
+  const vietnamImg = (name) => `/assets/img/vietnam-source/${name}`;
+  const learningSteps = [
+    ["01", "Определяем уровень и дисциплину", "Уточняем опыт, цели и количество дней в Муйне, затем выбираем кайт, виндсёрфинг или вингфойл."],
+    ["02", "Подбираем снаряжение", "Настраиваем комплект под вес, уровень и фактический ветер перед выходом на воду."],
+    ["03", "Отрабатываем технику", "Инструктор разбирает безопасность, управление и даёт короткие корректировки во время практики."],
+    ["04", "Закрепляем результат", "Переходим к курсу или самостоятельному прокату, когда базовые действия уже получаются уверенно."]
+  ];
+  const lessonIncludes = [
+    ["Инструктор", "Индивидуальная задача и обратная связь на занятии."],
+    ["Снаряжение", "Комплект входит в стоимость обучения."],
+    ["Три дисциплины", "Кайтсёрфинг, виндсёрфинг и вингфойл в одном направлении."],
+    ["Станция рядом", "Подготовка, хранение и помощь команды на берегу."]
+  ];
+  const priceCards = [
+    ["Виндсёрфинг", "Знакомство с ветром", "65$", "Индивидуальное занятие 1 час, оборудование и страховка включены.", vietnamImg("windsurf.jpg"), "/vietnam/windsurf/price/"],
+    ["Кайтсёрфинг", "Индивидуальный урок", "65$", "Один час с инструктором и полным комплектом оборудования на споте Малибу.", vietnamImg("station.jpg"), "/vietnam/kite/price/"],
+    ["Вингфойл", "Индивидуальный урок", "65$", "Один час: крыло, доска и работа инструктора входят в стоимость.", vietnamImg("community.jpg"), "/vietnam/wingfoil/price/"],
+    ["Вингфойл", "Занятие в группе", "50$", "Цена с человека; группы формируются по два–три участника.", vietnamImg("action.jpg"), "/vietnam/wingfoil/price/"]
+  ];
+  const galleryPhotos = [
+    [vietnamImg("station.jpg"), "Станция", "Ветратория на берегу Муйне", "Станция Ветратории на пляже в Муйне", 900, 600],
+    [vietnamImg("community.jpg"), "Вингфойл", "Выходим на фойл у станции", "Вингфойл в Муйне", 2000, 1333],
+    [vietnamImg("aerial.jpg"), "Виндсёрфинг", "Ветер и практика на воде", "Виндсёрфинг в Муйне", 800, 500],
+    [vietnamImg("surf.jpg"), "Волна", "Классический серфинг в безветренный день", "Серфинг на волне во Вьетнаме", 1024, 682],
+    [vietnamImg("windsurf.jpg"), "Обучение", "Инструктор рядом с первых шагов", "Обучение виндсёрфингу во Вьетнаме", 2000, 558],
+    [vietnamImg("atmosphere.jpg"), "Снаряжение", "Комплекты готовы к выходу", "Снаряжение станции Ветратория Вьетнам", 900, 598],
+    [vietnamImg("action.jpg"), "На воде", "Практика в тёплом море", "Катание во Вьетнаме", 650, 434],
+    [vietnamImg("station.jpg"), "Атмосфера", "Станция, пальмы и море", "Пляжная станция в Муйне", 900, 600]
+  ];
+  const faqs = [
+    ["Когда лучше приезжать в Муйне?", "Основной сезон Ветратории во Вьетнаме — с ноября по март. Перед поездкой команда поможет выбрать даты под дисциплину и ваш уровень."],
+    ["Можно ли приехать без своего оборудования?", "Да. В стоимость уроков входит необходимое снаряжение, а для самостоятельного катания доступен прокат."],
+    ["Где проходит обучение кайтсёрфингу?", "Занятия проходят на пляже Малибу примерно в 6 км от станции. Там просторный берег, небольшой трафик и помещение для хранения оборудования."],
+    ["Подойдёт ли направление новичку?", "Да. Программа начинается с управления и безопасности на берегу, а темп занятий подбирается под человека и условия."],
+    ["Есть ли длительные курсы?", "Для виндсёрфинга доступны программы на 3 и 7 дней, для кайта — курс от 5 до 10 часов. Формат можно собрать под продолжительность поездки."]
+  ];
+
+  return `
+<section class="dahab-hero vietnam-hero">
+  <img class="dahab-hero__image" src="${vietnamImg("station.jpg")}" alt="Кайтсёрфинг, виндсёрфинг и вингфойл в Муйне" width="900" height="600" fetchpriority="high">
+  <div class="dahab-hero__shade"></div>
+  <div class="dahab-hero__content">
+    <p class="eyebrow">Вьетнам · Муйне</p>
+    <h1>Кайт, виндсёрфинг и вингфойл в Муйне</h1>
+    <p class="hero-lead">Три ветровые дисциплины, обучение и прокат на тёплом море. Подберём спорт, программу и снаряжение под ваш уровень.</p>
+    <div class="hero-advantages"><span class="hero-advantage">С 2011 года</span><span class="hero-advantage">Сезон ноябрь — март</span><span class="hero-advantage">Три вида спорта</span><span class="hero-advantage">Станция на берегу</span></div>
+    <div class="hero-actions dahab-hero-actions">${contactCta(page, "Подобрать программу")}<a class="button button-ghost" href="#prices">Посмотреть цены</a></div>
+  </div>
+</section>
+
+<section class="dahab-marquee" aria-label="Ветратория во Вьетнаме"><div class="dahab-marquee__track"><span>МУЙНЕ · СЕЗОН НОЯБРЬ — МАРТ / КАЙТСЁРФИНГ — 65$ / ВИНДСЁРФИНГ — 65$ / ВИНГФОЙЛ — 65$ / ПРОКАТ ВИНДСЁРФИНГА — ОТ 35$ / СТАНЦИЯ НА БЕРЕГУ / СПОТ МАЛИБУ / </span><span aria-hidden="true">МУЙНЕ · СЕЗОН НОЯБРЬ — МАРТ / КАЙТСЁРФИНГ — 65$ / ВИНДСЁРФИНГ — 65$ / ВИНГФОЙЛ — 65$ / ПРОКАТ ВИНДСЁРФИНГА — ОТ 35$ / СТАНЦИЯ НА БЕРЕГУ / СПОТ МАЛИБУ / </span></div></section>
+
+${seasonSection([countriesByKey.vietnam], { compact: true, eyebrow: "Муйне · сезон и ветер", title: "Когда ехать в Муйне", lead: "Основной сезон станции — с ноября по март: тёплое море, ветровые дни и возможность совмещать несколько дисциплин в одной поездке." })}
+
+<section class="sport-split" id="sport"><div class="sport-split__inner"><header class="section-heading"><p class="eyebrow">Выберите спорт</p><h2>Три дисциплины в одном направлении</h2></header><div class="sport-split__grid sport-split__grid--three">
+  <a class="sport-tile" href="/vietnam/kite/"><img src="${vietnamImg("station.jpg")}" alt="Пляж в Муйне для занятий кайтсёрфингом" width="900" height="600" loading="lazy" decoding="async"><div class="sport-tile__content"><h2>Кайтсёрфинг</h2><span>Подробнее</span></div></a>
+  <a class="sport-tile" href="/vietnam/windsurf/"><img src="${vietnamImg("aerial.jpg")}" alt="Виндсёрфинг в Муйне" width="800" height="500" loading="lazy" decoding="async"><div class="sport-tile__content"><h2>Виндсёрфинг</h2><span>Подробнее</span></div></a>
+  <a class="sport-tile" href="/vietnam/wingfoil/"><img src="${vietnamImg("community.jpg")}" alt="Вингфойл в Муйне" width="2000" height="1333" loading="lazy" decoding="async"><div class="sport-tile__content"><h2>Вингфойл</h2><span>Подробнее</span></div></a>
+</div></div></section>
+
+<section class="dahab-learning" id="learning"><div class="dahab-inner"><div class="dahab-learning__layout"><div class="dahab-learning__journey"><header class="dahab-learning__heading"><p class="eyebrow">Обучение</p><h2>От первого занятия до самостоятельной практики</h2><p>Программа строится вокруг вашего опыта, выбранного спорта и количества дней на станции.</p></header><ol class="dahab-learning__steps">${learningSteps.map(([number,title,text]) => `<li><span>${number}</span><div><h3>${title}</h3><p>${text}</p></div></li>`).join("")}</ol></div><aside class="dahab-learning__side"><figure class="dahab-learning__media"><img src="${vietnamImg("windsurf.jpg")}" alt="Обучение виндсёрфингу в Муйне" width="2000" height="558" loading="lazy" decoding="async"></figure><div class="dahab-learning__included"><header><p class="eyebrow">В урок уже входит</p><h3>Можно приехать без своего снаряжения</h3></header><div>${lessonIncludes.map(([title,text]) => `<article><strong>${title}</strong><p>${text}</p></article>`).join("")}</div></div></aside></div></div></section>
+
+<section class="dahab-safety-spotlight"><a class="dahab-safety-spotlight__inner" href="/vietnam/kite/"><span class="dahab-safety-spotlight__media"><img src="${vietnamImg("station.jpg")}" alt="Пляж Малибу рядом с Муйне" width="900" height="600" loading="lazy" decoding="async"></span><span class="dahab-safety-spotlight__content"><small>Кайт-спот</small><b>Пляж Малибу</b><em>Просторный пляж примерно в 6 км от станции, небольшой трафик, хранение оборудования, душ и место для переодевания.</em><strong>Кайтсёрфинг в Муйне <span aria-hidden="true">→</span></strong></span></a></section>
+
+<section class="water-area" id="water-area"><div class="water-area__inner"><header class="water-area__intro"><div><p class="eyebrow">Муйне</p><h2>Тёплое море и разные форматы катания</h2></div><div><p>В одной поездке можно учиться, брать оборудование напрокат и переключаться между дисциплинами в зависимости от ветра и состояния воды.</p><p class="water-area__route"><span>Станция</span><b aria-hidden="true">→</b><span>Море</span><b aria-hidden="true">→</b><span>Малибу</span></p></div></header><div class="water-area__layout"><figure class="water-area__visual"><img src="${vietnamImg("station.jpg")}" alt="Станция Ветратории на пляже Муйне" width="900" height="600" loading="lazy" decoding="async"></figure><div class="water-area__cards"><article><span>01</span><div><strong>Станция в Муйне</strong><small>Виндсёрфинг и вингфойл</small><p>Подготовка снаряжения, обучение, прокат и помощь команды непосредственно на берегу.</p></div></article><article><span>02</span><div><strong>Открытое море</strong><small>Ветер и волна</small><p>Условия для прогресса, самостоятельного катания и классического серфинга в подходящие дни.</p></div></article><article><span>03</span><div><strong>Пляж Малибу</strong><small>Кайтсёрфинг</small><p>Отдельный просторный спот для занятий кайтом примерно в шести километрах от основной станции.</p></div></article></div></div></div></section>
+
+<section class="dahab-section compact-band" id="prices"><div class="dahab-inner">${sectionHeading("Цены", "Сколько стоит начать", "Стоимость обучения включает работу инструктора и необходимое снаряжение.")}<div class="price-grid">${priceCards.map(([label,title,value,text,image,href]) => `<a class="price-card" href="${href}"><figure class="price-photo"><img src="${image}" alt="${label}: ${title}" loading="lazy" decoding="async"></figure><span>${label}</span><h3>${title}</h3><b>${value}</b><p>${text}</p><em>Смотреть формат →</em></a>`).join("")}</div><div class="price-help-cta"><div><b>Хотите заниматься несколько дней?</b><p>Виндсёрфинг: курс на 3 дня — 420$, на 7 дней — 800$. Кайтсёрфинг: курс 5–10 часов по 55$ за час.</p></div><nav>${contactCta(page,"Оставить заявку","",null)}<a href="/vietnam/windsurf/price/">Все цены</a></nav></div></div></section>
+
+${stationLifeGallery({ id: "station-life", eyebrow: "Жизнь станции", title: "Ветер, тёплое море и ветраторская атмосфера", lead: "Ветратория работает в Муйне с 2011 года. Сюда возвращаются ради катания, команды и людей, с которыми не нужно объяснять любовь к ветру.", photos: galleryPhotos })}
+
+<section class="station-advice" id="stations"><header class="station-advice__head"><p class="eyebrow">Станция</p><h2>Ветратория Вьетнам</h2></header><div class="station-advice__list station-advice__list--single"><a href="/vietnam/contacts/"><figure><img src="${vietnamImg("station.jpg")}" alt="Ветратория Вьетнам в Муйне" width="900" height="600" loading="lazy" decoding="async"></figure><div><span>Кайт · Виндсёрфинг · Вингфойл</span><b>Sun & Sands Beach · Муйне</b></div></a></div>${contactCta(page,"Написать нам","station-advice__cta")}</section>
+
+<section class="dahab-faq-section" id="faq"><div class="dahab-inner"><div class="dahab-faq-section__layout"><header class="dahab-faq-section__intro"><p class="eyebrow">Перед поездкой</p><h2>Ответы о сезоне и занятиях</h2><p>Главное о выборе спорта, снаряжении и организации катания в Муйне.</p></header><div class="dahab-faq-section__accordion">${faqs.map(([question,answer],index) => `<details class="dahab-faq-section__item" ${index===0?"open":""}><summary aria-expanded="${index===0?"true":"false"}"><span class="dahab-faq-section__number">${String(index+1).padStart(2,"0")}</span><span>${question}</span></summary><p>${answer}</p></details>`).join("")}</div></div><div class="price-help-cta dahab-faq-section__cta"><div><b>Подберём программу под ваши даты</b><p>Напишите дисциплину, уровень и продолжительность поездки — команда предложит подходящий формат.</p></div><nav>${contactCta(page,"Оставить заявку","",null)}<a href="/vietnam/contacts/">Все контакты</a></nav></div></div></section>`;
+};
+
 const stationImg = (name) => `/assets/img/final/stations/${name}`;
 const dahabSafetyImg = (name) => `/assets/img/final/dahab/${name}`;
 
@@ -2159,6 +2235,7 @@ const dahabSafetyPage = (page) => {
 const countryPage = (page) => {
   const country = countriesByKey[page.country];
   if (country.key === "dahab") return dahabHomePage(page);
+  if (country.key === "vietnam") return vietnamHomePage(page);
   const primaryPricePath = `/${country.key}/${country.sports[0]}/price/`;
   const actions = `<a class="button button-primary" href="${primaryPricePath}">Цены</a>${contactCta(page, "Написать нам", "button button-ghost")}`;
   const sports = country.sports.map((key) => site.sports[key]);

@@ -58,6 +58,19 @@ A focused browser crop of the full footer was inspected because link typography,
 - [x] Synchronize all static site footers.
 - [x] Validate routes, markup, active states, and browser rendering.
 
-- CDN deployment refresh requested after the cache-busting stylesheet update.
+final result: passed
+
+## Vietnam direction page QA — 2026-09-03
+
+- Visual target: the existing `/dahab/` direction page and its established section system.
+- Implementation: `http://terminal.local:4173/vietnam/`.
+- Viewport checked: 1363 × 936 CSS px; full-page height 8427 px.
+- Structure parity: hero, marquee, season, sport choice, learning journey, location spotlight, water-area explanation, prices, station-life gallery, station card, FAQ, CTA and contextual footer.
+- Content adaptation: three equal disciplines (kite, windsurf and wingfoil), November–March season, Malibu kite spot, station since 2011, source-site prices and Vietnam-specific contact data.
+- Images: seven source photographs downloaded from `vietnam.vetratoria.ru` and served locally from the project; no external hotlinks or generic placeholders remain.
+- Browser evidence: hero, three sport cards, four price cards, station gallery and contextual footer render without horizontal overflow; all image assets load successfully.
+- Responsive behavior: the page reuses the already verified Dahab responsive section system; the three-column sport grid collapses through the existing shared breakpoint and Vietnam hero facts use the two-column mobile rule.
+- P2 fix: replaced the source site's graphic-heavy hero banner with a clean station photograph and avoided presenting a surfing action shot as kitesurfing.
+- Remaining P3: the legacy source library contains limited dedicated kite photography; the initial page therefore uses the Malibu/station beach image until a current kite photo is supplied.
 
 final result: passed
