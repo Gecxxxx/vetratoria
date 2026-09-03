@@ -2285,10 +2285,68 @@ const countryPage = (page) => {
   </section>`;
 };
 
+const vietnamSportPage = (page) => {
+  const vietnamImg = (name) => `/assets/img/vietnam-source/${name}`;
+  const shared = {
+    kite: {
+      title: "Кайтсёрфинг в Муйне",
+      lead: "Обучение кайтсёрфингу на просторном пляже Малибу: управление кайтом, бодидраг, старт с доской и самостоятельная практика.",
+      hero: vietnamImg("station.jpg"),
+      facts: ["Спот Малибу", "Инструктор и комплект", "65$ за час", "Курс 5–10 часов"],
+      locationTitle: "Почему Малибу подходит для кайта",
+      locationLead: "Спот находится примерно в 6 км от основной станции. Просторный пляж и небольшой трафик дают место для последовательного обучения.",
+      reasons: [
+        ["Просторный берег", "Достаточно места для разбора кайта, запуска и первых упражнений под контролем инструктора.", vietnamImg("station.jpg"), "Пляж Малибу для занятий кайтсёрфингом"],
+        ["Небольшой трафик", "На споте проще выделить учебную зону и сосредоточиться на базовых действиях.", vietnamImg("surf.jpg"), "Открытая вода у Муйне"],
+        ["Инфраструктура", "На Малибу есть хранение оборудования, душ и место, где можно переодеться.", vietnamImg("action.jpg"), "Станционная инфраструктура во Вьетнаме"]
+      ],
+      steps: [["01","Безопасность и ветер","Разбираем ветровое окно, устройство кайта, сигналы и правила учебной зоны."],["02","Управление кайтом","Учимся контролировать крыло на берегу и удерживать его в нужной части окна."],["03","Бодидраг","Отрабатываем движение в воде без доски и возвращение к потерянному снаряжению."],["04","Старт с доской","Соединяем контроль кайта, положение доски и первые проходы по воде."]],
+      prices: [["Разовый урок","1 час","65$","Инструктор и оборудование включены."],["Курс","5–10 часов","55$/час","Последовательная программа от управления кайтом до старта с доской."]],
+      faq: [["Подойдёт ли Малибу новичку?","Спот нельзя назвать самым простым, поэтому обучение строится последовательно и только в подходящих условиях."],["Где проходит занятие?","На пляже Малибу примерно в 6 км от основной станции Ветратории."],["Что входит в цену?","Работа инструктора и полный комплект оборудования."],["Можно ли взять курс?","Да, для программы длительностью 5–10 часов действует цена 55$ за час."]]
+    },
+    windsurf: {
+      title: "Виндсёрфинг в Муйне",
+      lead: "Индивидуальные уроки, курсы и прокат на станции Ветратория: от первого знакомства с парусом до уверенного самостоятельного катания.",
+      hero: vietnamImg("aerial.jpg"),
+      facts: ["Снаряжение включено", "Урок от 65$", "Курсы на 3 и 7 дней", "Прокат от 35$"],
+      locationTitle: "Муйне для обучения и прогресса",
+      locationLead: "Зимний бриз, тёплое море и станция на берегу позволяют сочетать занятия с самостоятельной практикой.",
+      reasons: [["Сезонный ветер","Основной сезон с ноября по март даёт время на несколько последовательных занятий.",vietnamImg("aerial.jpg"),"Виндсёрфинг в Муйне"],["Станция на берегу","Подбор и настройка комплекта проходят рядом с местом выхода на воду.",vietnamImg("station.jpg"),"Станция Ветратории в Муйне"],["Большой выбор оборудования","На станции доступны комплекты для обучения, прогресса и самостоятельного проката.",vietnamImg("atmosphere.jpg"),"Виндсёрфинг-снаряжение Ветратории"]],
+      steps: [["01","Знакомство с парусом","Разбираем ветер, положение тела и управление парусом на берегу."],["02","Первые галсы","Учимся стартовать, держать курс и возвращаться в заданную точку."],["03","Повороты и контроль","Работаем над разворотами, скоростью и устойчивым положением на доске."],["04","Самостоятельная практика","Закрепляем навык с прокатом и точечными занятиями с инструктором."]],
+      prices: [["Первый урок","1 час","65$","Оборудование и страховка включены."],["Курс новичка","3 дня","420$","По 1,5 часа обучения в день и самостоятельная практика."],["Недельный курс","7 дней","800$","По одному часу с инструктором ежедневно и практика."],["Прокат","1 час","35$","Самостоятельное катание на комплекте станции."]],
+      faq: [["Можно ли начать с нуля?","Да, первое занятие начинается с управления парусом и безопасных действий на берегу."],["Что входит в урок?","Инструктор, аренда оборудования и страховка материальной части."],["Есть ли детские занятия?","Да, детское часовое занятие стоит 55$."],["Можно ли кататься самостоятельно?","Да, после оценки уровня можно взять комплект напрокат от одного часа."]]
+    },
+    wingfoil: {
+      title: "Вингфойл в Муйне",
+      lead: "Обучение на современном оборудовании: управление крылом, баланс на доске, первые подъёмы на фойл и самостоятельная практика.",
+      hero: vietnamImg("community.jpg"),
+      facts: ["Индивидуально 65$", "Группа 50$", "Современное оборудование", "Фойл за катером"],
+      locationTitle: "Муйне для первых полётов",
+      locationLead: "Тёплое море, сезонный бриз и оборудование станции создают понятный маршрут от управления крылом до фойла.",
+      reasons: [["Тёплая вода","Больше времени можно уделить упражнениям и повторениям на воде.",vietnamImg("community.jpg"),"Вингфойл в тёплом море Муйне"],["Оборудование RRD","На станции доступны современные доски и крылья для разных уровней.",vietnamImg("atmosphere.jpg"),"Оборудование станции Ветратория"],["Фойл за катером","Можно отдельно отработать баланс и контроль высоты без одновременного управления крылом.",vietnamImg("action.jpg"),"Подготовка к занятию в Муйне"]],
+      steps: [["01","Управление крылом","На берегу учимся держать винг, менять сторону и понимать тягу."],["02","Крыло и доска","Соединяем управление вингом с балансом и движением по воде."],["03","Выход на фойл","Набираем скорость, контролируем подъём и удерживаем безопасную высоту."],["04","Практика","Закрепляем старты, проходы и возвращение к точке выхода."]],
+      prices: [["Индивидуально","1 час","65$","Винг, доска и инструктор включены."],["В группе","1 час","50$","Цена с человека; группа из двух–трёх участников."],["Фойл и катер","20 минут","65$","Индивидуальная тренировка баланса на фойле."]],
+      faq: [["Можно ли начать без опыта?","Да, обучение начинается с управления крылом и баланса, предыдущий опыт не обязателен."],["Что входит в урок?","Крыло, доска и работа инструктора."],["Как проходит групповое занятие?","Группа формируется из двух–трёх участников, цена — 50$ с человека."],["Зачем нужен фойл за катером?","Он позволяет отдельно почувствовать подъём и научиться контролировать высоту без крыла."]]
+    }
+  };
+  const data = shared[page.sport];
+  const imagePool = [data.hero, vietnamImg("station.jpg"), vietnamImg("community.jpg"), vietnamImg("aerial.jpg"), vietnamImg("windsurf.jpg"), vietnamImg("atmosphere.jpg")];
+  return `
+<section class="dahab-sport-hero dahab-sport-hero--${page.sport}"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Вьетнам · Муйне</p><h1>${data.title}</h1><p>${data.lead}</p><div class="dahab-sport-hero__actions">${contactCta(page,"Записаться","button button-primary",page.sport)}<a class="button button-ghost" href="${page.path}price/">Смотреть цены</a></div><div class="hero-advantages hero-advantages--sport">${data.facts.map(item=>`<span class="hero-advantage">${item}</span>`).join("")}</div></div><figure class="dahab-sport-hero__media"><img src="${data.hero}" alt="${data.title}" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
+${seasonSection([countriesByKey.vietnam],{compact:true,eyebrow:`Муйне · ${site.sports[page.sport].nav}`,title:"Сезон с ноября по март",lead:"Основной ветровой сезон станции. Фактические условия команда подбирает под дисциплину и уровень райдера."})}
+<section class="dahab-sport-section dahab-sport-section--location"><div class="dahab-sport-inner">${sectionHeading("Локация",data.locationTitle,data.locationLead)}${sportFeatureGrid(data.reasons,{atlas:true,leadImage:data.hero,leadAlt:data.title})}</div></section>
+<section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner">${sectionHeading("Обучение",`Как проходит обучение: ${site.sports[page.sport].nav.toLowerCase()}`,"Каждый следующий этап опирается на уже контролируемый навык — без спешки и одинаковых обещаний для всех.")}<div class="dahab-sport-process">${data.steps.map(([number,title,text],index)=>`<article><img src="${imagePool[index%imagePool.length]}" alt="${title}" loading="lazy" decoding="async"><div><span>${number}</span><h3>${title}</h3><p>${text}</p></div></article>`).join("")}</div></div></section>
+<section class="dahab-sport-section"><div class="dahab-sport-inner">${sectionHeading("Цены",`Цены на ${site.sports[page.sport].nav.toLowerCase()}`,"Выберите разовое занятие или последовательный курс под продолжительность поездки.")}<div class="dahab-sport-price-grid">${data.prices.map(([label,title,value,text])=>`<article class="dahab-sport-price-card"><small>${label}</small><h3>${title}</h3><b>${value}</b><p>${text}</p>${contactCta(page,"Записаться","button button-primary",page.sport)}</article>`).join("")}</div><div class="dahab-sport-price-actions"><a class="button button-ghost" href="${page.path}price/">Все цены</a></div></div></section>
+<section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner dahab-sport-safety"><div class="dahab-sport-safety__copy"><p class="eyebrow">Перед выходом</p><h2>Безопасность и понятный план занятия</h2><p>Перед стартом инструктор проверяет условия, подбирает комплект, объясняет учебную зону и действия на воде.</p><div class="dahab-sport-safety__list"><span>Условия проверяются перед занятием</span><span>Комплект подбирается под уровень и вес</span><span>Практика начинается с контролируемых действий</span></div>${contactCta(page,"Обсудить программу")}</div><div class="dahab-sport-safety__media"><img src="${vietnamImg("station.jpg")}" alt="Станция Ветратории в Муйне" loading="lazy" decoding="async"></div></div></section>
+<section class="dahab-sport-section dahab-sport-section--faq"><div class="dahab-sport-inner">${sportFaqBlock("Частые вопросы",`Вопросы про ${site.sports[page.sport].nav.toLowerCase()} в Муйне`,"",data.faq)}</div></section>
+<section class="dahab-sport-cta"><img src="${data.hero}" alt="${data.title}" loading="lazy" decoding="async"><div class="dahab-sport-cta__inner"><p class="eyebrow">Подбор программы</p><h2>Подберём формат под уровень и даты</h2><p>Напишите дисциплину, опыт и продолжительность поездки — команда предложит подходящий урок или курс.</p><div>${contactCta(page,"Оставить заявку")}<a class="button button-ghost" href="/vietnam/">Обзор Муйне</a></div></div></section>`;
+};
+
 const sportPage = (page) => {
   if (page.country === "dahab" && page.sport === "wingfoil") return dahabWingfoilPage(page);
   if (page.country === "dahab" && page.sport === "windsurf") return dahabWindsurfPage(page);
   if (page.country === "dahab" && page.sport === "windsurf-kids") return dahabWindsurfKidsPage(page);
+  if (page.country === "vietnam") return vietnamSportPage(page);
 
   const country = countriesByKey[page.country];
   const sport = site.sports[page.sport];

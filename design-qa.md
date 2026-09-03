@@ -60,6 +60,19 @@ A focused browser crop of the full footer was inspected because link typography,
 
 final result: passed
 
+## Vietnam sport pages QA — 2026-09-03
+
+- Visual target: the established Dahab sport-page system and the approved Vietnam direction page.
+- Routes: `/vietnam/kite/`, `/vietnam/windsurf/`, `/vietnam/wingfoil/`.
+- Shared order: sport hero, seasonal conditions, location reasons, four-step learning path, prices, safety/briefing, FAQ and conversion CTA.
+- Sport differentiation: Malibu and kite progression; windsurf lessons/courses/rental; wingfoil individual/group/boat-foil formats.
+- Browser evidence at 1363 × 936: all three pages render their correct H1 and active sport navigation, load every image, and have no horizontal overflow.
+- Price-card counts: kite 2, windsurf 4, wingfoil 3; values match the supplied legacy Vietnam site source.
+- The kite hero intentionally uses the real Malibu/station beach rather than a misleading non-kite action photograph.
+- No P0, P1 or P2 visual issues remain. Dedicated current kite photography remains a P3 content upgrade when supplied.
+
+final result: passed
+
 ## Vietnam direction page QA — 2026-09-03
 
 - Visual target: the existing `/dahab/` direction page and its established section system.
