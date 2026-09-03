@@ -46,6 +46,9 @@ A focused browser crop of the full footer was inspected because link typography,
 - Initial implementation review found that sport detection on media article slugs did not activate the current sport.
 - Fix: changed route detection to recognize sport names anywhere in the relative path, then regenerated all footers.
 - Post-fix browser evidence: the Russia wingfoil media article correctly reports Russia as the current country and the generated static markup contains the correct sport context.
+- Follow-up review against the supplied staging screenshots found that the public CDN was still serving the previous inline footer and the legacy Dahab card footer.
+- Fix: added explicit stacked contact rows, labeled the two Dahab numbers as `Номер Виндсёрфинг-станции` and `Номер Вингфойл-станции`, and bumped the shared stylesheet URL to invalidate the CDN/browser cache.
+- Post-fix browser evidence: `/dahab/` renders the clean-grid footer, contains both labeled numbers and the email, contains no legacy `dahab-footer-pro`, and has no horizontal overflow.
 
 ## Implementation checklist
 

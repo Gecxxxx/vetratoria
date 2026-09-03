@@ -10,13 +10,18 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 FOOTER_RE = re.compile(r'<footer class="site-footer[^>]*>.*?</footer>', re.DOTALL)
+CSS_VERSION_RE = re.compile(r'main\.css\?v=[^"\']+')
+CSS_VERSION = "main.css?v=20260903-staging-footer-r2"
 
 COUNTRIES = {
     "dahab": {
         "name": "Египет · Дахаб",
         "href": "/dahab/",
         "contacts_href": "/dahab/contacts/",
-        "phones": (("+20 102 932 1772", "+201029321772"), ("+20 115 101 5941", "+201151015941")),
+        "phones": (
+            ("Номер Виндсёрфинг-станции", "+20 102 932 1772", "+201029321772"),
+            ("Номер Вингфойл-станции", "+20 115 101 5941", "+201151015941"),
+        ),
         "email": "dahab@vetratoria.ru",
         "sports": (
             ("Вингфойл Дахаб", "/dahab/wingfoil/", "wingfoil"),
@@ -28,7 +33,7 @@ COUNTRIES = {
         "name": "Вьетнам · Муйне",
         "href": "/vietnam/",
         "contacts_href": "/vietnam/contacts/",
-        "phones": (("+7 988 471 5355", "+79884715355"),),
+        "phones": (("Номер станции", "+7 988 471 5355", "+79884715355"),),
         "email": "vietnam@vetratoria.ru",
         "sports": (
             ("Кайтсёрфинг Муйне", "/vietnam/kite/", "kite"),
@@ -40,7 +45,7 @@ COUNTRIES = {
         "name": "Россия · Должанская",
         "href": "/russia/",
         "contacts_href": "/russia/contacts/",
-        "phones": (("+7 988 471 5355", "+79884715355"),),
+        "phones": (("Номер станции", "+7 988 471 5355", "+79884715355"),),
         "email": "russia@vetratoria.ru",
         "sports": (
             ("Кайтсёрфинг Должанская", "/russia/kite/", "kite"),
@@ -108,8 +113,21 @@ def contact_links(country: str | None) -> str:
         )
 
     data = COUNTRIES[country]
-    links = [anchor(label, f"tel:{number}") for label, number in data["phones"]]
-    links.append(anchor(data["email"], f"mailto:{data['email']}"))
+    links = [
+        (
+            f'<a class="footer-contact" href="tel:{number}">'
+            f'<span>{html.escape(label)}</span>'
+            f'<strong>{html.escape(display)}</strong>'
+            '</a>'
+        )
+        for label, display, number in data["phones"]
+    ]
+    links.append(
+        f'<a class="footer-contact" href="mailto:{data["email"]}">'
+        '<span>Почта</span>'
+        f'<strong>{html.escape(data["email"])}</strong>'
+        '</a>'
+    )
     return "\n          ".join(links)
 
 
@@ -160,6 +178,7 @@ def main() -> None:
         updated, replacements = FOOTER_RE.subn(footer_markup(country, sport), source, count=1)
         if replacements != 1:
             raise RuntimeError(f"Expected one site footer in {path}")
+        updated = CSS_VERSION_RE.sub(CSS_VERSION, updated)
         if updated != source:
             path.write_text(updated, encoding="utf-8")
             changed += 1

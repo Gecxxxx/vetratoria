@@ -171,6 +171,31 @@
   font-weight: 700;
 }
 
+.footer-contact {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.footer-contact span {
+  color: var(--soft);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.footer-contact strong {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.footer-contact:hover strong,
+.footer-contact:focus-visible strong {
+  color: var(--orange);
+}
+
 .footer-bottom {
   display: flex;
   justify-content: space-between;
@@ -244,6 +269,10 @@
   }
 
   .footer-links a {
+    font-size: 15px;
+  }
+
+  .footer-contact strong {
     font-size: 15px;
   }
 }
