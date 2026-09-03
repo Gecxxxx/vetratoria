@@ -1,0 +1,34 @@
+/* Russia direction: shared Dahab/Vietnam components with local image tuning only. */
+.russia-hero .dahab-hero__image {
+  object-position: 50% 48%;
+  image-rendering: auto;
+}
+
+.country-russia .dahab-sport-hero__media img,
+.country-russia .sport-tile img,
+.country-russia .price-photo img {
+  object-position: center;
+}
+
+.country-russia .dahab-sport-hero--kite .dahab-sport-hero__media img {
+  object-position: 58% center;
+}
+
+.country-russia .dahab-sport-hero--wingfoil .dahab-sport-hero__media img {
+  object-position: 62% center;
+}
+
+.country-russia .windsurf-price-table--wide {
+  min-width: 840px;
+}
+
+@media (max-width: 720px) {
+  .russia-hero .dahab-hero__image {
+    object-position: 54% center;
+  }
+
+  .country-russia .windsurf-table-wrap {
+    margin-inline: calc(var(--page-gutter, 20px) * -1);
+    padding-inline: var(--page-gutter, 20px);
+  }
+}

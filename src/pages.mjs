@@ -199,7 +199,9 @@ export const site = {
       sports: ["windsurf", "wingfoil", "kite"],
       extras: [
         { title: "Цены на виндсёрфинг", href: "/russia/windsurf/price/" },
-        { title: "Команда", href: "/russia/team/" },
+        { title: "О школе", href: "/russia/team/" },
+        { title: "Проживание", href: "/russia/accommodation/" },
+        { title: "Как добраться", href: "/russia/how-to-get/" },
         { title: "Блог", href: "/russia/blog/" }
       ]
     }
@@ -314,7 +316,7 @@ export const articles = [
     topics: ["windsurf", "trip"],
     title: "Виндсёрфинг на Должанской",
     lead: "Летний формат, мелкая вода, старт с берега и удобный план для первых галсов.",
-    image: img("home-direction-russia.webp")
+    image: "/assets/img/russia-source/windsurf.jpg"
   },
   {
     href: "/russia/blog/wingfoil/",
@@ -323,7 +325,7 @@ export const articles = [
     topics: ["wingfoil", "trip"],
     title: "Вингфойл в России",
     lead: "Как использовать летний сезон для первых полетов и спокойного прогресса на фойле.",
-    image: img("home-slider-6.webp")
+    image: "/assets/img/russia-source/wingfoil.jpg"
   },
   {
     href: "/russia/blog/kite/",
@@ -332,7 +334,7 @@ export const articles = [
     topics: ["kite", "safety", "trip"],
     title: "Кайт на Должанской",
     lead: "Кому подойдет российская локация и как безопасно войти в кайт-формат.",
-    image: img("home-slider-5.webp")
+    image: "/assets/img/russia-source/kite.jpg"
   }
 ];
 
@@ -442,13 +444,21 @@ for (const country of site.countries) {
       ? "Люди, которые держат курс"
       : country.key === "vietnam"
         ? "О школе Ветратория во Вьетнаме"
-        : `Команда ${country.title}`,
+        : country.key === "russia"
+          ? "Школа Ветратория на Должанской"
+          : `Команда ${country.title}`,
     description: country.key === "dahab"
       ? "Инструкторы, тренеры, администраторы и спасатели Ветратории. На берегу и на воде рядом всегда есть человек, которому можно доверять."
       : country.key === "vietnam"
         ? "Станция в Муйне, обучение трём ветровым дисциплинам и команда, которая помогает на берегу и на воде с 2011 года."
-        : "Инструкторы, администраторы, менеджеры и поддержка на воде.",
-    image: country.key === "vietnam" ? "/assets/img/vietnam-source/station.jpg" : img("ABOUTVETRATORIA.jpg")
+        : country.key === "russia"
+          ? "Станция на косе Долгой, обучение трём ветровым дисциплинам, прокат и помощь команды на берегу и воде."
+          : "Инструкторы, администраторы, менеджеры и поддержка на воде.",
+    image: country.key === "vietnam"
+      ? "/assets/img/vietnam-source/station.jpg"
+      : country.key === "russia"
+        ? "/assets/img/russia-source/training.jpg"
+        : img("ABOUTVETRATORIA.jpg")
   });
 
   const contact = site.contacts[country.key];
@@ -495,6 +505,8 @@ for (const country of site.countries) {
           : `Форматы занятий, курсы и самостоятельная практика: ${sport.lead.toLowerCase()}`,
       image: country.key === "vietnam"
         ? `/assets/img/vietnam-source/${sportKey === "windsurf" ? "aerial.jpg" : sportKey === "wingfoil" ? "community.jpg" : "station.jpg"}`
+        : country.key === "russia"
+          ? `/assets/img/russia-source/${sportKey}.jpg`
         : isDahabWingfoilPrice
         ? "/assets/img/final/wingfoil/hero.webp"
         : isDahabWindsurfPrice
@@ -505,6 +517,24 @@ for (const country of site.countries) {
 }
 
 pages.push(
+  {
+    path: "/russia/accommodation/",
+    kind: "accommodation",
+    country: "russia",
+    eyebrow: "Должанская · проживание",
+    title: "Где жить рядом со станцией",
+    description: "Проживание на базе отдыха «Серфприют» рядом со станцией, пляжем и местом хранения оборудования.",
+    image: "/assets/img/russia-source/station.jpg"
+  },
+  {
+    path: "/russia/how-to-get/",
+    kind: "route",
+    country: "russia",
+    eyebrow: "Должанская · дорога",
+    title: "Как добраться до Ветратории на Должанской",
+    description: "Ориентир для навигатора, маршрут на косу Долгую и что уточнить у команды перед выездом.",
+    image: "/assets/img/russia-source/station.jpg"
+  },
   {
     path: "/dahab/how-to-get/",
     kind: "route",

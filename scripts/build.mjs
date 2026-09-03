@@ -325,8 +325,15 @@ const schoolDropdown = (country) => country.key === "dahab" ? [
   { label: "Как добраться", href: "/dahab/how-to-get/" },
   { label: "Медиа", href: "/media/dahab/" },
   { label: "Контакты", href: "/dahab/contacts/" }
+] : country.key === "russia" ? [
+  { label: "О школе и станции", href: "/russia/team/" },
+  { label: "Проживание", href: "/russia/accommodation/" },
+  { label: "Как добраться", href: "/russia/how-to-get/" },
+  { label: "Блог", href: "/russia/blog/" },
+  { label: "Медиа", href: "/media/russia/" },
+  { label: "Контакты", href: "/russia/contacts/" }
 ] : [
-  { label: country.key === "vietnam" ? "О школе и команде" : "Команда", href: `/${country.key}/team/` },
+  { label: "О школе и команде", href: `/${country.key}/team/` },
   { label: "Блог", href: `/${country.key}/blog/` },
   { label: "Медиа", href: `/media/${country.key}/` },
   { label: "Контакты", href: `/${country.key}/contacts/` }
@@ -2232,10 +2239,57 @@ const dahabSafetyPage = (page) => {
 </section>`.replace(/^[\t ]+$/gm, "");
 };
 
+const russiaImg = (name) => `/assets/img/russia-source/${name}`;
+
+const russiaHomePage = (page) => {
+  const learningSteps = [
+    ["01", "Выбираем берег", "На косе две разные акватории. Команда оценивает ветер и выбирает сторону под дисциплину и уровень."],
+    ["02", "Подбираем комплект", "Снаряжение настраивается под рост, вес, опыт и фактические условия перед выходом."],
+    ["03", "Учимся по шагам", "Сначала безопасность и управление, затем движение, развороты и самостоятельная практика."],
+    ["04", "Закрепляем навык", "После урока можно продолжить курс или перейти к прокату, когда инструктор подтвердит уровень."]
+  ];
+  const priceCards = [
+    ["Виндсёрфинг", "Знакомство с ветром", "5 000 ₽", "Индивидуальное занятие 1 час; оборудование и страховка включены.", russiaImg("windsurf.jpg"), "/russia/windsurf/price/"],
+    ["Вингфойл", "Индивидуальный урок", "5 000 ₽", "Один час с инструктором и комплектом станции.", russiaImg("wingfoil.jpg"), "/russia/wingfoil/price/"],
+    ["Кайтсёрфинг", "Индивидуальный урок", "6 000 ₽", "Инструктор, оборудование и защитная экипировка включены.", russiaImg("kite.jpg"), "/russia/kite/price/"],
+    ["Кайтсёрфинг", "Курс 10 часов", "54 000 ₽", "Последовательная индивидуальная программа и скидка на последующий прокат.", russiaImg("flat.jpg"), "/russia/kite/price/"]
+  ];
+  const galleryPhotos = [
+    [russiaImg("station.jpg"), "Коса Долгая", "Две акватории по обе стороны косы", "Коса Долгая с воздуха", 640, 320],
+    [russiaImg("windsurf.jpg"), "Виндсёрфинг", "Летний ветер и практика на воде", "Виндсёрфинг на Должанской", 1944, 1296],
+    [russiaImg("wingfoil.jpg"), "Вингфойл", "Первые полёты на тёплой воде", "Вингфойл на Должанской", 1500, 998],
+    [russiaImg("kite.jpg"), "Кайтсёрфинг", "Пространство для учебных задач", "Кайтсёрфинг на Должанской", 1100, 733],
+    [russiaImg("training.jpg"), "Станция", "Снаряжение и команда на берегу", "Станция Ветратория на Должанской", 670, 445],
+    [russiaImg("flat.jpg"), "Акватория", "Спокойная вода для первых шагов", "Спокойная сторона косы Долгой", 670, 445],
+    [russiaImg("life-3.jpg"), "Прогресс", "Катание в более сильных условиях", "Райдер на воде", 480, 320],
+    [russiaImg("life-4.jpg"), "Серфприют", "Станционная жизнь у самого пляжа", "Берег и станция", 480, 319]
+  ];
+  const faqs = [
+    ["Когда работает направление?", "Основной сезон Ветратории на Должанской — с мая до середины сентября. Конкретные условия и расписание команда подтверждает под даты поездки."],
+    ["Подойдёт ли место новичку?", "Да. Мелкая вода и возможность выбрать сторону косы помогают подобрать учебную акваторию под ветер и дисциплину."],
+    ["Нужно ли своё оборудование?", "Нет. В обучение входит необходимый комплект, а для самостоятельного катания доступен прокат после оценки уровня."],
+    ["Где находится станция?", "На косе Долгой, на территории базы отдыха «Серфприют» в станице Должанской."],
+    ["Можно ли жить рядом?", "Да. На «Серфприюте» есть варианты размещения рядом со станцией; доступность и стоимость лучше уточнить перед поездкой."]
+  ];
+  return `
+<section class="dahab-hero russia-hero"><img class="dahab-hero__image" src="${russiaImg("station.jpg")}" alt="Коса Долгая и станция Ветратория" width="640" height="320" fetchpriority="high"><div class="dahab-hero__shade"></div><div class="dahab-hero__content"><p class="eyebrow">Россия · Должанская</p><h1>Виндсёрфинг, вингфойл и кайт на косе Долгой</h1><p class="hero-lead">Три ветровые дисциплины, обучение и прокат на Азовском море. Выбираем сторону косы под ветер, уровень и задачу занятия.</p><div class="hero-advantages"><span class="hero-advantage">Сезон май — середина сентября</span><span class="hero-advantage">Три вида спорта</span><span class="hero-advantage">Две акватории</span><span class="hero-advantage">Станция на берегу</span></div><div class="hero-actions dahab-hero-actions">${contactCta(page, "Подобрать программу")}<a class="button button-ghost" href="#prices">Посмотреть цены</a></div></div></section>
+<section class="dahab-marquee" aria-label="Ветратория на Должанской"><div class="dahab-marquee__track"><span>ДОЛЖАНСКАЯ · МАЙ — СЕРЕДИНА СЕНТЯБРЯ / ВИНДСЁРФИНГ — ОТ 5 000 ₽ / ВИНГФОЙЛ — ОТ 5 000 ₽ / КАЙТСЁРФИНГ — ОТ 6 000 ₽ / ДВЕ СТОРОНЫ КОСЫ / СЕРФПРИЮТ / </span><span aria-hidden="true">ДОЛЖАНСКАЯ · МАЙ — СЕРЕДИНА СЕНТЯБРЯ / ВИНДСЁРФИНГ — ОТ 5 000 ₽ / ВИНГФОЙЛ — ОТ 5 000 ₽ / КАЙТСЁРФИНГ — ОТ 6 000 ₽ / ДВЕ СТОРОНЫ КОСЫ / СЕРФПРИЮТ / </span></div></section>
+${seasonSection([countriesByKey.russia], { compact: true, eyebrow: "Должанская · сезон и ветер", title: "Когда ехать на косу Долгую", lead: "Основной сезон станции — с мая до середины сентября. Перед занятием команда сверяет прогноз и выбирает подходящую сторону косы." })}
+<section class="sport-split" id="sport"><div class="sport-split__inner"><header class="section-heading"><p class="eyebrow">Выберите спорт</p><h2>Три дисциплины на одной станции</h2></header><div class="sport-split__grid sport-split__grid--three"><a class="sport-tile" href="/russia/windsurf/"><img src="${russiaImg("windsurf.jpg")}" alt="Виндсёрфинг на Должанской" loading="lazy" decoding="async"><div class="sport-tile__content"><h2>Виндсёрфинг</h2><span>Подробнее</span></div></a><a class="sport-tile" href="/russia/wingfoil/"><img src="${russiaImg("wingfoil.jpg")}" alt="Вингфойл на Должанской" loading="lazy" decoding="async"><div class="sport-tile__content"><h2>Вингфойл</h2><span>Подробнее</span></div></a><a class="sport-tile" href="/russia/kite/"><img src="${russiaImg("kite.jpg")}" alt="Кайтсёрфинг на Должанской" loading="lazy" decoding="async"><div class="sport-tile__content"><h2>Кайтсёрфинг</h2><span>Подробнее</span></div></a></div></div></section>
+<section class="dahab-learning" id="learning"><div class="dahab-inner"><div class="dahab-learning__layout"><div class="dahab-learning__journey"><header class="dahab-learning__heading"><p class="eyebrow">Обучение</p><h2>От выбора берега до самостоятельного катания</h2><p>Программа строится вокруг опыта, выбранной дисциплины и фактического ветра.</p></header><ol class="dahab-learning__steps">${learningSteps.map(([number,title,text]) => `<li><span>${number}</span><div><h3>${title}</h3><p>${text}</p></div></li>`).join("")}</ol></div><aside class="dahab-learning__side"><figure class="dahab-learning__media"><img src="${russiaImg("training.jpg")}" alt="Обучение на станции Ветратория" loading="lazy" decoding="async"></figure><div class="dahab-learning__included"><header><p class="eyebrow">На станции</p><h3>Всё необходимое рядом с водой</h3></header><div><article><strong>Инструктор</strong><p>Последовательная задача и обратная связь.</p></article><article><strong>Снаряжение</strong><p>Комплект подбирается под уровень и условия.</p></article><article><strong>Прокат</strong><p>Самостоятельная практика после оценки навыка.</p></article><article><strong>Хранение</strong><p>Место для собственного оборудования.</p></article></div></div></aside></div></div></section>
+<section class="water-area"><div class="water-area__inner"><header class="water-area__intro"><div><p class="eyebrow">Коса Долгая</p><h2>Два берега — больше вариантов под ветер</h2></div><div><p>Коса разделяет Таганрогский залив и Азовское море. В зависимости от направления ветра одна сторона может быть спокойнее, а другая — дать волну.</p><p class="water-area__route"><span>Лиман</span><b aria-hidden="true">↔</b><span>Коса</span><b aria-hidden="true">↔</b><span>Море</span></p></div></header><div class="water-area__layout"><figure class="water-area__visual"><img src="${russiaImg("station.jpg")}" alt="Коса Долгая с двумя акваториями" loading="lazy" decoding="async"></figure><div class="water-area__cards"><article><span>01</span><div><strong>Спокойная сторона</strong><small>Обучение и база</small><p>Мелкая вода и старт с берега помогают спокойно собирать первые навыки.</p></div></article><article><span>02</span><div><strong>Сторона с волной</strong><small>Прогресс</small><p>Подходит опытным райдерам, когда направление и сила ветра создают нужные условия.</p></div></article><article><span>03</span><div><strong>Решение на месте</strong><small>Прогноз и безопасность</small><p>Команда выбирает учебную зону перед выходом, исходя из текущей обстановки.</p></div></article></div></div></div></section>
+<section class="dahab-section compact-band" id="prices"><div class="dahab-inner">${sectionHeading("Цены", "Сколько стоит начать", "Базовые цены сезона 2026. На страницах дисциплин — полные таблицы обучения, проката и хранения.")}<div class="price-grid">${priceCards.map(([label,title,value,text,image,href]) => `<a class="price-card" href="${href}"><figure class="price-photo"><img src="${image}" alt="${label}: ${title}" loading="lazy" decoding="async"></figure><span>${label}</span><h3>${title}</h3><b>${value}</b><p>${text}</p><em>Полный прайс →</em></a>`).join("")}</div></div></section>
+${stationLifeGallery({ id: "station-life", eyebrow: "Жизнь станции", title: "Лето на косе Долгой", lead: "Станция, пляж, снаряжение и проживание собраны рядом — меньше логистики, больше времени на воду.", photos: galleryPhotos })}
+<section class="dahab-safety-spotlight"><a class="dahab-safety-spotlight__inner" href="/russia/accommodation/"><span class="dahab-safety-spotlight__media"><img src="${russiaImg("life-4.jpg")}" alt="База отдыха Серфприют" loading="lazy" decoding="async"></span><span class="dahab-safety-spotlight__content"><small>Проживание</small><b>«Серфприют» рядом со станцией</b><em>Пляж, станция и хранение оборудования находятся рядом. Условия и свободные места уточняются перед поездкой.</em><strong>Посмотреть варианты <span aria-hidden="true">→</span></strong></span></a></section>
+<section class="dahab-faq-section"><div class="dahab-inner"><div class="dahab-faq-section__layout"><header class="dahab-faq-section__intro"><p class="eyebrow">Перед поездкой</p><h2>Ответы о Должанской</h2><p>Сезон, обучение, снаряжение и организация поездки.</p></header><div class="dahab-faq-section__accordion" data-exclusive-accordion>${faqs.map(([q,a],index)=>`<details class="dahab-faq-section__item" ${index===0?"open":""}><summary><span class="dahab-faq-section__number">${String(index+1).padStart(2,"0")}</span><span>${q}</span></summary><p>${a}</p></details>`).join("")}</div></div></div></section>
+<section class="dahab-sport-cta"><img src="${russiaImg("flat.jpg")}" alt="Акватория Должанской" loading="lazy" decoding="async"><div class="dahab-sport-cta__inner"><p class="eyebrow">Должанская</p><h2>Подберём программу под ваши даты</h2><p>Напишите опыт, дисциплину и продолжительность поездки — команда проверит условия и предложит формат.</p><div>${contactCta(page,"Оставить заявку")}<a class="button button-ghost" href="/russia/contacts/">Контакты</a></div></div></section>`;
+};
+
 const countryPage = (page) => {
   const country = countriesByKey[page.country];
   if (country.key === "dahab") return dahabHomePage(page);
   if (country.key === "vietnam") return vietnamHomePage(page);
+  if (country.key === "russia") return russiaHomePage(page);
   const primaryPricePath = `/${country.key}/${country.sports[0]}/price/`;
   const actions = `<a class="button button-primary" href="${primaryPricePath}">Цены</a>${contactCta(page, "Написать нам", "button button-ghost")}`;
   const sports = country.sports.map((key) => site.sports[key]);
@@ -2342,11 +2396,57 @@ ${seasonSection([countriesByKey.vietnam],{compact:true,eyebrow:`Муйне · ${
 <section class="dahab-sport-cta"><img src="${data.hero}" alt="${data.title}" loading="lazy" decoding="async"><div class="dahab-sport-cta__inner"><p class="eyebrow">Подбор программы</p><h2>Подберём формат под уровень и даты</h2><p>Напишите дисциплину, опыт и продолжительность поездки — команда предложит подходящий урок или курс.</p><div>${contactCta(page,"Оставить заявку")}<a class="button button-ghost" href="/vietnam/">Обзор Муйне</a></div></div></section>`;
 };
 
+const russiaSportPage = (page) => {
+  const configs = {
+    windsurf: {
+      title: "Виндсёрфинг на Должанской",
+      lead: "Обучение с нуля, курсы и прокат на косе Долгой: мелкая тёплая вода для первых шагов и выбор акватории под ветер.",
+      hero: russiaImg("windsurf.jpg"),
+      facts: ["Урок от 5 000 ₽", "Курс от 11 000 ₽", "Детские занятия", "Прокат на станции"],
+      locationTitle: "Почему Должанская подходит для виндсёрфинга",
+      reasons: [["Мелкая вода","На спокойной стороне косы проще осваивать равновесие, управление парусом и первые галсы.",russiaImg("flat.jpg")],["Два берега","Сторону выхода выбирают по направлению ветра и учебной задаче.",russiaImg("station.jpg")],["Снаряжение рядом","Большой парк оборудования RRD позволяет подобрать комплект под рост, вес и уровень.",russiaImg("training.jpg")]],
+      steps: [["01","Парус и ветер","Разбираем положение тела, тягу и безопасное управление парусом."],["02","Первые галсы","Учимся стартовать, держать курс и возвращаться к берегу."],["03","Повороты","Соединяем контроль доски и паруса в понятную последовательность."],["04","Самостоятельная практика","Закрепляем навык на прокатном комплекте после оценки инструктора."]],
+      prices: [["Первый урок","1 час","5 000 ₽","Инструктор, оборудование и страховка."],["Курс","3 часа","11 000 ₽","Два часа с инструктором и один час самостоятельно."],["Недельный курс","7 дней","50 000 ₽","Семь часов с инструктором и самостоятельная практика."],["Детский урок","1 час","4 500 ₽","Индивидуальный формат до 16 лет."]]
+    },
+    wingfoil: {
+      title: "Вингфойл на Должанской",
+      lead: "Управление крылом, баланс на доске и первые подъёмы на фойл в летней акватории косы Долгой.",
+      hero: russiaImg("wingfoil.jpg"),
+      facts: ["Урок от 5 000 ₽", "Курс 10 часов", "Группы 2–4", "Прокат от 3 500 ₽"],
+      locationTitle: "Летняя акватория для первых полётов",
+      reasons: [["Меньше ветра","Вингфойл позволяет использовать более лёгкие ветровые дни и продолжать практику.",russiaImg("wingfoil.jpg")],["Понятный старт","Сначала работа с крылом и большой доской, затем переход к фойлу.",russiaImg("flat.jpg")],["Оборудование на месте","Комплект подбирается под вес, опыт и текущие условия.",russiaImg("training.jpg")]],
+      steps: [["01","Управление вингом","На берегу учимся держать крыло и контролировать тягу."],["02","Крыло и доска","Соединяем движение, баланс и возвращение к точке старта."],["03","Выход на фойл","Набираем скорость и учимся контролировать высоту."],["04","Практика","Закрепляем старты и проходы на выбранной акватории."]],
+      prices: [["Индивидуально","1 час","5 000 ₽","Инструктор и оборудование."],["В группе","1 час","4 500 ₽ / человек","Группа от двух до четырёх человек."],["Курс","10 часов","45 000 ₽","Индивидуальная последовательная программа."],["Прокат","1 час","3 500 ₽","Для самостоятельных райдеров."]]
+    },
+    kite: {
+      title: "Кайтсёрфинг на Должанской",
+      lead: "Последовательное обучение на мелкой тёплой воде: контроль кайта, бодидраг, старт с доской и самостоятельное движение.",
+      hero: russiaImg("kite.jpg"),
+      facts: ["Урок от 6 000 ₽", "Курс 10 часов", "Экипировка включена", "Хранение на станции"],
+      locationTitle: "Пространство для последовательного обучения",
+      reasons: [["Мелкий лиман","На учебной стороне проще выполнять упражнения и возвращаться к инструктору.",russiaImg("kite.jpg")],["Стабильный ветер","Открытый ландшафт косы уменьшает влияние высокой застройки на поток.",russiaImg("station.jpg")],["Полный комплект","В урок входят кайт, доска, трапеция, жилет, шлем и страхование оборудования.",russiaImg("training.jpg")]],
+      steps: [["01","Безопасность","Разбираем ветровое окно, систему страховки и сигналы."],["02","Управление кайтом","Ставим контроль крыла сначала на берегу, затем в воде."],["03","Бодидраг","Учимся двигаться без доски и возвращать потерянное снаряжение."],["04","Старт с доской","Соединяем тягу, положение доски и первые контролируемые проходы."]],
+      prices: [["Индивидуально","1 час","6 000 ₽","Инструктор, комплект и защитная экипировка."],["Индивидуальный курс","10 часов","54 000 ₽","После курса — скидка 50% на прокат."],["В группе","1 час","5 500 ₽ / человек","Цена для одного участника группы."],["Прокат","1 час","3 500 ₽","Для самостоятельного катания."]]
+    }
+  };
+  const data = configs[page.sport];
+  const images = [data.hero, russiaImg("flat.jpg"), russiaImg("training.jpg"), russiaImg("station.jpg")];
+  return `
+<section class="dahab-sport-hero dahab-sport-hero--${page.sport}"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Россия · Должанская</p><h1>${data.title}</h1><p>${data.lead}</p><div class="dahab-sport-hero__actions">${contactCta(page,"Записаться","button button-primary",page.sport)}<a class="button button-ghost" href="${page.path}price/">Смотреть цены</a></div><div class="hero-advantages hero-advantages--sport">${data.facts.map(item=>`<span class="hero-advantage">${item}</span>`).join("")}</div></div><figure class="dahab-sport-hero__media"><img src="${data.hero}" alt="${data.title}" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
+${seasonSection([countriesByKey.russia],{compact:true,eyebrow:`Должанская · ${site.sports[page.sport].nav}`,title:"Сезон с мая до середины сентября",lead:"Перед выходом команда сверяет прогноз и выбирает подходящую сторону косы под уровень и дисциплину."})}
+<section class="dahab-sport-section dahab-sport-section--location"><div class="dahab-sport-inner">${sectionHeading("Локация",data.locationTitle,"Коса Долгая даёт две акватории с разным состоянием воды — это помогает подобрать условия под конкретную задачу.")}${sportFeatureGrid(data.reasons.map(([title,text,image])=>[title,text,image,title]),{atlas:true,leadImage:russiaImg("station.jpg"),leadAlt:"Коса Долгая"})}</div></section>
+<section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner">${sectionHeading("Обучение",`Как проходит обучение: ${site.sports[page.sport].nav.toLowerCase()}`,"Каждый следующий этап начинается после того, как предыдущий навык стал контролируемым.")}<div class="dahab-sport-process">${data.steps.map(([number,title,text],index)=>`<article><img src="${images[index]}" alt="${title}" loading="lazy" decoding="async"><div><span>${number}</span><h3>${title}</h3><p>${text}</p></div></article>`).join("")}</div></div></section>
+<section class="dahab-sport-section"><div class="dahab-sport-inner">${sectionHeading("Цены",`Цены на ${site.sports[page.sport].nav.toLowerCase()}`,"Базовые форматы сезона 2026; полный прайс — на отдельной странице.")}<div class="dahab-sport-price-grid">${data.prices.map(([label,title,value,text])=>`<article class="dahab-sport-price-card"><small>${label}</small><h3>${title}</h3><b>${value}</b><p>${text}</p>${contactCta(page,"Записаться","button button-primary",page.sport)}</article>`).join("")}</div><div class="dahab-sport-price-actions"><a class="button button-ghost" href="${page.path}price/">Полный прайс</a></div></div></section>
+<section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner dahab-sport-safety"><div class="dahab-sport-safety__copy"><p class="eyebrow">Перед выходом</p><h2>Прогноз, зона и оборудование</h2><p>Инструктор проверяет ветер, объясняет границы учебной зоны и подбирает комплект до начала практики.</p><div class="dahab-sport-safety__list"><span>Выбор стороны косы по условиям</span><span>Комплект под уровень и вес</span><span>Инструктаж перед занятием</span></div>${contactCta(page,"Обсудить программу")}</div><div class="dahab-sport-safety__media"><img src="${russiaImg("flat.jpg")}" alt="Учебная акватория на Должанской" loading="lazy" decoding="async"></div></div></section>
+<section class="dahab-sport-cta"><img src="${data.hero}" alt="${data.title}" loading="lazy" decoding="async"><div class="dahab-sport-cta__inner"><p class="eyebrow">Подбор программы</p><h2>Соберём занятия под ваши даты</h2><p>Напишите опыт, количество дней и выбранную дисциплину — команда предложит урок, курс или прокат.</p><div>${contactCta(page,"Оставить заявку","button button-primary",page.sport)}<a class="button button-ghost" href="/russia/">Обзор Должанской</a></div></div></section>`;
+};
+
 const sportPage = (page) => {
   if (page.country === "dahab" && page.sport === "wingfoil") return dahabWingfoilPage(page);
   if (page.country === "dahab" && page.sport === "windsurf") return dahabWindsurfPage(page);
   if (page.country === "dahab" && page.sport === "windsurf-kids") return dahabWindsurfKidsPage(page);
   if (page.country === "vietnam") return vietnamSportPage(page);
+  if (page.country === "russia") return russiaSportPage(page);
 
   const country = countriesByKey[page.country];
   const sport = site.sports[page.sport];
@@ -2923,8 +3023,54 @@ ${data.sections.map((section, index) => `<section class="windsurf-price-section$
 <section class="windsurf-price-section windsurf-price-section--dark"><div class="windsurf-price-inner"><div class="windsurf-price-contact"><figure><img src="${vietnamImg("station.jpg")}" alt="Станция Ветратория во Вьетнаме" width="900" height="600" loading="lazy" decoding="async"></figure><div><p class="eyebrow">Запись</p><h2>Подобрать занятие в Муйне</h2><p>Напишите даты, уровень и выбранную дисциплину. Команда проверит расписание и подберёт формат.</p><div class="windsurf-price-contact__actions">${contactCta(page, "Оставить заявку", "button button-primary", page.sport)}<a class="button button-ghost" href="/vietnam/contacts/">Контакты</a></div></div></div></div></section>`;
 };
 
+const russiaPricePage = (page) => {
+  const configs = {
+    windsurf: {
+      title: "Цены на виндсёрфинг на Должанской",
+      lead: "Обучение для взрослых и детей, прокат учебного и профессионального оборудования.",
+      hero: russiaImg("windsurf.jpg"),
+      facts: ["Урок — 5 000 ₽", "Курс 3 часа — 11 000 ₽", "Детский урок — 4 500 ₽", "Прокат от 2 500 ₽"],
+      sections: [
+        { eyebrow:"Обучение", title:"Индивидуально и в группе", lead:"В группах занимаются от двух до четырёх человек. Страхование оборудования включено в учебные программы.", headers:["Формат","Состав","Цена","Практика"], rows:[
+          ["Знакомство с ветром · 1 час","Индивидуально","5 000 ₽","1 час с инструктором"],["Знакомство с ветром · 1 час","Группа","4 500 ₽ / человек","1 час с инструктором"],
+          ["Курс · 3 часа","Индивидуально","11 000 ₽","2 часа с инструктором + 1 час самостоятельно"],["Курс · 3 часа","Группа","9 400 ₽ / человек","2 часа с инструктором + 1 час самостоятельно"],
+          ["Курс · 7 часов","Индивидуально","27 000 ₽","5 часов с инструктором + 2 часа самостоятельно"],["Курс · 7 часов","Группа","23 000 ₽ / человек","5 часов с инструктором + 2 часа самостоятельно"],
+          ["Плотный недельный курс","Индивидуально","50 000 ₽","7 часов с инструктором + самостоятельная практика"],["Плотный недельный курс","Группа","40 000 ₽ / человек","7 часов с инструктором + самостоятельная практика"]
+        ]},
+        { eyebrow:"Дети до 16 лет", title:"Детские занятия", lead:"Лёгкое оборудование и программа под возраст и темп ребёнка.", headers:["Формат","Индивидуально","В группе"], rows:[["Занятие · 1 час","4 500 ₽","4 000 ₽ / человек"],["Курс · 10 часов","40 000 ₽","36 000 ₽ / человек"]]},
+        { eyebrow:"Своё или арендованное оборудование", title:"Работа инструктора", lead:"Стоимость только работы инструктора; оборудование оплачивается отдельно.", headers:["Формат","Индивидуально","В группе"], rows:[["1 час","4 200 ₽","3 700 ₽ / человек"],["10 часов","38 000 ₽","32 000 ₽ / человек"]]},
+        { eyebrow:"Прокат", title:"Учебное и профессиональное оборудование", lead:"Страховой взнос обязателен, оплачивается отдельно и не возвращается. Он не покрывает потерю оборудования, столкновения и повреждения на берегу.", headers:["Срок","Учебный комплект","Страховка","Профессиональный комплект","Страховка"], rows:[
+          ["1 час","2 500 ₽","400 ₽","3 000 ₽","600 ₽"],["1 день","5 500 ₽","1 100 ₽","8 500 ₽","1 600 ₽"],["2 дня","10 000 ₽","1 600 ₽","15 400 ₽","2 100 ₽"],["3 дня","13 500 ₽","2 300 ₽","20 700 ₽","2 600 ₽"],["4 дня","16 800 ₽","2 500 ₽","24 800 ₽","2 900 ₽"],["5 дней","20 000 ₽","2 700 ₽","28 500 ₽","3 300 ₽"],["6 дней","22 200 ₽","3 000 ₽","31 200 ₽","3 500 ₽"],["7 дней","23 800 ₽","3 300 ₽","32 900 ₽","3 700 ₽"],["8 дней","25 600 ₽","3 300 ₽","33 600 ₽","3 700 ₽"],["9 дней","26 100 ₽","3 300 ₽","34 650 ₽","3 600 ₽"],["10 дней","27 500 ₽","3 600 ₽","36 000 ₽","3 900 ₽"],["11 дней","28 600 ₽","3 600 ₽","37 950 ₽","3 900 ₽"],["12 дней","29 400 ₽","3 600 ₽","39 600 ₽","4 000 ₽"],["13 дней","29 900 ₽","3 600 ₽","40 950 ₽","4 000 ₽"],["14 дней","30 100 ₽","3 900 ₽","43 400 ₽","4 100 ₽"],["Дополнительный день","2 000 ₽","250 ₽","3 000 ₽","300 ₽"]
+        ]}
+      ],
+      note: "Семейный прокат одного комплекта на двоих — доплата 30%."
+    },
+    wingfoil: {
+      title:"Цены на вингфойл на Должанской", lead:"Индивидуальные и групповые занятия, курс и прокат комплекта.", hero:russiaImg("wingfoil.jpg"), facts:["Урок — 5 000 ₽","Группа — 4 500 ₽","Курс — 45 000 ₽","Прокат от 3 500 ₽"], sections:[
+        {eyebrow:"Обучение",title:"Занятия и курс",lead:"Группа — от двух до четырёх человек.",headers:["Формат","Индивидуально","В группе"],rows:[["1 час","5 000 ₽","4 500 ₽ / человек"],["Курс · 10 часов","45 000 ₽","40 000 ₽ / человек"],["Каждый следующий час","4 500 ₽","4 000 ₽ / человек"]]},
+        {eyebrow:"Прокат",title:"Комплект для самостоятельного катания",lead:"Страховой взнос оплачивается отдельно.",headers:["Срок","Прокат","Страховка"],rows:[["1 час","3 500 ₽","500 ₽"],["1 день","10 000 ₽","1 000 ₽"],["2 дня","18 000 ₽","1 500 ₽"],["3 дня","24 000 ₽","2 000 ₽"],["4 дня","28 000 ₽","2 500 ₽"],["5 дней","32 500 ₽","3 000 ₽"],["6 дней","36 000 ₽","3 500 ₽"],["7 дней","38 500 ₽","4 000 ₽"],["Дополнительный день","5 000 ₽","500 ₽"]]}
+      ]
+    },
+    kite: {
+      title:"Цены на кайтсёрфинг на Должанской", lead:"Обучение, прокат и хранение оборудования на станции.", hero:russiaImg("kite.jpg"), facts:["Урок — 6 000 ₽","Курс — 54 000 ₽","Прокат от 3 500 ₽","Хранение от 1 000 ₽"], sections:[
+        {eyebrow:"Обучение",title:"Индивидуально и в группе",lead:"В обучение входят инструктор, кайт, доска, трапеция, жилет, шлем, страховка оборудования и сервис станции.",headers:["Формат","Продолжительность","Цена"],rows:[["Индивидуальный урок","1 час","6 000 ₽"],["Индивидуальный курс","10 часов","54 000 ₽"],["Занятие в группе","1 час","5 500 ₽ / человек"],["Выезд на остров","По программе","15 000 ₽"]]},
+        {eyebrow:"Самостоятельно",title:"Прокат",lead:"После индивидуального курса 10 часов действует скидка 50% на последующий прокат.",headers:["Срок","Цена"],rows:[["1 час","3 500 ₽"],["3 часа","8 000 ₽"],["1 день","10 000 ₽"]]},
+        {eyebrow:"Своё оборудование",title:"Хранение",lead:"Один комплект хранения: доска и два кайта.",headers:["Срок","Цена"],rows:[["1 день","1 000 ₽"],["1 неделя","5 000 ₽"]]}
+      ]
+    }
+  };
+  const data = configs[page.sport];
+  return `
+<section class="dahab-sport-hero dahab-sport-hero--${page.sport}"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Россия · ${site.sports[page.sport].nav} · цены</p><h1>${data.title}</h1><p>${data.lead}</p><div class="dahab-sport-hero__actions">${contactCta(page,"Записаться","button button-primary",page.sport)}<a class="button button-ghost" href="/russia/${page.sport}/">О спорте</a></div><div class="hero-advantages hero-advantages--sport">${data.facts.map(f=>`<span class="hero-advantage">${f}</span>`).join("")}</div></div><figure class="dahab-sport-hero__media"><img src="${data.hero}" alt="${data.title}" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
+<section class="dahab-sport-section dahab-sport-section--location"><div class="dahab-sport-inner">${sectionHeading("Прайс 2026", "Выберите формат", "Цены приведены в рублях. Даты, расписание и доступность оборудования команда подтверждает перед записью.")}<div class="dahab-sport-location-atlas"><figure class="dahab-sport-location-atlas__lead"><img src="${russiaImg("training.jpg")}" alt="Станция Ветратория" loading="lazy" decoding="async"></figure><div class="dahab-sport-location-atlas__grid vietnam-fact-grid">${[["01","Подбор под уровень","Команда уточнит опыт и цель."],["02","Снаряжение на месте","Учебный комплект готовит станция."],["03","Май — сентябрь","Основной сезон направления."],["04","Запись заранее","Подтвердите время и условия до поездки."]].map(([n,t,x])=>`<article><span>${n}</span><h3>${t}</h3><p>${x}</p></article>`).join("")}</div></div></div></section>
+${data.sections.map((section,index)=>`<section class="windsurf-price-section${index%2?" windsurf-price-section--soft":""}"><div class="windsurf-price-inner"><header class="windsurf-price-heading"><p class="eyebrow">${section.eyebrow}</p><h2>${section.title}</h2><p>${section.lead}</p></header>${vietnamPriceTable(section.headers,section.rows,section.headers.length>3)}</div></section>`).join("")}
+${data.note?`<section class="windsurf-price-section windsurf-price-section--soft"><div class="windsurf-price-inner"><div class="price-help-cta"><div><b>Семейный формат</b><p>${data.note}</p></div></div></div></section>`:""}
+<section class="windsurf-price-section windsurf-price-section--dark"><div class="windsurf-price-inner"><div class="windsurf-price-contact"><figure><img src="${russiaImg("station.jpg")}" alt="Коса Долгая" loading="lazy" decoding="async"></figure><div><p class="eyebrow">Запись</p><h2>Подобрать занятие на Должанской</h2><p>Напишите даты, уровень и дисциплину. Команда проверит расписание, ветер и доступность комплекта.</p><div class="windsurf-price-contact__actions">${contactCta(page,"Оставить заявку","button button-primary",page.sport)}<a class="button button-ghost" href="/russia/contacts/">Контакты</a></div></div></div></div></section>`;
+};
+
 const pricePage = (page) => {
   if (page.country === "vietnam") return vietnamPricePage(page);
+  if (page.country === "russia") return russiaPricePage(page);
   if (page.country === "dahab" && page.sport === "wingfoil") return dahabWingfoilPricePage(page);
   if (page.country === "dahab" && page.sport === "windsurf") return dahabWindsurfPricePage(page);
 
@@ -3027,8 +3173,28 @@ ${seasonSection([countriesByKey.vietnam], { compact: true, eyebrow: "Муйне 
 <section class="dahab-sport-cta"><img src="${data.hero}" alt="${data.title}" loading="lazy" decoding="async"><div class="dahab-sport-cta__inner"><p class="eyebrow">Муйне</p><h2>Соберём программу под ваши даты</h2><p>Напишите уровень и продолжительность поездки — команда поможет выбрать занятие, курс или прокат.</p><div>${contactCta(page, "Оставить заявку", "button button-primary", page.sport)}<a class="button button-ghost" href="/vietnam/blog/">Все материалы</a></div></div></section>`;
 };
 
+const russiaBlogPage = (page) => {
+  const cards = [
+    ["Виндсёрфинг","Виндсёрфинг на Должанской: обучение и прокат","Почему мелкая вода помогает новичкам и как перейти от первого урока к самостоятельной практике.",russiaImg("windsurf.jpg"),"/russia/blog/windsurf/"],
+    ["Вингфойл","Вингфойл на косе Долгой","Как построить путь от управления крылом до первых устойчивых полётов.",russiaImg("wingfoil.jpg"),"/russia/blog/wingfoil/"],
+    ["Кайтсёрфинг","Кайт на Должанской","Учебная акватория, порядок занятия и детали, которые стоит согласовать до первого старта.",russiaImg("kite.jpg"),"/russia/blog/kite/"]
+  ];
+  return `<section class="dahab-sport-hero"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Россия · полезное</p><h1>Гид по спорту на Должанской</h1><p>Сезон, обучение, акватория и цены для тех, кто планирует поездку на косу Долгую.</p><div class="dahab-sport-hero__actions"><a class="button button-primary" href="#guides">Читать материалы</a><a class="button button-ghost" href="/russia/">Обзор направления</a></div><div class="hero-advantages hero-advantages--sport"><span class="hero-advantage">Три дисциплины</span><span class="hero-advantage">Май — середина сентября</span><span class="hero-advantage">Две акватории</span><span class="hero-advantage">Прайс 2026</span></div></div><figure class="dahab-sport-hero__media"><img src="${russiaImg("station.jpg")}" alt="Коса Долгая" loading="eager" decoding="async" fetchpriority="high"></figure></div></section><section class="dahab-sport-section" id="guides"><div class="dahab-sport-inner">${sectionHeading("Материалы","Выберите дисциплину","Короткие гиды объясняют условия, порядок обучения и следующий шаг после первого занятия.")}<div class="dahab-sport-useful">${cards.map(([label,title,text,image,href])=>`<a href="${href}"><img src="${image}" alt="${title}" loading="lazy" decoding="async"><span>${label}</span><h3>${title}</h3><p>${text}</p><em>Открыть гид →</em></a>`).join("")}</div></div></section><section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner dahab-sport-safety"><div class="dahab-sport-safety__copy"><p class="eyebrow">План поездки</p><h2>Даты, дисциплина, уровень</h2><p>Сообщите команде эти три вещи заранее — так проще проверить расписание и подготовить подходящий комплект.</p><div class="dahab-sport-safety__list"><span>Выберите даты поездки</span><span>Расскажите об опыте</span><span>Уточните: урок, курс или прокат</span></div>${contactCta(page,"Обсудить поездку")}</div><div class="dahab-sport-safety__media"><img src="${russiaImg("training.jpg")}" alt="Станция Ветратория" loading="lazy" decoding="async"></div></div></section>`;
+};
+
+const russiaArticlePage = (page) => {
+  const configs = {
+    windsurf:{title:"Виндсёрфинг на Должанской: от первого галса до проката",lead:"Мелкая вода, выбор стороны косы и последовательная программа помогают начать без лишней спешки.",hero:russiaImg("windsurf.jpg"),facts:["Урок 5 000 ₽","Курс от 11 000 ₽","Детские занятия","Учебный и профпрокат"],stages:[["01","Первое занятие","Парус, положение тела, курс и безопасное возвращение к берегу."],["02","Курс","Несколько часов с инструктором чередуются с самостоятельной практикой."],["03","Прокат","После оценки уровня можно выбрать учебный или профессиональный комплект."]],price:"/russia/windsurf/price/"},
+    wingfoil:{title:"Вингфойл на Должанской: путь к первому полёту",lead:"Отдельно ставим контроль крыла, баланс на доске и управление высотой на фойле.",hero:russiaImg("wingfoil.jpg"),facts:["Урок 5 000 ₽","Группа 4 500 ₽","Курс 10 часов","Прокат от 3 500 ₽"],stages:[["01","Крыло","Учимся управлять тягой на берегу."],["02","Доска","Соединяем крыло, движение и возврат к точке старта."],["03","Фойл","Набираем скорость и контролируем плавный подъём."]],price:"/russia/wingfoil/price/"},
+    kite:{title:"Кайтсёрфинг на Должанской: как начать безопасно",lead:"Сначала система безопасности и контроль кайта, затем вода, бодидраг и старт с доской.",hero:russiaImg("kite.jpg"),facts:["Урок 6 000 ₽","Курс 54 000 ₽","Защита включена","Прокат и хранение"],stages:[["01","Безопасность","Ветровое окно, страховка, сигналы и сборка комплекта."],["02","Контроль кайта","Управление крылом и движение в воде без доски."],["03","Водный старт","Соединяем тягу кайта, положение доски и первые проходы."]],price:"/russia/kite/price/"}
+  };
+  const data=configs[page.sport];
+  return `<section class="dahab-sport-hero dahab-sport-hero--${page.sport}"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Россия · гид по ${site.sports[page.sport].nav.toLowerCase()}</p><h1>${data.title}</h1><p>${data.lead}</p><div class="dahab-sport-hero__actions"><a class="button button-primary" href="${data.price}">Смотреть цены</a>${contactCta(page,"Задать вопрос","button button-ghost",page.sport)}</div><div class="hero-advantages hero-advantages--sport">${data.facts.map(x=>`<span class="hero-advantage">${x}</span>`).join("")}</div></div><figure class="dahab-sport-hero__media"><img src="${data.hero}" alt="${data.title}" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>${seasonSection([countriesByKey.russia],{compact:true,eyebrow:"Должанская · сезон",title:"Основной сезон — с мая до середины сентября",lead:"Фактические условия меняются, поэтому перед занятием команда сверяет прогноз и выбирает акваторию."})}<section class="dahab-sport-section"><div class="dahab-sport-inner">${sectionHeading("Маршрут","Как строится прогресс","Сначала контроль и безопасность, затем новый элемент и самостоятельная практика.")}<div class="dahab-sport-process vietnam-process--three">${data.stages.map(([n,t,x],i)=>`<article><img src="${[data.hero,russiaImg("flat.jpg"),russiaImg("training.jpg")][i]}" alt="${t}" loading="lazy" decoding="async"><div><span>${n}</span><h3>${t}</h3><p>${x}</p></div></article>`).join("")}</div></div></section><section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner dahab-sport-safety"><div class="dahab-sport-safety__copy"><p class="eyebrow">Перед занятием</p><h2>Что сообщить команде</h2><p>Даты, опыт и желаемый формат помогут заранее проверить расписание и подготовить комплект.</p><div class="dahab-sport-safety__list"><span>Количество дней на Должанской</span><span>Предыдущий опыт на воде</span><span>Урок, курс или прокат</span></div><a class="button button-primary" href="${data.price}">Открыть полный прайс</a></div><div class="dahab-sport-safety__media"><img src="${russiaImg("station.jpg")}" alt="Коса Долгая" loading="lazy" decoding="async"></div></div></section>`;
+};
+
 const blogIndex = (page) => {
   if (page.country === "vietnam") return vietnamBlogPage(page);
+  if (page.country === "russia") return russiaBlogPage(page);
   const pageArticles = page.articles || articles;
   const hasFilters = page.path === "/blog/";
   return `
@@ -3052,6 +3218,7 @@ ${hero(page, contactCta(page, "Задать вопрос"))}
 
 const articlePage = (page) => {
   if (page.country === "vietnam") return vietnamArticlePage(page);
+  if (page.country === "russia") return russiaArticlePage(page);
   const sport = site.sports[page.sport];
   const country = countriesByKey[page.country];
   const sportHref = page.country === "dahab" && page.sport === "windsurf-kids"
@@ -3324,8 +3491,18 @@ const vietnamContactsPage = (page) => {
 <section class="content-section" id="contact-form"><div class="section-inner contact-layout"><div>${sectionHeading("Заявка", "Подготовить сообщение", "Заполните короткую форму — после нажатия откроется почтовое приложение с готовой заявкой.")}</div>${contactForm(page)}</div></section>`;
 };
 
+const russiaContactsPage = (page) => {
+  const contact = site.contacts.russia;
+  const address = "Краснодарский край, станица Должанская, коса Долгая, база отдыха «Серфприют»";
+  return `<section class="dahab-sport-hero"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Россия · связь</p><h1>Контакты Ветратории на Должанской</h1><p>Напишите или позвоните команде станции, чтобы согласовать даты, дисциплину, обучение или прокат.</p><div class="dahab-sport-hero__actions"><a class="button button-primary" href="tel:${contact.phone}">Позвонить</a><a class="button button-ghost" href="mailto:${contact.email}">Написать на почту</a></div><div class="hero-advantages hero-advantages--sport"><span class="hero-advantage">${contact.phoneLabel}</span><span class="hero-advantage">${contact.email}</span><span class="hero-advantage">Коса Долгая</span><span class="hero-advantage">Май — середина сентября</span></div></div><figure class="dahab-sport-hero__media"><img src="${russiaImg("training.jpg")}" alt="Станция Ветратория на Должанской" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
+<section class="content-section contacts-directory-section"><div class="section-inner">${sectionHeading("Прямая связь","Станция в России","Один номер и одна почта для вопросов об обучении, прокате, проживании и дороге.")}<div class="contacts-directory contacts-directory--stations"><article class="contact-station-card"><p class="eyebrow">Телефон и почта</p><h2>Команда станции</h2><p>Расскажите даты, выбранный спорт, опыт и нужен ли прокат оборудования.</p><div class="contact-station-card__methods">${contactMethod({href:`tel:${contact.phone}`,label:"Телефон",value:contact.phoneLabel})}${contactMethod({href:`mailto:${contact.email}`,label:"Электронная почта",value:contact.email})}${contactMethod({href:contact.telegram,icon:"/assets/icons/telegram.svg",label:"Telegram",value:contact.phoneLabel,external:true})}</div></article><article class="contact-station-card"><p class="eyebrow">Адрес станции</p><h2>Коса Долгая · «Серфприют»</h2><p>${address}</p><div class="contact-station-card__methods">${contactMethod({href:"https://www.google.com/maps/search/?api=1&query=46.652785,37.754422",label:"Координаты",value:"46.652785, 37.754422",external:true})}</div></article></div></div></section>
+<section class="dahab-sport-section dahab-sport-section--location"><div class="dahab-sport-inner">${sectionHeading("Перед сообщением","Что написать команде","Четыре детали помогут сразу получить конкретный ответ.")}<div class="dahab-sport-location-atlas"><figure class="dahab-sport-location-atlas__lead"><img src="${russiaImg("station.jpg")}" alt="Коса Долгая" loading="lazy" decoding="async"></figure><div class="dahab-sport-location-atlas__grid vietnam-fact-grid">${[["01","Даты","Когда приезжаете и на сколько дней."],["02","Дисциплина","Виндсёрфинг, вингфойл или кайт."],["03","Уровень","Первый раз, продолжаете или нужен прокат."],["04","Бытовые вопросы","Нужно ли проживание и помощь с дорогой."]].map(([n,t,x])=>`<article><span>${n}</span><h3>${t}</h3><p>${x}</p></article>`).join("")}</div></div></div></section>
+<section class="content-section" id="contact-form"><div class="section-inner contact-layout"><div>${sectionHeading("Заявка","Подготовить сообщение","Заполните короткую форму — после нажатия откроется почтовое приложение с готовой заявкой.")}</div>${contactForm(page)}</div></section>`;
+};
+
 const contactsPage = (page) => {
   if (page.country === "vietnam") return vietnamContactsPage(page);
+  if (page.country === "russia") return russiaContactsPage(page);
   const isGeneral = !page.country;
   const isDahab = page.country === "dahab";
   const contact = contactForPage(page);
@@ -3612,6 +3789,28 @@ const vietnamSchoolPage = (page) => {
 <section class="dahab-sport-cta"><img src="${vietnamImg("station.jpg")}" alt="Пляжная станция Ветратория в Муйне" loading="lazy" decoding="async"><div class="dahab-sport-cta__inner"><p class="eyebrow">Станция в Муйне</p><h2>Приезжайте за ветром и прогрессом</h2><p>Напишите даты и интересующий спорт — команда предложит программу под продолжительность вашей поездки.</p><div>${contactCta(page, "Оставить заявку")}<a class="button button-ghost" href="/vietnam/contacts/">Контакты</a></div></div></section>`;
 };
 
+const russiaSchoolPage = (page) => {
+  const disciplines = [
+    ["Виндсёрфинг","Уроки с нуля, курсы для взрослых и детей, учебный и профессиональный прокат.",russiaImg("windsurf.jpg"),"/russia/windsurf/"],
+    ["Вингфойл","Индивидуальные и групповые занятия, курс на десять часов и прокат.",russiaImg("wingfoil.jpg"),"/russia/wingfoil/"],
+    ["Кайтсёрфинг","Последовательное обучение, защитная экипировка, прокат и хранение.",russiaImg("kite.jpg"),"/russia/kite/"]
+  ];
+  return `<section class="dahab-sport-hero"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Ветратория · Россия</p><h1>Школа ветра на Должанской</h1><p>Станция на косе Долгой: три дисциплины, обучение, прокат и помощь команды рядом с местом выхода на воду.</p><div class="dahab-sport-hero__actions">${contactCta(page,"Написать команде")}<a class="button button-ghost" href="#school">О школе</a></div><div class="hero-advantages hero-advantages--sport"><span class="hero-advantage">Три дисциплины</span><span class="hero-advantage">Две акватории</span><span class="hero-advantage">Оборудование RRD</span><span class="hero-advantage">Май — середина сентября</span></div></div><figure class="dahab-sport-hero__media"><img src="${russiaImg("training.jpg")}" alt="Школа Ветратория на Должанской" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
+<section class="dahab-sport-section dahab-sport-section--location" id="school"><div class="dahab-sport-inner">${sectionHeading("О школе","Станция у двух берегов","В зависимости от ветра команда выбирает сторону косы: спокойную воду для базы или более сложные условия для прогресса.")}<div class="dahab-sport-location-atlas"><figure class="dahab-sport-location-atlas__lead"><img src="${russiaImg("station.jpg")}" alt="Коса Долгая" loading="lazy" decoding="async"></figure><div class="dahab-sport-location-atlas__grid vietnam-fact-grid">${[["01","Подбор формата","Учитываем опыт, цели и количество дней."],["02","Комплект","Настраиваем оборудование под человека и ветер."],["03","Практика","Инструктор ведёт по последовательным задачам."],["04","Следующий шаг","Курс, прокат или самостоятельное катание."]].map(([n,t,x])=>`<article><span>${n}</span><h3>${t}</h3><p>${x}</p></article>`).join("")}</div></div></div></section>
+<section class="dahab-sport-section"><div class="dahab-sport-inner">${sectionHeading("Направления школы","Выберите дисциплину","На каждой странице — условия, маршрут обучения и полный прайс.")}<div class="dahab-sport-useful">${disciplines.map(([title,text,image,href])=>`<a href="${href}"><img src="${image}" alt="${title} на Должанской" loading="lazy" decoding="async"><span>Россия · Должанская</span><h3>${title}</h3><p>${text}</p><em>Открыть направление →</em></a>`).join("")}</div></div></section>
+<section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner dahab-sport-safety"><div class="dahab-sport-safety__copy"><p class="eyebrow">Команда рядом</p><h2>На берегу и на воде</h2><p>Команда помогает с записью, комплектом и выходом; инструктор отвечает за учебную задачу и безопасность занятия.</p><div class="dahab-sport-safety__list"><span>Запись и подбор программы</span><span>Подготовка и настройка комплекта</span><span>Инструктаж и обратная связь</span></div>${contactCta(page,"Познакомиться со школой")}</div><div class="dahab-sport-safety__media"><img src="${russiaImg("life-4.jpg")}" alt="Станция на берегу" loading="lazy" decoding="async"></div></div></section>`;
+};
+
+const russiaAccommodationPage = (page) => `<section class="dahab-sport-hero"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Должанская · проживание</p><h1>Жить рядом со станцией и водой</h1><p>Ветратория находится на территории базы отдыха «Серфприют» на косе Долгой. От размещения до пляжа, станции и хранения оборудования — короткий путь пешком.</p><div class="dahab-sport-hero__actions">${contactCta(page,"Уточнить размещение")}<a class="button button-ghost" href="/russia/how-to-get/">Как добраться</a></div><div class="hero-advantages hero-advantages--sport"><span class="hero-advantage">Коса Долгая</span><span class="hero-advantage">Оба пляжа рядом</span><span class="hero-advantage">Станция на территории</span><span class="hero-advantage">Хранение оборудования</span></div></div><figure class="dahab-sport-hero__media"><img src="${russiaImg("life-4.jpg")}" alt="Серфприют на косе Долгой" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
+<section class="dahab-sport-section dahab-sport-section--location"><div class="dahab-sport-inner">${sectionHeading("Серфприют","Быт вокруг катания","На базе есть комнаты и отдельные варианты размещения. Конкретную категорию, оснащение, стоимость и свободные даты нужно подтвердить перед бронированием.")}<div class="dahab-sport-location-atlas"><figure class="dahab-sport-location-atlas__lead"><img src="${russiaImg("station.jpg")}" alt="Коса Долгая" loading="lazy" decoding="async"></figure><div class="dahab-sport-location-atlas__grid vietnam-fact-grid">${[["01","Рядом со станцией","Меньше времени на ежедневную дорогу."],["02","Два пляжа","Обе стороны косы находятся неподалёку."],["03","Снаряжение","Хранение организовано рядом с местом выхода."],["04","Питание и быт","Формат и режим работы уточняются на ваши даты."]].map(([n,t,x])=>`<article><span>${n}</span><h3>${t}</h3><p>${x}</p></article>`).join("")}</div></div></div></section>
+<section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner">${sectionHeading("Перед бронированием","Что уточнить","Так вы получите конкретный вариант, а не общий ответ.")}<div class="dahab-sport-feature-grid">${[["01","Даты и количество ночей","Укажите день приезда, отъезда и возможную гибкость."],["02","Состав гостей","Сколько взрослых и детей, нужны ли отдельные места."],["03","Спортивная программа","Какой спорт, обучение или прокат планируете."],["04","Своё оборудование","Нужно ли место хранения для вашего комплекта."]].map(([n,t,x])=>`<article><span>${n}</span><h3>${t}</h3><p>${x}</p></article>`).join("")}</div></div></section>
+<section class="dahab-sport-cta"><img src="${russiaImg("life-4.jpg")}" alt="База отдыха рядом со станцией" loading="lazy" decoding="async"><div class="dahab-sport-cta__inner"><p class="eyebrow">Запрос размещения</p><h2>Проверим варианты под ваши даты</h2><p>Напишите состав гостей, даты и спортивную программу — команда уточнит доступность.</p><div>${contactCta(page,"Написать команде")}<a class="button button-ghost" href="/russia/contacts/">Контакты</a></div></div></section>`;
+
+const russiaRoutePage = (page) => `<section class="dahab-sport-hero"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Должанская · дорога</p><h1>Как добраться до станции</h1><p>Финальная точка маршрута — коса Долгая, база отдыха «Серфприют». Актуальный общественный транспорт и последний участок дороги лучше проверить перед выездом.</p><div class="dahab-sport-hero__actions"><a class="button button-primary" href="https://www.google.com/maps/search/?api=1&query=46.652785,37.754422" target="_blank" rel="noopener noreferrer">Открыть карту</a>${contactCta(page,"Уточнить маршрут","button button-ghost")}</div><div class="hero-advantages hero-advantages--sport"><span class="hero-advantage">46.652785, 37.754422</span><span class="hero-advantage">Станица Должанская</span><span class="hero-advantage">Коса Долгая</span><span class="hero-advantage">База «Серфприют»</span></div></div><figure class="dahab-sport-hero__media"><img src="${russiaImg("station.jpg")}" alt="Коса Долгая с воздуха" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
+<section class="dahab-sport-section dahab-sport-section--location"><div class="dahab-sport-inner">${sectionHeading("Маршрут","Точка назначения без двусмысленности","Сохраните координаты и заранее уточните состояние последнего участка дороги, время заезда и контакт встречающего.")}<div class="dahab-sport-location-atlas"><figure class="dahab-sport-location-atlas__lead"><img src="${russiaImg("station.jpg")}" alt="Коса Долгая" loading="lazy" decoding="async"></figure><div class="dahab-sport-location-atlas__grid vietnam-fact-grid">${[["01","Навигатор","Введите координаты 46.652785, 37.754422."],["02","Ориентир","Станица Должанская, коса Долгая, «Серфприют»."],["03","Общественный транспорт","Сверьте действующее расписание у перевозчика."],["04","Последний участок","Согласуйте с командой станции до выезда."]].map(([n,t,x])=>`<article><span>${n}</span><h3>${t}</h3><p>${x}</p></article>`).join("")}</div></div></div></section>
+<section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner">${sectionHeading("Перед дорогой","Короткий чек-лист","Несколько проверок помогут приехать без лишних разворотов.")}<div class="dahab-sport-feature-grid">${[["01","Подтвердите запись","Команда должна знать дату и примерное время приезда."],["02","Проверьте карту офлайн","На последнем участке связь может быть нестабильной."],["03","Уточните расписание","Рейсы и пересадки меняются по сезону."],["04","Сохраните телефон","Номер станции: +7 988 471 5355."]].map(([n,t,x])=>`<article><span>${n}</span><h3>${t}</h3><p>${x}</p></article>`).join("")}</div></div></section>
+<section class="dahab-sport-cta"><img src="${russiaImg("station.jpg")}" alt="Коса Долгая" loading="lazy" decoding="async"><div class="dahab-sport-cta__inner"><p class="eyebrow">Перед выездом</p><h2>Уточните последний участок у команды</h2><p>Напишите способ поездки и время прибытия — команда поможет сверить ориентир и контакт на месте.</p><div>${contactCta(page,"Уточнить дорогу")}<a class="button button-ghost" href="/russia/accommodation/">Проживание</a></div></div></section>`;
+
 const featurePage = (page) => {
   const country = page.country ? countriesByKey[page.country] : countryList[0];
   const items = {
@@ -3674,13 +3873,15 @@ const render = (page) => {
     case "contacts":
       return layout(page, contactsPage(page));
     case "team":
-      return layout(page, page.country === "dahab" ? dahabTeamPage(page) : page.country === "vietnam" ? vietnamSchoolPage(page) : featurePage(page));
+      return layout(page, page.country === "dahab" ? dahabTeamPage(page) : page.country === "vietnam" ? vietnamSchoolPage(page) : page.country === "russia" ? russiaSchoolPage(page) : featurePage(page));
     case "stations":
       return layout(page, page.country === "dahab" ? dahabStationsPage(page) : featurePage(page));
     case "safety":
       return layout(page, page.country === "dahab" ? dahabSafetyPage(page) : featurePage(page));
     case "route":
-      return layout(page, page.country === "dahab" ? dahabHowToGetPage(page) : featurePage(page));
+      return layout(page, page.country === "dahab" ? dahabHowToGetPage(page) : page.country === "russia" ? russiaRoutePage(page) : featurePage(page));
+    case "accommodation":
+      return layout(page, page.country === "russia" ? russiaAccommodationPage(page) : featurePage(page));
     case "not-found":
       return layout(page, notFoundPage(page));
     default:
