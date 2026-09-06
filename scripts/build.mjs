@@ -609,7 +609,7 @@ const contactDialog = (page) => {
 </dialog>`;
 };
 
-const ASSET_VERSION = "20260906-staging-gallery";
+const ASSET_VERSION = "20260906-staging-reviews";
 const assetVersionForPage = () => ASSET_VERSION;
 const versionedAsset = (path, version = ASSET_VERSION) => `${path}?v=${version}`;
 
@@ -1836,22 +1836,22 @@ ${stationLifeGallery({
   photos: stationLifePhotos
 })}
 
-<section class="trust-block" id="team-reviews">
+<section class="trust-block reviews-compact" id="team-reviews" data-review-showcase tabindex="0" aria-label="Отзывы гостей Ветратории в Дахабе">
   <div class="trust-block__inner">
-    <header class="trust-head">
-      <p class="eyebrow">144 актуальных отзыва</p>
-      <h2>Что говорят гости Ветратории</h2>
+    <header class="reviews-compact__head">
+      <div>
+        <h2>Что говорят гости Ветратории</h2>
+        <a href="https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html" target="_blank" rel="noopener">144 отзыва <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="reviews-compact__controls">
+        <button type="button" data-review-prev aria-label="Предыдущий отзыв"><img src="/assets/icons/chevron-left.svg" alt="" width="20" height="20"></button>
+        <button type="button" data-review-next aria-label="Следующий отзыв"><img src="/assets/icons/chevron-right.svg" alt="" width="20" height="20"></button>
+      </div>
     </header>
-    <section class="trust-slider trust-slider--reviews" aria-label="Отзывы гостей Ветратории в Дахабе">
-      <div class="trust-slider__top">
-        <div><span>Отзывы</span><h3>О школе и команде</h3></div>
-        <a href="https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html" target="_blank" rel="noopener">144 отзыва →</a>
-        <div class="trust-slider__controls"><button type="button" data-trust-prev="reviews" aria-label="Предыдущие отзывы">‹</button><button type="button" data-trust-next="reviews" aria-label="Следующие отзывы">›</button></div>
-      </div>
-      <div class="trust-track trust-track--reviews" data-trust-track="reviews">
-        ${reviews.map(([initial, name, stars, text]) => `<article class="trust-card trust-card--review"><div class="trust-review__top"><span>${initial}</span><div><strong>${name}</strong><small>${stars}</small></div></div><p>«${text}»</p></article>`).join("")}
-      </div>
-    </section>
+    <div class="reviews-compact__cards" data-review-cards aria-live="polite"></div>
+  </div>
+  <div hidden data-review-source>
+    ${reviews.map(([initial, name, stars, text]) => `<i data-review-entry data-initial="${initial}" data-name="${name}" data-stars="${stars}" data-text="${text}"></i>`).join("\n    ")}
   </div>
 </section>
 

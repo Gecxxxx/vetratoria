@@ -1,3 +1,29 @@
+# Compact reviews redesign QA — 2026-09-06
+
+- Visual target: `/workspace/scratch/535c3dee165c/upload/dc223dd7-b673-41ca-a087-e74a148ad3d8.png`.
+- Implementation: `/dahab/#team-reviews`.
+- Comparison image: `/workspace/scratch/535c3dee165c/qa-reference-comparison.png` (reference above, browser implementation below).
+- Desktop evidence: cloud-browser inspection at 1348 × 926 CSS px; review section measured 1348 × 443 px.
+- Structure: one title, one external `144 отзыва` link, one arrow pair, and four equal review cards. The removed `144 актуальных отзыва` line and `О школе и команде` subtitle are absent.
+
+## Visual findings
+
+- The implementation matches the approved compact black section, square bordered cards, orange initials/stars, restrained body type, and right-aligned arrow controls.
+- Card and section density match the reference closely; the implementation keeps the site's established full-width content gutter instead of reproducing the editor chrome and rounded preview shell visible around the supplied mock.
+- No duplicated controls, progress bar, decorative shadow, gradient, or rounded card treatment remains.
+- No actionable P0, P1, or P2 visual mismatch remains.
+
+## Functional and responsive checks
+
+- Four reviews render on desktop and the fifth remains reachable.
+- Clicking next changes `Boris / Dmitrii / Ольга / Евгений` to `Dmitrii / Ольга / Евгений / Yuriy`.
+- Keyboard `ArrowLeft` returns the carousel to the prior state; index wrapping is modulo-based in both directions, confirming infinite navigation.
+- Below 1000 px the grid becomes two columns; below 620 px it becomes a horizontal snap rail with hidden scrollbar and retained arrow controls.
+- Browser console contains no site-origin errors; only unrelated Chrome-extension metadata errors were observed.
+- `node --check assets/js/app.js`, `node --check scripts/build.mjs`, `git diff --check`, and `node scripts/verify.mjs` pass; the verifier reports 64 valid pages.
+
+final result: passed
+
 # Station gallery redesign QA — 2026-09-06
 
 - Visual target: the approved full-width gallery concept, with the user's final override removing all editorial copy and the `Жизнь станции` label.

@@ -374,6 +374,57 @@
     });
   });
 
+  document.querySelectorAll("[data-review-showcase]").forEach((showcase) => {
+    const reviews = [...showcase.querySelectorAll("[data-review-entry]")].map((entry) => ({
+      initial: entry.dataset.initial || "",
+      name: entry.dataset.name || "",
+      stars: entry.dataset.stars || "",
+      text: entry.dataset.text || ""
+    }));
+    const cards = showcase.querySelector("[data-review-cards]");
+    const prev = showcase.querySelector("[data-review-prev]");
+    const next = showcase.querySelector("[data-review-next]");
+    let active = 0;
+
+    const createCard = (review) => {
+      const card = document.createElement("article");
+      const identity = document.createElement("div");
+      const initial = document.createElement("span");
+      const details = document.createElement("div");
+      const name = document.createElement("strong");
+      const stars = document.createElement("small");
+      const quote = document.createElement("p");
+      card.className = "reviews-compact__card";
+      identity.className = "reviews-compact__identity";
+      initial.textContent = review.initial;
+      name.textContent = review.name;
+      stars.textContent = review.stars;
+      quote.textContent = `«${review.text}»`;
+      details.append(name, stars);
+      identity.append(initial, details);
+      card.append(identity, quote);
+      return card;
+    };
+
+    const activate = (index) => {
+      if (!reviews.length || !cards) return;
+      active = (index + reviews.length) % reviews.length;
+      cards.replaceChildren();
+      for (let offset = 0; offset < Math.min(4, reviews.length); offset += 1) {
+        cards.append(createCard(reviews[(active + offset) % reviews.length]));
+      }
+    };
+
+    prev?.addEventListener("click", () => activate(active - 1));
+    next?.addEventListener("click", () => activate(active + 1));
+    showcase.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+      event.preventDefault();
+      activate(active + (event.key === "ArrowLeft" ? -1 : 1));
+    });
+    activate(active);
+  });
+
   document.querySelectorAll("[data-station-slider]").forEach((stationSlider) => {
     const slides = [...stationSlider.querySelectorAll("[data-station-slide]")];
     const prev = stationSlider.querySelector("[data-station-prev]");
