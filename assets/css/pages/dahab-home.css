@@ -1581,6 +1581,56 @@
   letter-spacing: 0.02em;
 }
 
+body.country-dahab .dahab-safety-spotlight {
+  padding: 32px 0 64px;
+  background: #10100f;
+}
+
+body.country-dahab .dahab-safety-spotlight__inner {
+  grid-template-columns: minmax(320px, 0.78fr) minmax(0, 1.22fr);
+  height: 350px;
+  min-height: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: #10100f;
+}
+
+body.country-dahab .dahab-safety-spotlight__media {
+  grid-column: 2;
+  grid-row: 1;
+  padding-left: 20px;
+  border-left: 2px solid var(--orange);
+}
+
+body.country-dahab .dahab-safety-spotlight__content {
+  grid-column: 1;
+  grid-row: 1;
+  justify-content: center;
+  padding: 24px clamp(28px, 3vw, 48px) 24px 16px;
+}
+
+body.country-dahab .dahab-safety-spotlight__content b {
+  max-width: 520px;
+  margin-top: 16px;
+  font-size: clamp(44px, 4.35vw, 66px);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 0.94;
+}
+
+body.country-dahab .dahab-safety-spotlight__content em {
+  max-width: 500px;
+  margin-top: 18px;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 15px;
+  line-height: 1.48;
+}
+
+body.country-dahab .dahab-safety-spotlight__content strong {
+  margin-top: 20px;
+}
+
 .water-area__inner {
   display: grid;
   gap: clamp(32px, 4vw, 52px);
@@ -1759,6 +1809,34 @@ body.country.country-dahab .trust-block {
 
   .dahab-safety-spotlight__content b {
     font-size: 36px;
+  }
+
+  body.country-dahab .dahab-safety-spotlight {
+    padding: 24px 0 52px;
+  }
+
+  body.country-dahab .dahab-safety-spotlight__inner {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  body.country-dahab .dahab-safety-spotlight__content {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 20px 0 28px;
+  }
+
+  body.country-dahab .dahab-safety-spotlight__content b {
+    font-size: clamp(40px, 11vw, 54px);
+  }
+
+  body.country-dahab .dahab-safety-spotlight__media {
+    grid-column: 1;
+    grid-row: 2;
+    padding: 16px 0 0;
+    border-top: 2px solid var(--orange);
+    border-left: 0;
+    aspect-ratio: 16 / 10;
   }
   .dahab-hero {
       min-height: 560px;

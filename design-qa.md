@@ -1,3 +1,51 @@
+# Black rescue-boats spotlight QA — 2026-09-06
+
+- Source visual truth: `/workspace/scratch/e049f44bf88d/generated_images/exec-e81b9806-e68b-4b55-9d60-c20d128ac726.png` (the first image in the latest ideation set).
+- Browser-rendered boundary screenshot: `/workspace/scratch/vetratoria-white-black-boundary.jpg`.
+- Browser-rendered focused screenshot: `/workspace/scratch/vetratoria-boat-focused-final.jpg`.
+- Combined focused comparison: `/workspace/scratch/e049f44bf88d/design-qa-boat-comparison.png` (selected mock left, implementation right).
+- Viewport: 1363 × 936 CSS px, device density 1.
+- Source pixels: 1435 × 1095. Focused source crop: 1435 × 405, normalized to 900 px wide. Focused implementation crop: 1348 × 446, normalized to 900 px wide.
+- State: desktop, Dahab homepage, white lesson-inclusions panel immediately followed by the black rescue-boats spotlight.
+
+## Full-view comparison evidence
+
+The browser boundary capture confirms the user's hard constraint: the preceding “Можно приехать без своего снаряжения” panel remains white, while only the separate rescue-boats spotlight below is black. The new spotlight uses the selected text-left/photo-right composition, square edges, a thin orange divider and the existing boat photograph. Its outer gutters align with the white panel above and the section height was reduced to 350 px plus controlled black spacing.
+
+## Focused-region comparison evidence
+
+The side-by-side boat-only comparison shows matching 39/61 text-to-image proportions, two-line title treatment, orange eyebrow and link, thin vertical rule, panoramic image crop, black surface and compact editorial density. A focused comparison was required because the source mock and production page have different surrounding page crops.
+
+## Required fidelity surfaces
+
+- Fonts and typography: the site’s local Inter Variable stack is preserved. The spotlight title uses weight 900, tight negative tracking and a two-line wrap matching the selected mock; body and label hierarchy remain readable.
+- Spacing and layout rhythm: the desktop inner frame is a fixed 350 px high, with 24 px vertical copy padding, a compact 32 px gap after the white panel and 64 px lower breathing room. No card border, radius or shadow remains.
+- Colors and visual tokens: the preceding panel computes to `rgb(255, 255, 255)`; the spotlight computes to `rgb(16, 16, 15)`. Existing orange and translucent white text tokens are reused.
+- Image quality and asset fidelity: the original local `rescue-boats.webp` is reused at full available resolution with `object-fit: cover`; no generated or placeholder asset was shipped.
+- Copy and content: eyebrow, heading, explanatory paragraph and destination link are unchanged from the live page and match the selected mock’s content.
+
+## Findings
+
+- No actionable P0, P1 or P2 mismatch remains.
+- P3: the production photograph has a slightly tighter vertical crop than the generated concept because the real component is constrained to a compact 350 px height; the boats and horizon remain fully legible.
+- P3 verification gap: the cloud browser was fixed to a desktop viewport. Responsive CSS stacks text above the image below 900 px, changes the divider to horizontal and removes the fixed height, but a separate mobile browser screenshot was unavailable.
+
+## Comparison history
+
+- Initial P2: the first implementation expanded to 520 px internally and made the rescue section substantially taller than the selected compact concept.
+- Fix: constrained the desktop inner frame to 350 px and reduced copy margins and vertical padding.
+- Post-fix evidence: the final browser measurement reports a 350 px inner frame and 446 px total section including spacing; the focused comparison now matches the selected mock’s density.
+
+## Functional and responsive checks
+
+- The entire spotlight remains one semantic link to `/dahab/safety/`, with its accessible heading relationship and descriptive image alt text intact.
+- The desktop page has no horizontal overflow or clipped copy.
+- Below 900 px the component becomes one column, the fixed height is removed, text appears before the photo and the orange divider becomes horizontal.
+- `npm run check` verifies all 64 pages, routes, assets, metadata, landmarks and headings.
+- Browser console contains no site-origin errors; only unrelated Chrome-extension metadata errors were observed.
+
+final result: passed
+
 # Compact learning section QA — 2026-09-06
 
 - Source visual truth: `/workspace/scratch/e049f44bf88d/generated_images/exec-531c5491-3d05-4782-b983-c868ca69f3de.png`.
