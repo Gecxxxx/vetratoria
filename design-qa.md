@@ -1,3 +1,53 @@
+# Compact learning section QA — 2026-09-06
+
+- Source visual truth: `/workspace/scratch/e049f44bf88d/generated_images/exec-531c5491-3d05-4782-b983-c868ca69f3de.png`.
+- Browser-rendered implementation screenshot: `/workspace/scratch/vetratoria-learning-section.jpg`.
+- Combined comparison evidence: `/workspace/scratch/e049f44bf88d/design-qa-comparison.png` (approved concept left, implementation right).
+- Viewport: 1363 × 936 CSS px, device density 1.
+- Source pixels: 1681 × 936; implementation section pixels: 1363 × 946. The source was height-normalized to 946 px for the side-by-side comparison.
+- State: desktop, `/dahab/#learning`, static learning section.
+
+## Full-view comparison evidence
+
+The browser render follows the selected direction: a full-width black upper panel, title and intro in one row, four horizontally connected learning steps, then an equal split between the real lesson photograph and a white inclusions panel. Black, warm white, orange linework, square corners and the site's existing content gutter are preserved. The section is materially denser than the previous two-column composition and keeps every original content item.
+
+## Focused-region comparison evidence
+
+No separate crop was needed because the section-only browser capture contains the entire component at native density and all headings, step copy, dividers, photograph details and inclusion labels remain readable. The same complete section was used in the combined comparison.
+
+## Required fidelity surfaces
+
+- Fonts and typography: the local Inter Variable stack is preserved. The title and step headings use weight 900 to match the approved visual; body copy remains 13–16 px with controlled line lengths and no clipping.
+- Spacing and layout rhythm: desktop uses a four-column journey and a 50/50 lower split. Reduced outer padding, journey padding and vertical gaps create the requested compact rhythm without removing content.
+- Colors and visual tokens: existing black, warm white, orange and border tokens are reused. No gradients, shadows or rounded surfaces were added.
+- Image quality and asset fidelity: the existing local lesson photograph is reused with a cover crop and square edges; no placeholder or generated production asset replaces it.
+- Copy and content: all four learning steps and all four lesson inclusions remain unchanged from the production page.
+
+## Findings
+
+- No actionable P0, P1 or P2 mismatch remains.
+- P3: the real site copy is longer than the generated concept copy, so the implemented black panel is slightly taller at the tested 1363 px viewport.
+- P3 verification gap: the cloud browser was fixed to the desktop viewport. Responsive rules were implemented for two-column steps below 900 px and a single-column mobile flow below 520 px, but a separate mobile browser screenshot was not available.
+
+## Comparison history
+
+- Initial P2: the global heading rule forced weight 500, making the learning title and step headings visibly lighter than the selected concept.
+- Fix: added component-scoped weight 900 overrides for the learning title and headings.
+- Post-fix evidence: the browser reports weight 900 and the final section capture matches the concept's bold hierarchy.
+- Initial P2: the first implementation retained excessive vertical padding and measured 1073 px tall.
+- Fix: reduced section, journey, inclusion and row spacing while keeping all original text.
+- Post-fix evidence: the final section measures 946 px at 1363 px wide and retains readable type and balanced 50/50 lower panels.
+
+## Functional and responsive checks
+
+- The section remains semantic: one H2, four ordered-list steps, an image with descriptive alt text and four inclusion articles.
+- The desktop section has no horizontal overflow or clipped content.
+- Below 900 px the journey becomes two columns and the media/inclusions stack; below 520 px the journey becomes a single vertical list and inclusion dividers simplify.
+- `node scripts/verify.mjs` passes all 64 routes, assets, metadata, landmarks and headings.
+- Browser console contains no site-origin errors; only an unrelated Chrome-extension metadata error was observed.
+
+final result: passed
+
 # Compact reviews redesign QA — 2026-09-06
 
 - Visual target: `/workspace/scratch/535c3dee165c/upload/dc223dd7-b673-41ca-a087-e74a148ad3d8.png`.

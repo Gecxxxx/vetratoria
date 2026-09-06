@@ -276,14 +276,15 @@
 }
 
 .dahab-learning {
-  background: var(--color-light);
-  color: var(--color-light-text);
+  padding: 40px 0;
+  background: #10100f;
+  color: #fff;
 }
 
 .dahab-learning__layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.94fr) minmax(430px, 1.16fr);
-  gap: clamp(20px, 3vw, 44px);
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
   align-items: stretch;
 }
 
@@ -291,14 +292,19 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
-  min-height: 660px;
-  padding: clamp(28px, 4vw, 62px);
+  min-height: 0;
+  padding: clamp(26px, 2.3vw, 34px);
   background: #11100f;
   color: #fff;
 }
 
 .dahab-learning__heading {
-  max-width: 570px;
+  display: grid;
+  max-width: none;
+  grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.8fr);
+  grid-template-rows: auto 1fr;
+  column-gap: clamp(36px, 6vw, 96px);
+  align-items: start;
 }
 
 .dahab-learning__heading .eyebrow,
@@ -307,10 +313,11 @@
 }
 
 .dahab-learning__heading h2 {
+  grid-column: 1;
   margin: 12px 0 0;
   color: #fff;
-  font-size: clamp(38px, 4.15vw, 66px);
-  font-weight: 900;
+  font-size: clamp(40px, 4.15vw, 64px);
+  font-weight: 900 !important;
   letter-spacing: -0.04em;
   line-height: 0.98;
   overflow-wrap: normal;
@@ -319,8 +326,11 @@
 }
 
 .dahab-learning__heading > p:last-child {
-  max-width: 520px;
-  margin: 26px 0 0;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  max-width: 460px;
+  margin: 4px 0 0;
+  align-self: center;
   color: rgba(255, 255, 255, 0.68);
   font-size: 16px;
   line-height: 1.55;
@@ -328,27 +338,27 @@
 
 .dahab-learning__steps {
   display: grid;
-  gap: 0;
-  margin: auto 0 0;
-  padding: clamp(32px, 4vw, 64px) 0 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(20px, 2.6vw, 42px);
+  margin: clamp(24px, 2.1vw, 30px) 0 0;
+  padding: 0;
   list-style: none;
 }
 
 .dahab-learning__steps li {
   position: relative;
-  display: grid;
-  grid-template-columns: 58px minmax(0, 1fr);
-  gap: 18px;
-  padding: 0 0 25px;
+  display: block;
+  min-width: 0;
+  padding: 0;
 }
 
 .dahab-learning__steps li:not(:last-child)::after {
   position: absolute;
-  top: 46px;
-  bottom: 6px;
-  left: 22px;
-  width: 1px;
-  background: rgba(255, 255, 255, 0.2);
+  top: 22px;
+  right: calc(clamp(20px, 2.6vw, 42px) * -0.5);
+  left: 62px;
+  height: 1px;
+  background: var(--orange);
   content: "";
 }
 
@@ -367,26 +377,26 @@
 }
 
 .dahab-learning__steps h3 {
-  margin: 6px 0 0;
+  margin: 16px 0 0;
   color: #fff;
-  font-size: clamp(20px, 1.65vw, 26px);
-  font-weight: 900;
-  line-height: 1.04;
+  font-size: clamp(18px, 1.55vw, 23px);
+  font-weight: 900 !important;
+  line-height: 1.08;
 }
 
 .dahab-learning__steps p {
-  max-width: 500px;
+  max-width: 310px;
   margin: 8px 0 0;
   color: rgba(255, 255, 255, 0.6);
-  font-size: 14px;
-  line-height: 1.45;
+  font-size: 13px;
+  line-height: 1.35;
 }
 
 .dahab-learning__side {
   display: grid;
   min-width: 0;
-  grid-template-rows: minmax(360px, 1fr) auto;
-  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
 }
 
 .dahab-learning__media {
@@ -398,12 +408,7 @@
 }
 
 .dahab-learning__media::after {
-  position: absolute;
-  inset: auto 0 0;
-  height: 42%;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.72));
-  content: "";
-  pointer-events: none;
+  display: none;
 }
 
 .dahab-learning__media img {
@@ -428,33 +433,37 @@
 }
 
 .dahab-learning__included {
-  display: grid;
-  grid-template-columns: minmax(180px, 0.7fr) minmax(0, 1.3fr);
-  gap: 28px;
-  padding: clamp(22px, 2.2vw, 34px);
+  display: block;
+  min-width: 0;
+  padding: clamp(26px, 2.3vw, 34px);
   background: #fff;
-  border: 1px solid var(--color-light-border);
 }
 
 .dahab-learning__included header h3 {
   margin: 8px 0 0;
   color: var(--color-light-text);
-  font-size: clamp(23px, 2vw, 31px);
-  font-weight: 900;
+  font-size: clamp(30px, 2.6vw, 40px);
+  font-weight: 900 !important;
   letter-spacing: -0.045em;
-  line-height: 0.98;
+  line-height: 0.96;
 }
 
 .dahab-learning__included > div {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 18px;
+  gap: 0 24px;
+  margin-top: 20px;
   align-content: start;
 }
 
 .dahab-learning__included article {
   padding: 14px 0;
   border-top: 1px solid var(--color-light-border);
+}
+
+.dahab-learning__included article:nth-child(odd) {
+  padding-right: 24px;
+  border-right: 1px solid var(--color-light-border);
 }
 
 .dahab-learning__included strong {
@@ -1790,6 +1799,27 @@ body.country.country-dahab .trust-block {
       min-height: 0;
     }
 
+  .dahab-learning__heading {
+      display: block;
+    }
+
+  .dahab-learning__heading > p:last-child {
+      max-width: 620px;
+      margin-top: 20px;
+    }
+
+  .dahab-learning__steps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+  .dahab-learning__steps li:not(:last-child)::after {
+      display: none;
+    }
+
+  .dahab-learning__side {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
   .dahab-section,
   .sport-split,
   .dahab-learning,
@@ -2001,7 +2031,6 @@ body.country.country-dahab .trust-block {
       min-height: 360px;
     }
 
-  .dahab-learning__included,
   .dahab-learning__included > div {
       grid-template-columns: 1fr;
     }
@@ -2020,13 +2049,17 @@ body.country.country-dahab .trust-block {
     }
 
   .dahab-learning__steps {
-      padding-top: 36px;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 32px;
+      padding-top: 0;
     }
 
   .dahab-learning__steps li {
+      display: grid;
       grid-template-columns: 46px minmax(0, 1fr);
       gap: 13px;
-      padding-bottom: 22px;
+      padding-bottom: 0;
     }
 
   .dahab-learning__steps span {
@@ -2046,10 +2079,12 @@ body.country.country-dahab .trust-block {
     }
 
   .dahab-learning__steps p {
+      max-width: none;
       font-size: 13px;
     }
 
   .dahab-learning__side {
+      grid-template-columns: 1fr;
       grid-template-rows: auto auto;
     }
 
@@ -2061,6 +2096,15 @@ body.country.country-dahab .trust-block {
   .dahab-learning__included {
       gap: 24px;
       padding: 24px 22px;
+    }
+
+  .dahab-learning__included header h3 {
+      font-size: 34px;
+    }
+
+  .dahab-learning__included article:nth-child(odd) {
+      padding-right: 0;
+      border-right: 0;
     }
 
   .trust-card--person {
