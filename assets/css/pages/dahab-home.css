@@ -1349,8 +1349,8 @@
 }
 
 .water-area {
-  background: #10100f;
-  color: var(--white);
+  background: #fff;
+  color: #11110f;
 }
 
 .dahab-safety-spotlight {
@@ -1427,17 +1427,13 @@
 
 .water-area__inner {
   display: grid;
-  gap: clamp(30px, 4vw, 56px);
+  gap: clamp(32px, 4vw, 52px);
 }
 
 .water-area__intro {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
-  gap: clamp(32px, 7vw, 138px);
-  padding: clamp(34px, 4.25vw, 64px);
-  border-radius: var(--radius-card);
-  background: var(--color-light);
-  align-items: end;
+  display: block;
+  padding: 0;
+  background: transparent;
 }
 
 .water-area__intro .eyebrow {
@@ -1446,17 +1442,17 @@
 }
 
 .water-area__intro h2 {
-  max-width: 760px;
+  max-width: 1180px;
   margin: 0;
-  color: var(--color-light-text);
-  font-size: clamp(42px, 5vw, 72px);
-  font-weight: 900;
-  letter-spacing: -0.055em;
-  line-height: 0.92;
+  color: #11110f;
+  font-size: clamp(42px, 4.6vw, 68px);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
 }
 
 .water-area__intro > div:last-child {
-  align-self: end;
+  display: none;
 }
 
 .water-area__intro > div:last-child > p:first-child {
@@ -1486,8 +1482,8 @@
 
 .water-area__layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.78fr);
-  gap: clamp(28px, 5vw, 94px);
+  grid-template-columns: minmax(0, 1.12fr) minmax(360px, 0.78fr);
+  gap: clamp(32px, 4vw, 68px);
   align-items: stretch;
   overflow: hidden;
 }
@@ -1501,8 +1497,8 @@
   display: grid;
   grid-template-columns: 48px minmax(0, 1fr);
   gap: clamp(16px, 2vw, 28px);
-  padding: clamp(24px, 2.8vw, 38px) 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  padding: clamp(20px, 2.15vw, 30px) 0;
+  border-top: 1px solid #dededb;
   align-content: center;
 }
 
@@ -1510,37 +1506,38 @@
 
 .water-area__cards span {
   padding-top: 5px;
-  color: var(--orange);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.08em;
+  color: #969692;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
 .water-area__cards strong {
   display: block;
-  color: var(--white);
-  font-size: clamp(28px, 2.8vw, 42px);
-  font-weight: 900;
-  letter-spacing: -0.045em;
-  line-height: 1;
+  color: #11110f;
+  font-size: clamp(27px, 2.35vw, 36px);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
 }
 
 .water-area__cards small {
   display: block;
-  margin-top: 7px;
-  color: #f18b5c;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  margin-top: 8px;
+  color: var(--orange);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-transform: none;
 }
 
 .water-area__cards p {
-  max-width: 620px;
-  margin: 11px 0 0;
-  color: #cbc4bd;
-  font-size: 15px;
-  line-height: 1.55;
+  max-width: 560px;
+  margin: 12px 0 0;
+  color: #4f4f4b;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .water-area__visual {
@@ -1548,9 +1545,9 @@
   min-width: 0;
   margin: 0;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid #dededb;
   border-radius: var(--radius-card);
-  background: #0b1014;
+  background: #f2f2ef;
   aspect-ratio: 4 / 3;
   align-self: start;
 }
@@ -1679,7 +1676,7 @@ body.country.country-dahab .trust-block {
   .station-life__track { grid-column: 1; }
 
   .water-area__inner { gap: 24px; }
-  .water-area__intro { gap: 22px; padding: 34px; }
+  .water-area__intro { padding: 0; }
   .water-area__layout { gap: 24px; }
 
   .water-area__cards article {
@@ -1827,7 +1824,7 @@ body.country.country-dahab .trust-block {
     }
 
   .water-area__inner { gap: 16px; }
-  .water-area__intro { gap: 18px; padding: 28px 22px; }
+  .water-area__intro { padding: 0; }
   .water-area__intro > div:last-child > p:first-child { font-size: 15px; }
   .water-area__layout { gap: 12px; }
   .water-area__visual { aspect-ratio: 4 / 3; }
@@ -1958,7 +1955,7 @@ body.country.country-dahab .trust-block {
   .station-life__item {
       flex-basis: 58%;
     }
-  .water-area__intro { padding: 24px 18px; }
+  .water-area__intro { padding: 0; }
   .water-area__intro h2 { font-size: 29px; }
   .water-area__cards article { grid-template-columns: 28px minmax(0, 1fr); }
 }
