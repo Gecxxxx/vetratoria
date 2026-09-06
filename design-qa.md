@@ -1,3 +1,28 @@
+# Station gallery redesign QA — 2026-09-06
+
+- Visual target: the approved full-width gallery concept, with the user's final override removing all editorial copy and the `Жизнь станции` label.
+- Implementations: `/dahab/`, `/dahab/windsurf/`, `/dahab/wingfoil/`, `/vietnam/`, and `/russia/`.
+- Browser evidence: cloud-browser inspection of `/dahab/` at 1365 px desktop width, including the main image, in-image controls, full-width thumbnail row, and adjacent page sections.
+- Visual comparison: the implementation preserves the approved large photographic canvas, dark in-image arrow controls, lower-left gallery link, and four equal thumbnails across the available content width. The only deliberate difference is removal of the `Жизнь станции` label per the final user instruction.
+
+## Functional checks
+
+- The visible heading, paragraph, fullscreen caption, and `Жизнь станции` label are absent.
+- Clicking the main image opens the existing fullscreen dialog.
+- `ArrowLeft` and `ArrowRight` work from the gallery and inside the fullscreen dialog; `Escape` closes the dialog.
+- Advancing past image 8 returns to image 1, confirming an infinite carousel.
+- The previous/next controls are inside the main photo, with wide transparent hit areas and compact visible chevrons.
+- Four thumbnails fill the desktop content width; narrow-screen CSS switches to two full-width thumbnails per view.
+- Browser console contains no site-origin errors; only unrelated Chrome-extension metadata errors were observed.
+- `node --check assets/js/app.js`, `git diff --check`, and `node scripts/verify.mjs` pass; the verifier reports 64 valid pages.
+
+## Findings
+
+- No actionable P0, P1, or P2 visual or functional issue remains.
+- P3: the gallery retains the site's established outer section spacing so it transitions cleanly from the price section and into reviews, rather than becoming viewport-edge full bleed.
+
+final result: passed
+
 # Footer design QA
 
 - Source visual truth: `/workspace/scratch/80f72dfddb0e/generated_images/exec-bc83822c-6551-4321-a5a9-61b6b66e7ceb.png`

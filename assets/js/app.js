@@ -465,7 +465,7 @@
     thumbs.forEach((thumb, index) => thumb.addEventListener("click", () => activate(index)));
     prev?.addEventListener("click", () => activate(activeIndex - 1));
     next?.addEventListener("click", () => activate(activeIndex + 1));
-    track.addEventListener("keydown", (event) => {
+    slider.addEventListener("keydown", (event) => {
       if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
       event.preventDefault();
       activate(activeIndex + (event.key === "ArrowLeft" ? -1 : 1));

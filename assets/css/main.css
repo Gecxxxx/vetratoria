@@ -16,10 +16,10 @@
 @import url("./components/forms.css?v=20260730-ux-seo");
 @import url("./components/contact-modal.css?v=20260809-staging");
 @import url("./components/slider.css");
-@import url("./components/media-gallery.css?v=20260809-staging-r8-mobile-lightbox");
+@import url("./components/media-gallery.css?v=20260906-staging-gallery");
 @import url("./components/season.css?v=20260810-staging-r13-compact-rail");
 @import url("./pages/home.css?v=20260810-staging-r14-editorial-approach");
-@import url("./pages/dahab-home.css?v=20260906-staging-water-light");
+@import url("./pages/dahab-home.css?v=20260906-staging-gallery");
 @import url("./pages/dahab-sport.css?v=20260810-staging-r18-faq-system");
 @import url("./pages/price.css");
 @import url("./pages/wingfoil-price.css");

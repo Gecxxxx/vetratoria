@@ -407,11 +407,17 @@
   place-items: center;
 }
 
-.media-lightbox__stage img {
+.media-lightbox__stage figure > img {
   display: block;
   max-width: 100%;
   max-height: calc(100vh - 150px);
   object-fit: contain;
+}
+
+.media-lightbox__stage > button img {
+  display: block;
+  width: 24px;
+  height: 24px;
 }
 
 .media-lightbox__stage figcaption {
@@ -491,7 +497,7 @@
   .media-lightbox__stage > button:first-child { left: 14px; }
   .media-lightbox__stage > button:last-child { right: 14px; }
 
-  .media-lightbox__stage img {
+  .media-lightbox__stage figure > img {
     width: 100%;
     max-height: calc(100vh - 138px);
   }
