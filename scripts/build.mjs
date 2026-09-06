@@ -1817,7 +1817,7 @@ ${seasonSection([countriesByKey.dahab], {
 
 <section class="dahab-section compact-band" id="prices">
   <div class="dahab-inner">
-    ${sectionHeading("Цены", "Сколько стоит начать", "В стоимость урока входят инструктор, подходящее снаряжение, спасательная поддержка и страховка снаряжения.")}
+    ${sectionHeading("Цены", "Сколько стоит начать", "")}
     <div class="price-grid">
       ${priceCards.map(([label, title, value, text, image, href]) => `
         <a class="price-card" href="${href}">
