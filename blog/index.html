@@ -35,8 +35,8 @@
   <link rel="icon" href="/assets/img/vetratoria-logo.png">
   <link rel="preload" href="/assets/fonts/inter-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/main.css?v=20260913-blog-filter-r1">
-  <script defer src="/assets/js/app.js?v=20260913-blog-filter-r1"></script>
+  <link rel="stylesheet" href="/assets/css/main.css?v=20260913-blog-filter-r2">
+  <script defer src="/assets/js/app.js?v=20260913-blog-filter-r2"></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/blog/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Материалы со всех стран","item":"https://vetratoria.ru/blog/"}]}]}</script>
 </head>
 <body class="modern-site blog-index">
@@ -200,14 +200,17 @@
   </header>
     <div class="blog-filter-panel" data-blog-filter-panel>
       <div class="blog-filter-group" role="group" aria-label="Фильтр по стране">
-        <button class="blog-filter-button" type="button" data-blog-filter-type="country" data-blog-filter-value="dahab" aria-pressed="true">Египет</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="country" data-blog-filter-value="all" aria-pressed="true">Все статьи</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="country" data-blog-filter-value="dahab" aria-pressed="false">Египет</button>
         <button class="blog-filter-button" type="button" data-blog-filter-type="country" data-blog-filter-value="russia" aria-pressed="false">Россия</button>
         <button class="blog-filter-button" type="button" data-blog-filter-type="country" data-blog-filter-value="vietnam" aria-pressed="false">Вьетнам</button>
       </div>
       <div class="blog-filter-group" role="group" aria-label="Фильтр по спорту">
-        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="windsurf" data-blog-sport-countries="dahab russia vietnam" aria-pressed="true">Виндсёрфинг</button>
-        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="kite" data-blog-sport-countries="russia vietnam" aria-pressed="false" hidden>Кайтсёрфинг</button>
-        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="surf" data-blog-sport-countries="vietnam" aria-pressed="false" hidden>Сёрфинг</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="all" data-blog-sport-countries="all dahab russia vietnam" aria-pressed="true">Все спорты</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="windsurf" data-blog-sport-countries="all dahab russia vietnam" aria-pressed="false">Виндсёрфинг</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="wingfoil" data-blog-sport-countries="all dahab russia vietnam" aria-pressed="false">Вингфойл</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="kite" data-blog-sport-countries="all russia vietnam" aria-pressed="false">Кайтсёрфинг</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="surf" data-blog-sport-countries="all vietnam" aria-pressed="false">Сёрфинг</button>
       </div>
     </div>
     <p class="blog-filter-status" data-blog-filter-status aria-live="polite"></p>
@@ -249,7 +252,7 @@
             <span class="article-card__more">Читать статью →</span>
           </span>
         </a>
-        <a class="article-card" href="/blog/chto-vybrat-vingfoyl-ili-vindserfing.php" data-blog-filter-card data-blog-country="dahab" data-blog-sport="windsurf">
+        <a class="article-card" href="/blog/chto-vybrat-vingfoyl-ili-vindserfing.php" data-blog-filter-card data-blog-country="dahab" data-blog-sport="wingfoil">
           <span class="article-card__media">
             <img src="/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-00.jpg" alt="Что выбрать — вингфойл или виндсерфинг?" loading="lazy" decoding="async">
             <time datetime="2025-11-06">06.11.2025</time>

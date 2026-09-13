@@ -614,7 +614,7 @@ const contactDialog = (page) => {
 };
 
 const ASSET_VERSION = "20260913-unified-typography";
-const assetVersionForPage = (page) => page.path === "/blog/" ? "20260913-blog-filter-r1" : ASSET_VERSION;
+const assetVersionForPage = (page) => page.path === "/blog/" ? "20260913-blog-filter-r2" : ASSET_VERSION;
 const versionedAsset = (path, version = ASSET_VERSION) => `${path}?v=${version}`;
 
 const layout = (page, main) => `<!doctype html>
@@ -3090,14 +3090,17 @@ const blogFilterPanel = () => `
     ${sectionHeading("Фильтр", "Страны и спорт", "Выберите страну, затем нужный вид спорта.")}
     <div class="blog-filter-panel" data-blog-filter-panel>
       <div class="blog-filter-group" role="group" aria-label="Фильтр по стране">
-        ${blogFilterButton("country", "dahab", "Египет", true)}
+        ${blogFilterButton("country", "all", "Все статьи", true)}
+        ${blogFilterButton("country", "dahab", "Египет")}
         ${blogFilterButton("country", "russia", "Россия")}
         ${blogFilterButton("country", "vietnam", "Вьетнам")}
       </div>
       <div class="blog-filter-group" role="group" aria-label="Фильтр по спорту">
-        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="windsurf" data-blog-sport-countries="dahab russia vietnam" aria-pressed="true">Виндсёрфинг</button>
-        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="kite" data-blog-sport-countries="russia vietnam" aria-pressed="false" hidden>Кайтсёрфинг</button>
-        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="surf" data-blog-sport-countries="vietnam" aria-pressed="false" hidden>Сёрфинг</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="all" data-blog-sport-countries="all dahab russia vietnam" aria-pressed="true">Все спорты</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="windsurf" data-blog-sport-countries="all dahab russia vietnam" aria-pressed="false">Виндсёрфинг</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="wingfoil" data-blog-sport-countries="all dahab russia vietnam" aria-pressed="false">Вингфойл</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="kite" data-blog-sport-countries="all russia vietnam" aria-pressed="false">Кайтсёрфинг</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="surf" data-blog-sport-countries="all vietnam" aria-pressed="false">Сёрфинг</button>
       </div>
     </div>
     <p class="blog-filter-status" data-blog-filter-status aria-live="polite"></p>`;
@@ -3181,7 +3184,7 @@ ${hero(page, contactCta(page, "Задать вопрос"))}
     ${hasFilters ? blogFilterPanel() : sectionHeading(page.eyebrow, page.title, page.description)}
     <div class="article-grid"${hasFilters ? ` data-blog-filter-list` : ""}>
       ${pageArticles.map((article) => `
-        <a class="article-card" href="${article.href}"${hasFilters ? ` data-blog-filter-card data-blog-country="${article.country}" data-blog-sport="${article.country === "dahab" ? "windsurf" : article.sport}"` : ""}>
+        <a class="article-card" href="${article.href}"${hasFilters ? ` data-blog-filter-card data-blog-country="${article.country}" data-blog-sport="${article.sport}"` : ""}>
           <span class="article-card__media">
             ${cardImage(article.image, article.title)}
             ${article.date ? `<time datetime="${legacyArticleDate(article.date)}">${escapeHtml(article.date)}</time>` : ""}

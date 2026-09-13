@@ -533,8 +533,8 @@
     if (!cards.length) return;
 
     const selected = {
-      country: "dahab",
-      sport: "windsurf"
+      country: "all",
+      sport: "all"
     };
 
     const updateSportButtons = () => {
@@ -561,8 +561,8 @@
       let visible = 0;
 
       cards.forEach((card) => {
-        const matchesCountry = card.dataset.blogCountry === selected.country;
-        const matchesSport = card.dataset.blogSport === selected.sport;
+        const matchesCountry = selected.country === "all" || card.dataset.blogCountry === selected.country;
+        const matchesSport = selected.sport === "all" || card.dataset.blogSport === selected.sport;
         const matches = matchesCountry && matchesSport;
         card.hidden = !matches;
         if (matches) visible += 1;
@@ -578,7 +578,7 @@
         if (!type || !(type in selected)) return;
         selected[type] = button.dataset.blogFilterValue || "all";
         if (type === "country") {
-          selected.sport = "windsurf";
+          selected.sport = "all";
           updateSportButtons();
         }
         buttons
