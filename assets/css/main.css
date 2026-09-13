@@ -8746,6 +8746,111 @@ body.country.country-dahab .trust-block {
   text-align: center;
 }
 
+/* Compact editorial cards, aligned with the media library. */
+.blog-index .article-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.blog-index .article-card {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-decoration: none;
+  box-shadow: none;
+}
+
+.blog-index .article-card::after {
+  display: none;
+}
+
+.blog-index .article-card__media {
+  position: relative;
+  z-index: 1;
+  display: block;
+  overflow: hidden;
+  flex: 0 0 auto;
+  aspect-ratio: 16 / 10;
+  background: #0d0c0b;
+}
+
+.blog-index .article-card__media img {
+  position: static;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blog-index .article-card__media time {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 7px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(5, 5, 5, 0.78);
+  color: var(--white);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-caption);
+  line-height: var(--leading-caption);
+}
+
+.blog-index .article-card__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-height: 250px;
+  flex: 1;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.blog-index .article-card__content h3 {
+  margin-top: 12px;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+.blog-index .article-card__content p:not(.eyebrow) {
+  margin-top: 14px;
+  color: #d6d0cb;
+  line-height: 1.45;
+}
+
+.blog-index .article-card__more {
+  display: block;
+  margin-top: auto;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  color: var(--orange);
+  text-transform: uppercase;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-label);
+  line-height: var(--leading-caption);
+}
+
+@media (max-width: 1100px) {
+  .blog-index .article-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .blog-index .article-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-index .article-card__content {
+    min-height: 230px;
+    padding: 22px;
+  }
+}
+
 @media (max-width: 620px) {
   .blog-filter-panel {
     padding: 12px;

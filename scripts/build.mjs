@@ -3204,10 +3204,16 @@ ${hero(page, contactCta(page, "Задать вопрос"))}
     <div class="article-grid"${hasFilters ? ` data-blog-filter-list` : ""}>
       ${pageArticles.map((article) => `
         <a class="article-card" href="${article.href}"${hasFilters ? ` data-blog-filter-card data-blog-country="${article.country}" data-blog-topics="${(article.topics || [article.sport]).join(" ")}" data-blog-search="${escapeHtml(`${countriesByKey[article.country].title} ${site.sports[article.sport].nav} ${article.title} ${article.lead}`)}"` : ""}>
-          ${cardImage(article.image, article.title)}
-          <small>${countriesByKey[article.country].title} · ${site.sports[article.sport].nav}${article.date ? ` · ${escapeHtml(article.date)}` : ""}</small>
-          <h3>${article.title}</h3>
-          <p>${article.lead}</p>
+          <span class="article-card__media">
+            ${cardImage(article.image, article.title)}
+            ${article.date ? `<time datetime="${legacyArticleDate(article.date)}">${escapeHtml(article.date)}</time>` : ""}
+          </span>
+          <span class="article-card__content">
+            <small>${countriesByKey[article.country].title} · ${site.sports[article.sport].nav}</small>
+            <h3>${article.title}</h3>
+            <p>${article.lead}</p>
+            <span class="article-card__more">Читать статью →</span>
+          </span>
         </a>`).join("")}${hasFilters ? `
       <p class="blog-filter-empty" data-blog-filter-empty hidden>По вашему запросу материалов пока нет. Измените фильтр или текст поиска.</p>` : ""}
     </div>
