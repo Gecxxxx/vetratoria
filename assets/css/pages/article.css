@@ -102,6 +102,22 @@
   line-height: 1.75;
 }
 
+.legacy-article__text h2 {
+  margin: 0 0 18px;
+  color: var(--color-light-text);
+  font-size: var(--text-h2);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.legacy-article__text p + p {
+  margin-top: 1.2em;
+}
+
+.legacy-article__text p + h2 {
+  margin-top: 42px;
+}
+
 .legacy-article__block--lead .legacy-article__text p {
   font-size: clamp(20px, 2vw, 25px);
   line-height: 1.58;

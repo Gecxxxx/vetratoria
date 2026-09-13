@@ -3108,6 +3108,7 @@ const blogFilterPanel = () => `
         ${blogFilterButton("topic", "health", "Здоровье")}
         ${blogFilterButton("topic", "equipment", "Оборудование")}
         ${blogFilterButton("topic", "trip", "Поездка")}
+        ${blogFilterButton("topic", "leisure", "Отдых")}
       </div>
       <label class="blog-filter-search">
         <span>Поиск по блогу</span>
@@ -3118,6 +3119,7 @@ const blogFilterPanel = () => `
 
 const vietnamBlogPage = (page) => {
   const vietnamImg = (name) => `/assets/img/vietnam-source/${name}`;
+  const legacyCards = (page.articles || []).filter((article) => article.legacy);
   const cards = [
     ["Виндсёрфинг", "Виндсёрфинг в Муйне: ветер, волна и сезон", "Как подготовиться к занятиям, выбрать формат и использовать сезон с ноября по март.", vietnamImg("aerial.jpg"), "/vietnam/blog/windsurf/"],
     ["Вингфойл", "Вингфойл во Вьетнаме", "Путь от управления крылом до первых полётов и отдельная тренировка на фойле за катером.", vietnamImg("community.jpg"), "/vietnam/blog/wingfoil/"],
@@ -3126,6 +3128,7 @@ const vietnamBlogPage = (page) => {
   return `
 <section class="dahab-sport-hero"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Вьетнам · полезное</p><h1>Гид по спорту в Муйне</h1><p>Сезон, обучение, споты и практические ответы для тех, кто планирует поездку в Ветраторию во Вьетнаме.</p><div class="dahab-sport-hero__actions"><a class="button button-primary" href="#guides">Читать материалы</a><a class="button button-ghost" href="/vietnam/">Обзор направления</a></div><div class="hero-advantages hero-advantages--sport"><span class="hero-advantage">Три дисциплины</span><span class="hero-advantage">Сезон ноябрь — март</span><span class="hero-advantage">Цены и форматы</span><span class="hero-advantage">Советы перед стартом</span></div></div><figure class="dahab-sport-hero__media"><img src="${vietnamImg("surf.jpg")}" alt="Спорт и обучение во Вьетнаме" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
 <section class="dahab-sport-section" id="guides"><div class="dahab-sport-inner">${sectionHeading("Материалы", "Выберите свою дисциплину", "Три коротких гида помогут понять условия, порядок обучения и следующий шаг после первого занятия.")}<div class="dahab-sport-useful">${cards.map(([label,title,text,image,href]) => `<a href="${href}"><img src="${image}" alt="${title}" loading="lazy" decoding="async"><span>${label}</span><h3>${title}</h3><p>${text}</p><em>Открыть гид →</em></a>`).join("")}</div></div></section>
+${legacyCards.length ? `<section class="content-section"><div class="section-inner">${sectionHeading("Новости станции", "Из блога Ветратории во Вьетнаме", "Истории, события и новости направления в Муйне.")}<div class="article-grid">${legacyCards.map((article) => `<a class="article-card" href="${article.href}"><span class="article-card__media">${cardImage(article.image, article.title)}${article.date ? `<time datetime="${legacyArticleDate(article.date)}">${escapeHtml(article.date)}</time>` : ""}</span><span class="article-card__content"><small>${countriesByKey[article.country].title} · ${site.sports[article.sport].nav}</small><h3>${article.title}</h3><p>${article.lead}</p><span class="article-card__more">Читать статью →</span></span></a>`).join("")}</div></div></section>` : ""}
 <section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner dahab-sport-safety"><div class="dahab-sport-safety__copy"><p class="eyebrow">План поездки</p><h2>Сначала даты, затем спорт и формат</h2><p>Основной сезон станции длится с ноября по март. Команда уточнит фактические условия, подберёт дисциплину и поможет собрать занятия на несколько дней.</p><div class="dahab-sport-safety__list"><span>Выберите даты и продолжительность</span><span>Расскажите об опыте на воде</span><span>Уточните: урок, курс или прокат</span></div>${contactCta(page, "Обсудить поездку")}</div><div class="dahab-sport-safety__media"><img src="${vietnamImg("station.jpg")}" alt="Станция Ветратория в Муйне" loading="lazy" decoding="async"></div></div></section>`;
 };
 
@@ -3260,10 +3263,15 @@ const legacyArticleGallery = (page, images, blockIndex) => images.length ? `
 const legacyArticlePage = (page) => {
   const article = page.article;
   const isoDate = legacyArticleDate(article.date);
-  return `${hero(page, `<a class="button button-primary" href="#article-text">Читать статью</a><a class="button button-ghost" href="/dahab/blog/">Блог Дахаба</a>`)}
+  const country = countriesByKey[article.country];
+  const sport = site.sports[article.sport];
+  const countryBlogHref = `/${article.country}/blog/`;
+  const countryLabel = { dahab: "Дахаб", vietnam: "Вьетнам", russia: "Россия" }[article.country] || country.title;
+  const countryBlogLabel = { dahab: "Блог Дахаба", vietnam: "Блог Вьетнама", russia: "Блог России" }[article.country] || `Блог: ${country.title}`;
+  return `${hero(page, `<a class="button button-primary" href="#article-text">Читать статью</a><a class="button button-ghost" href="${countryBlogHref}">${countryBlogLabel}</a>`)}
   <article class="legacy-article" id="article-text">
     <header class="legacy-article__meta">
-      <a href="/blog/">Блог</a><span aria-hidden="true">/</span><a href="/dahab/blog/">Дахаб</a><span aria-hidden="true">/</span><span>Виндсёрфинг</span>
+      <a href="/blog/">Блог</a><span aria-hidden="true">/</span><a href="${countryBlogHref}">${countryLabel}</a><span aria-hidden="true">/</span><span>${sport.nav}</span>
       ${article.author ? `<span class="legacy-article__author">${escapeHtml(article.author)}</span>` : ""}
       ${article.date ? `<time datetime="${isoDate}">${escapeHtml(article.date)}</time>` : ""}
     </header>
@@ -3274,7 +3282,7 @@ const legacyArticlePage = (page) => {
       </section>`).join("")}
     </div>
     <footer class="legacy-article__footer">
-      <a href="/dahab/blog/">← Все статьи Дахаба</a>
+      <a href="${countryBlogHref}">← ${countryBlogLabel}</a>
       ${contactCta(page, "Задать вопрос", "button button-primary", page.sport)}
     </footer>
   </article>`;

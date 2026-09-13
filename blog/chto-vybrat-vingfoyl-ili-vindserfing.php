@@ -15,29 +15,29 @@
       } catch {}
     })();
   </script>
-  <title>Водный старт, некоторые особенности</title>
-  <meta name="description" content="Водный старт: ключевые моменты техники, которые помогают увереннее поднимать парус и выходить на доску.">
+  <title>Что выбрать — вингфойл или виндсерфинг?</title>
+  <meta name="description" content="Чем отличаются виндсёрфинг и вингфойл, что проще освоить и какой спорт выбрать для первых занятий.">
 
-  <link rel="canonical" href="https://vetratoria.ru/blog/vodnyy-start-nekotorye-osobennosti.php">
+  <link rel="canonical" href="https://vetratoria.ru/blog/chto-vybrat-vingfoyl-ili-vindserfing.php">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Ветратория">
   <meta property="og:locale" content="ru_RU">
-  <meta property="og:url" content="https://vetratoria.ru/blog/vodnyy-start-nekotorye-osobennosti.php">
-  <meta property="og:title" content="Водный старт, некоторые особенности">
-  <meta property="og:description" content="Водный старт: ключевые моменты техники, которые помогают увереннее поднимать парус и выходить на доску.">
-  <meta property="og:image" content="https://vetratoria.ru/assets/img/blog/legacy/vodnyy-start-nekotorye-osobennosti-00.jpg">
-  <meta property="og:image:alt" content="Водный старт, некоторые особенности">
+  <meta property="og:url" content="https://vetratoria.ru/blog/chto-vybrat-vingfoyl-ili-vindserfing.php">
+  <meta property="og:title" content="Что выбрать — вингфойл или виндсерфинг?">
+  <meta property="og:description" content="Чем отличаются виндсёрфинг и вингфойл, что проще освоить и какой спорт выбрать для первых занятий.">
+  <meta property="og:image" content="https://vetratoria.ru/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-00.jpg">
+  <meta property="og:image:alt" content="Что выбрать — вингфойл или виндсерфинг?">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Водный старт, некоторые особенности">
-  <meta name="twitter:description" content="Водный старт: ключевые моменты техники, которые помогают увереннее поднимать парус и выходить на доску.">
-  <meta name="twitter:image" content="https://vetratoria.ru/assets/img/blog/legacy/vodnyy-start-nekotorye-osobennosti-00.jpg">
+  <meta name="twitter:title" content="Что выбрать — вингфойл или виндсерфинг?">
+  <meta name="twitter:description" content="Чем отличаются виндсёрфинг и вингфойл, что проще освоить и какой спорт выбрать для первых занятий.">
+  <meta name="twitter:image" content="https://vetratoria.ru/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-00.jpg">
   <meta name="theme-color" content="#0d0c0b">
   <link rel="icon" href="/assets/img/vetratoria-logo.png">
   <link rel="preload" href="/assets/fonts/inter-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/main.css?v=20260913-unified-typography">
   <script defer src="/assets/js/app.js?v=20260913-unified-typography"></script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/blog/vodnyy-start-nekotorye-osobennosti.php#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Материалы со всех стран","item":"https://vetratoria.ru/blog/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/blog/chto-vybrat-vingfoyl-ili-vindserfing.php#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Материалы со всех стран","item":"https://vetratoria.ru/blog/"}]}]}</script>
 </head>
 <body class="modern-site article country-dahab">
   <a class="skip-link" href="#main">К содержанию</a>
@@ -198,61 +198,61 @@
   <main id="main">
 <section class="hero page-hero">
   <div class="hero-bg">
-    <img src="/assets/img/blog/legacy/vodnyy-start-nekotorye-osobennosti-00.jpg" alt="" loading="eager" fetchpriority="high" decoding="async">
+    <img src="/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-00.jpg" alt="" loading="eager" fetchpriority="high" decoding="async">
   </div>
   <div class="hero-shade"></div>
   <div class="hero-content">
-    <p class="eyebrow">Дахаб · Виндсёрфинг</p>
-    <h1>Водный старт, некоторые особенности</h1>
-    <p class="hero-lead">Водный старт: ключевые моменты техники, которые помогают увереннее поднимать парус и выходить на доску.</p>
+    <p class="eyebrow">Дахаб · Вингфойл</p>
+    <h1>Что выбрать — вингфойл или виндсерфинг?</h1>
+    <p class="hero-lead">Чем отличаются виндсёрфинг и вингфойл, что проще освоить и какой спорт выбрать для первых занятий.</p>
     <div class="hero-actions"><a class="button button-primary" href="#article-text">Читать статью</a><a class="button button-ghost" href="/dahab/blog/">Блог Дахаба</a></div>
   </div>
 </section>
   <article class="legacy-article" id="article-text">
     <header class="legacy-article__meta">
-      <a href="/blog/">Блог</a><span aria-hidden="true">/</span><a href="/dahab/blog/">Дахаб</a><span aria-hidden="true">/</span><span>Виндсёрфинг</span>
-      <span class="legacy-article__author">По ключикам для водного старта провёл вас я, Серёга (a.k.a. PaparazzO)</span>
-      <time datetime="2026-04-22">22.04.2026</time>
+      <a href="/blog/">Блог</a><span aria-hidden="true">/</span><a href="/dahab/blog/">Дахаб</a><span aria-hidden="true">/</span><span>Вингфойл</span>
+
+      <time datetime="2025-11-06">06.11.2025</time>
     </header>
     <div class="legacy-article__content">
       <section class="legacy-article__block legacy-article__block--lead">
-        <div class="legacy-article__text"><p>Очередной отличный день в Дахабе. С утра пораньше гости Ветратории спешат кататься. Бодрящий свежий ветер уже дует и гипнотически манит на воду. Адепты, познавшие эйфорию скорости, смело выкатывают в Спиди-зону, где глубина и пространство позволяют гонять по полной. Но локация требует навыков, помимо умения выводить доску на глиссер. Умение развернуться и, в случае падения, как-то стартовать — среди них. Сегодня коснусь темы старта, водного старта, ибо на глубине нет опоры на грунт, и на доске когда дует и колбасит «за верёвочку» особо не подёргаешь. Можно сказать, что водный старт — один из базовых элементов в виндсёрфинге — это не только полезный навык, но и первоочередной для вашей безопасности на воде. Конкретно, речь пойдёт не о нём самом, а о паре его ключевых моментов, которые могут игнорироваться большинством, даже теми, кто этот навык кое-как освоил, но (моё любимое выражение) не постиг полностью его Дзен!</p></div>
+        <div class="legacy-article__text"><p>Утро. Солнце только поднимается над гладью лагуны, ветер начинает играть с поверхностью воды.<br>На горизонте мелькают паруса, а рядом кто-то буквально летит над водой, держа в руках крыло.<br>Если вы хоть раз были на станции Vetratoria, вы точно видели обе эти картины.<br>Виндсерферы и вингфойлеры делят один и тот же ветер — но ощущения у них совершенно разные.<br>Так что выбрать: проверенный временем виндсерфинг или новое направление — вингфойл?</p></div>
 
-      <div class="legacy-article__gallery legacy-article__gallery--1">
-        <figure><img src="/assets/img/blog/legacy/vodnyy-start-nekotorye-osobennosti-01.jpg" alt="Водный старт, некоторые особенности — фотография 1.1" loading="lazy" decoding="async"></figure>
-      </div>
       </section><section class="legacy-article__block">
-        <div class="legacy-article__text"><p>Что ж, поехали. Водный старт — производная бич старта. Это когда райдер, стоя в воде на отмели, лихо манипулируя парусом, заскакивает на доску без использования стартшкотика. Сам ветер помогает ему в этом. Р-р-раз и полетел! Магия? Нисколечко… Мастерство и умение! Дальше человек задумывается: «Нельзя ли такой же трюк провернуть с глубины?» Ответ — да, можно, но требуется как-то поднять прилипший к воде парус. Всей техники тут представлено не будет. Как говорится, многАбукв.  А вот один ключевой секретик я раскрою. Он полезен всем, кто не умеет или умеет, но испытывает проблемы на этапе отклеивания паруса от воды. Не пробуйте это делать за гик, т. е. в центре паруса. Для этих целей используйте топ паруса (верхний кончик). Самая лёгкая его часть — верхушка. Стоит отлепить верхушку, как между ней и основанием, прикреплённым к шарниру на доске образуется мостик, под который сразу начинает поддувать ветер, помогая уже всему полотну отлипнуть от воды.</p></div>
+        <div class="legacy-article__text"><h2>Виндсерфинг — классика, с которой всё началось</h2><p>Виндсерфинг — это легенда. Десятилетиями он собирает людей по всему миру: от подростков, которые впервые пробуют держать парус, до спортсменов, разгоняющихся под 40 узлов. Оборудование — доска и парус на мачте, соединённые гиком. Всё просто, но именно в этой простоте — магия. Почувствовать, как ветер наполняет парус, как доска оживает под ногами, — это момент, который не забывается. Конечно, виндсерфинг требует немного терпения, но зато каждая минута на воде — как награда: чистый драйв, скорость и ощущение, что ты буквально летишь по ветру.</p></div>
 
       <div class="legacy-article__gallery legacy-article__gallery--3">
-        <figure><img src="/assets/img/blog/legacy/vodnyy-start-nekotorye-osobennosti-02.jpg" alt="Водный старт, некоторые особенности — фотография 2.1" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/vodnyy-start-nekotorye-osobennosti-03.jpg" alt="Водный старт, некоторые особенности — фотография 2.2" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/vodnyy-start-nekotorye-osobennosti-04.jpg" alt="Водный старт, некоторые особенности — фотография 2.3" loading="lazy" decoding="async"></figure>
+        <figure><img src="/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-01.jpg" alt="Что выбрать — вингфойл или виндсерфинг? — фотография 2.1" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-02.jpg" alt="Что выбрать — вингфойл или виндсерфинг? — фотография 2.2" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-03.jpg" alt="Что выбрать — вингфойл или виндсерфинг? — фотография 2.3" loading="lazy" decoding="async"></figure>
       </div>
       </section><section class="legacy-article__block">
-
+        <div class="legacy-article__text"><h2>Вингфойл — новое дыхание ветра</h2><p>Представьте: вы держите в руках лёгкое крыло, а под доской — подводное крыло, которое поднимает вас над водой. Это и есть вингфойл — свежий, современный и удивительно интуитивный способ дружить с ветром. Фойл (hydrofoil) — это подводное крыло, благодаря которому доска отрывается от воды и идёт “в воздухе”. Трение почти исчезает, движения становятся плавными и тихими. Главные плюсы вингфойла: мягкие падения, лёгкий старт и возможность кататься даже в слабый ветер. А главное — непередаваемое ощущение полёта над волнами.</p></div>
 
       <div class="legacy-article__gallery legacy-article__gallery--3">
-        <figure><img src="/assets/img/blog/legacy/vodnyy-start-nekotorye-osobennosti-05.jpg" alt="Водный старт, некоторые особенности — фотография 3.1" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/vodnyy-start-nekotorye-osobennosti-06.jpg" alt="Водный старт, некоторые особенности — фотография 3.2" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/vodnyy-start-nekotorye-osobennosti-07.jpg" alt="Водный старт, некоторые особенности — фотография 3.3" loading="lazy" decoding="async"></figure>
+        <figure><img src="/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-04.jpg" alt="Что выбрать — вингфойл или виндсерфинг? — фотография 3.1" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-05.jpg" alt="Что выбрать — вингфойл или виндсерфинг? — фотография 3.2" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-06.jpg" alt="Что выбрать — вингфойл или виндсерфинг? — фотография 3.3" loading="lazy" decoding="async"></figure>
       </div>
       </section><section class="legacy-article__block">
-        <div class="legacy-article__text"><p>Второй полезный совет касается момента, когда парус уже поднялся, вы перехватились за гик и повисли на ветровой тяге. Если новичку не совсем понятно о чём я — гляньте на фото. Боюсь, мало кто в этой позиции понимает всю механику процесса. Но в целом, ваша задача на данном этапе (внимание!!!) не упираться ногами в борт, а зацепить пяткой задней ноги палубу в точке на оси доски и на СЕРЕДИНКЕ МЕЖДУ ШАРНИРОМ И КОРМОЙ. Запомните: именно положить ногу, а не упереться. И только одну заднюю. Её задача в момент старта (когда вы начинаете добавлять тяги) подтягивать вашу тушку ближе к борту, а не отжимать. Особенно полезно для тех, у кого при старте доска вечно крутится носом на ветер и парус, теряя тягу, топит вас. Ну и, в общем, я лично никогда не учу выполнять водный старт с упором двумя ногами, считаю это дурным тоном и полным непрофессионализмом. Так некоторые инструктора-халтурщики облегчают себе задачу, станции берегут матчасть, но никак не помогают ученикам качественно выполнять водный старт быстро и на любом ветру. Запомните: выполнение с одной ногой — высший пилотаж. Однако, данный способ требует знания ключевых тонких моментов и идеально натренированного чувства баланса.</p></div>
+        <div class="legacy-article__text"><h2>Разница в ощущениях</h2><p>Главная разница — в том, как вы взаимодействуете с водой и ветром. В виндсерфинге вы скользите по поверхности, чувствуя сопротивление и скорость. В вингфойле доска поднимается над водой — вы буквально парите, почти не слыша шума. Если сравнить, то виндсерфинг — как мотоцикл: мощно и динамично. А вингфойл — как полёт на параплане: свободно, плавно и почти медитативно.</p></div>
 
       <div class="legacy-article__gallery legacy-article__gallery--3">
-        <figure><img src="/assets/img/blog/legacy/vodnyy-start-nekotorye-osobennosti-08.jpg" alt="Водный старт, некоторые особенности — фотография 4.1" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/vodnyy-start-nekotorye-osobennosti-09.jpg" alt="Водный старт, некоторые особенности — фотография 4.2" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/vodnyy-start-nekotorye-osobennosti-10.jpg" alt="Водный старт, некоторые особенности — фотография 4.3" loading="lazy" decoding="async"></figure>
+        <figure><img src="/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-07.jpg" alt="Что выбрать — вингфойл или виндсерфинг? — фотография 4.1" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-08.jpg" alt="Что выбрать — вингфойл или виндсерфинг? — фотография 4.2" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-09.jpg" alt="Что выбрать — вингфойл или виндсерфинг? — фотография 4.3" loading="lazy" decoding="async"></figure>
       </div>
       </section><section class="legacy-article__block">
-        <div class="legacy-article__text"><p>Итак, две подсказки для водного старта на сегодня: отрывать парус от воды лучше начинать с топа (крайней верхней части), и не упираться ногами в борт, подтягивать задней, положив её на палубу. Надеюсь, те кто сейчас читает это, будучи уже в Дахабе, на Ветратории, тут же смогут проверить, а те, кто лишь собираются к нам — запомнят и попробуют при первом удобном случае. О других тонкостях водного старта поговорим как-нибудь ещё, хотя самые нетерпеливые могут задать вопросы лично и даже попробовать взять урок. Главное — это наличие огромного желания, и непременное стремление совершенствовать свой навык, дабы кататься долго и счастливо.</p></div>
+        <div class="legacy-article__text"><h2>Что проще освоить</h2><p>Многие новички думают, что виндсерфинг сложнее. В школах Vetratoria обучение проходит легко: подходящее оборудование, комфортные условия и опытные инструкторы. А вот вингфойл удивляет даже инструкторов: первые движения с крылом можно освоить буквально за 15–30 минут! Если хотите быстрых результатов и лёгкого входа — начните с винга на обычной доске. Если мечтаете летать над водой — переходите на полноценный вингфойл. А если тянет к скорости и классике — выбирайте виндсерфинг.</p></div>
 
       <div class="legacy-article__gallery legacy-article__gallery--3">
-        <figure><img src="/assets/img/blog/legacy/vodnyy-start-nekotorye-osobennosti-11.jpg" alt="Водный старт, некоторые особенности — фотография 5.1" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/vodnyy-start-nekotorye-osobennosti-12.jpg" alt="Водный старт, некоторые особенности — фотография 5.2" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/vodnyy-start-nekotorye-osobennosti-13.jpg" alt="Водный старт, некоторые особенности — фотография 5.3" loading="lazy" decoding="async"></figure>
+        <figure><img src="/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-10.jpg" alt="Что выбрать — вингфойл или виндсерфинг? — фотография 5.1" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-11.jpg" alt="Что выбрать — вингфойл или виндсерфинг? — фотография 5.2" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-12.jpg" alt="Что выбрать — вингфойл или виндсерфинг? — фотография 5.3" loading="lazy" decoding="async"></figure>
       </div>
       </section><section class="legacy-article__block">
-        <div class="legacy-article__text"><p>По ключикам для водного старта провёл вас я, Серёга (a.k.a. PaparazzO)   22.04.2026</p></div>
+        <div class="legacy-article__text"><h2>Где катаются</h2><p>Виндсерфинг и вингфойл прекрасно уживаются на одном споте. В станциях Vetratoria — просторные акватории, качественное оборудование и команда, которая всегда рядом. Хотите попробовать что-то новое — просто подходите на ресепшн, и вам подберут подходящую доску, парус или крыло.</p><h2>Можно ли совмещать?</h2><p>Можно! Многие райдеры чередуют: утром — виндсерф, днём — вингфойл. Эти дисциплины не конкурируют, а дополняют друг друга. Виндсерфинг развивает технику, силу и баланс. Вингфойл — дарит свободу и лёгкость. Вместе они делают день на воде насыщенным и разным.</p><h2>Что выбрать именно вам</h2><p>Если вам нравится скорость и техника — виндсерфинг. Если ближе лёгкость и ощущение полёта — попробуйте вингфойл. А лучше всего — попробуйте оба. Ветер подскажет, что ваше. В Vetratoria он дует почти всегда</p><p>Станции Vetratoria работают в нескольких местах земного шара — Египет (Дахаб), Россия (Должанка) , Вьетнам (Муйне). Здесь можно пройти обучение виндсерфингу и вингфойлу, арендовать оборудование и просто насладиться атмосферой ветра и солнца.</p></div>
 
+      <div class="legacy-article__gallery legacy-article__gallery--3">
+        <figure><img src="/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-13.jpg" alt="Что выбрать — вингфойл или виндсерфинг? — фотография 6.1" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-14.jpg" alt="Что выбрать — вингфойл или виндсерфинг? — фотография 6.2" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-15.jpg" alt="Что выбрать — вингфойл или виндсерфинг? — фотография 6.3" loading="lazy" decoding="async"></figure>
+      </div>
       </section>
     </div>
     <footer class="legacy-article__footer">
       <a href="/dahab/blog/">← Блог Дахаба</a>
-      <a class="button button-primary" href="/dahab/contacts/" data-contact-modal data-contact-intent="Задать вопрос" data-contact-country="dahab" data-contact-country-label="Египет · Дахаб" data-contact-sport="Виндсёрфинг" data-contact-email="dahab@vetratoria.ru" data-contact-phone="+201029321772" data-contact-telegram="https://t.me/dahabvetratoria">Задать вопрос</a>
+      <a class="button button-primary" href="/dahab/contacts/" data-contact-modal data-contact-intent="Задать вопрос" data-contact-country="dahab" data-contact-country-label="Египет · Дахаб" data-contact-sport="Вингфойл" data-contact-email="vetratoria.wingcenter@gmail.com" data-contact-phone="+201151015941" data-contact-telegram="https://t.me/talking_wingfoil_center_dahab">Задать вопрос</a>
     </footer>
   </article></main>
 
@@ -271,8 +271,8 @@
       </div>
       <div class="footer-column">
         <h2>Спорт</h2>
-        <div class="footer-links"><a href="/dahab/wingfoil/">Вингфойл Дахаб</a>
-          <a href="/dahab/windsurf/" class="is-current" aria-current="page">Виндсёрфинг Дахаб</a>
+        <div class="footer-links"><a href="/dahab/wingfoil/" class="is-current" aria-current="page">Вингфойл Дахаб</a>
+          <a href="/dahab/windsurf/">Виндсёрфинг Дахаб</a>
           <a href="https://windsurfkids.su/" target="_blank" rel="noopener noreferrer">Детский виндсёрфинг</a></div>
       </div>
       <div class="footer-column footer-column--contact">
@@ -296,15 +296,15 @@
       <p class="eyebrow">Быстрая заявка</p>
       <h2 id="contact-modal-title" data-contact-modal-title>Написать нам</h2>
       <p>Оставьте контакты — команда уточнит детали и поможет подобрать формат.</p>
-      <span class="contact-modal__context" data-contact-modal-context>Египет · Дахаб · Виндсёрфинг</span>
+      <span class="contact-modal__context" data-contact-modal-context>Египет · Дахаб · Вингфойл</span>
     </div>
     <form class="contact-form contact-modal__form" data-contact-form data-contact-modal-form
       data-endpoint=""
-      data-mail-to="dahab@vetratoria.ru"
-      data-direction="Египет · Дахаб · Виндсёрфинг">
-      <input type="hidden" name="source" value="/blog/vodnyy-start-nekotorye-osobennosti.php">
+      data-mail-to="vetratoria.wingcenter@gmail.com"
+      data-direction="Египет · Дахаб · Вингфойл">
+      <input type="hidden" name="source" value="/blog/chto-vybrat-vingfoyl-ili-vindserfing.php">
       <input type="hidden" name="intent" value="" data-contact-intent-input>
-      <input type="hidden" name="sport" value="Виндсёрфинг" data-contact-sport-input>
+      <input type="hidden" name="sport" value="Вингфойл" data-contact-sport-input>
       <input type="hidden" name="country" value="dahab" data-contact-country-input>
       <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
       <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>
@@ -315,11 +315,11 @@
     <div class="contact-modal__direct">
       <span>Или свяжитесь напрямую</span>
       <div>
-        <a href="https://wa.me/201029321772" data-contact-direct-phone target="_blank" rel="noopener noreferrer">
+        <a href="https://wa.me/201151015941" data-contact-direct-phone target="_blank" rel="noopener noreferrer">
           <img src="/assets/icons/whatsapp.svg" alt="" width="20" height="20">
           <span data-contact-direct-phone-label>WhatsApp</span>
         </a>
-        <a href="https://t.me/dahabvetratoria" data-contact-direct-telegram target="_blank" rel="noopener noreferrer">
+        <a href="https://t.me/talking_wingfoil_center_dahab" data-contact-direct-telegram target="_blank" rel="noopener noreferrer">
           <img src="/assets/icons/telegram.svg" alt="" width="20" height="20">
           <span>Telegram</span>
         </a>

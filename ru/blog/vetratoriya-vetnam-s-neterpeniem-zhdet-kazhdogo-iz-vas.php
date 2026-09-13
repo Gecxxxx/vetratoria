@@ -15,31 +15,31 @@
       } catch {}
     })();
   </script>
-  <title>Блог: Муйне</title>
-  <meta name="description" content="Материалы про спорт, обучение, сезон и поездку в Муйне.">
+  <title>Ветратория Вьетнам с нетерпением ждет каждого из вас!</title>
+  <meta name="description" content="Ветратория Вьетнам достроилась и ждёт гостей на песчаном пляже Муйне.">
 
-  <link rel="canonical" href="https://vetratoria.ru/vietnam/blog/">
-  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://vetratoria.ru/ru/blog/vetratoriya-vetnam-s-neterpeniem-zhdet-kazhdogo-iz-vas.php">
+  <meta property="og:type" content="article">
   <meta property="og:site_name" content="Ветратория">
   <meta property="og:locale" content="ru_RU">
-  <meta property="og:url" content="https://vetratoria.ru/vietnam/blog/">
-  <meta property="og:title" content="Блог: Муйне">
-  <meta property="og:description" content="Материалы про спорт, обучение, сезон и поездку в Муйне.">
-  <meta property="og:image" content="https://vetratoria.ru/assets/img/home-uploaded/home-direction-vietnam.webp">
-  <meta property="og:image:alt" content="Блог: Муйне">
+  <meta property="og:url" content="https://vetratoria.ru/ru/blog/vetratoriya-vetnam-s-neterpeniem-zhdet-kazhdogo-iz-vas.php">
+  <meta property="og:title" content="Ветратория Вьетнам с нетерпением ждет каждого из вас!">
+  <meta property="og:description" content="Ветратория Вьетнам достроилась и ждёт гостей на песчаном пляже Муйне.">
+  <meta property="og:image" content="https://vetratoria.ru/assets/img/blog/legacy/vetratoriya-vetnam-s-neterpeniem-zhdet-kazhdogo-iz-vas-00.jpg">
+  <meta property="og:image:alt" content="Ветратория Вьетнам с нетерпением ждет каждого из вас!">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Блог: Муйне">
-  <meta name="twitter:description" content="Материалы про спорт, обучение, сезон и поездку в Муйне.">
-  <meta name="twitter:image" content="https://vetratoria.ru/assets/img/home-uploaded/home-direction-vietnam.webp">
+  <meta name="twitter:title" content="Ветратория Вьетнам с нетерпением ждет каждого из вас!">
+  <meta name="twitter:description" content="Ветратория Вьетнам достроилась и ждёт гостей на песчаном пляже Муйне.">
+  <meta name="twitter:image" content="https://vetratoria.ru/assets/img/blog/legacy/vetratoriya-vetnam-s-neterpeniem-zhdet-kazhdogo-iz-vas-00.jpg">
   <meta name="theme-color" content="#0d0c0b">
   <link rel="icon" href="/assets/img/vetratoria-logo.png">
   <link rel="preload" href="/assets/fonts/inter-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/main.css?v=20260913-unified-typography">
   <script defer src="/assets/js/app.js?v=20260913-unified-typography"></script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/vietnam/blog/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Муйне","item":"https://vetratoria.ru/vietnam/"},{"@type":"ListItem","position":3,"name":"Блог: Муйне","item":"https://vetratoria.ru/vietnam/blog/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/ru/blog/vetratoriya-vetnam-s-neterpeniem-zhdet-kazhdogo-iz-vas.php#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"}]}]}</script>
 </head>
-<body class="modern-site blog-index country-vietnam">
+<body class="modern-site article country-vietnam">
   <a class="skip-link" href="#main">К содержанию</a>
 
 <header class="site-header vtr-nav vtr-nav--country vtr-nav--vietnam" data-nav>
@@ -125,8 +125,8 @@
         </div>
 
 
-        <div class="vtr-mobile-menu__item vtr-mobile-menu__item--drop is-active" data-dropdown>
-          <button class="vtr-mobile-menu__row is-active" type="button" aria-expanded="false" data-dropdown-toggle>О школе <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
+        <div class="vtr-mobile-menu__item vtr-mobile-menu__item--drop" data-dropdown>
+          <button class="vtr-mobile-menu__row" type="button" aria-expanded="false" data-dropdown-toggle>О школе <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
           <div class="vtr-mobile-menu__submenu">
             <a class="vtr-mobile-menu__row" href="/vietnam/team/">О школе и команде</a><a class="vtr-mobile-menu__row" href="/vietnam/blog/">Блог</a><a class="vtr-mobile-menu__row" href="/media/vietnam/">Медиа</a><a class="vtr-mobile-menu__row" href="/vietnam/contacts/">Контакты</a>
           </div>
@@ -171,7 +171,7 @@
       </div>
     </div>
 
-    <div class="vtr-nav__section-item vtr-nav__section-item--drop is-active" data-dropdown>
+    <div class="vtr-nav__section-item vtr-nav__section-item--drop" data-dropdown>
       <button class="vtr-nav__section-link" type="button" aria-expanded="false" data-dropdown-toggle>О школе <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
       <div class="vtr-nav__section-dropdown">
         <a href="/vietnam/team/">О школе и команде</a><a href="/vietnam/blog/">Блог</a><a href="/media/vietnam/">Медиа</a><a href="/vietnam/contacts/">Контакты</a>
@@ -180,20 +180,44 @@
   </nav>
 </header>
   <main id="main">
-<section class="dahab-sport-hero"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Вьетнам · полезное</p><h1>Гид по спорту в Муйне</h1><p>Сезон, обучение, споты и практические ответы для тех, кто планирует поездку в Ветраторию во Вьетнаме.</p><div class="dahab-sport-hero__actions"><a class="button button-primary" href="#guides">Читать материалы</a><a class="button button-ghost" href="/vietnam/">Обзор направления</a></div><div class="hero-advantages hero-advantages--sport"><span class="hero-advantage">Три дисциплины</span><span class="hero-advantage">Сезон ноябрь — март</span><span class="hero-advantage">Цены и форматы</span><span class="hero-advantage">Советы перед стартом</span></div></div><figure class="dahab-sport-hero__media"><img src="/assets/img/vietnam-source/surf.jpg" alt="Спорт и обучение во Вьетнаме" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
-<section class="dahab-sport-section" id="guides"><div class="dahab-sport-inner">
-  <header class="section-heading">
-    <p class="eyebrow">Материалы</p>
-    <h2>Выберите свою дисциплину</h2>
-    <p>Три коротких гида помогут понять условия, порядок обучения и следующий шаг после первого занятия.</p>
-  </header><div class="dahab-sport-useful"><a href="/vietnam/blog/windsurf/"><img src="/assets/img/vietnam-source/aerial.jpg" alt="Виндсёрфинг в Муйне: ветер, волна и сезон" loading="lazy" decoding="async"><span>Виндсёрфинг</span><h3>Виндсёрфинг в Муйне: ветер, волна и сезон</h3><p>Как подготовиться к занятиям, выбрать формат и использовать сезон с ноября по март.</p><em>Открыть гид →</em></a><a href="/vietnam/blog/wingfoil/"><img src="/assets/img/vietnam-source/community.jpg" alt="Вингфойл во Вьетнаме" loading="lazy" decoding="async"><span>Вингфойл</span><h3>Вингфойл во Вьетнаме</h3><p>Путь от управления крылом до первых полётов и отдельная тренировка на фойле за катером.</p><em>Открыть гид →</em></a><a href="/vietnam/blog/kite/"><img src="/assets/img/vietnam-source/station.jpg" alt="Кайт на пляже Малибу" loading="lazy" decoding="async"><span>Кайтсёрфинг</span><h3>Кайт на пляже Малибу</h3><p>Что важно знать о споте, последовательности обучения и подготовке к первому уроку.</p><em>Открыть гид →</em></a></div></div></section>
-<section class="content-section"><div class="section-inner">
-  <header class="section-heading">
-    <p class="eyebrow">Новости станции</p>
-    <h2>Из блога Ветратории во Вьетнаме</h2>
-    <p>Истории, события и новости направления в Муйне.</p>
-  </header><div class="article-grid"><a class="article-card" href="/ru/blog/vetratoriya-vetnam-s-neterpeniem-zhdet-kazhdogo-iz-vas.php"><span class="article-card__media"><img src="/assets/img/blog/legacy/vetratoriya-vetnam-s-neterpeniem-zhdet-kazhdogo-iz-vas-00.jpg" alt="Ветратория Вьетнам с нетерпением ждет каждого из вас!" loading="lazy" decoding="async"><time datetime="2023-12-03">03.12.2023</time></span><span class="article-card__content"><small>Муйне · Виндсёрфинг</small><h3>Ветратория Вьетнам с нетерпением ждет каждого из вас!</h3><p>Ветратория Вьетнам достроилась и ждёт гостей на песчаном пляже Муйне.</p><span class="article-card__more">Читать статью →</span></span></a></div></div></section>
-<section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner dahab-sport-safety"><div class="dahab-sport-safety__copy"><p class="eyebrow">План поездки</p><h2>Сначала даты, затем спорт и формат</h2><p>Основной сезон станции длится с ноября по март. Команда уточнит фактические условия, подберёт дисциплину и поможет собрать занятия на несколько дней.</p><div class="dahab-sport-safety__list"><span>Выберите даты и продолжительность</span><span>Расскажите об опыте на воде</span><span>Уточните: урок, курс или прокат</span></div><a class="button button-primary" href="/vietnam/contacts/" data-contact-modal data-contact-intent="Обсудить поездку" data-contact-country="vietnam" data-contact-country-label="Вьетнам · Муйне" data-contact-email="vietnam@vetratoria.ru" data-contact-phone="+79884715355" data-contact-telegram="https://t.me/+79884715355">Обсудить поездку</a></div><div class="dahab-sport-safety__media"><img src="/assets/img/vietnam-source/station.jpg" alt="Станция Ветратория в Муйне" loading="lazy" decoding="async"></div></div></section></main>
+<section class="hero page-hero">
+  <div class="hero-bg">
+    <img src="/assets/img/blog/legacy/vetratoriya-vetnam-s-neterpeniem-zhdet-kazhdogo-iz-vas-00.jpg" alt="" loading="eager" fetchpriority="high" decoding="async">
+  </div>
+  <div class="hero-shade"></div>
+  <div class="hero-content">
+    <p class="eyebrow">Муйне · Виндсёрфинг</p>
+    <h1>Ветратория Вьетнам с нетерпением ждет каждого из вас!</h1>
+    <p class="hero-lead">Ветратория Вьетнам достроилась и ждёт гостей на песчаном пляже Муйне.</p>
+    <div class="hero-actions"><a class="button button-primary" href="#article-text">Читать статью</a><a class="button button-ghost" href="/vietnam/blog/">Блог Вьетнама</a></div>
+  </div>
+</section>
+  <article class="legacy-article" id="article-text">
+    <header class="legacy-article__meta">
+      <a href="/blog/">Блог</a><span aria-hidden="true">/</span><a href="/vietnam/blog/">Вьетнам</a><span aria-hidden="true">/</span><span>Виндсёрфинг</span>
+
+      <time datetime="2023-12-03">03.12.2023</time>
+    </header>
+    <div class="legacy-article__content">
+      <section class="legacy-article__block legacy-article__block--lead">
+        <div class="legacy-article__text"><p>Привет, друзья! Мы рады сообщить вам потрясающие новости! Ветратория Вьетнам наконец-то достроилась и мы с нетерпением ждем каждого из вас! Почему? Потому что мы хотим, чтобы как можно больше людей стали ветрозависимыми, и сделали свою жизнь ярче и интереснее!</p><p>Как только вы попадете на нашу станцию, вас ждет настоящий рай для любителей ветряных приключений. А что может быть лучше, чем единственный песчаный пляж и возможность сразу же начать каталку? Мелочь, скажете вы? Но поверьте, это существенно облегчит вашу каталку и выход на воду.</p><p>А еще, друзья, не могу не упомянуть о нашей Спасалке. Это делает вашу каталку безопасной и спокойной. Ведь важно, чтобы вы могли полностью насладиться ветром, не беспокоясь о своей безопасности. Все, что вам нужно - это сосредоточиться на катании и наслаждаться каждым моментом!</p><p>Друзья, приходите к нам в Ветраторию Вьетнам и станьте частью настоящего ветряного сообщества! У нас вас ждут удивительные приключения и незабываемые эмоции. Не упустите свой шанс стать ветрозависимыми и сделать свою жизнь ярче! Мы ждем вас с нетерпением!</p></div>
+
+      <div class="legacy-article__gallery legacy-article__gallery--3">
+        <figure><img src="/assets/img/blog/legacy/vetratoriya-vetnam-s-neterpeniem-zhdet-kazhdogo-iz-vas-01.jpg" alt="Ветратория Вьетнам с нетерпением ждет каждого из вас! — фотография 1.1" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/vetratoriya-vetnam-s-neterpeniem-zhdet-kazhdogo-iz-vas-02.jpg" alt="Ветратория Вьетнам с нетерпением ждет каждого из вас! — фотография 1.2" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/vetratoriya-vetnam-s-neterpeniem-zhdet-kazhdogo-iz-vas-03.jpg" alt="Ветратория Вьетнам с нетерпением ждет каждого из вас! — фотография 1.3" loading="lazy" decoding="async"></figure>
+      </div>
+      </section><section class="legacy-article__block">
+
+
+      <div class="legacy-article__gallery legacy-article__gallery--2">
+        <figure><img src="/assets/img/blog/legacy/vetratoriya-vetnam-s-neterpeniem-zhdet-kazhdogo-iz-vas-04.jpg" alt="Ветратория Вьетнам с нетерпением ждет каждого из вас! — фотография 2.1" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/vetratoriya-vetnam-s-neterpeniem-zhdet-kazhdogo-iz-vas-05.jpg" alt="Ветратория Вьетнам с нетерпением ждет каждого из вас! — фотография 2.2" loading="lazy" decoding="async"></figure>
+      </div>
+      </section>
+    </div>
+    <footer class="legacy-article__footer">
+      <a href="/vietnam/blog/">← Блог Вьетнама</a>
+      <a class="button button-primary" href="/vietnam/contacts/" data-contact-modal data-contact-intent="Задать вопрос" data-contact-country="vietnam" data-contact-country-label="Вьетнам · Муйне" data-contact-sport="Виндсёрфинг" data-contact-email="vietnam@vetratoria.ru" data-contact-phone="+79884715355" data-contact-telegram="https://t.me/+79884715355">Задать вопрос</a>
+    </footer>
+  </article></main>
 
 <footer class="site-footer site-footer--clean" data-site-footer>
   <div class="footer-inner">
@@ -211,7 +235,7 @@
       <div class="footer-column">
         <h2>Спорт</h2>
         <div class="footer-links"><a href="/vietnam/kite/">Кайтсёрфинг Муйне</a>
-          <a href="/vietnam/windsurf/">Виндсёрфинг Муйне</a>
+          <a href="/vietnam/windsurf/" class="is-current" aria-current="page">Виндсёрфинг Муйне</a>
           <a href="/vietnam/wingfoil/">Вингфойл Муйне</a></div>
       </div>
       <div class="footer-column footer-column--contact">
@@ -234,15 +258,15 @@
       <p class="eyebrow">Быстрая заявка</p>
       <h2 id="contact-modal-title" data-contact-modal-title>Написать нам</h2>
       <p>Оставьте контакты — команда уточнит детали и поможет подобрать формат.</p>
-      <span class="contact-modal__context" data-contact-modal-context>Вьетнам · Муйне</span>
+      <span class="contact-modal__context" data-contact-modal-context>Вьетнам · Муйне · Виндсёрфинг</span>
     </div>
     <form class="contact-form contact-modal__form" data-contact-form data-contact-modal-form
       data-endpoint=""
       data-mail-to="vietnam@vetratoria.ru"
-      data-direction="Вьетнам · Муйне">
-      <input type="hidden" name="source" value="/vietnam/blog/">
+      data-direction="Вьетнам · Муйне · Виндсёрфинг">
+      <input type="hidden" name="source" value="/ru/blog/vetratoriya-vetnam-s-neterpeniem-zhdet-kazhdogo-iz-vas.php">
       <input type="hidden" name="intent" value="" data-contact-intent-input>
-      <input type="hidden" name="sport" value="" data-contact-sport-input>
+      <input type="hidden" name="sport" value="Виндсёрфинг" data-contact-sport-input>
       <input type="hidden" name="country" value="vietnam" data-contact-country-input>
       <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
       <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>

@@ -266,7 +266,7 @@
       </section>
     </div>
     <footer class="legacy-article__footer">
-      <a href="/dahab/blog/">← Все статьи Дахаба</a>
+      <a href="/dahab/blog/">← Блог Дахаба</a>
       <a class="button button-primary" href="/dahab/contacts/" data-contact-modal data-contact-intent="Задать вопрос" data-contact-country="dahab" data-contact-country-label="Египет · Дахаб" data-contact-sport="Виндсёрфинг" data-contact-email="dahab@vetratoria.ru" data-contact-phone="+201029321772" data-contact-telegram="https://t.me/dahabvetratoria">Задать вопрос</a>
     </footer>
   </article></main>
