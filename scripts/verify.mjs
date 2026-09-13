@@ -9,6 +9,7 @@ const failures = [];
 const fileForRoute = (route) => {
   if (route === "/") return join(root, "index.html");
   if (route === "/404.html") return join(root, "404.html");
+  if (route.endsWith(".php")) return join(root, ...route.replace(/^\//, "").split("/"));
   return join(root, route.replace(/^\//, ""), "index.html");
 };
 
@@ -69,7 +70,7 @@ for (const page of allPages) {
 
     const [route, hash] = value.split("#");
     if (!route) continue;
-    const target = fileForRoute(route.endsWith("/") || route === "/404.html" ? route : `${route}/`);
+    const target = fileForRoute(route.endsWith("/") || route === "/404.html" || route.endsWith(".php") ? route : `${route}/`);
     assert(await exists(target), `${page.path}: internal route is missing: ${value}`);
     if (hash && await exists(target)) {
       const targetHtml = await readFile(target, "utf8");

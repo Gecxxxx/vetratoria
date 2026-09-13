@@ -15,31 +15,31 @@
       } catch {}
     })();
   </script>
-  <title>Блог: Дахаб</title>
-  <meta name="description" content="Материалы про спорт, обучение, сезон и поездку в Дахаб.">
+  <title>Влияние виндсерфинга на организм</title>
+  <meta name="description" content="Как виндсёрфинг влияет на физическую форму, координацию, выносливость и эмоциональное состояние.">
 
-  <link rel="canonical" href="https://vetratoria.ru/dahab/blog/">
-  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://vetratoria.ru/blog/vliyanie-vindserfinga-na-organizm.php">
+  <meta property="og:type" content="article">
   <meta property="og:site_name" content="Ветратория">
   <meta property="og:locale" content="ru_RU">
-  <meta property="og:url" content="https://vetratoria.ru/dahab/blog/">
-  <meta property="og:title" content="Блог: Дахаб">
-  <meta property="og:description" content="Материалы про спорт, обучение, сезон и поездку в Дахаб.">
-  <meta property="og:image" content="https://vetratoria.ru/assets/img/home-uploaded/home-direction-dahab.webp">
-  <meta property="og:image:alt" content="Блог: Дахаб">
+  <meta property="og:url" content="https://vetratoria.ru/blog/vliyanie-vindserfinga-na-organizm.php">
+  <meta property="og:title" content="Влияние виндсерфинга на организм">
+  <meta property="og:description" content="Как виндсёрфинг влияет на физическую форму, координацию, выносливость и эмоциональное состояние.">
+  <meta property="og:image" content="https://vetratoria.ru/assets/img/blog/legacy/vliyanie-vindserfinga-na-organizm-00.jpg">
+  <meta property="og:image:alt" content="Влияние виндсерфинга на организм">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Блог: Дахаб">
-  <meta name="twitter:description" content="Материалы про спорт, обучение, сезон и поездку в Дахаб.">
-  <meta name="twitter:image" content="https://vetratoria.ru/assets/img/home-uploaded/home-direction-dahab.webp">
+  <meta name="twitter:title" content="Влияние виндсерфинга на организм">
+  <meta name="twitter:description" content="Как виндсёрфинг влияет на физическую форму, координацию, выносливость и эмоциональное состояние.">
+  <meta name="twitter:image" content="https://vetratoria.ru/assets/img/blog/legacy/vliyanie-vindserfinga-na-organizm-00.jpg">
   <meta name="theme-color" content="#0d0c0b">
   <link rel="icon" href="/assets/img/vetratoria-logo.png">
   <link rel="preload" href="/assets/fonts/inter-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/main.css?v=20260913-unified-typography">
   <script defer src="/assets/js/app.js?v=20260913-unified-typography"></script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/dahab/blog/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Дахаб","item":"https://vetratoria.ru/dahab/"},{"@type":"ListItem","position":3,"name":"Блог: Дахаб","item":"https://vetratoria.ru/dahab/blog/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/blog/vliyanie-vindserfinga-na-organizm.php#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Материалы со всех стран","item":"https://vetratoria.ru/blog/"}]}]}</script>
 </head>
-<body class="modern-site blog-index country-dahab">
+<body class="modern-site article country-dahab">
   <a class="skip-link" href="#main">К содержанию</a>
 
 <header class="site-header vtr-nav vtr-nav--country vtr-nav--dahab" data-nav>
@@ -196,68 +196,47 @@
   </nav>
 </header>
   <main id="main">
-
 <section class="hero page-hero">
   <div class="hero-bg">
-    <img src="/assets/img/home-uploaded/home-direction-dahab.webp" alt="" loading="eager" fetchpriority="high" decoding="async">
+    <img src="/assets/img/blog/legacy/vliyanie-vindserfinga-na-organizm-00.jpg" alt="" loading="eager" fetchpriority="high" decoding="async">
   </div>
   <div class="hero-shade"></div>
   <div class="hero-content">
-    <p class="eyebrow">Египет · блог</p>
-    <h1>Блог: Дахаб</h1>
-    <p class="hero-lead">Материалы про спорт, обучение, сезон и поездку в Дахаб.</p>
-    <div class="hero-actions"><a class="button button-primary" href="/dahab/contacts/" data-contact-modal data-contact-intent="Задать вопрос" data-contact-country="dahab" data-contact-country-label="Египет · Дахаб" data-contact-email="dahab@vetratoria.ru" data-contact-phone="+201029321772" data-contact-telegram="https://t.me/dahabvetratoria">Задать вопрос</a></div>
+    <p class="eyebrow">Дахаб · Виндсёрфинг</p>
+    <h1>Влияние виндсерфинга на организм</h1>
+    <p class="hero-lead">Как виндсёрфинг влияет на физическую форму, координацию, выносливость и эмоциональное состояние.</p>
+    <div class="hero-actions"><a class="button button-primary" href="#article-text">Читать статью</a><a class="button button-ghost" href="/dahab/blog/">Блог Дахаба</a></div>
   </div>
 </section>
-<section class="content-section">
-  <div class="section-inner">
+  <article class="legacy-article" id="article-text">
+    <header class="legacy-article__meta">
+      <a href="/blog/">Блог</a><span aria-hidden="true">/</span><a href="/dahab/blog/">Дахаб</a><span aria-hidden="true">/</span><span>Виндсёрфинг</span>
+      <span class="legacy-article__author">Серёга (a.k.a. PaparazzO)</span>
+      <time datetime="2026-02-20">20.02.2026</time>
+    </header>
+    <div class="legacy-article__content">
+      <section class="legacy-article__block legacy-article__block--lead">
+        <div class="legacy-article__text"><p>Виндсерфинг — один из видов экстремального активного отдыха. И отличный стимулятор работы нашего организма. Занимаясь виндсерфингом, мы заряжаем себя физически и ментально. Но, раз это так полезно, то почему всё же он считается экстремальным? А раз он экстремален, то почему всё же — отдых? Попробуем быстренько разобраться.</p></div>
 
-  <header class="section-heading">
-    <p class="eyebrow">Египет · блог</p>
-    <h2>Блог: Дахаб</h2>
-    <p>Материалы про спорт, обучение, сезон и поездку в Дахаб.</p>
-  </header>
-    <div class="article-grid">
+      <div class="legacy-article__gallery legacy-article__gallery--1">
+        <figure><img src="/assets/img/blog/legacy/vliyanie-vindserfinga-na-organizm-01.jpg" alt="Влияние виндсерфинга на организм — фотография 1.1" loading="lazy" decoding="async"></figure>
+      </div>
+      </section><section class="legacy-article__block">
+        <div class="legacy-article__text"><p>Согласно ответам ИИ на простой запрос касаемый виндсерфинга и его влияния на организм мы имеем «комплексную кардио- и силовую нагрузку, задействующую почти все мышцы, особенно спины, рук, пресса и ног, когда активно улучшается координация, баланс и осанка, тренируется сердечно-сосудистая система, а также происходит мощный выброс эндорфинов, что снимает стресс и улучшает ментальное здоровье. Эндорфины — это нейромедиаторы вознаграждения в борьбе со стрессом, болью, всякой заразой и напряжением. Для их выработки, организму нужна победа. В отличие от дофамина — нейромедиатора предвкушения (ожидания счастья), побуждающего нас к борьбе, эндорфин вырабатывается пост фактум — всё, счастье наступило, оно есть, эйфория (… Вот, перед нами лежит голубой Эльдорадо, и всего только надо — опустить паруса… (с)). Но победа даётся высокой ценой. Любой экстрим — это прежде всего потрясение, связанное с выработкой других гормонов: адреналина и норадреналина. Эти два нейромедиатора напрямую связаны со стрессом. Их отличие в следующем: адреналин — краткосрочный гормон страха и быстроты реакции. Норадреналин — гормон ярости и агрессии, активизирующий мозг и ЦНС. В плане сердечно-сосудистой деятельности они, порой, друг друга перебивают (адреналин повышает частоту сердечных сокращений, а норадреналин увеличивает её силу, но в то же время может  снизить частоту из-за рефлекторной брадикардии. Также, норадреналин является в каком-то роде двойным агентом, выступая также «инвестором» гениальности и вдохновения. Но в любом случае, эти два брата идут рука об руку в моментах, связанных с эктремальными ситуациями. Вспомните ваше возбуждение перед каталкой, учащённое сердцебиение и замирание — на пике нагрузки, в момент отрыва от волны, ускорении и глиссировании. На короткий срок адреналин готовит нас к «особым» ситуациям на доске с парусом. Норадреналин сопровождает в действиях (катается как Бог!). Как только стресс отступает, настаёт расслабление и эндорфиновое вознаграждение за труды — та-дам, справился/достиг/восхитился/запомнил — ай молодец, возьми с полки пирожок, сядь, покушай, отдохни!..  Конечно, этот процесс работает чуточку сложнее, я даю лишь «урезанную» версию, и самих гормонов-нейромедиаторов гораздо больше: кортизол — стероид, помощник в адаптации к стрессам, возбудитель; дофамин, уже упомянутый ранее — мотивация, вознаграждение, концентрация, обучение; серотонин — гормон хорошего настроения, уверенности; окситоцин — доверие и чувство безопасности. Но именно эндорфин делает наш экстремально-активный отдых отдыхом в самом прямом и лучшем значении этого слова.</p></div>
 
-        <a class="article-card" href="/blog/vodnyy-start-nekotorye-osobennosti.php">
-          <img src="/assets/img/blog/legacy/vodnyy-start-nekotorye-osobennosti-00.jpg" alt="Водный старт, некоторые особенности" loading="lazy" decoding="async">
-          <small>Дахаб · Виндсёрфинг · 22.04.2026</small>
-          <h3>Водный старт, некоторые особенности</h3>
-          <p>Водный старт: ключевые моменты техники, которые помогают увереннее поднимать парус и выходить на доску.</p>
-        </a>
-        <a class="article-card" href="/blog/gid-po-vetratorii-sviss-vindserfing-dahab.php">
-          <img src="/assets/img/blog/legacy/gid-po-vetratorii-sviss-vindserfing-dahab-00.jpg" alt="Гид по Ветратории Свисс виндсерфинг (Дахаб)" loading="lazy" decoding="async">
-          <small>Дахаб · Виндсёрфинг · 31.03.2026</small>
-          <h3>Гид по Ветратории Свисс виндсерфинг (Дахаб)</h3>
-          <p>Обзор станции Ветратория Свисс Инн: сервис, пространство, команда и атмосфера на берегу.</p>
-        </a>
-        <a class="article-card" href="/blog/vliyanie-vindserfinga-na-organizm.php">
-          <img src="/assets/img/blog/legacy/vliyanie-vindserfinga-na-organizm-00.jpg" alt="Влияние виндсерфинга на организм" loading="lazy" decoding="async">
-          <small>Дахаб · Виндсёрфинг · 20.02.2026</small>
-          <h3>Влияние виндсерфинга на организм</h3>
-          <p>Как виндсёрфинг влияет на физическую форму, координацию, выносливость и эмоциональное состояние.</p>
-        </a>
-        <a class="article-card" href="/dahab/blog/windsurf/">
-          <img src="/assets/img/home-uploaded/home-slider-1.webp" alt="Как начать заниматься виндсёрфинг в Дахабе" loading="lazy" decoding="async">
-          <small>Дахаб · Виндсёрфинг</small>
-          <h3>Как начать заниматься виндсёрфинг в Дахабе</h3>
-          <p>Что выбрать на первом уроке, как проходит обучение и почему лагуна помогает быстрее поймать баланс.</p>
-        </a>
-        <a class="article-card" href="/dahab/blog/wingfoil/">
-          <img src="/assets/img/home-uploaded/home-slider-6.webp" alt="Вингфойл в Дахабе: от крыла до первого полета" loading="lazy" decoding="async">
-          <small>Дахаб · Вингфойл</small>
-          <h3>Вингфойл в Дахабе: от крыла до первого полета</h3>
-          <p>Форматы Винг + SUP, Винг + фойл, фойл за лодкой и логика перехода от контроля крыла к полету.</p>
-        </a>
-        <a class="article-card" href="/dahab/blog/windsurf-kids/">
-          <img src="/assets/img/home-uploaded/home-slider-4.webp" alt="Детский виндсёрфинг: как ребенку выйти на воду спокойно" loading="lazy" decoding="async">
-          <small>Дахаб · Детский виндсёрфинг</small>
-          <h3>Детский виндсёрфинг: как ребенку выйти на воду спокойно</h3>
-          <p>Легкие паруса, короткие уроки, инструктор рядом и безопасный темп без давления.</p>
-        </a>
+      <div class="legacy-article__gallery legacy-article__gallery--3">
+        <figure><img src="/assets/img/blog/legacy/vliyanie-vindserfinga-na-organizm-02.jpg" alt="Влияние виндсерфинга на организм — фотография 2.1" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/vliyanie-vindserfinga-na-organizm-03.jpg" alt="Влияние виндсерфинга на организм — фотография 2.2" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/vliyanie-vindserfinga-na-organizm-04.jpg" alt="Влияние виндсерфинга на организм — фотография 2.3" loading="lazy" decoding="async"></figure>
+      </div>
+      </section><section class="legacy-article__block">
+        <div class="legacy-article__text"><p>Серёга (a.k.a. PaparazzO)   20.02.2026</p></div>
+
+      </section>
     </div>
-  </div>
-</section></main>
+    <footer class="legacy-article__footer">
+      <a href="/dahab/blog/">← Все статьи Дахаба</a>
+      <a class="button button-primary" href="/dahab/contacts/" data-contact-modal data-contact-intent="Задать вопрос" data-contact-country="dahab" data-contact-country-label="Египет · Дахаб" data-contact-sport="Виндсёрфинг" data-contact-email="dahab@vetratoria.ru" data-contact-phone="+201029321772" data-contact-telegram="https://t.me/dahabvetratoria">Задать вопрос</a>
+    </footer>
+  </article></main>
 
 <footer class="site-footer site-footer--clean" data-site-footer>
   <div class="footer-inner">
@@ -275,7 +254,7 @@
       <div class="footer-column">
         <h2>Спорт</h2>
         <div class="footer-links"><a href="/dahab/wingfoil/">Вингфойл Дахаб</a>
-          <a href="/dahab/windsurf/">Виндсёрфинг Дахаб</a>
+          <a href="/dahab/windsurf/" class="is-current" aria-current="page">Виндсёрфинг Дахаб</a>
           <a href="https://windsurfkids.su/" target="_blank" rel="noopener noreferrer">Детский виндсёрфинг</a></div>
       </div>
       <div class="footer-column footer-column--contact">
@@ -299,15 +278,15 @@
       <p class="eyebrow">Быстрая заявка</p>
       <h2 id="contact-modal-title" data-contact-modal-title>Написать нам</h2>
       <p>Оставьте контакты — команда уточнит детали и поможет подобрать формат.</p>
-      <span class="contact-modal__context" data-contact-modal-context>Египет · Дахаб</span>
+      <span class="contact-modal__context" data-contact-modal-context>Египет · Дахаб · Виндсёрфинг</span>
     </div>
     <form class="contact-form contact-modal__form" data-contact-form data-contact-modal-form
       data-endpoint=""
       data-mail-to="dahab@vetratoria.ru"
-      data-direction="Египет · Дахаб">
-      <input type="hidden" name="source" value="/dahab/blog/">
+      data-direction="Египет · Дахаб · Виндсёрфинг">
+      <input type="hidden" name="source" value="/blog/vliyanie-vindserfinga-na-organizm.php">
       <input type="hidden" name="intent" value="" data-contact-intent-input>
-      <input type="hidden" name="sport" value="" data-contact-sport-input>
+      <input type="hidden" name="sport" value="Виндсёрфинг" data-contact-sport-input>
       <input type="hidden" name="country" value="dahab" data-contact-country-input>
       <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
       <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>

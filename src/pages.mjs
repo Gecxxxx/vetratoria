@@ -1,4 +1,5 @@
 import { mediaAlbums } from "./media.mjs";
+import { legacyArticles } from "./legacy-articles.mjs";
 
 const img = (name) => `/assets/img/home-uploaded/${name}`;
 const dahabImg = (name) => `/assets/img/dahab/${name}`;
@@ -255,6 +256,7 @@ export const site = {
 };
 
 export const articles = [
+  ...legacyArticles,
   {
     href: "/dahab/blog/windsurf/",
     country: "dahab",

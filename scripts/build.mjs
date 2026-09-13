@@ -21,6 +21,7 @@ const countryList = site.countries;
 const pathToFile = (path) => {
   if (path === "/") return join(root, "index.html");
   if (path === "/404.html") return join(root, "404.html");
+  if (path.endsWith(".php")) return join(root, ...path.replace(/^\//, "").split("/"));
   return join(root, ...path.replace(/^\/|\/$/g, "").split("/"), "index.html");
 };
 
@@ -3103,6 +3104,9 @@ const blogFilterPanel = () => `
         ${blogFilterButton("topic", "wsk", "Детский лагерь")}
         ${blogFilterButton("topic", "kite", "Кайт")}
         ${blogFilterButton("topic", "safety", "Безопасность")}
+        ${blogFilterButton("topic", "station", "Жизнь станции")}
+        ${blogFilterButton("topic", "health", "Здоровье")}
+        ${blogFilterButton("topic", "equipment", "Оборудование")}
         ${blogFilterButton("topic", "trip", "Поездка")}
       </div>
       <label class="blog-filter-search">
@@ -3201,7 +3205,7 @@ ${hero(page, contactCta(page, "Задать вопрос"))}
       ${pageArticles.map((article) => `
         <a class="article-card" href="${article.href}"${hasFilters ? ` data-blog-filter-card data-blog-country="${article.country}" data-blog-topics="${(article.topics || [article.sport]).join(" ")}" data-blog-search="${escapeHtml(`${countriesByKey[article.country].title} ${site.sports[article.sport].nav} ${article.title} ${article.lead}`)}"` : ""}>
           ${cardImage(article.image, article.title)}
-          <small>${countriesByKey[article.country].title} · ${site.sports[article.sport].nav}</small>
+          <small>${countriesByKey[article.country].title} · ${site.sports[article.sport].nav}${article.date ? ` · ${escapeHtml(article.date)}` : ""}</small>
           <h3>${article.title}</h3>
           <p>${article.lead}</p>
         </a>`).join("")}${hasFilters ? `
@@ -3212,6 +3216,7 @@ ${hero(page, contactCta(page, "Задать вопрос"))}
 };
 
 const articlePage = (page) => {
+  if (page.article?.legacy) return legacyArticlePage(page);
   if (page.country === "vietnam") return vietnamArticlePage(page);
   if (page.country === "russia") return russiaArticlePage(page);
   const sport = site.sports[page.sport];
@@ -3233,6 +3238,39 @@ const articlePage = (page) => {
         ${sport.bullets.map((item) => `<span>${item}</span>`).join("")}
       </div>
     </div>
+  </article>`;
+};
+
+const legacyArticleDate = (value) => {
+  const [day, month, year] = String(value || "").split(".");
+  return year && month && day ? `${year}-${month}-${day}` : "";
+};
+
+const legacyArticleGallery = (page, images, blockIndex) => images.length ? `
+      <div class="legacy-article__gallery legacy-article__gallery--${Math.min(images.length, 3)}">
+        ${images.map((src, imageIndex) => `<figure><img src="${src}" alt="${escapeHtml(`${page.title} — фотография ${blockIndex + 1}.${imageIndex + 1}`)}" loading="lazy" decoding="async"></figure>`).join("")}
+      </div>` : "";
+
+const legacyArticlePage = (page) => {
+  const article = page.article;
+  const isoDate = legacyArticleDate(article.date);
+  return `${hero(page, `<a class="button button-primary" href="#article-text">Читать статью</a><a class="button button-ghost" href="/dahab/blog/">Блог Дахаба</a>`)}
+  <article class="legacy-article" id="article-text">
+    <header class="legacy-article__meta">
+      <a href="/blog/">Блог</a><span aria-hidden="true">/</span><a href="/dahab/blog/">Дахаб</a><span aria-hidden="true">/</span><span>Виндсёрфинг</span>
+      ${article.author ? `<span class="legacy-article__author">${escapeHtml(article.author)}</span>` : ""}
+      ${article.date ? `<time datetime="${isoDate}">${escapeHtml(article.date)}</time>` : ""}
+    </header>
+    <div class="legacy-article__content">
+      ${article.blocks.map((block, index) => `<section class="legacy-article__block${index === 0 ? " legacy-article__block--lead" : ""}">
+        ${block.text ? `<div class="legacy-article__text">${block.text.startsWith("<") ? block.text : `<p>${escapeHtml(block.text)}</p>`}</div>` : ""}
+        ${legacyArticleGallery(page, block.images, index)}
+      </section>`).join("")}
+    </div>
+    <footer class="legacy-article__footer">
+      <a href="/dahab/blog/">← Все статьи Дахаба</a>
+      ${contactCta(page, "Задать вопрос", "button button-primary", page.sport)}
+    </footer>
   </article>`;
 };
 
