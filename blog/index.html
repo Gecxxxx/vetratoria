@@ -35,8 +35,8 @@
   <link rel="icon" href="/assets/img/vetratoria-logo.png">
   <link rel="preload" href="/assets/fonts/inter-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/main.css?v=20260913-unified-typography">
-  <script defer src="/assets/js/app.js?v=20260913-unified-typography"></script>
+  <link rel="stylesheet" href="/assets/css/main.css?v=20260913-blog-filter-r1">
+  <script defer src="/assets/js/app.js?v=20260913-blog-filter-r1"></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/blog/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Материалы со всех стран","item":"https://vetratoria.ru/blog/"}]}]}</script>
 </head>
 <body class="modern-site blog-index">
@@ -194,37 +194,26 @@
 
 
   <header class="section-heading">
-    <p class="eyebrow">Фильтры</p>
-    <h2>Выберите тему</h2>
-    <p>Нажмите нужный фильтр — карточки ниже перестроятся по стране, спорту или теме. Поиск работает по заголовку и описанию.</p>
+    <p class="eyebrow">Фильтр</p>
+    <h2>Страны и спорт</h2>
+    <p>Выберите страну, затем нужный вид спорта.</p>
   </header>
     <div class="blog-filter-panel" data-blog-filter-panel>
       <div class="blog-filter-group" role="group" aria-label="Фильтр по стране">
-        <button class="blog-filter-button" type="button" data-blog-filter-type="country" data-blog-filter-value="all" aria-pressed="true">Все страны</button>
-        <button class="blog-filter-button" type="button" data-blog-filter-type="country" data-blog-filter-value="dahab" aria-pressed="false">Египет</button>
-        <button class="blog-filter-button" type="button" data-blog-filter-type="country" data-blog-filter-value="vietnam" aria-pressed="false">Вьетнам</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="country" data-blog-filter-value="dahab" aria-pressed="true">Египет</button>
         <button class="blog-filter-button" type="button" data-blog-filter-type="country" data-blog-filter-value="russia" aria-pressed="false">Россия</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="country" data-blog-filter-value="vietnam" aria-pressed="false">Вьетнам</button>
       </div>
-      <div class="blog-filter-group" role="group" aria-label="Фильтр по теме">
-        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="all" aria-pressed="true">Все темы</button>
-        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="wingfoil" aria-pressed="false">Вингфойл</button>
-        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="windsurf" aria-pressed="false">Виндсёрфинг</button>
-        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="safety" aria-pressed="false">Безопасность</button>
-        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="station" aria-pressed="false">Жизнь станции</button>
-        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="health" aria-pressed="false">Здоровье</button>
-        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="equipment" aria-pressed="false">Оборудование</button>
-        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="trip" aria-pressed="false">Поездка</button>
-        <button class="blog-filter-button" type="button" data-blog-filter-type="topic" data-blog-filter-value="leisure" aria-pressed="false">Отдых</button>
+      <div class="blog-filter-group" role="group" aria-label="Фильтр по спорту">
+        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="windsurf" data-blog-sport-countries="dahab russia vietnam" aria-pressed="true">Виндсёрфинг</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="kite" data-blog-sport-countries="russia vietnam" aria-pressed="false" hidden>Кайтсёрфинг</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="surf" data-blog-sport-countries="vietnam" aria-pressed="false" hidden>Сёрфинг</button>
       </div>
-      <label class="blog-filter-search">
-        <span>Поиск по блогу</span>
-        <input type="search" data-blog-filter-search placeholder="Поиск по блогу" autocomplete="off">
-      </label>
     </div>
     <p class="blog-filter-status" data-blog-filter-status aria-live="polite"></p>
     <div class="article-grid" data-blog-filter-list>
 
-        <a class="article-card" href="/blog/vodnyy-start-nekotorye-osobennosti.php" data-blog-filter-card data-blog-country="dahab" data-blog-topics="windsurf safety" data-blog-search="Дахаб Виндсёрфинг Водный старт, некоторые особенности Водный старт: ключевые моменты техники, которые помогают увереннее поднимать парус и выходить на доску.">
+        <a class="article-card" href="/blog/vodnyy-start-nekotorye-osobennosti.php" data-blog-filter-card data-blog-country="dahab" data-blog-sport="windsurf">
           <span class="article-card__media">
             <img src="/assets/img/blog/legacy/vodnyy-start-nekotorye-osobennosti-00.jpg" alt="Водный старт, некоторые особенности" loading="lazy" decoding="async">
             <time datetime="2026-04-22">22.04.2026</time>
@@ -236,7 +225,7 @@
             <span class="article-card__more">Читать статью →</span>
           </span>
         </a>
-        <a class="article-card" href="/blog/gid-po-vetratorii-sviss-vindserfing-dahab.php" data-blog-filter-card data-blog-country="dahab" data-blog-topics="windsurf station" data-blog-search="Дахаб Виндсёрфинг Гид по Ветратории Свисс виндсерфинг (Дахаб) Обзор станции Ветратория Свисс Инн: сервис, пространство, команда и атмосфера на берегу.">
+        <a class="article-card" href="/blog/gid-po-vetratorii-sviss-vindserfing-dahab.php" data-blog-filter-card data-blog-country="dahab" data-blog-sport="windsurf">
           <span class="article-card__media">
             <img src="/assets/img/blog/legacy/gid-po-vetratorii-sviss-vindserfing-dahab-00.jpg" alt="Гид по Ветратории Свисс виндсерфинг (Дахаб)" loading="lazy" decoding="async">
             <time datetime="2026-03-31">31.03.2026</time>
@@ -248,7 +237,7 @@
             <span class="article-card__more">Читать статью →</span>
           </span>
         </a>
-        <a class="article-card" href="/blog/vliyanie-vindserfinga-na-organizm.php" data-blog-filter-card data-blog-country="dahab" data-blog-topics="windsurf health" data-blog-search="Дахаб Виндсёрфинг Влияние виндсерфинга на организм Как виндсёрфинг влияет на физическую форму, координацию, выносливость и эмоциональное состояние.">
+        <a class="article-card" href="/blog/vliyanie-vindserfinga-na-organizm.php" data-blog-filter-card data-blog-country="dahab" data-blog-sport="windsurf">
           <span class="article-card__media">
             <img src="/assets/img/blog/legacy/vliyanie-vindserfinga-na-organizm-00.jpg" alt="Влияние виндсерфинга на организм" loading="lazy" decoding="async">
             <time datetime="2026-02-20">20.02.2026</time>
@@ -260,7 +249,7 @@
             <span class="article-card__more">Читать статью →</span>
           </span>
         </a>
-        <a class="article-card" href="/blog/chto-vybrat-vingfoyl-ili-vindserfing.php" data-blog-filter-card data-blog-country="dahab" data-blog-topics="wingfoil windsurf" data-blog-search="Дахаб Вингфойл Что выбрать — вингфойл или виндсерфинг? Чем отличаются виндсёрфинг и вингфойл, что проще освоить и какой спорт выбрать для первых занятий.">
+        <a class="article-card" href="/blog/chto-vybrat-vingfoyl-ili-vindserfing.php" data-blog-filter-card data-blog-country="dahab" data-blog-sport="windsurf">
           <span class="article-card__media">
             <img src="/assets/img/blog/legacy/chto-vybrat-vingfoyl-ili-vindserfing-00.jpg" alt="Что выбрать — вингфойл или виндсерфинг?" loading="lazy" decoding="async">
             <time datetime="2025-11-06">06.11.2025</time>
@@ -272,7 +261,7 @@
             <span class="article-card__more">Читать статью →</span>
           </span>
         </a>
-        <a class="article-card" href="/blog/chem-zanyatsya-v-dahabe-kogda-net-vetra.php" data-blog-filter-card data-blog-country="dahab" data-blog-topics="trip leisure" data-blog-search="Дахаб Виндсёрфинг Чем заняться в Дахабе, когда нет ветра Что делать в Дахабе, когда нет ветра: дайвинг, фридайвинг, йога, пустыня, квадроциклы, сальса и атмосфера города.">
+        <a class="article-card" href="/blog/chem-zanyatsya-v-dahabe-kogda-net-vetra.php" data-blog-filter-card data-blog-country="dahab" data-blog-sport="windsurf">
           <span class="article-card__media">
             <img src="/assets/img/blog/legacy/chem-zanyatsya-v-dahabe-kogda-net-vetra-00.webp" alt="Чем заняться в Дахабе, когда нет ветра" loading="lazy" decoding="async">
             <time datetime="2025-11-12">12.11.2025</time>
@@ -284,7 +273,7 @@
             <span class="article-card__more">Читать статью →</span>
           </span>
         </a>
-        <a class="article-card" href="/ru/blog/vetratoriya-vetnam-s-neterpeniem-zhdet-kazhdogo-iz-vas.php" data-blog-filter-card data-blog-country="vietnam" data-blog-topics="station trip" data-blog-search="Муйне Виндсёрфинг Ветратория Вьетнам с нетерпением ждет каждого из вас! Ветратория Вьетнам достроилась и ждёт гостей на песчаном пляже Муйне.">
+        <a class="article-card" href="/ru/blog/vetratoriya-vetnam-s-neterpeniem-zhdet-kazhdogo-iz-vas.php" data-blog-filter-card data-blog-country="vietnam" data-blog-sport="windsurf">
           <span class="article-card__media">
             <img src="/assets/img/blog/legacy/vetratoriya-vetnam-s-neterpeniem-zhdet-kazhdogo-iz-vas-00.jpg" alt="Ветратория Вьетнам с нетерпением ждет каждого из вас!" loading="lazy" decoding="async">
             <time datetime="2023-12-03">03.12.2023</time>
@@ -296,7 +285,7 @@
             <span class="article-card__more">Читать статью →</span>
           </span>
         </a>
-        <a class="article-card" href="/ru/blog/s-obnovkami.php" data-blog-filter-card data-blog-country="vietnam" data-blog-topics="equipment station" data-blog-search="Муйне Виндсёрфинг С обновками! Новое оборудование уже на станции: POCKET ROCKET для фойла и LONGSUP для серфинга с веслом.">
+        <a class="article-card" href="/ru/blog/s-obnovkami.php" data-blog-filter-card data-blog-country="vietnam" data-blog-sport="windsurf">
           <span class="article-card__media">
             <img src="/assets/img/blog/legacy/s-obnovkami-00.webp" alt="С обновками!" loading="lazy" decoding="async">
             <time datetime="2019-11-03">03.11.2019</time>
@@ -308,7 +297,7 @@
             <span class="article-card__more">Читать статью →</span>
           </span>
         </a>
-        <a class="article-card" href="/blog/avgust-reshil-ne-sbavlyat-oboroty.php" data-blog-filter-card data-blog-country="russia" data-blog-topics="windsurf station" data-blog-search="Должанская Виндсёрфинг Август решил не сбавлять обороты Днём стало прохладнее, но ветер радует с самого утра — на воде начинается самое интересное.">
+        <a class="article-card" href="/blog/avgust-reshil-ne-sbavlyat-oboroty.php" data-blog-filter-card data-blog-country="russia" data-blog-sport="windsurf">
           <span class="article-card__media">
             <img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-00.webp" alt="Август решил не сбавлять обороты" loading="lazy" decoding="async">
             <time datetime="2026-08-16">16.08.2026</time>
@@ -320,7 +309,7 @@
             <span class="article-card__more">Читать статью →</span>
           </span>
         </a>
-        <a class="article-card" href="/blog/est-fotografii-kotorye-nichego-ne-obyasnyayut.php" data-blog-filter-card data-blog-country="russia" data-blog-topics="station" data-blog-search="Должанская Виндсёрфинг Есть фотографии, которые ничего не объясняют. Они просто напоминают, каким было это лето и почему многие возвращаются на косу снова.">
+        <a class="article-card" href="/blog/est-fotografii-kotorye-nichego-ne-obyasnyayut.php" data-blog-filter-card data-blog-country="russia" data-blog-sport="windsurf">
           <span class="article-card__media">
             <img src="/assets/img/blog/legacy/est-fotografii-kotorye-nichego-ne-obyasnyayut-00.webp" alt="Есть фотографии, которые ничего не объясняют." loading="lazy" decoding="async">
             <time datetime="2026-08-02">02.08.2026</time>

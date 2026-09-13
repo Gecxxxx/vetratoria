@@ -92,11 +92,6 @@
   font-size: var(--text-compact);
 }
 
-.article-card[hidden],
-.blog-filter-empty[hidden] {
-  display: none;
-}
-
 .blog-filter-empty {
   grid-column: 1 / -1;
   margin: 0;
@@ -193,6 +188,12 @@
   font-size: var(--text-caption);
   font-weight: var(--weight-label);
   line-height: var(--leading-caption);
+}
+
+.blog-index .article-card[hidden],
+.blog-index .blog-filter-empty[hidden],
+.blog-filter-button[hidden] {
+  display: none !important;
 }
 
 @media (max-width: 1100px) {

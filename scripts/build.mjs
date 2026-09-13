@@ -614,7 +614,7 @@ const contactDialog = (page) => {
 };
 
 const ASSET_VERSION = "20260913-unified-typography";
-const assetVersionForPage = () => ASSET_VERSION;
+const assetVersionForPage = (page) => page.path === "/blog/" ? "20260913-blog-filter-r1" : ASSET_VERSION;
 const versionedAsset = (path, version = ASSET_VERSION) => `${path}?v=${version}`;
 
 const layout = (page, main) => `<!doctype html>
@@ -3087,29 +3087,18 @@ const blogFilterButton = (type, value, label, active = false) =>
   `<button class="blog-filter-button" type="button" data-blog-filter-type="${type}" data-blog-filter-value="${value}" aria-pressed="${active ? "true" : "false"}">${label}</button>`;
 
 const blogFilterPanel = () => `
-    ${sectionHeading("Фильтры", "Выберите тему", "Нажмите нужный фильтр — карточки ниже перестроятся по стране, спорту или теме. Поиск работает по заголовку и описанию.")}
+    ${sectionHeading("Фильтр", "Страны и спорт", "Выберите страну, затем нужный вид спорта.")}
     <div class="blog-filter-panel" data-blog-filter-panel>
       <div class="blog-filter-group" role="group" aria-label="Фильтр по стране">
-        ${blogFilterButton("country", "all", "Все страны", true)}
-        ${blogFilterButton("country", "dahab", "Египет")}
-        ${blogFilterButton("country", "vietnam", "Вьетнам")}
+        ${blogFilterButton("country", "dahab", "Египет", true)}
         ${blogFilterButton("country", "russia", "Россия")}
+        ${blogFilterButton("country", "vietnam", "Вьетнам")}
       </div>
-      <div class="blog-filter-group" role="group" aria-label="Фильтр по теме">
-        ${blogFilterButton("topic", "all", "Все темы", true)}
-        ${blogFilterButton("topic", "wingfoil", "Вингфойл")}
-        ${blogFilterButton("topic", "windsurf", "Виндсёрфинг")}
-        ${blogFilterButton("topic", "safety", "Безопасность")}
-        ${blogFilterButton("topic", "station", "Жизнь станции")}
-        ${blogFilterButton("topic", "health", "Здоровье")}
-        ${blogFilterButton("topic", "equipment", "Оборудование")}
-        ${blogFilterButton("topic", "trip", "Поездка")}
-        ${blogFilterButton("topic", "leisure", "Отдых")}
+      <div class="blog-filter-group" role="group" aria-label="Фильтр по спорту">
+        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="windsurf" data-blog-sport-countries="dahab russia vietnam" aria-pressed="true">Виндсёрфинг</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="kite" data-blog-sport-countries="russia vietnam" aria-pressed="false" hidden>Кайтсёрфинг</button>
+        <button class="blog-filter-button" type="button" data-blog-filter-type="sport" data-blog-filter-value="surf" data-blog-sport-countries="vietnam" aria-pressed="false" hidden>Сёрфинг</button>
       </div>
-      <label class="blog-filter-search">
-        <span>Поиск по блогу</span>
-        <input type="search" data-blog-filter-search placeholder="Поиск по блогу" autocomplete="off">
-      </label>
     </div>
     <p class="blog-filter-status" data-blog-filter-status aria-live="polite"></p>`;
 
@@ -3192,7 +3181,7 @@ ${hero(page, contactCta(page, "Задать вопрос"))}
     ${hasFilters ? blogFilterPanel() : sectionHeading(page.eyebrow, page.title, page.description)}
     <div class="article-grid"${hasFilters ? ` data-blog-filter-list` : ""}>
       ${pageArticles.map((article) => `
-        <a class="article-card" href="${article.href}"${hasFilters ? ` data-blog-filter-card data-blog-country="${article.country}" data-blog-topics="${(article.topics || [article.sport]).join(" ")}" data-blog-search="${escapeHtml(`${countriesByKey[article.country].title} ${site.sports[article.sport].nav} ${article.title} ${article.lead}`)}"` : ""}>
+        <a class="article-card" href="${article.href}"${hasFilters ? ` data-blog-filter-card data-blog-country="${article.country}" data-blog-sport="${article.country === "dahab" ? "windsurf" : article.sport}"` : ""}>
           <span class="article-card__media">
             ${cardImage(article.image, article.title)}
             ${article.date ? `<time datetime="${legacyArticleDate(article.date)}">${escapeHtml(article.date)}</time>` : ""}

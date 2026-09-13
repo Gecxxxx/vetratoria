@@ -527,32 +527,43 @@
   document.querySelectorAll("[data-blog-filter-root]").forEach((filterRoot) => {
     const cards = [...filterRoot.querySelectorAll("[data-blog-filter-card]")];
     const buttons = [...filterRoot.querySelectorAll("[data-blog-filter-type]")];
-    const search = filterRoot.querySelector("[data-blog-filter-search]");
+    const sportButtons = buttons.filter((button) => button.dataset.blogFilterType === "sport");
     const status = filterRoot.querySelector("[data-blog-filter-status]");
     const empty = filterRoot.querySelector("[data-blog-filter-empty]");
     if (!cards.length) return;
 
     const selected = {
-      country: "all",
-      topic: "all"
+      country: "dahab",
+      sport: "windsurf"
     };
 
-    const normalize = (value) =>
-      String(value || "")
-        .toLocaleLowerCase("ru")
-        .replaceAll("ё", "е")
-        .trim();
+    const updateSportButtons = () => {
+      let selectedSportIsAvailable = false;
+
+      sportButtons.forEach((button) => {
+        const countries = (button.dataset.blogSportCountries || "").split(/\s+/).filter(Boolean);
+        const isAvailable = countries.includes(selected.country);
+        button.hidden = !isAvailable;
+        if (isAvailable && button.dataset.blogFilterValue === selected.sport) selectedSportIsAvailable = true;
+      });
+
+      if (!selectedSportIsAvailable) {
+        const firstAvailable = sportButtons.find((button) => !button.hidden);
+        selected.sport = firstAvailable?.dataset.blogFilterValue || "windsurf";
+      }
+
+      sportButtons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(!button.hidden && button.dataset.blogFilterValue === selected.sport));
+      });
+    };
 
     const applyFilters = () => {
-      const query = normalize(search?.value);
       let visible = 0;
 
       cards.forEach((card) => {
-        const topics = (card.dataset.blogTopics || "").split(/\s+/).filter(Boolean);
-        const matchesCountry = selected.country === "all" || card.dataset.blogCountry === selected.country;
-        const matchesTopic = selected.topic === "all" || topics.includes(selected.topic);
-        const matchesSearch = !query || normalize(card.dataset.blogSearch).includes(query);
-        const matches = matchesCountry && matchesTopic && matchesSearch;
+        const matchesCountry = card.dataset.blogCountry === selected.country;
+        const matchesSport = card.dataset.blogSport === selected.sport;
+        const matches = matchesCountry && matchesSport;
         card.hidden = !matches;
         if (matches) visible += 1;
       });
@@ -566,20 +577,18 @@
         const type = button.dataset.blogFilterType;
         if (!type || !(type in selected)) return;
         selected[type] = button.dataset.blogFilterValue || "all";
+        if (type === "country") {
+          selected.sport = "windsurf";
+          updateSportButtons();
+        }
         buttons
           .filter((candidate) => candidate.dataset.blogFilterType === type)
-          .forEach((candidate) => candidate.setAttribute("aria-pressed", String(candidate === button)));
+          .forEach((candidate) => candidate.setAttribute("aria-pressed", String(!candidate.hidden && candidate.dataset.blogFilterValue === selected[type])));
         applyFilters();
       });
     });
 
-    search?.addEventListener("input", applyFilters);
-    search?.addEventListener("keydown", (event) => {
-      if (event.key !== "Escape" || !search.value) return;
-      search.value = "";
-      applyFilters();
-    });
-
+    updateSportButtons();
     applyFilters();
   });
 
