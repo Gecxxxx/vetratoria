@@ -86,11 +86,11 @@
 .article-card small,
 .link-card small {
   color: var(--orange);
-  font-size: 12px;
   font-style: normal;
-  font-weight: 500;
-  line-height: 1.1;
   text-transform: uppercase;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-caption);
+  line-height: var(--leading-caption);
 }
 
 .destination-card h2,
@@ -98,18 +98,19 @@
 .link-card h3 {
   margin: 10px 0 0;
   color: var(--white);
-  font-size: 30px;
-  font-weight: 500;
-  line-height: 1;
+  font-size: var(--text-h3);
+  font-weight: var(--weight-h3);
+  line-height: var(--leading-h3);
 }
 
-.destination-card p,
-.article-card p,
-.link-card p {
+.destination-card p:not(.eyebrow),
+.article-card p:not(.eyebrow),
+.link-card p:not(.eyebrow) {
   margin: 13px 0 0;
   color: #d7d2ce;
-  font-size: 15px;
-  line-height: 1.4;
+  font-size: var(--text-compact);
+  font-weight: var(--weight-compact);
+  line-height: var(--leading-compact);
 }
 
 .destination-card em {
@@ -129,7 +130,7 @@
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.035);
   color: var(--text);
-  font-weight: 800;
+  font-weight: var(--weight-label);
 }
 
 .link-grid {
@@ -177,9 +178,10 @@
   margin-top: 18px;
   color: var(--orange);
   font-style: normal;
-  font-size: 12px;
-  font-weight: 500;
   text-transform: uppercase;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-caption);
+  line-height: var(--leading-caption);
 }
 
 .rail-list {
@@ -217,8 +219,8 @@
   gap: 8px;
   margin-top: 18px;
   color: var(--orange);
-  font-size: 13px;
-  font-weight: 500;
+  font-size: var(--text-compact);
+  font-weight: var(--weight-h3);
   text-transform: uppercase;
 }
 
@@ -232,11 +234,8 @@
   .article-grid,
   .link-grid,
   .link-grid--four,
-  .rail-list {
-      grid-template-columns: 1fr;
-    }
-
-  .check-list--inline {
+  .rail-list,
+.check-list--inline {
       grid-template-columns: 1fr;
     }
 
@@ -254,11 +253,18 @@
       padding: 22px;
     }
 
-  .destination-card h2,
-  .article-card h3,
-  .link-card h3 {
-      font-size: 26px;
-    }
+  .destination-card h2 {
+  font-size: var(--text-h3);
+  font-weight: var(--weight-h3);
+  line-height: var(--leading-h3);
+}
+
+.article-card h3,
+.link-card h3 {
+  font-size: var(--text-h3);
+  font-weight: var(--weight-h3);
+  line-height: var(--leading-h3);
+}
 }
 
 
@@ -267,5 +273,5 @@
   border-color: var(--color-light-border);
   background: var(--color-light-elevated);
   color: var(--color-light-text);
-  font-weight: 500;
+  font-weight: var(--weight-h3);
 }

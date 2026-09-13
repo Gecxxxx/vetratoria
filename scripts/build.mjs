@@ -2,6 +2,9 @@ import { mkdir, rm, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { allPages, articles, countriesByKey, site } from "../src/pages.mjs";
+import { buildCss } from "./build-css.mjs";
+
+await buildCss();
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const img = (name) => `/assets/img/home-uploaded/${name}`;
@@ -609,7 +612,7 @@ const contactDialog = (page) => {
 </dialog>`;
 };
 
-const ASSET_VERSION = "20260906-staging-reviews";
+const ASSET_VERSION = "20260913-unified-typography";
 const assetVersionForPage = () => ASSET_VERSION;
 const versionedAsset = (path, version = ASSET_VERSION) => `${path}?v=${version}`;
 

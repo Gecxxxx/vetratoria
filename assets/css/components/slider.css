@@ -65,15 +65,18 @@
 .card-slider__heading h2 {
   margin: 5px 0 0;
   color: var(--white);
-  font-size: clamp(28px, 3vw, 42px);
-  line-height: 0.98;
+  font-size: var(--text-h2);
+  font-weight: var(--weight-h2);
+  line-height: var(--leading-h2);
 }
 
 .card-slider__heading p:not(.eyebrow) {
   max-width: 650px;
   margin: 10px 0 0;
   color: var(--muted);
-  line-height: 1.5;
+  font-size: var(--text-compact);
+  font-weight: var(--weight-compact);
+  line-height: var(--leading-compact);
 }
 
 .card-slider__controls {
@@ -93,7 +96,7 @@
   cursor: pointer;
   place-items: center;
   font-size: 30px;
-  font-weight: 900;
+  font-weight: var(--weight-label);
   line-height: 1;
   transition: border-color var(--duration-normal) ease, background var(--duration-normal) ease, color var(--duration-normal) ease;
 }
@@ -169,34 +172,36 @@
 .team-card__role {
   display: block;
   color: var(--orange);
-  font-size: 11px;
-  font-weight: 900;
-  line-height: 1.25;
   text-transform: uppercase;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-caption);
+  line-height: var(--leading-caption);
 }
 
 .team-card h3 {
   margin: 8px 0 0;
   color: var(--white);
-  font-size: 27px;
-  line-height: 1;
+  font-size: var(--text-h3);
+  font-weight: var(--weight-h3);
+  line-height: var(--leading-h3);
 }
 
-.team-card p {
+.team-card p:not(.eyebrow) {
   margin: 13px 0 0;
   color: #d8d2cd;
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: var(--text-compact);
+  font-weight: var(--weight-compact);
+  line-height: var(--leading-compact);
 }
 
 .team-card__meta {
   display: block;
   margin-top: 16px;
   color: var(--muted);
-  font-size: 11px;
-  font-weight: 900;
-  line-height: 1.35;
   text-transform: uppercase;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-caption);
+  line-height: var(--leading-caption);
 }
 
 @media (max-width: 1180px) {
@@ -225,8 +230,10 @@
   }
 
   .card-slider__heading p:not(.eyebrow) {
-    font-size: 14px;
-  }
+  font-size: var(--text-compact);
+  font-weight: var(--weight-compact);
+  line-height: var(--leading-compact);
+}
 
   .card-slider__controls button {
     width: 42px;

@@ -16,7 +16,7 @@
 
 .country-vietnam .windsurf-price-table td:nth-child(3) {
   color: var(--orange);
-  font-weight: 900;
+  font-weight: var(--weight-label);
   white-space: nowrap;
 }
 

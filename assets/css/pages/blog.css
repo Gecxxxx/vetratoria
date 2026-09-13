@@ -25,11 +25,11 @@
   color: #ddd8d3;
   cursor: pointer;
   font: inherit;
-  font-size: 11px;
-  font-weight: 900;
-  line-height: 1;
   text-transform: uppercase;
   transition: border-color var(--duration-fast) ease, background var(--duration-fast) ease, color var(--duration-fast) ease;
+  font-size: var(--text-button);
+  font-weight: var(--weight-button);
+  line-height: var(--leading-button);
 }
 
 .blog-filter-button:hover,
@@ -69,7 +69,7 @@
   background: #1a1917;
   color: var(--white);
   font: inherit;
-  font-size: 14px;
+  font-size: var(--text-compact);
 }
 
 .blog-filter-search input::placeholder {
@@ -89,7 +89,7 @@
   min-height: 20px;
   margin: 0 0 14px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: var(--text-compact);
 }
 
 .article-card[hidden],

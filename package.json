@@ -5,7 +5,7 @@
   "description": "Clean static rebuild of the Vetratoria website.",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "check": "node scripts/verify.mjs",
+    "check": "node scripts/verify.mjs && node scripts/verify-typography.mjs",
     "dev": "sh -c 'python3 -m http.server 4173 --bind 0.0.0.0' --"
   },
   "engines": {

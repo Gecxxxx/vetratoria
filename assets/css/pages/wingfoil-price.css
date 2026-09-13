@@ -5,13 +5,22 @@
   margin: 0 auto;
 }
 
-.wingfoil-price-heading h2,
+.wingfoil-price-heading h2 {
+  margin: 0;
+  color: var(--white);
+  text-transform: none;
+  font-size: var(--text-h2);
+  font-weight: var(--weight-h2);
+  line-height: var(--leading-h2);
+}
+
 .wingfoil-price-contact h2 {
   margin: 0;
   color: var(--white);
-  font-weight: 500;
-  line-height: 0.98;
   text-transform: none;
+  font-size: var(--text-h2);
+  font-weight: var(--weight-h2);
+  line-height: var(--leading-h2);
 }
 
 .wingfoil-price-contact__actions {
@@ -41,15 +50,29 @@
 
 .wingfoil-price-heading h2,
 .wingfoil-price-contact h2 {
-  font-size: clamp(34px, 4.3vw, 58px);
+  font-size: var(--text-h2);
+  font-weight: var(--weight-h2);
+  line-height: var(--leading-h2);
 }
 
 .wingfoil-price-heading p:not(.eyebrow),
-.wingfoil-price-contact p:not(.eyebrow),
-.wingfoil-price-copy,
-.wingfoil-price-notes p {
+.wingfoil-price-contact p:not(.eyebrow) {
+  color: #d9d2cc;
+  font-size: var(--text-body);
+  font-weight: var(--weight-body);
+  line-height: var(--leading-body);
+}
+
+.wingfoil-price-copy {
   color: #d9d2cc;
   line-height: 1.45;
+}
+
+.wingfoil-price-notes p:not(.eyebrow) {
+  color: #d9d2cc;
+  font-size: var(--text-body);
+  font-weight: var(--weight-body);
+  line-height: var(--leading-body);
 }
 
 .wingfoil-table-wrap {
@@ -63,7 +86,7 @@
   min-width: 680px;
   border-collapse: collapse;
   color: #f2eee9;
-  font-size: 14px;
+  font-size: var(--text-compact);
 }
 
 .wingfoil-price-table th,
@@ -78,10 +101,10 @@
 .wingfoil-price-table th {
   background: #37170f;
   color: var(--white);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.25;
   text-transform: uppercase;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-caption);
+  line-height: var(--leading-caption);
 }
 
 .wingfoil-price-table tbody tr:nth-child(odd):not(.table-section) {
@@ -95,17 +118,17 @@
 .wingfoil-price-table .table-section td {
   background: var(--orange);
   color: var(--white);
-  font-weight: 500;
+  font-weight: var(--weight-h3);
   text-transform: uppercase;
 }
 
 .wingfoil-price-subtitle {
   margin: 34px 0 12px;
   color: var(--white);
-  font-size: clamp(22px, 2.2vw, 32px);
-  font-weight: 500;
-  line-height: 1.08;
   text-transform: none;
+  font-size: var(--text-h3);
+  font-weight: var(--weight-h3);
+  line-height: var(--leading-h3);
 }
 
 .wingfoil-price-copy {
@@ -119,9 +142,11 @@
   background: #171210;
 }
 
-.wingfoil-price-notes p {
+.wingfoil-price-notes p:not(.eyebrow) {
   margin: 0;
-  font-size: 13px;
+  font-size: var(--text-body);
+  font-weight: var(--weight-body);
+  line-height: var(--leading-body);
 }
 
 .wingfoil-price-notes p + p {
@@ -168,9 +193,11 @@
 
 @media (max-width: 520px) {
   .wingfoil-price-heading h2,
-  .wingfoil-price-contact h2 {
-    font-size: 32px;
-  }
+.wingfoil-price-contact h2 {
+  font-size: var(--text-h2);
+  font-weight: var(--weight-h2);
+  line-height: var(--leading-h2);
+}
 
   .wingfoil-table-wrap {
     position: relative;

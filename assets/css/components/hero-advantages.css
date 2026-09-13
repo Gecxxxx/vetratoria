@@ -20,10 +20,10 @@
   border: 1px solid rgba(255, 255, 255, 0.16);
   background: rgba(7, 7, 7, 0.5);
   color: var(--white);
-  font-size: 15px;
-  font-weight: 800;
-  line-height: 1.15;
   text-transform: none;
+  font-size: var(--text-label);
+  font-weight: var(--weight-label);
+  line-height: var(--leading-label);
 }
 
 .hero-advantage--nowrap { white-space: nowrap; }
