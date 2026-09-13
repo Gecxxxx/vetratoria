@@ -23,8 +23,8 @@
 .dahab-footer-pro__brand {
   display: block;
   color: var(--muted);
-  font-size: 14px;
-  font-weight: 800;
+  font-size: var(--text-compact);
+  font-weight: var(--weight-label);
   line-height: 1.45;
 }
 
@@ -54,15 +54,17 @@
 .dahab-footer-pro__cards h2 {
   margin: 0;
   color: var(--white);
-  font-size: 22px;
-  line-height: 1;
+  font-size: var(--text-h3);
+  font-weight: var(--weight-h3);
+  line-height: var(--leading-h3);
 }
 
-.dahab-footer-pro__cards p {
+.dahab-footer-pro__cards p:not(.eyebrow) {
   margin: 12px 0 0;
   color: var(--muted);
-  font-size: 14px;
-  line-height: 1.42;
+  font-size: var(--text-compact);
+  font-weight: var(--weight-compact);
+  line-height: var(--leading-compact);
 }
 
 .dahab-footer-pro__cards nav {
@@ -74,9 +76,10 @@
 
 .dahab-footer-pro__cards a {
   color: var(--orange);
-  font-size: 12px;
-  font-weight: 900;
   text-transform: uppercase;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-caption);
+  line-height: var(--leading-caption);
 }
 
 .dahab-footer-pro__socials a {
@@ -91,7 +94,9 @@
   border-top: 1px solid var(--line);
   color: var(--muted);
   justify-content: space-between;
-  font-size: 12px;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-caption);
+  line-height: var(--leading-caption);
 }
 
 .site-footer {
@@ -122,11 +127,12 @@
   height: auto;
 }
 
-.footer-brand p {
+.footer-brand p:not(.eyebrow) {
   margin: 18px 0 0;
   color: var(--muted);
-  font-size: 15px;
-  line-height: 1.55;
+  font-size: var(--text-compact);
+  font-weight: var(--weight-compact);
+  line-height: var(--leading-compact);
 }
 
 .footer-nav {
@@ -140,10 +146,10 @@
   padding-bottom: 13px;
   border-bottom: 1px solid var(--line);
   color: var(--white);
-  font-size: 13px;
-  font-weight: 800;
-  line-height: 1.2;
   text-transform: uppercase;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-caption);
+  line-height: var(--leading-caption);
 }
 
 .footer-links {
@@ -156,7 +162,7 @@
 .footer-links a {
   width: fit-content;
   color: var(--muted);
-  font-size: 14px;
+  font-size: var(--text-compact);
   line-height: 1.4;
   transition: color 160ms ease;
 }
@@ -168,7 +174,7 @@
 }
 
 .footer-links a.is-current {
-  font-weight: 700;
+  font-weight: var(--weight-label);
 }
 
 .footer-contact {
@@ -179,15 +185,15 @@
 
 .footer-contact span {
   color: var(--soft);
-  font-size: 10px;
-  font-weight: 700;
-  line-height: 1.15;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-caption);
+  line-height: var(--leading-caption);
 }
 
 .footer-contact strong {
   color: var(--muted);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--text-compact);
+  font-weight: var(--weight-h3);
   line-height: 1.35;
 }
 
@@ -203,8 +209,9 @@
   padding: 18px 0 22px;
   border-top: 1px solid var(--line);
   color: var(--soft);
-  font-size: 12px;
-  line-height: 1.45;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-caption);
+  line-height: var(--leading-caption);
 }
 
 .footer-bottom span:last-child {
@@ -246,8 +253,10 @@
 
 @media (max-width: 520px) {
   .dahab-footer-pro__cards h2 {
-      font-size: 20px;
-    }
+  font-size: var(--text-h3);
+  font-weight: var(--weight-h3);
+  line-height: var(--leading-h3);
+}
 
   .footer-inner {
     gap: 28px;
@@ -269,10 +278,10 @@
   }
 
   .footer-links a {
-    font-size: 15px;
+    font-size: var(--text-body);
   }
 
   .footer-contact strong {
-    font-size: 15px;
+    font-size: var(--text-body);
   }
 }

@@ -10,11 +10,11 @@
   padding: 0 18px;
   border: 1px solid transparent;
   border-radius: var(--radius-control);
-  font-size: 12px;
-  font-weight: 900;
-  line-height: 1;
   text-transform: uppercase;
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  font-size: var(--text-button);
+  font-weight: var(--weight-button);
+  line-height: var(--leading-button);
 }
 
 .button::after {

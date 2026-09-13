@@ -13,16 +13,18 @@
   display: grid;
   gap: 7px;
   color: var(--white);
-  font-size: 13px;
-  font-weight: 900;
+  font-size: var(--text-compact);
+  font-weight: var(--weight-label);
   text-transform: uppercase;
 }
 
 .contact-form label > span > small {
   margin-left: 5px;
   color: var(--soft);
-  font-size: 10px;
   text-transform: none;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-caption);
+  line-height: var(--leading-caption);
 }
 
 .contact-form input,
@@ -73,7 +75,7 @@
   min-height: 22px;
   margin: 0;
   color: var(--orange);
-  font-weight: 800;
+  font-weight: var(--weight-label);
 }
 
 @media (max-width: 900px) {

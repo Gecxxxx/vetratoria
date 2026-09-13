@@ -8,15 +8,17 @@
 .article-inner h2 {
   margin: 0;
   color: var(--white);
-  font-size: clamp(32px, 4.4vw, 54px);
-  font-weight: 900;
-  line-height: 0.96;
+  font-size: var(--text-h2);
+  font-weight: var(--weight-h2);
+  line-height: var(--leading-h2);
 }
 
-.article-inner p {
+.article-inner p:not(.eyebrow) {
   margin: 14px 0 0;
   color: var(--muted);
-  font-size: 17px;
+  font-size: var(--text-body);
+  font-weight: var(--weight-body);
+  line-height: var(--leading-body);
 }
 
 .article-inner {

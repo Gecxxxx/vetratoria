@@ -44,7 +44,9 @@ body.contact-modal-open {
   border-radius: var(--radius-control);
   background: #171412;
   color: var(--white);
-  font: 700 26px/1 Arial, sans-serif;
+  font: inherit;
+  font-size: 26px;
+  line-height: 1;
   cursor: pointer;
   transition: border-color var(--duration-fast) ease, background var(--duration-fast) ease;
 }
@@ -75,14 +77,17 @@ body.contact-modal-open {
 
 .contact-modal__head h2 {
   max-width: 280px;
-  font-size: 42px;
-  line-height: 0.96;
+  font-size: var(--text-h2);
+  font-weight: var(--weight-h2);
+  line-height: var(--leading-h2);
 }
 
 .contact-modal__head > p:not(.eyebrow) {
   max-width: 540px;
   color: var(--muted);
-  line-height: 1.45;
+  font-size: var(--text-body);
+  font-weight: var(--weight-body);
+  line-height: var(--leading-body);
 }
 
 .contact-modal__context {
@@ -91,9 +96,10 @@ body.contact-modal-open {
   border-left: 2px solid var(--orange);
   background: rgba(255, 90, 31, 0.08);
   color: var(--white);
-  font-size: 12px;
-  font-weight: 900;
   text-transform: uppercase;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-caption);
+  line-height: var(--leading-caption);
 }
 
 .contact-modal__form {
@@ -127,9 +133,10 @@ body.contact-modal-open {
 
 .contact-modal__direct > span {
   color: var(--soft);
-  font-size: 11px;
-  font-weight: 900;
   text-transform: uppercase;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-caption);
+  line-height: var(--leading-caption);
 }
 
 .contact-modal__direct > div {
@@ -148,10 +155,11 @@ body.contact-modal-open {
   border-radius: var(--radius-control);
   background: #171412;
   color: var(--white);
-  font-size: 12px;
-  font-weight: 900;
   text-transform: uppercase;
   transition: border-color var(--duration-fast) ease, background var(--duration-fast) ease;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-caption);
+  line-height: var(--leading-caption);
 }
 
 .contact-modal__direct a:hover,
@@ -189,8 +197,10 @@ body.contact-modal-open {
   }
 
   .contact-modal__head h2 {
-    font-size: 34px;
-  }
+  font-size: var(--text-h2);
+  font-weight: var(--weight-h2);
+  line-height: var(--leading-h2);
+}
 
   .contact-modal__surface {
     grid-template-columns: minmax(0, 1fr);
