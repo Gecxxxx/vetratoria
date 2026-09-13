@@ -317,5 +317,74 @@ export const legacyArticles = [
         ]
       }
     ]
+  },
+  {
+    "href": "/ru/blog/s-obnovkami.php",
+    "sourceUrl": "https://vietnam.vetratoria.ru/ru/blog/s-obnovkami.php",
+    "country": "vietnam",
+    "sport": "windsurf",
+    "topics": [
+      "equipment",
+      "station"
+    ],
+    "title": "С обновками!",
+    "lead": "Новое оборудование уже на станции: POCKET ROCKET для фойла и LONGSUP для серфинга с веслом.",
+    "image": "/assets/img/blog/legacy/s-obnovkami-00.webp",
+    "date": "03.11.2019",
+    "author": "",
+    "legacy": true,
+    "blocks": [
+      {
+        "text": "<p>Новехонькие досочки уже на станции!</p><p>Не спеша распаковываем новоприбывшее оборудование, и в первую очередь интерес вызвали необыкновенные размеры коробок, в которых оказались: доска для фойла POCKET ROCKET 180*76&nbsp;122L и LONGSUP 9.0 112L для серфинга с веслом!</p><p>POCKET ROCKET 180*76&nbsp;122L - поразил своей длиной, всего 180см. Производители WS оборудования каждый год стараются укорачивать доски для виндсерфинга. На сколько такое радикальное решение повлияет на характер фойловой доски мы расскажем отдельным постом.</p><p>LONGSUP 9.0 112L - сочетание классического олдскульного лонгборда и SUP борда, удачно показало себя при тестах на местном вейв-споте даже при условии небольшой пологой волны. Обводы и возможность вариаций на три плавника, обещают широкий диапазон использования доски в разных волновых условиях.</p><p>Остается еще приличное количество нераспакованого и некатаного оборудования... Друзья, приезжайте распаковывать и обкатывать новые доски и паруса!</p><p>Хорошие волны по прогнозу к всеобщей большой радости будут уже завтра))</p>",
+        "images": [
+          "/assets/img/blog/legacy/s-obnovkami-01.webp",
+          "/assets/img/blog/legacy/s-obnovkami-02.webp",
+          "/assets/img/blog/legacy/s-obnovkami-03.webp"
+        ]
+      }
+    ]
+  },
+  {
+    "href": "/blog/avgust-reshil-ne-sbavlyat-oboroty.php",
+    "sourceUrl": "https://russia.vetratoria.ru/blog/avgust-reshil-ne-sbavlyat-oboroty.php",
+    "country": "russia",
+    "sport": "windsurf",
+    "topics": [
+      "windsurf",
+      "station"
+    ],
+    "title": "Август решил не сбавлять обороты",
+    "lead": "Днём стало прохладнее, но ветер радует с самого утра — на воде начинается самое интересное.",
+    "image": "/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-00.webp",
+    "date": "16.08.2026",
+    "author": "",
+    "legacy": true,
+    "blocks": [
+      {
+        "text": "<p>Днём стало прохладнее, но зато ветер радует нас с самого утра. Бывает, что начинает дуть ещё ночью и к завтраку уже понятно - сегодня будет тот самый день, когда хочется успеть на воду как можно раньше. Ребята, у которых своё снаряжение, выходят ещё с утра. Остальные подтягиваются позже, и дальше начинается самое интересное!</p><p>Когда ветер усиливается, приходится доставать оборудование поменьше. Парус становится меньше, а скорости - больше. Появляется возможность выйти на глиссирование, почувствовать настоящее ускорение. Особенно здорово наблюдать за теми, кто занимается с инструктором. Ещё недавно человек только учился уверенно держать парус, а сейчас уже пробует новые размеры оборудования, выходит в более сильный ветер и начинает доверять себе на воде.</p><p>И да, в такие дни люди выкатывают всё до последней капли. Уставшие, мокрые и счастливые возвращаются на берег, отдыхают немного и снова смотрят на воду: \"Ну что, ещё один заход?)\"</p><div class=\"legacy-article__video\"><iframe src=\"https://www.youtube.com/embed/8nH-JuTsVhs\" title=\"YouTube Shorts\" loading=\"lazy\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe></div><p>А мы работаем в обычном активном режиме - станция открыта, оборудование в прокате, инструкторы на месте!</p><p>Август вполне может стать тем самым месяцем, когда получится сделать свой следующий шаг.</p><p>Приезжайте кататься, учиться, брать оборудование в прокат и ставить себе новые цели.</p><p>А ветер пусть делает остальное</p>",
+        "images": Array.from({ length: 20 }, (_, index) => `/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-${String(index + 1).padStart(2, "0")}.webp`)
+      }
+    ]
+  },
+  {
+    "href": "/blog/est-fotografii-kotorye-nichego-ne-obyasnyayut.php",
+    "sourceUrl": "https://russia.vetratoria.ru/blog/est-fotografii-kotorye-nichego-ne-obyasnyayut.php",
+    "country": "russia",
+    "sport": "windsurf",
+    "topics": [
+      "station"
+    ],
+    "title": "Есть фотографии, которые ничего не объясняют.",
+    "lead": "Они просто напоминают, каким было это лето и почему многие возвращаются на косу снова.",
+    "image": "/assets/img/blog/legacy/est-fotografii-kotorye-nichego-ne-obyasnyayut-00.webp",
+    "date": "02.08.2026",
+    "author": "",
+    "legacy": true,
+    "blocks": [
+      {
+        "text": "<p>Они просто напоминают, каким было это лето</p><p>Где-то ветер был сильнее, где-то море спокойнее.<br>Но в каждом кадре осталось то самое настроение, ради которого многие возвращаются на косу снова!</p>",
+        "images": Array.from({ length: 20 }, (_, index) => `/assets/img/blog/legacy/est-fotografii-kotorye-nichego-ne-obyasnyayut-${String(index + 1).padStart(2, "0")}.webp`)
+      }
+    ]
   }
 ];

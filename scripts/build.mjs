@@ -934,9 +934,7 @@ const dahabWingfoilPage = (page) => {
     ["Когда лучше ехать в Дахаб?", "Дахаб работает круглый год. Конкретные окна по ветру и формату лучше уточнять перед поездкой под ваши даты."]
   ];
   const useful = [
-    ["/dahab/blog/wingfoil/", "Вингфойл", "Как начать Вингфойл с нуля", wingfoilSectionImg("wing-start-coaching.webp")],
-    ["/dahab/blog/wingfoil/", "Сравнение", "Вингфойл или Виндсёрфинг: что выбрать", wingfoilSectionImg("wingfoil-ride.webp")],
-    ["/dahab/blog/wingfoil/", "Фойл за лодкой", "Почему фойл за лодкой помогает быстрее прогрессировать", wingfoilSectionImg("foil-boat-training.webp")]
+    ["/blog/chto-vybrat-vingfoyl-ili-vindserfing.php", "Сравнение", "Вингфойл или Виндсёрфинг: что выбрать", wingfoilSectionImg("wingfoil-ride.webp")]
   ];
 
   return `
@@ -1151,7 +1149,7 @@ const dahabWindsurfPage = (page) => {
     ["Где проходят занятия?", "В зависимости от ветра и уровня занятия проходят на станциях Ветратории в Дахабе, чаще Свисс Инн или Ганет Синай."]
   ];
   const useful = [
-    ["/dahab/blog/windsurf/", "Виндсёрфинг", "Как начать Виндсёрфинг с нуля", dahabRefImg("windsurf-hero.webp")],
+    ["/blog/vodnyy-start-nekotorye-osobennosti.php", "Виндсёрфинг", "Водный старт: некоторые особенности", dahabRefImg("windsurf-hero.webp")],
     ["/dahab/windsurf/price/", "Цены", "Уроки, прокат и программы виндсёрфинга", dahabRefImg("price-windsurf.webp")],
     ["/dahab/stations/", "Станции", "Где кататься на виндсёрфинге в Дахабе", dahabRefImg("bg-swiss.webp")]
   ];
@@ -3101,8 +3099,6 @@ const blogFilterPanel = () => `
         ${blogFilterButton("topic", "all", "Все темы", true)}
         ${blogFilterButton("topic", "wingfoil", "Вингфойл")}
         ${blogFilterButton("topic", "windsurf", "Виндсёрфинг")}
-        ${blogFilterButton("topic", "wsk", "Детский лагерь")}
-        ${blogFilterButton("topic", "kite", "Кайт")}
         ${blogFilterButton("topic", "safety", "Безопасность")}
         ${blogFilterButton("topic", "station", "Жизнь станции")}
         ${blogFilterButton("topic", "health", "Здоровье")}
@@ -3120,15 +3116,9 @@ const blogFilterPanel = () => `
 const vietnamBlogPage = (page) => {
   const vietnamImg = (name) => `/assets/img/vietnam-source/${name}`;
   const legacyCards = (page.articles || []).filter((article) => article.legacy);
-  const cards = [
-    ["Виндсёрфинг", "Виндсёрфинг в Муйне: ветер, волна и сезон", "Как подготовиться к занятиям, выбрать формат и использовать сезон с ноября по март.", vietnamImg("aerial.jpg"), "/vietnam/blog/windsurf/"],
-    ["Вингфойл", "Вингфойл во Вьетнаме", "Путь от управления крылом до первых полётов и отдельная тренировка на фойле за катером.", vietnamImg("community.jpg"), "/vietnam/blog/wingfoil/"],
-    ["Кайтсёрфинг", "Кайт на пляже Малибу", "Что важно знать о споте, последовательности обучения и подготовке к первому уроку.", vietnamImg("station.jpg"), "/vietnam/blog/kite/"]
-  ];
   return `
-<section class="dahab-sport-hero"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Вьетнам · полезное</p><h1>Гид по спорту в Муйне</h1><p>Сезон, обучение, споты и практические ответы для тех, кто планирует поездку в Ветраторию во Вьетнаме.</p><div class="dahab-sport-hero__actions"><a class="button button-primary" href="#guides">Читать материалы</a><a class="button button-ghost" href="/vietnam/">Обзор направления</a></div><div class="hero-advantages hero-advantages--sport"><span class="hero-advantage">Три дисциплины</span><span class="hero-advantage">Сезон ноябрь — март</span><span class="hero-advantage">Цены и форматы</span><span class="hero-advantage">Советы перед стартом</span></div></div><figure class="dahab-sport-hero__media"><img src="${vietnamImg("surf.jpg")}" alt="Спорт и обучение во Вьетнаме" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
-<section class="dahab-sport-section" id="guides"><div class="dahab-sport-inner">${sectionHeading("Материалы", "Выберите свою дисциплину", "Три коротких гида помогут понять условия, порядок обучения и следующий шаг после первого занятия.")}<div class="dahab-sport-useful">${cards.map(([label,title,text,image,href]) => `<a href="${href}"><img src="${image}" alt="${title}" loading="lazy" decoding="async"><span>${label}</span><h3>${title}</h3><p>${text}</p><em>Открыть гид →</em></a>`).join("")}</div></div></section>
-${legacyCards.length ? `<section class="content-section"><div class="section-inner">${sectionHeading("Новости станции", "Из блога Ветратории во Вьетнаме", "Истории, события и новости направления в Муйне.")}<div class="article-grid">${legacyCards.map((article) => `<a class="article-card" href="${article.href}"><span class="article-card__media">${cardImage(article.image, article.title)}${article.date ? `<time datetime="${legacyArticleDate(article.date)}">${escapeHtml(article.date)}</time>` : ""}</span><span class="article-card__content"><small>${countriesByKey[article.country].title} · ${site.sports[article.sport].nav}</small><h3>${article.title}</h3><p>${article.lead}</p><span class="article-card__more">Читать статью →</span></span></a>`).join("")}</div></div></section>` : ""}
+<section class="dahab-sport-hero"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Вьетнам · блог</p><h1>Блог Ветратории во Вьетнаме</h1><p>Реальные истории, события и новости станции в Муйне.</p><div class="dahab-sport-hero__actions"><a class="button button-primary" href="#articles">Читать статьи</a><a class="button button-ghost" href="/vietnam/">Обзор направления</a></div><div class="hero-advantages hero-advantages--sport"><span class="hero-advantage">Муйне</span><span class="hero-advantage">Жизнь станции</span><span class="hero-advantage">Оборудование</span><span class="hero-advantage">Архив Ветратории</span></div></div><figure class="dahab-sport-hero__media"><img src="${vietnamImg("surf.jpg")}" alt="Спорт и обучение во Вьетнаме" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
+${legacyCards.length ? `<section class="content-section" id="articles"><div class="section-inner">${sectionHeading("Статьи", "Из блога Ветратории во Вьетнаме", "Истории, события и новости направления в Муйне.")}<div class="article-grid">${legacyCards.map((article) => `<a class="article-card" href="${article.href}"><span class="article-card__media">${cardImage(article.image, article.title)}${article.date ? `<time datetime="${legacyArticleDate(article.date)}">${escapeHtml(article.date)}</time>` : ""}</span><span class="article-card__content"><small>${countriesByKey[article.country].title} · ${site.sports[article.sport].nav}</small><h3>${article.title}</h3><p>${article.lead}</p><span class="article-card__more">Читать статью →</span></span></a>`).join("")}</div></div></section>` : ""}
 <section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner dahab-sport-safety"><div class="dahab-sport-safety__copy"><p class="eyebrow">План поездки</p><h2>Сначала даты, затем спорт и формат</h2><p>Основной сезон станции длится с ноября по март. Команда уточнит фактические условия, подберёт дисциплину и поможет собрать занятия на несколько дней.</p><div class="dahab-sport-safety__list"><span>Выберите даты и продолжительность</span><span>Расскажите об опыте на воде</span><span>Уточните: урок, курс или прокат</span></div>${contactCta(page, "Обсудить поездку")}</div><div class="dahab-sport-safety__media"><img src="${vietnamImg("station.jpg")}" alt="Станция Ветратория в Муйне" loading="lazy" decoding="async"></div></div></section>`;
 };
 
@@ -3176,12 +3166,8 @@ ${seasonSection([countriesByKey.vietnam], { compact: true, eyebrow: "Муйне 
 };
 
 const russiaBlogPage = (page) => {
-  const cards = [
-    ["Виндсёрфинг","Виндсёрфинг на Должанской: обучение и прокат","Почему мелкая вода помогает новичкам и как перейти от первого урока к самостоятельной практике.",russiaImg("windsurf.jpg"),"/russia/blog/windsurf/"],
-    ["Вингфойл","Вингфойл на косе Долгой","Как построить путь от управления крылом до первых устойчивых полётов.",russiaImg("wingfoil.jpg"),"/russia/blog/wingfoil/"],
-    ["Кайтсёрфинг","Кайт на Должанской","Учебная акватория, порядок занятия и детали, которые стоит согласовать до первого старта.",russiaImg("kite.jpg"),"/russia/blog/kite/"]
-  ];
-  return `<section class="dahab-sport-hero"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Россия · полезное</p><h1>Гид по спорту на Должанской</h1><p>Сезон, обучение, акватория и цены для тех, кто планирует поездку на косу Долгую.</p><div class="dahab-sport-hero__actions"><a class="button button-primary" href="#guides">Читать материалы</a><a class="button button-ghost" href="/russia/">Обзор направления</a></div><div class="hero-advantages hero-advantages--sport"><span class="hero-advantage">Три дисциплины</span><span class="hero-advantage">Май — середина сентября</span><span class="hero-advantage">Две акватории</span><span class="hero-advantage">Прайс 2026</span></div></div><figure class="dahab-sport-hero__media"><img src="${russiaImg("station.jpg")}" alt="Коса Долгая" loading="eager" decoding="async" fetchpriority="high"></figure></div></section><section class="dahab-sport-section" id="guides"><div class="dahab-sport-inner">${sectionHeading("Материалы","Выберите дисциплину","Короткие гиды объясняют условия, порядок обучения и следующий шаг после первого занятия.")}<div class="dahab-sport-useful">${cards.map(([label,title,text,image,href])=>`<a href="${href}"><img src="${image}" alt="${title}" loading="lazy" decoding="async"><span>${label}</span><h3>${title}</h3><p>${text}</p><em>Открыть гид →</em></a>`).join("")}</div></div></section><section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner dahab-sport-safety"><div class="dahab-sport-safety__copy"><p class="eyebrow">План поездки</p><h2>Даты, дисциплина, уровень</h2><p>Сообщите команде эти три вещи заранее — так проще проверить расписание и подготовить подходящий комплект.</p><div class="dahab-sport-safety__list"><span>Выберите даты поездки</span><span>Расскажите об опыте</span><span>Уточните: урок, курс или прокат</span></div>${contactCta(page,"Обсудить поездку")}</div><div class="dahab-sport-safety__media"><img src="${russiaImg("training.jpg")}" alt="Станция Ветратория" loading="lazy" decoding="async"></div></div></section>`;
+  const legacyCards = (page.articles || []).filter((article) => article.legacy);
+  return `<section class="dahab-sport-hero"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Россия · блог</p><h1>Блог Ветратории на Должанской</h1><p>Реальные истории, события и новости станции на косе Долгой.</p><div class="dahab-sport-hero__actions"><a class="button button-primary" href="#articles">Читать статьи</a><a class="button button-ghost" href="/russia/">Обзор направления</a></div><div class="hero-advantages hero-advantages--sport"><span class="hero-advantage">Должанская</span><span class="hero-advantage">Жизнь станции</span><span class="hero-advantage">Виндсёрфинг</span><span class="hero-advantage">Архив Ветратории</span></div></div><figure class="dahab-sport-hero__media"><img src="${russiaImg("station.jpg")}" alt="Коса Долгая" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>${legacyCards.length ? `<section class="content-section" id="articles"><div class="section-inner">${sectionHeading("Статьи", "Из блога Ветратории в России", "Истории, события и новости направления на Должанской.")}<div class="article-grid">${legacyCards.map((article) => `<a class="article-card" href="${article.href}"><span class="article-card__media">${cardImage(article.image, article.title)}${article.date ? `<time datetime="${legacyArticleDate(article.date)}">${escapeHtml(article.date)}</time>` : ""}</span><span class="article-card__content"><small>${countriesByKey[article.country].title} · ${site.sports[article.sport].nav}</small><h3>${article.title}</h3><p>${article.lead}</p><span class="article-card__more">Читать статью →</span></span></a>`).join("")}</div></div></section>` : ""}<section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner dahab-sport-safety"><div class="dahab-sport-safety__copy"><p class="eyebrow">План поездки</p><h2>Даты, дисциплина, уровень</h2><p>Сообщите команде эти три вещи заранее — так проще проверить расписание и подготовить подходящий комплект.</p><div class="dahab-sport-safety__list"><span>Выберите даты поездки</span><span>Расскажите об опыте</span><span>Уточните: урок, курс или прокат</span></div>${contactCta(page,"Обсудить поездку")}</div><div class="dahab-sport-safety__media"><img src="${russiaImg("training.jpg")}" alt="Станция Ветратория" loading="lazy" decoding="async"></div></div></section>`;
 };
 
 const russiaArticlePage = (page) => {
@@ -3936,7 +3922,20 @@ const render = (page) => {
   }
 };
 
-const obsoletePageDirs = ["dahab/price", "vietnam/price", "russia/price"];
+const obsoletePageDirs = [
+  "dahab/price",
+  "vietnam/price",
+  "russia/price",
+  "dahab/blog/windsurf",
+  "dahab/blog/wingfoil",
+  "dahab/blog/windsurf-kids",
+  "vietnam/blog/windsurf",
+  "vietnam/blog/wingfoil",
+  "vietnam/blog/kite",
+  "russia/blog/windsurf",
+  "russia/blog/wingfoil",
+  "russia/blog/kite"
+];
 for (const dir of obsoletePageDirs) {
   await rm(join(root, dir), { recursive: true, force: true });
 }

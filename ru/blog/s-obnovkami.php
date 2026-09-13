@@ -15,29 +15,29 @@
       } catch {}
     })();
   </script>
-  <title>Кайт в Муйне</title>
-  <meta name="description" content="Почему направление подходит для кайта, как строится обучение и что учесть перед стартом.">
+  <title>С обновками!</title>
+  <meta name="description" content="Новое оборудование уже на станции: POCKET ROCKET для фойла и LONGSUP для серфинга с веслом.">
 
-  <link rel="canonical" href="https://vetratoria.ru/vietnam/blog/kite/">
+  <link rel="canonical" href="https://vetratoria.ru/ru/blog/s-obnovkami.php">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Ветратория">
   <meta property="og:locale" content="ru_RU">
-  <meta property="og:url" content="https://vetratoria.ru/vietnam/blog/kite/">
-  <meta property="og:title" content="Кайт в Муйне">
-  <meta property="og:description" content="Почему направление подходит для кайта, как строится обучение и что учесть перед стартом.">
-  <meta property="og:image" content="https://vetratoria.ru/assets/img/home-uploaded/home-slider-5.webp">
-  <meta property="og:image:alt" content="Кайт в Муйне">
+  <meta property="og:url" content="https://vetratoria.ru/ru/blog/s-obnovkami.php">
+  <meta property="og:title" content="С обновками!">
+  <meta property="og:description" content="Новое оборудование уже на станции: POCKET ROCKET для фойла и LONGSUP для серфинга с веслом.">
+  <meta property="og:image" content="https://vetratoria.ru/assets/img/blog/legacy/s-obnovkami-00.webp">
+  <meta property="og:image:alt" content="С обновками!">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Кайт в Муйне">
-  <meta name="twitter:description" content="Почему направление подходит для кайта, как строится обучение и что учесть перед стартом.">
-  <meta name="twitter:image" content="https://vetratoria.ru/assets/img/home-uploaded/home-slider-5.webp">
+  <meta name="twitter:title" content="С обновками!">
+  <meta name="twitter:description" content="Новое оборудование уже на станции: POCKET ROCKET для фойла и LONGSUP для серфинга с веслом.">
+  <meta name="twitter:image" content="https://vetratoria.ru/assets/img/blog/legacy/s-obnovkami-00.webp">
   <meta name="theme-color" content="#0d0c0b">
   <link rel="icon" href="/assets/img/vetratoria-logo.png">
   <link rel="preload" href="/assets/fonts/inter-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/main.css?v=20260913-unified-typography">
   <script defer src="/assets/js/app.js?v=20260913-unified-typography"></script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/vietnam/blog/kite/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Муйне","item":"https://vetratoria.ru/vietnam/"},{"@type":"ListItem","position":3,"name":"Блог: Муйне","item":"https://vetratoria.ru/vietnam/blog/"},{"@type":"ListItem","position":4,"name":"Кайт в Муйне","item":"https://vetratoria.ru/vietnam/blog/kite/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/ru/blog/s-obnovkami.php#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"}]}]}</script>
 </head>
 <body class="modern-site article country-vietnam">
   <a class="skip-link" href="#main">К содержанию</a>
@@ -125,8 +125,8 @@
         </div>
 
 
-        <div class="vtr-mobile-menu__item vtr-mobile-menu__item--drop is-active" data-dropdown>
-          <button class="vtr-mobile-menu__row is-active" type="button" aria-expanded="false" data-dropdown-toggle>О школе <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
+        <div class="vtr-mobile-menu__item vtr-mobile-menu__item--drop" data-dropdown>
+          <button class="vtr-mobile-menu__row" type="button" aria-expanded="false" data-dropdown-toggle>О школе <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
           <div class="vtr-mobile-menu__submenu">
             <a class="vtr-mobile-menu__row" href="/vietnam/team/">О школе и команде</a><a class="vtr-mobile-menu__row" href="/vietnam/blog/">Блог</a><a class="vtr-mobile-menu__row" href="/media/vietnam/">Медиа</a><a class="vtr-mobile-menu__row" href="/vietnam/contacts/">Контакты</a>
           </div>
@@ -171,7 +171,7 @@
       </div>
     </div>
 
-    <div class="vtr-nav__section-item vtr-nav__section-item--drop is-active" data-dropdown>
+    <div class="vtr-nav__section-item vtr-nav__section-item--drop" data-dropdown>
       <button class="vtr-nav__section-link" type="button" aria-expanded="false" data-dropdown-toggle>О школе <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
       <div class="vtr-nav__section-dropdown">
         <a href="/vietnam/team/">О школе и команде</a><a href="/vietnam/blog/">Блог</a><a href="/media/vietnam/">Медиа</a><a href="/vietnam/contacts/">Контакты</a>
@@ -180,51 +180,38 @@
   </nav>
 </header>
   <main id="main">
-<section class="dahab-sport-hero dahab-sport-hero--kite"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Вьетнам · гид по кайтсёрфингу</p><h1>Кайтсёрфинг на пляже Малибу</h1><p>Отдельный спот рядом с Муйне, последовательное обучение и достаточно пространства для базовых упражнений.</p><div class="dahab-sport-hero__actions"><a class="button button-primary" href="/vietnam/kite/price/">Смотреть цены</a><a class="button button-ghost" href="/vietnam/contacts/" data-contact-modal data-contact-intent="Задать вопрос" data-contact-country="vietnam" data-contact-country-label="Вьетнам · Муйне" data-contact-sport="Кайтсёрфинг" data-contact-email="vietnam@vetratoria.ru" data-contact-phone="+79884715355" data-contact-telegram="https://t.me/+79884715355">Задать вопрос</a></div><div class="hero-advantages hero-advantages--sport"><span class="hero-advantage">Около 6 км от станции</span><span class="hero-advantage">Разовый урок 65$</span><span class="hero-advantage">Курс 5–10 часов</span><span class="hero-advantage">Комплект включён</span></div></div><figure class="dahab-sport-hero__media"><img src="/assets/img/vietnam-source/station.jpg" alt="Кайтсёрфинг на пляже Малибу" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
+<section class="hero page-hero">
+  <div class="hero-bg">
+    <img src="/assets/img/blog/legacy/s-obnovkami-00.webp" alt="" loading="eager" fetchpriority="high" decoding="async">
+  </div>
+  <div class="hero-shade"></div>
+  <div class="hero-content">
+    <p class="eyebrow">Муйне · Виндсёрфинг</p>
+    <h1>С обновками!</h1>
+    <p class="hero-lead">Новое оборудование уже на станции: POCKET ROCKET для фойла и LONGSUP для серфинга с веслом.</p>
+    <div class="hero-actions"><a class="button button-primary" href="#article-text">Читать статью</a><a class="button button-ghost" href="/vietnam/blog/">Блог Вьетнама</a></div>
+  </div>
+</section>
+  <article class="legacy-article" id="article-text">
+    <header class="legacy-article__meta">
+      <a href="/blog/">Блог</a><span aria-hidden="true">/</span><a href="/vietnam/blog/">Вьетнам</a><span aria-hidden="true">/</span><span>Виндсёрфинг</span>
 
-  <section class="season-section season-section--compact">
-    <div class="section-inner">
-
-  <header class="section-heading">
-    <p class="eyebrow">Муйне · сезон</p>
-    <h2>Главное ветровое окно — с ноября по март</h2>
-    <p>Фактические условия меняются, поэтому перед занятием команда сверяет прогноз и выбирает подходящий формат.</p>
-  </header>
-      <div class="season-grid season-grid--single">
-
-  <article class="season-card season-card--compact" data-reveal>
-    <header class="season-card__header">
-      <div>
-        <span>Вьетнам</span>
-        <h3>Муйне</h3>
-      </div>
-      <strong>Ноябрь — март</strong>
+      <time datetime="2019-11-03">03.11.2019</time>
     </header>
+    <div class="legacy-article__content">
+      <section class="legacy-article__block legacy-article__block--lead">
+        <div class="legacy-article__text"><p>Новехонькие досочки уже на станции!</p><p>Не спеша распаковываем новоприбывшее оборудование, и в первую очередь интерес вызвали необыкновенные размеры коробок, в которых оказались: доска для фойла POCKET ROCKET 180*76&nbsp;122L и LONGSUP 9.0 112L для серфинга с веслом!</p><p>POCKET ROCKET 180*76&nbsp;122L - поразил своей длиной, всего 180см. Производители WS оборудования каждый год стараются укорачивать доски для виндсерфинга. На сколько такое радикальное решение повлияет на характер фойловой доски мы расскажем отдельным постом.</p><p>LONGSUP 9.0 112L - сочетание классического олдскульного лонгборда и SUP борда, удачно показало себя при тестах на местном вейв-споте даже при условии небольшой пологой волны. Обводы и возможность вариаций на три плавника, обещают широкий диапазон использования доски в разных волновых условиях.</p><p>Остается еще приличное количество нераспакованого и некатаного оборудования... Друзья, приезжайте распаковывать и обкатывать новые доски и паруса!</p><p>Хорошие волны по прогнозу к всеобщей большой радости будут уже завтра))</p></div>
 
-    <div class="season-months" aria-label="Сезон: Ноябрь — март">
-      <span class="is-season" data-month="jan" aria-label="ЯНВ: основной сезон">ЯНВ</span><span class="is-season" data-month="feb" aria-label="ФЕВ: основной сезон">ФЕВ</span><span class="is-season" data-month="mar" aria-label="МАР: основной сезон">МАР</span><span class="" data-month="apr" aria-label="АПР: вне основного сезона">АПР</span><span class="" data-month="may" aria-label="МАЙ: вне основного сезона">МАЙ</span><span class="" data-month="jun" aria-label="ИЮН: вне основного сезона">ИЮН</span><span class="" data-month="jul" aria-label="ИЮЛ: вне основного сезона">ИЮЛ</span><span class="" data-month="aug" aria-label="АВГ: вне основного сезона">АВГ</span><span class="" data-month="sep" aria-label="СЕН: вне основного сезона">СЕН</span><span class="" data-month="oct" aria-label="ОКТ: вне основного сезона">ОКТ</span><span class="is-season" data-month="nov" aria-label="НОЯ: основной сезон">НОЯ</span><span class="is-season" data-month="dec" aria-label="ДЕК: основной сезон">ДЕК</span>
-    </div>
-
-    <div class="season-card__wind">
-      <span class="wind-indicator" aria-hidden="true"><i></i><i></i><i></i></span>
-      <div><b>Стабильный бриз в сезон</b><p>Зимний бриз, волна и длинная береговая линия подходят для обучения, прогресса и самостоятельного катания.</p></div>
-    </div>
-    <div class="season-card__stat" aria-label="Статистика ветрового сезона">
-      <strong>5/12</strong><span>месяцев зимнего ветра</span>
-    </div>
-
-  </article>
+      <div class="legacy-article__gallery legacy-article__gallery--3">
+        <figure><img src="/assets/img/blog/legacy/s-obnovkami-01.webp" alt="С обновками! — фотография 1.1" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/s-obnovkami-02.webp" alt="С обновками! — фотография 1.2" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/s-obnovkami-03.webp" alt="С обновками! — фотография 1.3" loading="lazy" decoding="async"></figure>
       </div>
+      </section>
     </div>
-  </section>
-<section class="dahab-sport-section"><div class="dahab-sport-inner">
-  <header class="section-heading">
-    <p class="eyebrow">Маршрут</p>
-    <h2>Как строится прогресс</h2>
-    <p>Задачи идут последовательно: сначала контроль и безопасность, затем новые элементы и самостоятельная практика.</p>
-  </header><div class="dahab-sport-process vietnam-process--three"><article><img src="/assets/img/vietnam-source/station.jpg" alt="Ветер и безопасность" loading="lazy" decoding="async"><div><span>01</span><h3>Ветер и безопасность</h3><p>Разбираете ветровое окно, сигналы, устройство кайта и правила учебной зоны.</p></div></article><article><img src="/assets/img/vietnam-source/station.jpg" alt="Управление и бодидраг" loading="lazy" decoding="async"><div><span>02</span><h3>Управление и бодидраг</h3><p>Учитесь контролировать крыло, двигаться в воде и возвращаться к доске.</p></div></article><article><img src="/assets/img/vietnam-source/atmosphere.jpg" alt="Старт с доской" loading="lazy" decoding="async"><div><span>03</span><h3>Старт с доской</h3><p>Соединяете тягу кайта, положение доски и первые контролируемые проходы.</p></div></article></div></div></section>
-<section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner dahab-sport-safety"><div class="dahab-sport-safety__copy"><p class="eyebrow">Перед занятием</p><h2>Что сообщить команде</h2><p>Так инструктор заранее предложит реалистичный формат и подготовит подходящее оборудование.</p><div class="dahab-sport-safety__list"><span>Занятия проходят на Малибу</span><span>На споте есть хранение, душ и переодевание</span><span>Курс выгоднее при программе от пяти часов</span></div><a class="button button-primary" href="/vietnam/kite/price/">Открыть полный прайс</a></div><div class="dahab-sport-safety__media"><img src="/assets/img/vietnam-source/station.jpg" alt="Ветратория во Вьетнаме" loading="lazy" decoding="async"></div></div></section>
-<section class="dahab-sport-cta"><img src="/assets/img/vietnam-source/station.jpg" alt="Кайтсёрфинг на пляже Малибу" loading="lazy" decoding="async"><div class="dahab-sport-cta__inner"><p class="eyebrow">Муйне</p><h2>Соберём программу под ваши даты</h2><p>Напишите уровень и продолжительность поездки — команда поможет выбрать занятие, курс или прокат.</p><div><a class="button button-primary" href="/vietnam/contacts/" data-contact-modal data-contact-intent="Оставить заявку" data-contact-country="vietnam" data-contact-country-label="Вьетнам · Муйне" data-contact-sport="Кайтсёрфинг" data-contact-email="vietnam@vetratoria.ru" data-contact-phone="+79884715355" data-contact-telegram="https://t.me/+79884715355">Оставить заявку</a><a class="button button-ghost" href="/vietnam/blog/">Все материалы</a></div></div></section></main>
+    <footer class="legacy-article__footer">
+      <a href="/vietnam/blog/">← Блог Вьетнама</a>
+      <a class="button button-primary" href="/vietnam/contacts/" data-contact-modal data-contact-intent="Задать вопрос" data-contact-country="vietnam" data-contact-country-label="Вьетнам · Муйне" data-contact-sport="Виндсёрфинг" data-contact-email="vietnam@vetratoria.ru" data-contact-phone="+79884715355" data-contact-telegram="https://t.me/+79884715355">Задать вопрос</a>
+    </footer>
+  </article></main>
 
 <footer class="site-footer site-footer--clean" data-site-footer>
   <div class="footer-inner">
@@ -241,8 +228,8 @@
       </div>
       <div class="footer-column">
         <h2>Спорт</h2>
-        <div class="footer-links"><a href="/vietnam/kite/" class="is-current" aria-current="page">Кайтсёрфинг Муйне</a>
-          <a href="/vietnam/windsurf/">Виндсёрфинг Муйне</a>
+        <div class="footer-links"><a href="/vietnam/kite/">Кайтсёрфинг Муйне</a>
+          <a href="/vietnam/windsurf/" class="is-current" aria-current="page">Виндсёрфинг Муйне</a>
           <a href="/vietnam/wingfoil/">Вингфойл Муйне</a></div>
       </div>
       <div class="footer-column footer-column--contact">
@@ -265,15 +252,15 @@
       <p class="eyebrow">Быстрая заявка</p>
       <h2 id="contact-modal-title" data-contact-modal-title>Написать нам</h2>
       <p>Оставьте контакты — команда уточнит детали и поможет подобрать формат.</p>
-      <span class="contact-modal__context" data-contact-modal-context>Вьетнам · Муйне · Кайтсёрфинг</span>
+      <span class="contact-modal__context" data-contact-modal-context>Вьетнам · Муйне · Виндсёрфинг</span>
     </div>
     <form class="contact-form contact-modal__form" data-contact-form data-contact-modal-form
       data-endpoint=""
       data-mail-to="vietnam@vetratoria.ru"
-      data-direction="Вьетнам · Муйне · Кайтсёрфинг">
-      <input type="hidden" name="source" value="/vietnam/blog/kite/">
+      data-direction="Вьетнам · Муйне · Виндсёрфинг">
+      <input type="hidden" name="source" value="/ru/blog/s-obnovkami.php">
       <input type="hidden" name="intent" value="" data-contact-intent-input>
-      <input type="hidden" name="sport" value="Кайтсёрфинг" data-contact-sport-input>
+      <input type="hidden" name="sport" value="Виндсёрфинг" data-contact-sport-input>
       <input type="hidden" name="country" value="vietnam" data-contact-country-input>
       <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
       <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>

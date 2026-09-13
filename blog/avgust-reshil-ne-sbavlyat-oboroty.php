@@ -15,29 +15,29 @@
       } catch {}
     })();
   </script>
-  <title>Виндсёрфинг на Должанской</title>
-  <meta name="description" content="Летний формат, мелкая вода, старт с берега и удобный план для первых галсов.">
+  <title>Август решил не сбавлять обороты</title>
+  <meta name="description" content="Днём стало прохладнее, но ветер радует с самого утра — на воде начинается самое интересное.">
 
-  <link rel="canonical" href="https://vetratoria.ru/russia/blog/windsurf/">
+  <link rel="canonical" href="https://vetratoria.ru/blog/avgust-reshil-ne-sbavlyat-oboroty.php">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Ветратория">
   <meta property="og:locale" content="ru_RU">
-  <meta property="og:url" content="https://vetratoria.ru/russia/blog/windsurf/">
-  <meta property="og:title" content="Виндсёрфинг на Должанской">
-  <meta property="og:description" content="Летний формат, мелкая вода, старт с берега и удобный план для первых галсов.">
-  <meta property="og:image" content="https://vetratoria.ru/assets/img/russia-source/windsurf.jpg">
-  <meta property="og:image:alt" content="Виндсёрфинг на Должанской">
+  <meta property="og:url" content="https://vetratoria.ru/blog/avgust-reshil-ne-sbavlyat-oboroty.php">
+  <meta property="og:title" content="Август решил не сбавлять обороты">
+  <meta property="og:description" content="Днём стало прохладнее, но ветер радует с самого утра — на воде начинается самое интересное.">
+  <meta property="og:image" content="https://vetratoria.ru/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-00.webp">
+  <meta property="og:image:alt" content="Август решил не сбавлять обороты">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Виндсёрфинг на Должанской">
-  <meta name="twitter:description" content="Летний формат, мелкая вода, старт с берега и удобный план для первых галсов.">
-  <meta name="twitter:image" content="https://vetratoria.ru/assets/img/russia-source/windsurf.jpg">
+  <meta name="twitter:title" content="Август решил не сбавлять обороты">
+  <meta name="twitter:description" content="Днём стало прохладнее, но ветер радует с самого утра — на воде начинается самое интересное.">
+  <meta name="twitter:image" content="https://vetratoria.ru/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-00.webp">
   <meta name="theme-color" content="#0d0c0b">
   <link rel="icon" href="/assets/img/vetratoria-logo.png">
   <link rel="preload" href="/assets/fonts/inter-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/main.css?v=20260913-unified-typography">
   <script defer src="/assets/js/app.js?v=20260913-unified-typography"></script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/russia/blog/windsurf/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Должанская","item":"https://vetratoria.ru/russia/"},{"@type":"ListItem","position":3,"name":"Блог: Должанская","item":"https://vetratoria.ru/russia/blog/"},{"@type":"ListItem","position":4,"name":"Виндсёрфинг на Должанской","item":"https://vetratoria.ru/russia/blog/windsurf/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/blog/avgust-reshil-ne-sbavlyat-oboroty.php#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Материалы со всех стран","item":"https://vetratoria.ru/blog/"}]}]}</script>
 </head>
 <body class="modern-site article country-russia">
   <a class="skip-link" href="#main">К содержанию</a>
@@ -125,8 +125,8 @@
         </div>
 
 
-        <div class="vtr-mobile-menu__item vtr-mobile-menu__item--drop is-active" data-dropdown>
-          <button class="vtr-mobile-menu__row is-active" type="button" aria-expanded="false" data-dropdown-toggle>О школе <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
+        <div class="vtr-mobile-menu__item vtr-mobile-menu__item--drop" data-dropdown>
+          <button class="vtr-mobile-menu__row" type="button" aria-expanded="false" data-dropdown-toggle>О школе <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
           <div class="vtr-mobile-menu__submenu">
             <a class="vtr-mobile-menu__row" href="/russia/team/">О школе и станции</a><a class="vtr-mobile-menu__row" href="/russia/accommodation/">Проживание</a><a class="vtr-mobile-menu__row" href="/russia/how-to-get/">Как добраться</a><a class="vtr-mobile-menu__row" href="/russia/blog/">Блог</a><a class="vtr-mobile-menu__row" href="/media/russia/">Медиа</a><a class="vtr-mobile-menu__row" href="/russia/contacts/">Контакты</a>
           </div>
@@ -171,7 +171,7 @@
       </div>
     </div>
 
-    <div class="vtr-nav__section-item vtr-nav__section-item--drop is-active" data-dropdown>
+    <div class="vtr-nav__section-item vtr-nav__section-item--drop" data-dropdown>
       <button class="vtr-nav__section-link" type="button" aria-expanded="false" data-dropdown-toggle>О школе <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
       <div class="vtr-nav__section-dropdown">
         <a href="/russia/team/">О школе и станции</a><a href="/russia/accommodation/">Проживание</a><a href="/russia/how-to-get/">Как добраться</a><a href="/russia/blog/">Блог</a><a href="/media/russia/">Медиа</a><a href="/russia/contacts/">Контакты</a>
@@ -179,47 +179,39 @@
     </div>
   </nav>
 </header>
-  <main id="main"><section class="dahab-sport-hero dahab-sport-hero--windsurf"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Россия · гид по виндсёрфинг</p><h1>Виндсёрфинг на Должанской: от первого галса до проката</h1><p>Мелкая вода, выбор стороны косы и последовательная программа помогают начать без лишней спешки.</p><div class="dahab-sport-hero__actions"><a class="button button-primary" href="/russia/windsurf/price/">Смотреть цены</a><a class="button button-ghost" href="/russia/contacts/" data-contact-modal data-contact-intent="Задать вопрос" data-contact-country="russia" data-contact-country-label="Россия · Должанская" data-contact-sport="Виндсёрфинг" data-contact-email="russia@vetratoria.ru" data-contact-phone="+79884715355" data-contact-telegram="https://t.me/+79884715355">Задать вопрос</a></div><div class="hero-advantages hero-advantages--sport"><span class="hero-advantage">Урок 5 000 ₽</span><span class="hero-advantage">Курс от 11 000 ₽</span><span class="hero-advantage">Детские занятия</span><span class="hero-advantage">Учебный и профпрокат</span></div></div><figure class="dahab-sport-hero__media"><img src="/assets/img/russia-source/windsurf.jpg" alt="Виндсёрфинг на Должанской: от первого галса до проката" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
-  <section class="season-section season-section--compact">
-    <div class="section-inner">
+  <main id="main">
+<section class="hero page-hero">
+  <div class="hero-bg">
+    <img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-00.webp" alt="" loading="eager" fetchpriority="high" decoding="async">
+  </div>
+  <div class="hero-shade"></div>
+  <div class="hero-content">
+    <p class="eyebrow">Должанская · Виндсёрфинг</p>
+    <h1>Август решил не сбавлять обороты</h1>
+    <p class="hero-lead">Днём стало прохладнее, но ветер радует с самого утра — на воде начинается самое интересное.</p>
+    <div class="hero-actions"><a class="button button-primary" href="#article-text">Читать статью</a><a class="button button-ghost" href="/russia/blog/">Блог России</a></div>
+  </div>
+</section>
+  <article class="legacy-article" id="article-text">
+    <header class="legacy-article__meta">
+      <a href="/blog/">Блог</a><span aria-hidden="true">/</span><a href="/russia/blog/">Россия</a><span aria-hidden="true">/</span><span>Виндсёрфинг</span>
 
-  <header class="section-heading">
-    <p class="eyebrow">Должанская · сезон</p>
-    <h2>Основной сезон — с мая до середины сентября</h2>
-    <p>Фактические условия меняются, поэтому перед занятием команда сверяет прогноз и выбирает акваторию.</p>
-  </header>
-      <div class="season-grid season-grid--single">
-
-  <article class="season-card season-card--compact" data-reveal>
-    <header class="season-card__header">
-      <div>
-        <span>Россия</span>
-        <h3>Должанская</h3>
-      </div>
-      <strong>Май — середина сентября</strong>
+      <time datetime="2026-08-16">16.08.2026</time>
     </header>
+    <div class="legacy-article__content">
+      <section class="legacy-article__block legacy-article__block--lead">
+        <div class="legacy-article__text"><p>Днём стало прохладнее, но зато ветер радует нас с самого утра. Бывает, что начинает дуть ещё ночью и к завтраку уже понятно - сегодня будет тот самый день, когда хочется успеть на воду как можно раньше. Ребята, у которых своё снаряжение, выходят ещё с утра. Остальные подтягиваются позже, и дальше начинается самое интересное!</p><p>Когда ветер усиливается, приходится доставать оборудование поменьше. Парус становится меньше, а скорости - больше. Появляется возможность выйти на глиссирование, почувствовать настоящее ускорение. Особенно здорово наблюдать за теми, кто занимается с инструктором. Ещё недавно человек только учился уверенно держать парус, а сейчас уже пробует новые размеры оборудования, выходит в более сильный ветер и начинает доверять себе на воде.</p><p>И да, в такие дни люди выкатывают всё до последней капли. Уставшие, мокрые и счастливые возвращаются на берег, отдыхают немного и снова смотрят на воду: "Ну что, ещё один заход?)"</p><div class="legacy-article__video"><iframe src="https://www.youtube.com/embed/8nH-JuTsVhs" title="YouTube Shorts" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><p>А мы работаем в обычном активном режиме - станция открыта, оборудование в прокате, инструкторы на месте!</p><p>Август вполне может стать тем самым месяцем, когда получится сделать свой следующий шаг.</p><p>Приезжайте кататься, учиться, брать оборудование в прокат и ставить себе новые цели.</p><p>А ветер пусть делает остальное</p></div>
 
-    <div class="season-months" aria-label="Сезон: Май — середина сентября">
-      <span class="" data-month="jan" aria-label="ЯНВ: вне основного сезона">ЯНВ</span><span class="" data-month="feb" aria-label="ФЕВ: вне основного сезона">ФЕВ</span><span class="" data-month="mar" aria-label="МАР: вне основного сезона">МАР</span><span class="" data-month="apr" aria-label="АПР: вне основного сезона">АПР</span><span class="is-season" data-month="may" aria-label="МАЙ: основной сезон">МАЙ</span><span class="is-season" data-month="jun" aria-label="ИЮН: основной сезон">ИЮН</span><span class="is-season" data-month="jul" aria-label="ИЮЛ: основной сезон">ИЮЛ</span><span class="is-season" data-month="aug" aria-label="АВГ: основной сезон">АВГ</span><span class="is-season" data-month="sep" aria-label="СЕН: основной сезон">СЕН</span><span class="" data-month="oct" aria-label="ОКТ: вне основного сезона">ОКТ</span><span class="" data-month="nov" aria-label="НОЯ: вне основного сезона">НОЯ</span><span class="" data-month="dec" aria-label="ДЕК: вне основного сезона">ДЕК</span>
-    </div>
-
-    <div class="season-card__wind">
-      <span class="wind-indicator" aria-hidden="true"><i></i><i></i><i></i></span>
-      <div><b>Ветер по фактическим условиям</b><p>Мелкая вода и старт с берега помогают учиться; силу и направление ветра подтверждаем перед выходом.</p></div>
-    </div>
-    <div class="season-card__stat" aria-label="Статистика ветрового сезона">
-      <strong>5/12</strong><span>месяцев летнего ветра</span>
-    </div>
-
-  </article>
+      <div class="legacy-article__gallery legacy-article__gallery--3">
+        <figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-01.webp" alt="Август решил не сбавлять обороты — фотография 1.1" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-02.webp" alt="Август решил не сбавлять обороты — фотография 1.2" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-03.webp" alt="Август решил не сбавлять обороты — фотография 1.3" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-04.webp" alt="Август решил не сбавлять обороты — фотография 1.4" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-05.webp" alt="Август решил не сбавлять обороты — фотография 1.5" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-06.webp" alt="Август решил не сбавлять обороты — фотография 1.6" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-07.webp" alt="Август решил не сбавлять обороты — фотография 1.7" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-08.webp" alt="Август решил не сбавлять обороты — фотография 1.8" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-09.webp" alt="Август решил не сбавлять обороты — фотография 1.9" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-10.webp" alt="Август решил не сбавлять обороты — фотография 1.10" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-11.webp" alt="Август решил не сбавлять обороты — фотография 1.11" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-12.webp" alt="Август решил не сбавлять обороты — фотография 1.12" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-13.webp" alt="Август решил не сбавлять обороты — фотография 1.13" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-14.webp" alt="Август решил не сбавлять обороты — фотография 1.14" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-15.webp" alt="Август решил не сбавлять обороты — фотография 1.15" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-16.webp" alt="Август решил не сбавлять обороты — фотография 1.16" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-17.webp" alt="Август решил не сбавлять обороты — фотография 1.17" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-18.webp" alt="Август решил не сбавлять обороты — фотография 1.18" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-19.webp" alt="Август решил не сбавлять обороты — фотография 1.19" loading="lazy" decoding="async"></figure><figure><img src="/assets/img/blog/legacy/avgust-reshil-ne-sbavlyat-oboroty-20.webp" alt="Август решил не сбавлять обороты — фотография 1.20" loading="lazy" decoding="async"></figure>
       </div>
+      </section>
     </div>
-  </section><section class="dahab-sport-section"><div class="dahab-sport-inner">
-  <header class="section-heading">
-    <p class="eyebrow">Маршрут</p>
-    <h2>Как строится прогресс</h2>
-    <p>Сначала контроль и безопасность, затем новый элемент и самостоятельная практика.</p>
-  </header><div class="dahab-sport-process vietnam-process--three"><article><img src="/assets/img/russia-source/windsurf.jpg" alt="Первое занятие" loading="lazy" decoding="async"><div><span>01</span><h3>Первое занятие</h3><p>Парус, положение тела, курс и безопасное возвращение к берегу.</p></div></article><article><img src="/assets/img/russia-source/flat.jpg" alt="Курс" loading="lazy" decoding="async"><div><span>02</span><h3>Курс</h3><p>Несколько часов с инструктором чередуются с самостоятельной практикой.</p></div></article><article><img src="/assets/img/russia-source/training.jpg" alt="Прокат" loading="lazy" decoding="async"><div><span>03</span><h3>Прокат</h3><p>После оценки уровня можно выбрать учебный или профессиональный комплект.</p></div></article></div></div></section><section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner dahab-sport-safety"><div class="dahab-sport-safety__copy"><p class="eyebrow">Перед занятием</p><h2>Что сообщить команде</h2><p>Даты, опыт и желаемый формат помогут заранее проверить расписание и подготовить комплект.</p><div class="dahab-sport-safety__list"><span>Количество дней на Должанской</span><span>Предыдущий опыт на воде</span><span>Урок, курс или прокат</span></div><a class="button button-primary" href="/russia/windsurf/price/">Открыть полный прайс</a></div><div class="dahab-sport-safety__media"><img src="/assets/img/russia-source/station.jpg" alt="Коса Долгая" loading="lazy" decoding="async"></div></div></section></main>
+    <footer class="legacy-article__footer">
+      <a href="/russia/blog/">← Блог России</a>
+      <a class="button button-primary" href="/russia/contacts/" data-contact-modal data-contact-intent="Задать вопрос" data-contact-country="russia" data-contact-country-label="Россия · Должанская" data-contact-sport="Виндсёрфинг" data-contact-email="russia@vetratoria.ru" data-contact-phone="+79884715355" data-contact-telegram="https://t.me/+79884715355">Задать вопрос</a>
+    </footer>
+  </article></main>
 
 <footer class="site-footer site-footer--clean" data-site-footer>
   <div class="footer-inner">
@@ -266,7 +258,7 @@
       data-endpoint=""
       data-mail-to="russia@vetratoria.ru"
       data-direction="Россия · Должанская · Виндсёрфинг">
-      <input type="hidden" name="source" value="/russia/blog/windsurf/">
+      <input type="hidden" name="source" value="/blog/avgust-reshil-ne-sbavlyat-oboroty.php">
       <input type="hidden" name="intent" value="" data-contact-intent-input>
       <input type="hidden" name="sport" value="Виндсёрфинг" data-contact-sport-input>
       <input type="hidden" name="country" value="russia" data-contact-country-input>
