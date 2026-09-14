@@ -17,6 +17,16 @@ const assert = (condition, message) => {
   if (!condition) failures.push(message);
 };
 
+const headers = await readFile(join(root, "_headers"), "utf8");
+const phpHeaderRule = headers.match(/^\/\*\.php\r?\n((?:[ \t]+[^\r\n]+\r?\n?)*)/m);
+assert(Boolean(phpHeaderRule), "_headers: missing global /*.php rule");
+if (phpHeaderRule) {
+  assert(
+    /^\s+Content-Type:\s*text\/html(?:;\s*charset=utf-8)?\s*$/im.test(phpHeaderRule[1]),
+    "_headers: PHP article responses must use text/html"
+  );
+}
+
 const exists = async (file) => {
   try {
     await access(file);
