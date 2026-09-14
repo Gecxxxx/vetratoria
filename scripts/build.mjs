@@ -207,7 +207,6 @@ const directionsMenu = () => `
           ${countryList.map((country) => `
           <div class="vtr-nav__direction">
             <a class="vtr-nav__direction-link" href="${country.href}"><b>${country.nav} · ${country.city}</b><span>${countrySportSummary(country)}</span></a>
-            ${country.key === "dahab" ? `<div class="vtr-nav__direction-phones">${dahabStationPhones("vtr-nav__direction-phone")}</div>` : ""}
           </div>`).join("")}
         </div>
       </div>`;
