@@ -106,7 +106,7 @@
         <div class="vtr-mobile-menu__item vtr-mobile-menu__item--drop" data-dropdown>
           <button class="vtr-mobile-menu__row" type="button" aria-expanded="false" data-dropdown-toggle>Цены <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
           <div class="vtr-mobile-menu__submenu">
-            <a class="vtr-mobile-menu__row" href="/vietnam/windsurf/price/">Виндсёрфинг</a><a class="vtr-mobile-menu__row" href="/vietnam/wingfoil/price/">Вингфойл</a><a class="vtr-mobile-menu__row" href="/vietnam/kite/price/">Кайтсёрфинг</a>
+            <a class="vtr-mobile-menu__row" href="/vietnam/windsurf/price/">Виндсёрфинг</a><a class="vtr-mobile-menu__row" href="/vietnam/wingfoil/price/">Вингфойл</a><a class="vtr-mobile-menu__row" href="/vietnam/kite/price/">Кайтсёрфинг</a><a class="vtr-mobile-menu__row" href="/vietnam/surf/price/">Сёрфинг</a>
           </div>
         </div>
 
@@ -150,7 +150,7 @@
     <div class="vtr-nav__section-item vtr-nav__section-item--drop" data-dropdown>
       <button class="vtr-nav__section-link" type="button" aria-expanded="false" data-dropdown-toggle>Цены <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
       <div class="vtr-nav__section-dropdown">
-        <a href="/vietnam/windsurf/price/">Виндсёрфинг</a><a href="/vietnam/wingfoil/price/">Вингфойл</a><a href="/vietnam/kite/price/">Кайтсёрфинг</a>
+        <a href="/vietnam/windsurf/price/">Виндсёрфинг</a><a href="/vietnam/wingfoil/price/">Вингфойл</a><a href="/vietnam/kite/price/">Кайтсёрфинг</a><a href="/vietnam/surf/price/">Сёрфинг</a>
       </div>
     </div>
 
