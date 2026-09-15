@@ -89,3 +89,8 @@
     padding: 18px;
   }
 }
+
+/* Preserve native hidden semantics despite the form label grid rule. */
+.contact-form [hidden] {
+  display: none !important;
+}

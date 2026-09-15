@@ -2140,6 +2140,11 @@ body.nav-open {
   }
 }
 
+/* Preserve native hidden semantics despite the form label grid rule. */
+.contact-form [hidden] {
+  display: none !important;
+}
+
 /* Source: ./components/contact-modal.css */
 /* Shared contact dialog */
 
