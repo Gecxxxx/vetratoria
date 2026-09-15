@@ -291,3 +291,20 @@ final result: passed
 - Remaining P3: the legacy source library contains limited dedicated kite photography; the initial page therefore uses the Malibu/station beach image until a current kite photo is supplied.
 
 final result: passed
+
+## Vietnam sport selector and surf page QA — 2026-09-15
+
+- Source visual: `generated_images/exec-aab2b384-5101-4358-83c4-8e4ef3066de7.png`
+- Source dimensions: 1918 × 820
+- Target viewport: 1920 × 820
+- Browser-rendered implementation screenshot: unavailable in the current environment
+- Primary interactions checked: generated `/vietnam/` and `/vietnam/surf/` routes; four sport-card links; generated image asset responses; surf price route intentionally absent
+- Console errors: not checked because browser instrumentation is unavailable
+
+### Findings
+
+- Automated build, route, asset, metadata, landmark, heading, and typography checks pass.
+- The implemented block follows the selected structure: orange eyebrow only, four equal tall cards, responsive 4/2/1-column layout, and no large section heading.
+- Pixel-level comparison, browser interaction, overflow inspection, and console inspection remain unavailable without a supported browser capture tool.
+
+final result: blocked — implementation is complete at source/build level, but visual browser QA cannot be certified in the current environment.

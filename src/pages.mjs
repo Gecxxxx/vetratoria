@@ -161,7 +161,7 @@ export const site = {
       href: "/vietnam/",
       hero: img("home-direction-vietnam.webp"),
       lead:
-        "Вьетнамское направление Ветратории: сезон, виндсёрфинг, вингфойл, кайтсёрфинг, условия поездки и контакты.",
+        "Вьетнамское направление Ветратории: сезон, виндсёрфинг, вингфойл, кайтсёрфинг, сёрфинг, условия поездки и контакты.",
       season: "ноябрь — март",
       seasonTitle: "Ноябрь — март",
       seasonMonths: ["nov", "dec", "jan", "feb", "mar"],
@@ -171,7 +171,7 @@ export const site = {
       windStat: "5/12",
       windStatLabel: "месяцев зимнего ветра",
       tone: "волна, стабильный бриз, длинная береговая линия и активная станционная жизнь",
-      sports: ["windsurf", "wingfoil", "kite"],
+      sports: ["windsurf", "wingfoil", "kite", "surf"],
       extras: [
         { title: "Цены на виндсёрфинг", href: "/vietnam/windsurf/price/" },
         { title: "О школе", href: "/vietnam/team/" },
@@ -243,6 +243,16 @@ export const site = {
         "Обучение кайту, управление крылом, безопасный старт, первые проходы и самостоятельная практика.",
       hero: img("home-slider-5.webp"),
       bullets: ["управление кайтом", "бодидраг", "старт с доской", "практика по ветру"]
+    },
+    surf: {
+      nav: "Сёрфинг",
+      title: "Сёрфинг",
+      subtitle: "Доска и волна",
+      lead:
+        "Классический сёрфинг в Муйне: чтение волны, гребля, тейк-офф и первые проходы под фактические условия на воде.",
+      hero: "/assets/img/vietnam-source/surf.jpg",
+      bullets: ["чтение волны", "гребля и тейк-офф", "стойка на доске", "практика по условиям"],
+      hasPrice: false
     }
   },
   slider: [
@@ -369,7 +379,7 @@ for (const country of site.countries) {
     description: country.key === "dahab"
       ? "Инструкторы, тренеры, администраторы и спасатели Ветратории. На берегу и на воде рядом всегда есть человек, которому можно доверять."
       : country.key === "vietnam"
-        ? "Станция в Муйне, обучение трём ветровым дисциплинам и команда, которая помогает на берегу и на воде с 2011 года."
+        ? "Станция в Муйне, четыре дисциплины и команда, которая помогает на берегу и на воде с 2011 года."
         : country.key === "russia"
           ? "Станция на косе Долгой, обучение трём ветровым дисциплинам, прокат и помощь команды на берегу и воде."
           : "Инструкторы, администраторы, менеджеры и поддержка на воде.",
@@ -406,7 +416,7 @@ for (const country of site.countries) {
       description: sportOverride?.description || sport.lead,
       image: sportOverride?.image || sport.hero
     });
-    pages.push({
+    if (sport.hasPrice !== false) pages.push({
       path: `/${country.key}/${sportKey}/price/`,
       kind: "sport-price",
       country: country.key,

@@ -191,9 +191,22 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.sport-split__grid--four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .sport-split__grid--three .sport-tile,
 .sport-split__grid--three .sport-tile__content {
   min-height: 410px;
+}
+
+.sport-split__grid--four .sport-tile,
+.sport-split__grid--four .sport-tile__content {
+  min-height: 520px;
+}
+
+.sport-split--sports-only .section-heading {
+  margin-bottom: 22px;
 }
 
 .vietnam-hero .dahab-hero__image {
@@ -1850,6 +1863,12 @@ body.country.country-dahab .trust-block {
   display: block;
 }
 
+@media (min-width: 621px) and (max-width: 1100px) {
+  .sport-split__grid.sport-split__grid--four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 900px) {
   .dahab-safety-spotlight {
     padding-bottom: 56px;
@@ -2090,6 +2109,11 @@ body.country.country-dahab .trust-block {
 }
 
 @media (max-width: 520px) {
+  .sport-split__grid--four .sport-tile,
+  .sport-split__grid--four .sport-tile__content {
+    min-height: 400px;
+  }
+
   .dahab-hero__content h1 {
   font-size: var(--text-h1);
   font-weight: var(--weight-h1);
