@@ -23,10 +23,8 @@ npm.cmd run dev
 Все конверсионные CTA используют общий нативный `dialog`. Без JavaScript ссылка
 ведет на страницу контактов соответствующей страны.
 
-Пока `site.contactEndpoint` в `src/pages.mjs` пустой, форма готовит письмо через
-`mailto:`. Для CRM или Telegram-бота укажите HTTPS endpoint: сайт отправит туда
-JSON с полями `name`, `contact`, `country`, `sport`, `intent`, `direction`,
-`message`, `source` и `pageUrl`.
+Форма отправляет JSON на `/api/contact` и показывает успех только после серверного подтверждения. Настройка Pages Function, Preview secrets и D1: [docs/contact-setup.md](docs/contact-setup.md). Без настройки показаны недоступность прямой отправки и контакты; автоматического mailto нет.
 
-Перед отправкой также возникает событие `vetratoria:contact-submit` с тем же
-payload в `event.detail`. Его можно использовать для аналитики.
+Проверки: `npm run build`, `npm run check`, `node --test scripts/tests/contact.test.mjs` (Node 22.13+ для node:sqlite). Сам генератор по-прежнему требует Node >=20; зависимости не менялись.
+
+Миграция Вьетнама: [docs/vietnam-migration.md](docs/vietnam-migration.md). Спорные сведения: [docs/vietnam-content-verification.md](docs/vietnam-content-verification.md). Работа только в staging, домен пока не переключается.

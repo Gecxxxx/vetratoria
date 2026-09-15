@@ -144,9 +144,9 @@ const currentCountry = (page) =>
 
 const arrow = '<span class="vtr-nav__chevron" aria-hidden="true">⌄</span>';
 
-const socialIconLinks = (className = "") => `
+const socialIconLinks = (className = "", countryKey = "") => `
   <nav class="social-icon-links${className ? ` ${className}` : ""}" aria-label="Социальные сети Ветратории">
-    ${site.socials.map((item) => `
+    ${site.socials.filter((item) => countryKey !== "vietnam" || item.label !== "Tripadvisor").map((item) => `
       <a href="${item.href}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(item.label)}" title="${escapeHtml(item.label)}">
         <img src="${item.icon}" alt="" width="20" height="20">
       </a>`).join("")}
@@ -276,14 +276,14 @@ const mobileMenu = (page, country) => `
           <a class="vtr-mobile-menu__row" href="/media/">Медиа</a>
           <a class="vtr-mobile-menu__row" href="${country ? `/${country.key}/contacts/` : "/contacts/"}">Контакты</a>
         </section>
-        ${page.path === "/" ? socialIconLinks("vtr-mobile-menu__socials") : `<section class="vtr-mobile-menu__block" aria-label="Контакты">
+        ${page.path === "/" ? socialIconLinks("vtr-mobile-menu__socials", country?.key) : `<section class="vtr-mobile-menu__block" aria-label="Контакты">
           <p class="vtr-mobile-menu__title">Контакты</p>
           <a class="vtr-mobile-menu__row" href="mailto:${contactForPage(page).email}">${contactForPage(page).email}</a>
           ${contactForPage(page) === site.contacts.dahab
             ? dahabStationPhones("vtr-mobile-menu__row vtr-mobile-menu__contact-phone")
             : `<a class="vtr-mobile-menu__row" href="tel:${contactForPage(page).phone}">${contactForPage(page).phoneLabel}</a>`}
           <a class="vtr-mobile-menu__row" href="${contactForPage(page).telegram}" target="_blank" rel="noopener noreferrer">Telegram</a>
-          ${socialIconLinks("vtr-mobile-menu__socials")}
+          ${socialIconLinks("vtr-mobile-menu__socials", country?.key)}
         </section>`}
       </div>`;
 
@@ -315,7 +315,7 @@ const topNav = (page) => {
       ${countryList.map((country) => `<a class="vtr-nav__country${page.country === country.key ? " is-active" : ""}" href="${country.href}">${country.nav}</a>`).join("")}
     </nav>
     <div class="vtr-nav__right">
-      ${socialIconLinks("vtr-nav__socials")}
+      ${socialIconLinks("vtr-nav__socials", page.country)}
       <span class="vtr-nav__lang-current" aria-label="Язык сайта: русский">RU</span>
     </div>
   </div>`;
@@ -339,7 +339,8 @@ const schoolDropdown = (country) => country.key === "dahab" ? [
   { label: "Медиа", href: "/media/russia/" },
   { label: "Контакты", href: "/russia/contacts/" }
 ] : [
-  { label: "О школе и команде", href: `/${country.key}/team/` },
+  { label: "О школе и станции", href: `/${country.key}/team/` },
+  { label: "Как добраться", href: "/vietnam/how-to-get/" },
   { label: "Блог", href: `/${country.key}/blog/` },
   { label: "Медиа", href: `/media/${country.key}/` },
   { label: "Контакты", href: `/${country.key}/contacts/` }
@@ -458,7 +459,7 @@ const footer = (page) => {
 const footerForPage = (page) => footer(page);
 
 const metaTitleForPage = (page) =>
-  page.path === "/dahab/" ? "Дахаб — вингфойл и виндсёрфинг на Красном море | Ветратория" : page.title || site.title;
+  page.path === "/vietnam/" ? "Ветратория Муйне — кайт, виндсёрфинг, вингфойл и сёрфинг" : page.path === "/dahab/" ? "Дахаб — вингфойл и виндсёрфинг на Красном море | Ветратория" : page.title || site.title;
 
 const metaDescriptionForPage = (page) => {
   if (page.path === "/dahab/") {
@@ -500,6 +501,7 @@ const breadcrumbPagesFor = (page) => {
     if (pagesByPath.has(normalizedPath)) paths.push(normalizedPath);
   }
 
+  if (!paths.includes(page.path)) paths.push(page.path);
   return paths.map((path) => pagesByPath.get(path)).filter(Boolean);
 };
 
@@ -515,7 +517,7 @@ const structuredDataForPage = (page) => {
         "@type": "ImageObject",
         url: absoluteUrl(site.logo)
       },
-      sameAs: site.socials.map((social) => social.href)
+      sameAs: site.socials.filter((social) => page.country !== "vietnam" || social.label !== "Tripadvisor").map((social) => social.href)
     },
     {
       "@type": "BreadcrumbList",
@@ -593,19 +595,21 @@ const contactDialog = (page) => {
           ${countryList.map(contactCountryOption).join("")}
         </select>
       </label>`}
-      <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
-      <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>
-      <label><span>Комментарий <small>по желанию</small></span><textarea name="message" rows="4" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
-      <button class="button button-primary contact-modal__submit" type="submit">${site.contactEndpoint ? "Отправить заявку" : "Подготовить заявку"}</button>
+      <label hidden aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+      <label>Имя<input name="name" maxlength="100" autocomplete="name" placeholder="Ваше имя" required></label>
+      <label>Способ связи<input name="contact" maxlength="200" autocomplete="tel" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>
+      <label><span>Комментарий <small>по желанию</small></span><textarea name="message" maxlength="1200" rows="4" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
+      <button class="button button-primary contact-modal__submit" type="submit">Отправить заявку</button>
       <p class="form-note" data-form-note role="status" aria-live="polite"></p>
     </form>
     <div class="contact-modal__direct">
       <span>Или свяжитесь напрямую</span>
       <div>
         <a href="${phoneHref}" data-contact-direct-phone${country?.key === "dahab" ? ` target="_blank" rel="noopener noreferrer"` : ""}>
-          <img src="/assets/icons/whatsapp.svg" alt="" width="20" height="20">
+          <img src="/assets/icons/${country?.key === "dahab" ? "whatsapp" : "phone"}.svg" alt="" width="20" height="20">
           <span data-contact-direct-phone-label>${country?.key === "dahab" ? "WhatsApp" : "Телефон"}</span>
         </a>
+        <a href="mailto:${destination.formEmail || destination.email}" data-contact-direct-email>Почта</a>
         <a href="${destination.telegram}" data-contact-direct-telegram target="_blank" rel="noopener noreferrer">
           <img src="/assets/icons/telegram.svg" alt="" width="20" height="20">
           <span>Telegram</span>
@@ -616,7 +620,7 @@ const contactDialog = (page) => {
 </dialog>`;
 };
 
-const ASSET_VERSION = "20260913-unified-typography";
+const ASSET_VERSION = "20260915-contact-vietnam";
 const assetVersionForPage = (page) => page.path === "/blog/" ? "20260913-blog-filter-r2" : ASSET_VERSION;
 const versionedAsset = (path, version = ASSET_VERSION) => `${path}?v=${version}`;
 
@@ -850,7 +854,7 @@ const dahabReviewItems = [
   ["Y", "Yuriy Tolchinskiy", "★★★★★", "Приезжал осваивать вингфойл. Довольно быстро получилось лететь на фойле и делать повороты. Спасибо Hassan за продуктивные тренировки."]
 ];
 
-const stationLifeGallery = ({ id, title, photos }) => `
+const stationLifeGallery = ({ id, title, photos, mediaHref = "/media/dahab/" }) => `
 <section class="station-life station-life--sport" id="${id}" aria-label="Фотоальбом: ${escapeHtml(title)}">
   <div class="station-life__inner">
     <div class="station-life__layout" data-life-slider tabindex="0" aria-label="Галерея: используйте стрелки влево и вправо для навигации">
@@ -858,7 +862,7 @@ const stationLifeGallery = ({ id, title, photos }) => `
         <button class="station-life__featured" type="button" data-life-featured data-media-photo-open data-media-group="${id}" data-media-photo-index="0" data-media-src="${photos[0][0]}" data-media-alt="${escapeHtml(photos[0][3])}" aria-label="Открыть фотографию 1 из ${photos.length} на весь экран">
           <img src="${photos[0][0]}" alt="${escapeHtml(photos[0][3])}" width="${photos[0][4]}" height="${photos[0][5]}" decoding="async">
         </button>
-        <a class="station-life__all" href="/media/dahab/">Смотреть все фотографии</a>
+        <a class="station-life__all" href="${mediaHref}">Смотреть все фотографии</a>
         <button class="station-life__nav station-life__nav--prev" type="button" data-life-prev aria-label="Предыдущая фотография"><img src="/assets/icons/chevron-left.svg" alt="" width="24" height="24"></button>
         <button class="station-life__nav station-life__nav--next" type="button" data-life-next aria-label="Следующая фотография"><img src="/assets/icons/chevron-right.svg" alt="" width="24" height="24"></button>
       </div>
@@ -1910,8 +1914,8 @@ const vietnamHomePage = (page) => {
   ];
   const lessonIncludes = [
     ["Инструктор", "Индивидуальная задача и обратная связь на занятии."],
-    ["Снаряжение", "Комплект входит в стоимость обучения."],
-    ["Четыре дисциплины", "Кайтсёрфинг, виндсёрфинг, вингфойл и сёрфинг в одном направлении."],
+    ["Снаряжение", "В учебных пакетах комплект включён. Условия отдельного занятия смотрите в прайсе."],
+    ["Подготовка", "Сообщите опыт, рост и вес, чтобы подобрать учебный комплект."],
     ["Станция рядом", "Подготовка, хранение и помощь команды на берегу."]
   ];
   const priceCards = [
@@ -1932,7 +1936,7 @@ const vietnamHomePage = (page) => {
   ];
   const faqs = [
     ["Когда лучше приезжать в Муйне?", "Основной сезон Ветратории во Вьетнаме — с ноября по март. Перед поездкой команда поможет выбрать даты под дисциплину и ваш уровень."],
-    ["Можно ли приехать без своего оборудования?", "Да. В стоимость уроков входит необходимое снаряжение, а для самостоятельного катания доступен прокат."],
+    ["Можно ли приехать без своего оборудования?", "Да. Учебные пакеты включают снаряжение. Отдельный час инструктора и самостоятельный прокат — другие форматы; их условия указаны в прайсе."],
     ["Где проходит обучение кайтсёрфингу?", "Занятия проходят на пляже Малибу примерно в 6 км от станции. Там просторный берег, небольшой трафик и помещение для хранения оборудования."],
     ["Подойдёт ли направление новичку?", "Да. Программа начинается с управления и безопасности на берегу, а темп занятий подбирается под человека и условия."],
     ["Есть ли длительные курсы?", "Для виндсёрфинга доступны программы на 3 и 7 дней, для кайта — курс от 5 до 10 часов. Формат можно собрать под продолжительность поездки."]
@@ -1944,14 +1948,14 @@ const vietnamHomePage = (page) => {
   <div class="dahab-hero__shade"></div>
   <div class="dahab-hero__content">
     <p class="eyebrow">Вьетнам · Муйне</p>
-    <h1>Кайт, виндсёрфинг, вингфойл и сёрфинг в Муйне</h1>
-    <p class="hero-lead">Четыре дисциплины, обучение и прокат на тёплом море. Подберём спорт, программу и снаряжение под ваш уровень.</p>
+    <h1>Школа и станция Ветратория в Муйне</h1>
+    <p class="hero-lead">Виндсёрфинг, вингфойл, кайтсёрфинг и сёрфинг: уроки для начинающих, продолжение обучения и прокат на побережье Муйне.</p>
     <div class="hero-advantages"><span class="hero-advantage">С 2011 года</span><span class="hero-advantage">Сезон ноябрь — март</span><span class="hero-advantage">Четыре вида спорта</span><span class="hero-advantage">Станция на берегу</span></div>
     <div class="hero-actions dahab-hero-actions">${contactCta(page, "Подобрать программу")}<a class="button button-ghost" href="#prices">Посмотреть цены</a></div>
   </div>
 </section>
 
-<section class="dahab-marquee" aria-label="Ветратория во Вьетнаме"><div class="dahab-marquee__track"><span>МУЙНЕ · СЕЗОН НОЯБРЬ — МАРТ / КАЙТСЁРФИНГ — 65$ / ВИНДСЁРФИНГ — 65$ / ВИНГФОЙЛ — 65$ / ПРОКАТ ВИНДСЁРФИНГА — ОТ 35$ / СТАНЦИЯ НА БЕРЕГУ / СПОТ МАЛИБУ / </span><span aria-hidden="true">МУЙНЕ · СЕЗОН НОЯБРЬ — МАРТ / КАЙТСЁРФИНГ — 65$ / ВИНДСЁРФИНГ — 65$ / ВИНГФОЙЛ — 65$ / ПРОКАТ ВИНДСЁРФИНГА — ОТ 35$ / СТАНЦИЯ НА БЕРЕГУ / СПОТ МАЛИБУ / </span></div></section>
+<section class="dahab-marquee" aria-label="Ветратория во Вьетнаме"><div class="dahab-marquee__track"><span>МУЙНЕ · СЕЗОН НОЯБРЬ — МАРТ / КАЙТСЁРФИНГ — 65$ / ВИНДСЁРФИНГ — 65$ / ВИНГФОЙЛ — 65$ / ПРОКАТ ВИНДСЁРФИНГА — ОТ 40$ / СТАНЦИЯ НА БЕРЕГУ / СПОТ МАЛИБУ / </span><span aria-hidden="true">МУЙНЕ · СЕЗОН НОЯБРЬ — МАРТ / КАЙТСЁРФИНГ — 65$ / ВИНДСЁРФИНГ — 65$ / ВИНГФОЙЛ — 65$ / ПРОКАТ ВИНДСЁРФИНГА — ОТ 40$ / СТАНЦИЯ НА БЕРЕГУ / СПОТ МАЛИБУ / </span></div></section>
 
 ${seasonSection([countriesByKey.vietnam], { compact: true, eyebrow: "Муйне · сезон и ветер", title: "Когда ехать в Муйне", lead: "Основной сезон станции — с ноября по март: тёплое море, ветровые дни и возможность совмещать несколько дисциплин в одной поездке." })}
 
@@ -1962,19 +1966,20 @@ ${seasonSection([countriesByKey.vietnam], { compact: true, eyebrow: "Муйне 
   <a class="sport-tile" href="/vietnam/surf/"><img src="${vietnamImg("surf.jpg")}" alt="Сёрфинг на волне во Вьетнаме" width="1024" height="682" loading="lazy" decoding="async"><div class="sport-tile__content"><h2>Сёрфинг</h2><span>Подробнее</span></div></a>
 </div></div></section>
 
-<section class="dahab-learning" id="learning"><div class="dahab-inner"><div class="dahab-learning__layout"><div class="dahab-learning__journey"><header class="dahab-learning__heading"><p class="eyebrow">Обучение</p><h2>От первого занятия до самостоятельной практики</h2><p>Программа строится вокруг вашего опыта, выбранного спорта и количества дней на станции.</p></header><ol class="dahab-learning__steps">${learningSteps.map(([number,title,text]) => `<li><span>${number}</span><div><h3>${title}</h3><p>${text}</p></div></li>`).join("")}</ol></div><aside class="dahab-learning__side"><figure class="dahab-learning__media"><img src="${vietnamImg("windsurf.jpg")}" alt="Обучение виндсёрфингу в Муйне" width="2000" height="558" loading="lazy" decoding="async"></figure><div class="dahab-learning__included"><header><p class="eyebrow">В урок уже входит</p><h3>Можно приехать без своего снаряжения</h3></header><div>${lessonIncludes.map(([title,text]) => `<article><strong>${title}</strong><p>${text}</p></article>`).join("")}</div></div></aside></div></div></section>
+<section class="dahab-learning" id="learning"><div class="dahab-inner"><div class="dahab-learning__layout"><div class="dahab-learning__journey"><header class="dahab-learning__heading"><p class="eyebrow">Обучение</p><h2>От первого занятия до самостоятельной практики</h2><p>Программа строится вокруг вашего опыта, выбранного спорта и количества дней на станции.</p></header><ol class="dahab-learning__steps">${learningSteps.map(([number,title,text]) => `<li><span>${number}</span><div><h3>${title}</h3><p>${text}</p></div></li>`).join("")}</ol></div><aside class="dahab-learning__side"><figure class="dahab-learning__media"><img src="${vietnamImg("windsurf.jpg")}" alt="Обучение виндсёрфингу в Муйне" width="2000" height="558" loading="lazy" decoding="async"></figure><div class="dahab-learning__included"><header><p class="eyebrow">Перед первым занятием</p><h3>Можно приехать без своего снаряжения</h3></header><div>${lessonIncludes.map(([title,text]) => `<article><strong>${title}</strong><p>${text}</p></article>`).join("")}</div></div></aside></div></div></section>
 
-<section class="dahab-safety-spotlight"><a class="dahab-safety-spotlight__inner" href="/vietnam/kite/"><span class="dahab-safety-spotlight__media"><img src="${vietnamImg("station.jpg")}" alt="Пляж Малибу рядом с Муйне" width="900" height="600" loading="lazy" decoding="async"></span><span class="dahab-safety-spotlight__content"><small>Кайт-спот</small><b>Пляж Малибу</b><em>Просторный пляж примерно в 6 км от станции, небольшой трафик, хранение оборудования, душ и место для переодевания.</em><strong>Кайтсёрфинг в Муйне <span aria-hidden="true">→</span></strong></span></a></section>
+<section class="dahab-safety-spotlight"><a class="dahab-safety-spotlight__inner" href="/vietnam/kite/"><span class="dahab-safety-spotlight__media"><img src="${vietnamImg("station.jpg")}" alt="Станция Ветратория в Муйне" width="900" height="600" loading="lazy" decoding="async"></span><span class="dahab-safety-spotlight__content"><small>Кайт-спот</small><b>Пляж Малибу</b><em>Просторный пляж примерно в 6 км от станции, небольшой трафик, хранение оборудования, душ и место для переодевания.</em><strong>Кайтсёрфинг в Муйне <span aria-hidden="true">→</span></strong></span></a></section>
 
 <section class="water-area" id="water-area"><div class="water-area__inner"><header class="water-area__intro"><div><p class="eyebrow">Муйне</p><h2>Тёплое море и разные форматы катания</h2></div><div><p>В одной поездке можно учиться, брать оборудование напрокат и переключаться между дисциплинами в зависимости от ветра и состояния воды.</p><p class="water-area__route"><span>Станция</span><b aria-hidden="true">→</b><span>Море</span><b aria-hidden="true">→</b><span>Малибу</span></p></div></header><div class="water-area__layout"><figure class="water-area__visual"><img src="${vietnamImg("station.jpg")}" alt="Станция Ветратории на пляже Муйне" width="900" height="600" loading="lazy" decoding="async"></figure><div class="water-area__cards"><article><span>01</span><div><strong>Станция в Муйне</strong><small>Виндсёрфинг и вингфойл</small><p>Подготовка снаряжения, обучение, прокат и помощь команды непосредственно на берегу.</p></div></article><article><span>02</span><div><strong>Открытое море</strong><small>Ветер и волна</small><p>Условия для прогресса, самостоятельного катания и классического серфинга в подходящие дни.</p></div></article><article><span>03</span><div><strong>Пляж Малибу</strong><small>Кайтсёрфинг</small><p>Отдельный просторный спот для занятий кайтом примерно в шести километрах от основной станции.</p></div></article></div></div></div></section>
 
-<section class="dahab-section compact-band" id="prices"><div class="dahab-inner">${sectionHeading("Цены", "Сколько стоит начать", "Стоимость обучения включает работу инструктора и необходимое снаряжение.")}<div class="price-grid">${priceCards.map(([label,title,value,text,image,href]) => `<a class="price-card" href="${href}"><figure class="price-photo"><img src="${image}" alt="${label}: ${title}" loading="lazy" decoding="async"></figure><span>${label}</span><h3>${title}</h3><b>${value}</b><p>${text}</p><em>Смотреть формат →</em></a>`).join("")}</div><div class="price-help-cta"><div><b>Хотите заниматься несколько дней?</b><p>Виндсёрфинг: курс на 3 дня — 420$, на 7 дней — 800$. Кайтсёрфинг: курс 5–10 часов по 55$ за час.</p></div><nav>${contactCta(page,"Оставить заявку","",null)}<a href="/vietnam/windsurf/price/">Все цены</a></nav></div></div></section>
+<section class="dahab-section compact-band" id="prices"><div class="dahab-inner">${sectionHeading("Цены", "Сколько стоит начать", "В этих учебных форматах предусмотрены инструктор и снаряжение. Цены и свободное время подтверждаются при записи.")}<div class="price-grid">${priceCards.map(([label,title,value,text,image,href]) => `<a class="price-card" href="${href}"><figure class="price-photo"><img src="${image}" alt="${label}: ${title}" loading="lazy" decoding="async"></figure><span>${label}</span><h3>${title}</h3><b>${value}</b><p>${text}</p><em>Смотреть формат →</em></a>`).join("")}</div><div class="price-help-cta"><div><b>Хотите заниматься несколько дней?</b><p>Виндсёрфинг: курс на 3 дня — 420$, на 7 дней — 800$. Кайтсёрфинг: курс 5–10 часов по 55$ за час.</p></div><nav>${contactCta(page,"Оставить заявку","",null)}<a href="/vietnam/windsurf/price/">Все цены</a></nav></div></div></section>
 
-${stationLifeGallery({ id: "station-life", eyebrow: "Жизнь станции", title: "Ветер, тёплое море и ветраторская атмосфера", lead: "Ветратория работает в Муйне с 2011 года. Сюда возвращаются ради катания, команды и людей, с которыми не нужно объяснять любовь к ветру.", photos: galleryPhotos })}
+${stationLifeGallery({ id: "station-life", eyebrow: "Жизнь станции", title: "Ветер, тёплое море и ветраторская атмосфера", mediaHref: "/media/vietnam/", lead: "Ветратория работает в Муйне с 2011 года. Сюда возвращаются ради катания, команды и людей, с которыми не нужно объяснять любовь к ветру.", photos: galleryPhotos })}
 
 <section class="station-advice" id="stations"><header class="station-advice__head"><p class="eyebrow">Станция</p><h2>Ветратория Вьетнам</h2></header><div class="station-advice__list station-advice__list--single"><a href="/vietnam/contacts/"><figure><img src="${vietnamImg("station.jpg")}" alt="Ветратория Вьетнам в Муйне" width="900" height="600" loading="lazy" decoding="async"></figure><div><span>Кайт · Виндсёрфинг · Вингфойл · Сёрфинг</span><b>Sun & Sands Beach · Муйне</b></div></a></div>${contactCta(page,"Написать нам","station-advice__cta")}</section>
 
-<section class="dahab-faq-section" id="faq"><div class="dahab-inner"><div class="dahab-faq-section__layout"><header class="dahab-faq-section__intro"><p class="eyebrow">Перед поездкой</p><h2>Ответы о сезоне и занятиях</h2><p>Главное о выборе спорта, снаряжении и организации катания в Муйне.</p></header><div class="dahab-faq-section__accordion">${faqs.map(([question,answer],index) => `<details class="dahab-faq-section__item" ${index===0?"open":""}><summary aria-expanded="${index===0?"true":"false"}"><span class="dahab-faq-section__number">${String(index+1).padStart(2,"0")}</span><span>${question}</span></summary><p>${answer}</p></details>`).join("")}</div></div><div class="price-help-cta dahab-faq-section__cta"><div><b>Подберём программу под ваши даты</b><p>Напишите дисциплину, уровень и продолжительность поездки — команда предложит подходящий формат.</p></div><nav>${contactCta(page,"Оставить заявку","",null)}<a href="/vietnam/contacts/">Все контакты</a></nav></div></div></section>`;
+<section class="dahab-faq-section" id="faq"><div class="dahab-inner"><div class="dahab-faq-section__layout"><header class="dahab-faq-section__intro"><p class="eyebrow">Перед поездкой</p><h2>Ответы о сезоне и занятиях</h2><p>Главное о выборе спорта, снаряжении и организации катания в Муйне.</p></header><div class="dahab-faq-section__accordion">${faqs.map(([question,answer],index) => `<details class="dahab-faq-section__item" ${index===0?"open":""}><summary aria-expanded="${index===0?"true":"false"}"><span class="dahab-faq-section__number">${String(index+1).padStart(2,"0")}</span><span>${question}</span></summary><p>${answer}</p></details>`).join("")}</div></div><div class="price-help-cta dahab-faq-section__cta"><div><b>Подберём программу под ваши даты</b><p>Напишите дисциплину, уровень и продолжительность поездки — команда предложит подходящий формат.</p></div><nav>${contactCta(page,"Оставить заявку","",null)}<a href="/vietnam/contacts/">Все контакты</a></nav></div></div></section>
+<section class="dahab-sport-section"><div class="dahab-sport-inner">${sectionHeading("Поездка", "Сначала маршрут, затем расписание занятий", "Сохраните адрес Sun & Sands Beach и сообщите даты приезда. Для поездки со своим снаряжением заранее согласуйте перевозку чехлов.")}<div class="dahab-sport-price-actions"><a class="button button-primary" href="/vietnam/how-to-get/">Как добраться</a><a class="button button-ghost" href="/vietnam/team/">О станции и оборудовании</a></div></div></section>`;
 };
 
 const stationImg = (name) => `/assets/img/final/stations/${name}`;
@@ -2348,7 +2353,7 @@ const vietnamSportPage = (page) => {
       locationTitle: "Почему Малибу подходит для кайта",
       locationLead: "Спот находится примерно в 6 км от основной станции. Просторный пляж и небольшой трафик дают место для последовательного обучения.",
       reasons: [
-        ["Просторный берег", "Достаточно места для разбора кайта, запуска и первых упражнений под контролем инструктора.", vietnamImg("station.jpg"), "Пляж Малибу для занятий кайтсёрфингом"],
+        ["Просторный берег", "Достаточно места для разбора кайта, запуска и первых упражнений под контролем инструктора.", vietnamImg("station.jpg"), "Станция Ветратория в Муйне"],
         ["Небольшой трафик", "На споте проще выделить учебную зону и сосредоточиться на базовых действиях.", vietnamImg("surf.jpg"), "Открытая вода у Муйне"],
         ["Инфраструктура", "На Малибу есть хранение оборудования, душ и место, где можно переодеться.", vietnamImg("action.jpg"), "Станционная инфраструктура во Вьетнаме"]
       ],
@@ -2360,13 +2365,13 @@ const vietnamSportPage = (page) => {
       title: "Виндсёрфинг в Муйне",
       lead: "Индивидуальные уроки, курсы и прокат на станции Ветратория: от первого знакомства с парусом до уверенного самостоятельного катания.",
       hero: vietnamImg("aerial.jpg"),
-      facts: ["Снаряжение включено", "Урок от 65$", "Курсы на 3 и 7 дней", "Прокат от 35$"],
+      facts: ["Снаряжение включено", "Урок от 65$", "Курсы на 3 и 7 дней", "Прокат от 40$"],
       locationTitle: "Муйне для обучения и прогресса",
       locationLead: "Зимний бриз, тёплое море и станция на берегу позволяют сочетать занятия с самостоятельной практикой.",
       reasons: [["Сезонный ветер","Основной сезон с ноября по март даёт время на несколько последовательных занятий.",vietnamImg("aerial.jpg"),"Виндсёрфинг в Муйне"],["Станция на берегу","Подбор и настройка комплекта проходят рядом с местом выхода на воду.",vietnamImg("station.jpg"),"Станция Ветратории в Муйне"],["Большой выбор оборудования","На станции доступны комплекты для обучения, прогресса и самостоятельного проката.",vietnamImg("atmosphere.jpg"),"Виндсёрфинг-снаряжение Ветратории"]],
       steps: [["01","Знакомство с парусом","Разбираем ветер, положение тела и управление парусом на берегу."],["02","Первые галсы","Учимся стартовать, держать курс и возвращаться в заданную точку."],["03","Повороты и контроль","Работаем над разворотами, скоростью и устойчивым положением на доске."],["04","Самостоятельная практика","Закрепляем навык с прокатом и точечными занятиями с инструктором."]],
-      prices: [["Первый урок","1 час","65$","Оборудование и страховка включены."],["Курс новичка","3 дня","420$","По 1,5 часа обучения в день и самостоятельная практика."],["Недельный курс","7 дней","800$","По одному часу с инструктором ежедневно и практика."],["Прокат","1 час","35$","Самостоятельное катание на комплекте станции."]],
-      faq: [["Можно ли начать с нуля?","Да, первое занятие начинается с управления парусом и безопасных действий на берегу."],["Что входит в урок?","Инструктор, аренда оборудования и страховка материальной части."],["Есть ли детские занятия?","Да, детское часовое занятие стоит 55$."],["Можно ли кататься самостоятельно?","Да, после оценки уровня можно взять комплект напрокат от одного часа."]]
+      prices: [["Первый урок","1 час","65$","Оборудование и страховка включены."],["Курс новичка","3 дня","420$","По 1,5 часа обучения в день и самостоятельная практика."],["Недельный курс","7 дней","800$","По одному часу с инструктором ежедневно и практика."],["Прокат","1 час","40$","Самостоятельное катание на комплекте станции."]],
+      faq: [["Можно ли начать с нуля?","Да, первое занятие начинается с управления парусом и безопасных действий на берегу."],["Что входит в урок?","В пакете «Знакомство с ветром» за 65$ включены инструктор, оборудование и страховка материальной части. Для отдельного занятия за 50$ состав услуги отличается — смотрите полный прайс."],["Есть ли детские занятия?","Да, детское часовое занятие стоит 55$."],["Можно ли кататься самостоятельно?","Да, после оценки уровня можно взять комплект напрокат от одного часа."]]
     },
     wingfoil: {
       title: "Вингфойл в Муйне",
@@ -2386,21 +2391,28 @@ const vietnamSportPage = (page) => {
       hero: vietnamImg("surf.jpg"),
       facts: ["Подбор условий по прогнозу", "Тёплая вода", "Первый старт", "Практика с инструктором"],
       locationTitle: "Муйне для знакомства с волной",
-      locationLead: "Береговая линия и разные состояния моря позволяют выбирать день и участок воды под уровень и задачу занятия.",
+      locationLead: "Занятия классическим сёрфингом проходят на Малибу, примерно в 6 км от станции. Для старта подходят небольшие волны и пена у песчаного берега; место и время выбирает инструктор по состоянию моря.",
       reasons: [["Условия по прогнозу","Команда оценивает состояние моря и выбирает подходящее окно для безопасной практики.",vietnamImg("surf.jpg"),"Сёрфинг на волне в Муйне"],["Тёплое море","Можно сосредоточиться на повторениях: гребле, старте и устойчивом положении на доске.",vietnamImg("water.jpg"),"Море у побережья Муйне"],["Понятный прогресс","Навык собирается по шагам — от положения на доске до выбора и прохождения волны.",vietnamImg("action.jpg"),"Практика на воде во Вьетнаме"]],
       steps: [["01","Безопасность и спот","Разбираем течение, зону занятия, правила выхода и возвращения на берег."],["02","Гребля и положение","Учимся устойчиво лежать на доске, набирать скорость и держать направление."],["03","Тейк-офф","Соединяем разгон, подъём и постановку ног в одно контролируемое движение."],["04","Проход по волне","Работаем над взглядом, балансом и направлением движения после старта."]],
-      faq: [["Можно ли начать без опыта?","Да. Первое занятие строится вокруг безопасности, положения на доске, гребли и тейк-оффа."],["Когда лучше заниматься?","Сёрфинг зависит от состояния моря, поэтому подходящее время команда подтверждает по прогнозу."],["Нужно ли своё оборудование?","Напишите команде заранее — она уточнит доступный комплект и формат занятия на ваши даты."],["Есть ли фиксированная цена?","Стоимость и доступность зависят от формата и условий. Команда подтвердит их перед записью."]]
+      faq: [["Можно ли начать без опыта?","Да. Первое занятие строится вокруг безопасности, положения на доске, гребли и тейк-оффа."],["Когда лучше заниматься?","На Малибу учебные занятия обычно планируют на раннее утро, примерно с 6 до 9 часов, пока ветер не испортил волну. Время не гарантировано: решение зависит от моря в этот день."],["Какие есть форматы?","Индивидуальный урок длится 1 час, занятие в группе из 2–3 человек — 1,5 часа. Предусмотрены разминка, теория на берегу и практика в воде. Стоимость и состав группы подтвердите при записи."],["Нужно ли своё оборудование?","Напишите команде заранее — она уточнит доступный комплект и формат занятия на ваши даты."],["Есть ли фиксированная цена?","Стоимость и доступность зависят от формата и условий. Команда подтвердит их перед записью."]]
     }
   };
   const data = shared[page.sport];
+  const preparation = {
+    windsurf: ["Для первого знакомства с парусом", "Начинаем с равновесия, подъёма паруса и возвращения к берегу. Если уже катаетесь, расскажите про повороты и водный старт: это поможет выбрать задачу урока. Самостоятельный прокат возможен после оценки навыков и условий."],
+    wingfoil: ["Для знакомства с крылом и фойлом", "Навык управления вингом и баланс на доске осваиваются поэтапно. До выхода сообщите вес и опыт катания: от них зависит комплект. Переход к фойлу определяется контролем доски; число уроков до первого полёта заранее не гарантируется."],
+    kite: ["Для последовательного обучения кайту", "Первый урок посвящён безопасности и управлению, а не обязательному старту на доске. Малибу — открытый морской спот: инструктор оценивает ветер, волну и зону запуска. Укажите опыт и возраст участников, чтобы согласовать формат."],
+    surf: ["Для первых попыток на волне", "Начинающим важны небольшая волна и подходящая пена, а не сильный ветер. Заранее сообщите возраст участников и опыт плавания. Течение, прибой и доступность группы оцениваются перед занятием; при неподходящем море выход не планируется."]
+  }[page.sport];
   const hasPrices = Array.isArray(data.prices) && data.prices.length > 0;
   const imagePool = [data.hero, vietnamImg("station.jpg"), vietnamImg("community.jpg"), vietnamImg("aerial.jpg"), vietnamImg("windsurf.jpg"), vietnamImg("atmosphere.jpg")];
   return `
 <section class="dahab-sport-hero dahab-sport-hero--${page.sport}"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Вьетнам · Муйне</p><h1>${data.title}</h1><p>${data.lead}</p><div class="dahab-sport-hero__actions">${contactCta(page,"Записаться","button button-primary",page.sport)}${hasPrices ? `<a class="button button-ghost" href="${page.path}price/">Смотреть цены</a>` : `<a class="button button-ghost" href="/vietnam/">Обзор Вьетнама</a>`}</div><div class="hero-advantages hero-advantages--sport">${data.facts.map(item=>`<span class="hero-advantage">${item}</span>`).join("")}</div></div><figure class="dahab-sport-hero__media"><img src="${data.hero}" alt="${data.title}" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
-${seasonSection([countriesByKey.vietnam],{compact:true,eyebrow:`Муйне · ${site.sports[page.sport].nav}`,title:page.sport === "surf" ? "Выбираем условия по прогнозу" : "Сезон с ноября по март",lead:page.sport === "surf" ? "Для сёрфинга важны размер и направление волны. Команда подтверждает подходящее окно под уровень перед занятием." : "Основной ветровой сезон станции. Фактические условия команда подбирает под дисциплину и уровень райдера."})}
+${page.sport === "surf" ? "" : seasonSection([countriesByKey.vietnam],{compact:true,eyebrow:`Муйне · ${site.sports[page.sport].nav}`,title:"Сезон с ноября по март",lead:"Основной ветровой сезон станции. Условия каждого занятия оцениваются отдельно."})}
+<section class="dahab-sport-section"><div class="dahab-sport-inner">${sectionHeading("Кому подходит", preparation[0], preparation[1])}</div></section>
 <section class="dahab-sport-section dahab-sport-section--location"><div class="dahab-sport-inner">${sectionHeading("Локация",data.locationTitle,data.locationLead)}${sportFeatureGrid(data.reasons,{atlas:true,leadImage:data.hero,leadAlt:data.title})}</div></section>
 <section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner">${sectionHeading("Обучение",`Как проходит обучение: ${site.sports[page.sport].nav.toLowerCase()}`,"Каждый следующий этап опирается на уже контролируемый навык — без спешки и одинаковых обещаний для всех.")}<div class="dahab-sport-process">${data.steps.map(([number,title,text],index)=>`<article><img src="${imagePool[index%imagePool.length]}" alt="${title}" loading="lazy" decoding="async"><div><span>${number}</span><h3>${title}</h3><p>${text}</p></div></article>`).join("")}</div></div></section>
-${hasPrices ? `<section class="dahab-sport-section"><div class="dahab-sport-inner">${sectionHeading("Цены",`Цены на ${site.sports[page.sport].nav.toLowerCase()}`,"Выберите разовое занятие или последовательный курс под продолжительность поездки.")}<div class="dahab-sport-price-grid">${data.prices.map(([label,title,value,text])=>`<article class="dahab-sport-price-card"><small>${label}</small><h3>${title}</h3><b>${value}</b><p>${text}</p>${contactCta(page,"Записаться","button button-primary",page.sport)}</article>`).join("")}</div><div class="dahab-sport-price-actions"><a class="button button-ghost" href="${page.path}price/">Все цены</a></div></div></section>` : `<section class="dahab-sport-section"><div class="dahab-sport-inner">${sectionHeading("Формат занятий","Уточним условия и доступность","Напишите даты и ваш опыт — команда проверит прогноз и предложит подходящее время для занятия.")}<div class="dahab-sport-price-actions">${contactCta(page,"Уточнить условия","button button-primary",page.sport)}</div></div></section>`}
+${hasPrices ? `<section class="dahab-sport-section"><div class="dahab-sport-inner">${sectionHeading("Цены",`Цены на ${site.sports[page.sport].nav.toLowerCase()}`,"Выберите разовое занятие или последовательный курс под продолжительность поездки.")}<div class="dahab-sport-price-grid">${data.prices.map(([label,title,value,text])=>`<article class="dahab-sport-price-card"><small>${label}</small><h3>${title}</h3><b>${value}</b><p>${text}</p>${contactCta(page,"Записаться","button button-primary",page.sport)}</article>`).join("")}</div><div class="dahab-sport-price-actions"><a class="button button-ghost" href="${page.path}price/">Все цены</a></div></div></section>` : `<section class="dahab-sport-section"><div class="dahab-sport-inner">${sectionHeading("Формат занятий","Индивидуально или в группе","Индивидуально — 1 час; группа из 2–3 человек — 1,5 часа. Разминка и теория на берегу, затем практика на воде. При записи подтвердите стоимость, оборудование и дорогу до Малибу.")}<div class="dahab-sport-price-actions">${contactCta(page,"Уточнить условия","button button-primary",page.sport)}</div></div></section>`}
 <section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner dahab-sport-safety"><div class="dahab-sport-safety__copy"><p class="eyebrow">Перед выходом</p><h2>Безопасность и понятный план занятия</h2><p>Перед стартом инструктор проверяет условия, подбирает комплект, объясняет учебную зону и действия на воде.</p><div class="dahab-sport-safety__list"><span>Условия проверяются перед занятием</span><span>Комплект подбирается под уровень и вес</span><span>Практика начинается с контролируемых действий</span></div>${contactCta(page,"Обсудить программу")}</div><div class="dahab-sport-safety__media"><img src="${vietnamImg("station.jpg")}" alt="Станция Ветратории в Муйне" loading="lazy" decoding="async"></div></div></section>
 <section class="dahab-sport-section dahab-sport-section--faq"><div class="dahab-sport-inner">${sportFaqBlock("Частые вопросы",`Вопросы про ${site.sports[page.sport].nav.toLowerCase()} в Муйне`,"",data.faq)}</div></section>
 <section class="dahab-sport-cta"><img src="${data.hero}" alt="${data.title}" loading="lazy" decoding="async"><div class="dahab-sport-cta__inner"><p class="eyebrow">Подбор программы</p><h2>Подберём формат под уровень и даты</h2><p>Напишите дисциплину, опыт и продолжительность поездки — команда предложит подходящий урок или курс.</p><div>${contactCta(page,"Оставить заявку")}<a class="button button-ghost" href="/vietnam/">Обзор Муйне</a></div></div></section>`;
@@ -2961,7 +2973,7 @@ const vietnamPricePage = (page) => {
       title: "Цены на виндсёрфинг в Муйне",
       lead: "Уроки, курсы, прокат и хранение оборудования на станции Ветратория во Вьетнаме.",
       hero: vietnamImg("aerial.jpg"),
-      facts: ["Урок от 65$", "Курс 3 дня — 420$", "Прокат от 35$", "Хранение от 10$"],
+      facts: ["Урок от 65$", "Курс 3 дня — 420$", "Прокат от 40$", "Хранение от 20$"],
       intro: "Можно начать с одного часа, собрать курс на несколько дней или арендовать комплект для самостоятельного катания.",
       sections: [
         {
@@ -2971,26 +2983,26 @@ const vietnamPricePage = (page) => {
           headers: ["Формат", "Продолжительность", "Цена", "Что входит"],
           rows: [
             ["Знакомство с ветром", "1 час", "65$", "Инструктор, оборудование и страховка"],
-            ["С ветром знаком", "2 часа", "150$", "Занятие с инструктором и оборудование"],
-            ["Курс для начинающих", "3 дня", "420$", "По 1,5 часа обучения в день и самостоятельная практика"],
-            ["Недельный курс", "7 дней", "800$", "По 1 часу с инструктором ежедневно и самостоятельная практика"],
-            ["Детское занятие", "1 час", "55$", "Лёгкое оборудование и инструктор"],
-            ["Индивидуальное занятие", "1 час", "50$", "Работа инструктора; прокат оборудования оплачивается отдельно"]
+            ["С ветром знаком", "2 часа", "150$", "Инструктор, оборудование, страховка и 1 час самостоятельной практики"],
+            ["Курс для начинающих", "3 дня", "420$", "По 1,5 часа обучения в день, оборудование, страховка и практика в течение 3 дней"],
+            ["Недельный курс", "7 дней", "800$", "По 1 часу с инструктором ежедневно, оборудование, страховка и практика в течение 7 дней"],
+            ["Детское занятие", "1 час", "55$", "Оборудование, инструктор и страховка"],
+            ["Индивидуальное занятие", "1 час", "50$", "Индивидуальный час без страховки; включение проката согласуйте до оплаты"]
           ]
         },
         {
           eyebrow: "Самостоятельное катание",
           title: "Прокат виндсёрфинга",
-          lead: "Продолжительность можно выбрать от одного часа до четырёх недель.",
-          headers: ["Срок проката", "Цена"],
-          rows: [["1 час", "35$"], ["1 день", "70$"], ["2 дня", "140$"], ["3 дня", "200$"], ["4 дня", "260$"], ["5 дней", "310$"], ["6 дней", "360$"], ["7 дней", "405$"], ["8 дней", "450$"], ["9 дней", "490$"], ["10 дней", "530$"], ["11 дней", "565$"], ["12 дней", "600$"], ["2 недели", "660$"], ["3 недели", "840$"], ["4 недели", "1000$"]]
+          lead: "Цены при предварительном бронировании и оплате. Страховка оборудования указана отдельной колонкой.",
+          headers: ["Срок проката", "Цена", "Страховка оборудования"],
+          rows: [["1 час","40$","Включена"],["1 день","80$","10$"],["2 дня","160$","15$"],["3 дня","220$","20$"],["4 дня","280$","25$"],["5 дней","340$","30$"],["6 дней","400$","35$"],["7 дней","450$","40$"],["8 дней","490$","45$"],["9 дней","530$","50$"],["10 дней","565$","55$"],["11 дней","600$","60$"],["12 дней","630$","65$"],["2 недели","700$","70$"],["3 недели","950$","100$"],["4 недели","1150$","130$"]]
         },
         {
           eyebrow: "Своё оборудование",
           title: "Хранение на станции",
           lead: "Оборудование остаётся на станции рядом с точкой выхода на воду.",
           headers: ["Срок хранения", "Цена"],
-          rows: [["1 день", "10$"], ["4 дня", "30$"], ["1 неделя", "50$"], ["10 дней", "75$"], ["2 недели", "100$"], ["1 месяц", "150$"]]
+          rows: [["1 день", "20$"], ["4 дня", "70$"], ["1 неделя", "100$"], ["10 дней", "120$"], ["2 недели", "150$"], ["1 месяц", "200$"]]
         }
       ]
     },
@@ -3029,7 +3041,10 @@ const vietnamPricePage = (page) => {
   return `
 <section class="dahab-sport-hero dahab-sport-hero--${page.sport}"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">${data.eyebrow}</p><h1>${data.title}</h1><p>${data.lead}</p><div class="dahab-sport-hero__actions">${contactCta(page, "Записаться", "button button-primary", page.sport)}<a class="button button-ghost" href="/vietnam/${page.sport}/">О спорте</a></div><div class="hero-advantages hero-advantages--sport">${data.facts.map((fact) => `<span class="hero-advantage">${fact}</span>`).join("")}</div></div><figure class="dahab-sport-hero__media"><img src="${data.hero}" alt="${data.title}" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
 <section class="dahab-sport-section dahab-sport-section--location"><div class="dahab-sport-inner">${sectionHeading("Прайс", "Выберите подходящий формат", data.intro)}<div class="dahab-sport-location-atlas"><figure class="dahab-sport-location-atlas__lead"><img src="${data.hero}" alt="${data.title}" loading="lazy" decoding="async"></figure><div class="dahab-sport-location-atlas__grid vietnam-fact-grid">${[["01","Подбор под уровень","Команда уточнит опыт и предложит понятную точку старта."],["02","Снаряжение на месте","Для занятия не нужно привозить собственный комплект."],["03","Сезон ноябрь — март","Основное ветровое окно станции во Вьетнаме."],["04","Связь до поездки","Даты и доступность лучше согласовать с командой заранее."]].map(([number,title,text]) => `<article><span>${number}</span><h3>${title}</h3><p>${text}</p></article>`).join("")}</div></div></div></section>
-${data.sections.map((section, index) => `<section class="windsurf-price-section${index % 2 ? " windsurf-price-section--soft" : ""}"><div class="windsurf-price-inner"><header class="windsurf-price-heading"><p class="eyebrow">${section.eyebrow}</p><h2>${section.title}</h2><p>${section.lead}</p></header>${vietnamPriceTable(section.headers, section.rows, section.headers.length > 2)}</div></section>`).join("")}
+${data.sections.map((section, index) => `<section id="price-section-${index + 1}" class="windsurf-price-section${index % 2 ? " windsurf-price-section--soft" : ""}"><div class="windsurf-price-inner"><header class="windsurf-price-heading"><p class="eyebrow">${section.eyebrow}</p><h2>${section.title}</h2><p>${section.lead}</p></header>${vietnamPriceTable(section.headers, section.rows, section.headers.length > 2)}</div></section>`).join("")}
+<section class="windsurf-price-section"><div class="windsurf-price-inner"><h2>Перед бронированием</h2><p>Стоимость указана в долларах США. Согласуйте даты, продолжительность и состав услуги до оплаты. Погодное окно и доступность оборудования проверяются отдельно.</p>
+${page.sport === "windsurf" ? `<h3>Учебный пакет и отдельный инструктор</h3><p>Пакет «Знакомство с ветром» за 65$ включает оборудование и страховку матчасти. Отдельное индивидуальное занятие за 50$ указано без страховки: перед оплатой согласуйте, нужен ли вам прокат и какова полная стоимость. Оплата только работы инструктора не означает автоматического включения снаряжения.</p><p>Для группового обучения опубликована прибавка 30 минут к основному времени. Самостоятельная практика входит только в соответствующие курсы и проходит в подходящих условиях.</p><h3>Прокат и страховка оборудования</h3><p>Страховка матчасти — добровольный невозвратный взнос на ремонт. Она не покрывает полную утрату и столкновение по вине арендатора. Продление после первого страхового случая — 20$. Это не медицинская страховка.</p><p>Один комплект на двоих: +30%; отдельно доска или верхушка: 60% цены комплекта. Замена забронированной доски возможна при наличии. Гидрокостюм или трапеция: 10$ в день, 50$ в неделю.</p>` : ""}
+<h3>Изменение планов</h3><p>До оплаты согласуйте порядок переноса из-за погоды, отмены и возврата за неиспользованные занятия. Запись через форму — запрос команде, а не подтверждённое бронирование.</p></div></section>
 <section class="windsurf-price-section windsurf-price-section--dark"><div class="windsurf-price-inner"><div class="windsurf-price-contact"><figure><img src="${vietnamImg("station.jpg")}" alt="Станция Ветратория во Вьетнаме" width="900" height="600" loading="lazy" decoding="async"></figure><div><p class="eyebrow">Запись</p><h2>Подобрать занятие в Муйне</h2><p>Напишите даты, уровень и выбранную дисциплину. Команда проверит расписание и подберёт формат.</p><div class="windsurf-price-contact__actions">${contactCta(page, "Оставить заявку", "button button-primary", page.sport)}<a class="button button-ghost" href="/vietnam/contacts/">Контакты</a></div></div></div></div></section>`;
 };
 
@@ -3508,16 +3523,18 @@ const contactForm = (page) => {
     <form class="contact-form" data-contact-form data-endpoint="${escapeHtml(site.contactEndpoint || "")}" data-mail-to="${isGeneral ? "" : contact.formEmail}" data-direction="${isGeneral ? "" : contact.title}">
       <input type="hidden" name="source" value="${escapeHtml(page.path)}">
       <input type="hidden" name="intent" value="Форма страницы контактов">
-      <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
-      <label>Способ связи<input name="contact" autocomplete="email" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>
+      ${!isGeneral ? `<input type="hidden" name="country" value="${page.country}">` : ""}
+      <label hidden aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+      <label>Имя<input name="name" maxlength="100" autocomplete="name" placeholder="Ваше имя" required></label>
+      <label>Способ связи<input name="contact" maxlength="200" autocomplete="email" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>
       ${isGeneral ? `
       <label>Страна
         <select name="country" data-contact-country-select required>
           ${countryList.map(contactCountryOption).join("")}
         </select>
       </label>` : ""}
-      <label><span>Комментарий <small>по желанию</small></span><textarea name="message" rows="5" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
-      <button class="button button-primary" type="submit">${site.contactEndpoint ? "Отправить заявку" : "Подготовить заявку"}</button>
+      <label><span>Комментарий <small>по желанию</small></span><textarea name="message" maxlength="1200" rows="5" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
+      <button class="button button-primary" type="submit">Отправить заявку</button>
       <p class="form-note" data-form-note aria-live="polite"></p>
     </form>`;
 };
@@ -3528,8 +3545,8 @@ const vietnamContactsPage = (page) => {
   return `
 <section class="dahab-sport-hero"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Вьетнам · связь</p><h1>Контакты Ветратории в Муйне</h1><p>Напишите или позвоните команде станции, чтобы согласовать даты, дисциплину и подходящий формат занятий.</p><div class="dahab-sport-hero__actions"><a class="button button-primary" href="tel:${contact.phone}">Позвонить</a><a class="button button-ghost" href="mailto:${contact.email}">Написать на почту</a></div><div class="hero-advantages hero-advantages--sport"><span class="hero-advantage">${contact.phoneLabel}</span><span class="hero-advantage">${contact.email}</span><span class="hero-advantage">Муйне</span><span class="hero-advantage">Сезон ноябрь — март</span></div></div><figure class="dahab-sport-hero__media"><img src="/assets/img/vietnam-source/station.jpg" alt="Станция Ветратория в Муйне" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
 <section class="content-section contacts-directory-section"><div class="section-inner">${sectionHeading("Прямая связь", "Станция во Вьетнаме", "Один номер и одна почта для вопросов об обучении, прокате и поездке.")}<div class="contacts-directory contacts-directory--stations"><article class="contact-station-card"><p class="eyebrow">Телефон и почта</p><h2>Команда станции</h2><p>Расскажите, когда приезжаете, каким спортом хотите заниматься и есть ли опыт.</p><div class="contact-station-card__methods">${contactMethod({href:`tel:${contact.phone}`,label:"Телефон",value:contact.phoneLabel})}${contactMethod({href:`mailto:${contact.email}`,label:"Электронная почта",value:contact.email})}${contactMethod({href:contact.telegram,icon:"/assets/icons/telegram.svg",label:"Telegram",value:contact.phoneLabel,external:true})}</div></article><article class="contact-station-card"><p class="eyebrow">Адрес станции</p><h2>Sun & Sands Beach</h2><p>${address}</p><div class="contact-station-card__methods">${contactMethod({href:"https://www.google.com/maps/search/?api=1&query=10.94875,108.25900",label:"Координаты",value:"10°56'55.5\"N 108°15'32.4\"E",external:true})}</div></article></div></div></section>
-<section class="dahab-sport-section dahab-sport-section--location"><div class="dahab-sport-inner">${sectionHeading("Перед сообщением", "Что написать команде", "Три детали помогут сразу получить конкретный ответ по формату и расписанию.")}<div class="dahab-sport-location-atlas"><figure class="dahab-sport-location-atlas__lead"><img src="/assets/img/vietnam-source/action.jpg" alt="Ветратория Вьетнам" loading="lazy" decoding="async"></figure><div class="dahab-sport-location-atlas__grid vietnam-fact-grid">${[["01","Даты поездки","Когда приезжаете и сколько дней будете в Муйне."],["02","Вид спорта","Кайтсёрфинг, виндсёрфинг, вингфойл или сёрфинг."],["03","Ваш уровень","Первый раз, продолжаете обучение или нужен прокат."],["04","Желаемый формат","Разовый урок, курс на несколько дней или самостоятельная практика."]].map(([number,title,text]) => `<article><span>${number}</span><h3>${title}</h3><p>${text}</p></article>`).join("")}</div></div></div></section>
-<section class="content-section" id="contact-form"><div class="section-inner contact-layout"><div>${sectionHeading("Заявка", "Подготовить сообщение", "Заполните короткую форму — после нажатия откроется почтовое приложение с готовой заявкой.")}</div>${contactForm(page)}</div></section>`;
+<section class="dahab-sport-section dahab-sport-section--location"><div class="dahab-sport-inner">${sectionHeading("Перед сообщением", "Что написать команде", "Четыре детали помогут сразу получить конкретный ответ по формату и расписанию.")}<div class="dahab-sport-location-atlas"><figure class="dahab-sport-location-atlas__lead"><img src="/assets/img/vietnam-source/action.jpg" alt="Ветратория Вьетнам" loading="lazy" decoding="async"></figure><div class="dahab-sport-location-atlas__grid vietnam-fact-grid">${[["01","Даты поездки","Когда приезжаете и сколько дней будете в Муйне."],["02","Вид спорта","Кайтсёрфинг, виндсёрфинг, вингфойл или сёрфинг."],["03","Ваш уровень","Первый раз, продолжаете обучение или нужен прокат."],["04","Желаемый формат","Разовый урок, курс на несколько дней или самостоятельная практика."]].map(([number,title,text]) => `<article><span>${number}</span><h3>${title}</h3><p>${text}</p></article>`).join("")}</div></div></div></section>
+<section class="content-section" id="contact-form"><div class="section-inner contact-layout"><div>${sectionHeading("Заявка", "Оставить заявку", "Укажите контакт и вопрос. Дождитесь подтверждения приёма; время занятия и условия команда согласует отдельно.")}</div>${contactForm(page)}</div></section>`;
 };
 
 const russiaContactsPage = (page) => {
@@ -3538,7 +3555,7 @@ const russiaContactsPage = (page) => {
   return `<section class="dahab-sport-hero"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Россия · связь</p><h1>Контакты Ветратории на Должанской</h1><p>Напишите или позвоните команде станции, чтобы согласовать даты, дисциплину, обучение или прокат.</p><div class="dahab-sport-hero__actions"><a class="button button-primary" href="tel:${contact.phone}">Позвонить</a><a class="button button-ghost" href="mailto:${contact.email}">Написать на почту</a></div><div class="hero-advantages hero-advantages--sport"><span class="hero-advantage">${contact.phoneLabel}</span><span class="hero-advantage">${contact.email}</span><span class="hero-advantage">Коса Долгая</span><span class="hero-advantage">Май — середина сентября</span></div></div><figure class="dahab-sport-hero__media"><img src="${russiaImg("training.jpg")}" alt="Станция Ветратория на Должанской" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
 <section class="content-section contacts-directory-section"><div class="section-inner">${sectionHeading("Прямая связь","Станция в России","Один номер и одна почта для вопросов об обучении, прокате, проживании и дороге.")}<div class="contacts-directory contacts-directory--stations"><article class="contact-station-card"><p class="eyebrow">Телефон и почта</p><h2>Команда станции</h2><p>Расскажите даты, выбранный спорт, опыт и нужен ли прокат оборудования.</p><div class="contact-station-card__methods">${contactMethod({href:`tel:${contact.phone}`,label:"Телефон",value:contact.phoneLabel})}${contactMethod({href:`mailto:${contact.email}`,label:"Электронная почта",value:contact.email})}${contactMethod({href:contact.telegram,icon:"/assets/icons/telegram.svg",label:"Telegram",value:contact.phoneLabel,external:true})}</div></article><article class="contact-station-card"><p class="eyebrow">Адрес станции</p><h2>Коса Долгая · «Серфприют»</h2><p>${address}</p><div class="contact-station-card__methods">${contactMethod({href:"https://www.google.com/maps/search/?api=1&query=46.652785,37.754422",label:"Координаты",value:"46.652785, 37.754422",external:true})}</div></article></div></div></section>
 <section class="dahab-sport-section dahab-sport-section--location"><div class="dahab-sport-inner">${sectionHeading("Перед сообщением","Что написать команде","Четыре детали помогут сразу получить конкретный ответ.")}<div class="dahab-sport-location-atlas"><figure class="dahab-sport-location-atlas__lead"><img src="${russiaImg("station.jpg")}" alt="Коса Долгая" loading="lazy" decoding="async"></figure><div class="dahab-sport-location-atlas__grid vietnam-fact-grid">${[["01","Даты","Когда приезжаете и на сколько дней."],["02","Дисциплина","Виндсёрфинг, вингфойл или кайт."],["03","Уровень","Первый раз, продолжаете или нужен прокат."],["04","Бытовые вопросы","Нужно ли проживание и помощь с дорогой."]].map(([n,t,x])=>`<article><span>${n}</span><h3>${t}</h3><p>${x}</p></article>`).join("")}</div></div></div></section>
-<section class="content-section" id="contact-form"><div class="section-inner contact-layout"><div>${sectionHeading("Заявка","Подготовить сообщение","Заполните короткую форму — после нажатия откроется почтовое приложение с готовой заявкой.")}</div>${contactForm(page)}</div></section>`;
+<section class="content-section" id="contact-form"><div class="section-inner contact-layout"><div>${sectionHeading("Заявка","Оставить заявку","Укажите контакт и вопрос. Дождитесь подтверждения приёма; время занятия и условия команда согласует отдельно.")}</div>${contactForm(page)}</div></section>`;
 };
 
 const contactsPage = (page) => {
@@ -3594,7 +3611,7 @@ ${hero(page, heroActions)}
           ? "Оставьте имя, удобный способ связи, выберите страну и при желании добавьте комментарий."
           : isDahab ? "" : "Оставьте имя и удобный способ связи. Комментарий можно не заполнять."
       )}
-      ${isDahab ? "" : `<p class="contact-form-hint">После нажатия откроется ваше почтовое приложение с уже подготовленной заявкой.</p>`}
+      ${isDahab ? "" : `<p class="contact-form-hint">Дождитесь подтверждения приёма. Если отправка недоступна, используйте прямые контакты выше.</p>`}
     </div>
     ${contactForm(page)}
   </div>
@@ -3824,10 +3841,11 @@ const vietnamSchoolPage = (page) => {
     ["Сёрфинг", "Чтение волны, гребля, тейк-офф и практика в подходящих по прогнозу условиях.", vietnamImg("surf.jpg"), "/vietnam/surf/"]
   ];
   return `
-<section class="dahab-sport-hero"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Ветратория · Вьетнам</p><h1>Школа ветра и волны в Муйне</h1><p>С 2011 года учим виндсёрфингу, вингфойлу, кайтсёрфингу и сёрфингу, подбирая программу под человека и реальные условия на воде.</p><div class="dahab-sport-hero__actions">${contactCta(page, "Написать команде")}<a class="button button-ghost" href="#school">О школе</a></div><div class="hero-advantages hero-advantages--sport"><span class="hero-advantage">Работаем с 2011 года</span><span class="hero-advantage">Четыре дисциплины</span><span class="hero-advantage">Станция на берегу</span><span class="hero-advantage">Сезон ноябрь — март</span></div></div><figure class="dahab-sport-hero__media"><img src="${vietnamImg("station.jpg")}" alt="Школа Ветратория в Муйне" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
+<section class="dahab-sport-hero"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Ветратория · Вьетнам</p><h1>Школа ветра и волны в Муйне</h1><p>Ветратория работает в Муйне с 2011 года. Сегодня здесь можно выбрать виндсёрфинг, вингфойл, кайтсёрфинг или сёрфинг и согласовать программу под свой опыт.</p><div class="dahab-sport-hero__actions">${contactCta(page, "Написать команде")}<a class="button button-ghost" href="#school">О школе</a></div><div class="hero-advantages hero-advantages--sport"><span class="hero-advantage">Работаем с 2011 года</span><span class="hero-advantage">Четыре дисциплины</span><span class="hero-advantage">Станция на берегу</span><span class="hero-advantage">Сезон ноябрь — март</span></div></div><figure class="dahab-sport-hero__media"><img src="${vietnamImg("station.jpg")}" alt="Школа Ветратория в Муйне" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
 <section class="dahab-sport-section dahab-sport-section--location" id="school"><div class="dahab-sport-inner">${sectionHeading("О школе", "Одно место — четыре пути на воду", "На станции можно начать с нуля, продолжить обучение, взять оборудование напрокат или оставить собственный комплект на хранение.")}<div class="dahab-sport-location-atlas"><figure class="dahab-sport-location-atlas__lead"><img src="${vietnamImg("action.jpg")}" alt="Станция Ветратория во Вьетнаме" loading="lazy" decoding="async"></figure><div class="dahab-sport-location-atlas__grid vietnam-fact-grid">${[["2011","Работаем в Муйне","Станция стала частью вьетнамского направления Ветратории."],["01","Подбор формата","Учитываем опыт, цели, количество дней и выбранную дисциплину."],["02","Практика на воде","Инструктор объясняет технику и контролирует последовательность задач."],["03","Следующий шаг","После занятия понятны дальнейший курс, прокат или самостоятельная практика."]].map(([number,title,text]) => `<article><span>${number}</span><h3>${title}</h3><p>${text}</p></article>`).join("")}</div></div></div></section>
 <section class="dahab-sport-section"><div class="dahab-sport-inner">${sectionHeading("Направления школы", "Выберите дисциплину", "У каждого спорта своя страница с условиями и программой.")}<div class="dahab-sport-useful">${disciplines.map(([title,text,image,href]) => `<a href="${href}"><img src="${image}" alt="${title} в Муйне" loading="lazy" decoding="async"><span>Вьетнам · Муйне</span><h3>${title}</h3><p>${text}</p><em>Открыть направление →</em></a>`).join("")}</div></div></section>
 <section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner dahab-sport-safety"><div class="dahab-sport-safety__copy"><p class="eyebrow">Команда рядом</p><h2>До поездки, на берегу и после занятия</h2><p>Администратор помогает с записью и расписанием, инструктор отвечает за учебную задачу и безопасность, команда станции готовит оборудование и помогает с выходом.</p><div class="dahab-sport-safety__list"><span>Запись и подбор программы</span><span>Подготовка и настройка комплекта</span><span>Инструктаж и обратная связь</span></div>${contactCta(page, "Познакомиться со школой")}</div><div class="dahab-sport-safety__media"><img src="${vietnamImg("atmosphere.jpg")}" alt="Оборудование школы Ветратория" loading="lazy" decoding="async"></div></div></section>
+<section class="dahab-sport-section"><div class="dahab-sport-inner">${sectionHeading("На станции", "Подготовка к выходу и отдых на берегу", "Станция находится на территории Sun & Sands. Здесь есть шкафчики для личных вещей, душ, туалет и зона отдыха. Перед первым выходом познакомьтесь с учебной акваторией и действующим порядком помощи на воде.")}<h3>Снаряжение под задачу</h3><p>Школа использует оборудование RRD. Для бронирования сообщите дисциплину, вес и уровень, а если нужен конкретный объём доски или размер паруса — укажите его заранее. Доступность комплекта на даты поездки подтверждает станция.</p><div class="dahab-sport-price-actions"><a class="button button-ghost" href="/vietnam/how-to-get/">Как добраться</a></div></div></section>
 <section class="dahab-sport-cta"><img src="${vietnamImg("station.jpg")}" alt="Пляжная станция Ветратория в Муйне" loading="lazy" decoding="async"><div class="dahab-sport-cta__inner"><p class="eyebrow">Станция в Муйне</p><h2>Приезжайте за ветром и прогрессом</h2><p>Напишите даты и интересующий спорт — команда предложит программу под продолжительность вашей поездки.</p><div>${contactCta(page, "Оставить заявку")}<a class="button button-ghost" href="/vietnam/contacts/">Контакты</a></div></div></section>`;
 };
 
@@ -3847,6 +3865,11 @@ const russiaAccommodationPage = (page) => `<section class="dahab-sport-hero"><di
 <section class="dahab-sport-section dahab-sport-section--location"><div class="dahab-sport-inner">${sectionHeading("Серфприют","Быт вокруг катания","На базе есть комнаты и отдельные варианты размещения. Конкретную категорию, оснащение, стоимость и свободные даты нужно подтвердить перед бронированием.")}<div class="dahab-sport-location-atlas"><figure class="dahab-sport-location-atlas__lead"><img src="${russiaImg("station.jpg")}" alt="Коса Долгая" loading="lazy" decoding="async"></figure><div class="dahab-sport-location-atlas__grid vietnam-fact-grid">${[["01","Рядом со станцией","Меньше времени на ежедневную дорогу."],["02","Два пляжа","Обе стороны косы находятся неподалёку."],["03","Снаряжение","Хранение организовано рядом с местом выхода."],["04","Питание и быт","Формат и режим работы уточняются на ваши даты."]].map(([n,t,x])=>`<article><span>${n}</span><h3>${t}</h3><p>${x}</p></article>`).join("")}</div></div></div></section>
 <section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner">${sectionHeading("Перед бронированием","Что уточнить","Так вы получите конкретный вариант, а не общий ответ.")}<div class="dahab-sport-feature-grid">${[["01","Даты и количество ночей","Укажите день приезда, отъезда и возможную гибкость."],["02","Состав гостей","Сколько взрослых и детей, нужны ли отдельные места."],["03","Спортивная программа","Какой спорт, обучение или прокат планируете."],["04","Своё оборудование","Нужно ли место хранения для вашего комплекта."]].map(([n,t,x])=>`<article><span>${n}</span><h3>${t}</h3><p>${x}</p></article>`).join("")}</div></div></section>
 <section class="dahab-sport-cta"><img src="${russiaImg("life-4.jpg")}" alt="База отдыха рядом со станцией" loading="lazy" decoding="async"><div class="dahab-sport-cta__inner"><p class="eyebrow">Запрос размещения</p><h2>Проверим варианты под ваши даты</h2><p>Напишите состав гостей, даты и спортивную программу — команда уточнит доступность.</p><div>${contactCta(page,"Написать команде")}<a class="button button-ghost" href="/russia/contacts/">Контакты</a></div></div></section>`;
+
+const vietnamRoutePage = (page) => `${hero(page, `<a class="button button-primary" href="/vietnam/contacts/">Контакты станции</a>`)}
+<section class="dahab-sport-section"><div class="dahab-sport-inner">${sectionHeading("Место назначения", "Sun & Sands Beach, Муйне", "Станция расположена на территории Sun & Sands: 62 Huỳnh Thúc Kháng, Hàm Tiến, Phan Thiết. Сохраните адрес и координаты 10.94875, 108.25900 перед дорогой.")}<div class="dahab-sport-price-actions"><a class="button button-ghost" href="https://www.google.com/maps/search/?api=1&query=10.94875,108.25900" target="_blank" rel="noopener noreferrer">Открыть карту</a></div></div></section>
+<section class="dahab-sport-section dahab-sport-section--soft"><div class="dahab-sport-inner">${sectionHeading("Из Хошимина", "Трансфер или междугородний автобус", "После прилёта потребуется отдельный переезд до Муйне. Не назначайте первый урок вплотную к прибытию самолёта.")}<div class="dahab-sport-feature-grid">${[["01","Автобус","Проверьте у перевозчика место посадки в Хошимине и точку высадки в Муйне. До станции может понадобиться местное такси."],["02","Трансфер","Заранее согласуйте адрес, время встречи и вместимость машины. Для чехлов с оборудованием сообщите размеры и количество мест."],["03","Ориентир на месте","Покажите водителю адрес Sun & Sands Beach и отметку на карте. Уточните у станции удобный вход перед приездом."],["04","Обратная дорога","Заложите запас на переезд и регистрацию. Расписание и время в пути проверяйте у выбранного перевозчика."]].map(([n,t,x])=>`<article><span>${n}</span><h3>${t}</h3><p>${x}</p></article>`).join("")}</div></div></section>
+<section class="dahab-sport-section"><div class="dahab-sport-inner">${sectionHeading("Перед поездкой", "Что сообщить станции", "Даты, вид спорта, уровень, возраст участников и наличие своего оборудования. Согласуйте время первого визита и занятий, особенно если планируете ранний сёрфинг на Малибу.")}<div class="dahab-sport-price-actions">${contactCta(page,"Обсудить поездку")}<a class="button button-ghost" href="/vietnam/">Обзор Вьетнама</a></div></div></section>`;
 
 const russiaRoutePage = (page) => `<section class="dahab-sport-hero"><div class="dahab-sport-hero__inner"><div class="dahab-sport-hero__copy"><p class="eyebrow">Должанская · дорога</p><h1>Как добраться до станции</h1><p>Финальная точка маршрута — коса Долгая, база отдыха «Серфприют». Актуальный общественный транспорт и последний участок дороги лучше проверить перед выездом.</p><div class="dahab-sport-hero__actions"><a class="button button-primary" href="https://www.google.com/maps/search/?api=1&query=46.652785,37.754422" target="_blank" rel="noopener noreferrer">Открыть карту</a>${contactCta(page,"Уточнить маршрут","button button-ghost")}</div><div class="hero-advantages hero-advantages--sport"><span class="hero-advantage">46.652785, 37.754422</span><span class="hero-advantage">Станица Должанская</span><span class="hero-advantage">Коса Долгая</span><span class="hero-advantage">База «Серфприют»</span></div></div><figure class="dahab-sport-hero__media"><img src="${russiaImg("station.jpg")}" alt="Коса Долгая с воздуха" loading="eager" decoding="async" fetchpriority="high"></figure></div></section>
 <section class="dahab-sport-section dahab-sport-section--location"><div class="dahab-sport-inner">${sectionHeading("Маршрут","Точка назначения без двусмысленности","Сохраните координаты и заранее уточните состояние последнего участка дороги, время заезда и контакт встречающего.")}<div class="dahab-sport-location-atlas"><figure class="dahab-sport-location-atlas__lead"><img src="${russiaImg("station.jpg")}" alt="Коса Долгая" loading="lazy" decoding="async"></figure><div class="dahab-sport-location-atlas__grid vietnam-fact-grid">${[["01","Навигатор","Введите координаты 46.652785, 37.754422."],["02","Ориентир","Станица Должанская, коса Долгая, «Серфприют»."],["03","Общественный транспорт","Сверьте действующее расписание у перевозчика."],["04","Последний участок","Согласуйте с командой станции до выезда."]].map(([n,t,x])=>`<article><span>${n}</span><h3>${t}</h3><p>${x}</p></article>`).join("")}</div></div></div></section>
@@ -3921,7 +3944,7 @@ const render = (page) => {
     case "safety":
       return layout(page, page.country === "dahab" ? dahabSafetyPage(page) : featurePage(page));
     case "route":
-      return layout(page, page.country === "dahab" ? dahabHowToGetPage(page) : page.country === "russia" ? russiaRoutePage(page) : featurePage(page));
+      return layout(page, page.country === "dahab" ? dahabHowToGetPage(page) : page.country === "russia" ? russiaRoutePage(page) : page.country === "vietnam" ? vietnamRoutePage(page) : featurePage(page));
     case "accommodation":
       return layout(page, page.country === "russia" ? russiaAccommodationPage(page) : featurePage(page));
     case "not-found":

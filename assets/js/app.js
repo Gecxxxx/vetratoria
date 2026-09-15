@@ -700,69 +700,105 @@
       direction,
       message: String(data.get("message") || "").trim(),
       source: String(data.get("source") || window.location.pathname).trim(),
-      pageUrl: window.location.href
+      pageUrl: window.location.origin + window.location.pathname,
+      website: String(data.get("website") || ""),
+      startedAt: Number(form.dataset.startedAt),
+      attribution: contactAttribution()
     };
   };
 
-  const contactRecipient = (form) => form.dataset.mailTo || countryOption(form)?.dataset.email || "";
-
-  const submitContactForm = async (form, payload, note) => {
-    const endpoint = form.dataset.endpoint;
-    if (endpoint) {
-      const submitButton = form.querySelector("[type='submit']");
-      submitButton?.setAttribute("disabled", "");
-      if (note) note.textContent = "Отправляем заявку...";
-
-      try {
-        const response = await fetch(endpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
-        if (!response.ok) throw new Error(`Contact endpoint returned ${response.status}`);
-        if (note) note.textContent = "Заявка отправлена. Скоро мы свяжемся с вами.";
-        form.reset();
-      } catch (error) {
-        if (note) note.textContent = "Не удалось отправить заявку. Напишите нам в WhatsApp или Telegram.";
-      } finally {
-        submitButton?.removeAttribute("disabled");
-      }
-      return;
-    }
-
-    const recipient = contactRecipient(form);
-    if (!recipient) {
-      if (note) note.textContent = "Выберите направление для заявки.";
-      return;
-    }
-
-    const subject = `Заявка Ветратория: ${payload.direction}`;
-    const mailBody = [
-      `Имя: ${payload.name}`,
-      `Способ связи: ${payload.contact}`,
-      `Направление: ${payload.direction}`,
-      payload.sport ? `Спорт: ${payload.sport}` : "",
-      payload.intent ? `Запрос: ${payload.intent}` : "",
-      payload.message ? `Комментарий: ${payload.message}` : "Комментарий: не указан",
-      `Страница: ${payload.pageUrl}`
-    ].filter(Boolean).join("\n");
-
-    if (note) note.textContent = "Заявка подготовлена. Открываем почтовое приложение.";
-    window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(mailBody)}`;
+  const attributionKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "yclid"];
+  const contactAttribution = () => {
+    try {
+      const current = Object.fromEntries([...new URLSearchParams(location.search)].filter(([key]) => attributionKeys.includes(key)).map(([key,value]) => [key, value.slice(0,160)]));
+      if (Object.keys(current).length) sessionStorage.setItem("vtr:attribution", JSON.stringify(current));
+      return Object.keys(current).length ? current : JSON.parse(sessionStorage.getItem("vtr:attribution") || "{}");
+    } catch { return {}; }
   };
-
-  document.querySelectorAll("form[data-contact-form]").forEach((form) => {
+  contactAttribution();
+  const contactEvent = (stage, form) => {
+    const data = new FormData(form);
+    const sport = String(data.get("sport") || "");
+    // Never send contact fields, message, full URL or attribution to analytics.
+    const detail = {
+      country: ["dahab", "vietnam", "russia"].includes(data.get("country")) ? data.get("country") : "",
+      sport: ["Виндсёрфинг", "Вингфойл", "Кайтсёрфинг", "Сёрфинг", "Детский"].includes(sport) ? sport : "",
+      form: form.hasAttribute("data-contact-modal-form") ? "modal" : "inline"
+    };
+    document.dispatchEvent(new CustomEvent(`vetratoria:contact-${stage}`, { detail }));
+  };
+  const unavailableMessage = "Прямая отправка сейчас недоступна. Свяжитесь со станцией по телефону, почте или в Telegram.";
+  const checkContactAvailability = async (form) => {
+    if (form.dataset.submitting === "true") return;
     const note = form.querySelector("[data-form-note]");
+    const country = String(new FormData(form).get("country") || "");
+    const checkId = crypto.randomUUID();
+    form.dataset.checkId = checkId;
+    try {
+      const url = new URL(form.dataset.endpoint, location.href);
+      url.searchParams.set("country", country);
+      const response = await fetch(url, { signal: AbortSignal.timeout(8000) });
+      const status = await response.json();
+      if (form.dataset.checkId !== checkId || form.dataset.submitting === "true") return;
+      note.textContent = response.ok && status.available === true ? "После отправки дождитесь подтверждения приёма заявки." : unavailableMessage;
+    } catch {
+      if (form.dataset.checkId === checkId && form.dataset.submitting !== "true") note.textContent = unavailableMessage;
+    }
+  };
+  const submitContactForm = async (form, payload, note) => {
+    if (form.dataset.submitting === "true") return;
+    form.dataset.submitting = "true";
+    form.dataset.checkId = "";
+    const button = form.querySelector("[type='submit']");
+    button.disabled = true;
+    form.setAttribute("aria-busy", "true");
+    contactEvent("attempt", form);
+    const signature = JSON.stringify({ ...payload, startedAt: 0 });
+    if (form._contactSignature !== signature) {
+      form._contactSignature = signature;
+      form._contactRequestId = crypto.randomUUID();
+    }
+    payload.requestId = form._contactRequestId;
+    note.textContent = "Отправляем заявку…";
+    try {
+      if (!form.dataset.endpoint) throw new Error("unavailable");
+      const response = await fetch(form.dataset.endpoint, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload), signal: AbortSignal.timeout(20000)
+      });
+      const result = await response.json();
+      if (!response.ok || result.ok !== true || result.accepted !== true || result.requestId !== payload.requestId) throw new Error(result.code || "delivery");
+      contactEvent("success", form);
+      note.textContent = "Заявка принята. Команда свяжется с вами, чтобы подтвердить время и условия.";
+      for (const key of ["name", "contact", "message", "website"]) if (form.elements[key]) form.elements[key].value = "";
+      form._contactSignature = "";
+      form.dataset.startedAt = String(Date.now());
+    } catch (error) {
+      contactEvent("error", form);
+      note.textContent = error.message === "unavailable" ? unavailableMessage
+        : error.message === "rate_limit" ? "Слишком много попыток. Подождите 10 минут или свяжитесь со станцией напрямую."
+        : ["pending", "uncertain", "duplicate"].includes(error.message) ? "Подтверждение пока не получено или такая заявка уже обрабатывается. Данные сохранены. Уточните приём у станции, прежде чем отправлять ещё раз."
+        : error.message === "validation" ? "Проверьте имя и контакт: телефон с кодом страны, email или Telegram @username. Затем повторите отправку."
+        : "Не удалось подтвердить приём. Данные сохранены — повторите попытку или свяжитесь со станцией напрямую.";
+    } finally {
+      form.dataset.submitting = "false";
+      form.removeAttribute("aria-busy");
+      button.disabled = false;
+    }
+  };
+  document.querySelectorAll("form[data-contact-form]").forEach((form) => {
+    form.dataset.startedAt = String(Date.now());
+    if (!form.hasAttribute("data-contact-modal-form")) {
+      checkContactAvailability(form);
+      form.addEventListener("focusin", () => contactEvent("open", form), { once: true });
+    }
+    form.querySelector("[data-contact-country-select]")?.addEventListener("change", () => checkContactAvailability(form));
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
+      if (form.dataset.submitting === "true" || !form.reportValidity()) return;
       const payload = contactPayload(form);
-
-      if (!payload.name || !payload.contact) {
-        if (note) note.textContent = "Заполните имя и удобный способ связи.";
-        return;
-      }
-
-      document.dispatchEvent(new CustomEvent("vetratoria:contact-submit", { detail: payload }));
+      const note = form.querySelector("[data-form-note]");
+      if (!payload.name || !payload.contact) { note.textContent = "Заполните имя и способ связи."; return; }
       await submitContactForm(form, payload, note);
     });
   });
@@ -781,6 +817,8 @@
       const isDahab = country === "dahab";
       directPhone.href = isDahab ? `https://wa.me/${digits}` : `tel:${phone}`;
       directPhoneLabel.textContent = isDahab ? "WhatsApp" : "Телефон";
+      const icon = directPhone.querySelector("img");
+      if (icon) icon.src = isDahab ? "/assets/icons/whatsapp.svg" : "/assets/icons/phone.svg";
       if (isDahab) {
         directPhone.target = "_blank";
         directPhone.rel = "noopener noreferrer";
@@ -790,6 +828,9 @@
       }
     }
     if (directTelegram && telegram) directTelegram.href = telegram;
+    const emailLink = contactDialog?.querySelector("[data-contact-direct-email]");
+    const email = contactModalForm?.dataset.mailTo;
+    if (emailLink && email) emailLink.href = `mailto:${email}`;
   };
 
   const syncModalCountry = () => {
@@ -815,7 +856,7 @@
       if (!contactDialog || !contactModalForm || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
 
-      contactModalForm.reset();
+      if (contactModalForm.dataset.submitting === "true") return;
       const intent = trigger.dataset.contactIntent || trigger.textContent.trim() || "Написать нам";
       const sport = trigger.dataset.contactSport || "";
       const country = trigger.dataset.contactCountry || "";
@@ -849,6 +890,8 @@
       });
 
       contactDialog.showModal();
+      contactEvent("open", contactModalForm);
+      checkContactAvailability(contactModalForm);
       body.classList.add("contact-modal-open");
       window.setTimeout(() => contactModalForm.elements.name?.focus(), 0);
     });

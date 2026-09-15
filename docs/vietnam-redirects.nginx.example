@@ -1,0 +1,11 @@
+# НЕАКТИВНЫЙ ПРИМЕР. Только если администратор подтвердил nginx.
+# Добавлять location в существующий HTTPS server старого vietnam.vetratoria.ru,
+# после проверки server_name, сертификата и полной URL-карты. НЕ на новом домене.
+# server_name vietnam.vetratoria.ru;
+# location = /ru/page/obuchenie-kaytserfingu.php {
+#   return 301 https://vetratoria.ru/vietnam/kite/price/$is_args$args;
+# }
+# location = /ru/blog/s-obnovkami.php {
+#   return 301 https://vetratoria.ru/ru/blog/s-obnovkami.php$is_args$args;
+# }
+# Не добавлять catch-all redirect. Остальная выдача архива должна сохраниться.

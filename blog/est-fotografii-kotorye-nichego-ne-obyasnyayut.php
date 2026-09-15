@@ -35,9 +35,9 @@
   <link rel="icon" href="/assets/img/vetratoria-logo.png">
   <link rel="preload" href="/assets/fonts/inter-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/main.css?v=20260913-unified-typography">
-  <script defer src="/assets/js/app.js?v=20260913-unified-typography"></script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/blog/est-fotografii-kotorye-nichego-ne-obyasnyayut.php#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Материалы со всех стран","item":"https://vetratoria.ru/blog/"}]}]}</script>
+  <link rel="stylesheet" href="/assets/css/main.css?v=20260915-contact-vietnam">
+  <script defer src="/assets/js/app.js?v=20260915-contact-vietnam"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/blog/est-fotografii-kotorye-nichego-ne-obyasnyayut.php#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Материалы со всех стран","item":"https://vetratoria.ru/blog/"},{"@type":"ListItem","position":3,"name":"Есть фотографии, которые ничего не объясняют.","item":"https://vetratoria.ru/blog/est-fotografii-kotorye-nichego-ne-obyasnyayut.php"}]}]}</script>
 </head>
 <body class="modern-site article country-russia">
   <a class="skip-link" href="#main">К содержанию</a>
@@ -244,26 +244,28 @@
       <span class="contact-modal__context" data-contact-modal-context>Россия · Должанская · Виндсёрфинг</span>
     </div>
     <form class="contact-form contact-modal__form" data-contact-form data-contact-modal-form
-      data-endpoint=""
+      data-endpoint="/api/contact"
       data-mail-to="russia@vetratoria.ru"
       data-direction="Россия · Должанская · Виндсёрфинг">
       <input type="hidden" name="source" value="/blog/est-fotografii-kotorye-nichego-ne-obyasnyayut.php">
       <input type="hidden" name="intent" value="" data-contact-intent-input>
       <input type="hidden" name="sport" value="Виндсёрфинг" data-contact-sport-input>
       <input type="hidden" name="country" value="russia" data-contact-country-input>
-      <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
-      <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>
-      <label><span>Комментарий <small>по желанию</small></span><textarea name="message" rows="4" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
-      <button class="button button-primary contact-modal__submit" type="submit">Подготовить заявку</button>
+      <label hidden aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+      <label>Имя<input name="name" maxlength="100" autocomplete="name" placeholder="Ваше имя" required></label>
+      <label>Способ связи<input name="contact" maxlength="200" autocomplete="tel" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>
+      <label><span>Комментарий <small>по желанию</small></span><textarea name="message" maxlength="1200" rows="4" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
+      <button class="button button-primary contact-modal__submit" type="submit">Отправить заявку</button>
       <p class="form-note" data-form-note role="status" aria-live="polite"></p>
     </form>
     <div class="contact-modal__direct">
       <span>Или свяжитесь напрямую</span>
       <div>
         <a href="tel:+79884715355" data-contact-direct-phone>
-          <img src="/assets/icons/whatsapp.svg" alt="" width="20" height="20">
+          <img src="/assets/icons/phone.svg" alt="" width="20" height="20">
           <span data-contact-direct-phone-label>Телефон</span>
         </a>
+        <a href="mailto:russia@vetratoria.ru" data-contact-direct-email>Почта</a>
         <a href="https://t.me/+79884715355" data-contact-direct-telegram target="_blank" rel="noopener noreferrer">
           <img src="/assets/icons/telegram.svg" alt="" width="20" height="20">
           <span>Telegram</span>

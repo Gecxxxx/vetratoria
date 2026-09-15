@@ -34,7 +34,7 @@ export const site = {
     "Ветратория — сеть школ виндсёрфинга и вингфойла. Египет, Вьетнам и Россия: выберите направление, спорт, станцию и формат обучения.",
   email: "dahab@vetratoria.ru",
   phone: "+201029321772",
-  contactEndpoint: "",
+  contactEndpoint: process.env.CONTACT_ENDPOINT || "/api/contact",
   logo: "/assets/img/vetratoria-logo.png",
   socials: [
     {
@@ -175,6 +175,7 @@ export const site = {
       extras: [
         { title: "Цены на виндсёрфинг", href: "/vietnam/windsurf/price/" },
         { title: "О школе", href: "/vietnam/team/" },
+        { title: "Как добраться", href: "/vietnam/how-to-get/" },
         { title: "Блог", href: "/vietnam/blog/" }
       ]
     },
@@ -446,6 +447,7 @@ for (const country of site.countries) {
 }
 
 pages.push(
+  { path: "/vietnam/how-to-get/", kind: "route", country: "vietnam", eyebrow: "Муйне · дорога", title: "Как добраться до Ветратории в Муйне", description: "Адрес станции Sun & Sands Beach, координаты, переезд из Хошимина и подготовка к поездке со своим снаряжением.", image: "/assets/img/vietnam-source/station.jpg" },
   {
     path: "/russia/accommodation/",
     kind: "accommodation",
@@ -516,3 +518,19 @@ for (const page of pages) {
 
 export const allPages = [...byPath.values()].sort((a, b) => a.path.localeCompare(b.path));
 export const countriesByKey = countryByKey;
+
+const vietnamMeta = {
+  "/vietnam/": ["Ветратория Муйне — кайт, виндсёрфинг, вингфойл и сёрфинг", "Школа и станция Ветратория в Муйне: четыре дисциплины, обучение, прокат, цены, адрес и подготовка к поездке во Вьетнам.", "station.jpg"],
+  "/vietnam/windsurf/": ["Виндсёрфинг в Муйне — обучение и прокат | Ветратория", "Уроки виндсёрфинга с нуля, курсы на 3 и 7 дней, самостоятельная практика и прокат в Муйне. Программа, оборудование и запись.", "aerial.jpg"],
+  "/vietnam/wingfoil/": ["Вингфойл в Муйне — уроки и фойл за катером | Ветратория", "Управление вингом, баланс на доске и переход к фойлу. Индивидуальные и групповые занятия в Муйне, тренировка за катером.", "community.jpg"],
+  "/vietnam/kite/": ["Кайтсёрфинг в Муйне — обучение на Малибу | Ветратория", "Уроки кайтсёрфинга на споте Малибу: безопасность, управление кайтом, бодидраг и старт с доской. Форматы, цены и запись.", "station.jpg"],
+  "/vietnam/surf/": ["Сёрфинг в Муйне — уроки на волнах Малибу | Ветратория", "Классический сёрфинг на Малибу: индивидуальное занятие 1 час или группа 2–3 человека на 1,5 часа. Подбор волн и времени занятий.", "surf.jpg"],
+  "/vietnam/windsurf/price/": ["Цены на виндсёрфинг в Муйне — уроки, прокат и хранение", "Прайс Ветратории: уроки и курсы виндсёрфинга, прокат от часа до четырёх недель, страховка оборудования и хранение на станции.", "aerial.jpg"],
+  "/vietnam/kite/price/": ["Цены на кайтсёрфинг в Муйне — урок и курс | Ветратория", "Стоимость часового урока и курса кайтсёрфинга 5–10 часов на Малибу. Состав услуги, оборудование и запись на обучение.", "station.jpg"],
+  "/vietnam/wingfoil/price/": ["Цены на вингфойл в Муйне — индивидуально и в группе", "Стоимость урока вингфойла, группы из 2–3 участников и индивидуального занятия на фойле за катером. Длительность и состав форматов.", "community.jpg"],
+  "/vietnam/team/": ["О школе и станции Ветратория в Муйне", "Ветратория в Муйне с 2011 года: обучение четырём дисциплинам, инфраструктура Sun & Sands и подбор снаряжения для поездки.", "station.jpg"]
+};
+for (const page of allPages) {
+  const meta = vietnamMeta[page.path];
+  if (meta) [page.title, page.description, page.image] = [meta[0], meta[1], `/assets/img/vietnam-source/${meta[2]}`];
+}
