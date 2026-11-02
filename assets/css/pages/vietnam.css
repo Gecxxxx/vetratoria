@@ -44,3 +44,8 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* Vietnam has five working months; other countries keep their existing calendars. */
+.season-months--vietnam { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
+.vietnam-weather-source { margin: 14px 0 0; font-size: 13px; line-height: 1.5; color: #a7a39e; }
+.vietnam-weather-source a { color: inherit; text-decoration: underline; }

@@ -1,3 +1,16 @@
 /*.php
   Content-Type: text/html; charset=utf-8
   X-Content-Type-Options: nosniff
+
+# Only technical hosts. Custom production domain remains indexable.
+https://vetratoria.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:preview.vetratoria.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://vetratoria12.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:preview.vetratoria12.pages.dev/*
+  X-Robots-Tag: noindex

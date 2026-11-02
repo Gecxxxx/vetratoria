@@ -1,0 +1,19 @@
+old_url,new_url,action,reason,verification_status
+https://vietnam.vetratoria.ru/,https://vetratoria.ru/vietnam/,301,Обзор станции заменён новым разделом,content_reviewed_pending_launch
+https://vietnam.vetratoria.ru/ru,https://vetratoria.ru/vietnam/,301,Русская главная; найдено в старой навигации,content_reviewed_pending_launch
+https://vietnam.vetratoria.ru/ru/page/o-stancii-vetratoriyavetnam,https://vetratoria.ru/vietnam/team/,301,Информация о станции и школе,content_reviewed_pending_launch
+https://vietnam.vetratoria.ru/ru/page/kak-k-nam-dobratsya,https://vetratoria.ru/vietnam/how-to-get/,301,Маршрут и адрес без устаревших расписаний,content_reviewed_pending_launch
+https://vietnam.vetratoria.ru/ru/page/obuchenie-vindserfingu,https://vetratoria.ru/vietnam/windsurf/price/,301,Учебные тарифы; подтвердить условия индивидуального часа,owner_confirmation_required
+https://vietnam.vetratoria.ru/ru/page/obuchenie-kaytserfingu.php,https://vetratoria.ru/vietnam/kite/price/,301,Стоимость и формат урока/курса сохранены,content_reviewed_pending_launch
+https://vietnam.vetratoria.ru/ru/page/obuchenie-wing-foil.php,https://vetratoria.ru/vietnam/wingfoil/price/,301,Индивидуально/группа/катер сохранены,content_reviewed_pending_launch
+https://vietnam.vetratoria.ru/ru/page/prokat-oborudovaniya-dlya-vindserfinga,https://vetratoria.ru/vietnam/windsurf/price/,requires_analytics_decision,"Прокат и хранение перенесены; название также упоминает wingfoil, скидки требуют подтверждения",owner_and_analytics_required
+https://vietnam.vetratoria.ru/ru/page/klassicheskiy-serfing.php,https://vetratoria.ru/vietnam/surf/,requires_analytics_decision,"Форматы сёрфинга перенесены; цены SUP и проката пока не подтверждены, не полная замена",owner_and_analytics_required
+https://vietnam.vetratoria.ru/ru/page/tech,,keep_historical,"Исторический каталог 2018–2019, не текущие остатки",historical_date_identified
+https://vietnam.vetratoria.ru/ru/page/sistema-skidok.php,,no_suitable_replacement,Нет подтверждённой новой редакции скидок,owner_confirmation_required
+https://vietnam.vetratoria.ru/ru/blog,,keep_historical,Старый блог нужен для неперенесённых материалов и пагинации,archive_design_pending
+https://vietnam.vetratoria.ru/ru/blog/vetratoriya-vetnam-s-neterpeniem-zhdet-kazhdogo-iz-vas.php,https://vetratoria.ru/ru/blog/vetratoriya-vetnam-s-neterpeniem-zhdet-kazhdogo-iz-vas.php,301,Точный существующий импортированный URL; текст и дата сохранены,content_reviewed_pending_launch
+https://vietnam.vetratoria.ru/ru/blog/s-obnovkami.php,https://vetratoria.ru/ru/blog/s-obnovkami.php,301,Точный существующий импортированный URL; текст и дата сохранены,content_reviewed_pending_launch
+https://vietnam.vetratoria.ru/ru/blog/otkrytie-stancii-v-noyabre.php,,keep_historical,"Новость об открытии 2024 года, не перенесена",source_found
+https://vietnam.vetratoria.ru/ru/page/media.php,,requires_analytics_decision,Старое медиа может включать неперенесённые фото и видео,inventory_required
+https://vietnam.vetratoria.ru/en,,keep_historical,Сохранить английскую версию до появления полноценной английской замены,language_decision_required
+https://vietnam.vetratoria.ru/de,,keep_historical,Сохранить немецкую версию до появления полноценной немецкой замены,language_decision_required

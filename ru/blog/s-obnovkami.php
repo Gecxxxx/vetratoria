@@ -35,9 +35,9 @@
   <link rel="icon" href="/assets/img/vetratoria-logo.png">
   <link rel="preload" href="/assets/fonts/inter-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/main.css?v=20260913-unified-typography">
-  <script defer src="/assets/js/app.js?v=20260913-unified-typography"></script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/ru/blog/s-obnovkami.php#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"}]}]}</script>
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261102-vietnam-main-weather">
+  <script defer src="/assets/js/app.js?v=20261102-vietnam-main-weather"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/ru/blog/s-obnovkami.php#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"С обновками!","item":"https://vetratoria.ru/ru/blog/s-obnovkami.php"}]}]}</script>
 </head>
 <body class="modern-site article country-vietnam">
   <a class="skip-link" href="#main">К содержанию</a>
@@ -62,9 +62,6 @@
       <a href="https://www.instagram.com/vetratoriaofficiale/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
         <img src="/assets/icons/instagram.svg" alt="" width="20" height="20">
       </a>
-      <a href="https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html" target="_blank" rel="noopener noreferrer" aria-label="Tripadvisor" title="Tripadvisor">
-        <img src="/assets/icons/tripadvisor.svg" alt="" width="20" height="20">
-      </a>
   </nav>
       <span class="vtr-nav__lang-current" aria-label="Язык сайта: русский">RU</span>
     </div>
@@ -88,7 +85,7 @@
             <a class="vtr-nav__direction-link" href="/dahab/"><b>Египет · Дахаб</b><span>Вингфойл, Виндсёрфинг</span></a>
           </div>
           <div class="vtr-nav__direction">
-            <a class="vtr-nav__direction-link" href="/vietnam/"><b>Вьетнам · Муйне</b><span>Виндсёрфинг, Вингфойл, Кайтсёрфинг, Сёрфинг</span></a>
+            <a class="vtr-nav__direction-link" href="/vietnam/"><b>Вьетнам · Муйне</b><span>Виндсёрфинг, Вингфойлинг, Сёрфинг, Кайтсёрфинг</span></a>
           </div>
           <div class="vtr-nav__direction">
             <a class="vtr-nav__direction-link" href="/russia/"><b>Россия · Должанская</b><span>Виндсёрфинг, Вингфойл, Кайтсёрфинг</span></a>
@@ -104,12 +101,12 @@
       <section class="vtr-mobile-menu__block vtr-mobile-menu__block--accent" aria-label="Навигация Муйне">
         <p class="vtr-mobile-menu__title">Муйне</p>
         <a class="vtr-mobile-menu__row" href="/vietnam/">Обзор</a>
-        <a class="vtr-mobile-menu__row" href="/vietnam/windsurf/">Виндсёрфинг</a><a class="vtr-mobile-menu__row" href="/vietnam/wingfoil/">Вингфойл</a><a class="vtr-mobile-menu__row" href="/vietnam/kite/">Кайтсёрфинг</a><a class="vtr-mobile-menu__row" href="/vietnam/surf/">Сёрфинг</a>
+        <a class="vtr-mobile-menu__row" href="/vietnam/windsurf/">Виндсёрфинг</a><a class="vtr-mobile-menu__row" href="/vietnam/wingfoil/">Вингфойлинг</a><a class="vtr-mobile-menu__row" href="/vietnam/surf/">Сёрфинг</a><a class="vtr-mobile-menu__row" href="/vietnam/kite/">Кайтсёрфинг</a>
 
         <div class="vtr-mobile-menu__item vtr-mobile-menu__item--drop" data-dropdown>
           <button class="vtr-mobile-menu__row" type="button" aria-expanded="false" data-dropdown-toggle>Цены <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
           <div class="vtr-mobile-menu__submenu">
-            <a class="vtr-mobile-menu__row" href="/vietnam/windsurf/price/">Виндсёрфинг</a><a class="vtr-mobile-menu__row" href="/vietnam/wingfoil/price/">Вингфойл</a><a class="vtr-mobile-menu__row" href="/vietnam/kite/price/">Кайтсёрфинг</a>
+            <a class="vtr-mobile-menu__row" href="/vietnam/windsurf/price/">Виндсёрфинг</a><a class="vtr-mobile-menu__row" href="/vietnam/wingfoil/price/">Вингфойлинг</a><a class="vtr-mobile-menu__row" href="/vietnam/surf/price/">Сёрфинг</a><a class="vtr-mobile-menu__row" href="/vietnam/kite/price/">Кайтсёрфинг</a>
           </div>
         </div>
 
@@ -117,7 +114,7 @@
         <div class="vtr-mobile-menu__item vtr-mobile-menu__item--drop" data-dropdown>
           <button class="vtr-mobile-menu__row" type="button" aria-expanded="false" data-dropdown-toggle>О школе <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
           <div class="vtr-mobile-menu__submenu">
-            <a class="vtr-mobile-menu__row" href="/vietnam/team/">О школе и команде</a><a class="vtr-mobile-menu__row" href="/vietnam/blog/">Блог</a><a class="vtr-mobile-menu__row" href="/media/vietnam/">Медиа</a><a class="vtr-mobile-menu__row" href="/vietnam/contacts/">Контакты</a>
+            <a class="vtr-mobile-menu__row" href="/vietnam/team/">О школе и станции</a><a class="vtr-mobile-menu__row" href="/vietnam/how-to-get/">Как добраться</a><a class="vtr-mobile-menu__row" href="/vietnam/blog/">Блог</a><a class="vtr-mobile-menu__row" href="/media/vietnam/">Медиа</a><a class="vtr-mobile-menu__row" href="/vietnam/contacts/">Контакты</a>
           </div>
         </div>
       </section>
@@ -142,9 +139,6 @@
       <a href="https://www.instagram.com/vetratoriaofficiale/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
         <img src="/assets/icons/instagram.svg" alt="" width="20" height="20">
       </a>
-      <a href="https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html" target="_blank" rel="noopener noreferrer" aria-label="Tripadvisor" title="Tripadvisor">
-        <img src="/assets/icons/tripadvisor.svg" alt="" width="20" height="20">
-      </a>
   </nav>
         </section>
       </div>
@@ -152,18 +146,18 @@
   </div>
 
   <nav class="vtr-nav__section" aria-label="Навигация Муйне">
-    <a class="vtr-nav__section-link" href="/vietnam/">Обзор</a><a class="vtr-nav__section-link" href="/vietnam/windsurf/">Виндсёрфинг</a><a class="vtr-nav__section-link" href="/vietnam/wingfoil/">Вингфойл</a><a class="vtr-nav__section-link" href="/vietnam/kite/">Кайтсёрфинг</a><a class="vtr-nav__section-link" href="/vietnam/surf/">Сёрфинг</a>
+    <a class="vtr-nav__section-link" href="/vietnam/">Обзор</a><a class="vtr-nav__section-link" href="/vietnam/windsurf/">Виндсёрфинг</a><a class="vtr-nav__section-link" href="/vietnam/wingfoil/">Вингфойлинг</a><a class="vtr-nav__section-link" href="/vietnam/surf/">Сёрфинг</a><a class="vtr-nav__section-link" href="/vietnam/kite/">Кайтсёрфинг</a>
     <div class="vtr-nav__section-item vtr-nav__section-item--drop" data-dropdown>
       <button class="vtr-nav__section-link" type="button" aria-expanded="false" data-dropdown-toggle>Цены <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
       <div class="vtr-nav__section-dropdown">
-        <a href="/vietnam/windsurf/price/">Виндсёрфинг</a><a href="/vietnam/wingfoil/price/">Вингфойл</a><a href="/vietnam/kite/price/">Кайтсёрфинг</a>
+        <a href="/vietnam/windsurf/price/">Виндсёрфинг</a><a href="/vietnam/wingfoil/price/">Вингфойлинг</a><a href="/vietnam/surf/price/">Сёрфинг</a><a href="/vietnam/kite/price/">Кайтсёрфинг</a>
       </div>
     </div>
 
     <div class="vtr-nav__section-item vtr-nav__section-item--drop" data-dropdown>
       <button class="vtr-nav__section-link" type="button" aria-expanded="false" data-dropdown-toggle>О школе <span class="vtr-nav__chevron" aria-hidden="true">⌄</span></button>
       <div class="vtr-nav__section-dropdown">
-        <a href="/vietnam/team/">О школе и команде</a><a href="/vietnam/blog/">Блог</a><a href="/media/vietnam/">Медиа</a><a href="/vietnam/contacts/">Контакты</a>
+        <a href="/vietnam/team/">О школе и станции</a><a href="/vietnam/how-to-get/">Как добраться</a><a href="/vietnam/blog/">Блог</a><a href="/media/vietnam/">Медиа</a><a href="/vietnam/contacts/">Контакты</a>
       </div>
     </div>
   </nav>
@@ -181,6 +175,7 @@
     <div class="hero-actions"><a class="button button-primary" href="#article-text">Читать статью</a><a class="button button-ghost" href="/vietnam/blog/">Блог Вьетнама</a></div>
   </div>
 </section>
+  <section class="content-section"><div class="section-inner"><p>Исторический материал: фотографии и сведения относятся к дате публикации и прежней локации. Действующая станция — у отеля Matie.</p></div></section>
   <article class="legacy-article" id="article-text">
     <header class="legacy-article__meta">
       <a href="/blog/">Блог</a><span aria-hidden="true">/</span><a href="/vietnam/blog/">Вьетнам</a><span aria-hidden="true">/</span><span>Виндсёрфинг</span>
@@ -217,10 +212,10 @@
       </div>
       <div class="footer-column">
         <h2>Спорт</h2>
-        <div class="footer-links"><a href="/vietnam/kite/">Кайтсёрфинг Муйне</a>
-          <a href="/vietnam/windsurf/" class="is-current" aria-current="page">Виндсёрфинг Муйне</a>
-          <a href="/vietnam/wingfoil/">Вингфойл Муйне</a>
-          <a href="/vietnam/surf/">Сёрфинг Муйне</a></div>
+        <div class="footer-links"><a href="/vietnam/windsurf/" class="is-current" aria-current="page">Виндсёрфинг Муйне</a>
+          <a href="/vietnam/wingfoil/">Вингфойлинг Муйне</a>
+          <a href="/vietnam/surf/">Сёрфинг Муйне</a>
+          <a href="/vietnam/kite/">Кайтсёрфинг Муйне</a></div>
       </div>
       <div class="footer-column footer-column--contact">
         <h2>Связь</h2>
@@ -245,26 +240,30 @@
       <span class="contact-modal__context" data-contact-modal-context>Вьетнам · Муйне · Виндсёрфинг</span>
     </div>
     <form class="contact-form contact-modal__form" data-contact-form data-contact-modal-form
-      data-endpoint=""
+      data-endpoint="/api/contact"
       data-mail-to="vietnam@vetratoria.ru"
       data-direction="Вьетнам · Муйне · Виндсёрфинг">
       <input type="hidden" name="source" value="/ru/blog/s-obnovkami.php">
       <input type="hidden" name="intent" value="" data-contact-intent-input>
       <input type="hidden" name="sport" value="Виндсёрфинг" data-contact-sport-input>
       <input type="hidden" name="country" value="vietnam" data-contact-country-input>
-      <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя" required></label>
-      <label>Способ связи<input name="contact" autocomplete="tel" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>
-      <label><span>Комментарий <small>по желанию</small></span><textarea name="message" rows="4" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
-      <button class="button button-primary contact-modal__submit" type="submit">Подготовить заявку</button>
+      <label hidden aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+      <label>Имя<input name="name" maxlength="100" autocomplete="name" placeholder="Ваше имя" required></label>
+      <label>Способ связи<input name="contact" maxlength="200" autocomplete="tel" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>
+      <label><span>Комментарий <small>по желанию</small></span><textarea name="message" maxlength="1200" rows="4" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
+      <button class="button button-primary contact-modal__submit" type="submit">Отправить заявку</button>
       <p class="form-note" data-form-note role="status" aria-live="polite"></p>
     </form>
     <div class="contact-modal__direct">
       <span>Или свяжитесь напрямую</span>
       <div>
         <a href="tel:+79884715355" data-contact-direct-phone>
-          <img src="/assets/icons/whatsapp.svg" alt="" width="20" height="20">
+          <img src="/assets/icons/phone.svg" alt="" width="20" height="20">
           <span data-contact-direct-phone-label>Телефон</span>
         </a>
+        <a href="https://wa.me/79884715355" data-contact-vietnam-method data-contact-direct-whatsapp target="_blank" rel="noopener noreferrer"><img src="/assets/icons/whatsapp.svg" alt="" width="20" height="20"><span>WhatsApp</span></a>
+        <details class="contact-max" data-contact-vietnam-method><summary>MAX</summary><p>Добавьте номер станции в контакты MAX: <strong>+7 988 471 5355</strong>.</p></details>
+        <a href="mailto:vietnam@vetratoria.ru" data-contact-direct-email>Email</a>
         <a href="https://t.me/+79884715355" data-contact-direct-telegram target="_blank" rel="noopener noreferrer">
           <img src="/assets/icons/telegram.svg" alt="" width="20" height="20">
           <span>Telegram</span>

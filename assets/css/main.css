@@ -2140,6 +2140,21 @@ body.nav-open {
   }
 }
 
+/* Preserve native hidden semantics despite the form label grid rule. */
+.contact-form [hidden] {
+  display: none !important;
+}
+
+.contact-modal [data-contact-vietnam-method][hidden] { display: none !important; }
+.contact-modal__direct .contact-max { position: relative; }
+.contact-modal__direct .contact-max summary {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 100%; min-height: 44px; padding: 10px 14px; border: 1px solid #777;
+  cursor: pointer; font-weight: 600; list-style: none;
+}
+.contact-modal__direct .contact-max p { max-width: 260px; margin: 12px 0; font-size: 14px; }
+.contact-modal__direct > div { flex-wrap: wrap; }
+
 /* Source: ./components/contact-modal.css */
 /* Shared contact dialog */
 
@@ -9164,6 +9179,11 @@ body.country.country-dahab .trust-block {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* Vietnam has five working months; other countries keep their existing calendars. */
+.season-months--vietnam { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
+.vietnam-weather-source { margin: 14px 0 0; font-size: 13px; line-height: 1.5; color: #a7a39e; }
+.vietnam-weather-source a { color: inherit; text-decoration: underline; }
 
 /* Source: ./pages/russia.css */
 /* Russia direction: shared Dahab/Vietnam components with local image tuning only. */
