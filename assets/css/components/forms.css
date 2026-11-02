@@ -99,7 +99,7 @@
 .contact-modal__direct .contact-max { position: relative; }
 .contact-modal__direct .contact-max summary {
   display: inline-flex; align-items: center; justify-content: center;
-  min-height: 44px; padding: 10px 14px; border: 1px solid #777;
+  width: 100%; min-height: 44px; padding: 10px 14px; border: 1px solid #777;
   cursor: pointer; font-weight: 600; list-style: none;
 }
 .contact-modal__direct .contact-max p { max-width: 260px; margin: 12px 0; font-size: 14px; }
