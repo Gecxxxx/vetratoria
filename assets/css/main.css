@@ -2147,13 +2147,10 @@ body.nav-open {
 
 .contact-modal [data-contact-vietnam-method][hidden] { display: none !important; }
 .contact-modal__direct .contact-max { position: relative; }
-.contact-modal__direct .contact-max summary {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 100%; min-height: 44px; padding: 10px 14px; border: 1px solid #777;
-  cursor: pointer; font-weight: 600; list-style: none;
-}
 .contact-modal__direct .contact-max p { max-width: 260px; margin: 12px 0; font-size: 14px; }
 .contact-modal__direct > div { flex-wrap: wrap; }
+
+.contact-messenger-hint { margin: -4px 0 4px; font-size: 13px; line-height: 1.45; color: var(--muted); }
 
 /* Source: ./components/contact-modal.css */
 /* Shared contact dialog */
@@ -2303,7 +2300,8 @@ body.contact-modal-open {
   gap: 10px;
 }
 
-.contact-modal__direct a {
+.contact-modal__direct a,
+.contact-modal__direct .contact-max summary {
   display: flex;
   min-height: 48px;
   align-items: center;
@@ -2321,7 +2319,9 @@ body.contact-modal-open {
 }
 
 .contact-modal__direct a:hover,
-.contact-modal__direct a:focus-visible {
+.contact-modal__direct a:focus-visible,
+.contact-modal__direct .contact-max summary:hover,
+.contact-modal__direct .contact-max summary:focus-visible {
   border-color: var(--orange);
   background: #211814;
 }
@@ -2401,6 +2401,9 @@ body.contact-modal-open {
     backdrop-filter: none;
   }
 }
+
+.contact-modal__direct .contact-max summary { width: 100%; cursor: pointer; list-style: none; }
+.contact-modal__direct .contact-max summary::-webkit-details-marker { display: none; }
 
 /* Source: ./components/slider.css */
 /* Sliders */

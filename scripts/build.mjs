@@ -601,7 +601,8 @@ const contactDialog = (page) => {
       </label>`}
       <label hidden aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
       <label>Имя<input name="name" maxlength="100" autocomplete="name" placeholder="Ваше имя" required></label>
-      <label>Способ связи<input name="contact" maxlength="200" autocomplete="tel" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>
+      <label>Ваш мессенджер<input name="contact" maxlength="200" autocomplete="tel" placeholder="Номер с кодом страны или @username" aria-describedby="modal-messenger-hint" required></label>
+      <p class="contact-messenger-hint" id="modal-messenger-hint">Укажите номер, привязанный к мессенджеру, или @username, чтобы мы могли вам написать. В комментарии уточните: Telegram, WhatsApp или MAX.</p>
       <label><span>Комментарий <small>по желанию</small></span><textarea name="message" maxlength="1200" rows="4" placeholder="Даты, уровень, спорт или ваш вопрос"></textarea></label>
       <button class="button button-primary contact-modal__submit" type="submit">Отправить заявку</button>
       <p class="form-note" data-form-note role="status" aria-live="polite"></p>
@@ -614,8 +615,8 @@ const contactDialog = (page) => {
           <span data-contact-direct-phone-label>${country?.key === "dahab" ? "WhatsApp" : "Телефон"}</span>
         </a>
         <a href="https://wa.me/${destination.phone.replace(/\D/g, "")}" data-contact-vietnam-method data-contact-direct-whatsapp${country?.key === "vietnam" ? "" : " hidden"} target="_blank" rel="noopener noreferrer"><img src="/assets/icons/whatsapp.svg" alt="" width="20" height="20"><span>WhatsApp</span></a>
-        <details class="contact-max" data-contact-vietnam-method${country?.key === "vietnam" ? "" : " hidden"}><summary>MAX</summary><p>Добавьте номер станции в контакты MAX: <strong>+7 988 471 5355</strong>.</p></details>
-        <a href="mailto:${destination.formEmail || destination.email}" data-contact-direct-email>Email</a>
+        <details class="contact-max" data-contact-vietnam-method${country?.key === "vietnam" ? "" : " hidden"}><summary><img src="/assets/icons/max.svg" alt="" width="20" height="20"><span>MAX</span></summary><p>Добавьте номер станции в контакты MAX: <strong>+7 988 471 5355</strong>.</p></details>
+        <a href="mailto:${destination.formEmail || destination.email}" data-contact-direct-email><img src="/assets/icons/email.svg" alt="" width="20" height="20"><span>Email</span></a>
         <a href="${destination.telegram}" data-contact-direct-telegram target="_blank" rel="noopener noreferrer">
           <img src="/assets/icons/telegram.svg" alt="" width="20" height="20">
           <span>Telegram</span>
@@ -626,7 +627,7 @@ const contactDialog = (page) => {
 </dialog>`;
 };
 
-const ASSET_VERSION = "20261102-vietnam-main-weather";
+const ASSET_VERSION = "20261102-messenger-wing-group";
 const assetVersionForPage = (page) => page.path === "/blog/" ? "20260913-blog-filter-r2" : ASSET_VERSION;
 const versionedAsset = (path, version = ASSET_VERSION) => `${path}?v=${version}`;
 
@@ -2374,13 +2375,13 @@ const vietnamSportPage = (page) => {
       title: "Вингфойлинг в Муйне",
       lead: "Обучение на современном оборудовании: управление крылом, баланс на доске, первые подъёмы на фойл и самостоятельная практика.",
       hero: vietnamImg("community.jpg"),
-      facts: ["Индивидуально 65$", "Группы по согласованию", "Современное оборудование", "Фойл за катером"],
+      facts: ["Индивидуально 65$", "В группе — 50$ с человека", "Современное оборудование", "Фойл за катером"],
       locationTitle: "Вингфойлинг в акватории за мысом",
       locationLead: "Ветратория у отеля Matie расположена за мысом. Здесь прибрежная зона защищена от открытой волны, что помогает сосредоточиться на управлении крылом и балансе. Условия выхода инструктор оценивает перед занятием.",
       reasons: [["Тёплая вода","Больше времени можно уделить упражнениям и повторениям на воде.",vietnamImg("community.jpg"),"Вингфойлинг в тёплом море Муйне"],["Оборудование RRD","На станции доступны современные доски и крылья для разных уровней.",vietnamImg("atmosphere.jpg"),"Оборудование станции Ветратория"],["Фойл за катером","Можно отдельно отработать баланс и контроль высоты без одновременного управления крылом.",vietnamImg("foil-boat-lesson.webp"),"Занятие на фойле рядом с лодкой"]],
       steps: [["01","Управление крылом","На берегу учимся держать винг, менять сторону и понимать тягу."],["02","Крыло и доска","Соединяем управление вингом с балансом и движением по воде."],["03","Выход на фойл","Набираем скорость, контролируем подъём и удерживаем безопасную высоту."],["04","Практика","Закрепляем старты, проходы и возвращение к точке выхода."]],
-      prices: [["Индивидуально","1 час","65$","Винг, доска и инструктор включены."],["Фойл и катер","20 минут","65$","Индивидуальная тренировка баланса на фойле."]],
-      faq: [["Можно ли начать без опыта?","Да, обучение начинается с управления крылом и баланса, предыдущий опыт не обязателен."],["Что входит в урок?","Крыло, доска и работа инструктора."],["Как проходит групповое занятие?","Возможность группового занятия и условия согласуйте с командой при записи."],["Зачем нужен фойл за катером?","Он позволяет отдельно почувствовать подъём и научиться контролировать высоту без крыла."]]
+      prices: [["Индивидуально","1 час","65$","Винг, доска и инструктор включены."],["Группа 2–3 человека","1 час","50$ / человек","Винг, доска и инструктор включены."],["Фойл и катер","20 минут","65$","Индивидуальная тренировка баланса на фойле."]],
+      faq: [["Можно ли начать без опыта?","Да, обучение начинается с управления крылом и баланса, предыдущий опыт не обязателен."],["Что входит в урок?","Крыло, доска и работа инструктора."],["Как проходит групповое занятие?","Группа из 2–3 человек, занятие длится 1 час и стоит 50$ с человека. В стоимость входят винг, доска и работа инструктора. Состав группы и время согласуются при записи."],["Зачем нужен фойл за катером?","Он позволяет отдельно почувствовать подъём и научиться контролировать высоту без крыла."]]
     },
     surf: {
       title: "Сёрфинг в Муйне",
@@ -3059,16 +3060,16 @@ const vietnamPricePage = (page) => {
     wingfoil: {
       eyebrow: "Вьетнам · вингфойлинг · цены",
       title: "Цены на вингфойлинг в Муйне",
-      lead: "Индивидуальные занятия и отдельная тренировка на фойле за катером. Групповой формат согласовывается с командой.",
+      lead: "Индивидуальные уроки, занятия в группе из 2–3 человек и отдельная тренировка на фойле за катером.",
       hero: vietnamImg("community.jpg"),
-      facts: ["Индивидуально — 65$", "Группы по согласованию", "Фойл за катером — 65$"],
-      intro: "Выберите индивидуальный темп или тренировку баланса на фойле без крыла.",
+      facts: ["Индивидуально — 65$", "В группе — 50$ с человека", "Фойл за катером — 65$"],
+      intro: "Выберите индивидуальный темп, часовое занятие в небольшой группе или тренировку баланса на фойле без крыла.",
       sections: [{
         eyebrow: "Обучение",
         title: "Форматы занятий",
         lead: "Крыло, доска и необходимое оборудование входят в стоимость занятия.",
         headers: ["Формат", "Продолжительность", "Цена", "Что входит"],
-        rows: [["Индивидуальное занятие", "1 час", "65$", "Инструктор, винг и доска"], ["Фойл за катером", "20 минут", "65$", "Индивидуальная тренировка баланса на фойле"]]
+        rows: [["Индивидуальное занятие", "1 час", "65$", "Инструктор, винг и доска"], ["Групповое занятие", "1 час", "50$ / человек", "Группа 2–3 человека, инструктор, винг и доска"], ["Фойл за катером", "20 минут", "65$", "Индивидуальная тренировка баланса на фойле"]]
       }]
     }
   };
@@ -3565,7 +3566,8 @@ const contactForm = (page) => {
       ${!isGeneral ? `<input type="hidden" name="country" value="${page.country}">` : ""}
       <label hidden aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
       <label>Имя<input name="name" maxlength="100" autocomplete="name" placeholder="Ваше имя" required></label>
-      <label>Способ связи<input name="contact" maxlength="200" autocomplete="email" placeholder="Телефон, электронная почта или @имя_пользователя" required></label>
+      <label>Ваш мессенджер<input name="contact" maxlength="200" autocomplete="tel" placeholder="Номер с кодом страны или @username" aria-describedby="inline-messenger-hint" required></label>
+      <p class="contact-messenger-hint" id="inline-messenger-hint">Укажите номер, привязанный к мессенджеру, или @username, чтобы мы могли вам написать. В комментарии уточните: Telegram, WhatsApp или MAX.</p>
       ${isGeneral ? `
       <label>Страна
         <select name="country" data-contact-country-select required>

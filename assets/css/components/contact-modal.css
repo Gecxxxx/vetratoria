@@ -145,7 +145,8 @@ body.contact-modal-open {
   gap: 10px;
 }
 
-.contact-modal__direct a {
+.contact-modal__direct a,
+.contact-modal__direct .contact-max summary {
   display: flex;
   min-height: 48px;
   align-items: center;
@@ -163,7 +164,9 @@ body.contact-modal-open {
 }
 
 .contact-modal__direct a:hover,
-.contact-modal__direct a:focus-visible {
+.contact-modal__direct a:focus-visible,
+.contact-modal__direct .contact-max summary:hover,
+.contact-modal__direct .contact-max summary:focus-visible {
   border-color: var(--orange);
   background: #211814;
 }
@@ -243,3 +246,6 @@ body.contact-modal-open {
     backdrop-filter: none;
   }
 }
+
+.contact-modal__direct .contact-max summary { width: 100%; cursor: pointer; list-style: none; }
+.contact-modal__direct .contact-max summary::-webkit-details-marker { display: none; }
