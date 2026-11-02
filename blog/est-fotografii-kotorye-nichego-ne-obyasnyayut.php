@@ -35,8 +35,8 @@
   <link rel="icon" href="/assets/img/vetratoria-logo.png">
   <link rel="preload" href="/assets/fonts/inter-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/main.css?v=20260915-contact-vietnam">
-  <script defer src="/assets/js/app.js?v=20260915-contact-vietnam"></script>
+  <link rel="stylesheet" href="/assets/css/main.css?v=20261102-vietnam-station">
+  <script defer src="/assets/js/app.js?v=20261102-vietnam-station"></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://vetratoria.ru/#organization","name":"Ветратория","url":"https://vetratoria.ru/","logo":{"@type":"ImageObject","url":"https://vetratoria.ru/assets/img/vetratoria-logo.png"},"sameAs":["https://vk.ru/club2195523","https://www.instagram.com/vetratoriaofficiale/","https://www.tripadvisor.ru/Attraction_Review-g297547-d9806047-Reviews-Vetratoria_Windsurfing_SUP_Centre-Dahab_South_Sinai_Red_Sea_and_Sinai.html"]},{"@type":"BreadcrumbList","@id":"https://vetratoria.ru/blog/est-fotografii-kotorye-nichego-ne-obyasnyayut.php#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Ветратория","item":"https://vetratoria.ru/"},{"@type":"ListItem","position":2,"name":"Материалы со всех стран","item":"https://vetratoria.ru/blog/"},{"@type":"ListItem","position":3,"name":"Есть фотографии, которые ничего не объясняют.","item":"https://vetratoria.ru/blog/est-fotografii-kotorye-nichego-ne-obyasnyayut.php"}]}]}</script>
 </head>
 <body class="modern-site article country-russia">
@@ -88,7 +88,7 @@
             <a class="vtr-nav__direction-link" href="/dahab/"><b>Египет · Дахаб</b><span>Вингфойл, Виндсёрфинг</span></a>
           </div>
           <div class="vtr-nav__direction">
-            <a class="vtr-nav__direction-link" href="/vietnam/"><b>Вьетнам · Муйне</b><span>Виндсёрфинг, Вингфойл, Кайтсёрфинг, Сёрфинг</span></a>
+            <a class="vtr-nav__direction-link" href="/vietnam/"><b>Вьетнам · Муйне</b><span>Виндсёрфинг, Вингфойлинг, Сёрфинг, Кайтсёрфинг</span></a>
           </div>
           <div class="vtr-nav__direction">
             <a class="vtr-nav__direction-link" href="/russia/"><b>Россия · Должанская</b><span>Виндсёрфинг, Вингфойл, Кайтсёрфинг</span></a>
@@ -181,6 +181,7 @@
     <div class="hero-actions"><a class="button button-primary" href="#article-text">Читать статью</a><a class="button button-ghost" href="/russia/blog/">Блог России</a></div>
   </div>
 </section>
+
   <article class="legacy-article" id="article-text">
     <header class="legacy-article__meta">
       <a href="/blog/">Блог</a><span aria-hidden="true">/</span><a href="/russia/blog/">Россия</a><span aria-hidden="true">/</span><span>Виндсёрфинг</span>
@@ -265,7 +266,9 @@
           <img src="/assets/icons/phone.svg" alt="" width="20" height="20">
           <span data-contact-direct-phone-label>Телефон</span>
         </a>
-        <a href="mailto:russia@vetratoria.ru" data-contact-direct-email>Почта</a>
+        <a href="https://wa.me/79884715355" data-contact-vietnam-method data-contact-direct-whatsapp hidden target="_blank" rel="noopener noreferrer"><img src="/assets/icons/whatsapp.svg" alt="" width="20" height="20"><span>WhatsApp</span></a>
+        <details class="contact-max" data-contact-vietnam-method hidden><summary>MAX</summary><p>Добавьте номер станции в контакты MAX: <strong>+7 988 471 5355</strong>.</p></details>
+        <a href="mailto:russia@vetratoria.ru" data-contact-direct-email>Email</a>
         <a href="https://t.me/+79884715355" data-contact-direct-telegram target="_blank" rel="noopener noreferrer">
           <img src="/assets/icons/telegram.svg" alt="" width="20" height="20">
           <span>Telegram</span>

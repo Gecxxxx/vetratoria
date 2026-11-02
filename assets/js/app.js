@@ -827,6 +827,12 @@
         directPhone.removeAttribute("rel");
       }
     }
+    contactDialog?.querySelectorAll("[data-contact-vietnam-method]").forEach((method) => {
+      method.hidden = country !== "vietnam";
+      if (method.tagName === "DETAILS" && country !== "vietnam") method.open = false;
+    });
+    const whatsappLink = contactDialog?.querySelector("[data-contact-direct-whatsapp]");
+    if (whatsappLink && phone) whatsappLink.href = `https://wa.me/${phone.replace(/\D/g, "")}`;
     if (directTelegram && telegram) directTelegram.href = telegram;
     const emailLink = contactDialog?.querySelector("[data-contact-direct-email]");
     const email = contactModalForm?.dataset.mailTo;

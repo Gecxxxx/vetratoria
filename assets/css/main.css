@@ -2145,6 +2145,16 @@ body.nav-open {
   display: none !important;
 }
 
+.contact-modal [data-contact-vietnam-method][hidden] { display: none !important; }
+.contact-modal__direct .contact-max { position: relative; }
+.contact-modal__direct .contact-max summary {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; padding: 10px 14px; border: 1px solid #777;
+  cursor: pointer; font-weight: 600; list-style: none;
+}
+.contact-modal__direct .contact-max p { max-width: 260px; margin: 12px 0; font-size: 14px; }
+.contact-modal__direct > div { flex-wrap: wrap; }
+
 /* Source: ./components/contact-modal.css */
 /* Shared contact dialog */
 
@@ -9168,6 +9178,28 @@ body.country.country-dahab .trust-block {
   .vietnam-process--three {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+/* Current station: retain the compact component system while new location photos are supplied. */
+.vietnam-current .dahab-hero { min-height: 520px; background: #100f0d; }
+.vietnam-current .dahab-sport-hero__inner,
+.vietnam-current .dahab-sport-location-atlas,
+.vietnam-current .dahab-sport-safety,
+.vietnam-current .windsurf-price-contact,
+.vietnam-current .station-advice__list a { grid-template-columns: minmax(0, 1fr); }
+.vietnam-current .dahab-sport-hero__copy { max-width: 1100px; }
+.vietnam-current .dahab-sport-hero__copy h1 { max-width: 950px; }
+.vietnam-current .sport-tile { min-height: 220px; background: #171411; }
+.vietnam-current .sport-tile__content { position: relative; inset: auto; padding: 32px 24px; }
+.vietnam-current .dahab-learning__layout { align-items: start; }
+.vietnam-current .dahab-sport-safety__media,
+.vietnam-current .dahab-safety-spotlight__media { display: none; }
+.vietnam-current .dahab-sport-cta { background: #171411; }
+.season-months--vietnam { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
+@media (max-width: 640px) {
+  .vietnam-current .sport-tile { min-height: 140px; }
+  .vietnam-current .sport-tile__content { padding: 24px 16px; }
+  .vietnam-current .dahab-hero { min-height: 480px; }
 }
 
 /* Source: ./pages/russia.css */
