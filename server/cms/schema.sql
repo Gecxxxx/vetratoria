@@ -1,0 +1,11 @@
+PRAGMA foreign_keys = ON;
+CREATE TABLE IF NOT EXISTS cms_users (id TEXT PRIMARY KEY, username TEXT UNIQUE NOT NULL, password_hash TEXT NOT NULL, role TEXT NOT NULL CHECK(role IN ('admin','editor')), created_at TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS cms_sessions (token_hash TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES cms_users(id) ON DELETE CASCADE, expires INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS cms_attempts (key TEXT PRIMARY KEY, count INTEGER NOT NULL, reset_at INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS cms_posts (id TEXT PRIMARY KEY, path TEXT UNIQUE NOT NULL, kind TEXT NOT NULL, title TEXT NOT NULL, country TEXT NOT NULL, sports TEXT NOT NULL, draft TEXT NOT NULL, published TEXT, revision INTEGER NOT NULL DEFAULT 1, state TEXT NOT NULL DEFAULT 'draft', imported INTEGER NOT NULL DEFAULT 0, updated_at TEXT NOT NULL, updated_by TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS cms_versions (post_id TEXT NOT NULL REFERENCES cms_posts(id) ON DELETE CASCADE, revision INTEGER NOT NULL, draft TEXT NOT NULL, created_at TEXT NOT NULL, author TEXT NOT NULL, PRIMARY KEY(post_id,revision));
+CREATE TRIGGER IF NOT EXISTS cms_post_created AFTER INSERT ON cms_posts BEGIN INSERT INTO cms_versions VALUES (NEW.id, NEW.revision, NEW.draft, NEW.updated_at, NEW.updated_by); END;
+CREATE TRIGGER IF NOT EXISTS cms_post_updated AFTER UPDATE OF revision ON cms_posts BEGIN INSERT INTO cms_versions VALUES (NEW.id, NEW.revision, NEW.draft, NEW.updated_at, NEW.updated_by); END;
+CREATE TABLE IF NOT EXISTS cms_assets (id TEXT PRIMARY KEY, url TEXT UNIQUE NOT NULL, name TEXT NOT NULL, type TEXT NOT NULL, bytes INTEGER NOT NULL, country TEXT NOT NULL, sport TEXT NOT NULL, alt TEXT NOT NULL DEFAULT '', created_at TEXT NOT NULL);
+CREATE INDEX IF NOT EXISTS cms_posts_filter ON cms_posts(kind,country,state);
+CREATE INDEX IF NOT EXISTS cms_session_expiry ON cms_sessions(expires);

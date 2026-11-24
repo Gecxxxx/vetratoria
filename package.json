@@ -6,7 +6,10 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "check": "node scripts/verify.mjs && node scripts/verify-typography.mjs",
-    "dev": "sh -c 'python3 -m http.server 4173 --bind 0.0.0.0' --"
+    "dev": "sh -c 'python3 -m http.server 4173 --bind 0.0.0.0' --",
+    "cms:import": "node scripts/cms/import.mjs",
+    "cms:test": "node --test scripts/tests/cms.test.mjs",
+    "cms:secrets": "node scripts/cms/secrets.mjs"
   },
   "engines": {
     "node": ">=20"
